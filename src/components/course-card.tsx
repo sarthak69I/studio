@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CalendarDays, ArrowRight, ListChecks } from 'lucide-react';
+import { CalendarDays, ArrowRight, ListChecks, RadioTower } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -23,6 +23,11 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 
+interface LiveSlot {
+  targetHour: number;
+  targetMinute: number;
+  durationMinutes: number;
+}
 interface CourseCardProps {
   id: string;
   badgeText?: string;
@@ -36,6 +41,7 @@ interface CourseCardProps {
   enrollLink: string;
   youtubeLink: string;
   timeTableImageUrl?: string;
+  liveSlots?: LiveSlot[];
 }
 
 export function CourseCard({
@@ -50,17 +56,77 @@ export function CourseCard({
   enrollLink,
   youtubeLink,
   timeTableImageUrl,
+  liveSlots,
 }: CourseCardProps) {
   const [isTimeTableDialogOpen, setIsTimeTableDialogOpen] = React.useState(false);
+  const [isCourseLive, setIsCourseLive] = React.useState(false);
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  React.useEffect(() => {
+    if (!isMounted || !liveSlots || liveSlots.length === 0) {
+      setIsCourseLive(false);
+      return;
+    }
+
+    const checkLiveStatus = () => {
+      const now = new Date();
+      let courseIsCurrentlyLive = false;
+
+      for (const slot of liveSlots) {
+        let classStartTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), slot.targetHour, slot.targetMinute, 0);
+        
+        // Logic to handle if today's classes are over, schedule for tomorrow
+        // This check might need to be more sophisticated if liveSlots can span across midnight or if the "day" definition is complex
+        const lastClassTargetHour = 20; 
+        const lastClassTargetMinute = 10; 
+        const lastClassDurationMinutes = 90;
+        const lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), lastClassTargetHour, lastClassTargetMinute, 0);
+        lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + lastClassDurationMinutes);
+
+        if (now > lastClassEndTimeToday && slot.targetHour < now.getHours()) {
+           classStartTime.setDate(classStartTime.getDate() + 1);
+        }
+
+        const classEndTime = new Date(classStartTime.getTime() + slot.durationMinutes * 60000);
+
+        if (now >= classStartTime && now < classEndTime) {
+          courseIsCurrentlyLive = true;
+          break; 
+        }
+      }
+      setIsCourseLive(courseIsCurrentlyLive);
+    };
+
+    checkLiveStatus(); // Initial check
+    const intervalId = setInterval(checkLiveStatus, 60000); // Check every minute
+
+    return () => clearInterval(intervalId);
+  }, [isMounted, liveSlots]);
+
 
   return (
-    <Card className="w-full max-w-sm overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-border flex flex-col">
+    <Card className="w-full max-w-sm overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-border flex flex-col relative">
+      {isCourseLive && (
+         <Badge variant="destructive" className="absolute top-3 right-3 text-xs font-bold animate-pulse z-10 px-2 py-1">
+           <RadioTower className="mr-1 h-3 w-3" /> LIVE
+         </Badge>
+       )}
       <CardHeader className="p-5">
-        {badgeText && (
-          <Badge variant="destructive" className="text-xs font-bold mb-2 animate-bounce-custom self-start">
+        {badgeText && !isCourseLive && ( // Only show NEW badge if not live or if you want both, adjust logic
+          <Badge variant="destructive" className="text-xs font-bold mb-2 animate-bounce-custom self-start px-2 py-1">
             {badgeText}
           </Badge>
         )}
+         {badgeText && isCourseLive && ( // Show NEW badge slightly offset if LIVE badge is also present
+          <Badge variant="destructive" className="text-xs font-bold mb-2 animate-bounce-custom self-start px-2 py-1 mr-12">
+            {badgeText}
+          </Badge>
+        )}
+
         <CardTitle className="text-xl md:text-2xl font-bold text-foreground mb-1">{title}</CardTitle>
         <CardDescription className="text-sm md:text-base text-muted-foreground mb-0">{subtitle}</CardDescription>
       </CardHeader>
@@ -98,14 +164,14 @@ export function CourseCard({
                 <DialogHeader className="p-4 border-b">
                   <DialogTitle className="text-xl">{title} - Time Table</DialogTitle>
                 </DialogHeader>
-                <div className="p-4 max-h-[80vh] overflow-y-auto"> {/* Increased max-h slightly for better viewing */}
-                  <div className="relative w-full aspect-video"> {/* Enforce 16:9 aspect ratio */}
+                <div className="p-4 max-h-[80vh] overflow-y-auto"> 
+                  <div className="relative w-full aspect-video"> 
                     <Image
                       src={timeTableImageUrl}
                       alt={`${title} Time Table`}
-                      fill // Use fill with parent having aspect ratio
+                      fill 
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
-                      className="object-contain rounded-md" // Image will be contained within the 16:9 box
+                      className="object-contain rounded-md" 
                     />
                   </div>
                 </div>

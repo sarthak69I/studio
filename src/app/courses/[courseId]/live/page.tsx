@@ -55,7 +55,7 @@ interface LiveClassCardProps {
   cardId: string;
   classTimeLabel: string;
   subject: string;
-  defaultTitle: string;
+  // defaultTitle prop is no longer used for display
   targetHour: number;
   targetMinute: number;
   durationMinutes: number;
@@ -65,7 +65,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
   cardId,
   classTimeLabel,
   subject,
-  defaultTitle,
+  // defaultTitle, // No longer used for display
   targetHour,
   targetMinute,
   durationMinutes,
@@ -92,15 +92,18 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       const now = new Date();
       let classStartTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour, targetMinute, 0);
       
-      // Check if all classes for today are over, then schedule for tomorrow
-      // This specific logic might need adjustment based on how "eveningTime" is defined globally for the page
-      // For simplicity, assuming classStartTime is for "today" or "tomorrow" correctly based on overall page logic
-      // The example had global next day logic; here it's per card, which is simpler if cards are independent
-      const eveningClassBaseTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 20, 10, 0); // 8:10 PM
-      if (now > new Date(eveningClassBaseTime.getTime() + 90 * 60000) && targetHour < now.getHours()) {
+      // Logic to handle if today's classes are over, schedule for tomorrow
+      // Determine the end time of the last class for today
+      const lastClassTargetHour = 20; // 8 PM for the second class
+      const lastClassTargetMinute = 10; // 10 minutes
+      const lastClassDurationMinutes = 90;
+      const lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), lastClassTargetHour, lastClassTargetMinute, 0);
+      lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + lastClassDurationMinutes);
+
+      if (now > lastClassEndTimeToday) {
+         // If current time is past the end of all classes for today, advance classStartTime to the next day
          classStartTime.setDate(classStartTime.getDate() + 1);
       }
-
 
       const classEndTime = new Date(classStartTime.getTime() + durationMinutes * 60000);
       return { now, classStartTime, classEndTime };
@@ -145,20 +148,19 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           badgeText: 'Completed',
           buttonText: 'Class Ended',
           buttonDisabled: true,
-          cardBorderClass: 'border-green-500', // Using a green for completed
+          cardBorderClass: 'border-green-500', 
           badgeClass: 'bg-green-500/20 text-green-500',
         });
       }
     };
 
-    updateClassState(); // Initial call
+    updateClassState(); 
     const intervalId = setInterval(updateClassState, 1000);
 
     return () => clearInterval(intervalId);
   }, [isMounted, targetHour, targetMinute, durationMinutes]);
 
   if (!isMounted) {
-    // Basic loading state or return null
     return <div className="bg-card rounded-2xl p-6 shadow-lg relative overflow-hidden min-h-[200px] flex items-center justify-center"><p>Loading class info...</p></div>;
   }
 
@@ -172,7 +174,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       </span>
       <div className="text-lg font-semibold mb-2">{classTimeLabel}</div>
       <h2 className="text-2xl font-bold text-primary mb-4">{subject}</h2>
-      <div className="text-muted-foreground mb-6 opacity-80 leading-relaxed">{defaultTitle}</div>
+      {/* The div for defaultTitle has been removed to only show the subject */}
       
       <div className="flex justify-between mb-6">
         <div className="text-center bg-muted/30 p-3 rounded-lg min-w-[70px] sm:min-w-[80px] flex-1 mx-1">
@@ -193,7 +195,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
         className={`w-full py-3 text-base font-semibold rounded-full transition-all duration-300 ease-in-out 
                     ${classStatus.buttonDisabled ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5'}`}
         disabled={classStatus.buttonDisabled}
-        onClick={() => { if (!classStatus.buttonDisabled) alert('Joining class for ' + subject); /* Replace with actual join logic */}}
+        onClick={() => { if (!classStatus.buttonDisabled) alert('Joining class for ' + subject); }}
       >
         {classStatus.buttonText}
       </Button>
@@ -262,18 +264,16 @@ export default function LiveClassesPage() {
             cardId="class1"
             classTimeLabel="5:10 PM - 6:40 PM"
             subject={courseDetails.class1Subject}
-            defaultTitle="Title will be mentioned soon..."
-            targetHour={17} // 5 PM
-            targetMinute={10} // 10 minutes
+            targetHour={17} 
+            targetMinute={10} 
             durationMinutes={90}
           />
           <LiveClassCard
             cardId="class2"
             classTimeLabel="8:10 PM - 9:40 PM"
             subject={courseDetails.class2Subject}
-            defaultTitle="Title will be mentioned soon..."
-            targetHour={20} // 8 PM
-            targetMinute={10} // 10 minutes
+            targetHour={20} 
+            targetMinute={10} 
             durationMinutes={90}
           />
         </div>
