@@ -1,6 +1,9 @@
 
+"use client"; // Required for useState and event handlers
+
+import * as React from 'react'; // Import React for useState
 import { CourseCard } from '@/components/course-card';
-import { Menu, Info } from 'lucide-react';
+import { Menu, Info, Mail } from 'lucide-react'; // Added Mail icon
 import {
   Sheet,
   SheetContent,
@@ -9,11 +12,14 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 
 interface Course {
@@ -35,7 +41,7 @@ const coursesData: Course[] = [
     id: '1',
     badgeText: 'NEW',
     title: 'PRARAMBH CLASS 11th',
-    subtitle: 'DPPS & videos',
+    subtitle: 'Science Batch',
     imageUrl: 'https://i.ibb.co/qMN2dh3Q/Addaheadin.jpg',
     imageAlt: '11th Science Course Cover',
     imageAiHint: 'science education',
@@ -48,7 +54,7 @@ const coursesData: Course[] = [
     id: '2',
     badgeText: 'NEW',
     title: 'CLASS 11th Commerce',
-    subtitle: 'DPPS & videos',
+    subtitle: 'Commerce Batch',
     imageUrl: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/bundle_management/course/202309028610_11th%20prarambh%20comm%20app%20final%203499.jpg',
     imageAlt: '11th Commerce Course Cover',
     imageAiHint: 'commerce study',
@@ -61,7 +67,7 @@ const coursesData: Course[] = [
     id: '3',
     badgeText: 'NEW',
     title: 'Class 10th Aarambh',
-    subtitle: 'DPPS & videos',
+    subtitle: 'Foundation Batch',
     imageUrl: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/bundle_management/course/538903229246_aarambh%20banner%20app.jpg',
     imageAlt: '10th Aarambh Course Cover',
     imageAiHint: 'student learning',
@@ -73,6 +79,8 @@ const coursesData: Course[] = [
 ];
 
 export default function HomePage() {
+  const [isInfoDialogOpen, setIsInfoDialogOpen] = React.useState(false);
+
   return (
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
       <div className="fixed top-6 right-6 z-50">
@@ -87,28 +95,52 @@ export default function HomePage() {
               <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5 xl:w-1/3 p-6">
-            <SheetHeader className="mb-4">
+          <SheetContent side="right" className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5 xl:w-1/3 p-0"> {/* Adjusted padding for full-width buttons */}
+            <SheetHeader className="p-6 pb-2"> {/* Added padding to header */}
               <SheetTitle className="text-2xl font-semibold">Menu</SheetTitle>
             </SheetHeader>
-            <div className="space-y-2">
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="info" className="border-b-0">
-                  <AccordionTrigger className="flex items-center w-full p-3 rounded-md hover:bg-muted/50 transition-colors focus:outline-none focus:ring-2 focus:ring-ring no-underline hover:no-underline [&[data-state=open]>svg:last-child]:rotate-0">
-                    <div className="flex items-center flex-1">
-                      <Info className="mr-3 h-5 w-5 text-primary" />
-                      <span className="text-base">Information</span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pb-4 pt-2">
-                    <div className="pl-11 pr-3 text-sm text-muted-foreground space-y-1">
-                      <p>Developer: SKJ & Firebase</p>
-                      <p>Version: 15.1.3</p>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-              {/* Add more sheet items here if needed, perhaps as other AccordionItems or simple links/buttons */}
+            <div className="space-y-1 p-4"> {/* Adjusted space and padding */}
+              <Dialog open={isInfoDialogOpen} onOpenChange={setIsInfoDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                    aria-label="View Information"
+                  >
+                    <Info className="mr-3 h-5 w-5 text-primary" />
+                    Information
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="text-xl">Information</DialogTitle>
+                  </DialogHeader>
+                  <div className="py-4 space-y-1 text-sm">
+                    <p><span className="font-medium">Developer:</span> SKJ & Firebase</p>
+                    <p><span className="font-medium">Version:</span> 15.1.3</p>
+                  </div>
+                  <DialogFooter className="sm:justify-start">
+                    <DialogClose asChild>
+                      <Button type="button" variant="outline">
+                        Close
+                      </Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
+              <Button
+                variant="ghost"
+                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                aria-label="Contact Us"
+                onClick={() => {
+                  // Placeholder for Contact Us functionality
+                  console.log("Contact Us clicked");
+                }}
+              >
+                <Mail className="mr-3 h-5 w-5 text-primary" />
+                Contact Us
+              </Button>
             </div>
           </SheetContent>
         </Sheet>
@@ -134,4 +166,3 @@ export default function HomePage() {
     </div>
   );
 }
-
