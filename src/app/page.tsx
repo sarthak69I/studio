@@ -39,7 +39,7 @@ const coursesData: Course[] = [
     imageUrl: 'https://i.ibb.co/qMN2dh3Q/Addaheadin.jpg',
     imageAlt: '11th Science Course Cover',
     imageAiHint: 'science education',
-    highlightText: 'Batch for 11th Science DPPS & videos',
+    highlightText: 'Batch for 11th Science',
     startDate: 'Started from Apr 2025',
     enrollLink: '#',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
@@ -52,7 +52,7 @@ const coursesData: Course[] = [
     imageUrl: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/bundle_management/course/202309028610_11th%20prarambh%20comm%20app%20final%203499.jpg',
     imageAlt: '11th Commerce Course Cover',
     imageAiHint: 'commerce study',
-    highlightText: 'Batch for 11th Commerce DPPS & videos',
+    highlightText: 'Batch for 11th Commerce',
     startDate: 'Started from Apr 2025',
     enrollLink: '#',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
@@ -65,7 +65,7 @@ const coursesData: Course[] = [
     imageUrl: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/bundle_management/course/538903229246_aarambh%20banner%20app.jpg',
     imageAlt: '10th Aarambh Course Cover',
     imageAiHint: 'student learning',
-    highlightText: 'Batch for Class 10th DPPS & videos',
+    highlightText: 'Batch for Class 10th',
     startDate: 'Started from Apr 2025',
     enrollLink: '#',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
@@ -134,3 +134,4 @@ export default function HomePage() {
     </div>
   );
 }
+
