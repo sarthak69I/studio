@@ -12,8 +12,12 @@ const subjectContentMap: { [key: string]: string | string[] } = {
   'Physics': 'Units and Measurement',
   'Chemistry': 'Some Basic Concepts of Chemistry',
   'Biology': 'The Living World',
-  'Mathematics': ['Sets', 'Complex Numbers', 'Relation & Functions'], // Updated
-  'Business Studies': 'Business, Trade & Commerce',
+  'Mathematics': ['Sets', 'Complex Numbers', 'Relation & Functions'],
+  'Business Studies': ['Business, Trade & Commerce', 'Forms of Business Organisations'],
+  'Accountancy': ['Basic Concepts of Accounts', 'Introduction To accounting'],
+  'Economics': 'Economics Content Coming Soon', // Placeholder
+  'Social Science': 'Social Science Content Coming Soon', // Placeholder
+  'Science': 'Science Content Coming Soon', // Placeholder for Aarambh
 };
 
 export default function SubjectContentPage() {
@@ -34,8 +38,8 @@ export default function SubjectContentPage() {
       try {
         const decodedSubjectName = decodeURIComponent(subjectParam);
         setSubjectName(decodedSubjectName);
-        const content = subjectContentMap[decodedSubjectName];
-        setDisplayedContent(content || decodedSubjectName);
+        const content = subjectContentMap[decodedSubjectName] || `Content for ${decodedSubjectName} Coming Soon`;
+        setDisplayedContent(content);
       } catch (e) {
         console.error("Failed to decode subject param:", e);
         const fallbackName = "Invalid Subject";
