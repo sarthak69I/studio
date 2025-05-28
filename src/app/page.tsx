@@ -3,13 +3,15 @@
 
 import * as React from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Info, Mail, Sun, Moon, Bell } from 'lucide-react'; // Added Sun, Moon, and Bell icons
+import { Menu, Info, Mail, Sun, Moon, Bell } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetFooter, // Added SheetFooter
+  SheetClose, // Added SheetClose
 } from "@/components/ui/sheet";
 import {
   Dialog,
@@ -121,11 +123,11 @@ export default function HomePage() {
               <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5 xl:w-1/3 p-0">
+          <SheetContent side="right" className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5 xl:w-1/3 p-0 flex flex-col">
             <SheetHeader className="p-6 pb-2">
               <SheetTitle className="text-2xl font-semibold">Menu</SheetTitle>
             </SheetHeader>
-            <div className="space-y-1 p-4">
+            <div className="space-y-1 p-4 flex-grow">
               <Button
                 variant="ghost"
                 className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
@@ -227,6 +229,11 @@ export default function HomePage() {
                 Contact Us
               </Button>
             </div>
+            <SheetFooter className="p-4 border-t border-border">
+              <SheetClose asChild>
+                <Button variant="outline" className="w-full">Close</Button>
+              </SheetClose>
+            </SheetFooter>
           </SheetContent>
         </Sheet>
       </div>
