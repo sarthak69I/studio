@@ -54,12 +54,38 @@ export const scienceCourseContent: CourseContentMap = {
           videoEmbedType: 'iframe',
           videoEmbedUrl: 'https://www.m3u8player.online/embed/m3u8?url=https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4354032%2F174490568189301097666%2Findex_5.m3u8',
         },
-        ...Array.from({ length: 4 }, (_, i) => ({ // L3 to L6
-          id: `L${i + 3}`,
-          title: `Units and Measurement L${i + 3}`,
-          notesLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/notes/L${i + 3}.pdf`,
-          videoLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/videos/L${i + 3}.mp4`,
-        })),
+        {
+          id: 'L3',
+          title: 'Units and Measurement L3',
+          notesLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/notes/L3.pdf`,
+          videoLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/videos/L3.mp4`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: 'https://www.m3u8player.online/embed/m3u8?url=https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4354885%2F174499396879388296383%2Findex_4.m3u8',
+        },
+        {
+          id: 'L4',
+          title: 'Units and Measurement L4',
+          notesLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/notes/L4.pdf`,
+          videoLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/videos/L4.mp4`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: 'https://www.m3u8player.online/embed/m3u8?url=https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4360178%2F174551194721888296383%2Findex_4.m3u8',
+        },
+        {
+          id: 'L5',
+          title: 'Units and Measurement L5',
+          notesLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/notes/L5.pdf`,
+          videoLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/videos/L5.mp4`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: 'https://www.m3u8player.online/embed/m3u8?url=https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4361337%2F174559902322678296383%2Findex_4.m3u8',
+        },
+        {
+          id: 'L6',
+          title: 'Units and Measurement L6',
+          notesLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/notes/L6.pdf`,
+          videoLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/videos/L6.mp4`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: 'https://www.m3u8player.online/embed/m3u8?url=https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4362139%2F174568479092198296383%2Findex_4.m3u8',
+        },
       ],
     },
     {
@@ -130,3 +156,4 @@ export const aarambhCourseContent: CourseContentMap = {
     { name: 'Relation & Functions', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
   ],
 };
+
