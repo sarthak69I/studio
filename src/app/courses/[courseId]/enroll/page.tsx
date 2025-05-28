@@ -35,24 +35,47 @@ const courseSpecificSubjects: CourseSubjects = {
   '3': ['Social Science', 'Science', 'Mathematics'], // Aarambh Batch
 };
 
+const subjectToChapterMap: { [key: string]: string } = {
+  'Physics': 'Units and Measurement',
+  'Chemistry': 'Some Basic Concepts of Chemistry',
+  'Biology': 'The Living World',
+  'Mathematics': 'Sets', // Common for Science and Commerce
+  'Business Studies': 'Business, Trade & Commerce',
+  'Accountancy': 'Introduction to Accounting (Notes coming soon)',
+  'Economics': 'Introduction to Microeconomics (Notes coming soon)',
+  'Social Science': 'The Rise of Nationalism in Europe (Notes coming soon)',
+  'Science': 'Chemical Reactions and Equations (Notes coming soon)', // General Science for Aarambh
+};
+
 export default function EnrollPage() {
   const router = useRouter();
   const params = useParams();
   const courseId = typeof params.courseId === 'string' ? params.courseId : '';
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
+  const [selectedSubjectName, setSelectedSubjectName] = React.useState<string | null>(null);
+  const [selectedSubjectContent, setSelectedSubjectContent] = React.useState<string | null>(null);
 
   const subjects = courseSpecificSubjects[courseId] || [];
 
   const handleSubjectClick = (subjectName: string) => {
     if (activeContentMode === 'notes') {
-      console.log(`Showing notes for: ${subjectName} (Course ID: ${courseId})`);
-      // Placeholder: Future navigation or display logic for notes
-      // e.g., router.push(`/courses/${courseId}/notes/${subjectName}`);
+      const chapter = subjectToChapterMap[subjectName] || `Notes for ${subjectName} are coming soon.`;
+      setSelectedSubjectName(subjectName);
+      setSelectedSubjectContent(chapter);
+      // console.log(`Showing notes for: ${subjectName} (Course ID: ${courseId}) - Chapter: ${chapter}`);
     } else if (activeContentMode === 'video') {
+      setSelectedSubjectName(subjectName); // Can be used to highlight or manage video player state
+      setSelectedSubjectContent(null); // Clear chapter notes content
       console.log(`Showing videos for: ${subjectName} (Course ID: ${courseId})`);
       // Placeholder: Future navigation or display logic for videos
       // e.g., router.push(`/courses/${courseId}/videos/${subjectName}`);
     }
+  };
+
+  const handleModeChange = (mode: 'notes' | 'video') => {
+    setActiveContentMode(mode);
+    setSelectedSubjectName(null);
+    setSelectedSubjectContent(null);
   };
 
   return (
@@ -83,14 +106,14 @@ export default function EnrollPage() {
             <Button
               variant={activeContentMode === 'notes' ? 'default' : 'outline'}
               className="flex-1 py-4 text-md rounded-xl"
-              onClick={() => setActiveContentMode('notes')}
+              onClick={() => handleModeChange('notes')}
             >
               Notes
             </Button>
             <Button
               variant={activeContentMode === 'video' ? 'default' : 'outline'}
               className="flex-1 py-4 text-md rounded-xl"
-              onClick={() => setActiveContentMode('video')}
+              onClick={() => handleModeChange('video')}
             >
               Video
             </Button>
@@ -114,6 +137,15 @@ export default function EnrollPage() {
               <p className="text-center text-muted-foreground">No subjects listed for this course.</p>
             )}
           </div>
+
+          {selectedSubjectName && selectedSubjectContent && activeContentMode === 'notes' && (
+            <div className="mt-6 p-6 bg-card rounded-xl shadow-md border border-border">
+              <h3 className="text-xl font-semibold mb-3 text-primary">
+                Notes for: {selectedSubjectName}
+              </h3>
+              <p className="text-lg text-card-foreground">{selectedSubjectContent}</p>
+            </div>
+          )}
         </div>
       </main>
 
