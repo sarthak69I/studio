@@ -1,9 +1,9 @@
 
-"use client"; // Required for useState and event handlers
+"use client"; 
 
-import * as React from 'react'; // Import React for useState
+import * as React from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Info, Mail, ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react'; // Added Mail icon
+import { Menu, Info, Mail, Sun, Moon } from 'lucide-react'; // Added Sun and Moon icons
 import {
   Sheet,
   SheetContent,
@@ -84,6 +84,27 @@ const coursesData: Course[] = [
 
 export default function HomePage() {
   const [isInfoDialogOpen, setIsInfoDialogOpen] = React.useState(false);
+  const [currentTheme, setCurrentTheme] = React.useState<string>('dark');
+
+  React.useEffect(() => {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      setCurrentTheme(storedTheme);
+      document.documentElement.className = storedTheme;
+    } else {
+      // If no stored theme, class 'dark' is already set by layout.tsx
+      // Ensure state matches and set localStorage for future consistency
+      setCurrentTheme('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    setCurrentTheme(newTheme);
+    document.documentElement.className = newTheme;
+    localStorage.setItem('theme', newTheme);
+  };
 
   return (
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
@@ -104,6 +125,20 @@ export default function HomePage() {
               <SheetTitle className="text-2xl font-semibold">Menu</SheetTitle>
             </SheetHeader>
             <div className="space-y-1 p-4">
+              <Button
+                variant="ghost"
+                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                onClick={toggleTheme}
+                aria-label={currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
+              >
+                {currentTheme === 'light' ? (
+                  <Moon className="mr-3 h-5 w-5 text-primary" />
+                ) : (
+                  <Sun className="mr-3 h-5 w-5 text-primary" />
+                )}
+                {currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
+              </Button>
+
               <Dialog open={isInfoDialogOpen} onOpenChange={setIsInfoDialogOpen}>
                 <DialogTrigger asChild>
                   <Button

@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'E-Leak Course Hub', // Changed from MONSTOR
-  description: 'Find your next course with E-Leak.', // Changed from MONSTOR
+  title: 'E-Leak Course Hub',
+  description: 'Find your next course with E-Leak.',
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark"> {/* Default to dark theme */}
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
         {children}
         <Toaster />
