@@ -14,7 +14,7 @@ export interface Topic {
   name: string;
   lectures?: Lecture[]; // Optional: some topics might not have detailed lectures
   // For topic-level content (if no granular lectures):
-  topicNotesLink?: string; 
+  topicNotesLink?: string;
   topicVideoLink?: string;
 }
 
@@ -26,14 +26,18 @@ export interface CourseContentMap {
   [subjectName: string]: SubjectContent | string; // string for "Coming Soon" messages
 }
 
-// Science Batch Content
+// Helper for slugifying names for paths (simple version)
+const slugify = (text: string) => text.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
+
+// Science Batch Content (courseId '1')
+const scienceBasePath = '/assets/courses/science';
 export const scienceCourseContent: CourseContentMap = {
   'Physics': [
     {
       name: 'Units and Measurement',
       lectures: [
-        { id: 'L1', title: 'Units and Measurement L1', notesLink: '#', videoLink: '#' },
-        { id: 'L2', title: 'Units and Measurement L2', notesLink: '#', videoLink: '#' },
+        { id: 'L1', title: 'Units and Measurement L1', notesLink: `${scienceBasePath}/physics/units-and-measurement/notes/L1.pdf`, videoLink: `${scienceBasePath}/physics/units-and-measurement/videos/L1.mp4` },
+        { id: 'L2', title: 'Units and Measurement L2', notesLink: `${scienceBasePath}/physics/units-and-measurement/notes/L2.pdf`, videoLink: `${scienceBasePath}/physics/units-and-measurement/videos/L2.mp4` },
       ],
     },
   ],
@@ -43,53 +47,56 @@ export const scienceCourseContent: CourseContentMap = {
       lectures: Array.from({ length: 6 }, (_, i) => ({
         id: `L${i + 1}`,
         title: `Some Basic Concepts of Chemistry L${i + 1}`,
-        notesLink: `#sbcc-notes-l${i + 1}`, // Placeholder link
-        videoLink: `#sbcc-video-l${i + 1}`, // Placeholder link
+        notesLink: `${scienceBasePath}/chemistry/some-basic-concepts-of-chemistry/notes/L${i + 1}.pdf`,
+        videoLink: `${scienceBasePath}/chemistry/some-basic-concepts-of-chemistry/videos/L${i + 1}.mp4`,
       })),
     },
-    { name: 'Structure of Atom', topicNotesLink: '#soa-notes', topicVideoLink: '#soa-video' },
-    { name: 'Classification of Elements', topicNotesLink: '#coe-notes', topicVideoLink: '#coe-video' },
+    { name: 'Structure of Atom', topicNotesLink: `${scienceBasePath}/chemistry/structure-of-atom/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/chemistry/structure-of-atom/videos/topic.mp4` },
+    { name: 'Classification of Elements', topicNotesLink: `${scienceBasePath}/chemistry/classification-of-elements/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/chemistry/classification-of-elements/videos/topic.mp4` },
   ],
   'Biology': [
     {
       name: 'The Living World',
       lectures: [
-        { id: 'L1', title: 'The Living World L1', notesLink: '#tlw-notes-l1', videoLink: '#tlw-video-l1' },
+        { id: 'L1', title: 'The Living World L1', notesLink: `${scienceBasePath}/biology/the-living-world/notes/L1.pdf`, videoLink: `${scienceBasePath}/biology/the-living-world/videos/L1.mp4` },
       ],
     },
   ],
   'Mathematics': [
-    { name: 'Sets', topicNotesLink: '#sets-notes', topicVideoLink: '#sets-video' },
-    { name: 'Complex Numbers', topicNotesLink: '#cn-notes', topicVideoLink: '#cn-video' },
-    { name: 'Relation & Functions', topicNotesLink: '#rf-notes', topicVideoLink: '#rf-video' },
+    { name: 'Sets', topicNotesLink: `${scienceBasePath}/mathematics/sets/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/mathematics/sets/videos/topic.mp4` },
+    { name: 'Complex Numbers', topicNotesLink: `${scienceBasePath}/mathematics/complex-numbers/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/mathematics/complex-numbers/videos/topic.mp4` },
+    { name: 'Relation & Functions', topicNotesLink: `${scienceBasePath}/mathematics/relation-and-functions/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/mathematics/relation-and-functions/videos/topic.mp4` },
   ],
 };
 
-// Commerce Batch Content
+// Commerce Batch Content (courseId '2')
+const commerceBasePath = '/assets/courses/commerce';
 export const commerceCourseContent: CourseContentMap = {
   'Business Studies': [
-    { name: 'Business, Trade & Commerce', topicNotesLink: '#btc-notes', topicVideoLink: '#btc-video' },
-    { name: 'Forms of Business Organisations', topicNotesLink: '#fbo-notes', topicVideoLink: '#fbo-video' },
+    { name: 'Business, Trade & Commerce', topicNotesLink: `${commerceBasePath}/business-studies/business-trade-and-commerce/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/business-studies/business-trade-and-commerce/videos/topic.mp4` },
+    { name: 'Forms of Business Organisations', topicNotesLink: `${commerceBasePath}/business-studies/forms-of-business-organisations/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/business-studies/forms-of-business-organisations/videos/topic.mp4` },
   ],
   'Accountancy': [
-    { name: 'Basic Concepts of Accounts', topicNotesLink: '#bca-notes', topicVideoLink: '#bca-video' },
-    { name: 'Introduction To accounting', topicNotesLink: '#ita-notes', topicVideoLink: '#ita-video' },
+    { name: 'Basic Concepts of Accounts', topicNotesLink: `${commerceBasePath}/accountancy/basic-concepts-of-accounts/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/accountancy/basic-concepts-of-accounts/videos/topic.mp4` },
+    { name: 'Introduction To accounting', topicNotesLink: `${commerceBasePath}/accountancy/introduction-to-accounting/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/accountancy/introduction-to-accounting/videos/topic.mp4` },
   ],
   'Economics': 'Economics Content Coming Soon',
-  'Mathematics': [ // Assuming same structure, links can be different
-    { name: 'Sets', topicNotesLink: '#sets-comm-notes', topicVideoLink: '#sets-comm-video' },
-    { name: 'Complex Numbers', topicNotesLink: '#cn-comm-notes', topicVideoLink: '#cn-comm-video' },
-    { name: 'Relation & Functions', topicNotesLink: '#rf-comm-notes', topicVideoLink: '#rf-comm-video' },
+  'Mathematics': [
+    { name: 'Sets', topicNotesLink: `${commerceBasePath}/mathematics/sets/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/mathematics/sets/videos/topic.mp4` },
+    { name: 'Complex Numbers', topicNotesLink: `${commerceBasePath}/mathematics/complex-numbers/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/mathematics/complex-numbers/videos/topic.mp4` },
+    { name: 'Relation & Functions', topicNotesLink: `${commerceBasePath}/mathematics/relation-and-functions/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/mathematics/relation-and-functions/videos/topic.mp4` },
   ],
 };
 
-// Aarambh Batch Content
+// Aarambh Batch Content (courseId '3')
+const aarambhBasePath = '/assets/courses/aarambh';
 export const aarambhCourseContent: CourseContentMap = {
   'Social Science': 'Social Science Content Coming Soon',
   'Science': 'Science Content Coming Soon', // General Science for Aarambh
-  'Mathematics': [ // Assuming same structure, links can be different
-    { name: 'Sets', topicNotesLink: '#sets-aarambh-notes', topicVideoLink: '#sets-aarambh-video' },
-    { name: 'Complex Numbers', topicNotesLink: '#cn-aarambh-notes', topicVideoLink: '#cn-aarambh-video' },
-    { name: 'Relation & Functions', topicNotesLink: '#rf-aarambh-notes', topicVideoLink: '#rf-aarambh-video' },
+  'Mathematics': [
+    { name: 'Sets', topicNotesLink: `${aarambhBasePath}/mathematics/sets/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/sets/videos/topic.mp4` },
+    { name: 'Complex Numbers', topicNotesLink: `${aarambhBasePath}/mathematics/complex-numbers/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/complex-numbers/videos/topic.mp4` },
+    { name: 'Relation & Functions', topicNotesLink: `${aarambhBasePath}/mathematics/relation-and-functions/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/relation-and-functions/videos/topic.mp4` },
   ],
 };
+
