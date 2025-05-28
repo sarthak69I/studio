@@ -2,11 +2,14 @@
 import { CourseCard } from '@/components/course-card';
 import { Menu, Info } from 'lucide-react';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+import { Button } from '@/components/ui/button';
 
 interface Course {
   id: string;
@@ -67,24 +70,33 @@ const coursesData: Course[] = [
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
-      {/* Menu Icon Button - Fixed to viewport top right */}
       <div className="fixed top-6 right-6 z-50">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
               aria-label="Open menu"
               className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             >
               <Menu className="h-6 w-6" />
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem>
-              <Info className="mr-2 h-4 w-4" />
-              <span>Information</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5 xl:w-1/3 p-6">
+            <SheetHeader className="mb-4">
+              <SheetTitle className="text-2xl font-semibold">Menu</SheetTitle>
+            </SheetHeader>
+            <div className="space-y-4">
+              <SheetClose asChild>
+                 <button className="flex items-center w-full p-3 rounded-md hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-ring">
+                    <Info className="mr-3 h-5 w-5 text-primary" />
+                    <span className="text-base">Information</span>
+                  </button>
+              </SheetClose>
+              {/* Add more sheet items here if needed */}
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
 
       <header className="text-center my-8 md:my-12">

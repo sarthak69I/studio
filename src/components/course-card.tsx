@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { CalendarDays, ArrowRight } from 'lucide-react';
@@ -80,13 +81,13 @@ export function CourseCard({
         </div>
       </CardContent>
 
-      <CardFooter className="p-4 bg-muted/30 text-muted-foreground text-sm md:text-base text-center font-semibold flex items-center justify-center gap-2 border-t border-border">
+      <CardFooter className="p-4 bg-muted/30 text-muted-foreground text-sm md:text-base text-center font-semibold flex items-center justify-center gap-1.5 border-t border-border">
         <Link href={youtubeLink} target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline flex items-center gap-1.5">
           Subscribe on
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
             alt="YouTube"
-            className="h-5 md:h-6"
+            className="h-4 md:h-5" // Adjusted height here
           />
         </Link>
       </CardFooter>
