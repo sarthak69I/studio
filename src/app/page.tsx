@@ -1,6 +1,6 @@
 
 import { CourseCard } from '@/components/course-card';
-import { Menu } from 'lucide-react'; // Changed from MoreVertical to Menu
+import { Menu } from 'lucide-react';
 
 interface Course {
   id: string;
@@ -22,12 +22,12 @@ const coursesData: Course[] = [
     badgeText: 'NEW',
     title: 'PRARAMBH CLASS 11th',
     subtitle: 'DPPS & videos',
-    imageUrl: 'https://placehold.co/340x180.png', // Keeping placehold.co as per guidelines, user might have misspoken about ibb.co
+    imageUrl: 'https://placehold.co/340x180.png',
     imageAlt: '11th Science Course Cover',
     imageAiHint: 'science education',
     highlightText: 'Batch for 11th Science DPPS & videos',
     startDate: 'Starting from Apr 2025',
-    enrollLink: '#', // Removed enroll link
+    enrollLink: '#',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
   },
   {
@@ -40,7 +40,7 @@ const coursesData: Course[] = [
     imageAiHint: 'commerce study',
     highlightText: 'Batch for 11th Commerce DPPS & videos',
     startDate: 'Starting from Apr 2025',
-    enrollLink: '#', // Removed enroll link
+    enrollLink: '#',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
   },
   {
@@ -53,7 +53,7 @@ const coursesData: Course[] = [
     imageAiHint: 'student learning',
     highlightText: 'Batch for Class 10th DPPS & videos',
     startDate: 'Starting from Apr 2025',
-    enrollLink: '#', // Removed enroll link
+    enrollLink: '#',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
   },
 ];
@@ -67,13 +67,13 @@ export default function HomePage() {
           aria-label="Open menu"
           className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
         >
-          <Menu className="h-6 w-6" /> {/* Changed icon to Menu */}
+          <Menu className="h-6 w-6" />
         </button>
       </div>
 
       <header className="text-center my-8 md:my-12">
         <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wider logo-gradient-text animate-gradient">
-          E-Leak {/* Changed from MONSTOR */}
+          E-Leak
         </h1>
       </header>
 
@@ -86,7 +86,7 @@ export default function HomePage() {
       </main>
 
       <footer className="text-center text-sm text-muted-foreground my-10 md:my-12 animate-pulse-custom">
-        <p>© E-Leak All rights reserved.</p> {/* Changed from MONSTOR */}
+        <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
   );
