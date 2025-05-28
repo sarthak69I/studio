@@ -8,11 +8,11 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
 
-const subjectContentMap: { [key: string]: string } = {
+const subjectContentMap: { [key: string]: string | string[] } = {
   'Physics': 'Units and Measurement',
   'Chemistry': 'Some Basic Concepts of Chemistry',
   'Biology': 'The Living World',
-  'Mathematics': 'Sets, Complex Numbers, Relation & Functions', // Updated
+  'Mathematics': ['Sets', 'Complex Numbers', 'Relation & Functions'], // Updated
   'Business Studies': 'Business, Trade & Commerce',
 };
 
@@ -25,7 +25,7 @@ export default function SubjectContentPage() {
   const subjectParam = typeof params.subjectParam === 'string' ? params.subjectParam : '';
   
   const [subjectName, setSubjectName] = React.useState('');
-  const [displayedText, setDisplayedText] = React.useState('');
+  const [displayedContent, setDisplayedContent] = React.useState<string | string[] | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -34,12 +34,13 @@ export default function SubjectContentPage() {
       try {
         const decodedSubjectName = decodeURIComponent(subjectParam);
         setSubjectName(decodedSubjectName);
-        setDisplayedText(subjectContentMap[decodedSubjectName] || decodedSubjectName);
+        const content = subjectContentMap[decodedSubjectName];
+        setDisplayedContent(content || decodedSubjectName);
       } catch (e) {
         console.error("Failed to decode subject param:", e);
         const fallbackName = "Invalid Subject";
         setSubjectName(fallbackName);
-        setDisplayedText(fallbackName);
+        setDisplayedContent(fallbackName);
       }
     }
   }, [subjectParam]);
@@ -52,7 +53,7 @@ export default function SubjectContentPage() {
     );
   }
 
-  const pageTitle = displayedText ? `${displayedText} - ${mode === 'notes' ? 'Notes' : 'Videos'}` : 'Subject Content';
+  const pageTitle = subjectName ? `${subjectName} - ${mode === 'notes' ? 'Notes' : 'Videos'}` : 'Subject Content';
 
   return (
     <>
@@ -73,21 +74,40 @@ export default function SubjectContentPage() {
           </Link>
         </header>
 
-        <main className="flex-grow flex flex-col justify-start items-center pt-10 md:pt-16">
-          {displayedText ? (
-            <div 
-              className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md cursor-pointer 
-                         transform opacity-0 animate-fadeInUp-custom
-                         transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-xl sm:text-2xl font-semibold">{displayedText}</span>
-                <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
+        <main className="flex-grow flex flex-col justify-start items-center pt-10 md:pt-16 w-full">
+          {displayedContent ? (
+            Array.isArray(displayedContent) ? (
+              displayedContent.map((item, index) => (
+                <div 
+                  key={index}
+                  className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md cursor-pointer 
+                             transform opacity-0 animate-fadeInUp-custom mb-6
+                             transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xl sm:text-2xl font-semibold">{item}</span>
+                    <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2 capitalize">
+                    {mode} for {subjectName}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <div 
+                className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md cursor-pointer 
+                           transform opacity-0 animate-fadeInUp-custom
+                           transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xl sm:text-2xl font-semibold">{displayedContent}</span>
+                  <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
+                </div>
+                <p className="text-sm text-muted-foreground mt-2 capitalize">
+                  {mode} for {subjectName} 
+                </p>
               </div>
-              <p className="text-sm text-muted-foreground mt-2 capitalize">
-                {mode} for {subjectName} 
-              </p>
-            </div>
+            )
           ) : (
             <p className="text-xl text-muted-foreground">Subject content not found.</p>
           )}
