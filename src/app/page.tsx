@@ -3,7 +3,7 @@
 
 import * as React from 'react'; // Import React for useState
 import { CourseCard } from '@/components/course-card';
-import { Menu, Info, Mail } from 'lucide-react'; // Added Mail icon
+import { Menu, Info, Mail, ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react'; // Added Mail icon
 import {
   Sheet,
   SheetContent,
@@ -48,7 +48,7 @@ const coursesData: Course[] = [
     imageAiHint: 'science education',
     highlightText: 'Batch for 11th Science',
     startDate: 'Started from Apr 2025',
-    enrollLink: '#',
+    enrollLink: '/courses/1/enroll',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
     timeTableImageUrl: 'https://i.ibb.co/jPs6ZzSP/SCIENCE.jpg',
   },
@@ -62,7 +62,7 @@ const coursesData: Course[] = [
     imageAiHint: 'commerce study',
     highlightText: 'Batch for 11th Commerce',
     startDate: 'Started from Apr 2025',
-    enrollLink: '#',
+    enrollLink: '/courses/2/enroll',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
     timeTableImageUrl: 'https://i.ibb.co/LzNSqqsf/COMMERCE.jpg',
   },
@@ -76,7 +76,7 @@ const coursesData: Course[] = [
     imageAiHint: 'student learning',
     highlightText: 'Batch for Class 10th',
     startDate: 'Started from Apr 2025',
-    enrollLink: '#',
+    enrollLink: '/courses/3/enroll',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
     timeTableImageUrl: 'https://i.ibb.co/QF2zR9Tn/57643650-Aarambh-10th-Timetable.png',
   },
@@ -99,11 +99,11 @@ export default function HomePage() {
               <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5 xl:w-1/3 p-0"> {/* Adjusted padding for full-width buttons */}
-            <SheetHeader className="p-6 pb-2"> {/* Added padding to header */}
+          <SheetContent side="right" className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5 xl:w-1/3 p-0">
+            <SheetHeader className="p-6 pb-2">
               <SheetTitle className="text-2xl font-semibold">Menu</SheetTitle>
             </SheetHeader>
-            <div className="space-y-1 p-4"> {/* Adjusted space and padding */}
+            <div className="space-y-1 p-4">
               <Dialog open={isInfoDialogOpen} onOpenChange={setIsInfoDialogOpen}>
                 <DialogTrigger asChild>
                   <Button
@@ -115,7 +115,7 @@ export default function HomePage() {
                     Information
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
+                <DialogContent className="sm:max-w-md rounded-xl">
                   <DialogHeader>
                     <DialogTitle className="text-xl">Information</DialogTitle>
                   </DialogHeader>

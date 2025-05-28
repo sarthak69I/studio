@@ -94,7 +94,7 @@ export function CourseCard({
                   Time Table
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-0">
+              <DialogContent className="sm:max-w-md md:max-w-lg lg:max-w-3xl xl:max-w-4xl p-0 rounded-xl">
                 <DialogHeader className="p-4 border-b">
                   <DialogTitle className="text-xl">{title} - Time Table</DialogTitle>
                 </DialogHeader>
@@ -103,8 +103,8 @@ export function CourseCard({
                     <Image
                       src={timeTableImageUrl}
                       alt={`${title} Time Table`}
-                      width={1200} // Max representative width
-                      height={1700} // Max representative height
+                      width={1600} 
+                      height={900} 
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
                       className="rounded-md w-full h-auto object-contain"
                     />
@@ -128,7 +128,7 @@ export function CourseCard({
             </Button>
           )}
           <Button asChild className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 px-4 rounded-lg transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md group">
-            <Link href={enrollLink} target="_blank" rel="noopener noreferrer">
+            <Link href={enrollLink}>
               Enroll Now
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
