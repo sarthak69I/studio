@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import Head from 'next/head';
+// import Head from 'next/head'; // Removed next/head
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
@@ -15,8 +15,8 @@ const subjectContentMap: { [key: string]: string | string[] } = {
   'Mathematics': ['Sets', 'Complex Numbers', 'Relation & Functions'],
   'Business Studies': ['Business, Trade & Commerce', 'Forms of Business Organisations'],
   'Accountancy': ['Basic Concepts of Accounts', 'Introduction To accounting'],
-  'Economics': 'Economics Content Coming Soon', // Placeholder
-  'Social Science': 'Social Science Content Coming Soon', // Placeholder
+  'Economics': 'Economics Content Coming Soon',
+  'Social Science': 'Social Science Content Coming Soon',
   'Science': 'Science Content Coming Soon', // Placeholder for Aarambh
 };
 
@@ -44,10 +44,23 @@ export default function SubjectContentPage() {
         console.error("Failed to decode subject param:", e);
         const fallbackName = "Invalid Subject";
         setSubjectName(fallbackName);
-        setDisplayedContent(fallbackName);
+        setDisplayedContent(`Content for '${subjectParam}' could not be loaded due to a decoding error.`);
       }
+    } else {
+      setSubjectName('Unknown Subject');
+      setDisplayedContent('No subject specified in URL.');
     }
   }, [subjectParam]);
+
+  React.useEffect(() => {
+    if (isMounted && subjectName) {
+      const modeText = mode === 'notes' ? 'Notes' : 'Videos';
+      document.title = `${subjectName} - ${modeText} | E-Leak`;
+    } else if (isMounted) {
+      document.title = 'Subject Content | E-Leak';
+    }
+    // Default title before mount/hydration is handled by _app.tsx or Next.js defaults
+  }, [isMounted, subjectName, mode]);
 
   if (!isMounted) {
     return (
@@ -57,13 +70,9 @@ export default function SubjectContentPage() {
     );
   }
 
-  const pageTitle = subjectName ? `${subjectName} - ${mode === 'notes' ? 'Notes' : 'Videos'}` : 'Subject Content';
-
   return (
     <>
-      <Head>
-        <title>{pageTitle} | E-Leak</title>
-      </Head>
+      {/* <Head> is removed, document.title is set in useEffect */}
       <div className="flex flex-col min-h-screen bg-background text-foreground p-4 md:p-6">
         <header className="flex items-center justify-between mb-8 w-full max-w-4xl mx-auto">
           <Button variant="outline" size="lg" onClick={() => router.back()} className="rounded-lg">
@@ -113,7 +122,11 @@ export default function SubjectContentPage() {
               </div>
             )
           ) : (
-            <p className="text-xl text-muted-foreground">Subject content not found.</p>
+             subjectName === 'Unknown Subject' || (typeof displayedContent === 'string' && displayedContent.includes('could not be loaded')) ? (
+              <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{displayedContent}</p>
+            ) : (
+              <p className="text-xl text-muted-foreground">Subject content not found or coming soon.</p>
+            )
           )}
         </main>
 
