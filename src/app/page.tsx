@@ -1,4 +1,6 @@
+
 import { CourseCard } from '@/components/course-card';
+import { MoreVertical } from 'lucide-react'; // Import the MoreVertical icon
 
 interface Course {
   id: string;
@@ -59,6 +61,16 @@ const coursesData: Course[] = [
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
+      {/* Menu Icon Button - Fixed to viewport top right */}
+      <div className="fixed top-6 right-6 z-50">
+        <button
+          aria-label="Open menu"
+          className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        >
+          <MoreVertical className="h-6 w-6" />
+        </button>
+      </div>
+
       <header className="text-center my-8 md:my-12">
         <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wider logo-gradient-text animate-gradient">
           MONSTOR
