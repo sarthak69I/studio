@@ -79,8 +79,6 @@ export function CourseCard({
       for (const slot of liveSlots) {
         let classStartTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), slot.targetHour, slot.targetMinute, 0);
         
-        // Logic to handle if today's classes are over, schedule for tomorrow
-        // This check might need to be more sophisticated if liveSlots can span across midnight or if the "day" definition is complex
         const lastClassTargetHour = 20; 
         const lastClassTargetMinute = 10; 
         const lastClassDurationMinutes = 90;
@@ -101,8 +99,8 @@ export function CourseCard({
       setIsCourseLive(courseIsCurrentlyLive);
     };
 
-    checkLiveStatus(); // Initial check
-    const intervalId = setInterval(checkLiveStatus, 60000); // Check every minute
+    checkLiveStatus(); 
+    const intervalId = setInterval(checkLiveStatus, 60000); 
 
     return () => clearInterval(intervalId);
   }, [isMounted, liveSlots]);
@@ -116,12 +114,12 @@ export function CourseCard({
          </Badge>
        )}
       <CardHeader className="p-5">
-        {badgeText && !isCourseLive && ( // Only show NEW badge if not live or if you want both, adjust logic
+        {badgeText && !isCourseLive && ( 
           <Badge variant="destructive" className="text-xs font-bold mb-2 animate-bounce-custom self-start px-2 py-1">
             {badgeText}
           </Badge>
         )}
-         {badgeText && isCourseLive && ( // Show NEW badge slightly offset if LIVE badge is also present
+         {badgeText && isCourseLive && ( 
           <Badge variant="destructive" className="text-xs font-bold mb-2 animate-bounce-custom self-start px-2 py-1 mr-12">
             {badgeText}
           </Badge>
@@ -165,14 +163,26 @@ export function CourseCard({
                   <DialogTitle className="text-xl">{title} - Time Table</DialogTitle>
                 </DialogHeader>
                 <div className="p-4 max-h-[80vh] overflow-y-auto"> 
-                  <div className="relative w-full aspect-video"> 
-                    <Image
-                      src={timeTableImageUrl}
-                      alt={`${title} Time Table`}
-                      fill 
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
-                      className="object-contain rounded-md" 
-                    />
+                  <div className="relative w-full aspect-video rounded-md overflow-hidden"> 
+                    {timeTableImageUrl.startsWith('https://drive.google.com/file/d/') ? (
+                      <iframe
+                        src={timeTableImageUrl}
+                        width="100%"
+                        height="100%"
+                        frameBorder="0"
+                        allowFullScreen
+                        title={`${title} Time Table Preview`}
+                        className="absolute top-0 left-0 w-full h-full"
+                      ></iframe>
+                    ) : (
+                      <Image
+                        src={timeTableImageUrl}
+                        alt={`${title} Time Table`}
+                        fill 
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
+                        className="object-contain" 
+                      />
+                    )}
                   </div>
                 </div>
                 <DialogFooter className="p-4 border-t sm:justify-start">
