@@ -23,7 +23,10 @@ export default function TopicLecturesPage() {
 
   React.useEffect(() => {
     setIsMounted(true);
-    if (topicParam && subjectParam) {
+  }, []);
+
+  React.useEffect(() => {
+    if (isMounted && topicParam && subjectParam) {
       try {
         const decodedTopicName = decodeURIComponent(topicParam);
         const decodedSubjectName = decodeURIComponent(subjectParam);
@@ -41,11 +44,11 @@ export default function TopicLecturesPage() {
         setTopicName("Invalid Topic");
         setLectures(["Could not load lectures due to a decoding error."]);
       }
-    } else {
+    } else if (isMounted) { // Handle cases where params might be missing after mount
       setTopicName('Unknown Topic');
       setLectures(['No topic specified in URL.']);
     }
-  }, [topicParam, subjectParam]);
+  }, [isMounted, topicParam, subjectParam]);
 
   React.useEffect(() => {
     if (isMounted && topicName) {

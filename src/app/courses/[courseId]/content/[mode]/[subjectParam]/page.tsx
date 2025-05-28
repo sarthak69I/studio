@@ -245,7 +245,10 @@ export default function SubjectContentPage() {
 
   React.useEffect(() => {
     setIsMounted(true);
-    if (subjectParam) {
+  }, []);
+
+  React.useEffect(() => {
+    if (isMounted && subjectParam) {
       try {
         const decodedSubjectName = decodeURIComponent(subjectParam);
         setSubjectName(decodedSubjectName);
@@ -257,18 +260,16 @@ export default function SubjectContentPage() {
         setSubjectName(fallbackName);
         setDisplayedContent(`Content for '${subjectParam}' could not be loaded due to a decoding error.`);
       }
-    } else {
+    } else if (isMounted) { // Handle case where subjectParam might be missing after mount
       setSubjectName('Unknown Subject');
       setDisplayedContent('No subject specified in URL.');
     }
-  }, [subjectParam]);
+  }, [isMounted, subjectParam]);
 
   React.useEffect(() => {
     if (isMounted && subjectName) {
       const modeText = mode === 'notes' ? 'Notes' : 'Videos';
       let pageTitleSegment = subjectName;
-      // If displayedContent is a string and represents a single topic (not a coming soon message), use it for the title.
-      // If it's an array, the subjectName itself is a better title segment.
       if (typeof displayedContent === 'string' && !displayedContent.includes('Coming Soon') && !displayedContent.includes('could not be loaded')) {
         pageTitleSegment = displayedContent;
       }
@@ -304,7 +305,6 @@ export default function SubjectContentPage() {
       </div>
     );
 
-    // Specific link for "Some Basic Concepts of Chemistry"
     if (subjectName === 'Chemistry' && item === 'Some Basic Concepts of Chemistry') {
       return (
         <Link 
@@ -317,7 +317,6 @@ export default function SubjectContentPage() {
       );
     }
 
-    // For other items, or items that don't have a special link (render as non-clickable for now)
     return (
       <div 
         key={index}
@@ -355,7 +354,6 @@ export default function SubjectContentPage() {
             Array.isArray(displayedContent) ? (
               displayedContent.map((item, index) => renderCard(item, index))
             ) : (
-              // Handle single string content (including "Coming Soon" messages)
               (typeof displayedContent === 'string' && (displayedContent.includes('Coming Soon') || displayedContent.includes('could not be loaded'))) ? (
                 (subjectName === 'Unknown Subject' || displayedContent.includes('could not be loaded')) ? (
                     <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{displayedContent}</p>
@@ -363,12 +361,10 @@ export default function SubjectContentPage() {
                     <p className="text-xl text-muted-foreground">{displayedContent}</p>
                 )
               ) : (
-                // Render single topic card if it's not a "Coming Soon" type message
                 typeof displayedContent === 'string' ? renderCard(displayedContent, 0) : null
               )
             )
           ) : (
-            // Fallback for when displayedContent is null (e.g., during initial load or if logic fails)
              subjectName === 'Unknown Subject' || (typeof displayedContent === 'string' && displayedContent && displayedContent.includes('could not be loaded')) ? (
               <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">
                 {displayedContent || 'Content could not be loaded.'}
