@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -103,6 +104,10 @@ export default {
           from: { opacity: '0' },
           to: { opacity: '1' },
         },
+        'fadeInUp-custom': { // Renamed to avoid conflict if 'fadeInUp' is a common name
+          '0%': { transform: 'translateY(20px) scale(0.95)', opacity: '0' },
+          '100%': { transform: 'translateY(0) scale(1)', opacity: '1' },
+        }
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
@@ -110,7 +115,8 @@ export default {
         gradient: 'gradient 3s linear infinite',
         'bounce-custom': 'bounce-custom 1.2s infinite',
         'pulse-custom': 'pulse-custom 2s infinite ease-in-out',
-        'fadeIn-custom': 'fadeIn-custom 1s ease-in forwards', // forwards to keep opacity at 1
+        'fadeIn-custom': 'fadeIn-custom 1s ease-in forwards',
+        'fadeInUp-custom': 'fadeInUp-custom 0.6s ease-out forwards',
   		}
   	}
   },
