@@ -34,6 +34,7 @@ interface Course {
   startDate: string;
   enrollLink: string;
   youtubeLink: string;
+  timeTableImageUrl?: string;
 }
 
 const coursesData: Course[] = [
@@ -49,6 +50,7 @@ const coursesData: Course[] = [
     startDate: 'Started from Apr 2025',
     enrollLink: '#',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
+    timeTableImageUrl: 'https://i.ibb.co/jPs6ZzSP/SCIENCE.jpg',
   },
   {
     id: '2',
@@ -62,6 +64,7 @@ const coursesData: Course[] = [
     startDate: 'Started from Apr 2025',
     enrollLink: '#',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
+    timeTableImageUrl: 'https://i.ibb.co/LzNSqqsf/COMMERCE.jpg',
   },
   {
     id: '3',
@@ -75,6 +78,7 @@ const coursesData: Course[] = [
     startDate: 'Started from Apr 2025',
     enrollLink: '#',
     youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
+    timeTableImageUrl: 'https://i.ibb.co/QF2zR9Tn/57643650-Aarambh-10th-Timetable.png',
   },
 ];
 

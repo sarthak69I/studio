@@ -1,4 +1,5 @@
 
+import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CalendarDays, ArrowRight, ListChecks } from 'lucide-react';
@@ -12,6 +13,15 @@ import {
   CardTitle,
   CardDescription,
 } from '@/components/ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 interface CourseCardProps {
   id: string;
@@ -25,6 +35,7 @@ interface CourseCardProps {
   startDate: string;
   enrollLink: string;
   youtubeLink: string;
+  timeTableImageUrl?: string;
 }
 
 export function CourseCard({
@@ -38,7 +49,10 @@ export function CourseCard({
   startDate,
   enrollLink,
   youtubeLink,
+  timeTableImageUrl,
 }: CourseCardProps) {
+  const [isTimeTableDialogOpen, setIsTimeTableDialogOpen] = React.useState(false);
+
   return (
     <Card className="w-full max-w-sm overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-border flex flex-col">
       <CardHeader className="p-5">
@@ -72,12 +86,47 @@ export function CourseCard({
           <span>{startDate}</span>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 mt-auto">
-          <Button variant="outline" asChild className="flex-1 font-semibold py-2.5 px-4 rounded-lg transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md group">
-            <Link href="#">
-              <ListChecks className="mr-2 h-4 w-4" />
-              Time Table
-            </Link>
-          </Button>
+          {timeTableImageUrl ? (
+            <Dialog open={isTimeTableDialogOpen} onOpenChange={setIsTimeTableDialogOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="flex-1 font-semibold py-2.5 px-4 rounded-lg transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md group">
+                  <ListChecks className="mr-2 h-4 w-4" />
+                  Time Table
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-0">
+                <DialogHeader className="p-4 border-b">
+                  <DialogTitle className="text-xl">{title} - Time Table</DialogTitle>
+                </DialogHeader>
+                <div className="p-4 max-h-[75vh] overflow-y-auto">
+                  <div className="relative w-full">
+                    <Image
+                      src={timeTableImageUrl}
+                      alt={`${title} Time Table`}
+                      width={1200} // Max representative width
+                      height={1700} // Max representative height
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
+                      className="rounded-md w-full h-auto object-contain"
+                    />
+                  </div>
+                </div>
+                <DialogFooter className="p-4 border-t sm:justify-start">
+                  <DialogClose asChild>
+                    <Button type="button" variant="outline">
+                      Close
+                    </Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          ) : (
+            <Button variant="outline" asChild className="flex-1 font-semibold py-2.5 px-4 rounded-lg transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md group">
+              <Link href="#">
+                <ListChecks className="mr-2 h-4 w-4" />
+                Time Table
+              </Link>
+            </Button>
+          )}
           <Button asChild className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 px-4 rounded-lg transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md group">
             <Link href={enrollLink} target="_blank" rel="noopener noreferrer">
               Enroll Now
