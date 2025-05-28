@@ -3,14 +3,13 @@
 
 import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
-// import Head from 'next/head'; // Removed next/head
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
 
 const subjectContentMap: { [key: string]: string | string[] } = {
   'Physics': 'Units and Measurement',
-  'Chemistry': 'Some Basic Concepts of Chemistry',
+  'Chemistry': ['Some Basic Concepts of Chemistry', 'Structure of Atom', 'Classification of Elements'], // Added more for Chemistry example
   'Biology': 'The Living World',
   'Mathematics': ['Sets', 'Complex Numbers', 'Relation & Functions'],
   'Business Studies': ['Business, Trade & Commerce', 'Forms of Business Organisations'],
@@ -55,12 +54,15 @@ export default function SubjectContentPage() {
   React.useEffect(() => {
     if (isMounted && subjectName) {
       const modeText = mode === 'notes' ? 'Notes' : 'Videos';
-      document.title = `${subjectName} - ${modeText} | E-Leak`;
+      let pageTitleSegment = subjectName;
+      if (typeof displayedContent === 'string' && !displayedContent.includes('Coming Soon') && !displayedContent.includes('could not be loaded')) {
+        pageTitleSegment = displayedContent;
+      }
+      document.title = `${pageTitleSegment} - ${modeText} | E-Leak`;
     } else if (isMounted) {
       document.title = 'Subject Content | E-Leak';
     }
-    // Default title before mount/hydration is handled by _app.tsx or Next.js defaults
-  }, [isMounted, subjectName, mode]);
+  }, [isMounted, subjectName, mode, displayedContent]);
 
   if (!isMounted) {
     return (
@@ -70,9 +72,49 @@ export default function SubjectContentPage() {
     );
   }
 
+  const renderCard = (item: string, index: number) => {
+    const cardContent = (
+      <div 
+        className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md 
+                   transform opacity-0 animate-fadeInUp-custom
+                   transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90"
+        style={{ animationDelay: `${index * 0.1}s` }}
+      >
+        <div className="flex items-center justify-between">
+          <span className="text-xl sm:text-2xl font-semibold">{item}</span>
+          <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
+        </div>
+        <p className="text-sm text-muted-foreground mt-2 capitalize">
+          {mode} for {subjectName}
+        </p>
+      </div>
+    );
+
+    if (item === 'Some Basic Concepts of Chemistry') {
+      return (
+        <Link 
+          key={index} 
+          href={`/courses/${courseId}/content/${mode}/${encodeURIComponent(subjectName)}/${encodeURIComponent(item)}/lectures`}
+          className="w-full max-w-md block mb-6 cursor-pointer"
+        >
+          {cardContent}
+        </Link>
+      );
+    }
+
+    // For other items, or items that don't have a special link
+    return (
+      <div 
+        key={index}
+        className="w-full max-w-md block mb-6 cursor-default" // Make non-linked items also appear similar
+      >
+        {cardContent}
+      </div>
+    );
+  };
+
   return (
     <>
-      {/* <Head> is removed, document.title is set in useEffect */}
       <div className="flex flex-col min-h-screen bg-background text-foreground p-4 md:p-6">
         <header className="flex items-center justify-between mb-8 w-full max-w-4xl mx-auto">
           <Button variant="outline" size="lg" onClick={() => router.back()} className="rounded-lg">
@@ -90,36 +132,9 @@ export default function SubjectContentPage() {
         <main className="flex-grow flex flex-col justify-start items-center pt-10 md:pt-16 w-full">
           {displayedContent ? (
             Array.isArray(displayedContent) ? (
-              displayedContent.map((item, index) => (
-                <div 
-                  key={index}
-                  className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md cursor-pointer 
-                             transform opacity-0 animate-fadeInUp-custom mb-6
-                             transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xl sm:text-2xl font-semibold">{item}</span>
-                    <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
-                  </div>
-                  <p className="text-sm text-muted-foreground mt-2 capitalize">
-                    {mode} for {subjectName}
-                  </p>
-                </div>
-              ))
+              displayedContent.map((item, index) => renderCard(item, index))
             ) : (
-              <div 
-                className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md cursor-pointer 
-                           transform opacity-0 animate-fadeInUp-custom
-                           transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-xl sm:text-2xl font-semibold">{displayedContent}</span>
-                  <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
-                </div>
-                <p className="text-sm text-muted-foreground mt-2 capitalize">
-                  {mode} for {subjectName} 
-                </p>
-              </div>
+              typeof displayedContent === 'string' ? renderCard(displayedContent, 0) : null
             )
           ) : (
              subjectName === 'Unknown Subject' || (typeof displayedContent === 'string' && displayedContent.includes('could not be loaded')) ? (
