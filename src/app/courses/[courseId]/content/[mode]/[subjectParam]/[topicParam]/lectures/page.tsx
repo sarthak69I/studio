@@ -51,9 +51,11 @@ export default function TopicLecturesPage() {
   }, [isMounted, topicParam, subjectParam]);
 
   React.useEffect(() => {
-    if (isMounted && topicName) {
+    if (isMounted && topicName && topicName !== 'Unknown Topic' && topicName !== 'Invalid Topic') {
       const modeText = mode === 'notes' ? 'Notes' : 'Videos';
       document.title = `Lectures: ${topicName} - ${modeText} | E-Leak`;
+    } else if (isMounted && topicName) { // Handles "Unknown Topic" or "Invalid Topic"
+      document.title = `${topicName} | E-Leak`;
     } else if (isMounted) {
       document.title = 'Lectures | E-Leak';
     }
@@ -104,17 +106,36 @@ export default function TopicLecturesPage() {
 
         <main className="flex-grow flex flex-col justify-start items-center pt-10 md:pt-16 w-full">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">
-            {topicName} <span className="capitalize">{mode}</span>
+            {topicName || "Loading Topic..."} <span className="capitalize">{mode}</span>
           </h1>
-          {lectures.length > 0 && !lectures[0].includes('not yet available') && !lectures[0].includes('Could not load') ? (
-            lectures.map((lecture, index) => renderLectureCard(lecture, index))
-          ) : (
-             (topicName === 'Unknown Topic' || lectures[0].includes('Could not load')) ? (
-              <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{lectures[0]}</p>
-            ) : (
-               <p className="text-xl text-muted-foreground">{lectures[0]}</p>
-            )
-          )}
+          {(() => {
+            if (lectures.length === 0 && (topicName && topicName !== 'Unknown Topic' && topicName !== 'Invalid Topic')) {
+              // This state means lectures are expected but not yet loaded by useEffect
+              return <p className="text-xl text-muted-foreground">Loading lectures...</p>;
+            }
+
+            if (lectures.length === 0) { 
+              // This can happen if topicName is 'Unknown Topic' or 'Invalid Topic' and lectures are not set
+              // or if lectures genuinely couldn't be determined.
+              return <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">Could not determine lectures for this topic.</p>;
+            }
+
+            const firstLectureMessage = lectures[0];
+
+            if (topicName === 'Unknown Topic' || 
+                topicName === 'Invalid Topic' || 
+                (firstLectureMessage && firstLectureMessage.includes('Could not load lectures due to a decoding error.')) ||
+                (firstLectureMessage && firstLectureMessage.includes('No topic specified in URL.'))) {
+              return <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{firstLectureMessage || "Error loading content."}</p>;
+            }
+            
+            if (firstLectureMessage && firstLectureMessage.includes('not yet available')) {
+              return <p className="text-xl text-muted-foreground">{firstLectureMessage}</p>;
+            }
+
+            // If we reach here, it means we have actual lectures to display
+            return lectures.map((lecture, index) => renderLectureCard(lecture, index));
+          })()}
         </main>
 
         <footer className="text-center text-sm text-muted-foreground mt-auto py-4">
