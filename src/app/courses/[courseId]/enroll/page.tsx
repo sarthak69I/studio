@@ -4,19 +4,21 @@
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter, useParams } from 'next/navigation'; // useParams to get courseId
+import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
 
 interface SubjectItemProps {
   name: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
-const SubjectItem: React.FC<SubjectItemProps> = ({ name, onClick }) => (
+const SubjectItem: React.FC<SubjectItemProps> = ({ name, onClick, disabled }) => (
   <Button
     variant="secondary"
-    className="w-full justify-between p-7 text-lg rounded-xl shadow-sm hover:bg-muted/80 transition-colors" // Increased padding (p-7)
+    className="w-full justify-between p-7 text-lg rounded-xl shadow-sm hover:bg-muted/80 transition-colors"
     onClick={onClick}
+    disabled={disabled}
   >
     {name}
     <ChevronRight className="h-5 w-5 text-muted-foreground" />
@@ -37,12 +39,20 @@ export default function EnrollPage() {
   const router = useRouter();
   const params = useParams();
   const courseId = typeof params.courseId === 'string' ? params.courseId : '';
+  const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
 
   const subjects = courseSpecificSubjects[courseId] || [];
 
   const handleSubjectClick = (subjectName: string) => {
-    console.log(`Clicked on ${subjectName} for course ${courseId}`);
-    // Navigate to subject specific page or handle action
+    if (activeContentMode === 'notes') {
+      console.log(`Showing notes for: ${subjectName} (Course ID: ${courseId})`);
+      // Placeholder: Future navigation or display logic for notes
+      // e.g., router.push(`/courses/${courseId}/notes/${subjectName}`);
+    } else if (activeContentMode === 'video') {
+      console.log(`Showing videos for: ${subjectName} (Course ID: ${courseId})`);
+      // Placeholder: Future navigation or display logic for videos
+      // e.g., router.push(`/courses/${courseId}/videos/${subjectName}`);
+    }
   };
 
   return (
@@ -62,18 +72,26 @@ export default function EnrollPage() {
 
       <main className="flex-grow flex flex-col items-center">
         <div className="w-full max-w-md space-y-6">
-          <Button 
-            size="lg" 
-            className="w-full py-6 text-xl rounded-full bg-primary hover:bg-primary/90 transition-transform duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg" // Added hover animation
+          <Button
+            size="lg"
+            className="w-full py-6 text-xl rounded-full bg-primary hover:bg-primary/90 transition-transform duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg"
           >
             JOIN LIVE CLASS
           </Button>
 
           <div className="flex gap-4">
-            <Button variant="outline" className="flex-1 py-4 text-md rounded-xl">
-              DPP
+            <Button
+              variant={activeContentMode === 'notes' ? 'default' : 'outline'}
+              className="flex-1 py-4 text-md rounded-xl"
+              onClick={() => setActiveContentMode('notes')}
+            >
+              Notes
             </Button>
-            <Button variant="secondary" className="flex-1 py-4 text-md rounded-xl bg-blue-500 hover:bg-blue-600 text-white">
+            <Button
+              variant={activeContentMode === 'video' ? 'default' : 'outline'}
+              className="flex-1 py-4 text-md rounded-xl"
+              onClick={() => setActiveContentMode('video')}
+            >
               Video
             </Button>
           </div>
@@ -85,7 +103,11 @@ export default function EnrollPage() {
             {subjects.length > 0 ? (
               <div className="space-y-3">
                 {subjects.map((subject) => (
-                  <SubjectItem key={subject} name={subject} onClick={() => handleSubjectClick(subject)} />
+                  <SubjectItem
+                    key={subject}
+                    name={subject}
+                    onClick={() => handleSubjectClick(subject)}
+                  />
                 ))}
               </div>
             ) : (
