@@ -49,7 +49,7 @@ const coursesData: Course[] = [
     highlightText: 'Batch for 11th Science',
     startDate: 'Started from Apr 2025',
     enrollLink: '/courses/1/enroll',
-    youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
+    youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
     timeTableImageUrl: 'https://i.ibb.co/jPs6ZzSP/SCIENCE.jpg',
   },
   {
@@ -63,7 +63,7 @@ const coursesData: Course[] = [
     highlightText: 'Batch for 11th Commerce',
     startDate: 'Started from Apr 2025',
     enrollLink: '/courses/2/enroll',
-    youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
+    youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
     timeTableImageUrl: 'https://i.ibb.co/LzNSqqsf/COMMERCE.jpg',
   },
   {
@@ -77,7 +77,7 @@ const coursesData: Course[] = [
     highlightText: 'Batch for Class 10th',
     startDate: 'Started from Apr 2025',
     enrollLink: '/courses/3/enroll',
-    youtubeLink: 'https://www.youtube.com/@BACKUP-CHANNEL-NT',
+    youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
     timeTableImageUrl: 'https://i.ibb.co/QF2zR9Tn/57643650-Aarambh-10th-Timetable.png',
   },
 ];
