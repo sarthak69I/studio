@@ -1,7 +1,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { CalendarDays, ArrowRight } from 'lucide-react';
+import { CalendarDays, ArrowRight, ListChecks } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -71,7 +71,13 @@ export function CourseCard({
           <CalendarDays className="h-5 w-5" />
           <span>{startDate}</span>
         </div>
-        <div className="flex gap-3 mt-auto">
+        <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+          <Button variant="outline" asChild className="flex-1 font-semibold py-2.5 px-4 rounded-lg transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md group">
+            <Link href="#">
+              <ListChecks className="mr-2 h-4 w-4" />
+              Time Table
+            </Link>
+          </Button>
           <Button asChild className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 px-4 rounded-lg transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md group">
             <Link href={enrollLink} target="_blank" rel="noopener noreferrer">
               Enroll Now
@@ -87,7 +93,7 @@ export function CourseCard({
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
             alt="YouTube"
-            className="h-4 md:h-5" // Adjusted height here
+            className="h-4 md:h-5"
           />
         </Link>
       </CardFooter>

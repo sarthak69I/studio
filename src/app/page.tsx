@@ -7,8 +7,13 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetClose,
 } from "@/components/ui/sheet";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from '@/components/ui/button';
 
 interface Course {
@@ -86,14 +91,24 @@ export default function HomePage() {
             <SheetHeader className="mb-4">
               <SheetTitle className="text-2xl font-semibold">Menu</SheetTitle>
             </SheetHeader>
-            <div className="space-y-4">
-              <SheetClose asChild>
-                 <button className="flex items-center w-full p-3 rounded-md hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-ring">
-                    <Info className="mr-3 h-5 w-5 text-primary" />
-                    <span className="text-base">Information</span>
-                  </button>
-              </SheetClose>
-              {/* Add more sheet items here if needed */}
+            <div className="space-y-2">
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="info" className="border-b-0">
+                  <AccordionTrigger className="flex items-center w-full p-3 rounded-md hover:bg-muted/50 transition-colors focus:outline-none focus:ring-2 focus:ring-ring no-underline hover:no-underline [&[data-state=open]>svg:last-child]:rotate-0">
+                    <div className="flex items-center flex-1">
+                      <Info className="mr-3 h-5 w-5 text-primary" />
+                      <span className="text-base">Information</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-4 pt-2">
+                    <div className="pl-11 pr-3 text-sm text-muted-foreground space-y-1">
+                      <p>Developer: SKJ & Firebase</p>
+                      <p>Version: 15.1.3</p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+              {/* Add more sheet items here if needed, perhaps as other AccordionItems or simple links/buttons */}
             </div>
           </SheetContent>
         </Sheet>
