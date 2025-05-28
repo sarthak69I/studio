@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Info, Mail, Sun, Moon } from 'lucide-react'; // Added Sun and Moon icons
+import { Menu, Info, Mail, Sun, Moon, Bell } from 'lucide-react'; // Added Sun, Moon, and Bell icons
 import {
   Sheet,
   SheetContent,
@@ -21,6 +21,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface Course {
   id: string;
@@ -84,6 +85,7 @@ const coursesData: Course[] = [
 
 export default function HomePage() {
   const [isInfoDialogOpen, setIsInfoDialogOpen] = React.useState(false);
+  const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = React.useState(false);
   const [currentTheme, setCurrentTheme] = React.useState<string>('dark');
 
   React.useEffect(() => {
@@ -92,10 +94,9 @@ export default function HomePage() {
       setCurrentTheme(storedTheme);
       document.documentElement.className = storedTheme;
     } else {
-      // If no stored theme, class 'dark' is already set by layout.tsx
-      // Ensure state matches and set localStorage for future consistency
       setCurrentTheme('dark');
       localStorage.setItem('theme', 'dark');
+      document.documentElement.className = 'dark';
     }
   }, []);
 
@@ -138,6 +139,51 @@ export default function HomePage() {
                 )}
                 {currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
               </Button>
+
+              <Dialog open={isClassUpdatesDialogOpen} onOpenChange={setIsClassUpdatesDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                    aria-label="View Class Updates"
+                  >
+                    <Bell className="mr-3 h-5 w-5 text-primary" />
+                    Class Updates
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md rounded-xl">
+                  <DialogHeader>
+                    <DialogTitle className="text-xl">Class Updates</DialogTitle>
+                  </DialogHeader>
+                  <div className="py-4 space-y-3 text-sm">
+                    <p>
+                      To get All Class Updates Join the telegram channel:
+                      <Link href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                        Telegram
+                      </Link>
+                    </p>
+                    <p>
+                      Subscribe on YouTube:
+                      <Link href="https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                        Main Channel
+                      </Link>
+                    </p>
+                    <p>
+                      This is the backup channel:
+                      <Link href="https://youtube.com/@nexttoppers-backup?si=GP3sqWU8fmCa8EQL" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                        Backup Channel
+                      </Link>
+                    </p>
+                  </div>
+                  <DialogFooter className="sm:justify-start">
+                    <DialogClose asChild>
+                      <Button type="button" variant="outline">
+                        Close
+                      </Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
 
               <Dialog open={isInfoDialogOpen} onOpenChange={setIsInfoDialogOpen}>
                 <DialogTrigger asChild>
