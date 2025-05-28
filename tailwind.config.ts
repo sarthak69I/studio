@@ -104,9 +104,14 @@ export default {
           from: { opacity: '0' },
           to: { opacity: '1' },
         },
-        'fadeInUp-custom': { // Renamed to avoid conflict if 'fadeInUp' is a common name
+        'fadeInUp-custom': { 
           '0%': { transform: 'translateY(20px) scale(0.95)', opacity: '0' },
           '100%': { transform: 'translateY(0) scale(1)', opacity: '1' },
+        },
+        'live-pulse': {
+          '0%': { boxShadow: '0 0 0 0px hsla(0, 100%, 71%, 0.5)' }, // Using destructive HSL
+          '70%': { boxShadow: '0 0 0 10px hsla(0, 100%, 71%, 0)' },
+          '100%': { boxShadow: '0 0 0 0px hsla(0, 100%, 71%, 0)' },
         }
   		},
   		animation: {
@@ -117,6 +122,7 @@ export default {
         'pulse-custom': 'pulse-custom 2s infinite ease-in-out',
         'fadeIn-custom': 'fadeIn-custom 1s ease-in forwards',
         'fadeInUp-custom': 'fadeInUp-custom 0.6s ease-out forwards',
+        'live-pulse': 'live-pulse 2s infinite',
   		}
   	}
   },

@@ -74,6 +74,7 @@ export default function EnrollPage() {
             size="lg"
             className="w-full py-6 text-xl rounded-full bg-primary hover:bg-primary/90 
                        transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl"
+            onClick={() => router.push(`/courses/${courseId}/live`)}
           >
             JOIN LIVE CLASS
           </Button>
