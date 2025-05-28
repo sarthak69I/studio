@@ -7,10 +7,11 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
 import { 
-  scienceCourseTopics, 
-  commerceCourseTopics, 
-  aarambhCourseTopics,
-  type CourseTopicsMap 
+  scienceCourseContent, 
+  commerceCourseContent, 
+  aarambhCourseContent,
+  type CourseContentMap,
+  type Topic
 } from '@/lib/course-data';
 
 
@@ -23,7 +24,7 @@ export default function SubjectContentPage() {
   const subjectParam = typeof params.subjectParam === 'string' ? params.subjectParam : '';
   
   const [subjectName, setSubjectName] = React.useState('');
-  const [displayedContent, setDisplayedContent] = React.useState<string | string[] | null>(null);
+  const [displayedTopics, setDisplayedTopics] = React.useState<Topic[] | string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -36,27 +37,32 @@ export default function SubjectContentPage() {
         const decodedSubjectName = decodeURIComponent(subjectParam);
         setSubjectName(decodedSubjectName);
 
-        let currentCourseMap: CourseTopicsMap = {};
+        let currentCourseMap: CourseContentMap | undefined;
         if (courseId === '1') { // Science Batch
-          currentCourseMap = scienceCourseTopics;
+          currentCourseMap = scienceCourseContent;
         } else if (courseId === '2') { // Commerce Batch
-          currentCourseMap = commerceCourseTopics;
+          currentCourseMap = commerceCourseContent;
         } else if (courseId === '3') { // Aarambh Batch
-          currentCourseMap = aarambhCourseTopics;
+          currentCourseMap = aarambhCourseContent;
         }
         
-        const content = currentCourseMap[decodedSubjectName] || `Content for ${decodedSubjectName} Coming Soon`;
-        setDisplayedContent(content);
+        const content = currentCourseMap ? currentCourseMap[decodedSubjectName] : undefined;
+        
+        if (content) {
+          setDisplayedTopics(content as Topic[] | string); // Cast based on expected structure
+        } else {
+           setDisplayedTopics(`Content for ${decodedSubjectName} Coming Soon`);
+        }
 
       } catch (e) {
         console.error("Failed to decode subject param or load content:", e);
         const fallbackName = "Invalid Subject";
         setSubjectName(fallbackName);
-        setDisplayedContent(`Content for '${subjectParam}' could not be loaded due to a decoding error.`);
+        setDisplayedTopics(`Content for '${subjectParam}' could not be loaded due to a decoding error.`);
       }
     } else if (isMounted) { 
       setSubjectName('Unknown Subject');
-      setDisplayedContent('No subject specified in URL or course ID missing.');
+      setDisplayedTopics('No subject specified in URL or course ID missing.');
     }
   }, [isMounted, subjectParam, courseId]);
 
@@ -64,19 +70,17 @@ export default function SubjectContentPage() {
     if (isMounted && subjectName) {
       const modeText = mode === 'notes' ? 'Notes' : 'Videos';
       let pageTitleSegment = subjectName;
-      // Determine a more specific title if single topic is displayed
-      if (typeof displayedContent === 'string' && !displayedContent.includes('Coming Soon') && !displayedContent.includes('could not be loaded')) {
-         if (Array.isArray(displayedContent) && displayedContent.length === 1) {
-            pageTitleSegment = displayedContent[0];
-         } else if (typeof displayedContent === 'string') {
-            pageTitleSegment = displayedContent;
-         }
+      
+      if (Array.isArray(displayedTopics) && displayedTopics.length === 1 && displayedTopics[0].name) {
+         pageTitleSegment = displayedTopics[0].name;
+      } else if (typeof displayedTopics === 'string' && !displayedTopics.includes('Coming Soon') && !displayedTopics.includes('could not be loaded')) {
+         pageTitleSegment = displayedTopics;
       }
       document.title = `${pageTitleSegment} - ${subjectName} ${modeText} | E-Leak`;
     } else if (isMounted) {
       document.title = 'Subject Content | E-Leak';
     }
-  }, [isMounted, subjectName, mode, displayedContent]);
+  }, [isMounted, subjectName, mode, displayedTopics]);
 
 
   if (!isMounted) {
@@ -87,7 +91,7 @@ export default function SubjectContentPage() {
     );
   }
 
-  const renderCard = (item: string, index: number) => {
+  const renderTopicCard = (topic: Topic, index: number) => {
     const cardContent = (
       <div 
         className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md 
@@ -96,8 +100,10 @@ export default function SubjectContentPage() {
         style={{ animationDelay: `${index * 0.1}s` }}
       >
         <div className="flex items-center justify-between">
-          <span className="text-xl sm:text-2xl font-semibold">{item}</span>
-          <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
+          <span className="text-xl sm:text-2xl font-semibold">{topic.name}</span>
+          {(topic.lectures && topic.lectures.length > 0) || (mode === 'notes' && topic.topicNotesLink) || (mode === 'video' && topic.topicVideoLink) ? (
+            <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
+          ) : null}
         </div>
         <p className="text-sm text-muted-foreground mt-2 capitalize">
           {mode} for {subjectName}
@@ -105,24 +111,40 @@ export default function SubjectContentPage() {
       </div>
     );
 
-    // Link specific topics to their lecture pages
-    if (subjectName === 'Chemistry' && item === 'Some Basic Concepts of Chemistry') {
+    const hasLectures = topic.lectures && topic.lectures.length > 0;
+
+    if (hasLectures) {
       return (
         <Link 
           key={index} 
-          href={`/courses/${courseId}/content/${mode}/${encodeURIComponent(subjectName)}/${encodeURIComponent(item)}/lectures`}
+          href={`/courses/${courseId}/content/${mode}/${encodeURIComponent(subjectName)}/${encodeURIComponent(topic.name)}/lectures`}
           className="w-full max-w-md block mb-6 cursor-pointer"
         >
           {cardContent}
         </Link>
       );
     }
-    // Add more conditions here if other topics need specific links
+    
+    // Placeholder for direct topic link (if no lectures) - can be expanded later
+    const directLink = mode === 'notes' ? topic.topicNotesLink : topic.topicVideoLink;
+    if (directLink && directLink !== '#') { // Check if a meaningful link exists
+        return (
+            <a 
+              key={index} 
+              href={directLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-full max-w-md block mb-6 cursor-pointer"
+            >
+              {cardContent}
+            </a>
+        );
+    }
 
     return (
       <div 
         key={index}
-        className="w-full max-w-md block mb-6 cursor-default" // Default is non-clickable
+        className="w-full max-w-md block mb-6 cursor-default"
       >
         {cardContent}
       </div>
@@ -152,29 +174,37 @@ export default function SubjectContentPage() {
             </h1>
           )}
           
-          {displayedContent ? (
-            Array.isArray(displayedContent) ? (
-              displayedContent.map((item, index) => renderCard(item, index))
-            ) : (
-              (typeof displayedContent === 'string' && (displayedContent.includes('Coming Soon') || displayedContent.includes('could not be loaded') || displayedContent.includes('No subject specified'))) ? (
-                (subjectName === 'Unknown Subject' || displayedContent.includes('could not be loaded') || displayedContent.includes('No subject specified')) ? (
-                    <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{displayedContent}</p>
+          {(() => {
+            if (!displayedTopics) {
+                 return (subjectName === 'Unknown Subject' || (typeof displayedTopics === 'string' && displayedTopics && (displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified')))) ? (
+                  <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">
+                    {typeof displayedTopics === 'string' ? displayedTopics : 'Content could not be loaded.'}
+                  </p>
                 ) : (
-                    <p className="text-xl text-muted-foreground">{displayedContent}</p>
-                )
-              ) : (
-                typeof displayedContent === 'string' ? renderCard(displayedContent, 0) : null
-              )
-            )
-          ) : (
-             (subjectName === 'Unknown Subject' || (typeof displayedContent === 'string' && displayedContent && (displayedContent.includes('could not be loaded') || displayedContent.includes('No subject specified')))) ? (
-              <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">
-                {displayedContent || 'Content could not be loaded.'}
-              </p>
-            ) : (
-              <p className="text-xl text-muted-foreground">Loading content or content not found.</p>
-            )
-          )}
+                  <p className="text-xl text-muted-foreground">Loading content or content not found.</p>
+                );
+            }
+
+            if (typeof displayedTopics === 'string') {
+                return (displayedTopics.includes('Coming Soon') || displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified')) ? (
+                    (subjectName === 'Unknown Subject' || displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified')) ? (
+                        <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{displayedTopics}</p>
+                    ) : (
+                        <p className="text-xl text-muted-foreground">{displayedTopics}</p>
+                    )
+                  ) : (
+                    // This case should ideally not happen if structure is Topic[] or specific string messages
+                    renderTopicCard({ name: displayedTopics } as Topic, 0) 
+                  );
+            }
+            
+            // If displayedTopics is Topic[]
+            if (Array.isArray(displayedTopics)) {
+              return displayedTopics.map((topic, index) => renderTopicCard(topic, index));
+            }
+
+            return <p className="text-xl text-muted-foreground">Content format not recognized.</p>;
+          })()}
         </main>
 
         <footer className="text-center text-sm text-muted-foreground mt-auto py-4">

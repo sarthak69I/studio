@@ -6,6 +6,14 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
+import {
+  scienceCourseContent,
+  commerceCourseContent,
+  aarambhCourseContent,
+  type CourseContentMap,
+  type Lecture,
+  type Topic,
+} from '@/lib/course-data';
 
 export default function TopicLecturesPage() {
   const router = useRouter();
@@ -18,7 +26,8 @@ export default function TopicLecturesPage() {
   
   const [topicName, setTopicName] = React.useState('');
   const [subjectName, setSubjectName] = React.useState('');
-  const [lectures, setLectures] = React.useState<string[]>([]);
+  const [lectures, setLectures] = React.useState<Lecture[]>([]);
+  const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -26,35 +35,61 @@ export default function TopicLecturesPage() {
   }, []);
 
   React.useEffect(() => {
-    if (isMounted && topicParam && subjectParam) {
+    if (isMounted && topicParam && subjectParam && courseId) {
       try {
         const decodedTopicName = decodeURIComponent(topicParam);
         const decodedSubjectName = decodeURIComponent(subjectParam);
         setTopicName(decodedTopicName);
         setSubjectName(decodedSubjectName);
 
-        if (decodedTopicName === 'Some Basic Concepts of Chemistry') {
-          const generatedLectures = Array.from({ length: 6 }, (_, i) => `${decodedTopicName} L${i + 1}`);
-          setLectures(generatedLectures);
+        let currentCourseMap: CourseContentMap | undefined;
+        if (courseId === '1') currentCourseMap = scienceCourseContent;
+        else if (courseId === '2') currentCourseMap = commerceCourseContent;
+        else if (courseId === '3') currentCourseMap = aarambhCourseContent;
+
+        if (currentCourseMap) {
+          const subjectData = currentCourseMap[decodedSubjectName];
+          if (typeof subjectData === 'string') { // Subject is "Coming Soon"
+            setStatusMessage(subjectData);
+            setLectures([]);
+          } else if (Array.isArray(subjectData)) { // Subject has topics
+            const currentTopic = subjectData.find((t: Topic) => t.name === decodedTopicName);
+            if (currentTopic && currentTopic.lectures && currentTopic.lectures.length > 0) {
+              setLectures(currentTopic.lectures);
+              setStatusMessage(null);
+            } else if (currentTopic) {
+              setStatusMessage(`Lectures for ${decodedTopicName} are not yet available.`);
+              setLectures([]);
+            } else {
+              setStatusMessage(`Topic "${decodedTopicName}" not found in ${decodedSubjectName}.`);
+              setLectures([]);
+            }
+          } else {
+             setStatusMessage(`Content structure for ${decodedSubjectName} is not recognized.`);
+             setLectures([]);
+          }
         } else {
-          setLectures([`Lectures for ${decodedTopicName} are not yet available.`]);
+          setStatusMessage(`Course data not found for course ID: ${courseId}.`);
+          setLectures([]);
         }
       } catch (e) {
-        console.error("Failed to decode params:", e);
+        console.error("Failed to decode params or load lectures:", e);
         setTopicName("Invalid Topic");
-        setLectures(["Could not load lectures due to a decoding error."]);
+        setStatusMessage("Could not load lectures due to a decoding error.");
+        setLectures([]);
       }
-    } else if (isMounted) { // Handle cases where params might be missing after mount
+    } else if (isMounted) {
       setTopicName('Unknown Topic');
-      setLectures(['No topic specified in URL.']);
+      setStatusMessage('No topic or subject specified in URL.');
+      setLectures([]);
     }
-  }, [isMounted, topicParam, subjectParam]);
+  }, [isMounted, topicParam, subjectParam, courseId]);
 
   React.useEffect(() => {
     if (isMounted && topicName && topicName !== 'Unknown Topic' && topicName !== 'Invalid Topic') {
       const modeText = mode === 'notes' ? 'Notes' : 'Videos';
       document.title = `Lectures: ${topicName} - ${modeText} | E-Leak`;
-    } else if (isMounted && topicName) { // Handles "Unknown Topic" or "Invalid Topic"
+    } else if (isMounted && topicName) {
       document.title = `${topicName} | E-Leak`;
     } else if (isMounted) {
       document.title = 'Lectures | E-Leak';
@@ -69,24 +104,49 @@ export default function TopicLecturesPage() {
     );
   }
 
-  const renderLectureCard = (lectureTitle: string, index: number) => (
-    <div 
-      key={index}
-      className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md cursor-pointer 
-                 transform opacity-0 animate-fadeInUp-custom mb-6
-                 transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90"
-      style={{ animationDelay: `${index * 0.1}s` }}
-      // onClick={() => router.push(`/lecture-content-page`)} // Placeholder for future navigation
-    >
-      <div className="flex items-center justify-between">
-        <span className="text-xl sm:text-2xl font-semibold">{lectureTitle}</span>
-        <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
+  const renderLectureCard = (lecture: Lecture, index: number) => {
+    const lectureLink = mode === 'notes' ? lecture.notesLink : lecture.videoLink;
+
+    const cardContent = (
+      <div 
+        className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md 
+                   transform opacity-0 animate-fadeInUp-custom 
+                   transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90"
+        style={{ animationDelay: `${index * 0.1}s` }}
+      >
+        <div className="flex items-center justify-between">
+          <span className="text-xl sm:text-2xl font-semibold">{lecture.title}</span>
+          {lectureLink && lectureLink !== '#' ? <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" /> : null}
+        </div>
+        <p className="text-sm text-muted-foreground mt-2 capitalize">
+          {mode} for {topicName} ({subjectName})
+        </p>
       </div>
-      <p className="text-sm text-muted-foreground mt-2 capitalize">
-        {mode} for {topicName} ({subjectName})
-      </p>
-    </div>
-  );
+    );
+
+    if (lectureLink && lectureLink !== '#') {
+      return (
+        <a 
+          key={lecture.id} 
+          href={lectureLink} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="w-full max-w-md block mb-6 cursor-pointer"
+        >
+          {cardContent}
+        </a>
+      );
+    }
+
+    return (
+       <div 
+        key={lecture.id}
+        className="w-full max-w-md block mb-6 cursor-default"
+      >
+        {cardContent}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -108,34 +168,18 @@ export default function TopicLecturesPage() {
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">
             {topicName || "Loading Topic..."} <span className="capitalize">{mode}</span>
           </h1>
-          {(() => {
-            if (lectures.length === 0 && (topicName && topicName !== 'Unknown Topic' && topicName !== 'Invalid Topic')) {
-              // This state means lectures are expected but not yet loaded by useEffect
-              return <p className="text-xl text-muted-foreground">Loading lectures...</p>;
-            }
-
-            if (lectures.length === 0) { 
-              // This can happen if topicName is 'Unknown Topic' or 'Invalid Topic' and lectures are not set
-              // or if lectures genuinely couldn't be determined.
-              return <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">Could not determine lectures for this topic.</p>;
-            }
-
-            const firstLectureMessage = lectures[0];
-
-            if (topicName === 'Unknown Topic' || 
-                topicName === 'Invalid Topic' || 
-                (firstLectureMessage && firstLectureMessage.includes('Could not load lectures due to a decoding error.')) ||
-                (firstLectureMessage && firstLectureMessage.includes('No topic specified in URL.'))) {
-              return <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{firstLectureMessage || "Error loading content."}</p>;
-            }
-            
-            if (firstLectureMessage && firstLectureMessage.includes('not yet available')) {
-              return <p className="text-xl text-muted-foreground">{firstLectureMessage}</p>;
-            }
-
-            // If we reach here, it means we have actual lectures to display
-            return lectures.map((lecture, index) => renderLectureCard(lecture, index));
-          })()}
+          
+          {statusMessage ? (
+            topicName === 'Unknown Topic' || topicName === 'Invalid Topic' || statusMessage.includes('Could not load') || statusMessage.includes('not found') ? (
+                 <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{statusMessage}</p>
+            ) : (
+                 <p className="text-xl text-muted-foreground">{statusMessage}</p>
+            )
+          ) : lectures.length > 0 ? (
+            lectures.map((lecture, index) => renderLectureCard(lecture, index))
+          ) : (
+            <p className="text-xl text-muted-foreground">Loading lectures or no lectures available for this topic.</p>
+          )}
         </main>
 
         <footer className="text-center text-sm text-muted-foreground mt-auto py-4">
