@@ -1,6 +1,12 @@
 
 import { CourseCard } from '@/components/course-card';
-import { Menu } from 'lucide-react';
+import { Menu, Info } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Course {
   id: string;
@@ -63,12 +69,22 @@ export default function HomePage() {
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
       {/* Menu Icon Button - Fixed to viewport top right */}
       <div className="fixed top-6 right-6 z-50">
-        <button
-          aria-label="Open menu"
-          className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-        >
-          <Menu className="h-6 w-6" />
-        </button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button
+              aria-label="Open menu"
+              className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem>
+              <Info className="mr-2 h-4 w-4" />
+              <span>Information</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       <header className="text-center my-8 md:my-12">
