@@ -1,235 +1,18 @@
 
 'use client';
 
-import type {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-import type {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogOverlay,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import type {Alert, AlertDescription, AlertTitle} from '@/components/ui/alert';
-import type {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar';
-import type {Badge, BadgeProps} from '@/components/ui/badge';
-import type {
-  Button,
-  ButtonProps,
-  buttonVariants,
-} from '@/components/ui/button';
-import type {Calendar, CalendarProps} from '@/components/ui/calendar';
-import type {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import type {
-  ChartConfig,
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-  ChartStyle,
-  ChartTooltip,
-  ChartTooltipContent,
-} from '@/components/ui/chart';
-import type {Checkbox} from '@/components/ui/checkbox';
-import type {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogOverlay,
-  DialogPortal,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import type {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import type {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  useFormField,
-} from '@/components/ui/form';
-import type {Input} from '@/components/ui/input';
-import type {Label} from '@/components/ui/label';
-import type {
-  Menubar,
-  MenubarCheckboxItem,
-  MenubarContent,
-  MenubarGroup,
-  MenubarItem,
-  MenubarLabel,
-  MenubarMenu,
-  MenubarPortal,
-  MenubarRadioGroup,
-  MenubarRadioItem,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarSub,
-  MenubarSubContent,
-  MenubarSubTrigger,
-  MenubarTrigger,
-} from '@/components/ui/menubar';
-import type {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import type {Progress} from '@/components/ui/progress';
-import type {
-  RadioGroup,
-  RadioGroupItem,
-} from '@/components/ui/radio-group';
-import type {
-  ScrollArea,
-  ScrollBar,
-} from '@/components/ui/scroll-area';
-import type {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectScrollDownButton,
-  SelectScrollUpButton,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import type {Separator} from '@/components/ui/separator';
-import type {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetOverlay,
-  SheetPortal,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
-import type {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupAction,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarInput,
-  SidebarInset,
-  SidebarMenu,
-  SidebarMenuAction,
-  SidebarMenuBadge,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSkeleton,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-  SidebarProvider,
-  SidebarRail,
-  SidebarSeparator,
-  SidebarTrigger,
-  useSidebar,
-} from '@/components/ui/sidebar';
-import type {Skeleton} from '@/components/ui/skeleton';
-import type {Slider} from '@/components/ui/slider';
-import type {Switch} from '@/components/ui/switch';
-import type {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import type {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs';
-import type {Textarea} from '@/components/ui/textarea';
-import type {
-  Toast,
-  ToastAction,
-  ToastActionElement,
-  ToastClose,
-  ToastDescription,
-  ToastProps,
-  ToastProvider,
-  ToastTitle,
-  ToastViewport,
-} from '@/components/ui/toast';
-import type {Toaster} from '@/components/ui/toaster';
-import type {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-import type {useToast} from '@/hooks/use-toast';
 import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-// Button, ArrowLeft, HomeIcon, ChevronRight are already imported via the type imports above.
-// We just need the actual components for usage.
-import { Button as ActualButton } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
+import { 
+  scienceCourseTopics, 
+  commerceCourseTopics, 
+  aarambhCourseTopics,
+  type CourseTopicsMap 
+} from '@/lib/course-data';
 
-
-const subjectContentMap: { [key: string]: string | string[] } = {
-  'Physics': 'Units and Measurement',
-  'Chemistry': ['Some Basic Concepts of Chemistry', 'Structure of Atom', 'Classification of Elements'],
-  'Biology': 'The Living World',
-  'Mathematics': ['Sets', 'Complex Numbers', 'Relation & Functions'],
-  'Business Studies': ['Business, Trade & Commerce', 'Forms of Business Organisations'],
-  'Accountancy': ['Basic Concepts of Accounts', 'Introduction To accounting'],
-  'Economics': 'Economics Content Coming Soon',
-  'Social Science': 'Social Science Content Coming Soon',
-  'Science': 'Science Content Coming Soon',
-};
 
 export default function SubjectContentPage() {
   const router = useRouter();
@@ -248,36 +31,53 @@ export default function SubjectContentPage() {
   }, []);
 
   React.useEffect(() => {
-    if (isMounted && subjectParam) {
+    if (isMounted && subjectParam && courseId) {
       try {
         const decodedSubjectName = decodeURIComponent(subjectParam);
         setSubjectName(decodedSubjectName);
-        const content = subjectContentMap[decodedSubjectName] || `Content for ${decodedSubjectName} Coming Soon`;
+
+        let currentCourseMap: CourseTopicsMap = {};
+        if (courseId === '1') { // Science Batch
+          currentCourseMap = scienceCourseTopics;
+        } else if (courseId === '2') { // Commerce Batch
+          currentCourseMap = commerceCourseTopics;
+        } else if (courseId === '3') { // Aarambh Batch
+          currentCourseMap = aarambhCourseTopics;
+        }
+        
+        const content = currentCourseMap[decodedSubjectName] || `Content for ${decodedSubjectName} Coming Soon`;
         setDisplayedContent(content);
+
       } catch (e) {
-        console.error("Failed to decode subject param:", e);
+        console.error("Failed to decode subject param or load content:", e);
         const fallbackName = "Invalid Subject";
         setSubjectName(fallbackName);
         setDisplayedContent(`Content for '${subjectParam}' could not be loaded due to a decoding error.`);
       }
-    } else if (isMounted) { // Handle case where subjectParam might be missing after mount
+    } else if (isMounted) { 
       setSubjectName('Unknown Subject');
-      setDisplayedContent('No subject specified in URL.');
+      setDisplayedContent('No subject specified in URL or course ID missing.');
     }
-  }, [isMounted, subjectParam]);
+  }, [isMounted, subjectParam, courseId]);
 
   React.useEffect(() => {
     if (isMounted && subjectName) {
       const modeText = mode === 'notes' ? 'Notes' : 'Videos';
       let pageTitleSegment = subjectName;
+      // Determine a more specific title if single topic is displayed
       if (typeof displayedContent === 'string' && !displayedContent.includes('Coming Soon') && !displayedContent.includes('could not be loaded')) {
-        pageTitleSegment = displayedContent;
+         if (Array.isArray(displayedContent) && displayedContent.length === 1) {
+            pageTitleSegment = displayedContent[0];
+         } else if (typeof displayedContent === 'string') {
+            pageTitleSegment = displayedContent;
+         }
       }
-      document.title = `${pageTitleSegment} - ${modeText} | E-Leak`;
+      document.title = `${pageTitleSegment} - ${subjectName} ${modeText} | E-Leak`;
     } else if (isMounted) {
       document.title = 'Subject Content | E-Leak';
     }
   }, [isMounted, subjectName, mode, displayedContent]);
+
 
   if (!isMounted) {
     return (
@@ -305,6 +105,7 @@ export default function SubjectContentPage() {
       </div>
     );
 
+    // Link specific topics to their lecture pages
     if (subjectName === 'Chemistry' && item === 'Some Basic Concepts of Chemistry') {
       return (
         <Link 
@@ -316,11 +117,12 @@ export default function SubjectContentPage() {
         </Link>
       );
     }
+    // Add more conditions here if other topics need specific links
 
     return (
       <div 
         key={index}
-        className="w-full max-w-md block mb-6 cursor-default" 
+        className="w-full max-w-md block mb-6 cursor-default" // Default is non-clickable
       >
         {cardContent}
       </div>
@@ -331,15 +133,15 @@ export default function SubjectContentPage() {
     <>
       <div className="flex flex-col min-h-screen bg-background text-foreground p-4 md:p-6">
         <header className="flex items-center justify-between mb-8 w-full max-w-4xl mx-auto">
-          <ActualButton variant="outline" size="lg" onClick={() => router.back()} className="rounded-lg">
+          <Button variant="outline" size="lg" onClick={() => router.back()} className="rounded-lg">
             <ArrowLeft className="mr-2 h-5 w-5" />
             Back
-          </ActualButton>
+          </Button>
           <Link href="/" passHref>
-            <ActualButton variant="outline" size="lg" className="rounded-lg">
+            <Button variant="outline" size="lg" className="rounded-lg">
               <HomeIcon className="mr-2 h-5 w-5" />
               Home
-            </ActualButton>
+            </Button>
           </Link>
         </header>
 
@@ -354,8 +156,8 @@ export default function SubjectContentPage() {
             Array.isArray(displayedContent) ? (
               displayedContent.map((item, index) => renderCard(item, index))
             ) : (
-              (typeof displayedContent === 'string' && (displayedContent.includes('Coming Soon') || displayedContent.includes('could not be loaded'))) ? (
-                (subjectName === 'Unknown Subject' || displayedContent.includes('could not be loaded')) ? (
+              (typeof displayedContent === 'string' && (displayedContent.includes('Coming Soon') || displayedContent.includes('could not be loaded') || displayedContent.includes('No subject specified'))) ? (
+                (subjectName === 'Unknown Subject' || displayedContent.includes('could not be loaded') || displayedContent.includes('No subject specified')) ? (
                     <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{displayedContent}</p>
                 ) : (
                     <p className="text-xl text-muted-foreground">{displayedContent}</p>
@@ -365,7 +167,7 @@ export default function SubjectContentPage() {
               )
             )
           ) : (
-             subjectName === 'Unknown Subject' || (typeof displayedContent === 'string' && displayedContent && displayedContent.includes('could not be loaded')) ? (
+             (subjectName === 'Unknown Subject' || (typeof displayedContent === 'string' && displayedContent && (displayedContent.includes('could not be loaded') || displayedContent.includes('No subject specified')))) ? (
               <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">
                 {displayedContent || 'Content could not be loaded.'}
               </p>
