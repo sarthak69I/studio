@@ -98,3 +98,39 @@ body {
   color: transparent; /* Fallback for browsers that don't support background-clip: text */
 }
 
+/* Telegram Floating Button Styles */
+.telegram-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  z-index: 999;
+  border-radius: 50%;
+  background-color: #229ED9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(34, 158, 217, 0.5);
+  animation: floatUpDown 2.5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.telegram-float:hover {
+  transform: scale(1.1);
+}
+
+.telegram-float img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
