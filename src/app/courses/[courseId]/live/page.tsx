@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button'; // Using ShadCN Button for consistency, can style as needed
+import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon } from 'lucide-react';
 import { getParamAsString } from '@/lib/utils';
 
@@ -13,6 +13,8 @@ interface LiveClassData {
   subtitle: string;
   class1Subject: string;
   class2Subject: string;
+  class1LiveStreamUrl?: string;
+  class2LiveStreamUrl?: string;
 }
 
 const courseLiveDetails: Record<string, LiveClassData> = {
@@ -21,6 +23,8 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     subtitle: "Interactive learning sessions for Science students",
     class1Subject: "Biology",
     class2Subject: "Physics",
+    class1LiveStreamUrl: "https://anym3u8player.com/tv/p.php?url=https%3A%2F%2Fd3rho91jos7925.cloudfront.net%2Fout%2Fv1%2F04e48ce150b5494fa5bca97d1bea5bb0%2Findex_4.m3u8",
+    class2LiveStreamUrl: "https://anym3u8player.com/tv/p.php?url=https%3A%2F%2Fd2xqn12y4qo6nr.cloudfront.net%2Fout%2Fv1%2F4dacc3cc62ed4047b817b91580e11584%2Findex_4.m3u8",
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
@@ -55,20 +59,20 @@ interface LiveClassCardProps {
   cardId: string;
   classTimeLabel: string;
   subject: string;
-  // defaultTitle prop is no longer used for display
   targetHour: number;
   targetMinute: number;
   durationMinutes: number;
+  liveStreamUrl?: string;
 }
 
 const LiveClassCard: React.FC<LiveClassCardProps> = ({
   cardId,
   classTimeLabel,
   subject,
-  // defaultTitle, // No longer used for display
   targetHour,
   targetMinute,
   durationMinutes,
+  liveStreamUrl,
 }) => {
   const [countdown, setCountdown] = React.useState<CountdownState>({ hours: '00', minutes: '00', seconds: '00' });
   const [classStatus, setClassStatus] = React.useState<ClassStatusState>({
@@ -76,8 +80,8 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
     badgeText: 'Upcoming',
     buttonText: 'JOIN NOW',
     buttonDisabled: true,
-    cardBorderClass: 'border-accent', // Upcoming
-    badgeClass: 'bg-accent/20 text-accent', // Upcoming
+    cardBorderClass: 'border-accent', 
+    badgeClass: 'bg-accent/20 text-accent',
   });
   const [isMounted, setIsMounted] = React.useState(false);
 
@@ -92,16 +96,13 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       const now = new Date();
       let classStartTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour, targetMinute, 0);
       
-      // Logic to handle if today's classes are over, schedule for tomorrow
-      // Determine the end time of the last class for today
-      const lastClassTargetHour = 20; // 8 PM for the second class
-      const lastClassTargetMinute = 10; // 10 minutes
+      const lastClassTargetHour = 20; 
+      const lastClassTargetMinute = 10; 
       const lastClassDurationMinutes = 90;
       const lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), lastClassTargetHour, lastClassTargetMinute, 0);
       lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + lastClassDurationMinutes);
 
       if (now > lastClassEndTimeToday) {
-         // If current time is past the end of all classes for today, advance classStartTime to the next day
          classStartTime.setDate(classStartTime.getDate() + 1);
       }
 
@@ -114,7 +115,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       const { now, classStartTime, classEndTime } = calculateTimes();
       const diff = classStartTime.getTime() - now.getTime();
 
-      if (now < classStartTime) { // Upcoming
+      if (now < classStartTime) { 
         const h = Math.floor(diff / (1000 * 60 * 60));
         const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((diff % (1000 * 60)) / 1000);
@@ -131,17 +132,17 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           cardBorderClass: 'border-accent',
           badgeClass: 'bg-accent/20 text-accent',
         });
-      } else if (now >= classStartTime && now < classEndTime) { // Live
+      } else if (now >= classStartTime && now < classEndTime) { 
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
         setClassStatus({
           status: 'live',
           badgeText: 'Live Now',
           buttonText: 'JOIN NOW',
-          buttonDisabled: false,
+          buttonDisabled: false, // Will be hidden if video plays
           cardBorderClass: 'border-destructive animate-live-pulse',
           badgeClass: 'bg-destructive/20 text-destructive',
         });
-      } else { // Completed
+      } else { 
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
         setClassStatus({
           status: 'completed',
@@ -174,31 +175,50 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       </span>
       <div className="text-lg font-semibold mb-2">{classTimeLabel}</div>
       <h2 className="text-2xl font-bold text-primary mb-4">{subject}</h2>
-      {/* The div for defaultTitle has been removed to only show the subject */}
       
-      <div className="flex justify-between mb-6">
-        <div className="text-center bg-muted/30 p-3 rounded-lg min-w-[70px] sm:min-w-[80px] flex-1 mx-1">
-          <div className="text-2xl font-bold text-primary">{countdown.hours}</div>
-          <div className="text-xs uppercase text-muted-foreground opacity-70">Hours</div>
-        </div>
-        <div className="text-center bg-muted/30 p-3 rounded-lg min-w-[70px] sm:min-w-[80px] flex-1 mx-1">
-          <div className="text-2xl font-bold text-primary">{countdown.minutes}</div>
-          <div className="text-xs uppercase text-muted-foreground opacity-70">Minutes</div>
-        </div>
-        <div className="text-center bg-muted/30 p-3 rounded-lg min-w-[70px] sm:min-w-[80px] flex-1 mx-1">
-          <div className="text-2xl font-bold text-primary">{countdown.seconds}</div>
-          <div className="text-xs uppercase text-muted-foreground opacity-70">Seconds</div>
-        </div>
-      </div>
-      
-      <Button
-        className={`w-full py-3 text-base font-semibold rounded-full transition-all duration-300 ease-in-out 
-                    ${classStatus.buttonDisabled ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5'}`}
-        disabled={classStatus.buttonDisabled}
-        onClick={() => { if (!classStatus.buttonDisabled) alert('Joining class for ' + subject); }}
-      >
-        {classStatus.buttonText}
-      </Button>
+      {classStatus.status === 'live' ? (
+        liveStreamUrl ? (
+          <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-border bg-black my-4">
+            <iframe
+              src={liveStreamUrl}
+              title={`${subject} Live Stream`}
+              width="100%"
+              height="100%"
+              allowFullScreen
+              allow="autoplay; encrypted-media; picture-in-picture; web-share"
+              className="border-0"
+            ></iframe>
+          </div>
+        ) : (
+          <p className="text-center text-muted-foreground py-8">Live stream will begin shortly.</p>
+        )
+      ) : (
+        <>
+          <div className="flex justify-between mb-6">
+            <div className="text-center bg-muted/30 p-3 rounded-lg min-w-[70px] sm:min-w-[80px] flex-1 mx-1">
+              <div className="text-2xl font-bold text-primary">{countdown.hours}</div>
+              <div className="text-xs uppercase text-muted-foreground opacity-70">Hours</div>
+            </div>
+            <div className="text-center bg-muted/30 p-3 rounded-lg min-w-[70px] sm:min-w-[80px] flex-1 mx-1">
+              <div className="text-2xl font-bold text-primary">{countdown.minutes}</div>
+              <div className="text-xs uppercase text-muted-foreground opacity-70">Minutes</div>
+            </div>
+            <div className="text-center bg-muted/30 p-3 rounded-lg min-w-[70px] sm:min-w-[80px] flex-1 mx-1">
+              <div className="text-2xl font-bold text-primary">{countdown.seconds}</div>
+              <div className="text-xs uppercase text-muted-foreground opacity-70">Seconds</div>
+            </div>
+          </div>
+          
+          <Button
+            className={`w-full py-3 text-base font-semibold rounded-full transition-all duration-300 ease-in-out 
+                        ${classStatus.buttonDisabled ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5'}`}
+            disabled={classStatus.buttonDisabled}
+            onClick={() => { if (!classStatus.buttonDisabled) alert('Joining class for ' + subject); }}
+          >
+            {classStatus.buttonText}
+          </Button>
+        </>
+      )}
     </div>
   );
 };
@@ -267,6 +287,7 @@ export default function LiveClassesPage() {
             targetHour={17} 
             targetMinute={10} 
             durationMinutes={90}
+            liveStreamUrl={courseDetails.class1LiveStreamUrl}
           />
           <LiveClassCard
             cardId="class2"
@@ -275,6 +296,7 @@ export default function LiveClassesPage() {
             targetHour={20} 
             targetMinute={10} 
             durationMinutes={90}
+            liveStreamUrl={courseDetails.class2LiveStreamUrl}
           />
         </div>
       </main>
@@ -284,3 +306,4 @@ export default function LiveClassesPage() {
     </div>
   );
 }
+
