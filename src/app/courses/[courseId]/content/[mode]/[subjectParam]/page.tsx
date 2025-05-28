@@ -12,7 +12,7 @@ const subjectContentMap: { [key: string]: string } = {
   'Physics': 'Units and Measurement',
   'Chemistry': 'Some Basic Concepts of Chemistry',
   'Biology': 'The Living World',
-  'Mathematics': 'Sets',
+  'Mathematics': 'Sets, Complex Numbers, Relation & Functions', // Updated
   'Business Studies': 'Business, Trade & Commerce',
 };
 
