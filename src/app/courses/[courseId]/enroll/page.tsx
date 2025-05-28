@@ -6,6 +6,7 @@ import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
+import { getParamAsString } from '@/lib/utils';
 
 interface SubjectItemProps {
   name: string;
@@ -39,7 +40,7 @@ const courseSpecificSubjects: CourseSubjects = {
 export default function EnrollPage() {
   const router = useRouter();
   const params = useParams();
-  const courseId = typeof params.courseId === 'string' ? params.courseId : '';
+  const courseId = getParamAsString(params.courseId);
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
 
   const subjects = courseSpecificSubjects[courseId] || [];

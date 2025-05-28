@@ -13,15 +13,16 @@ import {
   type CourseContentMap,
   type Topic
 } from '@/lib/course-data';
+import { getParamAsString } from '@/lib/utils';
 
 
 export default function SubjectContentPage() {
   const router = useRouter();
   const params = useParams();
 
-  const courseId = typeof params.courseId === 'string' ? params.courseId : '';
-  const mode = typeof params.mode === 'string' ? params.mode : '';
-  const subjectParam = typeof params.subjectParam === 'string' ? params.subjectParam : '';
+  const courseId = getParamAsString(params.courseId);
+  const mode = getParamAsString(params.mode);
+  const subjectParam = getParamAsString(params.subjectParam);
   
   const [subjectName, setSubjectName] = React.useState('');
   const [displayedTopics, setDisplayedTopics] = React.useState<Topic[] | string | null>(null);
@@ -49,7 +50,7 @@ export default function SubjectContentPage() {
         const content = currentCourseMap ? currentCourseMap[decodedSubjectName] : undefined;
         
         if (content) {
-          setDisplayedTopics(content as Topic[] | string); // Cast based on expected structure
+          setDisplayedTopics(content as Topic[] | string); 
         } else {
            setDisplayedTopics(`Content for ${decodedSubjectName} Coming Soon`);
         }
@@ -64,17 +65,18 @@ export default function SubjectContentPage() {
       setSubjectName('Unknown Subject');
       setDisplayedTopics('No subject specified in URL or course ID missing.');
     }
-  }, [isMounted, subjectParam, courseId]);
+  }, [isMounted, subjectParam, courseId]); // Removed subjectName, mode from deps as they are derived or stable
 
   React.useEffect(() => {
     if (isMounted && subjectName) {
       const modeText = mode === 'notes' ? 'Notes' : 'Videos';
       let pageTitleSegment = subjectName;
       
-      if (Array.isArray(displayedTopics) && displayedTopics.length === 1 && displayedTopics[0].name) {
-         pageTitleSegment = displayedTopics[0].name;
+      if (Array.isArray(displayedTopics) && displayedTopics.length > 0 && typeof displayedTopics[0] !== 'string' && displayedTopics[0].name) {
+        // If there are multiple topics, the main title is the subject name
       } else if (typeof displayedTopics === 'string' && !displayedTopics.includes('Coming Soon') && !displayedTopics.includes('could not be loaded')) {
-         pageTitleSegment = displayedTopics;
+        // This case handles when displayedTopics is a single topic name string
+        pageTitleSegment = displayedTopics;
       }
       document.title = `${pageTitleSegment} - ${subjectName} ${modeText} | E-Leak`;
     } else if (isMounted) {
@@ -125,9 +127,8 @@ export default function SubjectContentPage() {
       );
     }
     
-    // Placeholder for direct topic link (if no lectures) - can be expanded later
     const directLink = mode === 'notes' ? topic.topicNotesLink : topic.topicVideoLink;
-    if (directLink && directLink !== '#') { // Check if a meaningful link exists
+    if (directLink && directLink !== '#') { 
         return (
             <a 
               key={index} 
@@ -193,12 +194,10 @@ export default function SubjectContentPage() {
                         <p className="text-xl text-muted-foreground">{displayedTopics}</p>
                     )
                   ) : (
-                    // This case should ideally not happen if structure is Topic[] or specific string messages
                     renderTopicCard({ name: displayedTopics } as Topic, 0) 
                   );
             }
             
-            // If displayedTopics is Topic[]
             if (Array.isArray(displayedTopics)) {
               return displayedTopics.map((topic, index) => renderTopicCard(topic, index));
             }

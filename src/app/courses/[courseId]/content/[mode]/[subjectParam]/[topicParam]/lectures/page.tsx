@@ -14,15 +14,16 @@ import {
   type Lecture,
   type Topic,
 } from '@/lib/course-data';
+import { getParamAsString } from '@/lib/utils';
 
 export default function TopicLecturesPage() {
   const router = useRouter();
   const params = useParams();
 
-  const courseId = typeof params.courseId === 'string' ? params.courseId : '';
-  const mode = typeof params.mode === 'string' ? params.mode : '';
-  const subjectParam = typeof params.subjectParam === 'string' ? params.subjectParam : '';
-  const topicParam = typeof params.topicParam === 'string' ? params.topicParam : '';
+  const courseId = getParamAsString(params.courseId);
+  const mode = getParamAsString(params.mode);
+  const subjectParam = getParamAsString(params.subjectParam);
+  const topicParam = getParamAsString(params.topicParam);
   
   const [topicName, setTopicName] = React.useState('');
   const [subjectName, setSubjectName] = React.useState('');
@@ -49,41 +50,42 @@ export default function TopicLecturesPage() {
 
         if (currentCourseMap) {
           const subjectData = currentCourseMap[decodedSubjectName];
-          if (typeof subjectData === 'string') { // Subject is "Coming Soon"
-            setStatusMessage(subjectData);
+          if (typeof subjectData === 'string') { 
+            setStatusMessage(subjectData); // e.g., "Coming Soon"
             setLectures([]);
-          } else if (Array.isArray(subjectData)) { // Subject has topics
+          } else if (Array.isArray(subjectData)) { 
             const currentTopic = subjectData.find((t: Topic) => t.name === decodedTopicName);
             if (currentTopic && currentTopic.lectures && currentTopic.lectures.length > 0) {
               setLectures(currentTopic.lectures);
               setStatusMessage(null);
-            } else if (currentTopic) {
+            } else if (currentTopic) { // Topic exists but has no lectures array or it's empty
               setStatusMessage(`Lectures for ${decodedTopicName} are not yet available.`);
               setLectures([]);
-            } else {
+            } else { // Topic not found
               setStatusMessage(`Topic "${decodedTopicName}" not found in ${decodedSubjectName}.`);
               setLectures([]);
             }
-          } else {
+          } else { // Should not happen with current data structure
              setStatusMessage(`Content structure for ${decodedSubjectName} is not recognized.`);
              setLectures([]);
           }
-        } else {
+        } else { // Course map not found
           setStatusMessage(`Course data not found for course ID: ${courseId}.`);
           setLectures([]);
         }
       } catch (e) {
         console.error("Failed to decode params or load lectures:", e);
-        setTopicName("Invalid Topic");
+        setTopicName("Invalid Topic"); // Fallback name for display
         setStatusMessage("Could not load lectures due to a decoding error.");
         setLectures([]);
       }
-    } else if (isMounted) {
+    } else if (isMounted) { // topicParam, subjectParam or courseId is missing
       setTopicName('Unknown Topic');
       setStatusMessage('No topic or subject specified in URL.');
       setLectures([]);
     }
   }, [isMounted, topicParam, subjectParam, courseId]);
+
 
   React.useEffect(() => {
     if (isMounted && topicName && topicName !== 'Unknown Topic' && topicName !== 'Invalid Topic') {
@@ -178,6 +180,8 @@ export default function TopicLecturesPage() {
           ) : lectures.length > 0 ? (
             lectures.map((lecture, index) => renderLectureCard(lecture, index))
           ) : (
+            // This case handles when lectures array is empty but there's no specific error status message yet (e.g. initial load)
+            // or when statusMessage was null but lectures ended up empty (e.g. topic found, but lectures array was empty/undefined in data)
             <p className="text-xl text-muted-foreground">Loading lectures or no lectures available for this topic.</p>
           )}
         </main>
