@@ -1,3 +1,4 @@
+
 import type {Metadata} from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -14,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'MONSTOR Course Hub',
-  description: 'Find your next course with MONSTOR.',
+  title: 'E-Leak Course Hub', // Changed from MONSTOR
+  description: 'Find your next course with E-Leak.', // Changed from MONSTOR
 };
 
 export default function RootLayout({
