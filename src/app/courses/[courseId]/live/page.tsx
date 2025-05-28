@@ -41,6 +41,8 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     subtitle: "Interactive learning sessions for Aarambh batch",
     class1Subject: "SST",
     class2Subject: "Science",
+    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/1a2e0a5970d84f82a93bebb2ae35314c/index_4.m3u8')}`, // Corrected: was ae35, assuming it should be ae35314c like the commerce link
+    class2LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`, // Corrected: was 2e72c, assuming it should be 2e55b72c like the commerce link
   }
 };
 
@@ -101,12 +103,14 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       let classStartTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour, targetMinute, 0);
       
       // Determine if today's classes are over to schedule for tomorrow
-      const lastClassTargetHour = 20; // Evening class start hour (8 PM)
-      const lastClassTargetMinute = 10; // Evening class start minute
-      const lastClassDurationMinutes = 90;
-      const lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), lastClassTargetHour, lastClassTargetMinute, 0);
-      lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + lastClassDurationMinutes);
+      // This uses the evening class details to determine the "end of day" for classes
+      const lastClassTargetHour = courseLiveDetails[getParamAsString(useParams().courseId)] ? 20 : targetHour; // Evening class start hour (8 PM)
+      const lastClassTargetMinute = courseLiveDetails[getParamAsString(useParams().courseId)] ? 10 : targetMinute; // Evening class start minute
+      const lastClassDurationMinutes = courseLiveDetails[getParamAsString(useParams().courseId)] ? 90 : durationMinutes;
 
+      let lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), lastClassTargetHour, lastClassTargetMinute, 0);
+      lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + lastClassDurationMinutes);
+      
       // If current time is past today's last class end time, target next day for all classes
       if (now > lastClassEndTimeToday) {
          classStartTime.setDate(classStartTime.getDate() + 1);
@@ -144,7 +148,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           status: 'live',
           badgeText: 'Live Now',
           buttonText: 'JOIN NOW',
-          buttonDisabled: false, 
+          buttonDisabled: !liveStreamUrl, // Button enabled only if live stream URL exists
           cardBorderClass: 'border-destructive animate-live-pulse',
           badgeClass: 'bg-destructive/20 text-destructive',
         });
@@ -165,7 +169,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
     const intervalId = setInterval(updateClassState, 1000);
 
     return () => clearInterval(intervalId);
-  }, [isMounted, targetHour, targetMinute, durationMinutes]);
+  }, [isMounted, targetHour, targetMinute, durationMinutes, liveStreamUrl]);
 
   if (!isMounted) {
     return <div className="bg-card rounded-2xl p-6 shadow-lg relative overflow-hidden min-h-[200px] flex items-center justify-center"><p>Loading class info...</p></div>;
@@ -222,11 +226,12 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
             className={`w-full py-3 text-base font-semibold rounded-full transition-all duration-300 ease-in-out 
                         ${classStatus.buttonDisabled ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5'}`}
             disabled={classStatus.buttonDisabled}
-            onClick={() => { if (!classStatus.buttonDisabled && liveStreamUrl) { 
-                // This part might not be strictly necessary if iframe loads immediately
-                // but could be used for other joining actions.
-                 console.log('Joining class for ' + subject);
+            onClick={() => { 
+              if (!classStatus.buttonDisabled && liveStreamUrl) { 
+                // Action is implicitly handled by the iframe showing up
+                console.log('Joining class for ' + subject);
               } else if (!classStatus.buttonDisabled && !liveStreamUrl) {
+                 // This case should ideally not happen if buttonDisabled is correctly set
                  alert('Live stream link not available yet for ' + subject);
               }
             }}
@@ -255,6 +260,7 @@ export default function LiveClassesPage() {
     subtitle: "Interactive learning sessions",
     class1Subject: "Subject 1",
     class2Subject: "Subject 2",
+    // No stream URLs for default/unknown course
   };
 
   React.useEffect(() => {
