@@ -17,20 +17,24 @@ interface LiveClassData {
   class2LiveStreamUrl?: string;
 }
 
+const anym3u8PlayerBase = 'https://anym3u8player.com/tv/p.php?url=';
+
 const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "Class 11 Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
     class1Subject: "Biology",
     class2Subject: "Physics",
-    class1LiveStreamUrl: "https://anym3u8player.com/tv/p.php?url=https%3A%2F%2Fd3rho91jos7925.cloudfront.net%2Fout%2Fv1%2F04e48ce150b5494fa5bca97d1bea5bb0%2Findex_4.m3u8",
-    class2LiveStreamUrl: "https://anym3u8player.com/tv/p.php?url=https%3A%2F%2Fd2xqn12y4qo6nr.cloudfront.net%2Fout%2Fv1%2F4dacc3cc62ed4047b817b91580e11584%2Findex_4.m3u8",
+    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_4.m3u8')}`,
+    class2LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
     subtitle: "Interactive learning sessions for Commerce students",
     class1Subject: "Economics",
     class2Subject: "Business Studies",
+    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`,
+    class2LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/1a2e0a5970d84f82a93bebb2ae35314c/index_4.m3u8')}`,
   },
   '3': { // Aarambh
     pageTitle: "Class 10 Aarambh Live Classes",
@@ -96,12 +100,14 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       const now = new Date();
       let classStartTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour, targetMinute, 0);
       
-      const lastClassTargetHour = 20; 
-      const lastClassTargetMinute = 10; 
+      // Determine if today's classes are over to schedule for tomorrow
+      const lastClassTargetHour = 20; // Evening class start hour (8 PM)
+      const lastClassTargetMinute = 10; // Evening class start minute
       const lastClassDurationMinutes = 90;
       const lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), lastClassTargetHour, lastClassTargetMinute, 0);
       lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + lastClassDurationMinutes);
 
+      // If current time is past today's last class end time, target next day for all classes
       if (now > lastClassEndTimeToday) {
          classStartTime.setDate(classStartTime.getDate() + 1);
       }
@@ -138,7 +144,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           status: 'live',
           badgeText: 'Live Now',
           buttonText: 'JOIN NOW',
-          buttonDisabled: false, // Will be hidden if video plays
+          buttonDisabled: false, 
           cardBorderClass: 'border-destructive animate-live-pulse',
           badgeClass: 'bg-destructive/20 text-destructive',
         });
@@ -190,7 +196,10 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
             ></iframe>
           </div>
         ) : (
-          <p className="text-center text-muted-foreground py-8">Live stream will begin shortly.</p>
+          <div className="text-center text-muted-foreground py-8">
+             <p className="text-lg">Live stream starting soon!</p>
+             <p className="text-sm">The video player will appear here once the class begins.</p>
+          </div>
         )
       ) : (
         <>
@@ -213,7 +222,14 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
             className={`w-full py-3 text-base font-semibold rounded-full transition-all duration-300 ease-in-out 
                         ${classStatus.buttonDisabled ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5'}`}
             disabled={classStatus.buttonDisabled}
-            onClick={() => { if (!classStatus.buttonDisabled) alert('Joining class for ' + subject); }}
+            onClick={() => { if (!classStatus.buttonDisabled && liveStreamUrl) { 
+                // This part might not be strictly necessary if iframe loads immediately
+                // but could be used for other joining actions.
+                 console.log('Joining class for ' + subject);
+              } else if (!classStatus.buttonDisabled && !liveStreamUrl) {
+                 alert('Live stream link not available yet for ' + subject);
+              }
+            }}
           >
             {classStatus.buttonText}
           </Button>
