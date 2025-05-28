@@ -6,7 +6,9 @@ export interface Lecture {
   id: string; // e.g., "L1", "L2"
   title: string; // e.g., "Introduction to Kinematics"
   notesLink?: string; // URL or path to notes
-  videoLink?: string; // URL to video
+  videoLink?: string; // Original direct link, could be for download or reference
+  videoEmbedType?: 'youtube' | 'iframe'; // Type of video embed
+  videoEmbedUrl?: string; // URL for the iframe src
 }
 
 // Represents a single topic within a subject
@@ -35,12 +37,30 @@ export const scienceCourseContent: CourseContentMap = {
   'Physics': [
     {
       name: 'Units and Measurement',
-      lectures: Array.from({ length: 6 }, (_, i) => ({
-        id: `L${i + 1}`,
-        title: `Units and Measurement L${i + 1}`,
-        notesLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/notes/L${i + 1}.pdf`,
-        videoLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/videos/L${i + 1}.mp4`,
-      })),
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Units and Measurement L1',
+          notesLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/notes/L1.pdf`,
+          videoLink: 'https://www.youtube.com/live/eYHkwzP0TkY?si=obukLiTwZjOfBaSS',
+          videoEmbedType: 'youtube',
+          videoEmbedUrl: 'https://www.youtube.com/embed/eYHkwzP0TkY',
+        },
+        {
+          id: 'L2',
+          title: 'Units and Measurement L2',
+          notesLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/notes/L2.pdf`,
+          videoLink: 'm3u8_link_placeholder_L2',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: 'https://www.m3u8player.online/embed/m3u8?url=https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4354032%2F174490568189301097666%2Findex_5.m3u8',
+        },
+        ...Array.from({ length: 4 }, (_, i) => ({ // L3 to L6
+          id: `L${i + 3}`,
+          title: `Units and Measurement L${i + 3}`,
+          notesLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/notes/L${i + 3}.pdf`,
+          videoLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/videos/L${i + 3}.mp4`,
+        })),
+      ],
     },
     {
       name: 'Motion In a Straight Line',
@@ -110,4 +130,3 @@ export const aarambhCourseContent: CourseContentMap = {
     { name: 'Relation & Functions', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
   ],
 };
-

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Video, FileText } from 'lucide-react';
 import {
   scienceCourseContent,
   commerceCourseContent,
@@ -51,35 +51,35 @@ export default function TopicLecturesPage() {
         if (currentCourseMap) {
           const subjectData = currentCourseMap[decodedSubjectName];
           if (typeof subjectData === 'string') { 
-            setStatusMessage(subjectData); // e.g., "Coming Soon"
+            setStatusMessage(subjectData);
             setLectures([]);
           } else if (Array.isArray(subjectData)) { 
             const currentTopic = subjectData.find((t: Topic) => t.name === decodedTopicName);
             if (currentTopic && currentTopic.lectures && currentTopic.lectures.length > 0) {
               setLectures(currentTopic.lectures);
               setStatusMessage(null);
-            } else if (currentTopic) { // Topic exists but has no lectures array or it's empty
+            } else if (currentTopic) {
               setStatusMessage(`Lectures for ${decodedTopicName} are not yet available.`);
               setLectures([]);
-            } else { // Topic not found
+            } else {
               setStatusMessage(`Topic "${decodedTopicName}" not found in ${decodedSubjectName}.`);
               setLectures([]);
             }
-          } else { // Should not happen with current data structure
+          } else {
              setStatusMessage(`Content structure for ${decodedSubjectName} is not recognized.`);
              setLectures([]);
           }
-        } else { // Course map not found
+        } else {
           setStatusMessage(`Course data not found for course ID: ${courseId}.`);
           setLectures([]);
         }
       } catch (e) {
         console.error("Failed to decode params or load lectures:", e);
-        setTopicName("Invalid Topic"); // Fallback name for display
+        setTopicName("Invalid Topic");
         setStatusMessage("Could not load lectures due to a decoding error.");
         setLectures([]);
       }
-    } else if (isMounted) { // topicParam, subjectParam or courseId is missing
+    } else if (isMounted) {
       setTopicName('Unknown Topic');
       setStatusMessage('No topic or subject specified in URL.');
       setLectures([]);
@@ -107,8 +107,6 @@ export default function TopicLecturesPage() {
   }
 
   const renderLectureCard = (lecture: Lecture, index: number) => {
-    const lectureLink = mode === 'notes' ? lecture.notesLink : lecture.videoLink;
-
     const cardContent = (
       <div 
         className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md 
@@ -118,25 +116,40 @@ export default function TopicLecturesPage() {
       >
         <div className="flex items-center justify-between">
           <span className="text-xl sm:text-2xl font-semibold">{lecture.title}</span>
-          {lectureLink && lectureLink !== '#' ? <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" /> : null}
+           {(mode === 'notes' && lecture.notesLink && lecture.notesLink !== '#') || (mode === 'video' && lecture.videoEmbedUrl) ? (
+            <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
+          ) : null}
         </div>
         <p className="text-sm text-muted-foreground mt-2 capitalize">
-          {mode} for {topicName} ({subjectName})
+          {mode === 'notes' ? <FileText className="inline h-4 w-4 mr-1" /> : <Video className="inline h-4 w-4 mr-1" />}
+          {lecture.title} - {mode}
         </p>
       </div>
     );
 
-    if (lectureLink && lectureLink !== '#') {
+    if (mode === 'notes' && lecture.notesLink && lecture.notesLink !== '#') {
       return (
         <a 
           key={lecture.id} 
-          href={lectureLink} 
+          href={lecture.notesLink} 
           target="_blank" 
           rel="noopener noreferrer"
           className="w-full max-w-md block mb-6 cursor-pointer"
         >
           {cardContent}
         </a>
+      );
+    }
+
+    if (mode === 'video' && lecture.videoEmbedUrl) {
+      return (
+        <Link
+          key={lecture.id}
+          href={`/courses/${courseId}/content/video/${encodeURIComponent(subjectName)}/${encodeURIComponent(topicName)}/lectures/${encodeURIComponent(lecture.id)}/play`}
+          className="w-full max-w-md block mb-6 cursor-pointer"
+        >
+          {cardContent}
+        </Link>
       );
     }
 
@@ -172,7 +185,7 @@ export default function TopicLecturesPage() {
           </h1>
           
           {statusMessage ? (
-            topicName === 'Unknown Topic' || topicName === 'Invalid Topic' || statusMessage.includes('Could not load') || statusMessage.includes('not found') ? (
+            (topicName === 'Unknown Topic' || topicName === 'Invalid Topic' || statusMessage.includes('Could not load') || statusMessage.includes('not found')) ? (
                  <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{statusMessage}</p>
             ) : (
                  <p className="text-xl text-muted-foreground">{statusMessage}</p>
@@ -180,9 +193,7 @@ export default function TopicLecturesPage() {
           ) : lectures.length > 0 ? (
             lectures.map((lecture, index) => renderLectureCard(lecture, index))
           ) : (
-            // This case handles when lectures array is empty but there's no specific error status message yet (e.g. initial load)
-            // or when statusMessage was null but lectures ended up empty (e.g. topic found, but lectures array was empty/undefined in data)
-            <p className="text-xl text-muted-foreground">Loading lectures or no lectures available for this topic.</p>
+             <p className="text-xl text-muted-foreground">Loading lectures or no lectures available for this topic.</p>
           )}
         </main>
 
