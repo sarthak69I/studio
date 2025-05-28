@@ -10,8 +10,8 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetFooter, // Added SheetFooter
-  SheetClose, // Added SheetClose
+  SheetFooter,
+  SheetClose,
 } from "@/components/ui/sheet";
 import {
   Dialog,
@@ -38,6 +38,13 @@ interface Course {
   enrollLink: string;
   youtubeLink: string;
   timeTableImageUrl?: string;
+  liveSlots?: LiveSlot[];
+}
+
+interface LiveSlot {
+  targetHour: number;
+  targetMinute: number;
+  durationMinutes: number;
 }
 
 const coursesData: Course[] = [
@@ -54,6 +61,10 @@ const coursesData: Course[] = [
     enrollLink: '/courses/1/enroll',
     youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
     timeTableImageUrl: 'https://i.ibb.co/jPs6ZzSP/SCIENCE.jpg',
+    liveSlots: [
+      { targetHour: 17, targetMinute: 10, durationMinutes: 90 }, // 5:10 PM
+      { targetHour: 20, targetMinute: 10, durationMinutes: 90 }, // 8:10 PM
+    ],
   },
   {
     id: '2',
@@ -68,6 +79,10 @@ const coursesData: Course[] = [
     enrollLink: '/courses/2/enroll',
     youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
     timeTableImageUrl: 'https://i.ibb.co/LzNSqqsf/COMMERCE.jpg',
+    liveSlots: [
+      { targetHour: 17, targetMinute: 10, durationMinutes: 90 }, // 5:10 PM
+      { targetHour: 20, targetMinute: 10, durationMinutes: 90 }, // 8:10 PM
+    ],
   },
   {
     id: '3',
@@ -82,11 +97,14 @@ const coursesData: Course[] = [
     enrollLink: '/courses/3/enroll',
     youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
     timeTableImageUrl: 'https://i.ibb.co/QF2zR9Tn/57643650-Aarambh-10th-Timetable.png',
+    liveSlots: [
+      { targetHour: 17, targetMinute: 10, durationMinutes: 90 }, // 5:10 PM
+      { targetHour: 20, targetMinute: 10, durationMinutes: 90 }, // 8:10 PM
+    ],
   },
 ];
 
 export default function HomePage() {
-  const [isInfoDialogOpen, setIsInfoDialogOpen] = React.useState(false);
   const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = React.useState(false);
   const [currentTheme, setCurrentTheme] = React.useState<string>('dark');
 
@@ -187,47 +205,6 @@ export default function HomePage() {
                 </DialogContent>
               </Dialog>
 
-              <Dialog open={isInfoDialogOpen} onOpenChange={setIsInfoDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                    aria-label="View Information"
-                  >
-                    <Info className="mr-3 h-5 w-5 text-primary" />
-                    Information
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md rounded-xl">
-                  <DialogHeader>
-                    <DialogTitle className="text-xl">Information</DialogTitle>
-                  </DialogHeader>
-                  <div className="py-4 space-y-1 text-sm">
-                    <p><span className="font-medium">Developer:</span> SKJ & Firebase</p>
-                    <p><span className="font-medium">Version:</span> 15.1.3</p>
-                  </div>
-                  <DialogFooter className="sm:justify-start">
-                    <DialogClose asChild>
-                      <Button type="button" variant="outline">
-                        Close
-                      </Button>
-                    </DialogClose>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-
-              <Button
-                variant="ghost"
-                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                aria-label="Contact Us"
-                onClick={() => {
-                  // Placeholder for Contact Us functionality
-                  console.log("Contact Us clicked");
-                }}
-              >
-                <Mail className="mr-3 h-5 w-5 text-primary" />
-                Contact Us
-              </Button>
             </div>
             <SheetFooter className="p-4 border-t border-border">
               <SheetClose asChild>
