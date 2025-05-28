@@ -16,7 +16,8 @@ interface SubjectItemProps {
 const SubjectItem: React.FC<SubjectItemProps> = ({ name, onClick, disabled }) => (
   <Button
     variant="secondary"
-    className="w-full justify-between p-7 text-lg rounded-xl shadow-sm hover:bg-muted/80 transition-colors"
+    className="w-full justify-between p-7 text-lg rounded-xl shadow-sm hover:bg-muted/80 
+               transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-md"
     onClick={onClick}
     disabled={disabled}
   >
@@ -66,11 +67,12 @@ export default function EnrollPage() {
         </Link>
       </header>
 
-      <main className="flex-grow flex flex-col items-center">
+      <main className="flex-grow flex flex-col items-center pt-8 md:pt-12">
         <div className="w-full max-w-md space-y-6">
           <Button
             size="lg"
-            className="w-full py-6 text-xl rounded-full bg-primary hover:bg-primary/90 transition-transform duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg"
+            className="w-full py-6 text-xl rounded-full bg-primary hover:bg-primary/90 
+                       transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl"
           >
             JOIN LIVE CLASS
           </Button>
@@ -93,17 +95,22 @@ export default function EnrollPage() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold text-center text-foreground">
+            <h2 className="text-2xl font-semibold text-center text-foreground mb-6">
               Subjects
             </h2>
             {subjects.length > 0 ? (
               <div className="space-y-3">
-                {subjects.map((subject) => (
-                  <SubjectItem
+                {subjects.map((subject, index) => (
+                  <div
                     key={subject}
-                    name={subject}
-                    onClick={() => handleSubjectClick(subject)}
-                  />
+                    className="transform opacity-0 animate-fadeInUp-custom"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <SubjectItem
+                      name={subject}
+                      onClick={() => handleSubjectClick(subject)}
+                    />
+                  </div>
                 ))}
               </div>
             ) : (
