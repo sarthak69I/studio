@@ -76,7 +76,7 @@ export function CourseCard({
         />
       </div>
 
-      <div className="bg-yellow-50 text-yellow-800 border-l-4 border-yellow-500 p-3 mx-5 my-4 rounded-md text-sm text-center">
+      <div className="bg-muted text-foreground border-l-4 border-accent p-3 mx-5 my-4 rounded-md text-sm text-center">
         {highlightText}
       </div>
 
