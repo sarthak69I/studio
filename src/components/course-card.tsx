@@ -98,15 +98,14 @@ export function CourseCard({
                 <DialogHeader className="p-4 border-b">
                   <DialogTitle className="text-xl">{title} - Time Table</DialogTitle>
                 </DialogHeader>
-                <div className="p-4 max-h-[75vh] overflow-y-auto">
-                  <div className="relative w-full">
+                <div className="p-4 max-h-[80vh] overflow-y-auto"> {/* Increased max-h slightly for better viewing */}
+                  <div className="relative w-full aspect-video"> {/* Enforce 16:9 aspect ratio */}
                     <Image
                       src={timeTableImageUrl}
                       alt={`${title} Time Table`}
-                      width={1600} 
-                      height={900} 
+                      fill // Use fill with parent having aspect ratio
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
-                      className="rounded-md w-full h-auto object-contain"
+                      className="object-contain rounded-md" // Image will be contained within the 16:9 box
                     />
                   </div>
                 </div>
