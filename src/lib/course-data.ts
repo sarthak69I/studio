@@ -35,10 +35,12 @@ export const scienceCourseContent: CourseContentMap = {
   'Physics': [
     {
       name: 'Units and Measurement',
-      lectures: [
-        { id: 'L1', title: 'Units and Measurement L1', notesLink: `${scienceBasePath}/physics/units-and-measurement/notes/L1.pdf`, videoLink: `${scienceBasePath}/physics/units-and-measurement/videos/L1.mp4` },
-        { id: 'L2', title: 'Units and Measurement L2', notesLink: `${scienceBasePath}/physics/units-and-measurement/notes/L2.pdf`, videoLink: `${scienceBasePath}/physics/units-and-measurement/videos/L2.mp4` },
-      ],
+      lectures: Array.from({ length: 6 }, (_, i) => ({
+        id: `L${i + 1}`,
+        title: `Units and Measurement L${i + 1}`,
+        notesLink: `${scienceBasePath}/physics/units-and-measurement/notes/L${i + 1}.pdf`,
+        videoLink: `${scienceBasePath}/physics/units-and-measurement/videos/L${i + 1}.mp4`,
+      })),
     },
   ],
   'Chemistry': [
