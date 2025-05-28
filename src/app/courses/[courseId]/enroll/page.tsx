@@ -2,7 +2,6 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card'; // Card and CardContent are not used, can be removed if not planned.
 import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation'; // useParams to get courseId
