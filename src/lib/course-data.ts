@@ -288,25 +288,77 @@ export const scienceCourseContent: CourseContentMap = {
   'Mathematics': [
     {
       name: 'Sets',
-      lectures: Array.from({ length: 5 }, (_, i) => ({
-        id: `L${i + 1}`,
-        title: `Sets L${i + 1}`,
-        notesLink: `${scienceBasePath}/mathematics/${slugify('Sets')}/notes/L${i + 1}.pdf`,
-        videoLink: i === 0 ? 'https://www.youtube.com/live/UT9CN9XFGYw?si=C1tfKB1UXHYtrmsV' : `${scienceBasePath}/mathematics/${slugify('Sets')}/videos/L${i + 1}.mp4`,
-        videoEmbedType: i === 0 ? 'youtube' : 'iframe',
-        videoEmbedUrl: i === 0 ? 'https://www.youtube.com/embed/UT9CN9XFGYw' : '#',
-      }))
+      lectures: [
+        {
+          id: `L1`,
+          title: `Sets L1`,
+          notesLink: `https://drive.google.com/file/d/19Q6y1QGvyPJo3t87MnndIgWWiGalcT-o/preview`,
+          videoLink: 'https://www.youtube.com/live/UT9CN9XFGYw?si=C1tfKB1UXHYtrmsV',
+          videoEmbedType: 'youtube',
+          videoEmbedUrl: 'https://www.youtube.com/embed/UT9CN9XFGYw',
+        },
+        {
+          id: `L2`,
+          title: `Sets L2`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Sets')}/notes/L2.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8')}`,
+        },
+        {
+          id: `L3`,
+          title: `Sets L3`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Sets')}/notes/L3.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356690/174524049345081097666/index_5.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356690/174524049345081097666/index_5.m3u8')}`,
+        },
+        {
+          id: `L4`,
+          title: `Sets L4`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Sets')}/notes/L4.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357736/174532685248651097666/index_5.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357736/174532685248651097666/index_5.m3u8')}`,
+        },
+        {
+          id: `L5`,
+          title: `Sets L5`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Sets')}/notes/L5.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359038/174542426999201097666/index_5.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359038/174542426999201097666/index_5.m3u8')}`,
+        },
+      ]
     },
     {
       name: 'Complex Numbers',
-      lectures: Array.from({ length: 8 }, (_, i) => ({
-        id: `L${i + 1}`,
-        title: `Complex Numbers L${i + 1}`,
-        notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L${i + 1}.pdf`,
-        videoLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/L${i + 1}.mp4`,
-        videoEmbedType: 'iframe',
-        videoEmbedUrl: '#',
-      }))
+      lectures: [
+        {
+          id: `L1`,
+          title: `Complex Numbers L1`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L1.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363249/174584513794761261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363249/174584513794761261798/index_4.m3u8')}`,
+        },
+        {
+          id: `L2`,
+          title: `Complex Numbers L2`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L2.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364488/174592875146111261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364488/174592875146111261798/index_4.m3u8')}`,
+        },
+        ...Array.from({ length: 6 }, (_, i) => ({ // L3 to L8
+          id: `L${i + 3}`,
+          title: `Complex Numbers L${i + 3}`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L${i + 3}.pdf`,
+          videoLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/L${i + 3}.mp4`,
+          videoEmbedType: 'iframe' as 'iframe',
+          videoEmbedUrl: '#',
+        }))
+      ]
     },
     { name: 'Relation & Functions', topicNotesLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
   ],
@@ -533,27 +585,79 @@ export const commerceCourseContent: CourseContentMap = {
     },
   ],
   'Mathematics': [
-    {
+     {
       name: 'Sets',
-      lectures: Array.from({ length: 5 }, (_, i) => ({
-        id: `L${i + 1}`,
-        title: `Sets L${i + 1}`,
-        notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L${i + 1}.pdf`,
-        videoLink: i === 0 ? 'https://www.youtube.com/live/UT9CN9XFGYw?si=C1tfKB1UXHYtrmsV' : `${commerceBasePath}/mathematics/${slugify('Sets')}/videos/L${i + 1}.mp4`,
-        videoEmbedType: i === 0 ? 'youtube' : 'iframe',
-        videoEmbedUrl: i === 0 ? 'https://www.youtube.com/embed/UT9CN9XFGYw' : '#',
-      }))
+      lectures: [
+        {
+          id: `L1`,
+          title: `Sets L1`,
+          notesLink: `https://drive.google.com/file/d/19Q6y1QGvyPJo3t87MnndIgWWiGalcT-o/preview`,
+          videoLink: 'https://www.youtube.com/live/UT9CN9XFGYw?si=C1tfKB1UXHYtrmsV',
+          videoEmbedType: 'youtube',
+          videoEmbedUrl: 'https://www.youtube.com/embed/UT9CN9XFGYw',
+        },
+        {
+          id: `L2`,
+          title: `Sets L2`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L2.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8')}`,
+        },
+        {
+          id: `L3`,
+          title: `Sets L3`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L3.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356690/174524049345081097666/index_5.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356690/174524049345081097666/index_5.m3u8')}`,
+        },
+        {
+          id: `L4`,
+          title: `Sets L4`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L4.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357736/174532685248651097666/index_5.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357736/174532685248651097666/index_5.m3u8')}`,
+        },
+        {
+          id: `L5`,
+          title: `Sets L5`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L5.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359038/174542426999201097666/index_5.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359038/174542426999201097666/index_5.m3u8')}`,
+        },
+      ]
     },
     {
       name: 'Complex Numbers',
-      lectures: Array.from({ length: 8 }, (_, i) => ({
-        id: `L${i + 1}`,
-        title: `Complex Numbers L${i + 1}`,
-        notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L${i + 1}.pdf`,
-        videoLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/L${i + 1}.mp4`,
-        videoEmbedType: 'iframe',
-        videoEmbedUrl: '#',
-      }))
+      lectures: [
+        {
+          id: `L1`,
+          title: `Complex Numbers L1`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L1.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363249/174584513794761261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363249/174584513794761261798/index_4.m3u8')}`,
+        },
+        {
+          id: `L2`,
+          title: `Complex Numbers L2`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L2.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364488/174592875146111261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364488/174592875146111261798/index_4.m3u8')}`,
+        },
+        ...Array.from({ length: 6 }, (_, i) => ({ // L3 to L8
+          id: `L${i + 3}`,
+          title: `Complex Numbers L${i + 3}`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L${i + 3}.pdf`,
+          videoLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/L${i + 3}.mp4`,
+          videoEmbedType: 'iframe' as 'iframe',
+          videoEmbedUrl: '#',
+        }))
+      ]
     },
     { name: 'Relation & Functions', topicNotesLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
   ],
@@ -570,3 +674,6 @@ export const aarambhCourseContent: CourseContentMap = {
     { name: 'Relation & Functions', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
   ],
 };
+
+
+    
