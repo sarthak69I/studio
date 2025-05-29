@@ -47,6 +47,33 @@ const predefinedQAs: QnA[] = [
     question: "How do I find the live class schedule?",
     answer: "Click 'Enroll Now' on a course, then click the 'JOIN LIVE CLASS' button. This page shows the schedule and allows you to join live sessions.",
   },
+  {
+    id: 'q6',
+    question: "Where can I find notes for the lectures?",
+    answer: "On the course enrollment page, select the 'Notes' mode. Then, choose your subject and topic. If notes are available for specific lectures, they will be listed, and you can click to view/download them.",
+  },
+  {
+    id: 'q7',
+    question: "Is all the content on E-Leak free?",
+    answer: "Yes, all lectures, notes, and live classes currently available on E-Leak are provided free of charge. Our goal is to make quality education accessible."
+  },
+  {
+    id: 'q8',
+    question: "What if a video is buffering or not playing smoothly?",
+    answer: "Please check your internet connection first. If the problem persists, try refreshing the page or using a different browser. Sometimes, very high demand can cause temporary slowdowns. You can also report persistent issues on our Telegram channel."
+  },
+  {
+    id: 'q9',
+    question: "How can I contact support if my issue isn't listed here?",
+    answer: (
+      <>
+        For further assistance, please join our Telegram channel:
+        <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+          Telegram Support
+        </a>.
+      </>
+    ),
+  }
 ];
 
 type BotStep = 'showingQuestions' | 'thinking' | 'showingAnswer' | 'showingFollowUp';
@@ -77,8 +104,6 @@ export function HelpBotDialog({ open, onOpenChange }: HelpBotDialogProps) {
     setTimeout(() => {
       setDisplayedAnswer(qna.answer);
       setStep('showingAnswer');
-      // Automatically move to follow-up after showing answer for a bit, or keep it in 'showingAnswer'
-      // For this version, we'll let 'showingAnswer' persist until a follow-up is chosen
     }, 2000); // 2-second delay
   };
 
@@ -88,19 +113,17 @@ export function HelpBotDialog({ open, onOpenChange }: HelpBotDialogProps) {
       setSelectedQ(null);
       setDisplayedAnswer('');
     } else if (action === 'stillHelp') {
-      // For now, just logs. Could open a mailto: link or redirect.
-      console.log("User still needs help. Consider contact options.");
       setDisplayedAnswer(
         <>
           <p className="mb-2">We're sorry to hear you're still having trouble!</p>
           <p>Please join our <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Telegram channel</a> for further assistance.</p>
         </>
       );
-      setStep('showingAnswer'); // Keep showing this message
+      setStep('showingAnswer'); 
     } else if (action === 'resolved') {
       setDisplayedAnswer("Great! We're glad the issue is resolved. Feel free to ask another question if needed.");
-      setStep('showingAnswer'); // Keep showing this message
-      setTimeout(() => { // Optionally, go back to questions after a delay
+      setStep('showingAnswer');
+      setTimeout(() => { 
         setStep('showingQuestions');
         setSelectedQ(null);
         setDisplayedAnswer('');
@@ -152,7 +175,7 @@ export function HelpBotDialog({ open, onOpenChange }: HelpBotDialogProps) {
         return (
           <div className="space-y-3 p-1">
             <p className="text-sm text-muted-foreground mb-3">
-              Hello! I'm the E-Leak Helper Bot. Click on a question below:
+              Hello! I'm the E-Leak 24/7 Support Bot. How can I help you today? Please select an issue/question:
             </p>
             {predefinedQAs.map((qna) => (
               <Button
@@ -175,7 +198,7 @@ export function HelpBotDialog({ open, onOpenChange }: HelpBotDialogProps) {
       <DialogContent className="sm:max-w-md md:max-w-lg rounded-xl">
         <DialogHeader className="mb-2">
           <DialogTitle className="text-xl flex items-center">
-            <Bot className="mr-2 h-6 w-6 text-primary" /> E-Leak Help Bot
+            <Bot className="mr-2 h-6 w-6 text-primary" /> E-Leak 24/7 Support
           </DialogTitle>
         </DialogHeader>
         <ScrollArea className="max-h-[60vh] pr-3">
@@ -192,3 +215,5 @@ export function HelpBotDialog({ open, onOpenChange }: HelpBotDialogProps) {
     </Dialog>
   );
 }
+
+    

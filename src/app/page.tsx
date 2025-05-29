@@ -1,9 +1,9 @@
 
 "use client";
 
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Bell, HelpCircle, Sun, Moon, BotMessageSquare } from 'lucide-react'; // Changed BotIcon to BotMessageSquare for better visual
+import { Menu, Bell, HelpCircle, Sun, Moon, Bot } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -19,14 +19,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-  DialogTrigger,
   DialogClose,
+  DialogTrigger, // Added DialogTrigger
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-
 
 interface Course {
   id: string;
@@ -108,17 +106,17 @@ const coursesData: Course[] = [
 ];
 
 export default function HomePage() {
-  const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = React.useState(false);
-  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
-  const [currentTheme, setCurrentTheme] = React.useState<string>('dark');
+  const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = useState(false);
+  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState<string>('dark');
 
-  React.useEffect(() => {
+  useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme) {
       setCurrentTheme(storedTheme);
       document.documentElement.className = storedTheme;
     } else {
-      setCurrentTheme('dark'); 
+      setCurrentTheme('dark');
       localStorage.setItem('theme', 'dark');
       document.documentElement.className = 'dark';
     }
@@ -236,18 +234,19 @@ export default function HomePage() {
                 <HelpCircle className="mr-3 h-5 w-5 text-primary" />
                 FAQs
               </Button>
-
+              
               <Button
                 variant="ghost"
-                asChild
                 className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                aria-label="Open Help Center"
+                aria-label="Open E-Leak 24/7 Support"
+                asChild
               >
                 <Link href="/help-center">
-                  <BotMessageSquare className="mr-3 h-5 w-5 text-primary" />
-                  Help Center
+                  <Bot className="mr-3 h-5 w-5 text-primary" />
+                  E-Leak 24/7 Support
                 </Link>
               </Button>
+
             </div>
             <SheetFooter className="p-4 border-t border-border">
               <SheetClose asChild>
@@ -292,3 +291,4 @@ export default function HomePage() {
     </>
   );
 }
+    
