@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Bell, HelpCircle, Sun, Moon } from 'lucide-react';
+import { Menu, Bell, HelpCircle, Sun, Moon, Bot as BotIcon } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -25,6 +25,7 @@ import {
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
+import { HelpBotDialog } from '@/components/help-bot-dialog';
 
 
 interface Course {
@@ -109,6 +110,7 @@ const coursesData: Course[] = [
 export default function HomePage() {
   const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = React.useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
+  const [isHelpBotDialogOpen, setIsHelpBotDialogOpen] = React.useState(false);
   const [currentTheme, setCurrentTheme] = React.useState<string>('dark');
 
   React.useEffect(() => {
@@ -131,6 +133,7 @@ export default function HomePage() {
   };
 
   return (
+    <>
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
       
       <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
@@ -148,6 +151,8 @@ export default function HomePage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <HelpBotDialog open={isHelpBotDialogOpen} onOpenChange={setIsHelpBotDialogOpen} />
 
       <div className="fixed top-6 right-6 z-50">
         <Sheet>
@@ -234,6 +239,16 @@ export default function HomePage() {
                 <HelpCircle className="mr-3 h-5 w-5 text-primary" />
                 FAQs
               </Button>
+
+              <Button
+                variant="ghost"
+                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                aria-label="Open Help Bot"
+                onClick={() => setIsHelpBotDialogOpen(true)}
+              >
+                <BotIcon className="mr-3 h-5 w-5 text-primary" />
+                Help Bot
+              </Button>
             </div>
             <SheetFooter className="p-4 border-t border-border">
               <SheetClose asChild>
@@ -275,5 +290,6 @@ export default function HomePage() {
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
+    </>
   );
 }
