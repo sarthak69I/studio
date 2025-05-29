@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Bell, HelpCircle, Sun, Moon, ListChecks, RadioTower } from 'lucide-react'; // Removed Info
+import { Menu, Bell, HelpCircle, Sun, Moon } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -18,9 +18,8 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  // DialogDescription, // Removed unused import
   DialogFooter,
-  DialogTrigger, // Still used for Class Updates Dialog
+  DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
@@ -60,7 +59,7 @@ const coursesData: Course[] = [
     badgeText: 'NEW',
     title: 'PRARAMBH CLASS 11th',
     subtitle: 'Science Batch',
-    imageUrl: 'https://i.ibb.co/qMN2dhQ/Addaheadin.jpg',
+    imageUrl: 'https://i.ibb.co/qMN2dh3Q/Addaheadin.jpg', // Corrected URL
     imageAlt: '11th Science Course Cover',
     imageAiHint: 'science education',
     highlightText: 'Batch for 11th Science',
@@ -138,7 +137,6 @@ export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
       
-      {/* FAQs Dialog - Defined at a higher level for consistent control */}
       <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
         <DialogContent className="sm:max-w-lg rounded-xl">
           <DialogHeader>
@@ -296,7 +294,6 @@ export default function HomePage() {
                 </DialogContent>
               </Dialog>
 
-              {/* FAQs Button in Menu - now directly sets state */}
               <Button
                 variant="ghost"
                 className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
@@ -349,3 +346,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+    
