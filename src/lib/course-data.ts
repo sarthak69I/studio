@@ -419,7 +419,7 @@ export const scienceCourseContent: CourseContentMap = {
             `https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4395110%2F174844717954831097666%2Findex_5.m3u8`, // L7
         ];
          if (i < encodedM3u8Links.length && encodedM3u8Links[i] !== '#') {
-          videoUrl = `${m3u8PlayerBase}${encodedM3u8Links[i]}`;
+          videoUrl = `${m3u8PlayerBase}${encodedM3u8Links[i]}`; // No encodeURIComponent as they are already encoded
         }
         return {
           id: lectureId,
@@ -843,7 +843,7 @@ export const commerceCourseContent: CourseContentMap = {
             `https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4395110%2F174844717954831097666%2Findex_5.m3u8`, // L7
         ];
          if (i < encodedM3u8Links.length && encodedM3u8Links[i] !== '#') {
-          videoUrl = `${m3u8PlayerBase}${encodedM3u8Links[i]}`;
+          videoUrl = `${m3u8PlayerBase}${encodedM3u8Links[i]}`; // No encodeURIComponent as they are already encoded
         }
         return {
           id: lectureId,
@@ -862,9 +862,11 @@ const aarambhBasePath = '/assets/courses/aarambh';
 export const aarambhCourseContent: CourseContentMap = {
   'Social Science': 'Social Science Content Coming Soon',
   'Science': 'Science Content Coming Soon', // General Science for Aarambh
-  'Mathematics': [ // Keeping Aarambh Maths simple as per previous structure unless specified otherwise
-    { name: 'Sets', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Sets')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Sets')}/videos/topic.mp4` },
-    { name: 'Complex Numbers', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Complex Numbers')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Complex Numbers')}/videos/topic.mp4` },
-    { name: 'Relation & Functions', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
+  'Mathematics': [ // Simpler topic-level for Aarambh
+    { name: 'Number Systems', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Number Systems')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Number Systems')}/videos/topic.mp4` },
+    { name: 'Algebra', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Algebra')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Algebra')}/videos/topic.mp4` },
+    { name: 'Geometry', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Geometry')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Geometry')}/videos/topic.mp4` },
+    { name: 'Mensuration', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Mensuration')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Mensuration')}/videos/topic.mp4` },
   ],
 };
+
