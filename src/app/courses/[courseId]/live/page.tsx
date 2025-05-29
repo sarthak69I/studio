@@ -23,10 +23,10 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "Class 11 Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "Physics", // Assuming Physics is now the first class after Biology removal
-    class2Subject: "Chemistry", // Or Mathematics, depending on preference
-    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`, // Physics link
-    class2LiveStreamUrl: undefined, // Placeholder for Chemistry/Maths link
+    class1Subject: "Physics",
+    class2Subject: "Chemistry",
+    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
+    class2LiveStreamUrl: undefined, 
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
@@ -100,28 +100,22 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
 
     const calculateTimes = () => {
       const now = new Date();
-      // For THIS card's class start time
       let classStartTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour, targetMinute, 0);
       
-      // Determine if today's classes are over to schedule for tomorrow.
-      // The reference point for "end of day" is based on the latest scheduled class, which is 8:10 PM for 90 mins.
-      const endOfDayReferenceHour = 20; // 8 PM
+      const endOfDayReferenceHour = 20; 
       const endOfDayReferenceMinute = 10;
-      const endOfDayReferenceDuration = 90; // minutes
+      const endOfDayReferenceDuration = 90; 
 
       let lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), endOfDayReferenceHour, endOfDayReferenceMinute, 0);
       lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + endOfDayReferenceDuration);
       
-      // If current time is past today's "end of day reference", schedule THIS card's class for the next day
       if (now > lastClassEndTimeToday) {
          classStartTime.setDate(classStartTime.getDate() + 1);
       }
 
-      // Calculate THIS card's actual end time
       const classEndTime = new Date(classStartTime.getTime() + durationMinutes * 60000);
       return { now, classStartTime, classEndTime };
     };
-
 
     const updateClassState = () => {
       const { now, classStartTime, classEndTime } = calculateTimes();
@@ -140,7 +134,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           status: 'upcoming',
           badgeText: 'Upcoming',
           buttonText: 'JOIN NOW',
-          buttonDisabled: true,
+          buttonDisabled: true, // Button is disabled for upcoming
           cardBorderClass: 'border-accent',
           badgeClass: 'bg-accent/20 text-accent',
         });
@@ -150,7 +144,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           status: 'live',
           badgeText: 'Live Now',
           buttonText: 'JOIN NOW',
-          buttonDisabled: !liveStreamUrl, 
+          buttonDisabled: !liveStreamUrl, // Button disabled if no stream URL when live
           cardBorderClass: 'border-destructive animate-live-pulse',
           badgeClass: 'bg-destructive/20 text-destructive',
         });
@@ -160,7 +154,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           status: 'completed',
           badgeText: 'Completed',
           buttonText: 'Class Ended',
-          buttonDisabled: true,
+          buttonDisabled: true, // Button disabled for completed
           cardBorderClass: 'border-green-500', 
           badgeClass: 'bg-green-500/20 text-green-500',
         });
@@ -188,30 +182,31 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       <div className="text-lg font-semibold mb-2">{classTimeLabel}</div>
       <h2 className="text-2xl font-bold text-primary mb-4">{subject}</h2>
       
-      {classStatus.status === 'live' ? (
-        liveStreamUrl ? (
-          <>
-            <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-border bg-black my-4">
-              <iframe
-                src={liveStreamUrl}
-                title={`${subject} Live Stream`}
-                width="100%"
-                height="100%"
-                allowFullScreen
-                allow="autoplay; encrypted-media; picture-in-picture; web-share"
-                className="border-0"
-              ></iframe>
-            </div>
-            <p className="text-xs text-muted-foreground text-center -mt-2 mb-4">
-              Double-click on video to Full Screen
-            </p>
-          </>
-        ) : (
-          <div className="text-center text-muted-foreground py-8">
-             <p className="text-lg">Today is no live class for this subject.</p>
+      {!liveStreamUrl ? (
+        // Case 1: No live stream URL defined for this slot, regardless of class status
+        <div className="text-center text-muted-foreground py-8">
+          <p className="text-lg">Today is no live class for this subject.</p>
+        </div>
+      ) : classStatus.status === 'live' ? (
+        // Case 2: Stream URL IS defined, and class is LIVE
+        <>
+          <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-border bg-black my-4">
+            <iframe
+              src={liveStreamUrl}
+              title={`${subject} Live Stream`}
+              width="100%"
+              height="100%"
+              allowFullScreen
+              allow="autoplay; encrypted-media; picture-in-picture; web-share"
+              className="border-0"
+            ></iframe>
           </div>
-        )
+          <p className="text-xs text-muted-foreground text-center -mt-2 mb-4">
+            Double-click on video to Full Screen
+          </p>
+        </>
       ) : (
+        // Case 3: Stream URL IS defined, but class is UPCOMING or COMPLETED
         <>
           <div className="flex justify-between mb-6">
             <div className="text-center bg-muted/30 p-3 rounded-lg min-w-[70px] sm:min-w-[80px] flex-1 mx-1">
@@ -233,11 +228,9 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
                         ${classStatus.buttonDisabled ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5'}`}
             disabled={classStatus.buttonDisabled}
             onClick={() => { 
+              // Logic for button click if needed, though it's mostly disabled
               if (!classStatus.buttonDisabled && liveStreamUrl) { 
                 console.log('Joining class for ' + subject);
-                // Navigation or state change to show video player would happen here if not directly embedding
-              } else if (!classStatus.buttonDisabled && !liveStreamUrl) {
-                 alert('Live stream link not available yet for ' + subject);
               }
             }}
           >
@@ -248,7 +241,6 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
     </div>
   );
 };
-
 
 export default function LiveClassesPage() {
   const router = useRouter();
@@ -265,6 +257,8 @@ export default function LiveClassesPage() {
     subtitle: "Interactive learning sessions",
     class1Subject: "Subject 1",
     class2Subject: "Subject 2",
+    class1LiveStreamUrl: undefined,
+    class2LiveStreamUrl: undefined,
   };
 
   React.useEffect(() => {
@@ -272,7 +266,6 @@ export default function LiveClassesPage() {
       document.title = `${courseDetails.pageTitle} | E-Leak`;
     }
   }, [isMounted, courseDetails.pageTitle]);
-
 
   if (!isMounted) {
     return (
@@ -332,4 +325,3 @@ export default function LiveClassesPage() {
     </div>
   );
 }
-
