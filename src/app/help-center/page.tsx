@@ -189,11 +189,13 @@ export default function ELeakSupportPage() {
                 key={qna.id}
                 variant="secondary"
                 className="w-full justify-start text-left h-auto py-4 px-5 text-md rounded-lg shadow-sm hover:bg-muted/80 
-                           transition-all duration-200 ease-in-out transform hover:scale-[1.02]"
+                           transition-all duration-200 ease-in-out transform hover:scale-[1.02] whitespace-normal"
                 onClick={() => handleQuestionClick(qna)}
               >
-                <MessageSquare className="mr-3 h-5 w-5 text-primary flex-shrink-0" />
-                {qna.question}
+                <div className="flex items-start w-full">
+                  <MessageSquare className="mr-3 h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                  <span className="flex-1">{qna.question}</span>
+                </div>
               </Button>
             ))}
           </div>
