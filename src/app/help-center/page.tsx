@@ -12,6 +12,7 @@ interface QnA {
   id: string;
   question: string;
   answer: string | React.ReactNode;
+  title?: string; // Optional title for more specific issues
 }
 
 const predefinedQAs: QnA[] = [
@@ -38,6 +39,7 @@ const predefinedQAs: QnA[] = [
   },
   {
     id: 'notes-loading',
+    title: 'Notes Not Loading or Displaying Incorrectly',
     question: 'Notes Not Loading or Displaying Incorrectly',
     answer: "Ensure your browser has a built-in PDF viewer enabled, or you have a PDF reader application installed (like Adobe Acrobat Reader). Try downloading the PDF file and opening it directly with a dedicated PDF reader application. If the issue continues, the file might be corrupted or the link broken. Please report this on our Telegram channel."
   },
@@ -222,7 +224,7 @@ export default function ELeakSupportPage() {
               E-Leak 24/7 Support
             </h1>
           </div>
-          <ScrollArea className="max-h-[65vh] pr-3 pb-3">
+          <ScrollArea className="max-h-[65vh] h-[500px] sm:h-auto pr-3 pb-3"> {/* Adjusted height for scrollability */}
             {renderContent()}
           </ScrollArea>
         </div>
