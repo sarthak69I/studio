@@ -147,16 +147,134 @@ export const scienceCourseContent: CourseContentMap = {
   'Chemistry': [
     {
       name: 'Some Basic Concepts of Chemistry',
-      lectures: Array.from({ length: 6 }, (_, i) => ({
-        id: `L${i + 1}`,
-        title: `Some Basic Concepts of Chemistry L${i + 1}`,
-        notesLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/notes/L${i + 1}.pdf`,
-        videoLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/videos/L${i + 1}.mp4`,
-        videoEmbedType: 'iframe',
-        videoEmbedUrl: `#`, 
-      })),
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Some Basic Concepts of Chemistry L1',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/notes/L1.pdf`,
+          videoLink: 'https://www.youtube.com/live/EVU_Bvc3HpE?si=LX-gur9UBX5LN_MM',
+          videoEmbedType: 'youtube',
+          videoEmbedUrl: 'https://www.youtube.com/embed/EVU_Bvc3HpE',
+        },
+        {
+          id: 'L2',
+          title: 'Some Basic Concepts of Chemistry L2',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/notes/L2.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353000/174481993295887555169/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353000/174481993295887555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L3',
+          title: 'Some Basic Concepts of Chemistry L3',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/notes/L3.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355452/174507897732027555169/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355452/174507897732027555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L4',
+          title: 'Some Basic Concepts of Chemistry L4',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/notes/L4.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357309/174530949861477555169/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357309/174530949861477555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L5',
+          title: 'Some Basic Concepts of Chemistry L5',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/notes/L5.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357831/174533736975997555169/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357831/174533736975997555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L6',
+          title: 'Some Basic Concepts of Chemistry L6',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/notes/L6.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4358829/174541226159937555169/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4358829/174541226159937555169/index_4.m3u8')}`,
+        },
+      ],
     },
-    { name: 'Structure of Atom', topicNotesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/videos/topic.mp4` },
+    {
+      name: 'Structure of Atom',
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Structure of Atom L1',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/L1.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363320/174584946237347555169/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363320/174584946237347555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L2',
+          title: 'Structure of Atom L2',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/L2.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364789/174594373555637555169/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364789/174594373555637555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L3',
+          title: 'Structure of Atom L3',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/L3.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365831/174601791723957555169/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365831/174601791723957555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L4',
+          title: 'Structure of Atom L4',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/L4.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372294/174646064983197555169/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372294/174646064983197555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L5',
+          title: 'Structure of Atom L5',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/L5.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373927/174654700417617555169/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373927/174654700417617555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L6',
+          title: 'Structure of Atom L6',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/L6.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4374900/174662289939277555169/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4374900/174662289939277555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L7',
+          title: 'Structure of Atom L7',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/L7.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4379161/174706558456287555169/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4379161/174706558456287555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L8',
+          title: 'Structure of Atom L8',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/L8.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4380760/174715119572127555169/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4380760/174715119572127555169/index_4.m3u8')}`,
+        },
+        {
+          id: 'L9',
+          title: 'Structure of Atom L9',
+          notesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/L9.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4381822/174722718560337555169/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4381822/174722718560337555169/index_4.m3u8')}`,
+        },
+      ],
+    },
     { name: 'Classification of Elements', topicNotesLink: `${scienceBasePath}/chemistry/${slugify('Classification of Elements')}/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/chemistry/${slugify('Classification of Elements')}/videos/topic.mp4` },
   ],
   'Biology': [
@@ -168,8 +286,8 @@ export const scienceCourseContent: CourseContentMap = {
     },
   ],
   'Mathematics': [
-    { 
-      name: 'Sets', 
+    {
+      name: 'Sets',
       lectures: Array.from({ length: 5 }, (_, i) => ({
         id: `L${i + 1}`,
         title: `Sets L${i + 1}`,
@@ -179,8 +297,8 @@ export const scienceCourseContent: CourseContentMap = {
         videoEmbedUrl: i === 0 ? 'https://www.youtube.com/embed/UT9CN9XFGYw' : '#',
       }))
     },
-    { 
-      name: 'Complex Numbers', 
+    {
+      name: 'Complex Numbers',
       lectures: Array.from({ length: 8 }, (_, i) => ({
         id: `L${i + 1}`,
         title: `Complex Numbers L${i + 1}`,
@@ -225,7 +343,7 @@ export const commerceCourseContent: CourseContentMap = {
           id: lectureId,
           title: `Business, Trade & Commerce ${lectureId}`,
           notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/${lectureId}.pdf`,
-          videoLink: `#`, 
+          videoLink: `#`,
           videoEmbedType: embedType,
           videoEmbedUrl: videoUrl,
         };
@@ -234,8 +352,8 @@ export const commerceCourseContent: CourseContentMap = {
     { name: 'Forms of Business Organisations', topicNotesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/videos/topic.mp4` },
   ],
   'Accountancy': [
-    { 
-      name: 'Basic Concepts of Accounts', 
+    {
+      name: 'Basic Concepts of Accounts',
       lectures: [
         {
           id: 'L1',
@@ -271,7 +389,7 @@ export const commerceCourseContent: CourseContentMap = {
         },
       ],
     },
-    { 
+    {
       name: 'Introduction To accounting',
       lectures: [
         {
@@ -415,8 +533,8 @@ export const commerceCourseContent: CourseContentMap = {
     },
   ],
   'Mathematics': [
-    { 
-      name: 'Sets', 
+    {
+      name: 'Sets',
       lectures: Array.from({ length: 5 }, (_, i) => ({
         id: `L${i + 1}`,
         title: `Sets L${i + 1}`,
@@ -426,8 +544,8 @@ export const commerceCourseContent: CourseContentMap = {
         videoEmbedUrl: i === 0 ? 'https://www.youtube.com/embed/UT9CN9XFGYw' : '#',
       }))
     },
-    { 
-      name: 'Complex Numbers', 
+    {
+      name: 'Complex Numbers',
       lectures: Array.from({ length: 8 }, (_, i) => ({
         id: `L${i + 1}`,
         title: `Complex Numbers L${i + 1}`,
@@ -452,5 +570,3 @@ export const aarambhCourseContent: CourseContentMap = {
     { name: 'Relation & Functions', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
   ],
 };
-
-    
