@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, Bot, MessageSquare, RefreshCw, AlertCircle, CheckCircle } from 'lucide-react';
-import { ScrollArea } from '@/components/ui/scroll-area';
+// Removed ScrollArea import as it's no longer used directly here for the main content.
 
 interface QnA {
   id: string;
@@ -226,11 +226,10 @@ export default function ELeakSupportPage() {
               E-Leak 24/7 Support
             </h1>
           </div>
-          <ScrollArea className="max-h-[65vh] h-[500px] sm:h-auto pr-3 pb-3">
-            <div className="overflow-x-hidden">
-              {renderContent()}
-            </div>
-          </ScrollArea>
+          {/* ScrollArea removed, content will expand naturally */}
+          <div className="overflow-x-hidden"> {/* Kept overflow-x-hidden to prevent horizontal scroll from content */}
+            {renderContent()}
+          </div>
         </div>
       </main>
 
