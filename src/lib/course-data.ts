@@ -379,7 +379,7 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L5', title: 'Complex Numbers L5', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8')}` },
         { id: 'L6', title: 'Complex Numbers L6', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8')}` },
         { id: 'L7', title: 'Complex Numbers L7', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8')}` },
-        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' }, // Placeholder
       ]
     },
     {
@@ -740,10 +740,17 @@ export const commerceCourseContent: CourseContentMap = {
           videoEmbedType: 'iframe',
           videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4391544%2F174810293134278165220%2Findex_4.m3u8`,
         },
+        {
+          id: 'L9',
+          title: 'Consumer Equilibrium L9',
+          notesLink: `${commerceBasePath}/economics/${slugify('Consumer Equilibrium')}/notes/L9.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4396269%2F174853508641878165220%2Findex_4.m3u8`,
+        },
       ]
     }
   ],
-  'Mathematics': [
+  'Mathematics': [ // Shared between Science and Commerce
      {
       name: 'Sets',
       lectures: [
@@ -758,7 +765,7 @@ export const commerceCourseContent: CourseContentMap = {
         {
           id: `L2`,
           title: `Sets L2`,
-          notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L2.pdf`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L2.pdf`, // Can use commerce or science path, as it's shared
           videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8`,
           videoEmbedType: 'iframe',
           videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8')}`,
@@ -799,7 +806,7 @@ export const commerceCourseContent: CourseContentMap = {
         { id: 'L5', title: 'Complex Numbers L5', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8')}` },
         { id: 'L6', title: 'Complex Numbers L6', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8')}` },
         { id: 'L7', title: 'Complex Numbers L7', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8')}` },
-        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' }, // Placeholder
       ]
     },
     {
@@ -861,4 +868,3 @@ export const aarambhCourseContent: CourseContentMap = {
     }
   ],
 };
-

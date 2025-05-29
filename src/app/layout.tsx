@@ -2,7 +2,7 @@
 import type {Metadata} from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster";
+import ClientLayoutWrapper from '@/components/client-layout-wrapper';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,12 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
-        {children}
-        <Toaster />
-        {/* Telegram Floating Button */}
-        <a href="https://t.me/DatabaseCourseNT" target="_blank" className="telegram-float" aria-label="Join Telegram">
-          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
-        </a>
+        <ClientLayoutWrapper>
+          {children}
+        </ClientLayoutWrapper>
       </body>
     </html>
   );
