@@ -32,7 +32,7 @@ interface CourseSubjects {
 }
 
 const courseSpecificSubjects: CourseSubjects = {
-  '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology'], // Science Batch
+  '1': ['Physics', 'Chemistry', 'Mathematics'], // Science Batch
   '2': ['Business Studies', 'Accountancy', 'Economics', 'Mathematics'], // Commerce Batch
   '3': ['Social Science', 'Science', 'Mathematics'], // Aarambh Batch
 };
@@ -69,7 +69,7 @@ export default function EnrollPage() {
       </header>
 
       <main className="flex-grow flex flex-col items-center pt-8 md:pt-12">
-        <div className="w-full max-w-2xl space-y-6"> {/* Changed max-w-md to max-w-2xl */}
+        <div className="w-full max-w-2xl space-y-6">
           <Button
             size="lg"
             className="w-full py-6 text-xl rounded-full bg-primary hover:bg-primary/90 
@@ -101,7 +101,7 @@ export default function EnrollPage() {
               Subjects
             </h2>
             {subjects.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4"> {/* Changed from space-y-3 to grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {subjects.map((subject, index) => (
                   <div
                     key={subject}

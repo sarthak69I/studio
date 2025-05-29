@@ -323,44 +323,6 @@ export const scienceCourseContent: CourseContentMap = {
       ]
     },
   ],
-  'Biology': [
-    {
-      name: 'The Living World',
-      lectures: [
-        {
-          id: 'L1',
-          title: 'The Living World L1',
-          notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`,
-          videoEmbedType: 'youtube',
-          videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc',
-        },
-        {
-          id: 'L2',
-          title: 'The Living World L2',
-          notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L2.pdf`,
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8')}`,
-        },
-        {
-          id: 'L3',
-          title: 'The Living World L3',
-          notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L3.pdf`,
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8')}`,
-        },
-      ],
-    },
-    {
-        name: 'Biological Classification',
-        lectures: Array.from({ length: 10 }, (_, i) => ({
-          id: `L${i + 1}`,
-          title: `Biological Classification L${i + 1}`,
-          notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L${i + 1}.pdf`,
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `#`, // Placeholder
-        })),
-    }
-  ],
   'Mathematics': [
     {
       name: 'Sets',
@@ -538,46 +500,6 @@ export const commerceCourseContent: CourseContentMap = {
       ],
     },
     {
-      name: 'Accounting Equations',
-      lectures: [
-        {
-          id: 'L1',
-          title: 'Accounting Equations L1',
-          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Equations')}/notes/L1.pdf`,
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376039/174670969584618037481/index_4.m3u8')}`,
-        },
-        {
-          id: 'L2',
-          title: 'Accounting Equations L2',
-          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Equations')}/notes/L2.pdf`,
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377210/174679578632678037481/index_4.m3u8')}`,
-        },
-        {
-          id: 'L3',
-          title: 'Accounting Equations L3',
-          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Equations')}/notes/L3.pdf`,
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377926/174688241250748037481/index_4.m3u8')}`,
-        },
-        {
-          id: 'L4',
-          title: 'Accounting Equations L4',
-          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Equations')}/notes/L4.pdf`,
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4382851/174731428796208037481/index_4.m3u8')}`,
-        },
-        {
-          id: 'L5',
-          title: 'Accounting Equations L5',
-          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Equations')}/notes/L5.pdf`,
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4384003%2F174739986338128037481%2Findex_4.m3u8`,
-        },
-      ]
-    },
-    {
       name: 'Accounting Principles',
       lectures: [
         {
@@ -619,6 +541,46 @@ export const commerceCourseContent: CourseContentMap = {
           notesLink: `${commerceBasePath}/accountancy/${slugify('Rule of Debit & Credit')}/notes/L1.pdf`,
           videoEmbedType: 'iframe',
           videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4396176%2F174852449790338037481%2Findex_4.m3u8`,
+        },
+      ]
+    },
+    {
+      name: 'Accounting Equations',
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Accounting Equations L1',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Equations')}/notes/L1.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376039/174670969584618037481/index_4.m3u8')}`,
+        },
+        {
+          id: 'L2',
+          title: 'Accounting Equations L2',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Equations')}/notes/L2.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377210/174679578632678037481/index_4.m3u8')}`,
+        },
+        {
+          id: 'L3',
+          title: 'Accounting Equations L3',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Equations')}/notes/L3.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377926/174688241250748037481/index_4.m3u8')}`,
+        },
+        {
+          id: 'L4',
+          title: 'Accounting Equations L4',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Equations')}/notes/L4.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4382851/174731428796208037481/index_4.m3u8')}`,
+        },
+        {
+          id: 'L5',
+          title: 'Accounting Equations L5',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Equations')}/notes/L5.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4384003%2F174739986338128037481%2Findex_4.m3u8`,
         },
       ]
     }

@@ -23,10 +23,10 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "Class 11 Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "Biology",
-    class2Subject: "Physics",
-    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_4.m3u8')}`,
-    class2LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
+    class1Subject: "Physics", // Assuming Physics is now the first class after Biology removal
+    class2Subject: "Chemistry", // Or Mathematics, depending on preference
+    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`, // Physics link
+    class2LiveStreamUrl: undefined, // Placeholder for Chemistry/Maths link
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
