@@ -322,6 +322,29 @@ export const scienceCourseContent: CourseContentMap = {
         },
       ]
     },
+    {
+      name: 'The Living World',
+      lectures: [
+        { id: 'L1', title: 'The Living World L1', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc' },
+        { id: 'L2', title: 'The Living World L2', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L2.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8')}` },
+        { id: 'L3', title: 'The Living World L3', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L3.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8')}` },
+      ]
+    },
+    {
+      name: 'Biological Classification',
+      lectures: [
+        { id: 'L1', title: 'Biological Classification L1', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L1.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L2', title: 'Biological Classification L2', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L2.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L3', title: 'Biological Classification L3', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L3.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L4', title: 'Biological Classification L4', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L4.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L5', title: 'Biological Classification L5', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L6', title: 'Biological Classification L6', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L7', title: 'Biological Classification L7', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L8', title: 'Biological Classification L8', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L9', title: 'Biological Classification L9', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L9.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L10', title: 'Biological Classification L10', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L10.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+      ]
+    }
   ],
   'Mathematics': [
     {
@@ -379,7 +402,7 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L5', title: 'Complex Numbers L5', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8')}` },
         { id: 'L6', title: 'Complex Numbers L6', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8')}` },
         { id: 'L7', title: 'Complex Numbers L7', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8')}` },
-        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' }, // Placeholder
+        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
       ]
     },
     {
@@ -414,7 +437,21 @@ export const commerceCourseContent: CourseContentMap = {
         { id: 'L9', title: 'Business, Trade & Commerce L9', notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/L9.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365823/174601759672428661500/index_4.m3u8')}` },
       ]
     },
-    { name: 'Forms of Business Organisations', topicNotesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/videos/topic.mp4` },
+    { name: 'Forms of Business Organisations',
+      lectures: [
+        { id: 'L1', title: 'Forms of Business Organisations L1', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L1.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372297/174646087088698661500/index_4.m3u8')}` },
+        { id: 'L2', title: 'Forms of Business Organisations L2', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L2.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373926/174654697344648661500/index_4.m3u8')}` },
+        { id: 'L3', title: 'Forms of Business Organisations L3', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L3.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4374884/174662261770168661500/index_4.m3u8')}` },
+        { id: 'L4', title: 'Forms of Business Organisations L4', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L4.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4379158/174706487485118661500/index_4.m3u8')}` },
+        { id: 'L5', title: 'Forms of Business Organisations L5', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4380752/174715045969568661500/index_4.m3u8')}` },
+        { id: 'L6', title: 'Forms of Business Organisations L6', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4385844%2F174767049839008661500%2Findex_4.m3u8` },
+        { id: 'L7', title: 'Forms of Business Organisations L7', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4387080%2F174775705352788661500%2Findex_4.m3u8` },
+        { id: 'L8', title: 'Forms of Business Organisations L8', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4388072%2F174783296668778661500%2Findex_4.m3u8` },
+        { id: 'L9', title: 'Forms of Business Organisations L9', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L9.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4392903%2F174827554771168661500%2Findex_4.m3u8` },
+        { id: 'L10', title: 'Forms of Business Organisations L10', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L10.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4394020%2F174836176027458661500%2Findex_4.m3u8` },
+        { id: 'L11', title: 'Forms of Business Organisations L11', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L11.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4394995%2F174843818528908661500%2Findex_4.m3u8` },
+      ]
+    },
   ],
   'Accountancy': [
     {
@@ -765,7 +802,7 @@ export const commerceCourseContent: CourseContentMap = {
         {
           id: `L2`,
           title: `Sets L2`,
-          notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L2.pdf`, // Can use commerce or science path, as it's shared
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L2.pdf`, 
           videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8`,
           videoEmbedType: 'iframe',
           videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8')}`,
@@ -806,7 +843,7 @@ export const commerceCourseContent: CourseContentMap = {
         { id: 'L5', title: 'Complex Numbers L5', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8')}` },
         { id: 'L6', title: 'Complex Numbers L6', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8')}` },
         { id: 'L7', title: 'Complex Numbers L7', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8')}` },
-        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' }, // Placeholder
+        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' }, 
       ]
     },
     {
@@ -856,7 +893,7 @@ export const aarambhCourseContent: CourseContentMap = {
   ],
   'Mathematics': [
     {
-      name: 'Real Numbers', // Changed from "R. Number" for better readability in title
+      name: 'Real Numbers',
       lectures: [
         { id: 'L1', title: 'Real Numbers L1', notesLink: `${aarambhBasePath}/mathematics/${slugify('R. Number')}/notes/L1.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/_0ooaKrdubI' },
         { id: 'L2', title: 'Real Numbers L2', notesLink: `${aarambhBasePath}/mathematics/${slugify('R. Number')}/notes/L2.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4351817/174473442715988296383/index_4.m3u8')}` },
