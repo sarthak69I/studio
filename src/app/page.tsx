@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Info, Mail, Sun, Moon, Bell, HelpCircle } from 'lucide-react';
+import { Menu, Bell, HelpCircle, Sun, Moon } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -59,7 +59,7 @@ const coursesData: Course[] = [
     badgeText: 'NEW',
     title: 'PRARAMBH CLASS 11th',
     subtitle: 'Science Batch',
-    imageUrl: 'https://i.ibb.co/qMN2dh3Q/Addaheadin.jpg',
+    imageUrl: 'https://i.ibb.co/qMN2dhQ/Addaheadin.jpg',
     imageAlt: '11th Science Course Cover',
     imageAiHint: 'science education',
     highlightText: 'Batch for 11th Science',
@@ -265,6 +265,32 @@ export default function HomePage() {
                           On the course enrollment page, select the "Notes" mode. Then, choose your subject and topic. If notes are available for specific lectures, they will be listed, and you can click to view/download them.
                         </AccordionContent>
                       </AccordionItem>
+                      <AccordionItem value="item-7">
+                        <AccordionTrigger>How do I get class updates?</AccordionTrigger>
+                        <AccordionContent>
+                          <p className="mb-2">To get all class updates, please join our Telegram channel and subscribe to our YouTube channels:</p>
+                          <ul className="list-disc pl-5 space-y-1">
+                            <li>
+                              Join on Telegram:
+                              <Link href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                                Telegram
+                              </Link>
+                            </li>
+                            <li>
+                              Subscribe on YouTube (Main):
+                              <Link href="https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                                Main Channel
+                              </Link>
+                            </li>
+                            <li>
+                              Subscribe on YouTube (Backup):
+                              <Link href="https://youtube.com/@nexttoppers-backup?si=GP3sqWU8fmCa8EQL" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                                Backup Channel
+                              </Link>
+                            </li>
+                          </ul>
+                        </AccordionContent>
+                      </AccordionItem>
                     </Accordion>
                   </div>
                   <DialogFooter className="sm:justify-start">
@@ -307,3 +333,4 @@ export default function HomePage() {
     </div>
   );
 }
+
