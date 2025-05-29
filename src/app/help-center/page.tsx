@@ -224,8 +224,10 @@ export default function ELeakSupportPage() {
               E-Leak 24/7 Support
             </h1>
           </div>
-          <ScrollArea className="max-h-[65vh] h-[500px] sm:h-auto pr-3 pb-3"> {/* Adjusted height for scrollability */}
-            {renderContent()}
+          <ScrollArea className="max-h-[65vh] h-[500px] sm:h-auto pr-3 pb-3">
+            <div className="overflow-x-hidden">
+              {renderContent()}
+            </div>
           </ScrollArea>
         </div>
       </main>
