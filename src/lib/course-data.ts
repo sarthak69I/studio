@@ -201,35 +201,31 @@ export const commerceCourseContent: CourseContentMap = {
     { name: 'Business, Trade & Commerce',
       lectures: Array.from({ length: 9 }, (_, i) => {
         const lectureId = `L${i + 1}`;
-        let videoUrl = '';
+        let videoUrl = '#'; // Default placeholder
         let embedType: 'youtube' | 'iframe' = 'iframe';
+        const m3u8Links = [
+            'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4352997/174481925589108661500/index_4.m3u8', // L2
+            'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354036/174490571525318661500/index_4.m3u8', // L3
+            'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356791/174525158582868661500/index_4.m3u8', // L4
+            'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357840/174533779119448661500/index_4.m3u8', // L5
+            'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4358827/174541222825788661500/index_4.m3u8', // L6
+            'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363370/174585516974368661500/index_4.m3u8', // L7
+            'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364782/174594193147598661500/index_4.m3u8', // L8
+            'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365823/174601759672428661500/index_4.m3u8', // L9
+        ];
 
         if (i === 0) { // L1
           videoUrl = 'https://www.youtube.com/embed/PUa2-buHJII';
           embedType = 'youtube';
-        } else if (i === 1) { // L2
-          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4352997/174481925589108661500/index_4.m3u8')}`;
-        } else if (i === 2) { // L3
-          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354036/174490571525318661500/index_4.m3u8')}`;
-        } else if (i === 3) { // L4
-          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356791/174525158582868661500/index_4.m3u8')}`;
-        } else if (i === 4) { // L5
-          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357840/174533779119448661500/index_4.m3u8')}`;
-        } else if (i === 5) { // L6
-          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4358827/174541222825788661500/index_4.m3u8')}`;
-        } else if (i === 6) { // L7
-          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363370/174585516974368661500/index_4.m3u8')}`;
-        } else if (i === 7) { // L8
-          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364782/174594193147598661500/index_4.m3u8')}`;
-        } else if (i === 8) { // L9
-          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365823/174601759672428661500/index_4.m3u8')}`;
+        } else if (i > 0 && i < 9) { // L2 to L9
+          videoUrl = `${m3u8PlayerBase}${encodeURIComponent(m3u8Links[i-1])}`;
         }
 
         return {
           id: lectureId,
           title: `Business, Trade & Commerce ${lectureId}`,
           notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/${lectureId}.pdf`,
-          videoLink: `#`, // Placeholder for original video link
+          videoLink: `#`, 
           videoEmbedType: embedType,
           videoEmbedUrl: videoUrl,
         };
@@ -276,7 +272,7 @@ export const commerceCourseContent: CourseContentMap = {
       ],
     },
     { 
-      name: 'Introduction To accounting', // Note: Mismatch with slug 'Introduction To accounting' vs 'introduction-to-accounting'
+      name: 'Introduction To accounting',
       lectures: [
         {
           id: 'L1',
