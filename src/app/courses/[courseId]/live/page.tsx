@@ -190,17 +190,22 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       
       {classStatus.status === 'live' ? (
         liveStreamUrl ? (
-          <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-border bg-black my-4">
-            <iframe
-              src={liveStreamUrl}
-              title={`${subject} Live Stream`}
-              width="100%"
-              height="100%"
-              allowFullScreen
-              allow="autoplay; encrypted-media; picture-in-picture; web-share"
-              className="border-0"
-            ></iframe>
-          </div>
+          <>
+            <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-border bg-black my-4">
+              <iframe
+                src={liveStreamUrl}
+                title={`${subject} Live Stream`}
+                width="100%"
+                height="100%"
+                allowFullScreen
+                allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                className="border-0"
+              ></iframe>
+            </div>
+            <p className="text-xs text-muted-foreground text-center -mt-2 mb-4">
+              Double-click on video to Full Screen
+            </p>
+          </>
         ) : (
           <div className="text-center text-muted-foreground py-8">
              <p className="text-lg">Live stream starting soon!</p>
@@ -231,6 +236,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
             onClick={() => { 
               if (!classStatus.buttonDisabled && liveStreamUrl) { 
                 console.log('Joining class for ' + subject);
+                // Navigation or state change to show video player would happen here if not directly embedding
               } else if (!classStatus.buttonDisabled && !liveStreamUrl) {
                  alert('Live stream link not available yet for ' + subject);
               }
@@ -327,3 +333,4 @@ export default function LiveClassesPage() {
     </div>
   );
 }
+
