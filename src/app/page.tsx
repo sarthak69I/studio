@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Bell, HelpCircle, Sun, Moon } from 'lucide-react';
+import { Menu, Bell, HelpCircle, Sun, Moon, Info } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -59,7 +59,7 @@ const coursesData: Course[] = [
     badgeText: 'NEW',
     title: 'PRARAMBH CLASS 11th',
     subtitle: 'Science Batch',
-    imageUrl: 'https://i.ibb.co/qMN2dhQ/Addaheadin.jpg',
+    imageUrl: 'https://i.ibb.co/qMN2dhQ/Addaheadin.jpg', // Corrected URL
     imageAlt: '11th Science Course Cover',
     imageAiHint: 'science education',
     highlightText: 'Batch for 11th Science',
@@ -121,7 +121,7 @@ export default function HomePage() {
       setCurrentTheme(storedTheme);
       document.documentElement.className = storedTheme;
     } else {
-      setCurrentTheme('dark');
+      setCurrentTheme('dark'); // Default to dark theme
       localStorage.setItem('theme', 'dark');
       document.documentElement.className = 'dark';
     }
@@ -327,10 +327,22 @@ export default function HomePage() {
         </div>
       </main>
 
-      <footer className="text-center text-sm text-muted-foreground my-10 md:my-12 animate-pulse-custom">
+      <div className="mt-12 text-center">
+        <Button 
+          variant="outline" 
+          size="lg"
+          onClick={() => setIsFaqsDialogOpen(true)}
+          className="rounded-lg"
+          aria-label="View FAQs"
+        >
+          <HelpCircle className="mr-2 h-5 w-5" />
+          Frequently Asked Questions
+        </Button>
+      </div>
+
+      <footer className="text-center text-sm text-muted-foreground mt-8 md:mt-10 animate-pulse-custom">
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
   );
 }
-
