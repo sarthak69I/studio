@@ -151,9 +151,9 @@ export const scienceCourseContent: CourseContentMap = {
         id: `L${i + 1}`,
         title: `Some Basic Concepts of Chemistry L${i + 1}`,
         notesLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/notes/L${i + 1}.pdf`,
-        videoLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/videos/L${i + 1}.mp4`, // Placeholder, update if specific videos exist
-        videoEmbedType: 'iframe', // Default, can be overridden
-        videoEmbedUrl: `#`, // Placeholder
+        videoLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/videos/L${i + 1}.mp4`,
+        videoEmbedType: 'iframe',
+        videoEmbedUrl: `#`, 
       })),
     },
     { name: 'Structure of Atom', topicNotesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/videos/topic.mp4` },
@@ -168,8 +168,28 @@ export const scienceCourseContent: CourseContentMap = {
     },
   ],
   'Mathematics': [
-    { name: 'Sets', topicNotesLink: `${scienceBasePath}/mathematics/${slugify('Sets')}/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/mathematics/${slugify('Sets')}/videos/topic.mp4` },
-    { name: 'Complex Numbers', topicNotesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/topic.mp4` },
+    { 
+      name: 'Sets', 
+      lectures: Array.from({ length: 5 }, (_, i) => ({
+        id: `L${i + 1}`,
+        title: `Sets L${i + 1}`,
+        notesLink: `${scienceBasePath}/mathematics/${slugify('Sets')}/notes/L${i + 1}.pdf`,
+        videoLink: i === 0 ? 'https://www.youtube.com/live/UT9CN9XFGYw?si=C1tfKB1UXHYtrmsV' : `${scienceBasePath}/mathematics/${slugify('Sets')}/videos/L${i + 1}.mp4`,
+        videoEmbedType: i === 0 ? 'youtube' : 'iframe',
+        videoEmbedUrl: i === 0 ? 'https://www.youtube.com/embed/UT9CN9XFGYw' : '#',
+      }))
+    },
+    { 
+      name: 'Complex Numbers', 
+      lectures: Array.from({ length: 8 }, (_, i) => ({
+        id: `L${i + 1}`,
+        title: `Complex Numbers L${i + 1}`,
+        notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L${i + 1}.pdf`,
+        videoLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/L${i + 1}.mp4`,
+        videoEmbedType: 'iframe',
+        videoEmbedUrl: '#',
+      }))
+    },
     { name: 'Relation & Functions', topicNotesLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
   ],
 };
@@ -179,86 +199,47 @@ const commerceBasePath = '/assets/courses/commerce';
 export const commerceCourseContent: CourseContentMap = {
   'Business Studies': [
     { name: 'Business, Trade & Commerce',
-      lectures: [
-        {
-          id: 'L1',
-          title: 'Business, Trade & Commerce L1',
-          notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/L1.pdf`,
-          videoLink: 'https://www.youtube.com/live/PUa2-buHJII?si=J9Xs0hTe5a9WtFvk',
-          videoEmbedType: 'youtube',
-          videoEmbedUrl: 'https://www.youtube.com/embed/PUa2-buHJII',
-        },
-        {
-          id: 'L2',
-          title: 'Business, Trade & Commerce L2',
-          notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/L2.pdf`,
-          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4352997/174481925589108661500/index_4.m3u8',
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4352997/174481925589108661500/index_4.m3u8')}`,
-        },
-        {
-          id: 'L3',
-          title: 'Business, Trade & Commerce L3',
-          notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/L3.pdf`,
-          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354036/174490571525318661500/index_4.m3u8',
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354036/174490571525318661500/index_4.m3u8')}`,
-        },
-        {
-          id: 'L4',
-          title: 'Business, Trade & Commerce L4',
-          notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/L4.pdf`,
-          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356791/174525158582868661500/index_4.m3u8',
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356791/174525158582868661500/index_4.m3u8')}`,
-        },
-        {
-          id: 'L5',
-          title: 'Business, Trade & Commerce L5',
-          notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/L5.pdf`,
-          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357840/174533779119448661500/index_4.m3u8',
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357840/174533779119448661500/index_4.m3u8')}`,
-        },
-        {
-          id: 'L6',
-          title: 'Business, Trade & Commerce L6',
-          notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/L6.pdf`,
-          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4358827/174541222825788661500/index_4.m3u8',
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4358827/174541222825788661500/index_4.m3u8')}`,
-        },
-        {
-          id: 'L7',
-          title: 'Business, Trade & Commerce L7',
-          notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/L7.pdf`,
-          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363370/174585516974368661500/index_4.m3u8',
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363370/174585516974368661500/index_4.m3u8')}`,
-        },
-        {
-          id: 'L8',
-          title: 'Business, Trade & Commerce L8',
-          notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/L8.pdf`,
-          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364782/174594193147598661500/index_4.m3u8',
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364782/174594193147598661500/index_4.m3u8')}`,
-        },
-        {
-          id: 'L9',
-          title: 'Business, Trade & Commerce L9',
-          notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/L9.pdf`,
-          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365823/174601759672428661500/index_4.m3u8',
-          videoEmbedType: 'iframe',
-          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365823/174601759672428661500/index_4.m3u8')}`,
-        },
-      ]
+      lectures: Array.from({ length: 9 }, (_, i) => {
+        const lectureId = `L${i + 1}`;
+        let videoUrl = '';
+        let embedType: 'youtube' | 'iframe' = 'iframe';
+
+        if (i === 0) { // L1
+          videoUrl = 'https://www.youtube.com/embed/PUa2-buHJII';
+          embedType = 'youtube';
+        } else if (i === 1) { // L2
+          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4352997/174481925589108661500/index_4.m3u8')}`;
+        } else if (i === 2) { // L3
+          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354036/174490571525318661500/index_4.m3u8')}`;
+        } else if (i === 3) { // L4
+          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356791/174525158582868661500/index_4.m3u8')}`;
+        } else if (i === 4) { // L5
+          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357840/174533779119448661500/index_4.m3u8')}`;
+        } else if (i === 5) { // L6
+          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4358827/174541222825788661500/index_4.m3u8')}`;
+        } else if (i === 6) { // L7
+          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363370/174585516974368661500/index_4.m3u8')}`;
+        } else if (i === 7) { // L8
+          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364782/174594193147598661500/index_4.m3u8')}`;
+        } else if (i === 8) { // L9
+          videoUrl = `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365823/174601759672428661500/index_4.m3u8')}`;
+        }
+
+        return {
+          id: lectureId,
+          title: `Business, Trade & Commerce ${lectureId}`,
+          notesLink: `${commerceBasePath}/business-studies/${slugify('Business, Trade & Commerce')}/notes/${lectureId}.pdf`,
+          videoLink: `#`, // Placeholder for original video link
+          videoEmbedType: embedType,
+          videoEmbedUrl: videoUrl,
+        };
+      })
     },
     { name: 'Forms of Business Organisations', topicNotesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/videos/topic.mp4` },
   ],
   'Accountancy': [
     { 
-      name: 'Basic Concepts of Accounts', // Updated to match display name for consistency
+      name: 'Basic Concepts of Accounts', 
       lectures: [
         {
           id: 'L1',
@@ -295,7 +276,7 @@ export const commerceCourseContent: CourseContentMap = {
       ],
     },
     { 
-      name: 'Introduction To accounting',
+      name: 'Introduction To accounting', // Note: Mismatch with slug 'Introduction To accounting' vs 'introduction-to-accounting'
       lectures: [
         {
           id: 'L1',
@@ -317,27 +298,149 @@ export const commerceCourseContent: CourseContentMap = {
           id: 'L3',
           title: 'Introduction To Accounting L3',
           notesLink: `${commerceBasePath}/accountancy/${slugify('Introduction To accounting')}/notes/L3.pdf`,
-          videoEmbedUrl: `#`, // Placeholder
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367025/174610386875138037481/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367025/174610386875138037481/index_4.m3u8')}`,
         },
         {
           id: 'L4',
           title: 'Introduction To Accounting L4',
           notesLink: `${commerceBasePath}/accountancy/${slugify('Introduction To accounting')}/notes/L4.pdf`,
-          videoEmbedUrl: `#`, // Placeholder
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368221/174619101874588037481/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368221/174619101874588037481/index_4.m3u8')}`,
         },
         {
           id: 'L5',
           title: 'Introduction To Accounting L5',
           notesLink: `${commerceBasePath}/accountancy/${slugify('Introduction To accounting')}/notes/L5.pdf`,
-          videoEmbedUrl: `#`, // Placeholder
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370044/174627841879878037481/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370044/174627841879878037481/index_4.m3u8')}`,
         },
       ],
     },
   ],
-  'Economics': 'Economics Content Coming Soon',
+  'Economics': [
+    {
+      name: 'Introduction to Microeconomics',
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Introduction to Microeconomics L1',
+          notesLink: `${commerceBasePath}/economics/${slugify('Introduction to Microeconomics')}/notes/L1.pdf`,
+          videoLink: 'https://www.youtube.com/live/DC5GfUSomWc?si=ZYT0GSchq435Cwb-',
+          videoEmbedType: 'youtube',
+          videoEmbedUrl: 'https://www.youtube.com/embed/DC5GfUSomWc',
+        },
+        {
+          id: 'L2',
+          title: 'Introduction to Microeconomics L2',
+          notesLink: `${commerceBasePath}/economics/${slugify('Introduction to Microeconomics')}/notes/L2.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354870/174499154434222805408/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354870/174499154434222805408/index_4.m3u8')}`,
+        },
+        {
+          id: 'L3',
+          title: 'Introduction to Microeconomics L3',
+          notesLink: `${commerceBasePath}/economics/${slugify('Introduction to Microeconomics')}/notes/L3.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355506/174513048136192805408/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355506/174513048136192805408/index_4.m3u8')}`,
+        },
+        {
+          id: 'L4',
+          title: 'Introduction to Microeconomics L4',
+          notesLink: `${commerceBasePath}/economics/${slugify('Introduction to Microeconomics')}/notes/L4.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360163/174551052232072805408/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360163/174551052232072805408/index_4.m3u8')}`,
+        },
+        {
+          id: 'L5',
+          title: 'Introduction to Microeconomics L5',
+          notesLink: `${commerceBasePath}/economics/${slugify('Introduction to Microeconomics')}/notes/L5.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361318/174559672274232805408/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361318/174559672274232805408/index_4.m3u8')}`,
+        },
+      ],
+    },
+    {
+      name: 'Economics: An Introduction',
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Economics: An Introduction L1',
+          notesLink: `${commerceBasePath}/economics/${slugify('Economics: An Introduction')}/notes/L1.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363914/174591024154512805408/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363914/174591024154512805408/index_4.m3u8')}`,
+        },
+      ],
+    },
+    {
+      name: 'Statistics For Economic',
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Statistics For Economic L1',
+          notesLink: `${commerceBasePath}/economics/${slugify('Statistics For Economic')}/notes/L1.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367643/174617438052112805408/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367643/174617438052112805408/index_4.m3u8')}`,
+        },
+        {
+          id: 'L2',
+          title: 'Statistics For Economic L2',
+          notesLink: `${commerceBasePath}/economics/${slugify('Statistics For Economic')}/notes/L2.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368696/174625119772212805408/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368696/174625119772212805408/index_4.m3u8')}`,
+        },
+        {
+          id: 'L3',
+          title: 'Statistics For Economic L3',
+          notesLink: `${commerceBasePath}/economics/${slugify('Statistics For Economic')}/notes/L3.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370292/174636039220762805408/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370292/174636039220762805408/index_4.m3u8')}`,
+        },
+        {
+          id: 'L4',
+          title: 'Statistics For Economic L4',
+          notesLink: `${commerceBasePath}/economics/${slugify('Statistics For Economic')}/notes/L4.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376224/174672114274758165220/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376224/174672114274758165220/index_4.m3u8')}`,
+        },
+      ],
+    },
+  ],
   'Mathematics': [
-    { name: 'Sets', topicNotesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/videos/topic.mp4` },
-    { name: 'Complex Numbers', topicNotesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/topic.mp4` },
+    { 
+      name: 'Sets', 
+      lectures: Array.from({ length: 5 }, (_, i) => ({
+        id: `L${i + 1}`,
+        title: `Sets L${i + 1}`,
+        notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L${i + 1}.pdf`,
+        videoLink: i === 0 ? 'https://www.youtube.com/live/UT9CN9XFGYw?si=C1tfKB1UXHYtrmsV' : `${commerceBasePath}/mathematics/${slugify('Sets')}/videos/L${i + 1}.mp4`,
+        videoEmbedType: i === 0 ? 'youtube' : 'iframe',
+        videoEmbedUrl: i === 0 ? 'https://www.youtube.com/embed/UT9CN9XFGYw' : '#',
+      }))
+    },
+    { 
+      name: 'Complex Numbers', 
+      lectures: Array.from({ length: 8 }, (_, i) => ({
+        id: `L${i + 1}`,
+        title: `Complex Numbers L${i + 1}`,
+        notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L${i + 1}.pdf`,
+        videoLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/L${i + 1}.mp4`,
+        videoEmbedType: 'iframe',
+        videoEmbedUrl: '#',
+      }))
+    },
     { name: 'Relation & Functions', topicNotesLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
   ],
 };
@@ -347,7 +450,7 @@ const aarambhBasePath = '/assets/courses/aarambh';
 export const aarambhCourseContent: CourseContentMap = {
   'Social Science': 'Social Science Content Coming Soon',
   'Science': 'Science Content Coming Soon', // General Science for Aarambh
-  'Mathematics': [
+  'Mathematics': [ // Keeping Aarambh Maths simple as per previous structure unless specified otherwise
     { name: 'Sets', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Sets')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Sets')}/videos/topic.mp4` },
     { name: 'Complex Numbers', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Complex Numbers')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Complex Numbers')}/videos/topic.mp4` },
     { name: 'Relation & Functions', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
