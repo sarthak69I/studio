@@ -208,8 +208,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           </>
         ) : (
           <div className="text-center text-muted-foreground py-8">
-             <p className="text-lg">Live stream starting soon!</p>
-             <p className="text-sm">The video player will appear here once the class begins.</p>
+             <p className="text-lg">Today is no live class for this subject.</p>
           </div>
         )
       ) : (
