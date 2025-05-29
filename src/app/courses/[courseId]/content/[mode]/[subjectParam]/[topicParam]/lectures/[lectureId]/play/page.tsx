@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, HelpCircle } from 'lucide-react';
 import {
   scienceCourseContent,
   commerceCourseContent,
@@ -15,6 +15,15 @@ import {
   type Topic,
 } from '@/lib/course-data';
 import { getParamAsString } from '@/lib/utils';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { FaqDialogContent } from '@/components/faq-dialog-content';
 
 export default function LecturePlayPage() {
   const router = useRouter();
@@ -29,6 +38,8 @@ export default function LecturePlayPage() {
   const [lecture, setLecture] = React.useState<Lecture | null>(null);
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
+  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
+
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -99,6 +110,7 @@ export default function LecturePlayPage() {
   }
 
   return (
+    <>
     <div className="flex flex-col min-h-screen bg-background text-foreground p-4 md:p-6">
       <header className="flex items-center justify-between mb-8 w-full max-w-5xl mx-auto">
         <Button variant="outline" size="lg" onClick={() => router.back()} className="rounded-lg">
@@ -143,9 +155,38 @@ export default function LecturePlayPage() {
         )}
       </main>
 
+      <div className="mt-12 text-center">
+        <Button 
+          variant="outline" 
+          size="lg"
+          onClick={() => setIsFaqsDialogOpen(true)}
+          className="rounded-lg"
+          aria-label="View FAQs"
+        >
+          <HelpCircle className="mr-2 h-5 w-5" />
+          Frequently Asked Questions
+        </Button>
+      </div>
+
       <footer className="text-center text-sm text-muted-foreground mt-auto py-4">
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
+    <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
+      <DialogContent className="sm:max-w-lg rounded-xl">
+        <DialogHeader>
+          <DialogTitle className="text-xl">Frequently Asked Questions</DialogTitle>
+        </DialogHeader>
+        <FaqDialogContent />
+        <DialogFooter className="sm:justify-start">
+          <DialogClose asChild>
+            <Button type="button" variant="outline">
+              Close
+            </Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+    </>
   );
 }

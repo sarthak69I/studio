@@ -5,7 +5,7 @@ import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, HelpCircle } from 'lucide-react';
 import { 
   scienceCourseContent, 
   commerceCourseContent, 
@@ -14,6 +14,15 @@ import {
   type Topic
 } from '@/lib/course-data';
 import { getParamAsString } from '@/lib/utils';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { FaqDialogContent } from '@/components/faq-dialog-content';
 
 
 export default function SubjectContentPage() {
@@ -27,6 +36,8 @@ export default function SubjectContentPage() {
   const [subjectName, setSubjectName] = React.useState('');
   const [displayedTopics, setDisplayedTopics] = React.useState<Topic[] | string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
+  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
+
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -65,7 +76,7 @@ export default function SubjectContentPage() {
       setSubjectName('Unknown Subject');
       setDisplayedTopics('No subject specified in URL or course ID missing.');
     }
-  }, [isMounted, subjectParam, courseId]); // Removed subjectName, mode from deps as they are derived or stable
+  }, [isMounted, subjectParam, courseId]); 
 
   React.useEffect(() => {
     if (isMounted && subjectName) {
@@ -75,7 +86,6 @@ export default function SubjectContentPage() {
       if (Array.isArray(displayedTopics) && displayedTopics.length > 0 && typeof displayedTopics[0] !== 'string' && displayedTopics[0].name) {
         // If there are multiple topics, the main title is the subject name
       } else if (typeof displayedTopics === 'string' && !displayedTopics.includes('Coming Soon') && !displayedTopics.includes('could not be loaded')) {
-        // This case handles when displayedTopics is a single topic name string
         pageTitleSegment = displayedTopics;
       }
       document.title = `${pageTitleSegment} - ${subjectName} ${modeText} | E-Leak`;
@@ -206,10 +216,38 @@ export default function SubjectContentPage() {
           })()}
         </main>
 
+        <div className="mt-12 text-center">
+          <Button 
+            variant="outline" 
+            size="lg"
+            onClick={() => setIsFaqsDialogOpen(true)}
+            className="rounded-lg"
+            aria-label="View FAQs"
+          >
+            <HelpCircle className="mr-2 h-5 w-5" />
+            Frequently Asked Questions
+          </Button>
+        </div>
+
         <footer className="text-center text-sm text-muted-foreground mt-auto py-4">
           <p>© E-Leak All rights reserved.</p>
         </footer>
       </div>
+      <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
+        <DialogContent className="sm:max-w-lg rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Frequently Asked Questions</DialogTitle>
+          </DialogHeader>
+          <FaqDialogContent />
+          <DialogFooter className="sm:justify-start">
+            <DialogClose asChild>
+              <Button type="button" variant="outline">
+                Close
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

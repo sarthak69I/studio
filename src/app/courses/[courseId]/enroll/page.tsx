@@ -2,11 +2,21 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, HelpCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
 import { getParamAsString } from '@/lib/utils';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { FaqDialogContent } from '@/components/faq-dialog-content';
+
 
 interface SubjectItemProps {
   name: string;
@@ -42,6 +52,7 @@ export default function EnrollPage() {
   const params = useParams();
   const courseId = getParamAsString(params.courseId);
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
+  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
 
   const subjects = courseSpecificSubjects[courseId] || [];
 
@@ -54,6 +65,7 @@ export default function EnrollPage() {
   };
 
   return (
+    <>
     <div className="flex flex-col min-h-screen bg-background text-foreground p-4 md:p-6">
       <header className="flex items-center justify-between mb-8">
         <Button variant="outline" size="lg" onClick={() => router.back()} className="rounded-lg">
@@ -122,9 +134,39 @@ export default function EnrollPage() {
         </div>
       </main>
 
+      <div className="mt-12 text-center">
+        <Button 
+          variant="outline" 
+          size="lg"
+          onClick={() => setIsFaqsDialogOpen(true)}
+          className="rounded-lg"
+          aria-label="View FAQs"
+        >
+          <HelpCircle className="mr-2 h-5 w-5" />
+          Frequently Asked Questions
+        </Button>
+      </div>
+
       <footer className="text-center text-sm text-muted-foreground mt-12 py-4">
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
+
+    <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
+      <DialogContent className="sm:max-w-lg rounded-xl">
+        <DialogHeader>
+          <DialogTitle className="text-xl">Frequently Asked Questions</DialogTitle>
+        </DialogHeader>
+        <FaqDialogContent />
+        <DialogFooter className="sm:justify-start">
+          <DialogClose asChild>
+            <Button type="button" variant="outline">
+              Close
+            </Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+    </>
   );
 }
