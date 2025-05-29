@@ -327,7 +327,27 @@ export const scienceCourseContent: CourseContentMap = {
     {
       name: 'The Living World',
       lectures: [
-        { id: 'L1', title: 'The Living World L1', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`, videoLink: `${scienceBasePath}/biology/${slugify('The Living World')}/videos/L1.mp4`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        {
+          id: 'L1',
+          title: 'The Living World L1',
+          notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`,
+          videoEmbedType: 'youtube',
+          videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc',
+        },
+        {
+          id: 'L2',
+          title: 'The Living World L2',
+          notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L2.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8')}`,
+        },
+        {
+          id: 'L3',
+          title: 'The Living World L3',
+          notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L3.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8')}`,
+        },
       ],
     },
   ],
@@ -824,3 +844,4 @@ export const aarambhCourseContent: CourseContentMap = {
     }
   ],
 };
+
