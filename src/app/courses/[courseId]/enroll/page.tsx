@@ -17,7 +17,7 @@ interface SubjectItemProps {
 const SubjectItem: React.FC<SubjectItemProps> = ({ name, onClick, disabled }) => (
   <Button
     variant="secondary"
-    className="w-full justify-between p-7 text-lg rounded-xl shadow-sm hover:bg-muted/80 
+    className="w-full justify-between p-6 text-lg rounded-xl shadow-sm hover:bg-muted/80 
                transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-md"
     onClick={onClick}
     disabled={disabled}
@@ -69,7 +69,7 @@ export default function EnrollPage() {
       </header>
 
       <main className="flex-grow flex flex-col items-center pt-8 md:pt-12">
-        <div className="w-full max-w-md space-y-6">
+        <div className="w-full max-w-2xl space-y-6"> {/* Changed max-w-md to max-w-2xl */}
           <Button
             size="lg"
             className="w-full py-6 text-xl rounded-full bg-primary hover:bg-primary/90 
@@ -101,7 +101,7 @@ export default function EnrollPage() {
               Subjects
             </h2>
             {subjects.length > 0 ? (
-              <div className="space-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4"> {/* Changed from space-y-3 to grid */}
                 {subjects.map((subject, index) => (
                   <div
                     key={subject}
