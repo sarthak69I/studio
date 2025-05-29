@@ -33,9 +33,14 @@ const slugify = (text: string) => text.toLowerCase().replace(/\s+/g, '-').replac
 
 const m3u8PlayerBase = 'https://www.m3u8player.online/embed/m3u8?url=';
 
-// Science Batch Content (courseId '1')
+// =================================================================================
+// SCIENCE BATCH CONTENT (courseId '1')
+// =================================================================================
 const scienceBasePath = '/assets/courses/science';
 export const scienceCourseContent: CourseContentMap = {
+  // ---------------------------------------------------------------------------------
+  // Physics - Science Batch
+  // ---------------------------------------------------------------------------------
   'Physics': [
     {
       name: 'Units and Measurement',
@@ -141,9 +146,12 @@ export const scienceCourseContent: CourseContentMap = {
           videoEmbedType: 'iframe',
           videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4391550/174810397274838296383/index_4.m3u8')}`,
         },
-      ]
-    }
-  ],
+      ],
+    },
+  ], // End of Physics
+  // ---------------------------------------------------------------------------------
+  // Chemistry - Science Batch
+  // ---------------------------------------------------------------------------------
   'Chemistry': [
     {
       name: 'Some Basic Concepts of Chemistry',
@@ -322,30 +330,10 @@ export const scienceCourseContent: CourseContentMap = {
         },
       ]
     },
-    {
-      name: 'The Living World',
-      lectures: [
-        { id: 'L1', title: 'The Living World L1', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc' },
-        { id: 'L2', title: 'The Living World L2', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L2.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8')}` },
-        { id: 'L3', title: 'The Living World L3', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L3.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8')}` },
-      ]
-    },
-    {
-      name: 'Biological Classification',
-      lectures: [
-        { id: 'L1', title: 'Biological Classification L1', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L1.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
-        { id: 'L2', title: 'Biological Classification L2', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L2.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
-        { id: 'L3', title: 'Biological Classification L3', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L3.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
-        { id: 'L4', title: 'Biological Classification L4', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L4.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
-        { id: 'L5', title: 'Biological Classification L5', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
-        { id: 'L6', title: 'Biological Classification L6', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
-        { id: 'L7', title: 'Biological Classification L7', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
-        { id: 'L8', title: 'Biological Classification L8', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
-        { id: 'L9', title: 'Biological Classification L9', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L9.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
-        { id: 'L10', title: 'Biological Classification L10', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L10.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
-      ]
-    }
-  ],
+  ], // End of Chemistry
+  // ---------------------------------------------------------------------------------
+  // Mathematics - Science Batch (Shared with Commerce)
+  // ---------------------------------------------------------------------------------
   'Mathematics': [
     {
       name: 'Sets',
@@ -402,7 +390,7 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L5', title: 'Complex Numbers L5', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8')}` },
         { id: 'L6', title: 'Complex Numbers L6', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8')}` },
         { id: 'L7', title: 'Complex Numbers L7', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8')}` },
-        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://example.com/placeholder.m3u8')}` }, // Placeholder
       ]
     },
     {
@@ -417,12 +405,49 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L7', title: 'Relation & Functions L7', notesLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4395110%2F174844717954831097666%2Findex_5.m3u8` },
       ]
     },
-  ],
+  ], // End of Mathematics - Science
+  // ---------------------------------------------------------------------------------
+  // Biology - Science Batch
+  // ---------------------------------------------------------------------------------
+  'Biology': [
+    {
+      name: 'The Living World',
+      lectures: [
+        { id: 'L1', title: 'The Living World L1', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc' },
+        { id: 'L2', title: 'The Living World L2', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L2.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8')}` },
+        { id: 'L3', title: 'The Living World L3', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L3.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8')}` },
+      ]
+    },
+    {
+      name: 'Biological Classification',
+      lectures: [
+        { id: 'L1', title: 'Biological Classification L1', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L1.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L2', title: 'Biological Classification L2', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L2.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L3', title: 'Biological Classification L3', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L3.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L4', title: 'Biological Classification L4', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L4.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L5', title: 'Biological Classification L5', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L6', title: 'Biological Classification L6', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L7', title: 'Biological Classification L7', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L8', title: 'Biological Classification L8', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L9', title: 'Biological Classification L9', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L9.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L10', title: 'Biological Classification L10', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L10.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+      ]
+    }
+  ], // End of Biology
 };
+// =================================================================================
+// END OF SCIENCE BATCH CONTENT
+// =================================================================================
 
-// Commerce Batch Content (courseId '2')
+
+// =================================================================================
+// COMMERCE BATCH CONTENT (courseId '2')
+// =================================================================================
 const commerceBasePath = '/assets/courses/commerce';
 export const commerceCourseContent: CourseContentMap = {
+  // ---------------------------------------------------------------------------------
+  // Business Studies - Commerce Batch
+  // ---------------------------------------------------------------------------------
   'Business Studies': [
     { name: 'Business, Trade & Commerce',
       lectures: [
@@ -452,7 +477,10 @@ export const commerceCourseContent: CourseContentMap = {
         { id: 'L11', title: 'Forms of Business Organisations L11', notesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/L11.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4394995%2F174843818528908661500%2Findex_4.m3u8` },
       ]
     },
-  ],
+  ], // End of Business Studies
+  // ---------------------------------------------------------------------------------
+  // Accountancy - Commerce Batch
+  // ---------------------------------------------------------------------------------
   'Accountancy': [
     {
       name: 'Basic Concepts of Accounts',
@@ -621,7 +649,10 @@ export const commerceCourseContent: CourseContentMap = {
         },
       ]
     }
-  ],
+  ], // End of Accountancy
+  // ---------------------------------------------------------------------------------
+  // Economics - Commerce Batch
+  // ---------------------------------------------------------------------------------
   'Economics': [
     {
       name: 'Introduction to Microeconomics',
@@ -786,8 +817,11 @@ export const commerceCourseContent: CourseContentMap = {
         },
       ]
     }
-  ],
-  'Mathematics': [ // Shared between Science and Commerce
+  ], // End of Economics
+  // ---------------------------------------------------------------------------------
+  // Mathematics - Commerce Batch (Shared with Science)
+  // ---------------------------------------------------------------------------------
+  'Mathematics': [
      {
       name: 'Sets',
       lectures: [
@@ -802,7 +836,7 @@ export const commerceCourseContent: CourseContentMap = {
         {
           id: `L2`,
           title: `Sets L2`,
-          notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L2.pdf`, 
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Sets')}/notes/L2.pdf`,
           videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8`,
           videoEmbedType: 'iframe',
           videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8')}`,
@@ -843,7 +877,7 @@ export const commerceCourseContent: CourseContentMap = {
         { id: 'L5', title: 'Complex Numbers L5', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8')}` },
         { id: 'L6', title: 'Complex Numbers L6', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8')}` },
         { id: 'L7', title: 'Complex Numbers L7', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8')}` },
-        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' }, 
+        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
       ]
     },
     {
@@ -858,12 +892,21 @@ export const commerceCourseContent: CourseContentMap = {
         { id: 'L7', title: 'Relation & Functions L7', notesLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4395110%2F174844717954831097666%2Findex_5.m3u8` },
       ]
     },
-  ],
+  ], // End of Mathematics - Commerce
 };
+// =================================================================================
+// END OF COMMERCE BATCH CONTENT
+// =================================================================================
 
-// Aarambh Batch Content (courseId '3')
+
+// =================================================================================
+// AARAMBH BATCH CONTENT (courseId '3')
+// =================================================================================
 const aarambhBasePath = '/assets/courses/aarambh';
 export const aarambhCourseContent: CourseContentMap = {
+  // ---------------------------------------------------------------------------------
+  // Social Science - Aarambh Batch
+  // ---------------------------------------------------------------------------------
   'Social Science': [
     {
       name: 'Development',
@@ -875,7 +918,10 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L5', title: 'Development L5', notesLink: `${aarambhBasePath}/social-science/${slugify('Development')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356674/174523974370667880624/index_4.m3u8')}` },
       ]
     }
-  ],
+  ], // End of Social Science - Aarambh
+  // ---------------------------------------------------------------------------------
+  // Science - Aarambh Batch
+  // ---------------------------------------------------------------------------------
   'Science': [
     {
       name: 'Chemical Equations & Reaction',
@@ -890,10 +936,13 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L8', title: 'Chemical Equations & Reaction L8', notesLink: `${aarambhBasePath}/science/${slugify('Chemical Equations & Reaction')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362037/174567339728038296383/index_4.m3u8')}` },
       ]
     }
-  ],
+  ], // End of Science - Aarambh
+  // ---------------------------------------------------------------------------------
+  // Mathematics - Aarambh Batch
+  // ---------------------------------------------------------------------------------
   'Mathematics': [
     {
-      name: 'Real Numbers',
+      name: 'Real Numbers', // Changed from 'R. Number' for display, slugify uses 'R. Number'
       lectures: [
         { id: 'L1', title: 'Real Numbers L1', notesLink: `${aarambhBasePath}/mathematics/${slugify('R. Number')}/notes/L1.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/_0ooaKrdubI' },
         { id: 'L2', title: 'Real Numbers L2', notesLink: `${aarambhBasePath}/mathematics/${slugify('R. Number')}/notes/L2.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4351817/174473442715988296383/index_4.m3u8')}` },
@@ -903,5 +952,8 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L6', title: 'Real Numbers L6', notesLink: `${aarambhBasePath}/mathematics/${slugify('R. Number')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357843/174533856999441097666/index_5.m3u8')}` },
       ]
     }
-  ],
+  ], // End of Mathematics - Aarambh
 };
+// =================================================================================
+// END OF AARAMBH BATCH CONTENT
+// =================================================================================
