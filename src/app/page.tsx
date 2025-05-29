@@ -20,7 +20,7 @@ import {
   DialogTitle,
   DialogFooter,
   DialogClose,
-  DialogTrigger, // Added DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -107,7 +107,7 @@ const coursesData: Course[] = [
 
 export default function HomePage() {
   const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = useState(false);
-  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
+  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false); // Retain for menu FAQ
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
 
   useEffect(() => {
@@ -133,6 +133,7 @@ export default function HomePage() {
     <>
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
       
+      {/* FAQ Dialog, still triggered from the menu */}
       <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
         <DialogContent className="sm:max-w-lg rounded-xl">
           <DialogHeader>
@@ -271,17 +272,14 @@ export default function HomePage() {
         </div>
       </main>
 
-      <div className="mt-12 text-center">
-        <Button 
-          variant="outline" 
-          size="lg"
-          onClick={() => setIsFaqsDialogOpen(true)}
-          className="rounded-lg"
-          aria-label="View FAQs"
-        >
-          <HelpCircle className="mr-2 h-5 w-5" />
-          Frequently Asked Questions
-        </Button>
+      <div className="mt-12 mb-6 text-center">
+        <p className="text-muted-foreground mb-2">Having Trouble?</p>
+        <Link href="/help-center" passHref>
+          <Button variant="outline" size="lg" className="rounded-lg">
+            <Bot className="mr-2 h-5 w-5" />
+            E-Leak 24/7 Support
+          </Button>
+        </Link>
       </div>
 
       <footer className="text-center text-sm text-muted-foreground mt-8 md:mt-10 animate-pulse-custom">

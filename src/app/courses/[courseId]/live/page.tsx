@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, Bot } from 'lucide-react'; // Added Bot
 import { getParamAsString } from '@/lib/utils';
 
 interface LiveClassData {
@@ -23,10 +23,10 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "Class 11 Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "Physics",
-    class2Subject: "Chemistry",
+    class1Subject: "Physics", // Updated as Biology was removed
+    class2Subject: "Chemistry", // Assuming Chemistry is the second class
     class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
-    class2LiveStreamUrl: undefined, 
+    class2LiveStreamUrl: undefined, // Placeholder, update if Chemistry has a stream
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
@@ -134,7 +134,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           status: 'upcoming',
           badgeText: 'Upcoming',
           buttonText: 'JOIN NOW',
-          buttonDisabled: true, // Button is disabled for upcoming
+          buttonDisabled: true, 
           cardBorderClass: 'border-accent',
           badgeClass: 'bg-accent/20 text-accent',
         });
@@ -144,7 +144,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           status: 'live',
           badgeText: 'Live Now',
           buttonText: 'JOIN NOW',
-          buttonDisabled: !liveStreamUrl, // Button disabled if no stream URL when live
+          buttonDisabled: !liveStreamUrl, 
           cardBorderClass: 'border-destructive animate-live-pulse',
           badgeClass: 'bg-destructive/20 text-destructive',
         });
@@ -154,7 +154,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           status: 'completed',
           badgeText: 'Completed',
           buttonText: 'Class Ended',
-          buttonDisabled: true, // Button disabled for completed
+          buttonDisabled: true, 
           cardBorderClass: 'border-green-500', 
           badgeClass: 'bg-green-500/20 text-green-500',
         });
@@ -183,12 +183,10 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       <h2 className="text-2xl font-bold text-primary mb-4">{subject}</h2>
       
       {!liveStreamUrl ? (
-        // Case 1: No live stream URL defined for this slot, regardless of class status
         <div className="text-center text-muted-foreground py-8">
           <p className="text-lg">Today is no live class for this subject.</p>
         </div>
       ) : classStatus.status === 'live' ? (
-        // Case 2: Stream URL IS defined, and class is LIVE
         <>
           <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-border bg-black my-4">
             <iframe
@@ -206,7 +204,6 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           </p>
         </>
       ) : (
-        // Case 3: Stream URL IS defined, but class is UPCOMING or COMPLETED
         <>
           <div className="flex justify-between mb-6">
             <div className="text-center bg-muted/30 p-3 rounded-lg min-w-[70px] sm:min-w-[80px] flex-1 mx-1">
@@ -228,7 +225,6 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
                         ${classStatus.buttonDisabled ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5'}`}
             disabled={classStatus.buttonDisabled}
             onClick={() => { 
-              // Logic for button click if needed, though it's mostly disabled
               if (!classStatus.buttonDisabled && liveStreamUrl) { 
                 console.log('Joining class for ' + subject);
               }
@@ -319,6 +315,17 @@ export default function LiveClassesPage() {
           />
         </div>
       </main>
+
+      <div className="mt-12 mb-6 text-center">
+        <p className="text-muted-foreground mb-2">Having Trouble?</p>
+        <Link href="/help-center" passHref>
+          <Button variant="outline" size="lg" className="rounded-lg">
+            <Bot className="mr-2 h-5 w-5" />
+            E-Leak 24/7 Support
+          </Button>
+        </Link>
+      </div>
+
       <footer className="text-center text-sm text-muted-foreground mt-12 py-4">
         <p>© E-Leak All rights reserved.</p>
       </footer>

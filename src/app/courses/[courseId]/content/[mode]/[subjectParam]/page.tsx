@@ -5,7 +5,7 @@ import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, HelpCircle } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot } from 'lucide-react';
 import { 
   scienceCourseContent, 
   commerceCourseContent, 
@@ -14,16 +14,7 @@ import {
   type Topic
 } from '@/lib/course-data';
 import { getParamAsString } from '@/lib/utils';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog";
-import { FaqDialogContent } from '@/components/faq-dialog-content';
-
+// Removed FAQ Dialog imports as it's no longer directly handled here
 
 export default function SubjectContentPage() {
   const router = useRouter();
@@ -36,8 +27,7 @@ export default function SubjectContentPage() {
   const [subjectName, setSubjectName] = React.useState('');
   const [displayedTopics, setDisplayedTopics] = React.useState<Topic[] | string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
-  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
-
+  // Removed isFaqsDialogOpen state
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -216,38 +206,21 @@ export default function SubjectContentPage() {
           })()}
         </main>
 
-        <div className="mt-12 text-center">
-          <Button 
-            variant="outline" 
-            size="lg"
-            onClick={() => setIsFaqsDialogOpen(true)}
-            className="rounded-lg"
-            aria-label="View FAQs"
-          >
-            <HelpCircle className="mr-2 h-5 w-5" />
-            Frequently Asked Questions
-          </Button>
+        <div className="mt-12 mb-6 text-center">
+          <p className="text-muted-foreground mb-2">Having Trouble?</p>
+          <Link href="/help-center" passHref>
+            <Button variant="outline" size="lg" className="rounded-lg">
+              <Bot className="mr-2 h-5 w-5" />
+              E-Leak 24/7 Support
+            </Button>
+          </Link>
         </div>
 
         <footer className="text-center text-sm text-muted-foreground mt-auto py-4">
           <p>© E-Leak All rights reserved.</p>
         </footer>
       </div>
-      <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
-        <DialogContent className="sm:max-w-lg rounded-xl">
-          <DialogHeader>
-            <DialogTitle className="text-xl">Frequently Asked Questions</DialogTitle>
-          </DialogHeader>
-          <FaqDialogContent />
-          <DialogFooter className="sm:justify-start">
-            <DialogClose asChild>
-              <Button type="button" variant="outline">
-                Close
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      {/* Removed FAQ Dialog component from here */}
     </>
   );
 }
