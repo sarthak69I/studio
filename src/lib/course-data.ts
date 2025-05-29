@@ -350,6 +350,16 @@ export const scienceCourseContent: CourseContentMap = {
         },
       ],
     },
+    {
+        name: 'Biological Classification',
+        lectures: Array.from({ length: 10 }, (_, i) => ({
+          id: `L${i + 1}`,
+          title: `Biological Classification L${i + 1}`,
+          notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L${i + 1}.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `#`, // Placeholder
+        })),
+    }
   ],
   'Mathematics': [
     {
@@ -564,6 +574,51 @@ export const commerceCourseContent: CourseContentMap = {
           notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Equations')}/notes/L5.pdf`,
           videoEmbedType: 'iframe',
           videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4384003%2F174739986338128037481%2Findex_4.m3u8`,
+        },
+      ]
+    },
+    {
+      name: 'Accounting Principles',
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Accounting Principles L1',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Principles')}/notes/L1.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4384771%2F174748750880628037481%2Findex_4.m3u8`,
+        },
+        {
+          id: 'L2',
+          title: 'Accounting Principles L2',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Principles')}/notes/L2.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4389259%2F174791900427358037481%2Findex_4.m3u8`,
+        },
+        {
+          id: 'L3',
+          title: 'Accounting Principles L3',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Principles')}/notes/L3.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4390873%2F174800541698838037481%2Findex_4.m3u8`,
+        },
+        {
+          id: 'L4',
+          title: 'Accounting Principles L4',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Accounting Principles')}/notes/L4.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4391460%2F174809140367138037481%2Findex_4.m3u8`,
+        },
+      ]
+    },
+    {
+      name: 'Rule of Debit & Credit',
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Rule of Debit & Credit L1',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Rule of Debit & Credit')}/notes/L1.pdf`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4396176%2F174852449790338037481%2Findex_4.m3u8`,
         },
       ]
     }
