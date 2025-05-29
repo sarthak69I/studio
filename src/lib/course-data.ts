@@ -281,7 +281,7 @@ export const scienceCourseContent: CourseContentMap = {
     {
       name: 'The Living World',
       lectures: [
-        { id: 'L1', title: 'The Living World L1', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`, videoLink: `${scienceBasePath}/biology/${slugify('The Living World')}/videos/L1.mp4` },
+        { id: 'L1', title: 'The Living World L1', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`, videoLink: `${scienceBasePath}/biology/${slugify('The Living World')}/videos/L1.mp4`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
       ],
     },
   ],
@@ -350,17 +350,61 @@ export const scienceCourseContent: CourseContentMap = {
           videoEmbedType: 'iframe',
           videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364488/174592875146111261798/index_4.m3u8')}`,
         },
-        ...Array.from({ length: 6 }, (_, i) => ({ // L3 to L8
-          id: `L${i + 3}`,
-          title: `Complex Numbers L${i + 3}`,
-          notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L${i + 3}.pdf`,
-          videoLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/L${i + 3}.mp4`,
-          videoEmbedType: 'iframe' as 'iframe',
-          videoEmbedUrl: '#',
-        }))
+        {
+          id: `L3`,
+          title: `Complex Numbers L3`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L3.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4366039/174602857795961261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4366039/174602857795961261798/index_4.m3u8')}`,
+        },
+        {
+          id: `L4`,
+          title: `Complex Numbers L4`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L4.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367111/174610963914991261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367111/174610963914991261798/index_4.m3u8')}`,
+        },
+        {
+          id: `L5`,
+          title: `Complex Numbers L5`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L5.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8')}`,
+        },
+        {
+          id: `L6`,
+          title: `Complex Numbers L6`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L6.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8')}`,
+        },
+        {
+          id: `L7`,
+          title: `Complex Numbers L7`,
+          notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L7.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8')}`,
+        },
+        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/L8.mp4`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
       ]
     },
-    { name: 'Relation & Functions', topicNotesLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
+    {
+      name: 'Relation & Functions',
+      lectures: [
+        { id: 'L1', title: 'Relation & Functions L1', notesLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L1.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4379033%2F174705494887511097666%2Findex_5.m3u8` },
+        { id: 'L2', title: 'Relation & Functions L2', notesLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L2.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4385645%2F174765739956571097666%2Findex_5.m3u8` },
+        { id: 'L3', title: 'Relation & Functions L3', notesLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L3.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4386945%2F174774606477081097666%2Findex_5.m3u8` },
+        { id: 'L4', title: 'Relation & Functions L4', notesLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L4.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4388168%2F174784321070651097666%2Findex_5.m3u8` },
+        { id: 'L5', title: 'Relation & Functions L5', notesLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4392734%2F174826442633201097666%2Findex_5.m3u8` },
+        { id: 'L6', title: 'Relation & Functions L6', notesLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4393953%2F174835206745611097666%2Findex_5.m3u8` },
+        { id: 'L7', title: 'Relation & Functions L7', notesLink: `${scienceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4395110%2F174844717954831097666%2Findex_5.m3u8` },
+      ]
+    },
   ],
 };
 
@@ -649,17 +693,61 @@ export const commerceCourseContent: CourseContentMap = {
           videoEmbedType: 'iframe',
           videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364488/174592875146111261798/index_4.m3u8')}`,
         },
-        ...Array.from({ length: 6 }, (_, i) => ({ // L3 to L8
-          id: `L${i + 3}`,
-          title: `Complex Numbers L${i + 3}`,
-          notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L${i + 3}.pdf`,
-          videoLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/L${i + 3}.mp4`,
-          videoEmbedType: 'iframe' as 'iframe',
-          videoEmbedUrl: '#',
-        }))
+        {
+          id: `L3`,
+          title: `Complex Numbers L3`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L3.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4366039/174602857795961261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4366039/174602857795961261798/index_4.m3u8')}`,
+        },
+        {
+          id: `L4`,
+          title: `Complex Numbers L4`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L4.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367111/174610963914991261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367111/174610963914991261798/index_4.m3u8')}`,
+        },
+        {
+          id: `L5`,
+          title: `Complex Numbers L5`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L5.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8')}`,
+        },
+        {
+          id: `L6`,
+          title: `Complex Numbers L6`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L6.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8')}`,
+        },
+        {
+          id: `L7`,
+          title: `Complex Numbers L7`,
+          notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L7.pdf`,
+          videoLink: `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8`,
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8')}`,
+        },
+        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/videos/L8.mp4`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
       ]
     },
-    { name: 'Relation & Functions', topicNotesLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
+    {
+      name: 'Relation & Functions',
+      lectures: [
+        { id: 'L1', title: 'Relation & Functions L1', notesLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L1.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4379033%2F174705494887511097666%2Findex_5.m3u8` },
+        { id: 'L2', title: 'Relation & Functions L2', notesLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L2.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4385645%2F174765739956571097666%2Findex_5.m3u8` },
+        { id: 'L3', title: 'Relation & Functions L3', notesLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L3.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4386945%2F174774606477081097666%2Findex_5.m3u8` },
+        { id: 'L4', title: 'Relation & Functions L4', notesLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L4.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4388168%2F174784321070651097666%2Findex_5.m3u8` },
+        { id: 'L5', title: 'Relation & Functions L5', notesLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4392734%2F174826442633201097666%2Findex_5.m3u8` },
+        { id: 'L6', title: 'Relation & Functions L6', notesLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4393953%2F174835206745611097666%2Findex_5.m3u8` },
+        { id: 'L7', title: 'Relation & Functions L7', notesLink: `${commerceBasePath}/mathematics/${slugify('Relation & Functions')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}https%3A%2F%2Fd1qcficr3lu37x.cloudfront.net%2Ffile_library%2Fvideos%2Fchannel_vod_non_drm_hls%2F4395110%2F174844717954831097666%2Findex_5.m3u8` },
+      ]
+    },
   ],
 };
 
@@ -674,6 +762,3 @@ export const aarambhCourseContent: CourseContentMap = {
     { name: 'Relation & Functions', topicNotesLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/notes/topic.pdf`, topicVideoLink: `${aarambhBasePath}/mathematics/${slugify('Relation & Functions')}/videos/topic.mp4` },
   ],
 };
-
-
-    
