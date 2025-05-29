@@ -141,9 +141,9 @@ export const scienceCourseContent: CourseContentMap = {
           videoEmbedType: 'iframe',
           videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4391550/174810397274838296383/index_4.m3u8')}`,
         },
-      ] // Correctly close the lectures array
-    } // Correctly close the "Motion In a Straight Line" topic object (no comma as it's the last topic for Physics)
-  ], // Correctly close the Physics topics array
+      ]
+    }
+  ],
   'Chemistry': [
     {
       name: 'Some Basic Concepts of Chemistry',
@@ -152,6 +152,8 @@ export const scienceCourseContent: CourseContentMap = {
         title: `Some Basic Concepts of Chemistry L${i + 1}`,
         notesLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/notes/L${i + 1}.pdf`,
         videoLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/videos/L${i + 1}.mp4`, // Placeholder, update if specific videos exist
+        videoEmbedType: 'iframe', // Default, can be overridden
+        videoEmbedUrl: `#`, // Placeholder
       })),
     },
     { name: 'Structure of Atom', topicNotesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/topic.pdf`, topicVideoLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/videos/topic.mp4` },
@@ -255,8 +257,82 @@ export const commerceCourseContent: CourseContentMap = {
     { name: 'Forms of Business Organisations', topicNotesLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/business-studies/${slugify('Forms of Business Organisations')}/videos/topic.mp4` },
   ],
   'Accountancy': [
-    { name: 'Basic Concepts of Accounts', topicNotesLink: `${commerceBasePath}/accountancy/${slugify('Basic Concepts of Accounts')}/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/accountancy/${slugify('Basic Concepts of Accounts')}/videos/topic.mp4` },
-    { name: 'Introduction To accounting', topicNotesLink: `${commerceBasePath}/accountancy/${slugify('Introduction To accounting')}/notes/topic.pdf`, topicVideoLink: `${commerceBasePath}/accountancy/${slugify('Introduction To accounting')}/videos/topic.mp4` },
+    { 
+      name: 'Basic Concepts of Accounts', // Updated to match display name for consistency
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Basic Accounting terms L1',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Basic Concepts of Accounts')}/notes/L1.pdf`,
+          videoLink: 'https://www.youtube.com/live/N0UH3xznWko?si=RG0AL5lLezOMDany',
+          videoEmbedType: 'youtube',
+          videoEmbedUrl: 'https://www.youtube.com/embed/N0UH3xznWko',
+        },
+        {
+          id: 'L2',
+          title: 'Basic Accounting terms L2',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Basic Concepts of Accounts')}/notes/L2.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354736/174498147635838037481/index_3.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354736/174498147635838037481/index_3.m3u8')}`,
+        },
+        {
+          id: 'L3',
+          title: 'Basic Accounting terms L3',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Basic Concepts of Accounts')}/notes/L3.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355332/174506775549578037481/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355332/174506775549578037481/index_4.m3u8')}`,
+        },
+        {
+          id: 'L4',
+          title: 'Basic Accounting terms L4',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Basic Concepts of Accounts')}/notes/L4.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360049/174550144387958037481/index_3.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360049/174550144387958037481/index_3.m3u8')}`,
+        },
+      ],
+    },
+    { 
+      name: 'Introduction To accounting',
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Introduction To Accounting L1',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Introduction To accounting')}/notes/L1.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361169/174558615865988037481/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361169/174558615865988037481/index_4.m3u8')}`,
+        },
+        {
+          id: 'L2',
+          title: 'Introduction To Accounting L2',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Introduction To accounting')}/notes/L2.pdf`,
+          videoLink: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362045/174567417274348037481/index_4.m3u8',
+          videoEmbedType: 'iframe',
+          videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362045/174567417274348037481/index_4.m3u8')}`,
+        },
+        {
+          id: 'L3',
+          title: 'Introduction To Accounting L3',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Introduction To accounting')}/notes/L3.pdf`,
+          videoEmbedUrl: `#`, // Placeholder
+        },
+        {
+          id: 'L4',
+          title: 'Introduction To Accounting L4',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Introduction To accounting')}/notes/L4.pdf`,
+          videoEmbedUrl: `#`, // Placeholder
+        },
+        {
+          id: 'L5',
+          title: 'Introduction To Accounting L5',
+          notesLink: `${commerceBasePath}/accountancy/${slugify('Introduction To accounting')}/notes/L5.pdf`,
+          videoEmbedUrl: `#`, // Placeholder
+        },
+      ],
+    },
   ],
   'Economics': 'Economics Content Coming Soon',
   'Mathematics': [
