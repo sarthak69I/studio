@@ -16,8 +16,7 @@ import {
   type Topic,
 } from '@/lib/course-data';
 import { getParamAsString } from '@/lib/utils';
-import { FaqDialogContent } from '@/components/faq-dialog-content';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from '@/components/ui/dialog';
+// Removed FaqDialogContent and related Dialog imports as they are not used here
 
 export default function LecturePlayPage() {
   const router = useRouter();
@@ -31,8 +30,7 @@ export default function LecturePlayPage() {
   const [lecture, setLecture] = React.useState<Lecture | null>(null);
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
-  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
-
+  // Removed isFaqsDialogOpen state
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -151,7 +149,7 @@ export default function LecturePlayPage() {
               {lecture.title}
             </h1>
             {renderPlayer()}
-            {lecture.videoEmbedType !== 'hls' && ( // Only show this for non-custom players
+            {lecture.videoEmbedType !== 'hls' && ( 
               <div className="mt-3 text-center text-sm text-muted-foreground p-2 bg-card/50 rounded-md max-w-md mx-auto">
                 <Maximize className="inline h-4 w-4 mr-1" /> 
                 For the best viewing experience, try double-clicking the video or using the player's full-screen button. Ensure your device rotation is enabled for landscape mode.
@@ -170,31 +168,19 @@ export default function LecturePlayPage() {
 
       <div className="mt-12 mb-6 text-center">
         <p className="text-muted-foreground mb-2">Having Trouble?</p>
-        <Button variant="outline" size="lg" className="rounded-lg" onClick={() => setIsFaqsDialogOpen(true)}>
-          <Bot className="mr-2 h-5 w-5" />
-          E-Leak 24/7 Support
-        </Button>
+        <Link href="/help-center" passHref>
+          <Button variant="outline" size="lg" className="rounded-lg">
+            <Bot className="mr-2 h-5 w-5" />
+            E-Leak 24/7 Support
+          </Button>
+        </Link>
       </div>
 
       <footer className="text-center text-sm text-muted-foreground mt-auto py-4">
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
-     <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
-        <DialogContent className="sm:max-w-lg rounded-xl">
-          <DialogHeader>
-            <DialogTitle className="text-xl">Frequently Asked Questions</DialogTitle>
-          </DialogHeader>
-          <FaqDialogContent />
-          <DialogFooter className="sm:justify-start">
-            <DialogClose asChild>
-              <Button type="button" variant="outline">
-                Close
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+    {/* Removed FAQ Dialog from here */}
     </>
   );
 }
