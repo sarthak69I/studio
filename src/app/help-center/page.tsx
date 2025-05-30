@@ -188,7 +188,7 @@ export default function ELeakSupportPage() {
               <Button
                 key={qna.id}
                 variant="secondary"
-                className="w-full justify-start text-left h-auto py-4 px-5 text-md rounded-lg shadow-sm hover:bg-muted/80 
+                className="w-full justify-start text-left h-auto py-4 px-5 text-sm rounded-lg shadow-sm hover:bg-muted/80 
                            transition-all duration-200 ease-in-out transform hover:scale-[1.02] whitespace-normal"
                 onClick={() => handleQuestionClick(qna)}
               >
