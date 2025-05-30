@@ -67,6 +67,21 @@ const predefinedQAs: QnA[] = [
     answer: "If you have queries about your current batch, schedule, or content, please check the batch announcements section first. For specific questions, you can ask your batch coordinator or contact support via Telegram.",
   },
   {
+    id: 'find-content',
+    question: "I can't find specific notes or videos for a topic.",
+    answer: (
+      <>
+        <p className="mb-2">If you're having trouble finding content:</p>
+        <ol className="list-decimal pl-5 space-y-1">
+          <li>Ensure you've selected the correct course and subject on the 'Enroll' page.</li>
+          <li>Toggle between 'Notes' and 'Video' modes to see the respective content.</li>
+          <li>Some topics might have lectures listed under them; click on the topic to see individual lectures.</li>
+          <li>Content is regularly updated. If something is missing, it might be added soon. Check our Telegram channel for announcements!</li>
+        </ol>
+      </>
+    ),
+  },
+  {
     id: 'contact-support',
     question: "How can I contact support directly?",
     answer: (
@@ -191,10 +206,13 @@ export default function ELeakSupportPage() {
               <Button
                 key={qna.id}
                 variant="outline" // Changed to outline for lighter appearance
-                className="w-full justify-center text-center h-auto py-3 px-4 text-sm rounded-full bg-card hover:bg-muted/80 shadow-sm"
+                className="w-full justify-start text-left h-auto py-3 px-4 text-sm rounded-full bg-card hover:bg-muted/80 shadow-sm whitespace-normal"
                 onClick={() => handleQuestionClick(qna)}
               >
-                {qna.question}
+                <div className="flex items-center gap-2 w-full">
+                   <MessageSquare className="mr-2 h-5 w-5 text-primary flex-shrink-0" />
+                   <span className="flex-grow">{qna.question}</span>
+                </div>
               </Button>
             ))}
           </div>
