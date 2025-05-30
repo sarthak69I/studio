@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Bell, HelpCircle, Sun, Moon, Bot } from 'lucide-react';
+import { Menu, Bell, HelpCircle, Sun, Moon, Info, Mail } from 'lucide-react'; // Added Mail, Info
 import {
   Sheet,
   SheetContent,
@@ -20,11 +20,12 @@ import {
   DialogTitle,
   DialogFooter,
   DialogClose,
-  DialogTrigger,
+  DialogTrigger, // Added DialogTrigger
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
+import { Bot } from 'lucide-react';
 
 interface Course {
   id: string;
@@ -107,7 +108,8 @@ const coursesData: Course[] = [
 
 export default function HomePage() {
   const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = useState(false);
-  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false); // Retain for menu FAQ
+  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
+  const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] = useState(false); // New state for notifications dialog
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
 
   useEffect(() => {
@@ -133,7 +135,6 @@ export default function HomePage() {
     <>
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
       
-      {/* FAQ Dialog, still triggered from the menu */}
       <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
         <DialogContent className="sm:max-w-lg rounded-xl">
           <DialogHeader>
@@ -149,6 +150,35 @@ export default function HomePage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Notifications Dialog */}
+      <Dialog open={isNotificationsDialogOpen} onOpenChange={setIsNotificationsDialogOpen}>
+        <DialogContent className="sm:max-w-md rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Notifications</DialogTitle>
+          </DialogHeader>
+          <div className="py-4 space-y-3 text-sm">
+            {/* Example Notifications - Replace with dynamic content later */}
+            <div className="p-3 bg-muted/50 rounded-md">
+              <p className="font-semibold">New Lecture Added!</p>
+              <p className="text-xs text-muted-foreground">"Calculus L5" is now available in the Maths section.</p>
+            </div>
+            <div className="p-3 bg-muted/50 rounded-md">
+              <p className="font-semibold">Live Class Reminder</p>
+              <p className="text-xs text-muted-foreground">Physics live class starts in 1 hour.</p>
+            </div>
+            <p className="text-center text-muted-foreground">No new notifications.</p>
+          </div>
+          <DialogFooter className="sm:justify-start">
+            <DialogClose asChild>
+              <Button type="button" variant="outline">
+                Close
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
 
       <div className="fixed top-6 right-6 z-50">
         <Sheet>
@@ -225,6 +255,17 @@ export default function HomePage() {
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
+              
+              {/* New Notifications Button */}
+              <Button
+                variant="ghost"
+                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                aria-label="View Notifications"
+                onClick={() => setIsNotificationsDialogOpen(true)}
+              >
+                <Bell className="mr-3 h-5 w-5 text-primary" /> {/* Using Bell icon again, can change if needed */}
+                Notifications
+              </Button>
 
               <Button
                 variant="ghost"
@@ -289,4 +330,6 @@ export default function HomePage() {
     </>
   );
 }
+    
+
     
