@@ -1,20 +1,23 @@
-[
-  {
-    "id": "3",
-    "timestamp": "2024-07-30T12:00:00Z",
-    "title": "Scheduled Maintenance",
-    "message": "E-Leak will be undergoing scheduled maintenance on Aug 5th from 2 AM to 3 AM UTC. Access might be temporarily limited."
-  },
-  {
-    "id": "2",
-    "timestamp": "2024-07-29T10:00:00Z",
-    "title": "New Feature: Custom Video Player!",
-    "message": "We've launched a new video player for M3U8 streams with enhanced controls. Check it out!"
-  },
-  {
-    "id": "1",
-    "timestamp": "2024-07-28T15:30:00Z",
-    "title": "Welcome to E-Leak Updates!",
-    "message": "Stay tuned here for the latest news and updates regarding the E-Leak platform."
-  }
-]
+{
+  "badgeCount": 3,
+  "items": [
+    {
+      "id": "notif-20240728-001",
+      "timestamp": "2024-07-28T10:00:00Z",
+      "title": "New Physics Lecture Available!",
+      "message": "Check out 'Motion in a Straight Line - L1' in the Science batch."
+    },
+    {
+      "id": "notif-20240727-002",
+      "timestamp": "2024-07-27T15:30:00Z",
+      "title": "Commerce Class Update",
+      "message": "Accountancy notes for 'Basic Concepts' have been updated."
+    },
+    {
+      "id": "notif-20240727-001",
+      "timestamp": "2024-07-27T09:00:00Z",
+      "title": "Welcome to E-Leak!",
+      "message": "Explore our courses and start your learning journey."
+    }
+  ]
+}

@@ -7,13 +7,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { Button } from '@/components/ui/button';
 import { Bell } from 'lucide-react';
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetFooter,
+  SheetClose,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 interface AppNotification {
   id: string;
@@ -22,13 +23,18 @@ interface AppNotification {
   message: string;
 }
 
+interface NotificationsData {
+  badgeCount: number;
+  items: AppNotification[];
+}
+
 interface ClientLayoutWrapperProps {
   children: ReactNode;
 }
 
 export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperProps) {
   const [notifications, setNotifications] = useState<AppNotification[]>([]);
-  const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] = useState(false);
+  const [isNotificationsSheetOpen, setIsNotificationsSheetOpen] = useState(false);
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
 
   useEffect(() => {
@@ -50,86 +56,89 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       if (!response.ok) {
         console.error('Failed to fetch notifications:', response.status);
         setNotifications([]);
+        setUnreadNotificationCount(0);
         return;
       }
-      const data: AppNotification[] = await response.json();
-      data.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      setNotifications(data);
-      updateUnreadCount(data);
+      const data: NotificationsData = await response.json();
+      
+      if (data && Array.isArray(data.items)) {
+        data.items.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+        setNotifications(data.items);
+      } else {
+        setNotifications([]);
+      }
+
+      if (data && typeof data.badgeCount === 'number') {
+        setUnreadNotificationCount(data.badgeCount);
+      } else {
+        setUnreadNotificationCount(0);
+      }
+
     } catch (error) {
       console.error('Error fetching notifications:', error);
       setNotifications([]);
-    }
-  };
-
-  const updateUnreadCount = (fetchedNotifications: AppNotification[]) => {
-    const lastSeenTimestamp = localStorage.getItem('lastSeenNotificationTimestamp');
-    if (fetchedNotifications.length > 0) {
-      const newNotifications = fetchedNotifications.filter(notif => 
-        !lastSeenTimestamp || new Date(notif.timestamp) > new Date(lastSeenTimestamp)
-      );
-      setUnreadNotificationCount(newNotifications.length);
-    } else {
       setUnreadNotificationCount(0);
     }
   };
 
   const handleOpenNotifications = () => {
-    setIsNotificationsDialogOpen(true);
-    if (notifications.length > 0) {
-      localStorage.setItem('lastSeenNotificationTimestamp', notifications[0].timestamp);
-    }
-    setUnreadNotificationCount(0); // Mark all as read when dialog is opened
+    setIsNotificationsSheetOpen(true);
+    // Visually clear the badge for the current session when opened
+    setUnreadNotificationCount(0); 
   };
 
   return (
     <>
       <div className="fixed top-6 left-6 z-50">
-        <Button
-          variant="outline"
-          size="icon"
-          aria-label="View Notifications"
-          className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 relative"
-          onClick={handleOpenNotifications}
-        >
-          <Bell className="h-6 w-6" />
-          {unreadNotificationCount > 0 && (
-            <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-destructive-foreground text-xs leading-none">
-              {unreadNotificationCount > 9 ? '9+' : unreadNotificationCount}
-            </span>
-          )}
-        </Button>
+        <Sheet open={isNotificationsSheetOpen} onOpenChange={setIsNotificationsSheetOpen}>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              aria-label="View Notifications"
+              className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 relative animate-pulse-custom"
+              onClick={handleOpenNotifications}
+            >
+              <Bell className="h-6 w-6" />
+              {unreadNotificationCount > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-destructive-foreground text-xs leading-none">
+                  {unreadNotificationCount > 9 ? '9+' : unreadNotificationCount}
+                </span>
+              )}
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-full sm:w-[400px] p-0 flex flex-col">
+            <SheetHeader className="p-6 pb-4 border-b">
+              <SheetTitle className="text-xl font-semibold">Notifications</SheetTitle>
+            </SheetHeader>
+            <div className="flex-grow overflow-y-auto p-6 space-y-4">
+              {notifications.length > 0 ? (
+                notifications.map(notif => (
+                  <div 
+                    key={notif.id} 
+                    className="p-4 bg-muted/50 rounded-lg border border-border shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <p className="font-semibold text-foreground mb-1">{notif.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{notif.message}</p>
+                    <p className="text-xs text-muted-foreground/70 mt-3 text-right">
+                      {new Date(notif.timestamp).toLocaleDateString()} - {new Date(notif.timestamp).toLocaleTimeString()}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-center text-muted-foreground py-10">No new notifications.</p>
+              )}
+            </div>
+            <SheetFooter className="p-4 border-t">
+              <SheetClose asChild>
+                <Button type="button" variant="outline" className="w-full">
+                  Close
+                </Button>
+              </SheetClose>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
       </div>
-
-      <Dialog open={isNotificationsDialogOpen} onOpenChange={setIsNotificationsDialogOpen}>
-        <DialogContent className="sm:max-w-md rounded-xl">
-          <DialogHeader>
-            <DialogTitle className="text-xl">Notifications</DialogTitle>
-          </DialogHeader>
-          <div className="py-4 space-y-3 text-sm max-h-[60vh] overflow-y-auto">
-            {notifications.length > 0 ? (
-              notifications.map(notif => (
-                <div key={notif.id} className="p-3 bg-muted/50 rounded-md border border-border">
-                  <p className="font-semibold text-foreground">{notif.title}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{notif.message}</p>
-                  <p className="text-xs text-muted-foreground/70 mt-2 text-right">
-                    {new Date(notif.timestamp).toLocaleDateString()} - {new Date(notif.timestamp).toLocaleTimeString()}
-                  </p>
-                </div>
-              ))
-            ) : (
-              <p className="text-center text-muted-foreground">No new notifications.</p>
-            )}
-          </div>
-          <DialogFooter className="sm:justify-start">
-            <DialogClose asChild>
-              <Button type="button" variant="outline">
-                Close
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
 
       {children}
       <Toaster />
