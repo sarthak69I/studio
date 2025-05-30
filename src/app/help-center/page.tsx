@@ -26,6 +26,21 @@ const predefinedQAs: QnA[] = [
     answer: "Please check your internet connection first. Try refreshing the page or using a different browser. Sometimes, very high demand can cause temporary slowdowns. You can also report persistent issues on our Telegram channel.",
   },
   {
+    id: 'live-class-not-playing',
+    question: "Live class video is not playing or showing errors.",
+    answer: (
+      <>
+        <p className="mb-2">If a live class video isn't playing:</p>
+        <ol className="list-decimal pl-5 space-y-1">
+          <li>First, please check your internet connection. A stable connection is crucial for streaming.</li>
+          <li>Try refreshing the live class page.</li>
+          <li>Sometimes, using a different web browser can resolve compatibility issues.</li>
+          <li>If the issue persists, it might be a temporary problem with the stream or high server load. Please check our Telegram channel for any announcements or report the issue there for faster assistance.</li>
+        </ol>
+      </>
+    ),
+  },
+  {
     id: 'find-content',
     question: "I can't find specific notes or videos.",
     answer: (
