@@ -11,8 +11,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Home as HomeIcon, KeyRound } from 'lucide-react';
 
-// IMPORTANT: CHANGE THIS PASSWORD!
-const ADMIN_PASSWORD = "yoursecurepassword"; // Replace with a strong, unique password
+// IMPORTANT: CHANGE THIS PASSWORD if deploying, but for now it's "systumelvish"
+const ADMIN_PASSWORD = "systumelvish"; 
 
 export default function AdminToolPage() {
   const router = useRouter();
@@ -24,7 +24,6 @@ export default function AdminToolPage() {
   useEffect(() => {
     setIsMounted(true);
     document.title = 'Admin Tool | E-Leak';
-    // Optional: Check for a session token if implementing more robust auth later
   }, []);
 
   const handleLogin = (e: React.FormEvent) => {
@@ -32,7 +31,6 @@ export default function AdminToolPage() {
     if (passwordInput === ADMIN_PASSWORD) {
       setIsAuthenticated(true);
       setError('');
-      // Optional: Set a session cookie/token here for more persistent login
     } else {
       setError('Incorrect password. Please try again.');
       setPasswordInput('');

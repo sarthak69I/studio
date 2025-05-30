@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, Video, FileText, Bot } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Video, FileText } from 'lucide-react';
 import {
   scienceCourseContent,
   commerceCourseContent,
@@ -15,7 +15,17 @@ import {
   type Topic,
 } from '@/lib/course-data';
 import { getParamAsString } from '@/lib/utils';
-// Removed FAQ Dialog imports as it's no longer directly handled here
+import { FaqDialogContent } from '@/components/faq-dialog-content'; 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Bot } from 'lucide-react';
+
 
 export default function TopicLecturesPage() {
   const router = useRouter();
@@ -31,7 +41,8 @@ export default function TopicLecturesPage() {
   const [lectures, setLectures] = React.useState<Lecture[]>([]);
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
-  // Removed isFaqsDialogOpen state
+  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
+
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -53,9 +64,9 @@ export default function TopicLecturesPage() {
         if (currentCourseMap) {
           const subjectData = currentCourseMap[decodedSubjectName];
           if (typeof subjectData === 'string') { 
-            setStatusMessage(subjectData);
+            setStatusMessage(subjectData); // e.g., "Coming Soon"
             setLectures([]);
-          } else if (Array.isArray(subjectData)) { 
+          } else if (Array.isArray(subjectData)) { // Array of Topic objects
             const currentTopic = subjectData.find((t: Topic) => t.name === decodedTopicName);
             if (currentTopic && currentTopic.lectures && currentTopic.lectures.length > 0) {
               setLectures(currentTopic.lectures);
@@ -187,7 +198,7 @@ export default function TopicLecturesPage() {
           </h1>
           
           {statusMessage ? (
-            (topicName === 'Unknown Topic' || topicName === 'Invalid Topic' || statusMessage.includes('Could not load') || statusMessage.includes('not found')) ? (
+            (topicName === 'Unknown Topic' || topicName === 'Invalid Topic' || statusMessage.includes('Could not load') || statusMessage.includes('not found') || statusMessage.includes('not recognized')) ? (
                  <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{statusMessage}</p>
             ) : (
                  <p className="text-xl text-muted-foreground">{statusMessage}</p>
@@ -213,7 +224,21 @@ export default function TopicLecturesPage() {
           <p>© E-Leak All rights reserved.</p>
         </footer>
       </div>
-      {/* Removed FAQ Dialog component from here */}
+      <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
+        <DialogContent className="sm:max-w-lg rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Frequently Asked Questions</DialogTitle>
+          </DialogHeader>
+          <FaqDialogContent />
+          <DialogFooter className="sm:justify-start">
+            <DialogClose asChild>
+              <Button type="button" variant="outline">
+                Close
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

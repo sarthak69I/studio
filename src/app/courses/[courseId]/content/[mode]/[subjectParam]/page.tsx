@@ -5,7 +5,7 @@ import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
 import { 
   scienceCourseContent, 
   commerceCourseContent, 
@@ -14,7 +14,17 @@ import {
   type Topic
 } from '@/lib/course-data';
 import { getParamAsString } from '@/lib/utils';
-// Removed FAQ Dialog imports as it's no longer directly handled here
+import { FaqDialogContent } from '@/components/faq-dialog-content'; 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Bot } from 'lucide-react';
+
 
 export default function SubjectContentPage() {
   const router = useRouter();
@@ -27,7 +37,8 @@ export default function SubjectContentPage() {
   const [subjectName, setSubjectName] = React.useState('');
   const [displayedTopics, setDisplayedTopics] = React.useState<Topic[] | string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
-  // Removed isFaqsDialogOpen state
+  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
+
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -40,18 +51,24 @@ export default function SubjectContentPage() {
         setSubjectName(decodedSubjectName);
 
         let currentCourseMap: CourseContentMap | undefined;
-        if (courseId === '1') { // Science Batch
+        if (courseId === '1') { 
           currentCourseMap = scienceCourseContent;
-        } else if (courseId === '2') { // Commerce Batch
+        } else if (courseId === '2') { 
           currentCourseMap = commerceCourseContent;
-        } else if (courseId === '3') { // Aarambh Batch
+        } else if (courseId === '3') { 
           currentCourseMap = aarambhCourseContent;
         }
         
         const content = currentCourseMap ? currentCourseMap[decodedSubjectName] : undefined;
         
         if (content) {
-          setDisplayedTopics(content as Topic[] | string); 
+          if (typeof content === 'string') { // e.g., "Coming Soon"
+            setDisplayedTopics(content);
+          } else if (Array.isArray(content)) { // Array of Topic objects
+            setDisplayedTopics(content as Topic[]);
+          } else {
+            setDisplayedTopics(`Content for ${decodedSubjectName} is in an unrecognized format.`);
+          }
         } else {
            setDisplayedTopics(`Content for ${decodedSubjectName} Coming Soon`);
         }
@@ -74,9 +91,9 @@ export default function SubjectContentPage() {
       let pageTitleSegment = subjectName;
       
       if (Array.isArray(displayedTopics) && displayedTopics.length > 0 && typeof displayedTopics[0] !== 'string' && displayedTopics[0].name) {
-        // If there are multiple topics, the main title is the subject name
-      } else if (typeof displayedTopics === 'string' && !displayedTopics.includes('Coming Soon') && !displayedTopics.includes('could not be loaded')) {
-        pageTitleSegment = displayedTopics;
+        // Use subject name if multiple topics
+      } else if (typeof displayedTopics === 'string' && !displayedTopics.includes('Coming Soon') && !displayedTopics.includes('could not be loaded') && !displayedTopics.includes('unrecognized format')) {
+        pageTitleSegment = displayedTopics; // Use specific topic name if it's a single string topic
       }
       document.title = `${pageTitleSegment} - ${subjectName} ${modeText} | E-Leak`;
     } else if (isMounted) {
@@ -187,13 +204,17 @@ export default function SubjectContentPage() {
             }
 
             if (typeof displayedTopics === 'string') {
-                return (displayedTopics.includes('Coming Soon') || displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified')) ? (
-                    (subjectName === 'Unknown Subject' || displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified')) ? (
+                 return (displayedTopics.includes('Coming Soon') || displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified') || displayedTopics.includes('unrecognized format')) ? (
+                    (subjectName === 'Unknown Subject' || displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified') || displayedTopics.includes('unrecognized format')) ? (
                         <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{displayedTopics}</p>
                     ) : (
                         <p className="text-xl text-muted-foreground">{displayedTopics}</p>
                     )
                   ) : (
+                    // This case handles single-topic subjects that don't have an array of lectures.
+                    // The renderTopicCard expects a Topic object.
+                    // We pass a mock Topic object. This part might need adjustment if single-topic subjects
+                    // should behave differently (e.g., directly linking or showing different info).
                     renderTopicCard({ name: displayedTopics } as Topic, 0) 
                   );
             }
@@ -216,11 +237,26 @@ export default function SubjectContentPage() {
           </Link>
         </div>
 
+
         <footer className="text-center text-sm text-muted-foreground mt-auto py-4">
           <p>© E-Leak All rights reserved.</p>
         </footer>
       </div>
-      {/* Removed FAQ Dialog component from here */}
+      <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
+        <DialogContent className="sm:max-w-lg rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Frequently Asked Questions</DialogTitle>
+          </DialogHeader>
+          <FaqDialogContent />
+          <DialogFooter className="sm:justify-start">
+            <DialogClose asChild>
+              <Button type="button" variant="outline">
+                Close
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

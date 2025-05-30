@@ -5,8 +5,8 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, Bot, Maximize } from 'lucide-react';
-import CustomHlsPlayer from '@/components/custom-hls-player'; // Import the new player
+import { ArrowLeft, Home as HomeIcon, Maximize } from 'lucide-react';
+import CustomHlsPlayer from '@/components/custom-hls-player';
 import {
   scienceCourseContent,
   commerceCourseContent,
@@ -16,7 +16,16 @@ import {
   type Topic,
 } from '@/lib/course-data';
 import { getParamAsString } from '@/lib/utils';
-// Removed FaqDialogContent and related Dialog imports as they are not used here
+import { FaqDialogContent } from '@/components/faq-dialog-content'; 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Bot } from 'lucide-react';
 
 export default function LecturePlayPage() {
   const router = useRouter();
@@ -30,7 +39,7 @@ export default function LecturePlayPage() {
   const [lecture, setLecture] = React.useState<Lecture | null>(null);
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
-  // Removed isFaqsDialogOpen state
+  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -167,20 +176,34 @@ export default function LecturePlayPage() {
       </main>
 
       <div className="mt-12 mb-6 text-center">
-        <p className="text-muted-foreground mb-2">Having Trouble?</p>
-        <Link href="/help-center" passHref>
-          <Button variant="outline" size="lg" className="rounded-lg">
-            <Bot className="mr-2 h-5 w-5" />
-            E-Leak 24/7 Support
-          </Button>
-        </Link>
-      </div>
+          <p className="text-muted-foreground mb-2">Having Trouble?</p>
+          <Link href="/help-center" passHref>
+            <Button variant="outline" size="lg" className="rounded-lg">
+              <Bot className="mr-2 h-5 w-5" />
+              E-Leak 24/7 Support
+            </Button>
+          </Link>
+        </div>
 
       <footer className="text-center text-sm text-muted-foreground mt-auto py-4">
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
-    {/* Removed FAQ Dialog from here */}
+    <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
+        <DialogContent className="sm:max-w-lg rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Frequently Asked Questions</DialogTitle>
+          </DialogHeader>
+          <FaqDialogContent />
+          <DialogFooter className="sm:justify-start">
+            <DialogClose asChild>
+              <Button type="button" variant="outline">
+                Close
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
