@@ -18,7 +18,7 @@ import { getParamAsString } from '@/lib/utils';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from '@/components/ui/dialog';
 
-const m3u8PlayerBase = 'https://www.m3u8player.online/embed/m3u8?url=';
+// const m3u8PlayerBase = 'https://www.m3u8player.online/embed/m3u8?url='; // This constant is defined in course-data.ts if needed there
 
 export default function LecturePlayPage() {
   const router = useRouter();
@@ -63,18 +63,9 @@ export default function LecturePlayPage() {
               const currentLecture = currentTopic.lectures.find(l => l.id === decodedLectureId);
               if (currentLecture) {
                 if (currentLecture.videoEmbedUrl) {
-                  let finalEmbedUrl = currentLecture.videoEmbedUrl;
-                  // As per user request: "Only m3u8 player YouTube videos are embed"
-                  // This attempts to route YouTube videos through m3u8player.online.
-                  // This might not work as m3u8player.online expects M3U8 stream URLs.
-                  if (currentLecture.videoEmbedType === 'youtube' && currentLecture.videoEmbedUrl.includes('youtube.com/embed/')) {
-                    const videoId = currentLecture.videoEmbedUrl.split('/embed/')[1]?.split('?')[0];
-                    if (videoId) {
-                      const youtubeWatchUrl = `https://www.youtube.com/watch?v=${videoId}`;
-                      finalEmbedUrl = `${m3u8PlayerBase}${encodeURIComponent(youtubeWatchUrl)}`;
-                    }
-                  }
-                  setEffectiveEmbedUrl(finalEmbedUrl);
+                  // Directly use the videoEmbedUrl from course-data.ts
+                  // It should be pre-formatted for YouTube embeds or m3u8player.online embeds.
+                  setEffectiveEmbedUrl(currentLecture.videoEmbedUrl);
                   setLecture(currentLecture);
                   setStatusMessage(null);
                 } else {
