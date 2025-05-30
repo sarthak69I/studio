@@ -5,7 +5,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Bot, MessageSquare, RefreshCw, AlertCircle, CheckCircle, X as CloseIcon, Star, Mail } from 'lucide-react';
+import { Bot, MessageSquare, RefreshCw, AlertCircle, CheckCircle, X as CloseIcon, Mail } from 'lucide-react'; // Mail might be unused now
 
 interface QnA {
   id: string;
@@ -78,7 +78,7 @@ const predefinedQAs: QnA[] = [
   }
 ];
 
-type BotStep = 'showingQuestions' | 'thinking' | 'showingAnswer' | 'collectingRating' | 'ratingSubmitted';
+type BotStep = 'showingQuestions' | 'thinking' | 'showingAnswer';
 
 export default function ELeakSupportPage() {
   const router = useRouter();
@@ -87,8 +87,6 @@ export default function ELeakSupportPage() {
   const [selectedQ, setSelectedQ] = React.useState<QnA | null>(null);
   const [displayedAnswer, setDisplayedAnswer] = React.useState<string | React.ReactNode>('');
   const [userName, setUserName] = React.useState<string>('there'); // Generic name
-  const [currentRating, setCurrentRating] = React.useState(0);
-  const [ratingContext, setRatingContext] = React.useState<{ question: string; rating: number } | null>(null);
 
 
   React.useEffect(() => {
@@ -100,8 +98,6 @@ export default function ELeakSupportPage() {
     if (step === 'showingQuestions') {
       setSelectedQ(null);
       setDisplayedAnswer('');
-      setCurrentRating(0);
-      setRatingContext(null);
     }
   }, [step]);
 
@@ -109,8 +105,6 @@ export default function ELeakSupportPage() {
     setSelectedQ(qna);
     setStep('thinking');
     setDisplayedAnswer('');
-    setCurrentRating(0);
-    setRatingContext(null);
     
     setTimeout(() => {
       setDisplayedAnswer(qna.answer);
@@ -118,28 +112,7 @@ export default function ELeakSupportPage() {
     }, 2000);
   };
 
-  React.useEffect(() => {
-    let ratingTimerId: NodeJS.Timeout | undefined;
-    if (step === 'showingAnswer' && selectedQ !== null) {
-      ratingTimerId = setTimeout(() => {
-        // Check if we are still in the 'showingAnswer' step before transitioning
-        setStep((currentStep) => {
-          if (currentStep === 'showingAnswer') {
-            return 'collectingRating';
-          }
-          return currentStep;
-        });
-      }, 4000); // 4 seconds after answer is shown
-    }
-    return () => {
-      if (ratingTimerId) {
-        clearTimeout(ratingTimerId);
-      }
-    };
-  }, [step, selectedQ]);
-
-
-  const handleFollowUp = (action: 'askAgain' | 'stillHelp' | 'resolved' | 'rateExperience') => {
+  const handleFollowUp = (action: 'askAgain' | 'stillHelp' | 'resolved') => {
     if (action === 'askAgain') {
       setStep('showingQuestions');
     } else if (action === 'stillHelp') {
@@ -159,29 +132,7 @@ export default function ELeakSupportPage() {
       setTimeout(() => { 
         setStep('showingQuestions');
       }, 3000);
-    } else if (action === 'rateExperience') {
-      setStep('collectingRating');
     }
-  };
-
-  const handleStarClick = (rating: number) => {
-    setCurrentRating(rating);
-    setRatingContext({ question: selectedQ?.question || "General Support", rating });
-    setStep('ratingSubmitted');
-  };
-
-  const handleSendFeedbackEmail = () => {
-    if (!ratingContext) return;
-    const subject = encodeURIComponent("E-Leak Support Feedback");
-    const body = encodeURIComponent(
-`Support Feedback:
-Question: "${ratingContext.question}"
-Rating: ${ratingContext.rating} out of 5 stars.
-
-Additional comments:
-`
-    );
-    window.location.href = `mailto:jzjha215@gmail.com?subject=${subject}&body=${body}`;
   };
 
 
@@ -224,59 +175,8 @@ Additional comments:
               <Button onClick={() => handleFollowUp('stillHelp')} variant="outline" className="w-full py-3 text-sm rounded-full bg-card hover:bg-muted/80">
                 <AlertCircle className="mr-2 h-4 w-4" /> I still need help
               </Button>
-               <Button onClick={() => handleFollowUp('rateExperience')} variant="outline" className="w-full py-3 text-sm rounded-full bg-card hover:bg-muted/80">
-                <Star className="mr-2 h-4 w-4" /> Rate our support
-              </Button>
               <Button onClick={() => handleFollowUp('resolved')} variant="default" className="w-full py-3 text-sm rounded-full">
                 <CheckCircle className="mr-2 h-4 w-4" /> Issue resolved!
-              </Button>
-            </div>
-          </div>
-        );
-      case 'collectingRating':
-        return (
-          <div className="space-y-4 p-2">
-            <div className="flex items-start gap-3">
-              <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
-              <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm">
-                <p>How would you rate your support experience for "{selectedQ?.question || 'this session'}"?</p>
-                 <p className="text-xs text-muted-foreground">(Your rating helps us improve!)</p>
-              </div>
-            </div>
-            <div className="flex justify-center space-x-2 mt-4">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Button
-                  key={star}
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => handleStarClick(star)}
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  <Star className={`h-7 w-7 ${currentRating >= star ? 'fill-primary text-primary' : 'fill-transparent'}`} />
-                </Button>
-              ))}
-            </div>
-             <Button onClick={() => setStep('showingQuestions')} variant="outline" className="w-full mt-4 py-3 text-sm rounded-full bg-card hover:bg-muted/80">
-                Skip / Go Back
-              </Button>
-          </div>
-        );
-      case 'ratingSubmitted':
-        return (
-          <div className="space-y-4 p-2">
-            <div className="flex items-start gap-3">
-              <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
-              <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm">
-                {ratingContext && <p>Thank you for your feedback ({ratingContext.rating} {ratingContext.rating === 1 ? 'star' : 'stars'})!</p>}
-                 {!ratingContext && <p>Thank you for your feedback!</p>}
-              </div>
-            </div>
-             <div className="mt-6 space-y-2">
-              <Button onClick={handleSendFeedbackEmail} variant="default" className="w-full py-3 text-sm rounded-full" disabled={!ratingContext}>
-                <Mail className="mr-2 h-4 w-4" /> Send Feedback to E-Leak
-              </Button>
-              <Button onClick={() => handleFollowUp('askAgain')} variant="outline" className="w-full py-3 text-sm rounded-full bg-card hover:bg-muted/80">
-                <RefreshCw className="mr-2 h-4 w-4" /> Ask another question
               </Button>
             </div>
           </div>
