@@ -5,7 +5,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Bot, MessageSquare, RefreshCw, AlertCircle, CheckCircle, X as CloseIcon, Star } from 'lucide-react';
+import { Bot, MessageSquare, RefreshCw, AlertCircle, CheckCircle, X as CloseIcon, Star, Mail } from 'lucide-react';
 
 interface QnA {
   id: string;
@@ -88,6 +88,8 @@ export default function ELeakSupportPage() {
   const [displayedAnswer, setDisplayedAnswer] = React.useState<string | React.ReactNode>('');
   const [userName, setUserName] = React.useState<string>('there'); // Generic name
   const [currentRating, setCurrentRating] = React.useState(0);
+  const [ratingContext, setRatingContext] = React.useState<{ question: string; rating: number } | null>(null);
+
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -99,6 +101,7 @@ export default function ELeakSupportPage() {
       setSelectedQ(null);
       setDisplayedAnswer('');
       setCurrentRating(0);
+      setRatingContext(null);
     }
   }, [step]);
 
@@ -107,6 +110,7 @@ export default function ELeakSupportPage() {
     setStep('thinking');
     setDisplayedAnswer('');
     setCurrentRating(0);
+    setRatingContext(null);
     
     setTimeout(() => {
       setDisplayedAnswer(qna.answer);
@@ -141,13 +145,26 @@ export default function ELeakSupportPage() {
 
   const handleStarClick = (rating: number) => {
     setCurrentRating(rating);
-    console.log(`User rated: ${rating} stars`); // For demonstration
-    // In a real app, you might send this to localStorage or an analytics event
+    setRatingContext({ question: selectedQ?.question || "General Support", rating });
+    console.log(`User rated: ${rating} stars for question: ${selectedQ?.question || "General Support"}`);
     setStep('ratingSubmitted');
-     setTimeout(() => { 
-        setStep('showingQuestions');
-      }, 3000); // Go back to questions after showing thank you
   };
+
+  const handleSendFeedbackEmail = () => {
+    if (!ratingContext) return;
+    const subject = encodeURIComponent("E-Leak Support Feedback");
+    const body = encodeURIComponent(
+`Support Feedback:
+Question: "${ratingContext.question}"
+Rating: ${ratingContext.rating} out of 5 stars.
+
+Additional comments:
+`
+    );
+    // IMPORTANT: Replace your-email@example.com with your actual feedback email address
+    window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+  };
+
 
   if (!isMounted) {
     return (
@@ -203,8 +220,8 @@ export default function ELeakSupportPage() {
             <div className="flex items-start gap-3">
               <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
               <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm">
-                <p>How would you rate your support experience?</p>
-                 <p className="text-xs text-muted-foreground">(This rating is for demonstration and is not stored)</p>
+                <p>How would you rate your support experience for "{selectedQ?.question || 'this session'}"?</p>
+                 <p className="text-xs text-muted-foreground">(Your rating helps us improve!)</p>
               </div>
             </div>
             <div className="flex justify-center space-x-2 mt-4">
@@ -231,10 +248,14 @@ export default function ELeakSupportPage() {
             <div className="flex items-start gap-3">
               <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
               <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm">
-                <p>Thank you for your feedback ({currentRating} {currentRating === 1 ? 'star' : 'stars'})!</p>
+                {ratingContext && <p>Thank you for your feedback ({ratingContext.rating} {ratingContext.rating === 1 ? 'star' : 'stars'})!</p>}
+                 {!ratingContext && <p>Thank you for your feedback!</p>}
               </div>
             </div>
-             <div className="mt-6">
+             <div className="mt-6 space-y-2">
+              <Button onClick={handleSendFeedbackEmail} variant="default" className="w-full py-3 text-sm rounded-full" disabled={!ratingContext}>
+                <Mail className="mr-2 h-4 w-4" /> Send Feedback to E-Leak
+              </Button>
               <Button onClick={() => handleFollowUp('askAgain')} variant="outline" className="w-full py-3 text-sm rounded-full bg-card hover:bg-muted/80">
                 <RefreshCw className="mr-2 h-4 w-4" /> Ask another question
               </Button>
@@ -304,3 +325,5 @@ export default function ELeakSupportPage() {
   );
 }
 
+
+    
