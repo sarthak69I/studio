@@ -7,14 +7,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { Button } from '@/components/ui/button';
 import { Bell } from 'lucide-react';
 import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetFooter,
-  SheetClose,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogClose,
+  DialogTrigger,
+} from "@/components/ui/dialog"; // Changed from Sheet
 
 interface AppNotification {
   id: string;
@@ -34,7 +34,7 @@ interface ClientLayoutWrapperProps {
 
 export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperProps) {
   const [notifications, setNotifications] = useState<AppNotification[]>([]);
-  const [isNotificationsSheetOpen, setIsNotificationsSheetOpen] = useState(false);
+  const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] = useState(false); // Changed from isNotificationsSheetOpen
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
 
   useEffect(() => {
@@ -82,16 +82,15 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   };
 
   const handleOpenNotifications = () => {
-    setIsNotificationsSheetOpen(true);
-    // Visually clear the badge for the current session when opened
+    setIsNotificationsDialogOpen(true);
     setUnreadNotificationCount(0); 
   };
 
   return (
     <>
       <div className="fixed top-6 left-6 z-50">
-        <Sheet open={isNotificationsSheetOpen} onOpenChange={setIsNotificationsSheetOpen}>
-          <SheetTrigger asChild>
+        <Dialog open={isNotificationsDialogOpen} onOpenChange={setIsNotificationsDialogOpen}>
+          <DialogTrigger asChild>
             <Button
               variant="outline"
               size="icon"
@@ -106,12 +105,12 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
                 </span>
               )}
             </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-full sm:w-[400px] p-0 flex flex-col">
-            <SheetHeader className="p-6 pb-4 border-b">
-              <SheetTitle className="text-xl font-semibold">Notifications</SheetTitle>
-            </SheetHeader>
-            <div className="flex-grow overflow-y-auto p-6 space-y-4">
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-md rounded-xl">
+            <DialogHeader className="border-b pb-3">
+              <DialogTitle className="text-xl font-semibold">Notifications</DialogTitle>
+            </DialogHeader>
+            <div className="max-h-[60vh] overflow-y-auto p-1 space-y-4 py-4">
               {notifications.length > 0 ? (
                 notifications.map(notif => (
                   <div 
@@ -129,20 +128,19 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
                 <p className="text-center text-muted-foreground py-10">No new notifications.</p>
               )}
             </div>
-            <SheetFooter className="p-4 border-t">
-              <SheetClose asChild>
+            <DialogFooter className="border-t pt-3">
+              <DialogClose asChild>
                 <Button type="button" variant="outline" className="w-full">
                   Close
                 </Button>
-              </SheetClose>
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
 
       {children}
       <Toaster />
-      {/* Telegram Floating Button */}
       <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
       </a>

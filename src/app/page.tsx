@@ -3,7 +3,8 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, HelpCircle, Sun, Moon, Bot } from 'lucide-react';
+import { Menu, HelpCircle, Sun, Moon, Bot, Bell as BellIcon, Cog } from 'lucide-react'; // Added Cog
+import Image from 'next/image';
 import {
   Sheet,
   SheetContent,
@@ -20,12 +21,11 @@ import {
   DialogTitle,
   DialogFooter,
   DialogClose,
-  DialogTrigger, // Keep if Class Updates still uses DialogTrigger directly
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
-import { Bell as BellIcon } from 'lucide-react'; // Keep for Class Updates Dialog if used
 
 interface Course {
   id: string;
@@ -150,8 +150,6 @@ export default function HomePage() {
         </DialogContent>
       </Dialog>
 
-      {/* Notification icon is now global in ClientLayoutWrapper */}
-
       <div className="fixed top-6 right-6 z-50">
         <Sheet>
           <SheetTrigger asChild>
@@ -250,6 +248,18 @@ export default function HomePage() {
                 </Link>
               </Button>
 
+              <Button
+                variant="ghost"
+                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                aria-label="Open Admin Panel"
+                asChild
+              >
+                <Link href="/admin">
+                  <Cog className="mr-3 h-5 w-5 text-primary" />
+                  Admin Panel
+                </Link>
+              </Button>
+
             </div>
             <SheetFooter className="p-4 border-t border-border">
               <SheetClose asChild>
@@ -273,16 +283,6 @@ export default function HomePage() {
           ))}
         </div>
       </main>
-
-      <div className="mt-12 mb-6 text-center">
-        <p className="text-muted-foreground mb-2">Having Trouble?</p>
-        <Link href="/help-center" passHref>
-          <Button variant="outline" size="lg" className="rounded-lg">
-            <Bot className="mr-2 h-5 w-5" />
-            E-Leak 24/7 Support
-          </Button>
-        </Link>
-      </div>
 
       <footer className="text-center text-sm text-muted-foreground mt-8 md:mt-10 animate-pulse-custom">
         <p>© E-Leak All rights reserved.</p>
