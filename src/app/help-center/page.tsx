@@ -13,77 +13,46 @@ interface QnA {
   answer: string | React.ReactNode;
 }
 
-// Updated questions based on the provided image
+// Updated questions specific to this app's functionality
 const predefinedQAs: QnA[] = [
   {
-    id: 'access-payment',
-    question: "Access or Payment Related Issue",
-    answer: "For access or payment issues, please ensure you are logged in with the correct account. If you're still facing problems, double-check your payment method details or try a different method. For persistent issues, contact us via Telegram with your registered email and a screenshot of the error.",
+    id: 'join-live',
+    question: "How do I join a live class?",
+    answer: "From the homepage, click 'Enroll Now' on your desired course. On the next page, click the 'JOIN LIVE CLASS' button. If a class is currently live, the video player will appear. Otherwise, you'll see a countdown to the next session.",
   },
   {
-    id: 'existing-subscription',
-    question: "Need Help with Existing Subscription",
-    answer: "If you need help with an existing subscription, such as upgrading, downgrading, or understanding its features, please visit your account dashboard or contact us via Telegram with your subscription details.",
-  },
-  {
-    id: 'store-related',
-    question: "E-Leak Store Related",
-    answer: "For any E-Leak Store related queries, like merchandise, books, or other physical products, please check the store's FAQ section or contact our store support team directly through the contact information provided on the store page.",
-  },
-  {
-    id: 'make-request',
-    question: "I want to make a request (e.g. Batch Change, Number Change, Chat Unblock, etc.)",
-    answer: "To make a request like a batch change, phone number update, or chat unblocking, please send a detailed email to support@e-leak.com or contact us on Telegram with your user ID and the specific request. We'll process it as soon as possible.",
-  },
-  {
-    id: 'new-purchase',
-    question: "Help with new purchase",
-    answer: "If you need help making a new purchase, ensure you've selected the correct course or item. If you encounter issues during checkout, try clearing your browser cache or using a different browser. Our Telegram support can also guide you through the process.",
-  },
-  {
-    id: 'technical-issues',
-    question: "Technical Issues",
-    answer: (
-      <>
-        <p className="mb-2">For technical issues like video playback problems, notes not loading, or website errors, please try these steps first:</p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li>Ensure you have a stable internet connection.</li>
-          <li>Clear your browser's cache and cookies.</li>
-          <li>Try using a different web browser or device.</li>
-          <li>Check our Telegram channel for any announcements about ongoing site-wide issues.</li>
-        </ul>
-        <p className="mt-2">If the problem persists, please report it on our Telegram channel with specific details (e.g., course name, lecture ID, browser version, screenshot of error).</p>
-      </>
-    ),
-  },
-  {
-    id: 'test-series',
-    question: "Test Series Related Issues",
-    answer: "For issues related to test series, such as accessing tests, viewing results, or discrepancies in questions/answers, please contact our dedicated test series support team via the 'Help' section within the test series portal or reach out on Telegram.",
-  },
-  {
-    id: 'batch-queries',
-    question: "Batch Related Queries",
-    answer: "If you have queries about your current batch, schedule, or content, please check the batch announcements section first. For specific questions, you can ask your batch coordinator or contact support via Telegram.",
+    id: 'video-issues',
+    question: "Video is buffering or not playing smoothly.",
+    answer: "Please check your internet connection first. Try refreshing the page or using a different browser. Sometimes, very high demand can cause temporary slowdowns. You can also report persistent issues on our Telegram channel.",
   },
   {
     id: 'find-content',
-    question: "I can't find specific notes or videos for a topic.",
+    question: "I can't find specific notes or videos.",
     answer: (
       <>
         <p className="mb-2">If you're having trouble finding content:</p>
         <ol className="list-decimal pl-5 space-y-1">
-          <li>Ensure you've selected the correct course and subject on the 'Enroll' page.</li>
-          <li>Toggle between 'Notes' and 'Video' modes to see the respective content.</li>
-          <li>Some topics might have lectures listed under them; click on the topic to see individual lectures.</li>
+          <li>Ensure you've selected the correct course and subject on the 'Enroll' page (after clicking 'Enroll Now' on the homepage).</li>
+          <li>Toggle between 'Notes' and 'Video' modes on the enrollment page to see the respective content types.</li>
+          <li>Navigate to the specific subject, then topic. Some topics have individual lectures listed; click on a lecture to find its notes or video player link.</li>
           <li>Content is regularly updated. If something is missing, it might be added soon. Check our Telegram channel for announcements!</li>
         </ol>
       </>
     ),
   },
   {
+    id: 'timetable-access',
+    question: "How do I view the class timetable?",
+    answer: "On the homepage, each course card has a 'Time Table' button. Clicking it will open a dialog showing the schedule for that specific course.",
+  },
+  {
+    id: 'content-free',
+    question: "Is all the content on E-Leak free?",
+    answer: "Yes, all lectures, notes, and live classes currently available on E-Leak are provided free of charge. Our goal is to make quality education accessible.",
+  },
+  {
     id: 'contact-support',
-    question: "How can I contact support directly?",
+    question: "How can I contact support if my issue isn't listed here?",
     answer: (
       <>
         For further assistance or issues not covered, please join our Telegram channel:
@@ -205,7 +174,7 @@ export default function ELeakSupportPage() {
             {predefinedQAs.map((qna) => (
               <Button
                 key={qna.id}
-                variant="outline" // Changed to outline for lighter appearance
+                variant="outline" 
                 className="w-full justify-start text-left h-auto py-3 px-4 text-sm rounded-full bg-card hover:bg-muted/80 shadow-sm whitespace-normal"
                 onClick={() => handleQuestionClick(qna)}
               >
