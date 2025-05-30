@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, Bot } from 'lucide-react'; // Changed HelpCircle to Bot
+import { ArrowLeft, Home as HomeIcon, Bot, Maximize } from 'lucide-react';
 import {
   scienceCourseContent,
   commerceCourseContent,
@@ -15,7 +15,9 @@ import {
   type Topic,
 } from '@/lib/course-data';
 import { getParamAsString } from '@/lib/utils';
-// Removed FAQ Dialog imports as it's no longer directly handled here
+import { FaqDialogContent } from '@/components/faq-dialog-content';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from '@/components/ui/dialog';
+
 
 export default function LecturePlayPage() {
   const router = useRouter();
@@ -30,7 +32,7 @@ export default function LecturePlayPage() {
   const [lecture, setLecture] = React.useState<Lecture | null>(null);
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
-  // Removed isFaqsDialogOpen state
+  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
 
 
   React.useEffect(() => {
@@ -136,6 +138,10 @@ export default function LecturePlayPage() {
                 ></iframe>
               )}
             </div>
+            <div className="mt-3 text-center text-sm text-muted-foreground p-2 bg-card/50 rounded-md max-w-md mx-auto">
+              <Maximize className="inline h-4 w-4 mr-1" /> 
+              For the best viewing experience, try double-clicking the video or using the player's full-screen button. Ensure your device rotation is enabled for landscape mode.
+            </div>
             <p className="text-muted-foreground text-center mt-4">
               Playing: {lecture.title} from {decodeURIComponent(topicParam || '')} - {decodeURIComponent(subjectParam || '')}
             </p>
@@ -161,7 +167,22 @@ export default function LecturePlayPage() {
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
-    {/* Removed FAQ Dialog component from here */}
+     <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
+        <DialogContent className="sm:max-w-lg rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Frequently Asked Questions</DialogTitle>
+          </DialogHeader>
+          <FaqDialogContent />
+          <DialogFooter className="sm:justify-start">
+            <DialogClose asChild>
+              <Button type="button" variant="outline">
+                Close
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
+
