@@ -18,6 +18,7 @@ import { getParamAsString } from '@/lib/utils';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from '@/components/ui/dialog';
 
+const m3u8PlayerBase = 'https://www.m3u8player.online/embed/m3u8?url=';
 
 export default function LecturePlayPage() {
   const router = useRouter();
@@ -30,6 +31,7 @@ export default function LecturePlayPage() {
   const lectureId = getParamAsString(params.lectureId);
 
   const [lecture, setLecture] = React.useState<Lecture | null>(null);
+  const [effectiveEmbedUrl, setEffectiveEmbedUrl] = React.useState<string | undefined>(undefined);
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
@@ -61,6 +63,18 @@ export default function LecturePlayPage() {
               const currentLecture = currentTopic.lectures.find(l => l.id === decodedLectureId);
               if (currentLecture) {
                 if (currentLecture.videoEmbedUrl) {
+                  let finalEmbedUrl = currentLecture.videoEmbedUrl;
+                  // As per user request: "Only m3u8 player YouTube videos are embed"
+                  // This attempts to route YouTube videos through m3u8player.online.
+                  // This might not work as m3u8player.online expects M3U8 stream URLs.
+                  if (currentLecture.videoEmbedType === 'youtube' && currentLecture.videoEmbedUrl.includes('youtube.com/embed/')) {
+                    const videoId = currentLecture.videoEmbedUrl.split('/embed/')[1]?.split('?')[0];
+                    if (videoId) {
+                      const youtubeWatchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+                      finalEmbedUrl = `${m3u8PlayerBase}${encodeURIComponent(youtubeWatchUrl)}`;
+                    }
+                  }
+                  setEffectiveEmbedUrl(finalEmbedUrl);
                   setLecture(currentLecture);
                   setStatusMessage(null);
                 } else {
@@ -120,23 +134,21 @@ export default function LecturePlayPage() {
       </header>
 
       <main className="flex-grow flex flex-col justify-start items-center pt-10 md:pt-12 w-full">
-        {lecture ? (
+        {lecture && effectiveEmbedUrl ? (
           <div className="w-full max-w-2xl">
             <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
               {lecture.title}
             </h1>
             <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-black">
-              {lecture.videoEmbedUrl && (
-                <iframe
-                  src={lecture.videoEmbedUrl}
-                  title={lecture.title}
-                  width="100%"
-                  height="100%"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="border-0"
-                ></iframe>
-              )}
+              <iframe
+                src={effectiveEmbedUrl}
+                title={lecture.title}
+                width="100%"
+                height="100%"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="border-0"
+              ></iframe>
             </div>
             <div className="mt-3 text-center text-sm text-muted-foreground p-2 bg-card/50 rounded-md max-w-md mx-auto">
               <Maximize className="inline h-4 w-4 mr-1" /> 
