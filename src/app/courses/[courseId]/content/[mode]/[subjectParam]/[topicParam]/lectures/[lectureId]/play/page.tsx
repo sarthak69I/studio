@@ -105,7 +105,7 @@ export default function LecturePlayPage() {
 
   return (
     <>
-    <div className="flex flex-col min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="flex flex-col min-h-screen bg-background text-foreground px-2 py-4 sm:px-4 md:p-6">
       <header className="flex items-center justify-between mb-8 w-full max-w-5xl mx-auto">
         <Button variant="outline" size="lg" onClick={() => router.back()} className="rounded-lg">
           <ArrowLeft className="mr-2 h-5 w-5" />
@@ -121,7 +121,7 @@ export default function LecturePlayPage() {
 
       <main className="flex-grow flex flex-col justify-start items-center pt-10 md:pt-12 w-full">
         {lecture ? (
-          <div className="w-full max-w-4xl">
+          <div className="w-full max-w-3xl">
             <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
               {lecture.title}
             </h1>
@@ -155,12 +155,10 @@ export default function LecturePlayPage() {
 
       <div className="mt-12 mb-6 text-center">
         <p className="text-muted-foreground mb-2">Having Trouble?</p>
-        <Link href="/help-center" passHref>
-          <Button variant="outline" size="lg" className="rounded-lg">
-            <Bot className="mr-2 h-5 w-5" />
-            E-Leak 24/7 Support
-          </Button>
-        </Link>
+        <Button variant="outline" size="lg" onClick={() => setIsFaqsDialogOpen(true)} className="rounded-lg">
+          <Bot className="mr-2 h-5 w-5" />
+          E-Leak 24/7 Support
+        </Button>
       </div>
 
       <footer className="text-center text-sm text-muted-foreground mt-auto py-4">
