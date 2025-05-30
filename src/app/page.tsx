@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, HelpCircle, Sun, Moon, Bot, Bell as BellIcon, Cog } from 'lucide-react'; // Added Cog
+import { Menu, HelpCircle, Sun, Moon, Bot, Bell as BellIcon } from 'lucide-react';
 import Image from 'next/image';
 import {
   Sheet,
@@ -64,7 +64,7 @@ const coursesData: Course[] = [
     youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
     timeTableImageUrl: 'https://drive.google.com/file/d/1NeenjN2AfvXmTB6_JKVps4_uVZ66jmaj/preview',
     liveSlots: [
-      { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
+      { targetHour: 17, targetMinute: 10, durationMinutes: 90 }, // Placeholder, will be updated by live/page.tsx logic
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
     ],
   },
@@ -248,18 +248,6 @@ export default function HomePage() {
                 </Link>
               </Button>
 
-              <Button
-                variant="ghost"
-                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                aria-label="Open Admin Panel"
-                asChild
-              >
-                <Link href="/admin">
-                  <Cog className="mr-3 h-5 w-5 text-primary" />
-                  Admin Panel
-                </Link>
-              </Button>
-
             </div>
             <SheetFooter className="p-4 border-t border-border">
               <SheetClose asChild>
@@ -283,6 +271,16 @@ export default function HomePage() {
           ))}
         </div>
       </main>
+
+      <div className="mt-12 mb-6 text-center">
+        <p className="text-muted-foreground mb-2">Having Trouble?</p>
+        <Button variant="outline" size="lg" className="rounded-lg" asChild>
+            <Link href="/help-center">
+                <Bot className="mr-2 h-5 w-5" />
+                 E-Leak 24/7 Support
+            </Link>
+        </Button>
+      </div>
 
       <footer className="text-center text-sm text-muted-foreground mt-8 md:mt-10 animate-pulse-custom">
         <p>© E-Leak All rights reserved.</p>
