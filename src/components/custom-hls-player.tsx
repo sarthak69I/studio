@@ -259,11 +259,20 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
 
   useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-      if (document.fullscreenElement) {
-        screen.orientation?.lock('landscape').catch(err => console.warn("Could not lock to landscape:", err));
+      const isFs = !!document.fullscreenElement;
+      setIsFullscreen(isFs);
+      if (isFs) {
+        // Check if screen.orientation and screen.orientation.lock exist and are functions
+        if (screen.orientation && typeof screen.orientation.lock === 'function') {
+          screen.orientation.lock('landscape')
+            ?.catch(err => console.warn("Could not lock to landscape:", err));
+        }
       } else {
-        screen.orientation?.unlock().catch(err => console.warn("Could not unlock orientation:", err));
+        // Check if screen.orientation and screen.orientation.unlock exist and are functions
+        if (screen.orientation && typeof screen.orientation.unlock === 'function') {
+          screen.orientation.unlock()
+            ?.catch(err => console.warn("Could not unlock orientation:", err));
+        }
       }
     };
     document.addEventListener('fullscreenchange', handleFullscreenChange);
