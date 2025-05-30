@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Bell, HelpCircle, Sun, Moon, Bot } from 'lucide-react';
+import { Menu, HelpCircle, Sun, Moon, Bot } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -20,11 +20,12 @@ import {
   DialogTitle,
   DialogFooter,
   DialogClose,
-  DialogTrigger,
+  DialogTrigger, // Keep if Class Updates still uses DialogTrigger directly
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
+import { Bell as BellIcon } from 'lucide-react'; // Keep for Class Updates Dialog if used
 
 interface Course {
   id: string;
@@ -105,20 +106,10 @@ const coursesData: Course[] = [
   },
 ];
 
-interface AppNotification {
-  id: string;
-  timestamp: string;
-  title: string;
-  message: string;
-}
-
 export default function HomePage() {
   const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
-  const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
-  const [notifications, setNotifications] = useState<AppNotification[]>([]);
-  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
@@ -130,49 +121,7 @@ export default function HomePage() {
       localStorage.setItem('theme', 'dark');
       document.documentElement.className = 'dark';
     }
-
-    fetchNotifications();
   }, []);
-
-  const fetchNotifications = async () => {
-    try {
-      const response = await fetch('/notifications.json');
-      if (!response.ok) {
-        console.error('Failed to fetch notifications:', response.status);
-        setNotifications([]); // Set to empty array on failure
-        return;
-      }
-      const data: AppNotification[] = await response.json();
-      // Sort by timestamp descending (newest first)
-      data.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      setNotifications(data);
-      checkUnreadNotifications(data);
-    } catch (error) {
-      console.error('Error fetching notifications:', error);
-      setNotifications([]); // Set to empty array on error
-    }
-  };
-
-  const checkUnreadNotifications = (currentNotifications: AppNotification[]) => {
-    const lastSeenTimestamp = localStorage.getItem('lastSeenNotificationTimestamp');
-    if (currentNotifications.length > 0) {
-      if (!lastSeenTimestamp || new Date(currentNotifications[0].timestamp) > new Date(lastSeenTimestamp)) {
-        setHasUnreadNotifications(true);
-      } else {
-        setHasUnreadNotifications(false);
-      }
-    } else {
-      setHasUnreadNotifications(false);
-    }
-  };
-
-  const handleOpenNotifications = () => {
-    setIsNotificationsDialogOpen(true);
-    if (notifications.length > 0) {
-      localStorage.setItem('lastSeenNotificationTimestamp', notifications[0].timestamp);
-      setHasUnreadNotifications(false);
-    }
-  };
   
   const toggleTheme = () => {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -201,50 +150,7 @@ export default function HomePage() {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={isNotificationsDialogOpen} onOpenChange={setIsNotificationsDialogOpen}>
-        <DialogContent className="sm:max-w-md rounded-xl">
-          <DialogHeader>
-            <DialogTitle className="text-xl">Notifications</DialogTitle>
-          </DialogHeader>
-          <div className="py-4 space-y-3 text-sm max-h-[60vh] overflow-y-auto">
-            {notifications.length > 0 ? (
-              notifications.map(notif => (
-                <div key={notif.id} className="p-3 bg-muted/50 rounded-md border border-border">
-                  <p className="font-semibold text-foreground">{notif.title}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{notif.message}</p>
-                  <p className="text-xs text-muted-foreground/70 mt-2 text-right">
-                    {new Date(notif.timestamp).toLocaleDateString()} - {new Date(notif.timestamp).toLocaleTimeString()}
-                  </p>
-                </div>
-              ))
-            ) : (
-              <p className="text-center text-muted-foreground">No new notifications.</p>
-            )}
-          </div>
-          <DialogFooter className="sm:justify-start">
-            <DialogClose asChild>
-              <Button type="button" variant="outline">
-                Close
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
-      <div className="fixed top-6 left-6 z-50">
-        <Button
-          variant="outline"
-          size="icon"
-          aria-label="View Notifications"
-          className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 relative"
-          onClick={handleOpenNotifications}
-        >
-          <Bell className="h-6 w-6" />
-          {hasUnreadNotifications && (
-            <span className="absolute top-0 right-0 block h-2.5 w-2.5 transform -translate-y-1/2 translate-x-1/2 rounded-full bg-red-500 ring-2 ring-background"></span>
-          )}
-        </Button>
-      </div>
+      {/* Notification icon is now global in ClientLayoutWrapper */}
 
       <div className="fixed top-6 right-6 z-50">
         <Sheet>
@@ -284,7 +190,7 @@ export default function HomePage() {
                     className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
                     aria-label="View Class Updates"
                   >
-                    <Bell className="mr-3 h-5 w-5 text-primary" />
+                    <BellIcon className="mr-3 h-5 w-5 text-primary" />
                     Class Updates
                   </Button>
                 </DialogTrigger>
