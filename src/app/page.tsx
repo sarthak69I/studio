@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Bell, HelpCircle, Sun, Moon, Info, Mail } from 'lucide-react'; // Added Mail, Info
+import { Menu, Bell, HelpCircle, Sun, Moon, Bot } from 'lucide-react'; // Removed Mail, Info
 import {
   Sheet,
   SheetContent,
@@ -20,12 +20,11 @@ import {
   DialogTitle,
   DialogFooter,
   DialogClose,
-  DialogTrigger, // Added DialogTrigger
+  DialogTrigger, 
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
-import { Bot } from 'lucide-react';
 
 interface Course {
   id: string;
@@ -64,7 +63,7 @@ const coursesData: Course[] = [
     youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
     timeTableImageUrl: 'https://drive.google.com/file/d/1NeenjN2AfvXmTB6_JKVps4_uVZ66jmaj/preview',
     liveSlots: [
-      { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
+      { targetHour: 17, targetMinute: 10, durationMinutes: 90 }, // Placeholder, actual logic in live page
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
     ],
   },
@@ -109,7 +108,7 @@ const coursesData: Course[] = [
 export default function HomePage() {
   const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
-  const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] = useState(false); // New state for notifications dialog
+  const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
 
   useEffect(() => {
@@ -135,6 +134,7 @@ export default function HomePage() {
     <>
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
       
+      {/* Centralized FAQ Dialog */}
       <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
         <DialogContent className="sm:max-w-lg rounded-xl">
           <DialogHeader>
@@ -179,7 +179,20 @@ export default function HomePage() {
         </DialogContent>
       </Dialog>
 
+      {/* Top-left Notifications Icon */}
+      <div className="fixed top-6 left-6 z-50">
+        <Button
+          variant="outline"
+          size="icon"
+          aria-label="View Notifications"
+          className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          onClick={() => setIsNotificationsDialogOpen(true)}
+        >
+          <Bell className="h-6 w-6" />
+        </Button>
+      </div>
 
+      {/* Top-right Menu Icon */}
       <div className="fixed top-6 right-6 z-50">
         <Sheet>
           <SheetTrigger asChild>
@@ -256,17 +269,6 @@ export default function HomePage() {
                 </DialogContent>
               </Dialog>
               
-              {/* New Notifications Button */}
-              <Button
-                variant="ghost"
-                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                aria-label="View Notifications"
-                onClick={() => setIsNotificationsDialogOpen(true)}
-              >
-                <Bell className="mr-3 h-5 w-5 text-primary" /> {/* Using Bell icon again, can change if needed */}
-                Notifications
-              </Button>
-
               <Button
                 variant="ghost"
                 className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
