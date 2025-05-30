@@ -5,7 +5,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, Bot, MessageSquare, RefreshCw, AlertCircle, CheckCircle, X as CloseIcon } from 'lucide-react';
+import { Bot, MessageSquare, RefreshCw, AlertCircle, CheckCircle, X as CloseIcon, Star } from 'lucide-react';
 
 interface QnA {
   id: string;
@@ -13,7 +13,6 @@ interface QnA {
   answer: string | React.ReactNode;
 }
 
-// Updated questions specific to this app's functionality
 const predefinedQAs: QnA[] = [
   {
     id: 'join-live',
@@ -79,7 +78,7 @@ const predefinedQAs: QnA[] = [
   }
 ];
 
-type BotStep = 'showingQuestions' | 'thinking' | 'showingAnswer';
+type BotStep = 'showingQuestions' | 'thinking' | 'showingAnswer' | 'collectingRating' | 'ratingSubmitted';
 
 export default function ELeakSupportPage() {
   const router = useRouter();
@@ -88,18 +87,18 @@ export default function ELeakSupportPage() {
   const [selectedQ, setSelectedQ] = React.useState<QnA | null>(null);
   const [displayedAnswer, setDisplayedAnswer] = React.useState<string | React.ReactNode>('');
   const [userName, setUserName] = React.useState<string>('there'); // Generic name
+  const [currentRating, setCurrentRating] = React.useState(0);
 
   React.useEffect(() => {
     setIsMounted(true);
     document.title = 'E-Leak 24/7 Support | E-Leak';
-    // In a real app, user name might be fetched here
-    // For now, using a generic greeting
   }, []);
 
   React.useEffect(() => {
     if (step === 'showingQuestions') {
       setSelectedQ(null);
       setDisplayedAnswer('');
+      setCurrentRating(0);
     }
   }, [step]);
 
@@ -107,6 +106,7 @@ export default function ELeakSupportPage() {
     setSelectedQ(qna);
     setStep('thinking');
     setDisplayedAnswer('');
+    setCurrentRating(0);
     
     setTimeout(() => {
       setDisplayedAnswer(qna.answer);
@@ -114,7 +114,7 @@ export default function ELeakSupportPage() {
     }, 2000);
   };
 
-  const handleFollowUp = (action: 'askAgain' | 'stillHelp' | 'resolved') => {
+  const handleFollowUp = (action: 'askAgain' | 'stillHelp' | 'resolved' | 'rateExperience') => {
     if (action === 'askAgain') {
       setStep('showingQuestions');
     } else if (action === 'stillHelp') {
@@ -134,7 +134,19 @@ export default function ELeakSupportPage() {
       setTimeout(() => { 
         setStep('showingQuestions');
       }, 3000);
+    } else if (action === 'rateExperience') {
+      setStep('collectingRating');
     }
+  };
+
+  const handleStarClick = (rating: number) => {
+    setCurrentRating(rating);
+    console.log(`User rated: ${rating} stars`); // For demonstration
+    // In a real app, you might send this to localStorage or an analytics event
+    setStep('ratingSubmitted');
+     setTimeout(() => { 
+        setStep('showingQuestions');
+      }, 3000); // Go back to questions after showing thank you
   };
 
   if (!isMounted) {
@@ -165,7 +177,7 @@ export default function ELeakSupportPage() {
             )}
             <div className="flex items-start gap-3">
               <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
-              <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm">
+              <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm prose prose-sm">
                 {typeof displayedAnswer === 'string' ? <p>{displayedAnswer}</p> : displayedAnswer}
               </div>
             </div>
@@ -176,8 +188,55 @@ export default function ELeakSupportPage() {
               <Button onClick={() => handleFollowUp('stillHelp')} variant="outline" className="w-full py-3 text-sm rounded-full bg-card hover:bg-muted/80">
                 <AlertCircle className="mr-2 h-4 w-4" /> I still need help
               </Button>
+               <Button onClick={() => handleFollowUp('rateExperience')} variant="outline" className="w-full py-3 text-sm rounded-full bg-card hover:bg-muted/80">
+                <Star className="mr-2 h-4 w-4" /> Rate our support
+              </Button>
               <Button onClick={() => handleFollowUp('resolved')} variant="default" className="w-full py-3 text-sm rounded-full">
                 <CheckCircle className="mr-2 h-4 w-4" /> Issue resolved!
+              </Button>
+            </div>
+          </div>
+        );
+      case 'collectingRating':
+        return (
+          <div className="space-y-4 p-2">
+            <div className="flex items-start gap-3">
+              <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
+              <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm">
+                <p>How would you rate your support experience?</p>
+                 <p className="text-xs text-muted-foreground">(This rating is for demonstration and is not stored)</p>
+              </div>
+            </div>
+            <div className="flex justify-center space-x-2 mt-4">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Button
+                  key={star}
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => handleStarClick(star)}
+                  className="text-muted-foreground hover:text-primary"
+                >
+                  <Star className={`h-7 w-7 ${currentRating >= star ? 'fill-primary text-primary' : 'fill-transparent'}`} />
+                </Button>
+              ))}
+            </div>
+             <Button onClick={() => setStep('showingQuestions')} variant="outline" className="w-full mt-4 py-3 text-sm rounded-full bg-card hover:bg-muted/80">
+                Skip / Go Back
+              </Button>
+          </div>
+        );
+      case 'ratingSubmitted':
+        return (
+          <div className="space-y-4 p-2">
+            <div className="flex items-start gap-3">
+              <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
+              <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm">
+                <p>Thank you for your feedback ({currentRating} {currentRating === 1 ? 'star' : 'stars'})!</p>
+              </div>
+            </div>
+             <div className="mt-6">
+              <Button onClick={() => handleFollowUp('askAgain')} variant="outline" className="w-full py-3 text-sm rounded-full bg-card hover:bg-muted/80">
+                <RefreshCw className="mr-2 h-4 w-4" /> Ask another question
               </Button>
             </div>
           </div>
@@ -206,7 +265,6 @@ export default function ELeakSupportPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      {/* New Chat-style Header */}
       <header className="sticky top-0 z-10 flex items-center justify-between p-4 bg-card shadow-md border-b border-border">
         <div className="flex items-center gap-3">
           <div className="bg-primary p-2 rounded-full">
@@ -222,11 +280,9 @@ export default function ELeakSupportPage() {
         </Button>
       </header>
 
-      {/* Chat Content Area */}
       <main className="flex-grow flex flex-col p-4 space-y-4 overflow-y-auto">
         <div className="text-center text-xs text-muted-foreground my-2">Today</div>
         
-        {/* Initial Bot Messages */}
         <div className="flex items-start gap-3">
             <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
             <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm">
@@ -234,17 +290,17 @@ export default function ELeakSupportPage() {
             </div>
         </div>
         <div className="flex items-start gap-3">
-            <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1 opacity-0" /> {/* Spacer to align second bubble */}
+            <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1 opacity-0" /> 
             <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm">
                 <p>If you are facing an issue, please select from the below options.</p>
             </div>
         </div>
 
-        {/* Dynamic Content: Questions or Answer */}
-        <div className="mt-4">
+        <div className="mt-4 overflow-x-hidden">
           {renderContent()}
         </div>
       </main>
     </div>
   );
 }
+
