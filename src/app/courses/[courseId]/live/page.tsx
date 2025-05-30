@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, Bot } from 'lucide-react'; // Added Bot
+import { ArrowLeft, Home as HomeIcon, Bot } from 'lucide-react';
 import { getParamAsString } from '@/lib/utils';
 
 interface LiveClassData {
@@ -23,26 +23,26 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "Class 11 Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "Physics", // Updated as Biology was removed
-    class2Subject: "Chemistry", // Assuming Chemistry is the second class
-    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
-    class2LiveStreamUrl: undefined, // Placeholder, update if Chemistry has a stream
+    class1Subject: "Chemistry", // Placeholder, as Physics is at 8:10 PM
+    class2Subject: "Physics",
+    class1LiveStreamUrl: undefined, // No live class at 5:10 PM for Science
+    class2LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
     subtitle: "Interactive learning sessions for Commerce students",
-    class1Subject: "Economics",
-    class2Subject: "Business Studies",
-    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`,
-    class2LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/1a2e0a5970d84f82a93bebb2ae35314c/index_4.m3u8')}`,
+    class1Subject: "Accountancy",
+    class2Subject: "Economics",
+    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/a63dd48a9268402b8961662fc9993c8d/index_4.m3u8')}`,
+    class2LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d2ypa0i2sdc0h2.cloudfront.net/out/v1/953b87b302b04b50a75b8ed04c215cc4/index_4.m3u8')}`,
   },
-  '3': { // Aarambh
+  '3': { // Aarambh (Foundation)
     pageTitle: "Class 10 Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Aarambh batch",
-    class1Subject: "SST",
-    class2Subject: "Science",
-    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/1a2e0a5970d84f82a93bebb2ae35314c/index_4.m3u8')}`, 
-    class2LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`, 
+    class1Subject: "Science",
+    class2Subject: "Mathematics",
+    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`, // Using previous Aarambh Science stream
+    class2LiveStreamUrl: undefined, // No URL provided for Mathematics
   }
 };
 
