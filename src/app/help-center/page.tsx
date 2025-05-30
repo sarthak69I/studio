@@ -118,6 +118,27 @@ export default function ELeakSupportPage() {
     }, 2000);
   };
 
+  React.useEffect(() => {
+    let ratingTimerId: NodeJS.Timeout | undefined;
+    if (step === 'showingAnswer' && selectedQ !== null) {
+      ratingTimerId = setTimeout(() => {
+        // Check if we are still in the 'showingAnswer' step before transitioning
+        setStep((currentStep) => {
+          if (currentStep === 'showingAnswer') {
+            return 'collectingRating';
+          }
+          return currentStep;
+        });
+      }, 4000); // 4 seconds after answer is shown
+    }
+    return () => {
+      if (ratingTimerId) {
+        clearTimeout(ratingTimerId);
+      }
+    };
+  }, [step, selectedQ]);
+
+
   const handleFollowUp = (action: 'askAgain' | 'stillHelp' | 'resolved' | 'rateExperience') => {
     if (action === 'askAgain') {
       setStep('showingQuestions');
@@ -146,7 +167,6 @@ export default function ELeakSupportPage() {
   const handleStarClick = (rating: number) => {
     setCurrentRating(rating);
     setRatingContext({ question: selectedQ?.question || "General Support", rating });
-    console.log(`User rated: ${rating} stars for question: ${selectedQ?.question || "General Support"}`);
     setStep('ratingSubmitted');
   };
 
@@ -161,8 +181,7 @@ Rating: ${ratingContext.rating} out of 5 stars.
 Additional comments:
 `
     );
-    // IMPORTANT: Replace your-email@example.com with your actual feedback email address
-    window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:jzjha215@gmail.com?subject=${subject}&body=${body}`;
   };
 
 
@@ -324,6 +343,3 @@ Additional comments:
     </div>
   );
 }
-
-
-    
