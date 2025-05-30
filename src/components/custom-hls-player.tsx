@@ -1,3 +1,4 @@
+
 // src/components/custom-hls-player.tsx
 'use client';
 
@@ -12,12 +13,15 @@ import {
   Maximize,
   Minimize,
   RotateCcw,
+  Settings, // Added Settings icon
 } from 'lucide-react';
 
 interface CustomHlsPlayerProps {
   hlsUrl: string;
   title?: string;
 }
+
+const SPEED_OPTIONS = [0.5, 0.75, 1.0, 1.5, 2.0, 3.0];
 
 const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -35,6 +39,9 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
   const [showControls, setShowControls] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
+  const [currentSpeed, setCurrentSpeed] = useState(1.0);
+  const [isSpeedMenuOpen, setIsSpeedMenuOpen] = useState(false);
+
 
   const ICONS = {
     play: <Play className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -45,6 +52,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     volMute: <VolumeX className="h-6 w-6 sm:h-7 sm:w-7" />,
     full: <Maximize className="h-6 w-6 sm:h-7 sm:w-7" />,
     fullExit: <Minimize className="h-6 w-6 sm:h-7 sm:w-7" />,
+    settings: <Settings className="h-6 w-6 sm:h-7 sm:w-7" />,
   };
 
   const formatTime = (timeInSeconds: number) => {
@@ -58,16 +66,15 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     setShowControls(true);
     if (playerContainerRef.current) playerContainerRef.current.style.cursor = 'default';
     if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-    if (isPlaying && !isEnded) {
+    if (isPlaying && !isEnded && !isSpeedMenuOpen) { // Don't hide if speed menu is open
       controlsTimeoutRef.current = setTimeout(() => {
-        // Don't hide if a range input is focused
         if (document.activeElement?.tagName !== 'INPUT' || (document.activeElement as HTMLInputElement).type !== 'range') {
           setShowControls(false);
           if (playerContainerRef.current) playerContainerRef.current.style.cursor = 'none';
         }
       }, 3000);
     }
-  }, [isPlaying, isEnded]);
+  }, [isPlaying, isEnded, isSpeedMenuOpen]);
 
 
   useEffect(() => {
@@ -147,13 +154,14 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
 
     const handleLoadedMetadata = () => {
       if (video.duration !== Infinity) setDuration(video.duration);
+      video.playbackRate = currentSpeed; // Apply initial speed
       setIsLoading(false);
       debouncedShowControls();
     };
     const handleTimeUpdate = () => {
       setCurrentTime(video.currentTime);
       if (video.duration && !isNaN(video.duration) && isFinite(video.duration)) {
-        setDuration(video.duration); // Keep duration updated
+        setDuration(video.duration);
       }
     };
     const handlePlay = () => { setIsPlaying(true); setIsEnded(false); debouncedShowControls(); };
@@ -191,13 +199,13 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       video.removeEventListener('canplaythrough', handleCanPlayThrough);
       video.removeEventListener('playing', handlePlaying);
     };
-  }, [debouncedShowControls]);
+  }, [debouncedShowControls, currentSpeed]); // Added currentSpeed dependency
 
-  useEffect(() => { // Handle initial controls visibility
-    if (!isPlaying) {
+  useEffect(() => { 
+    if (!isPlaying && !isSpeedMenuOpen) { // Don't hide if speed menu is open
       debouncedShowControls();
     }
-  }, [isPlaying, debouncedShowControls]);
+  }, [isPlaying, debouncedShowControls, isSpeedMenuOpen]);
 
 
   const togglePlayPause = () => {
@@ -262,6 +270,25 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
+  const toggleSpeedMenu = () => {
+    setIsSpeedMenuOpen(prev => !prev);
+    // Keep controls visible when speed menu is opened
+    if (!isSpeedMenuOpen) {
+        setShowControls(true);
+        if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+    } else {
+        debouncedShowControls(); // Re-engage hide timer if menu is closed
+    }
+  };
+
+  const selectSpeed = (speed: number) => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = speed;
+    }
+    setCurrentSpeed(speed);
+    setIsSpeedMenuOpen(false);
+    debouncedShowControls(); // Re-engage hide timer
+  };
 
   const playPauseIcon = isEnded ? ICONS.replay : isPlaying ? ICONS.pause : ICONS.play;
   const volumeIcon = isMuted || volume === 0 ? ICONS.volMute : volume < 0.5 ? ICONS.volMid : ICONS.volUp;
@@ -274,7 +301,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       onMouseEnter={debouncedShowControls}
       onMouseMove={debouncedShowControls}
       onMouseLeave={() => { 
-        if (isPlaying && !isEnded && document.activeElement?.tagName !== 'INPUT') { 
+        if (isPlaying && !isEnded && document.activeElement?.tagName !== 'INPUT' && !isSpeedMenuOpen) { 
             controlsTimeoutRef.current = setTimeout(() => {
                 setShowControls(false);
                 if (playerContainerRef.current) playerContainerRef.current.style.cursor = 'none';
@@ -348,6 +375,35 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
             </div>
           </div>
           <div className="flex items-center space-x-2 sm:space-x-3">
+            <div className="relative"> {/* Wrapper for speed menu */}
+              <button 
+                onClick={toggleSpeedMenu} 
+                className="p-1.5 rounded-full hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50" 
+                aria-label="Playback speed"
+              >
+                {ICONS.settings}
+              </button>
+              {isSpeedMenuOpen && (
+                <div 
+                  className="absolute bottom-full right-0 mb-2 w-28 bg-black/80 backdrop-blur-sm rounded-md p-1.5 shadow-lg flex flex-col space-y-0.5 z-30"
+                  onMouseEnter={() => { if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); }}
+                  onMouseLeave={debouncedShowControls}
+                >
+                  <p className="text-xs font-semibold text-center text-white/90 mb-1 px-1 pt-0.5">Speed</p>
+                  {SPEED_OPTIONS.map(speed => (
+                    <button
+                      key={speed}
+                      onClick={() => selectSpeed(speed)}
+                      className={`px-2 py-1.5 text-xs rounded-sm hover:bg-white/30 w-full text-center ${
+                        currentSpeed === speed ? 'bg-red-600 text-white font-semibold' : 'text-white'
+                      }`}
+                    >
+                      {speed === 1.0 ? 'Normal' : `${speed}x`}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <button onClick={toggleFullscreen} className="p-1.5 rounded-full hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50" aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}>
               {isFullscreen ? ICONS.fullExit : ICONS.full}
             </button>
