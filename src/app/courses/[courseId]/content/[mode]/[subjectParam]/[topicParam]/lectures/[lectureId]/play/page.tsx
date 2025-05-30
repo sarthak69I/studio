@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, Bot, Maximize } from 'lucide-react';
+import CustomHlsPlayer from '@/components/custom-hls-player'; // Import the new player
 import {
   scienceCourseContent,
   commerceCourseContent,
@@ -18,20 +19,16 @@ import { getParamAsString } from '@/lib/utils';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from '@/components/ui/dialog';
 
-// const m3u8PlayerBase = 'https://www.m3u8player.online/embed/m3u8?url='; // This constant is defined in course-data.ts if needed there
-
 export default function LecturePlayPage() {
   const router = useRouter();
   const params = useParams();
 
   const courseId = getParamAsString(params.courseId);
-  // const mode = getParamAsString(params.mode); // mode will always be 'video' here
   const subjectParam = getParamAsString(params.subjectParam);
   const topicParam = getParamAsString(params.topicParam);
   const lectureId = getParamAsString(params.lectureId);
 
   const [lecture, setLecture] = React.useState<Lecture | null>(null);
-  const [effectiveEmbedUrl, setEffectiveEmbedUrl] = React.useState<string | undefined>(undefined);
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
@@ -63,9 +60,6 @@ export default function LecturePlayPage() {
               const currentLecture = currentTopic.lectures.find(l => l.id === decodedLectureId);
               if (currentLecture) {
                 if (currentLecture.videoEmbedUrl) {
-                  // Directly use the videoEmbedUrl from course-data.ts
-                  // It should be pre-formatted for YouTube embeds or m3u8player.online embeds.
-                  setEffectiveEmbedUrl(currentLecture.videoEmbedUrl);
                   setLecture(currentLecture);
                   setStatusMessage(null);
                 } else {
@@ -108,6 +102,32 @@ export default function LecturePlayPage() {
     );
   }
 
+  const renderPlayer = () => {
+    if (!lecture || !lecture.videoEmbedUrl) return null;
+
+    if (lecture.videoEmbedType === 'hls') {
+      return <CustomHlsPlayer hlsUrl={lecture.videoEmbedUrl} title={lecture.title} />;
+    }
+    
+    if (lecture.videoEmbedType === 'youtube' || lecture.videoEmbedType === 'iframe') {
+      return (
+        <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-black">
+          <iframe
+            src={lecture.videoEmbedUrl}
+            title={lecture.title}
+            width="100%"
+            height="100%"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="border-0"
+          ></iframe>
+        </div>
+      );
+    }
+    return <p>Unsupported video type.</p>;
+  };
+
+
   return (
     <>
     <div className="flex flex-col min-h-screen bg-background text-foreground px-2 py-4 sm:px-4 md:p-6">
@@ -125,26 +145,18 @@ export default function LecturePlayPage() {
       </header>
 
       <main className="flex-grow flex flex-col justify-start items-center pt-10 md:pt-12 w-full">
-        {lecture && effectiveEmbedUrl ? (
+        {lecture ? (
           <div className="w-full max-w-2xl">
             <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
               {lecture.title}
             </h1>
-            <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-black">
-              <iframe
-                src={effectiveEmbedUrl}
-                title={lecture.title}
-                width="100%"
-                height="100%"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="border-0"
-              ></iframe>
-            </div>
-            <div className="mt-3 text-center text-sm text-muted-foreground p-2 bg-card/50 rounded-md max-w-md mx-auto">
-              <Maximize className="inline h-4 w-4 mr-1" /> 
-              For the best viewing experience, try double-clicking the video or using the player's full-screen button. Ensure your device rotation is enabled for landscape mode.
-            </div>
+            {renderPlayer()}
+            {lecture.videoEmbedType !== 'hls' && ( // Only show this for non-custom players
+              <div className="mt-3 text-center text-sm text-muted-foreground p-2 bg-card/50 rounded-md max-w-md mx-auto">
+                <Maximize className="inline h-4 w-4 mr-1" /> 
+                For the best viewing experience, try double-clicking the video or using the player's full-screen button. Ensure your device rotation is enabled for landscape mode.
+              </div>
+            )}
             <p className="text-muted-foreground text-center mt-4">
               Playing: {lecture.title} from {decodeURIComponent(topicParam || '')} - {decodeURIComponent(subjectParam || '')}
             </p>
