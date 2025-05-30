@@ -1,3 +1,4 @@
+
 // src/lib/course-data.ts
 
 // Represents a single lecture
@@ -30,12 +31,11 @@ export interface CourseContentMap {
 // Helper for slugifying names for paths (simple version)
 const slugify = (text: string) => text.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
 
-// const m3u8PlayerBase = 'https://anym3u8player.com/tv/p.php?url='; // No longer needed for recorded M3U8 if using custom player
 
 // =================================================================================
 // SCIENCE BATCH CONTENT (courseId '1')
 // =================================================================================
-const scienceBasePath = '/assets/courses/science';
+const scienceBasePath = '/assets/courses/science'; // Example base path for notes
 export const scienceCourseContent: CourseContentMap = {
   // ---------------------------------------------------------------------------------
   // Physics - Science Batch
@@ -48,7 +48,6 @@ export const scienceCourseContent: CourseContentMap = {
           id: 'L1',
           title: 'Units and Measurement L1',
           notesLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/notes/L1.pdf`,
-          videoLink: 'https://www.youtube.com/live/eYHkwzP0TkY?si=obukLiTwZjOfBaSS',
           videoEmbedType: 'youtube',
           videoEmbedUrl: 'https://www.youtube.com/embed/eYHkwzP0TkY',
         },
@@ -148,7 +147,6 @@ export const scienceCourseContent: CourseContentMap = {
           id: 'L1',
           title: 'Some Basic Concepts of Chemistry L1',
           notesLink: `${scienceBasePath}/chemistry/${slugify('Some Basic Concepts of Chemistry')}/notes/L1.pdf`,
-          videoLink: 'https://www.youtube.com/live/EVU_Bvc3HpE?si=LX-gur9UBX5LN_MM',
           videoEmbedType: 'youtube',
           videoEmbedUrl: 'https://www.youtube.com/embed/EVU_Bvc3HpE',
         },
@@ -316,7 +314,6 @@ export const scienceCourseContent: CourseContentMap = {
           id: `L1`,
           title: `Sets L1`,
           notesLink: `https://drive.google.com/file/d/19Q6y1QGvyPJo3t87MnndIgWWiGalcT-o/preview`,
-          videoLink: 'https://www.youtube.com/live/UT9CN9XFGYw?si=C1tfKB1UXHYtrmsV',
           videoEmbedType: 'youtube',
           videoEmbedUrl: 'https://www.youtube.com/embed/UT9CN9XFGYw',
         },
@@ -360,7 +357,6 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L5', title: 'Complex Numbers L5', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8' },
         { id: 'L6', title: 'Complex Numbers L6', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8' },
         { id: 'L7', title: 'Complex Numbers L7', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8' },
-        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${scienceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://example.com/placeholder.m3u8' }, // Placeholder
       ]
     },
     {
@@ -376,34 +372,6 @@ export const scienceCourseContent: CourseContentMap = {
       ]
     },
   ], // End of Mathematics - Science
-  // ---------------------------------------------------------------------------------
-  // Biology - Science Batch
-  // ---------------------------------------------------------------------------------
-  'Biology': [
-    {
-      name: 'The Living World',
-      lectures: [
-        { id: 'L1', title: 'The Living World L1', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc' },
-        { id: 'L2', title: 'The Living World L2', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8' },
-        { id: 'L3', title: 'The Living World L3', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8' },
-      ]
-    },
-    {
-      name: 'Biological Classification',
-      lectures: [
-        { id: 'L1', title: 'Biological Classification L1', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'L2', title: 'Biological Classification L2', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'L3', title: 'Biological Classification L3', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'L4', title: 'Biological Classification L4', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'L5', title: 'Biological Classification L5', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'L6', title: 'Biological Classification L6', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'L7', title: 'Biological Classification L7', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'L8', title: 'Biological Classification L8', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L8.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'L9', title: 'Biological Classification L9', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L9.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'L10', title: 'Biological Classification L10', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L10.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-      ]
-    }
-  ], // End of Biology
 };
 // =================================================================================
 // END OF SCIENCE BATCH CONTENT
@@ -413,7 +381,7 @@ export const scienceCourseContent: CourseContentMap = {
 // =================================================================================
 // COMMERCE BATCH CONTENT (courseId '2')
 // =================================================================================
-const commerceBasePath = '/assets/courses/commerce';
+const commerceBasePath = '/assets/courses/commerce'; // Example base path for notes
 export const commerceCourseContent: CourseContentMap = {
   // ---------------------------------------------------------------------------------
   // Business Studies - Commerce Batch
@@ -459,7 +427,6 @@ export const commerceCourseContent: CourseContentMap = {
           id: 'L1',
           title: 'Basic Accounting terms L1',
           notesLink: `${commerceBasePath}/accountancy/${slugify('Basic Concepts of Accounts')}/notes/L1.pdf`,
-          videoLink: 'https://www.youtube.com/live/N0UH3xznWko?si=RG0AL5lLezOMDany',
           videoEmbedType: 'youtube',
           videoEmbedUrl: 'https://www.youtube.com/embed/N0UH3xznWko',
         },
@@ -623,7 +590,6 @@ export const commerceCourseContent: CourseContentMap = {
           id: 'L1',
           title: 'Introduction to Microeconomics L1',
           notesLink: `${commerceBasePath}/economics/${slugify('Introduction to Microeconomics')}/notes/L1.pdf`,
-          videoLink: 'https://www.youtube.com/live/DC5GfUSomWc?si=ZYT0GSchq435Cwb-',
           videoEmbedType: 'youtube',
           videoEmbedUrl: 'https://www.youtube.com/embed/DC5GfUSomWc',
         },
@@ -782,7 +748,6 @@ export const commerceCourseContent: CourseContentMap = {
           id: `L1`,
           title: `Sets L1`,
           notesLink: `https://drive.google.com/file/d/19Q6y1QGvyPJo3t87MnndIgWWiGalcT-o/preview`,
-          videoLink: 'https://www.youtube.com/live/UT9CN9XFGYw?si=C1tfKB1UXHYtrmsV',
           videoEmbedType: 'youtube',
           videoEmbedUrl: 'https://www.youtube.com/embed/UT9CN9XFGYw',
         },
@@ -826,7 +791,6 @@ export const commerceCourseContent: CourseContentMap = {
         { id: 'L5', title: 'Complex Numbers L5', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8' },
         { id: 'L6', title: 'Complex Numbers L6', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8' },
         { id: 'L7', title: 'Complex Numbers L7', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8' },
-        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://example.com/placeholder.m3u8' },
       ]
     },
     {
@@ -851,7 +815,7 @@ export const commerceCourseContent: CourseContentMap = {
 // =================================================================================
 // AARAMBH BATCH CONTENT (courseId '3')
 // =================================================================================
-const aarambhBasePath = '/assets/courses/aarambh';
+const aarambhBasePath = '/assets/courses/aarambh'; // Example base path for notes
 export const aarambhCourseContent: CourseContentMap = {
   // ---------------------------------------------------------------------------------
   // Social Science - Aarambh Batch
@@ -891,7 +855,7 @@ export const aarambhCourseContent: CourseContentMap = {
   // ---------------------------------------------------------------------------------
   'Mathematics': [
     {
-      name: 'Real Numbers',
+      name: 'Real Numbers', // Display name
       lectures: [
         { id: 'L1', title: 'Real Numbers L1', notesLink: `${aarambhBasePath}/mathematics/${slugify('R. Number')}/notes/L1.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/_0ooaKrdubI' },
         { id: 'L2', title: 'Real Numbers L2', notesLink: `${aarambhBasePath}/mathematics/${slugify('R. Number')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4351817/174473442715988296383/index_4.m3u8' },
