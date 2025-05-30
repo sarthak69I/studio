@@ -31,7 +31,7 @@ export interface CourseContentMap {
 // Helper for slugifying names for paths (simple version)
 const slugify = (text: string) => text.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
 
-const m3u8PlayerBase = 'https://www.m3u8player.online/embed/m3u8?url=';
+const m3u8PlayerBase = 'https://anym3u8player.com/tv/p.php?url='; // UPDATED PLAYER
 
 // =================================================================================
 // SCIENCE BATCH CONTENT (courseId '1')
@@ -877,7 +877,7 @@ export const commerceCourseContent: CourseContentMap = {
         { id: 'L5', title: 'Complex Numbers L5', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L5.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8')}` },
         { id: 'L6', title: 'Complex Numbers L6', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L6.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8')}` },
         { id: 'L7', title: 'Complex Numbers L7', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L7.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8')}` },
-        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: '#' },
+        { id: 'L8', title: 'Complex Numbers L8', notesLink: `${commerceBasePath}/mathematics/${slugify('Complex Numbers')}/notes/L8.pdf`, videoEmbedType: 'iframe', videoEmbedUrl: `${m3u8PlayerBase}${encodeURIComponent('https://example.com/placeholder.m3u8')}` },
       ]
     },
     {
@@ -957,3 +957,4 @@ export const aarambhCourseContent: CourseContentMap = {
 // =================================================================================
 // END OF AARAMBH BATCH CONTENT
 // =================================================================================
+
