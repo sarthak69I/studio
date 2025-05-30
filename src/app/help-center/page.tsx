@@ -76,6 +76,36 @@ const predefinedQAs: QnA[] = [
         </a>.
       </>
     ),
+  },
+  {
+    id: 'site-not-responsive',
+    question: "Site is not responsive or looks broken on my device.",
+    answer: (
+      <>
+        <p className="mb-2">We design E-Leak to be responsive on various devices. If you're experiencing layout issues:</p>
+        <ol className="list-decimal pl-5 space-y-1">
+          <li>Ensure your internet connection is stable.</li>
+          <li>Try refreshing the page.</li>
+          <li>Clear your browser's cache and cookies.</li>
+          <li>Try using a different web browser or device to see if the issue persists.</li>
+          <li>If the problem is specific to one device or browser, please let us know on our Telegram channel with details about your device and browser version, so we can investigate.</li>
+        </ol>
+      </>
+    ),
+  },
+  {
+    id: 'subjects-not-clickable',
+    question: "Subject cards are not clickable or not taking me anywhere.",
+    answer: (
+      <>
+        <p className="mb-2">Subject cards on the enrollment page link to further content like topics or lectures.</p>
+        <ol className="list-decimal pl-5 space-y-1">
+          <li>Make sure you've selected a mode ('Notes' or 'Video') first.</li>
+          <li>If a subject card for a specific mode (Notes/Video) isn't clickable or doesn't lead anywhere, it might mean content for that particular subject in that mode is still being prepared or hasn't been linked yet.</li>
+          <li>We are constantly updating our content. Please check back later or look for announcements on our Telegram channel.</li>
+        </ol>
+      </>
+    ),
   }
 ];
 
@@ -221,7 +251,7 @@ export default function ELeakSupportPage() {
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-10 flex items-center justify-between p-4 bg-card shadow-md border-b border-border">
         <div className="flex items-center gap-3">
-          <div className="p-1 rounded-full flex items-center justify-center h-10 w-10"> {/* Removed bg-primary */}
+          <div className="p-1 rounded-full flex items-center justify-center h-10 w-10">
             <Image
               src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
               alt="E-Leak Logo"
@@ -262,7 +292,7 @@ export default function ELeakSupportPage() {
             </div>
         </div>
 
-        <div className="mt-4 overflow-x-hidden"> {/* Added overflow-x-hidden here */}
+        <div className="mt-4 overflow-x-hidden">
           {renderContent()}
         </div>
       </main>
