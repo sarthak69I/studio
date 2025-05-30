@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, Bell, HelpCircle, Sun, Moon, Bot } from 'lucide-react'; // Removed Mail, Info
+import { Menu, Bell, HelpCircle, Sun, Moon, Bot } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -20,7 +20,7 @@ import {
   DialogTitle,
   DialogFooter,
   DialogClose,
-  DialogTrigger, 
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -63,7 +63,7 @@ const coursesData: Course[] = [
     youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
     timeTableImageUrl: 'https://drive.google.com/file/d/1NeenjN2AfvXmTB6_JKVps4_uVZ66jmaj/preview',
     liveSlots: [
-      { targetHour: 17, targetMinute: 10, durationMinutes: 90 }, // Placeholder, actual logic in live page
+      { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
     ],
   },
@@ -105,11 +105,20 @@ const coursesData: Course[] = [
   },
 ];
 
+interface AppNotification {
+  id: string;
+  timestamp: string;
+  title: string;
+  message: string;
+}
+
 export default function HomePage() {
   const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
   const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
+  const [notifications, setNotifications] = useState<AppNotification[]>([]);
+  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
@@ -121,8 +130,50 @@ export default function HomePage() {
       localStorage.setItem('theme', 'dark');
       document.documentElement.className = 'dark';
     }
+
+    fetchNotifications();
   }, []);
 
+  const fetchNotifications = async () => {
+    try {
+      const response = await fetch('/notifications.json');
+      if (!response.ok) {
+        console.error('Failed to fetch notifications:', response.status);
+        setNotifications([]); // Set to empty array on failure
+        return;
+      }
+      const data: AppNotification[] = await response.json();
+      // Sort by timestamp descending (newest first)
+      data.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      setNotifications(data);
+      checkUnreadNotifications(data);
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+      setNotifications([]); // Set to empty array on error
+    }
+  };
+
+  const checkUnreadNotifications = (currentNotifications: AppNotification[]) => {
+    const lastSeenTimestamp = localStorage.getItem('lastSeenNotificationTimestamp');
+    if (currentNotifications.length > 0) {
+      if (!lastSeenTimestamp || new Date(currentNotifications[0].timestamp) > new Date(lastSeenTimestamp)) {
+        setHasUnreadNotifications(true);
+      } else {
+        setHasUnreadNotifications(false);
+      }
+    } else {
+      setHasUnreadNotifications(false);
+    }
+  };
+
+  const handleOpenNotifications = () => {
+    setIsNotificationsDialogOpen(true);
+    if (notifications.length > 0) {
+      localStorage.setItem('lastSeenNotificationTimestamp', notifications[0].timestamp);
+      setHasUnreadNotifications(false);
+    }
+  };
+  
   const toggleTheme = () => {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     setCurrentTheme(newTheme);
@@ -134,7 +185,6 @@ export default function HomePage() {
     <>
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
       
-      {/* Centralized FAQ Dialog */}
       <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
         <DialogContent className="sm:max-w-lg rounded-xl">
           <DialogHeader>
@@ -151,23 +201,25 @@ export default function HomePage() {
         </DialogContent>
       </Dialog>
 
-      {/* Notifications Dialog */}
       <Dialog open={isNotificationsDialogOpen} onOpenChange={setIsNotificationsDialogOpen}>
         <DialogContent className="sm:max-w-md rounded-xl">
           <DialogHeader>
             <DialogTitle className="text-xl">Notifications</DialogTitle>
           </DialogHeader>
-          <div className="py-4 space-y-3 text-sm">
-            {/* Example Notifications - Replace with dynamic content later */}
-            <div className="p-3 bg-muted/50 rounded-md">
-              <p className="font-semibold">New Lecture Added!</p>
-              <p className="text-xs text-muted-foreground">"Calculus L5" is now available in the Maths section.</p>
-            </div>
-            <div className="p-3 bg-muted/50 rounded-md">
-              <p className="font-semibold">Live Class Reminder</p>
-              <p className="text-xs text-muted-foreground">Physics live class starts in 1 hour.</p>
-            </div>
-            <p className="text-center text-muted-foreground">No new notifications.</p>
+          <div className="py-4 space-y-3 text-sm max-h-[60vh] overflow-y-auto">
+            {notifications.length > 0 ? (
+              notifications.map(notif => (
+                <div key={notif.id} className="p-3 bg-muted/50 rounded-md border border-border">
+                  <p className="font-semibold text-foreground">{notif.title}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{notif.message}</p>
+                  <p className="text-xs text-muted-foreground/70 mt-2 text-right">
+                    {new Date(notif.timestamp).toLocaleDateString()} - {new Date(notif.timestamp).toLocaleTimeString()}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p className="text-center text-muted-foreground">No new notifications.</p>
+            )}
           </div>
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>
@@ -179,20 +231,21 @@ export default function HomePage() {
         </DialogContent>
       </Dialog>
 
-      {/* Top-left Notifications Icon */}
       <div className="fixed top-6 left-6 z-50">
         <Button
           variant="outline"
           size="icon"
           aria-label="View Notifications"
-          className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-          onClick={() => setIsNotificationsDialogOpen(true)}
+          className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 relative"
+          onClick={handleOpenNotifications}
         >
           <Bell className="h-6 w-6" />
+          {hasUnreadNotifications && (
+            <span className="absolute top-0 right-0 block h-2.5 w-2.5 transform -translate-y-1/2 translate-x-1/2 rounded-full bg-red-500 ring-2 ring-background"></span>
+          )}
         </Button>
       </div>
 
-      {/* Top-right Menu Icon */}
       <div className="fixed top-6 right-6 z-50">
         <Sheet>
           <SheetTrigger asChild>
@@ -332,6 +385,3 @@ export default function HomePage() {
     </>
   );
 }
-    
-
-    
