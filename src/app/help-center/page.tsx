@@ -5,7 +5,8 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Bot, MessageSquare, RefreshCw, AlertCircle, CheckCircle, X as CloseIcon, Mail } from 'lucide-react'; // Mail might be unused now
+import { MessageSquare, RefreshCw, AlertCircle, CheckCircle, X as CloseIcon, Star } from 'lucide-react';
+import Image from 'next/image'; // Import next/image
 
 interface QnA {
   id: string;
@@ -149,7 +150,13 @@ export default function ELeakSupportPage() {
       case 'thinking':
         return (
           <div className="flex flex-col items-center justify-center p-8 min-h-[300px]">
-            <Bot className="h-16 w-16 text-primary animate-bounce mb-6" />
+             <Image
+              src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
+              alt="E-Leak Bot"
+              width={64} 
+              height={64}
+              className="animate-bounce mb-6"
+            />
             <p className="text-xl text-muted-foreground">E-Leak Bot is thinking...</p>
             {selectedQ && <p className="mt-3 text-md text-center text-foreground/80">Regarding: "{selectedQ.question}"</p>}
           </div>
@@ -163,7 +170,14 @@ export default function ELeakSupportPage() {
               </div>
             )}
             <div className="flex items-start gap-3">
-              <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
+              <div className="bg-primary p-1 rounded-full flex items-center justify-center h-8 w-8 flex-shrink-0 mt-1">
+                <Image
+                  src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
+                  alt="E-Leak Logo"
+                  width={20}
+                  height={20}
+                />
+              </div>
               <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm prose prose-sm">
                 {typeof displayedAnswer === 'string' ? <p>{displayedAnswer}</p> : displayedAnswer}
               </div>
@@ -207,8 +221,13 @@ export default function ELeakSupportPage() {
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-10 flex items-center justify-between p-4 bg-card shadow-md border-b border-border">
         <div className="flex items-center gap-3">
-          <div className="bg-primary p-2 rounded-full">
-             <Bot className="h-6 w-6 text-primary-foreground" />
+          <div className="bg-primary p-1 rounded-full flex items-center justify-center h-10 w-10">
+            <Image
+              src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
+              alt="E-Leak Logo"
+              width={28}
+              height={28}
+            />
           </div>
           <div>
             <h1 className="text-lg font-semibold text-foreground">E-Leak</h1>
@@ -224,13 +243,20 @@ export default function ELeakSupportPage() {
         <div className="text-center text-xs text-muted-foreground my-2">Today</div>
         
         <div className="flex items-start gap-3">
-            <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
+            <div className="bg-primary p-1 rounded-full flex items-center justify-center h-8 w-8 flex-shrink-0 mt-1">
+              <Image
+                src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
+                alt="E-Leak Logo"
+                width={20}
+                height={20}
+              />
+            </div>
             <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm">
                 <p>Hey {userName}, Hope your studies are going well.</p>
             </div>
         </div>
         <div className="flex items-start gap-3">
-            <Bot className="h-8 w-8 text-primary flex-shrink-0 mt-1 opacity-0" /> 
+            <div className="h-8 w-8 flex-shrink-0 mt-1 opacity-0" /> {/* Spacer for alignment */}
             <div className="bg-muted/70 text-foreground p-3 rounded-lg rounded-tl-none shadow-md max-w-xs sm:max-w-md break-words text-sm">
                 <p>If you are facing an issue, please select from the below options.</p>
             </div>
