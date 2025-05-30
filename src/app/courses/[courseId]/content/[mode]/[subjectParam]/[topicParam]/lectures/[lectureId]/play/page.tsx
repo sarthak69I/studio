@@ -121,7 +121,7 @@ export default function LecturePlayPage() {
 
       <main className="flex-grow flex flex-col justify-start items-center pt-10 md:pt-12 w-full">
         {lecture ? (
-          <div className="w-full max-w-3xl">
+          <div className="w-full max-w-2xl"> {/* Changed max-w-3xl to max-w-2xl */}
             <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
               {lecture.title}
             </h1>
@@ -155,10 +155,12 @@ export default function LecturePlayPage() {
 
       <div className="mt-12 mb-6 text-center">
         <p className="text-muted-foreground mb-2">Having Trouble?</p>
-        <Button variant="outline" size="lg" onClick={() => setIsFaqsDialogOpen(true)} className="rounded-lg">
-          <Bot className="mr-2 h-5 w-5" />
-          E-Leak 24/7 Support
-        </Button>
+        <Link href="/help-center" passHref>
+            <Button variant="outline" size="lg" className="rounded-lg">
+              <Bot className="mr-2 h-5 w-5" />
+              E-Leak 24/7 Support
+            </Button>
+          </Link>
       </div>
 
       <footer className="text-center text-sm text-muted-foreground mt-auto py-4">
