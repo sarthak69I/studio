@@ -93,7 +93,11 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
         if (videoElement.readyState >= 3) setIsLoading(false);
       });
       hls.on(Hls.Events.ERROR, (_event, data) => {
-        console.error('HLS.js Error:', data);
+        console.error(
+          `HLS.js Error Data: Type: ${data.type}, Details: ${data.details}, Fatal: ${data.fatal}, URL: ${data.url || 'N/A'}`,
+          'Full error data object:', data,
+          'Actual error instance (if any):', data.error
+        );
         setIsLoading(false);
         if (data.fatal) {
           switch (data.type) {
