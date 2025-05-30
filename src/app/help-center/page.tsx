@@ -5,7 +5,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { MessageSquare, RefreshCw, AlertCircle, CheckCircle, X as CloseIcon, Star } from 'lucide-react';
+import { MessageSquare, RefreshCw, AlertCircle, CheckCircle, X as CloseIcon } from 'lucide-react';
 import Image from 'next/image'; // Import next/image
 
 interface QnA {
@@ -170,7 +170,7 @@ export default function ELeakSupportPage() {
               </div>
             )}
             <div className="flex items-start gap-3">
-              <div className="bg-primary p-1 rounded-full flex items-center justify-center h-8 w-8 flex-shrink-0 mt-1">
+              <div className="p-1 rounded-full flex items-center justify-center h-8 w-8 flex-shrink-0 mt-1">
                 <Image
                   src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
                   alt="E-Leak Logo"
@@ -221,7 +221,7 @@ export default function ELeakSupportPage() {
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-10 flex items-center justify-between p-4 bg-card shadow-md border-b border-border">
         <div className="flex items-center gap-3">
-          <div className="bg-primary p-1 rounded-full flex items-center justify-center h-10 w-10">
+          <div className="p-1 rounded-full flex items-center justify-center h-10 w-10"> {/* Removed bg-primary */}
             <Image
               src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
               alt="E-Leak Logo"
@@ -243,7 +243,7 @@ export default function ELeakSupportPage() {
         <div className="text-center text-xs text-muted-foreground my-2">Today</div>
         
         <div className="flex items-start gap-3">
-            <div className="bg-primary p-1 rounded-full flex items-center justify-center h-8 w-8 flex-shrink-0 mt-1">
+            <div className="p-1 rounded-full flex items-center justify-center h-8 w-8 flex-shrink-0 mt-1">
               <Image
                 src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
                 alt="E-Leak Logo"
@@ -262,7 +262,7 @@ export default function ELeakSupportPage() {
             </div>
         </div>
 
-        <div className="mt-4 overflow-x-hidden">
+        <div className="mt-4 overflow-x-hidden"> {/* Added overflow-x-hidden here */}
           {renderContent()}
         </div>
       </main>
