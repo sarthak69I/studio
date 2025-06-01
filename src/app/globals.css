@@ -134,3 +134,85 @@ body {
     transform: translateY(-8px);
   }
 }
+
+/* Custom Join Live Class Button Styles */
+.join-button {
+  position: relative;
+  padding: 15px 40px;
+  font-size: 18px;
+  color: white;
+  background-color: #e53935;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 0 20px #e53935;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  animation: float 3s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
+}
+
+.join-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 10%, transparent 10.01%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s, opacity 1s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.join-button:hover {
+  transform: scale(1.08) rotate(1deg);
+  box-shadow: 0 0 30px #e53935, 0 0 60px #e53935, 0 0 90px #e53935;
+  animation: float 1.5s ease-in-out infinite, glowPulse 1.5s ease-in-out infinite;
+}
+
+.join-button:active::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  transition: 0s;
+}
+
+.join-button span {
+  position: relative;
+  z-index: 2;
+  animation: pulseText 2s infinite;
+}
+
+.join-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0));
+  transform: skewX(-20deg);
+  animation: shine 2s infinite;
+}
+
+@keyframes pulseText {
+  0% { text-shadow: 0 0 5px #fff, 0 0 10px #e53935; }
+  50% { text-shadow: 0 0 25px #fff, 0 0 50px #e53935; }
+  100% { text-shadow: 0 0 5px #fff, 0 0 10px #e53935; }
+}
+
+@keyframes shine {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px #e53935; }
+  50% { box-shadow: 0 0 40px #e53935, 0 0 80px #e53935; }
+  100% { box-shadow: 0 0 10px #e53935; }
+}

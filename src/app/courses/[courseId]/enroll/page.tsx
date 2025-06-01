@@ -73,14 +73,12 @@ export default function EnrollPage() {
 
       <main className="flex-grow flex flex-col items-center pt-8 md:pt-12">
         <div className="w-full max-w-2xl space-y-6">
-          <Button
-            size="lg"
-            className="w-full py-6 text-xl rounded-full bg-primary hover:bg-primary/90 
-                       transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl animate-pulse-custom"
+          <button
+            className="join-button w-full" // Applied new class, removed conflicting Tailwind classes
             onClick={() => router.push(`/courses/${courseId}/live`)}
           >
-            JOIN LIVE CLASS
-          </Button>
+            <span>JOIN LIVE CLASS</span>
+          </button>
 
           <div className="flex gap-4">
             <Button
