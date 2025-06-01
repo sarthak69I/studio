@@ -1,4 +1,3 @@
-
 // src/components/custom-hls-player.tsx
 'use client';
 
@@ -21,11 +20,12 @@ import {
 interface CustomHlsPlayerProps {
   hlsUrl: string;
   title?: string;
+  onPlaybackEnded?: () => void; // New prop for autoplay next
 }
 
 const SPEED_OPTIONS = [0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0];
 
-const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
+const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlaybackEnded }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const playerContainerRef = useRef<HTMLDivElement>(null);
   const hlsRef = useRef<Hls | null>(null);
@@ -114,40 +114,28 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
 
         let attemptingRecovery = false;
         if (data.fatal) {
-          if (hlsRef.current) { // Ensure hls instance exists
+          if (hlsRef.current) { 
             switch (data.type) {
               case Hls.ErrorTypes.NETWORK_ERROR:
-                hlsRef.current.startLoad(); // Attempt to recover network errors
+                hlsRef.current.startLoad(); 
                 attemptingRecovery = true;
                 break;
               case Hls.ErrorTypes.MEDIA_ERROR:
-                // Only attempt to recover media errors if they are not related to buffer append/remove.
-                // For 'bufferStalledError' that is fatal, or 'bufferAppendError' / 'bufferRemoveError',
-                // destroying and recreating might be necessary if Hls.js cannot recover.
-                // However, Hls.js often tries to recover from some media errors itself.
-                // If data.details is 'bufferStalledError' and data.fatal is true,
-                // Hls.js might not recover on its own, so we might need to destroy.
-                // For simplicity and based on common HLS.js behavior for fatal media errors:
                 if (data.details !== 'bufferStalledError' && data.details !== 'bufferAppendError' && data.details !== 'bufferRemoveError') {
                     hlsRef.current.recoverMediaError();
                     attemptingRecovery = true;
                 } else {
-                    // For critical fatal errors, destroy to prevent further issues.
                     hlsRef.current.destroy();
                     hlsRef.current = null;
                 }
                 break;
               default:
-                // For other fatal errors, destroy.
                 hlsRef.current.destroy();
                 hlsRef.current = null;
                 break;
             }
           }
         }
-        // If not attempting recovery OR if the error is non-fatal (where HLS.js handles recovery)
-        // we let the video element events manage the loading state.
-        // If HLS was destroyed (fatal, unrecoverable), set loading to false.
         if (!attemptingRecovery && !hlsRef.current) {
             setIsLoading(false);
         }
@@ -200,7 +188,15 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     };
     const handlePlay = () => { setIsPlaying(true); setIsEnded(false); debouncedShowControls(); };
     const handlePause = () => { setIsPlaying(false); if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); setShowControls(true); };
-    const handleEnded = () => { setIsPlaying(false); setIsEnded(true); if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); setShowControls(true); };
+    const handleEnded = () => { 
+      setIsPlaying(false); 
+      setIsEnded(true); 
+      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); 
+      setShowControls(true);
+      if (onPlaybackEnded) {
+        onPlaybackEnded();
+      }
+    };
     const handleVolumeChange = () => {
       setVolume(video.volume);
       setIsMuted(video.muted);
@@ -233,10 +229,10 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       video.removeEventListener('canplaythrough', handleCanPlayThrough);
       video.removeEventListener('playing', handlePlaying);
     };
-  }, [debouncedShowControls, currentSpeed]);
+  }, [debouncedShowControls, currentSpeed, onPlaybackEnded]);
 
   useEffect(() => {
-    if (!isPlaying && !isSpeedMenuOpen) { // Keep controls if speed menu is open
+    if (!isPlaying && !isSpeedMenuOpen) { 
       debouncedShowControls();
     }
   }, [isPlaying, debouncedShowControls, isSpeedMenuOpen]);
@@ -247,7 +243,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     videoRef.current.paused || videoRef.current.ended ? videoRef.current.play() : videoRef.current.pause();
   }, [isEnded]);
 
-  const handleVolumeButtonClick = () => {
+  const handleVolumeButtonClick = useCallback(() => {
     if (!videoRef.current) return;
     videoRef.current.muted = !videoRef.current.muted;
     if (videoRef.current.muted) {
@@ -255,7 +251,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     } else {
       videoRef.current.volume = lastVolumeRef.current > 0 ? lastVolumeRef.current : 0.1;
     }
-  };
+  }, []);
 
   const handleVolumeBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!videoRef.current) return;
@@ -309,21 +305,25 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
+  const changeSpeed = useCallback((newSpeed: number) => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = newSpeed;
+    }
+    setCurrentSpeed(newSpeed);
+  }, []);
+
   const toggleSpeedMenu = () => {
     setIsSpeedMenuOpen(prev => !prev);
-    if (!isSpeedMenuOpen) { // If menu is about to open
-        setShowControls(true); // Ensure controls are shown
-        if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); // Prevent hiding
-    } else { // If menu is about to close
-        debouncedShowControls(); // Re-enable auto-hide
+    if (!isSpeedMenuOpen) { 
+        setShowControls(true); 
+        if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); 
+    } else { 
+        debouncedShowControls(); 
     }
   };
 
   const selectSpeed = (speed: number) => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = speed;
-    }
-    setCurrentSpeed(speed);
+    changeSpeed(speed);
     setIsSpeedMenuOpen(false);
     debouncedShowControls();
   };
@@ -333,10 +333,10 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       const newTime = videoRef.current.currentTime + seconds;
       videoRef.current.currentTime = Math.max(0, Math.min(newTime, duration || Infinity));
       setShowSeekIndicator(seconds > 0 ? 'forward' : 'backward');
-      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); // Keep controls visible
+      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); 
       setTimeout(() => {
         setShowSeekIndicator(null);
-        debouncedShowControls(); // Re-enable auto-hide after seek indicator
+        debouncedShowControls(); 
       }, 500);
     }
   }, [duration, debouncedShowControls]);
@@ -369,7 +369,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       seekVideo(-10);
     } else if (clickXRelativeToPlayer > (rect.width * 2) / 3) {
       seekVideo(10);
-    } else { // Middle third - toggle play/pause (not fullscreen as per recent request)
+    } else { 
       togglePlayPause();
     }
   };
@@ -393,14 +393,31 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       } else if (key === 'arrowleft') {
         event.preventDefault();
         seekVideo(-10);
+      } else if (key === 'm') {
+        event.preventDefault();
+        handleVolumeButtonClick();
+      } else if (key === '<' || event.key === ',') { // ',' is often used for decrease speed
+        event.preventDefault();
+        const currentIndex = SPEED_OPTIONS.indexOf(currentSpeed);
+        if (currentIndex > 0) {
+          changeSpeed(SPEED_OPTIONS[currentIndex - 1]);
+        }
+      } else if (key === '>' || event.key === '.') { // '.' is often used for increase speed
+        event.preventDefault();
+        const currentIndex = SPEED_OPTIONS.indexOf(currentSpeed);
+        if (currentIndex < SPEED_OPTIONS.length - 1) {
+          changeSpeed(SPEED_OPTIONS[currentIndex + 1]);
+        }
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    // Attach to player container if focused, or document otherwise for broader access
+    const targetElement = playerContainerRef.current || document;
+    targetElement.addEventListener('keydown', handleKeyDown as EventListener);
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      targetElement.removeEventListener('keydown', handleKeyDown as EventListener);
     };
-  }, [toggleFullscreen, togglePlayPause, seekVideo]);
+  }, [toggleFullscreen, togglePlayPause, seekVideo, handleVolumeButtonClick, currentSpeed, changeSpeed]);
 
 
   const playPauseIcon = isEnded ? ICONS.replay : isPlaying ? ICONS.pause : ICONS.play;
@@ -422,7 +439,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       }}
       onClick={handlePlayerClick}
       onDoubleClick={handlePlayerDoubleClick}
-      tabIndex={0}
+      tabIndex={0} // Make div focusable for keyboard events
     >
       <video ref={videoRef} className="w-full h-full object-contain" playsInline preload="metadata" title={title}></video>
 
@@ -539,3 +556,4 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
 };
 
 export default CustomHlsPlayer;
+

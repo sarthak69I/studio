@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -27,16 +26,52 @@ import {
 } from "@/components/ui/dialog";
 import { Bot } from 'lucide-react';
 
+export function generateStaticParams() {
+  const paths: { courseId: string; mode: string; subjectParam: string; topicParam: string; lectureId: string }[] = [];
+  const courses = [
+    { id: '1', content: scienceCourseContent, name: 'science' },
+    { id: '2', content: commerceCourseContent, name: 'commerce' },
+    { id: '3', content: aarambhCourseContent, name: 'aarambh' },
+  ];
+  const modes = ['video', 'notes'];
+
+  courses.forEach(course => {
+    Object.entries(course.content).forEach(([subjectName, subjectData]) => {
+      if (typeof subjectData !== 'string') { // Check if subjectData is an array of Topics
+        subjectData.forEach(topic => {
+          modes.forEach(mode => {
+            if (topic.lectures) {
+              topic.lectures.forEach(lecture => {
+                paths.push({
+                  courseId: course.id,
+                  mode: mode,
+                  subjectParam: encodeURIComponent(subjectName),
+                  topicParam: encodeURIComponent(topic.name),
+                  lectureId: encodeURIComponent(lecture.id),
+                });
+              });
+            }
+          });
+        });
+      }
+    });
+  });
+  return paths;
+}
+
+
 export default function LecturePlayPage() {
   const router = useRouter();
   const params = useParams();
 
   const courseId = getParamAsString(params.courseId);
+  const mode = getParamAsString(params.mode); // Capture mode for navigation logic
   const subjectParam = getParamAsString(params.subjectParam);
   const topicParam = getParamAsString(params.topicParam);
   const lectureId = getParamAsString(params.lectureId);
 
   const [lecture, setLecture] = React.useState<Lecture | null>(null);
+  const [nextLecture, setNextLecture] = React.useState<Lecture | null>(null);
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
@@ -64,11 +99,18 @@ export default function LecturePlayPage() {
           } else if (Array.isArray(subjectData)) {
             const currentTopic = subjectData.find((t: Topic) => t.name === decodedTopicName);
             if (currentTopic && currentTopic.lectures) {
-              const currentLecture = currentTopic.lectures.find(l => l.id === decodedLectureId);
-              if (currentLecture) {
+              const currentLectureIndex = currentTopic.lectures.findIndex(l => l.id === decodedLectureId);
+              if (currentLectureIndex !== -1) {
+                const currentLecture = currentTopic.lectures[currentLectureIndex];
                 if (currentLecture.videoEmbedUrl) {
                   setLecture(currentLecture);
                   setStatusMessage(null);
+                  // Find next lecture
+                  if (currentLectureIndex + 1 < currentTopic.lectures.length) {
+                    setNextLecture(currentTopic.lectures[currentLectureIndex + 1]);
+                  } else {
+                    setNextLecture(null); // No more lectures in this topic
+                  }
                 } else {
                   setStatusMessage(`Video for lecture "${currentLecture.title}" is not available.`);
                 }
@@ -100,6 +142,16 @@ export default function LecturePlayPage() {
        document.title = `Video Player | E-Leak`;
     }
   }, [isMounted, lecture, statusMessage]);
+
+  const handlePlaybackEnded = () => {
+    if (nextLecture && nextLecture.videoEmbedUrl) { // Only navigate if next lecture has a video
+      const nextLecturePath = `/courses/${courseId}/content/video/${subjectParam}/${topicParam}/lectures/${encodeURIComponent(nextLecture.id)}/play`;
+      router.push(nextLecturePath);
+    } else {
+      // Optionally, show a message that this was the last lecture or next is not a video
+      console.log("Playback ended. No next video lecture to play or next lecture has no video URL.");
+    }
+  };
   
   if (!isMounted) {
     return (
@@ -113,10 +165,13 @@ export default function LecturePlayPage() {
     if (!lecture || !lecture.videoEmbedUrl) return null;
 
     if (lecture.videoEmbedType === 'hls') {
-      return <CustomHlsPlayer hlsUrl={lecture.videoEmbedUrl} title={lecture.title} />;
+      return <CustomHlsPlayer hlsUrl={lecture.videoEmbedUrl} title={lecture.title} onPlaybackEnded={handlePlaybackEnded} />;
     }
     
     if (lecture.videoEmbedType === 'youtube' || lecture.videoEmbedType === 'iframe') {
+      // Note: Autoplay for embedded iframes like YouTube is tricky and often blocked.
+      // The onPlaybackEnded logic here would need to be adapted if we want to control YouTube's end state.
+      // For now, onPlaybackEnded will primarily work for the HLS player.
       return (
         <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-black">
           <iframe
@@ -127,6 +182,7 @@ export default function LecturePlayPage() {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="border-0"
+            onEnded={handlePlaybackEnded} // This might not work for all iframe embeds
           ></iframe>
         </div>
       );
@@ -167,6 +223,11 @@ export default function LecturePlayPage() {
             <p className="text-muted-foreground text-center mt-4">
               Playing: {lecture.title} from {decodeURIComponent(topicParam || '')} - {decodeURIComponent(subjectParam || '')}
             </p>
+             {nextLecture && nextLecture.videoEmbedUrl && (
+              <p className="text-primary text-center mt-2 text-sm">
+                Up next: {nextLecture.title} (will play automatically)
+              </p>
+            )}
           </div>
         ) : statusMessage ? (
           <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md text-center">{statusMessage}</p>
@@ -207,3 +268,4 @@ export default function LecturePlayPage() {
     </>
   );
 }
+
