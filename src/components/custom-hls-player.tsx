@@ -434,7 +434,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
   return (
     <div
       ref={playerContainerRef}
-      className="relative w-full aspect-video bg-black rounded-lg shadow-2xl overflow-hidden group"
+      className="relative w-full aspect-video bg-black rounded-lg shadow-2xl overflow-hidden group border border-border"
       onMouseMove={debouncedShowControls}
       onMouseLeave={() => {
         if (isPlaying && !isEnded && document.activeElement?.tagName !== 'INPUT' && !isSpeedMenuOpen) {
