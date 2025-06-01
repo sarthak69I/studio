@@ -1,3 +1,4 @@
+
 // src/components/custom-hls-player.tsx
 'use client';
 
@@ -15,12 +16,13 @@ import {
   Settings,
   FastForward,
   Rewind,
+  Headphones, // Added for Audio-Only mode
 } from 'lucide-react';
 
 interface CustomHlsPlayerProps {
   hlsUrl: string;
   title?: string;
-  onPlaybackEnded?: () => void; // New prop for autoplay next
+  onPlaybackEnded?: () => void;
 }
 
 const SPEED_OPTIONS = [0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0];
@@ -45,6 +47,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
   const [currentSpeed, setCurrentSpeed] = useState(1.0);
   const [isSpeedMenuOpen, setIsSpeedMenuOpen] = useState(false);
   const [showSeekIndicator, setShowSeekIndicator] = useState<'forward' | 'backward' | null>(null);
+  const [isAudioOnlyMode, setIsAudioOnlyMode] = useState(false); // State for Audio-Only mode
 
 
   const ICONS = {
@@ -59,6 +62,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
     settings: <Settings className="h-5 w-5 sm:h-6 sm:w-6" />,
     forward: <FastForward className="h-8 w-8 text-white" />,
     backward: <Rewind className="h-8 w-8 text-white" />,
+    audioOnly: <Headphones className="h-5 w-5 sm:h-6 sm:w-6" />,
   };
 
   const formatTime = (timeInSeconds: number) => {
@@ -114,10 +118,10 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
 
         let attemptingRecovery = false;
         if (data.fatal) {
-          if (hlsRef.current) { 
+          if (hlsRef.current) {
             switch (data.type) {
               case Hls.ErrorTypes.NETWORK_ERROR:
-                hlsRef.current.startLoad(); 
+                hlsRef.current.startLoad();
                 attemptingRecovery = true;
                 break;
               case Hls.ErrorTypes.MEDIA_ERROR:
@@ -188,10 +192,10 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
     };
     const handlePlay = () => { setIsPlaying(true); setIsEnded(false); debouncedShowControls(); };
     const handlePause = () => { setIsPlaying(false); if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); setShowControls(true); };
-    const handleEnded = () => { 
-      setIsPlaying(false); 
-      setIsEnded(true); 
-      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); 
+    const handleEnded = () => {
+      setIsPlaying(false);
+      setIsEnded(true);
+      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
       setShowControls(true);
       if (onPlaybackEnded) {
         onPlaybackEnded();
@@ -232,7 +236,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
   }, [debouncedShowControls, currentSpeed, onPlaybackEnded]);
 
   useEffect(() => {
-    if (!isPlaying && !isSpeedMenuOpen) { 
+    if (!isPlaying && !isSpeedMenuOpen) {
       debouncedShowControls();
     }
   }, [isPlaying, debouncedShowControls, isSpeedMenuOpen]);
@@ -314,11 +318,11 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
 
   const toggleSpeedMenu = () => {
     setIsSpeedMenuOpen(prev => !prev);
-    if (!isSpeedMenuOpen) { 
-        setShowControls(true); 
-        if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); 
-    } else { 
-        debouncedShowControls(); 
+    if (!isSpeedMenuOpen) {
+        setShowControls(true);
+        if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+    } else {
+        debouncedShowControls();
     }
   };
 
@@ -333,10 +337,10 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
       const newTime = videoRef.current.currentTime + seconds;
       videoRef.current.currentTime = Math.max(0, Math.min(newTime, duration || Infinity));
       setShowSeekIndicator(seconds > 0 ? 'forward' : 'backward');
-      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); 
+      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
       setTimeout(() => {
         setShowSeekIndicator(null);
-        debouncedShowControls(); 
+        debouncedShowControls();
       }, 500);
     }
   }, [duration, debouncedShowControls]);
@@ -369,7 +373,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
       seekVideo(-10);
     } else if (clickXRelativeToPlayer > (rect.width * 2) / 3) {
       seekVideo(10);
-    } else { 
+    } else {
       togglePlayPause();
     }
   };
@@ -396,13 +400,13 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
       } else if (key === 'm') {
         event.preventDefault();
         handleVolumeButtonClick();
-      } else if (key === '<' || event.key === ',') { // ',' is often used for decrease speed
+      } else if (key === '<' || event.key === ',') {
         event.preventDefault();
         const currentIndex = SPEED_OPTIONS.indexOf(currentSpeed);
         if (currentIndex > 0) {
           changeSpeed(SPEED_OPTIONS[currentIndex - 1]);
         }
-      } else if (key === '>' || event.key === '.') { // '.' is often used for increase speed
+      } else if (key === '>' || event.key === '.') {
         event.preventDefault();
         const currentIndex = SPEED_OPTIONS.indexOf(currentSpeed);
         if (currentIndex < SPEED_OPTIONS.length - 1) {
@@ -411,13 +415,26 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
       }
     };
 
-    // Attach to player container if focused, or document otherwise for broader access
     const targetElement = playerContainerRef.current || document;
     targetElement.addEventListener('keydown', handleKeyDown as EventListener);
     return () => {
       targetElement.removeEventListener('keydown', handleKeyDown as EventListener);
     };
   }, [toggleFullscreen, togglePlayPause, seekVideo, handleVolumeButtonClick, currentSpeed, changeSpeed]);
+
+  const toggleAudioOnlyMode = useCallback(() => {
+    setIsAudioOnlyMode(prev => {
+      const newMode = !prev;
+      if (videoRef.current) {
+        // Hiding the video element visually, actual audio stream switching is more complex
+        // and depends on HLS manifest capabilities (not implemented here for simplicity).
+        videoRef.current.style.opacity = newMode ? '0' : '1';
+        videoRef.current.style.height = newMode ? '0px' : '100%'; // Collapse height too
+        videoRef.current.style.pointerEvents = newMode ? 'none' : 'auto';
+      }
+      return newMode;
+    });
+  }, []);
 
 
   const playPauseIcon = isEnded ? ICONS.replay : isPlaying ? ICONS.pause : ICONS.play;
@@ -441,9 +458,16 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
       onDoubleClick={handlePlayerDoubleClick}
       tabIndex={0} // Make div focusable for keyboard events
     >
-      <video ref={videoRef} className="w-full h-full object-contain" playsInline preload="metadata" title={title}></video>
+      <video ref={videoRef} className="w-full h-full object-contain transition-opacity duration-300" playsInline preload="metadata" title={title}></video>
+      {isAudioOnlyMode && (
+         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/90 z-10 pointer-events-none text-white">
+           <Headphones className="h-16 w-16 mb-4 text-primary" />
+           <p className="text-lg font-semibold">Audio Only Mode</p>
+           {title && <p className="text-sm text-muted-foreground">{title}</p>}
+         </div>
+       )}
 
-      {isLoading && (
+      {isLoading && !isAudioOnlyMode && (
         <div id="loadingSpinner" className="absolute inset-0 flex items-center justify-center bg-black/50 z-20 pointer-events-none">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-500"></div>
         </div>
@@ -459,7 +483,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
 
       <div
         id="videoControls"
-        className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4 text-white transition-opacity duration-300 ease-in-out flex flex-col space-y-2 z-10 ${
+        className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4 text-white transition-opacity duration-300 ease-in-out flex flex-col space-y-2 z-20 ${ // Ensure controls are above audio only overlay if it ever becomes interactable
           showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
         } ${isFullscreen ? 'pb-5' : ''}`}
         onClick={(e) => e.stopPropagation()}
@@ -517,6 +541,14 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
             </div>
           </div>
           <div className="flex items-center space-x-1 sm:space-x-2">
+            <button
+                onClick={toggleAudioOnlyMode}
+                className={`p-1.5 rounded-full hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 ${isAudioOnlyMode ? 'bg-primary/30 text-primary' : ''}`}
+                aria-label={isAudioOnlyMode ? 'Disable Audio Only' : 'Enable Audio Only'}
+                title={isAudioOnlyMode ? 'Disable Audio Only' : 'Enable Audio Only'}
+            >
+                {ICONS.audioOnly}
+            </button>
             <div className="relative">
               <button
                 onClick={toggleSpeedMenu}
@@ -556,4 +588,3 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
 };
 
 export default CustomHlsPlayer;
-

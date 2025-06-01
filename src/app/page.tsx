@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, HelpCircle, Sun, Moon, Bell as BellIcon, Bot } from 'lucide-react'; // Added Bot, Cog removed
+import { Menu, HelpCircle, Sun, Moon, Bell as BellIcon, Bot, History, PlaySquare, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import {
   Sheet,
@@ -26,6 +26,9 @@ import {
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
+import { getRecentlyWatched, clearRecentlyWatched, type RecentlyWatchedLecture } from '@/lib/recently-watched-utils';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+
 
 interface Course {
   id: string;
@@ -110,6 +113,7 @@ export default function HomePage() {
   const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
+  const [recentlyWatched, setRecentlyWatched] = useState<RecentlyWatchedLecture[]>([]);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
@@ -117,10 +121,13 @@ export default function HomePage() {
       setCurrentTheme(storedTheme);
       document.documentElement.className = storedTheme;
     } else {
-      setCurrentTheme('dark'); // Default to dark
+      setCurrentTheme('dark'); 
       localStorage.setItem('theme', 'dark');
       document.documentElement.className = 'dark';
     }
+    
+    // Load recently watched items
+    setRecentlyWatched(getRecentlyWatched());
   }, []);
   
   const toggleTheme = () => {
@@ -129,6 +136,16 @@ export default function HomePage() {
     document.documentElement.className = newTheme;
     localStorage.setItem('theme', newTheme);
   };
+
+  const handleClearRecentlyWatched = () => {
+    clearRecentlyWatched();
+    setRecentlyWatched([]);
+  };
+
+  const getCourseNameById = (courseId: string): string => {
+    const course = coursesData.find(c => c.id === courseId);
+    return course ? course.title : `Course ID: ${courseId}`;
+  }
 
   return (
     <>
@@ -271,6 +288,48 @@ export default function HomePage() {
       </header>
 
       <main className="w-full max-w-6xl flex-grow">
+        {recentlyWatched.length > 0 && (
+          <section className="mb-12">
+            <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl md:text-3xl font-semibold text-foreground flex items-center">
+                <History className="mr-3 h-7 w-7 text-primary" />
+                Recently Watched
+                </h2>
+                <Button variant="outline" size="sm" onClick={handleClearRecentlyWatched} className="text-xs">
+                    <Trash2 className="mr-1.5 h-3.5 w-3.5" /> Clear History
+                </Button>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              {recentlyWatched.map((item) => (
+                <Link
+                  key={`${item.courseId}-${item.lectureId}-${item.watchedAt}`}
+                  href={`/courses/${item.courseId}/content/video/${item.subjectParam}/${item.topicParam}/lectures/${item.lectureId}/play`}
+                  passHref
+                >
+                  <Card className="hover:shadow-lg transition-shadow duration-200 cursor-pointer h-full flex flex-col bg-card/80 backdrop-blur-sm">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-lg font-semibold leading-tight flex items-center">
+                        <PlaySquare className="mr-2 h-5 w-5 text-primary flex-shrink-0" /> 
+                        {item.lectureTitle}
+                      </CardTitle>
+                      <CardDescription className="text-xs line-clamp-1">
+                        {item.courseName || getCourseNameById(item.courseId)} - {item.subjectName} / {item.topicName}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="pt-1 text-xs text-muted-foreground">
+                       Watched: {new Date(item.watchedAt).toLocaleDateString()}
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Our Courses</h2>
+          {/* Optional: Add a button or link here, e.g., "View All Courses" if you had more */}
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
           {coursesData.map((course) => (
             <CourseCard key={course.id} {...course} />
