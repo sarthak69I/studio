@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, HelpCircle, Sun, Moon, Bell as BellIcon, Cog, Bot } from 'lucide-react'; // Added Bot
+import { Menu, HelpCircle, Sun, Moon, Bell as BellIcon, Bot } from 'lucide-react'; // Added Bot, Cog removed
 import Image from 'next/image';
 import {
   Sheet,
@@ -251,18 +251,6 @@ export default function HomePage() {
                     className="mr-3"
                   />
                   E-Leak 24/7 Support
-                </Link>
-              </Button>
-
-              <Button
-                variant="ghost"
-                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                aria-label="Open Admin Tool"
-                asChild
-              >
-                <Link href="/admin-tool">
-                  <Cog className="mr-3 h-5 w-5 text-primary" />
-                  Admin Tool
                 </Link>
               </Button>
 
