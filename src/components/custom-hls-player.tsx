@@ -23,7 +23,7 @@ interface CustomHlsPlayerProps {
   title?: string;
 }
 
-const SPEED_OPTIONS = [0.5, 0.75, 1.0, 1.5, 2.0];
+const SPEED_OPTIONS = [0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0];
 
 const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -112,8 +112,8 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
           'Actual error instance (if any):', data.error
         );
 
+        let attemptingRecovery = false;
         if (data.fatal) {
-          let attemptingRecovery = false;
           if (hlsRef.current) { // Ensure hls instance exists
             switch (data.type) {
               case Hls.ErrorTypes.NETWORK_ERROR:
@@ -121,26 +121,36 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
                 attemptingRecovery = true;
                 break;
               case Hls.ErrorTypes.MEDIA_ERROR:
-                hlsRef.current.recoverMediaError(); // Attempt to recover media errors
-                attemptingRecovery = true;
+                // Only attempt to recover media errors if they are not related to buffer append/remove.
+                // For 'bufferStalledError' that is fatal, or 'bufferAppendError' / 'bufferRemoveError',
+                // destroying and recreating might be necessary if Hls.js cannot recover.
+                // However, Hls.js often tries to recover from some media errors itself.
+                // If data.details is 'bufferStalledError' and data.fatal is true,
+                // Hls.js might not recover on its own, so we might need to destroy.
+                // For simplicity and based on common HLS.js behavior for fatal media errors:
+                if (data.details !== 'bufferStalledError' && data.details !== 'bufferAppendError' && data.details !== 'bufferRemoveError') {
+                    hlsRef.current.recoverMediaError();
+                    attemptingRecovery = true;
+                } else {
+                    // For critical fatal errors, destroy to prevent further issues.
+                    hlsRef.current.destroy();
+                    hlsRef.current = null;
+                }
                 break;
               default:
                 // For other fatal errors, destroy.
                 hlsRef.current.destroy();
                 hlsRef.current = null;
-                break; 
+                break;
             }
           }
-          if (!attemptingRecovery) {
-            // If not attempting recovery (e.g. hls destroyed or unknown fatal error type)
-            setIsLoading(false);
-          }
         }
-        // For non-fatal errors (like bufferStalledError with Fatal: false),
-        // HLS.js attempts to recover automatically.
-        // We do NOT call setIsLoading(false) here.
-        // We rely on the video element's 'waiting', 'playing', 'canplaythrough' events
-        // to manage the isLoading state, which are handled in another useEffect.
+        // If not attempting recovery OR if the error is non-fatal (where HLS.js handles recovery)
+        // we let the video element events manage the loading state.
+        // If HLS was destroyed (fatal, unrecoverable), set loading to false.
+        if (!attemptingRecovery && !hlsRef.current) {
+            setIsLoading(false);
+        }
       });
     } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
       videoElement.src = hlsUrl;
@@ -225,7 +235,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     };
   }, [debouncedShowControls, currentSpeed]);
 
-  useEffect(() => { 
+  useEffect(() => {
     if (!isPlaying && !isSpeedMenuOpen) { // Keep controls if speed menu is open
       debouncedShowControls();
     }
@@ -259,7 +269,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     if (!videoRef.current || isNaN(duration) || duration === 0) return;
     videoRef.current.currentTime = parseFloat(e.target.value);
   };
-  
+
   const handleSeekBarMouseDown = () => {
     if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
   };
@@ -320,7 +330,8 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
 
   const seekVideo = useCallback((seconds: number) => {
     if (videoRef.current) {
-      videoRef.current.currentTime += seconds;
+      const newTime = videoRef.current.currentTime + seconds;
+      videoRef.current.currentTime = Math.max(0, Math.min(newTime, duration || Infinity));
       setShowSeekIndicator(seconds > 0 ? 'forward' : 'backward');
       if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); // Keep controls visible
       setTimeout(() => {
@@ -328,30 +339,25 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
         debouncedShowControls(); // Re-enable auto-hide after seek indicator
       }, 500);
     }
-  }, [debouncedShowControls]);
+  }, [duration, debouncedShowControls]);
 
   const handlePlayerClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // This function now only handles single clicks due to onDoubleClick.
-    // Double click logic is in handlePlayerDoubleClick.
-    // We prevent single-click play/pause if a double click is detected soon after.
     if (doubleClickTimeoutRef.current) {
         clearTimeout(doubleClickTimeoutRef.current);
         doubleClickTimeoutRef.current = null;
-        // This was part of a double click, so don't toggle play/pause
         return;
     }
 
-    // Set a timeout to detect if this is a single click
     doubleClickTimeoutRef.current = setTimeout(() => {
         if (videoRef.current && (e.target === playerContainerRef.current || e.target === videoRef.current)) {
             togglePlayPause();
         }
         doubleClickTimeoutRef.current = null;
-    }, 250); // 250ms window for double click
+    }, 250);
   };
-  
+
   const handlePlayerDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (doubleClickTimeoutRef.current) { // Clear single-click timeout
+    if (doubleClickTimeoutRef.current) {
         clearTimeout(doubleClickTimeoutRef.current);
         doubleClickTimeoutRef.current = null;
     }
@@ -359,26 +365,26 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     const rect = playerContainerRef.current.getBoundingClientRect();
     const clickXRelativeToPlayer = e.clientX - rect.left;
 
-    if (clickXRelativeToPlayer < rect.width / 3) { // Left third
-      seekVideo(-10); 
-    } else if (clickXRelativeToPlayer > (rect.width * 2) / 3) { // Right third
-      seekVideo(10);  
-    } else { // Middle third - toggle fullscreen
-      toggleFullscreen();
+    if (clickXRelativeToPlayer < rect.width / 3) {
+      seekVideo(-10);
+    } else if (clickXRelativeToPlayer > (rect.width * 2) / 3) {
+      seekVideo(10);
+    } else { // Middle third - toggle play/pause (not fullscreen as per recent request)
+      togglePlayPause();
     }
   };
-  
+
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (document.activeElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
-        return; 
+        return;
       }
       const key = event.key.toLowerCase();
       if (key === 'f') {
         event.preventDefault();
         toggleFullscreen();
-      } else if (key === ' ') { 
+      } else if (key === ' ') {
         event.preventDefault();
         togglePlayPause();
       } else if (key === 'arrowright') {
@@ -406,8 +412,8 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       ref={playerContainerRef}
       className="relative w-full aspect-video bg-black rounded-lg shadow-2xl overflow-hidden group"
       onMouseMove={debouncedShowControls}
-      onMouseLeave={() => { 
-        if (isPlaying && !isEnded && document.activeElement?.tagName !== 'INPUT' && !isSpeedMenuOpen) { 
+      onMouseLeave={() => {
+        if (isPlaying && !isEnded && document.activeElement?.tagName !== 'INPUT' && !isSpeedMenuOpen) {
             controlsTimeoutRef.current = setTimeout(() => {
                 setShowControls(false);
                 if (playerContainerRef.current) playerContainerRef.current.style.cursor = 'none';
@@ -416,7 +422,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       }}
       onClick={handlePlayerClick}
       onDoubleClick={handlePlayerDoubleClick}
-      tabIndex={0} 
+      tabIndex={0}
     >
       <video ref={videoRef} className="w-full h-full object-contain" playsInline preload="metadata" title={title}></video>
 
@@ -437,15 +443,15 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       <div
         id="videoControls"
         className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4 text-white transition-opacity duration-300 ease-in-out flex flex-col space-y-2 z-10 ${
-          showControls ? 'opacity-100' : 'opacity-0 pointer-events-none' // Added pointer-events-none when hidden
+          showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
         } ${isFullscreen ? 'pb-5' : ''}`}
-        onClick={(e) => e.stopPropagation()} 
-        onDoubleClick={(e) => e.stopPropagation()} 
+        onClick={(e) => e.stopPropagation()}
+        onDoubleClick={(e) => e.stopPropagation()}
       >
         <div className="relative w-full h-3 flex items-center">
            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[6px] bg-white/30 rounded-full">
-                <div 
-                    id="seekBarProgressFill" 
+                <div
+                    id="seekBarProgressFill"
                     className="bg-red-500 h-full rounded-full pointer-events-none"
                     style={{ width: `${progressPercentage}%` }}
                 ></div>
@@ -481,7 +487,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
                 step="0.05"
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeBarChange}
-                className="w-0 group-hover/volume:w-16 sm:group-hover/volume:w-20 h-2 transition-all duration-200 opacity-0 group-hover/volume:opacity-100 ml-1 
+                className="w-0 group-hover/volume:w-16 sm:group-hover/volume:w-20 h-2 transition-all duration-200 opacity-0 group-hover/volume:opacity-100 ml-1
                            [&::-webkit-slider-runnable-track]:bg-white/30 [&::-webkit-slider-runnable-track]:h-[6px] [&::-webkit-slider-runnable-track]:rounded-full
                            [&::-moz-range-track]:bg-white/30 [&::-moz-range-track]:h-[6px] [&::-moz-range-track]:rounded-full
                            [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:bg-red-500 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:border
@@ -495,15 +501,15 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
           </div>
           <div className="flex items-center space-x-1 sm:space-x-2">
             <div className="relative">
-              <button 
-                onClick={toggleSpeedMenu} 
-                className="p-1.5 rounded-full hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50" 
+              <button
+                onClick={toggleSpeedMenu}
+                className="p-1.5 rounded-full hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
                 aria-label="Playback speed"
               >
                 {ICONS.settings}
               </button>
               {isSpeedMenuOpen && (
-                <div 
+                <div
                   className="absolute bottom-full right-1/2 translate-x-1/2 sm:right-0 sm:translate-x-0 mb-2 bg-black/80 backdrop-blur-sm rounded-md shadow-lg flex flex-row space-x-1 p-1.5 z-30"
                   onMouseEnter={() => { if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); }}
                   onMouseLeave={debouncedShowControls}
@@ -516,7 +522,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
                         currentSpeed === speed ? 'bg-red-600 text-white font-semibold' : 'text-white'
                       }`}
                     >
-                      {speed === 1.0 ? '1x' : `${speed}x`}
+                      {speed === 1.0 ? 'Normal' : `${speed}x`}
                     </button>
                   ))}
                 </div>
@@ -533,4 +539,3 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
 };
 
 export default CustomHlsPlayer;
-
