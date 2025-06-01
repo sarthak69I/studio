@@ -53,7 +53,7 @@ interface CountdownState {
 }
 
 interface ClassStatusState {
-  status: 'upcoming' | 'live' | 'completed';
+  status: 'upcoming' | 'live' | 'completed' | 'recording_available';
   badgeText: string;
   buttonText: string;
   buttonDisabled: boolean;
@@ -70,6 +70,11 @@ interface LiveClassCardProps {
   durationMinutes: number;
   liveStreamUrl?: string;
 }
+
+const VACATION_START_MONTH = 5; // June (0-indexed for Date constructor)
+const VACATION_START_DAY = 1;
+const VACATION_DURATION_HOURS = 168;
+
 
 const LiveClassCard: React.FC<LiveClassCardProps> = ({
   cardId,
@@ -98,27 +103,32 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
   React.useEffect(() => {
     if (!isMounted) return;
 
-    const calculateTimes = () => {
+    const calculateTimesAndVacation = () => {
       const now = new Date();
+      const currentYear = now.getFullYear();
+      // Note: Month is 0-indexed (January is 0, June is 5)
+      const vacationStartDate = new Date(currentYear, VACATION_START_MONTH, VACATION_START_DAY, 0, 0, 0);
+      const vacationEndDate = new Date(vacationStartDate.getTime() + VACATION_DURATION_HOURS * 60 * 60 * 1000);
+      const isVacationPeriod = now >= vacationStartDate && now < vacationEndDate;
+
       let classStartTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour, targetMinute, 0);
       
       const endOfDayReferenceHour = 20; 
       const endOfDayReferenceMinute = 10;
       const endOfDayReferenceDuration = 90; 
-
       let lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), endOfDayReferenceHour, endOfDayReferenceMinute, 0);
       lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + endOfDayReferenceDuration);
       
-      if (now > lastClassEndTimeToday) {
+      if (now > lastClassEndTimeToday && targetHour < now.getHours()) { // Ensure class date increments if current time is past all classes for the day
          classStartTime.setDate(classStartTime.getDate() + 1);
       }
 
       const classEndTime = new Date(classStartTime.getTime() + durationMinutes * 60000);
-      return { now, classStartTime, classEndTime };
+      return { now, classStartTime, classEndTime, isVacationPeriod };
     };
 
     const updateClassState = () => {
-      const { now, classStartTime, classEndTime } = calculateTimes();
+      const { now, classStartTime, classEndTime, isVacationPeriod } = calculateTimesAndVacation();
       const diff = classStartTime.getTime() - now.getTime();
 
       if (now < classStartTime) { 
@@ -132,7 +142,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
         });
         setClassStatus({
           status: 'upcoming',
-          badgeText: 'Upcoming',
+          badgeText: isVacationPeriod && liveStreamUrl ? 'Upcoming (Recording)' : 'Upcoming',
           buttonText: 'JOIN NOW',
           buttonDisabled: true, 
           cardBorderClass: 'border-accent',
@@ -140,19 +150,39 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
         });
       } else if (now >= classStartTime && now < classEndTime) { 
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
-        setClassStatus({
-          status: 'live',
-          badgeText: 'Live Now',
-          buttonText: 'JOIN NOW',
-          buttonDisabled: !liveStreamUrl, 
-          cardBorderClass: 'border-destructive animate-live-pulse',
-          badgeClass: 'bg-destructive/20 text-destructive',
-        });
+        if (isVacationPeriod && liveStreamUrl) {
+            setClassStatus({
+                status: 'recording_available',
+                badgeText: 'Recording Available',
+                buttonText: 'Watch Recording',
+                buttonDisabled: false, 
+                cardBorderClass: 'border-primary', // Use primary color for recording border
+                badgeClass: 'bg-primary/20 text-primary',
+            });
+        } else if (!isVacationPeriod && liveStreamUrl) { 
+            setClassStatus({
+                status: 'live',
+                badgeText: 'Live Now',
+                buttonText: 'JOIN NOW',
+                buttonDisabled: false, 
+                cardBorderClass: 'border-destructive animate-live-pulse',
+                badgeClass: 'bg-destructive/20 text-destructive',
+            });
+        } else { // Active slot, but no stream URL (regardless of vacation)
+            setClassStatus({
+                status: 'completed', // Treat as completed or unavailable
+                badgeText: 'No Session Scheduled',
+                buttonText: 'Unavailable',
+                buttonDisabled: true,
+                cardBorderClass: 'border-muted-foreground/50',
+                badgeClass: 'bg-muted/30 text-muted-foreground',
+            });
+        }
       } else { 
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
         setClassStatus({
           status: 'completed',
-          badgeText: 'Completed',
+          badgeText: isVacationPeriod && liveStreamUrl ? 'Recording Ended' : 'Completed',
           buttonText: 'Class Ended',
           buttonDisabled: true, 
           cardBorderClass: 'border-green-500', 
@@ -184,14 +214,14 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       
       {!liveStreamUrl ? (
         <div className="text-center text-muted-foreground py-8">
-          <p className="text-lg">Today is no live class for this subject.</p>
+          <p className="text-lg">No live class or recording scheduled for this subject today.</p>
         </div>
-      ) : classStatus.status === 'live' ? (
+      ) : (classStatus.status === 'live' || classStatus.status === 'recording_available') ? (
         <>
           <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-border bg-black my-4">
             <iframe
               src={liveStreamUrl}
-              title={`${subject} Live Stream`}
+              title={`${subject} ${classStatus.status === 'live' ? 'Live Stream' : 'Recording'}`}
               width="100%"
               height="100%"
               allowFullScreen
@@ -200,7 +230,9 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
             ></iframe>
           </div>
           <p className="text-xs text-muted-foreground text-center -mt-2 mb-4">
-            Double-click on video to Full Screen
+            {classStatus.status === 'live' 
+              ? "Double-click on video to Full Screen."
+              : "This is a pre-recorded session. Full-screen option may be available via player controls."}
           </p>
         </>
       ) : (
@@ -225,9 +257,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
                         ${classStatus.buttonDisabled ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5'}`}
             disabled={classStatus.buttonDisabled}
             onClick={() => { 
-              if (!classStatus.buttonDisabled && liveStreamUrl) { 
-                // Action handled by iframe loading
-              }
+              // Action handled by iframe loading based on status
             }}
           >
             {classStatus.buttonText}
@@ -243,7 +273,7 @@ export default function LiveClassesPage() {
   const params = useParams();
   const courseId = getParamAsString(params.courseId);
   const [isMounted, setIsMounted] = React.useState(false);
-  const [firstClassStatus, setFirstClassStatus] = React.useState<'upcoming' | 'live' | 'completed'>('upcoming');
+  const [firstClassStatus, setFirstClassStatus] = React.useState<'upcoming' | 'live' | 'completed' | 'recording_available'>('upcoming');
 
 
   React.useEffect(() => {
@@ -268,21 +298,23 @@ export default function LiveClassesPage() {
   React.useEffect(() => {
     if (!isMounted) return;
 
-    const calculateFirstClassStatus = () => {
+    // This useEffect determines the order of class cards based on the first class's general timing.
+    // The individual card's detailed status (live, recording, upcoming) is handled within LiveClassCard.
+    const calculateFirstClassOriginalTimingStatus = () => {
         const now = new Date();
-        const targetHour1 = 17; // 5 PM
+        const targetHour1 = 17; // 5 PM - First class scheduled time
         const targetMinute1 = 10;
         const durationMinutes1 = 90;
 
         let classStartTime1 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour1, targetMinute1, 0);
         
-        const endOfDayReferenceHour = 20; // 8 PM
+        const endOfDayReferenceHour = 20; 
         const endOfDayReferenceMinute = 10;
         const endOfDayReferenceDuration = 90; 
         let lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), endOfDayReferenceHour, endOfDayReferenceMinute, 0);
         lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + endOfDayReferenceDuration);
 
-        if (now > lastClassEndTimeToday) {
+        if (now > lastClassEndTimeToday && targetHour1 < now.getHours()) {
             classStartTime1.setDate(classStartTime1.getDate() + 1);
         }
         const classEndTime1 = new Date(classStartTime1.getTime() + durationMinutes1 * 60000);
@@ -290,14 +322,15 @@ export default function LiveClassesPage() {
         if (now < classStartTime1) {
             setFirstClassStatus('upcoming');
         } else if (now >= classStartTime1 && now < classEndTime1) {
-            setFirstClassStatus('live');
+            // For ordering, consider it 'live' slot, card itself will show recording if vacation
+            setFirstClassStatus('live'); 
         } else {
             setFirstClassStatus('completed');
         }
     };
 
-    calculateFirstClassStatus();
-    const intervalId = setInterval(calculateFirstClassStatus, 60000); // Check status every minute
+    calculateFirstClassOriginalTimingStatus();
+    const intervalId = setInterval(calculateFirstClassOriginalTimingStatus, 60000); 
     return () => clearInterval(intervalId);
   }, [isMounted]);
 
@@ -384,3 +417,4 @@ export default function LiveClassesPage() {
     </div>
   );
 }
+
