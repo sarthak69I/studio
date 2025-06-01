@@ -22,6 +22,7 @@ import {
   DialogFooter,
   DialogClose,
   DialogTrigger,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -113,7 +114,9 @@ export default function HomePage() {
   const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
-  const [recentlyWatched, setRecentlyWatched] = useState<RecentlyWatchedLecture[]>([]);
+  const [isRecentlyWatchedDialogOpen, setIsRecentlyWatchedDialogOpen] = useState(false);
+  const [dialogRecentlyWatched, setDialogRecentlyWatched] = useState<RecentlyWatchedLecture[]>([]);
+
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
@@ -125,9 +128,6 @@ export default function HomePage() {
       localStorage.setItem('theme', 'dark');
       document.documentElement.className = 'dark';
     }
-    
-    // Load recently watched items
-    setRecentlyWatched(getRecentlyWatched());
   }, []);
   
   const toggleTheme = () => {
@@ -137,9 +137,14 @@ export default function HomePage() {
     localStorage.setItem('theme', newTheme);
   };
 
-  const handleClearRecentlyWatched = () => {
+  const openRecentlyWatchedDialog = () => {
+    setDialogRecentlyWatched(getRecentlyWatched());
+    setIsRecentlyWatchedDialogOpen(true);
+  };
+
+  const handleClearRecentlyWatchedFromDialog = () => {
     clearRecentlyWatched();
-    setRecentlyWatched([]);
+    setDialogRecentlyWatched([]); 
   };
 
   const getCourseNameById = (courseId: string): string => {
@@ -196,6 +201,16 @@ export default function HomePage() {
                   <Sun className="mr-3 h-5 w-5 text-primary" />
                 )}
                 {currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
+              </Button>
+
+              <Button
+                variant="ghost"
+                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                onClick={openRecentlyWatchedDialog}
+                aria-label="View Recently Watched"
+              >
+                <History className="mr-3 h-5 w-5 text-primary" />
+                Recently Watched
               </Button>
 
               <Dialog open={isClassUpdatesDialogOpen} onOpenChange={setIsClassUpdatesDialogOpen}>
@@ -288,47 +303,8 @@ export default function HomePage() {
       </header>
 
       <main className="w-full max-w-6xl flex-grow">
-        {recentlyWatched.length > 0 && (
-          <section className="mb-12">
-            <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl md:text-3xl font-semibold text-foreground flex items-center">
-                <History className="mr-3 h-7 w-7 text-primary" />
-                Recently Watched
-                </h2>
-                <Button variant="outline" size="sm" onClick={handleClearRecentlyWatched} className="text-xs">
-                    <Trash2 className="mr-1.5 h-3.5 w-3.5" /> Clear History
-                </Button>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {recentlyWatched.map((item) => (
-                <Link
-                  key={`${item.courseId}-${item.lectureId}-${item.watchedAt}`}
-                  href={`/courses/${item.courseId}/content/video/${item.subjectParam}/${item.topicParam}/lectures/${item.lectureId}/play`}
-                  passHref
-                >
-                  <Card className="hover:shadow-lg transition-shadow duration-200 cursor-pointer h-full flex flex-col bg-card/80 backdrop-blur-sm">
-                    <CardHeader className="pb-3">
-                      <CardTitle className="text-lg font-semibold leading-tight flex items-center">
-                        <PlaySquare className="mr-2 h-5 w-5 text-primary flex-shrink-0" /> 
-                        {item.lectureTitle}
-                      </CardTitle>
-                      <CardDescription className="text-xs line-clamp-1">
-                        {item.courseName || getCourseNameById(item.courseId)} - {item.subjectName} / {item.topicName}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="pt-1 text-xs text-muted-foreground">
-                       Watched: {new Date(item.watchedAt).toLocaleDateString()}
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Our Courses</h2>
-          {/* Optional: Add a button or link here, e.g., "View All Courses" if you had more */}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
           {coursesData.map((course) => (
@@ -351,6 +327,61 @@ export default function HomePage() {
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
+
+    <Dialog open={isRecentlyWatchedDialogOpen} onOpenChange={setIsRecentlyWatchedDialogOpen}>
+      <DialogContent className="sm:max-w-lg md:max-w-xl rounded-xl">
+        <DialogHeader>
+          <DialogTitle className="text-xl flex items-center">
+            <History className="mr-3 h-6 w-6 text-primary" />
+            Recently Watched Lectures
+          </DialogTitle>
+        </DialogHeader>
+        <div className="py-4 max-h-[60vh] overflow-y-auto space-y-4">
+          {dialogRecentlyWatched.length > 0 ? (
+            dialogRecentlyWatched.map((item) => (
+              <Link
+                key={`${item.courseId}-${item.lectureId}-${item.watchedAt}`}
+                href={`/courses/${item.courseId}/content/video/${item.subjectParam}/${item.topicParam}/lectures/${item.lectureId}/play`}
+                passHref
+              >
+                <Card 
+                  className="hover:shadow-lg transition-shadow duration-200 cursor-pointer bg-card/90 hover:bg-card/70 backdrop-blur-sm"
+                  onClick={() => setIsRecentlyWatchedDialogOpen(false)}
+                >
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg font-semibold leading-tight flex items-center">
+                      <PlaySquare className="mr-2 h-5 w-5 text-primary flex-shrink-0" /> 
+                      {item.lectureTitle}
+                    </CardTitle>
+                    <CardDescription className="text-xs line-clamp-1">
+                      {item.courseName || getCourseNameById(item.courseId)} - {item.subjectName} / {item.topicName}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-1 text-xs text-muted-foreground">
+                     Watched: {new Date(item.watchedAt).toLocaleDateString()}
+                  </CardContent>
+                </Card>
+              </Link>
+            ))
+          ) : (
+            <p className="text-center text-muted-foreground py-10">No lectures watched recently.</p>
+          )}
+        </div>
+        <DialogFooter className="sm:justify-between items-center border-t pt-4">
+          {dialogRecentlyWatched.length > 0 && (
+            <Button variant="outline" size="sm" onClick={handleClearRecentlyWatchedFromDialog} className="text-xs">
+                <Trash2 className="mr-1.5 h-3.5 w-3.5" /> Clear History
+            </Button>
+          )}
+          <DialogClose asChild>
+            <Button type="button" variant={dialogRecentlyWatched.length === 0 ? 'default' : 'outline'}>
+              Close
+            </Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
     </>
   );
 }
+
