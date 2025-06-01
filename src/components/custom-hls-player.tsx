@@ -23,7 +23,7 @@ interface CustomHlsPlayerProps {
   title?: string;
 }
 
-const SPEED_OPTIONS = [0.5, 0.75, 1.0, 1.5, 2.0]; // Adjusted for horizontal space
+const SPEED_OPTIONS = [0.5, 0.75, 1.0, 1.5, 2.0];
 
 const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -56,7 +56,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     volMute: <VolumeX className="h-6 w-6 sm:h-7 sm:w-7" />,
     full: <Maximize className="h-6 w-6 sm:h-7 sm:w-7" />,
     fullExit: <Minimize className="h-6 w-6 sm:h-7 sm:w-7" />,
-    settings: <Settings className="h-5 w-5 sm:h-6 sm:w-6" />, // Slightly smaller for horizontal menu
+    settings: <Settings className="h-5 w-5 sm:h-6 sm:w-6" />,
     forward: <FastForward className="h-8 w-8 text-white" />,
     backward: <Rewind className="h-8 w-8 text-white" />,
   };
@@ -111,21 +111,36 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
           'Full error data object:', data,
           'Actual error instance (if any):', data.error
         );
-        setIsLoading(false);
+
         if (data.fatal) {
-          switch (data.type) {
-            case Hls.ErrorTypes.NETWORK_ERROR:
-              hls.startLoad();
-              break;
-            case Hls.ErrorTypes.MEDIA_ERROR:
-              hls.recoverMediaError();
-              break;
-            default:
-              hls.destroy();
-              hlsRef.current = null;
-              break;
+          let attemptingRecovery = false;
+          if (hlsRef.current) { // Ensure hls instance exists
+            switch (data.type) {
+              case Hls.ErrorTypes.NETWORK_ERROR:
+                hlsRef.current.startLoad(); // Attempt to recover network errors
+                attemptingRecovery = true;
+                break;
+              case Hls.ErrorTypes.MEDIA_ERROR:
+                hlsRef.current.recoverMediaError(); // Attempt to recover media errors
+                attemptingRecovery = true;
+                break;
+              default:
+                // For other fatal errors, destroy.
+                hlsRef.current.destroy();
+                hlsRef.current = null;
+                break; 
+            }
+          }
+          if (!attemptingRecovery) {
+            // If not attempting recovery (e.g. hls destroyed or unknown fatal error type)
+            setIsLoading(false);
           }
         }
+        // For non-fatal errors (like bufferStalledError with Fatal: false),
+        // HLS.js attempts to recover automatically.
+        // We do NOT call setIsLoading(false) here.
+        // We rely on the video element's 'waiting', 'playing', 'canplaythrough' events
+        // to manage the isLoading state, which are handled in another useEffect.
       });
     } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
       videoElement.src = hlsUrl;
@@ -150,6 +165,9 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       }
       if (controlsTimeoutRef.current) {
         clearTimeout(controlsTimeoutRef.current);
+      }
+      if (doubleClickTimeoutRef.current) {
+        clearTimeout(doubleClickTimeoutRef.current);
       }
     };
   }, [hlsUrl]);
@@ -208,7 +226,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
   }, [debouncedShowControls, currentSpeed]);
 
   useEffect(() => { 
-    if (!isPlaying && !isSpeedMenuOpen) {
+    if (!isPlaying && !isSpeedMenuOpen) { // Keep controls if speed menu is open
       debouncedShowControls();
     }
   }, [isPlaying, debouncedShowControls, isSpeedMenuOpen]);
@@ -283,11 +301,11 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
 
   const toggleSpeedMenu = () => {
     setIsSpeedMenuOpen(prev => !prev);
-    if (!isSpeedMenuOpen) {
-        setShowControls(true);
-        if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-    } else {
-        debouncedShowControls();
+    if (!isSpeedMenuOpen) { // If menu is about to open
+        setShowControls(true); // Ensure controls are shown
+        if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); // Prevent hiding
+    } else { // If menu is about to close
+        debouncedShowControls(); // Re-enable auto-hide
     }
   };
 
@@ -304,48 +322,63 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     if (videoRef.current) {
       videoRef.current.currentTime += seconds;
       setShowSeekIndicator(seconds > 0 ? 'forward' : 'backward');
-      setTimeout(() => setShowSeekIndicator(null), 500);
+      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); // Keep controls visible
+      setTimeout(() => {
+        setShowSeekIndicator(null);
+        debouncedShowControls(); // Re-enable auto-hide after seek indicator
+      }, 500);
     }
-  }, []);
+  }, [debouncedShowControls]);
 
   const handlePlayerClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (doubleClickTimeoutRef.current) { // Double click detected
-      clearTimeout(doubleClickTimeoutRef.current);
-      doubleClickTimeoutRef.current = null;
-      // Double click logic handled in handlePlayerDoubleClick
-      return;
+    // This function now only handles single clicks due to onDoubleClick.
+    // Double click logic is in handlePlayerDoubleClick.
+    // We prevent single-click play/pause if a double click is detected soon after.
+    if (doubleClickTimeoutRef.current) {
+        clearTimeout(doubleClickTimeoutRef.current);
+        doubleClickTimeoutRef.current = null;
+        // This was part of a double click, so don't toggle play/pause
+        return;
     }
-    // Single click logic
-    if (videoRef.current && (e.target === playerContainerRef.current || e.target === videoRef.current)) {
-      togglePlayPause();
-    }
+
+    // Set a timeout to detect if this is a single click
+    doubleClickTimeoutRef.current = setTimeout(() => {
+        if (videoRef.current && (e.target === playerContainerRef.current || e.target === videoRef.current)) {
+            togglePlayPause();
+        }
+        doubleClickTimeoutRef.current = null;
+    }, 250); // 250ms window for double click
   };
   
   const handlePlayerDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (doubleClickTimeoutRef.current) { // Clear single-click timeout
+        clearTimeout(doubleClickTimeoutRef.current);
+        doubleClickTimeoutRef.current = null;
+    }
     if (!playerContainerRef.current || !videoRef.current) return;
     const rect = playerContainerRef.current.getBoundingClientRect();
     const clickXRelativeToPlayer = e.clientX - rect.left;
-    if (clickXRelativeToPlayer < rect.width / 2) {
-      seekVideo(-10); // Rewind 10s
-    } else {
-      seekVideo(10);  // Forward 10s
+
+    if (clickXRelativeToPlayer < rect.width / 3) { // Left third
+      seekVideo(-10); 
+    } else if (clickXRelativeToPlayer > (rect.width * 2) / 3) { // Right third
+      seekVideo(10);  
+    } else { // Middle third - toggle fullscreen
+      toggleFullscreen();
     }
-    // Prevent single click from firing after double click
-    if (doubleClickTimeoutRef.current) clearTimeout(doubleClickTimeoutRef.current);
   };
   
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (document.activeElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
-        return; // Don't interfere with form inputs
+        return; 
       }
-
       const key = event.key.toLowerCase();
       if (key === 'f') {
         event.preventDefault();
         toggleFullscreen();
-      } else if (key === ' ') { // Spacebar
+      } else if (key === ' ') { 
         event.preventDefault();
         togglePlayPause();
       } else if (key === 'arrowright') {
@@ -383,9 +416,9 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       }}
       onClick={handlePlayerClick}
       onDoubleClick={handlePlayerDoubleClick}
-      tabIndex={0} // Make div focusable for keyboard events if needed, though document listener is used
+      tabIndex={0} 
     >
-      <video ref={videoRef} className="w-full h-full object-contain" playsInline preload="metadata"></video>
+      <video ref={videoRef} className="w-full h-full object-contain" playsInline preload="metadata" title={title}></video>
 
       {isLoading && (
         <div id="loadingSpinner" className="absolute inset-0 flex items-center justify-center bg-black/50 z-20 pointer-events-none">
@@ -404,10 +437,10 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       <div
         id="videoControls"
         className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4 text-white transition-opacity duration-300 ease-in-out flex flex-col space-y-2 z-10 ${
-          showControls ? 'opacity-100' : 'opacity-0'
+          showControls ? 'opacity-100' : 'opacity-0 pointer-events-none' // Added pointer-events-none when hidden
         } ${isFullscreen ? 'pb-5' : ''}`}
-        onClick={(e) => e.stopPropagation()} // Prevent player click from toggling play/pause when clicking controls
-        onDoubleClick={(e) => e.stopPropagation()} // Prevent double click on controls from seeking
+        onClick={(e) => e.stopPropagation()} 
+        onDoubleClick={(e) => e.stopPropagation()} 
       >
         <div className="relative w-full h-3 flex items-center">
            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[6px] bg-white/30 rounded-full">
@@ -500,3 +533,4 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
 };
 
 export default CustomHlsPlayer;
+
