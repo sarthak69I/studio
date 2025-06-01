@@ -13,7 +13,9 @@ import {
   Maximize,
   Minimize,
   RotateCcw,
-  Settings, // Added Settings icon
+  Settings,
+  FastForward,
+  Rewind,
 } from 'lucide-react';
 
 interface CustomHlsPlayerProps {
@@ -21,7 +23,7 @@ interface CustomHlsPlayerProps {
   title?: string;
 }
 
-const SPEED_OPTIONS = [0.5, 0.75, 1.0, 1.5, 2.0, 3.0];
+const SPEED_OPTIONS = [0.5, 0.75, 1.0, 1.5, 2.0]; // Adjusted for horizontal space
 
 const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -29,6 +31,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
   const hlsRef = useRef<Hls | null>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastVolumeRef = useRef<number>(1);
+  const doubleClickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
@@ -41,6 +44,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
   const [isEnded, setIsEnded] = useState(false);
   const [currentSpeed, setCurrentSpeed] = useState(1.0);
   const [isSpeedMenuOpen, setIsSpeedMenuOpen] = useState(false);
+  const [showSeekIndicator, setShowSeekIndicator] = useState<'forward' | 'backward' | null>(null);
 
 
   const ICONS = {
@@ -52,7 +56,9 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     volMute: <VolumeX className="h-6 w-6 sm:h-7 sm:w-7" />,
     full: <Maximize className="h-6 w-6 sm:h-7 sm:w-7" />,
     fullExit: <Minimize className="h-6 w-6 sm:h-7 sm:w-7" />,
-    settings: <Settings className="h-6 w-6 sm:h-7 sm:w-7" />,
+    settings: <Settings className="h-5 w-5 sm:h-6 sm:w-6" />, // Slightly smaller for horizontal menu
+    forward: <FastForward className="h-8 w-8 text-white" />,
+    backward: <Rewind className="h-8 w-8 text-white" />,
   };
 
   const formatTime = (timeInSeconds: number) => {
@@ -66,7 +72,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     setShowControls(true);
     if (playerContainerRef.current) playerContainerRef.current.style.cursor = 'default';
     if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-    if (isPlaying && !isEnded && !isSpeedMenuOpen) { // Don't hide if speed menu is open
+    if (isPlaying && !isEnded && !isSpeedMenuOpen) {
       controlsTimeoutRef.current = setTimeout(() => {
         if (document.activeElement?.tagName !== 'INPUT' || (document.activeElement as HTMLInputElement).type !== 'range') {
           setShowControls(false);
@@ -154,7 +160,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
 
     const handleLoadedMetadata = () => {
       if (video.duration !== Infinity) setDuration(video.duration);
-      video.playbackRate = currentSpeed; // Apply initial speed
+      video.playbackRate = currentSpeed;
       setIsLoading(false);
       debouncedShowControls();
     };
@@ -199,20 +205,19 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
       video.removeEventListener('canplaythrough', handleCanPlayThrough);
       video.removeEventListener('playing', handlePlaying);
     };
-  }, [debouncedShowControls, currentSpeed]); // Added currentSpeed dependency
+  }, [debouncedShowControls, currentSpeed]);
 
   useEffect(() => { 
-    if (!isPlaying && !isSpeedMenuOpen) { // Don't hide if speed menu is open
+    if (!isPlaying && !isSpeedMenuOpen) {
       debouncedShowControls();
     }
   }, [isPlaying, debouncedShowControls, isSpeedMenuOpen]);
 
-
-  const togglePlayPause = () => {
+  const togglePlayPause = useCallback(() => {
     if (!videoRef.current) return;
     if (isEnded) videoRef.current.currentTime = 0;
     videoRef.current.paused || videoRef.current.ended ? videoRef.current.play() : videoRef.current.pause();
-  };
+  }, [isEnded]);
 
   const handleVolumeButtonClick = () => {
     if (!videoRef.current) return;
@@ -247,28 +252,25 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     }
   };
 
-
-  const toggleFullscreen = () => {
+  const toggleFullscreen = useCallback(() => {
     if (!playerContainerRef.current) return;
     if (!document.fullscreenElement) {
       playerContainerRef.current.requestFullscreen().catch(err => console.error(`Fullscreen error: ${err.message}`));
     } else {
       if (document.exitFullscreen) document.exitFullscreen();
     }
-  };
+  }, []);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
       const isFs = !!document.fullscreenElement;
       setIsFullscreen(isFs);
       if (isFs) {
-        // Check if screen.orientation and screen.orientation.lock exist and are functions
         if (screen.orientation && typeof screen.orientation.lock === 'function') {
           screen.orientation.lock('landscape')
             ?.catch(err => console.warn("Could not lock to landscape:", err));
         }
       } else {
-        // Check if screen.orientation and screen.orientation.unlock exist and are functions
         if (screen.orientation && typeof screen.orientation.unlock === 'function') {
           screen.orientation.unlock()
             ?.catch(err => console.warn("Could not unlock orientation:", err));
@@ -281,12 +283,11 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
 
   const toggleSpeedMenu = () => {
     setIsSpeedMenuOpen(prev => !prev);
-    // Keep controls visible when speed menu is opened
     if (!isSpeedMenuOpen) {
         setShowControls(true);
         if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
     } else {
-        debouncedShowControls(); // Re-engage hide timer if menu is closed
+        debouncedShowControls();
     }
   };
 
@@ -296,8 +297,72 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     }
     setCurrentSpeed(speed);
     setIsSpeedMenuOpen(false);
-    debouncedShowControls(); // Re-engage hide timer
+    debouncedShowControls();
   };
+
+  const seekVideo = useCallback((seconds: number) => {
+    if (videoRef.current) {
+      videoRef.current.currentTime += seconds;
+      setShowSeekIndicator(seconds > 0 ? 'forward' : 'backward');
+      setTimeout(() => setShowSeekIndicator(null), 500);
+    }
+  }, []);
+
+  const handlePlayerClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (doubleClickTimeoutRef.current) { // Double click detected
+      clearTimeout(doubleClickTimeoutRef.current);
+      doubleClickTimeoutRef.current = null;
+      // Double click logic handled in handlePlayerDoubleClick
+      return;
+    }
+    // Single click logic
+    if (videoRef.current && (e.target === playerContainerRef.current || e.target === videoRef.current)) {
+      togglePlayPause();
+    }
+  };
+  
+  const handlePlayerDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!playerContainerRef.current || !videoRef.current) return;
+    const rect = playerContainerRef.current.getBoundingClientRect();
+    const clickXRelativeToPlayer = e.clientX - rect.left;
+    if (clickXRelativeToPlayer < rect.width / 2) {
+      seekVideo(-10); // Rewind 10s
+    } else {
+      seekVideo(10);  // Forward 10s
+    }
+    // Prevent single click from firing after double click
+    if (doubleClickTimeoutRef.current) clearTimeout(doubleClickTimeoutRef.current);
+  };
+  
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (document.activeElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+        return; // Don't interfere with form inputs
+      }
+
+      const key = event.key.toLowerCase();
+      if (key === 'f') {
+        event.preventDefault();
+        toggleFullscreen();
+      } else if (key === ' ') { // Spacebar
+        event.preventDefault();
+        togglePlayPause();
+      } else if (key === 'arrowright') {
+        event.preventDefault();
+        seekVideo(10);
+      } else if (key === 'arrowleft') {
+        event.preventDefault();
+        seekVideo(-10);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [toggleFullscreen, togglePlayPause, seekVideo]);
+
 
   const playPauseIcon = isEnded ? ICONS.replay : isPlaying ? ICONS.pause : ICONS.play;
   const volumeIcon = isMuted || volume === 0 ? ICONS.volMute : volume < 0.5 ? ICONS.volMid : ICONS.volUp;
@@ -307,7 +372,6 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
     <div
       ref={playerContainerRef}
       className="relative w-full aspect-video bg-black rounded-lg shadow-2xl overflow-hidden group"
-      onMouseEnter={debouncedShowControls}
       onMouseMove={debouncedShowControls}
       onMouseLeave={() => { 
         if (isPlaying && !isEnded && document.activeElement?.tagName !== 'INPUT' && !isSpeedMenuOpen) { 
@@ -317,12 +381,23 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
             }, 300);
         }
       }}
+      onClick={handlePlayerClick}
+      onDoubleClick={handlePlayerDoubleClick}
+      tabIndex={0} // Make div focusable for keyboard events if needed, though document listener is used
     >
       <video ref={videoRef} className="w-full h-full object-contain" playsInline preload="metadata"></video>
 
       {isLoading && (
-        <div id="loadingSpinner" className="absolute inset-0 flex items-center justify-center bg-black/50 z-20">
+        <div id="loadingSpinner" className="absolute inset-0 flex items-center justify-center bg-black/50 z-20 pointer-events-none">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-500"></div>
+        </div>
+      )}
+
+      {showSeekIndicator && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/30 z-30 pointer-events-none">
+          <div className="p-3 bg-black/70 rounded-full">
+            {showSeekIndicator === 'forward' ? ICONS.forward : ICONS.backward}
+          </div>
         </div>
       )}
 
@@ -331,6 +406,8 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
         className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4 text-white transition-opacity duration-300 ease-in-out flex flex-col space-y-2 z-10 ${
           showControls ? 'opacity-100' : 'opacity-0'
         } ${isFullscreen ? 'pb-5' : ''}`}
+        onClick={(e) => e.stopPropagation()} // Prevent player click from toggling play/pause when clicking controls
+        onDoubleClick={(e) => e.stopPropagation()} // Prevent double click on controls from seeking
       >
         <div className="relative w-full h-3 flex items-center">
            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[6px] bg-white/30 rounded-full">
@@ -371,7 +448,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
                 step="0.05"
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeBarChange}
-                className="w-0 group-hover/volume:w-20 h-2 transition-all duration-200 opacity-0 group-hover/volume:opacity-100 ml-1 
+                className="w-0 group-hover/volume:w-16 sm:group-hover/volume:w-20 h-2 transition-all duration-200 opacity-0 group-hover/volume:opacity-100 ml-1 
                            [&::-webkit-slider-runnable-track]:bg-white/30 [&::-webkit-slider-runnable-track]:h-[6px] [&::-webkit-slider-runnable-track]:rounded-full
                            [&::-moz-range-track]:bg-white/30 [&::-moz-range-track]:h-[6px] [&::-moz-range-track]:rounded-full
                            [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:bg-red-500 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:border
@@ -383,8 +460,8 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
               <span>{formatTime(currentTime)}</span> / <span>{formatTime(duration)}</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            <div className="relative"> {/* Wrapper for speed menu */}
+          <div className="flex items-center space-x-1 sm:space-x-2">
+            <div className="relative">
               <button 
                 onClick={toggleSpeedMenu} 
                 className="p-1.5 rounded-full hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50" 
@@ -394,20 +471,19 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title }) => {
               </button>
               {isSpeedMenuOpen && (
                 <div 
-                  className="absolute bottom-full right-0 mb-2 w-28 bg-black/80 backdrop-blur-sm rounded-md p-1.5 shadow-lg flex flex-col space-y-0.5 z-30"
+                  className="absolute bottom-full right-1/2 translate-x-1/2 sm:right-0 sm:translate-x-0 mb-2 bg-black/80 backdrop-blur-sm rounded-md shadow-lg flex flex-row space-x-1 p-1.5 z-30"
                   onMouseEnter={() => { if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current); }}
                   onMouseLeave={debouncedShowControls}
                 >
-                  <p className="text-xs font-semibold text-center text-white/90 mb-1 px-1 pt-0.5">Speed</p>
                   {SPEED_OPTIONS.map(speed => (
                     <button
                       key={speed}
                       onClick={() => selectSpeed(speed)}
-                      className={`px-2 py-1.5 text-xs rounded-sm hover:bg-white/30 w-full text-center ${
+                      className={`px-2 py-1 text-xs rounded-sm hover:bg-white/30 ${
                         currentSpeed === speed ? 'bg-red-600 text-white font-semibold' : 'text-white'
                       }`}
                     >
-                      {speed === 1.0 ? 'Normal' : `${speed}x`}
+                      {speed === 1.0 ? '1x' : `${speed}x`}
                     </button>
                   ))}
                 </div>
