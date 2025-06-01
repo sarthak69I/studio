@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, HelpCircle, Sun, Moon, Bell as BellIcon, Cog } from 'lucide-react'; // Added Cog
+import { Menu, HelpCircle, Sun, Moon, Bell as BellIcon, Cog, Bot } from 'lucide-react'; // Added Bot
 import Image from 'next/image';
 import {
   Sheet,
@@ -282,7 +282,7 @@ export default function HomePage() {
         </h1>
       </header>
 
-      <main className="w-full max-w-6xl">
+      <main className="w-full max-w-6xl flex-grow">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
           {coursesData.map((course) => (
             <CourseCard key={course.id} {...course} />
@@ -290,7 +290,17 @@ export default function HomePage() {
         </div>
       </main>
       
-      <footer className="text-center text-sm text-muted-foreground mt-auto pt-10 animate-pulse-custom">
+      <div className="mt-16 mb-8 text-center">
+        <p className="text-muted-foreground mb-2">Having Trouble?</p>
+        <Link href="/help-center" passHref>
+          <Button variant="outline" size="lg" className="rounded-lg">
+            <Bot className="mr-2 h-5 w-5" />
+            E-Leak 24/7 Support
+          </Button>
+        </Link>
+      </div>
+
+      <footer className="text-center text-sm text-muted-foreground pt-4 pb-6 animate-pulse-custom">
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
