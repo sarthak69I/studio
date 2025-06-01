@@ -16,7 +16,7 @@ import {
   Settings,
   FastForward,
   Rewind,
-  Headphones, // Added for Audio-Only mode
+  Headphones,
 } from 'lucide-react';
 
 interface CustomHlsPlayerProps {
@@ -47,7 +47,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
   const [currentSpeed, setCurrentSpeed] = useState(1.0);
   const [isSpeedMenuOpen, setIsSpeedMenuOpen] = useState(false);
   const [showSeekIndicator, setShowSeekIndicator] = useState<'forward' | 'backward' | null>(null);
-  const [isAudioOnlyMode, setIsAudioOnlyMode] = useState(false); // State for Audio-Only mode
+  const [isAudioOnlyMode, setIsAudioOnlyMode] = useState(false);
 
 
   const ICONS = {
@@ -110,38 +110,30 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
         if (videoElement.readyState >= 3) setIsLoading(false);
       });
       hls.on(Hls.Events.ERROR, (_event, data) => {
-        console.error(
-          `HLS.js Error Data: Type: ${data.type}, Details: ${data.details}, Fatal: ${data.fatal}, URL: ${data.url || 'N/A'}`,
-          'Full error data object:', data,
-          'Actual error instance (if any):', data.error
-        );
-
-        let attemptingRecovery = false;
+        const logMessage = `HLS.js Event: Type: ${data.type}, Details: ${data.details}, Fatal: ${data.fatal}, URL: ${data.url || 'N/A'}`;
+        
         if (data.fatal) {
+          console.error(logMessage, 'Full error data object:', data, 'Actual error instance (if any):', data.error);
           if (hlsRef.current) {
             switch (data.type) {
               case Hls.ErrorTypes.NETWORK_ERROR:
+                console.warn('HLS.js: Attempting to recover from fatal network error by calling startLoad()');
                 hlsRef.current.startLoad();
-                attemptingRecovery = true;
                 break;
               case Hls.ErrorTypes.MEDIA_ERROR:
-                if (data.details !== 'bufferStalledError' && data.details !== 'bufferAppendError' && data.details !== 'bufferRemoveError') {
-                    hlsRef.current.recoverMediaError();
-                    attemptingRecovery = true;
-                } else {
-                    hlsRef.current.destroy();
-                    hlsRef.current = null;
-                }
+                console.warn(`HLS.js: Attempting to recover from fatal media error (${data.details}) by calling recoverMediaError()`);
+                hlsRef.current.recoverMediaError();
                 break;
               default:
+                console.error(`HLS.js: Destroying HLS instance due to unhandled fatal error type: ${data.type}`);
                 hlsRef.current.destroy();
                 hlsRef.current = null;
+                setIsLoading(false); 
                 break;
             }
           }
-        }
-        if (!attemptingRecovery && !hlsRef.current) {
-            setIsLoading(false);
+        } else {
+          console.warn(logMessage, 'Full error data object:', data, 'Actual error instance (if any):', data.error);
         }
       });
     } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
@@ -426,10 +418,8 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
     setIsAudioOnlyMode(prev => {
       const newMode = !prev;
       if (videoRef.current) {
-        // Hiding the video element visually, actual audio stream switching is more complex
-        // and depends on HLS manifest capabilities (not implemented here for simplicity).
         videoRef.current.style.opacity = newMode ? '0' : '1';
-        videoRef.current.style.height = newMode ? '0px' : '100%'; // Collapse height too
+        videoRef.current.style.height = newMode ? '0px' : '100%'; 
         videoRef.current.style.pointerEvents = newMode ? 'none' : 'auto';
       }
       return newMode;
@@ -456,7 +446,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
       }}
       onClick={handlePlayerClick}
       onDoubleClick={handlePlayerDoubleClick}
-      tabIndex={0} // Make div focusable for keyboard events
+      tabIndex={0} 
     >
       <video ref={videoRef} className="w-full h-full object-contain transition-opacity duration-300" playsInline preload="metadata" title={title}></video>
       {isAudioOnlyMode && (
@@ -483,7 +473,7 @@ const CustomHlsPlayer: React.FC<CustomHlsPlayerProps> = ({ hlsUrl, title, onPlay
 
       <div
         id="videoControls"
-        className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4 text-white transition-opacity duration-300 ease-in-out flex flex-col space-y-2 z-20 ${ // Ensure controls are above audio only overlay if it ever becomes interactable
+        className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4 text-white transition-opacity duration-300 ease-in-out flex flex-col space-y-2 z-20 ${ 
           showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
         } ${isFullscreen ? 'pb-5' : ''}`}
         onClick={(e) => e.stopPropagation()}
