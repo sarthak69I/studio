@@ -2,12 +2,20 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot, PartyPopper } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
 import { getParamAsString } from '@/lib/utils';
-// Removed FAQ Dialog imports as it's no longer directly handled here
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 interface SubjectItemProps {
   name: string;
@@ -43,7 +51,41 @@ export default function EnrollPage() {
   const params = useParams();
   const courseId = getParamAsString(params.courseId);
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
-  // Removed isFaqsDialogOpen state
+  const [isVacationDialogOpen, setIsVacationDialogOpen] = React.useState(false);
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+    // Set document title based on courseId or a generic title
+    let courseName = "";
+    if (courseId === '1') courseName = "Science Batch";
+    else if (courseId === '2') courseName = "Commerce Batch";
+    else if (courseId === '3') courseName = "Aarambh Batch";
+    
+    if (courseName) {
+      document.title = `Enroll: ${courseName} | E-Leak`;
+    } else {
+      document.title = 'Enroll | E-Leak';
+    }
+  }, [courseId, isMounted]);
+
+
+  const handleJoinLiveClassClick = () => {
+    if (!isMounted) return;
+
+    const now = new Date();
+    const currentMonth = now.getMonth(); // 0-indexed, June is 5
+    const currentDay = now.getDate();
+
+    // Check if current date is between June 1st and June 7th (inclusive)
+    const isSummerVacationPeriod = currentMonth === 5 && currentDay >= 1 && currentDay <= 7;
+
+    if (isSummerVacationPeriod) {
+      setIsVacationDialogOpen(true);
+    } else {
+      router.push(`/courses/${courseId}/live`);
+    }
+  };
 
   const subjects = courseSpecificSubjects[courseId] || [];
 
@@ -54,6 +96,14 @@ export default function EnrollPage() {
   const handleModeChange = (mode: 'notes' | 'video') => {
     setActiveContentMode(mode);
   };
+
+  if (!isMounted) {
+    return (
+      <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
+        <p>Loading Enrollment Options...</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -74,8 +124,8 @@ export default function EnrollPage() {
       <main className="flex-grow flex flex-col items-center pt-8 md:pt-12">
         <div className="w-full max-w-2xl space-y-6">
           <button
-            className="join-button w-full" // Applied new class, removed conflicting Tailwind classes
-            onClick={() => router.push(`/courses/${courseId}/live`)}
+            className="join-button w-full"
+            onClick={handleJoinLiveClassClick}
           >
             <span>JOIN LIVE CLASS</span>
           </button>
@@ -137,7 +187,31 @@ export default function EnrollPage() {
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
-    {/* Removed FAQ Dialog component from here */}
+
+    <Dialog open={isVacationDialogOpen} onOpenChange={setIsVacationDialogOpen}>
+        <DialogContent className="sm:max-w-md rounded-xl shadow-2xl">
+          <DialogHeader className="text-center items-center">
+            <PartyPopper className="h-12 w-12 text-primary mb-3" />
+            <DialogTitle className="text-2xl font-bold">Summer Vacation Notice!</DialogTitle>
+          </DialogHeader>
+          <DialogDescription className="text-center text-md text-foreground/80 py-4 px-2">
+            From <strong className="text-primary">June 1st to June 7th</strong>, there will be no live classes due to summer vacation.
+            <br/><br/>
+            Enjoy your break! ☀️
+            <br/><br/>
+            <span className="text-sm text-muted-foreground">
+              (Recorded content may still be available via the 'Video' section for your course.)
+            </span>
+          </DialogDescription>
+          <DialogFooter className="sm:justify-center">
+            <DialogClose asChild>
+              <Button type="button" variant="default" size="lg" className="rounded-full">
+                Okay, Got It!
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
