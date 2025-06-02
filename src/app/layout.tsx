@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'E-Leak Course Hub',
   description: 'Find your next course with E-Leak.',
+  other: {
+    'google-adsense-account': 'ca-pub-7372814899455347',
+  },
 };
 
 export default function RootLayout({
