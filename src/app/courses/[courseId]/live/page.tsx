@@ -17,7 +17,7 @@ interface LiveClassData {
   class2LiveStreamUrl?: string;
 }
 
-const anym3u8PlayerBase = 'https://anym3u8player.com/tv/p.php?url=';
+const streamPlayerBaseUrl = 'https://e-leak-strm.web.app/?url='; // New player base URL
 
 const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
@@ -26,22 +26,22 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class1Subject: "Chemistry", 
     class2Subject: "Physics",
     class1LiveStreamUrl: undefined, 
-    class2LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
+    class2LiveStreamUrl: `${streamPlayerBaseUrl}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
     subtitle: "Interactive learning sessions for Commerce students",
     class1Subject: "Accountancy",
     class2Subject: "Economics",
-    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/a63dd48a9268402b8961662fc9993c8d/index_4.m3u8')}`,
-    class2LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d2ypa0i2sdc0h2.cloudfront.net/out/v1/953b87b302b04b50a75b8ed04c215cc4/index_4.m3u8')}`,
+    class1LiveStreamUrl: `${streamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/a63dd48a9268402b8961662fc9993c8d/index_4.m3u8')}`,
+    class2LiveStreamUrl: `${streamPlayerBaseUrl}${encodeURIComponent('https://d2ypa0i2sdc0h2.cloudfront.net/out/v1/953b87b302b04b50a75b8ed04c215cc4/index_4.m3u8')}`,
   },
   '3': { // Aarambh (Foundation)
     pageTitle: "Class 10 Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Aarambh batch",
     class1Subject: "Science",
     class2Subject: "Mathematics",
-    class1LiveStreamUrl: `${anym3u8PlayerBase}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`, 
+    class1LiveStreamUrl: `${streamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`, 
     class2LiveStreamUrl: undefined, 
   }
 };
@@ -417,4 +417,3 @@ export default function LiveClassesPage() {
     </div>
   );
 }
-

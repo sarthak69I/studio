@@ -33,4 +33,4 @@ export const slugify = (text: string | undefined | null): string => {
   return text.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
 };
 
-export const m3u8PlayerBase = 'https://anym3u8player.com/tv/p.php?url=';
+// Removed m3u8PlayerBase as it's no longer used or being replaced by specific player logic.

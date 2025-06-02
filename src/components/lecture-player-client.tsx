@@ -6,7 +6,8 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, Maximize, Bot } from 'lucide-react';
-import CustomHlsPlayer from '@/components/custom-hls-player';
+// CustomHlsPlayer is no longer used here directly for 'hls' type
+// import CustomHlsPlayer from '@/components/custom-hls-player'; 
 import {
   scienceCourseContent,
   commerceCourseContent,
@@ -25,13 +26,14 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
+import { addRecentlyWatched } from '@/lib/recently-watched-utils';
 
 export default function LecturePlayerClient() {
   const router = useRouter();
   const params = useParams();
 
   const courseId = getParamAsString(params.courseId);
-  const mode = getParamAsString(params.mode);
+  const mode = getParamAsString(params.mode); // Should be 'video' for this player
   const subjectParam = getParamAsString(params.subjectParam);
   const topicParam = getParamAsString(params.topicParam);
   const lectureId = getParamAsString(params.lectureId);
@@ -41,6 +43,8 @@ export default function LecturePlayerClient() {
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
+  const [courseName, setCourseName] = React.useState<string>('');
+
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -54,9 +58,19 @@ export default function LecturePlayerClient() {
         const decodedLectureId = decodeURIComponent(lectureId);
 
         let currentCourseMap: CourseContentMap | undefined;
-        if (courseId === '1') currentCourseMap = scienceCourseContent;
-        else if (courseId === '2') currentCourseMap = commerceCourseContent;
-        else if (courseId === '3') currentCourseMap = aarambhCourseContent;
+        let currentCourseName = '';
+        if (courseId === '1') {
+          currentCourseMap = scienceCourseContent;
+          currentCourseName = 'PRARAMBH CLASS 11th Science Batch';
+        } else if (courseId === '2') {
+          currentCourseMap = commerceCourseContent;
+          currentCourseName = 'CLASS 11th Commerce Batch';
+        } else if (courseId === '3') {
+          currentCourseMap = aarambhCourseContent;
+          currentCourseName = 'Class 10th Aarambh Foundation Batch';
+        }
+        setCourseName(currentCourseName);
+
 
         if (currentCourseMap) {
           const subjectData = currentCourseMap[decodedSubjectName];
@@ -71,9 +85,24 @@ export default function LecturePlayerClient() {
                 if (currentLecture.videoEmbedUrl) {
                   setLecture(currentLecture);
                   setStatusMessage(null);
+
+                  addRecentlyWatched({
+                    courseId,
+                    courseName: currentCourseName,
+                    subjectParam, // Already encoded
+                    subjectName: decodedSubjectName,
+                    topicParam, // Already encoded
+                    topicName: decodedTopicName,
+                    lectureId, // Already encoded
+                    lectureTitle: currentLecture.title,
+                    videoEmbedUrl: currentLecture.videoEmbedUrl,
+                  });
+
                   // Find next lecture
                   if (currentLectureIndex + 1 < currentTopic.lectures.length) {
-                    setNextLecture(currentTopic.lectures[currentLectureIndex + 1]);
+                    const nextLec = currentTopic.lectures[currentLectureIndex + 1];
+                    if(nextLec.videoEmbedUrl) setNextLecture(nextLec);
+                    else setNextLecture(null);
                   } else {
                     setNextLecture(null); // No more lectures in this topic
                   }
@@ -99,7 +128,7 @@ export default function LecturePlayerClient() {
     } else if (isMounted) {
       setStatusMessage('Required information to load video is missing from URL.');
     }
-  }, [isMounted, courseId, subjectParam, topicParam, lectureId]);
+  }, [isMounted, courseId, subjectParam, topicParam, lectureId, mode]);
 
   React.useEffect(() => {
     if (isMounted && lecture) {
@@ -110,34 +139,30 @@ export default function LecturePlayerClient() {
   }, [isMounted, lecture, statusMessage]);
 
   const handlePlaybackEnded = () => {
-    if (nextLecture && nextLecture.videoEmbedUrl) {
+    // This function might be used by some players, but the new iframe player controls its own destiny.
+    // For the new HLS iframe player, auto-play next is not handled here.
+    if (nextLecture && nextLecture.videoEmbedUrl && lecture?.videoEmbedType !== 'hls') { // Only if not HLS, as HLS iframe handles its own
       const nextLecturePath = `/courses/${courseId}/content/video/${subjectParam}/${topicParam}/lectures/${encodeURIComponent(nextLecture.id)}/play`;
       router.push(nextLecturePath);
     } else {
-      console.log("Playback ended. No next video lecture to play or next lecture has no video URL.");
+      console.log("Playback ended. No next video lecture or next is HLS (handled by iframe) or no video URL.");
     }
   };
 
-  if (!isMounted) {
-    return (
-      <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
-        <p>Loading Player...</p>
-      </div>
-    );
-  }
-
   const renderPlayer = () => {
-    if (!lecture || !lecture.videoEmbedUrl) return null;
-
-    if (lecture.videoEmbedType === 'hls') {
-      return <CustomHlsPlayer hlsUrl={lecture.videoEmbedUrl} title={lecture.title} onPlaybackEnded={handlePlaybackEnded} />;
+    if (!lecture || !lecture.videoEmbedUrl) {
+        return <p className="text-center text-muted-foreground">Video content is currently unavailable for this lecture.</p>;
     }
 
-    if (lecture.videoEmbedType === 'youtube' || lecture.videoEmbedType === 'iframe') {
+    const playerContainerClasses = "aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-black border border-border";
+
+    if (lecture.videoEmbedType === 'hls') {
+      // Ensure lecture.videoEmbedUrl is the direct HLS stream URL
+      const newPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl)}`;
       return (
-        <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-black">
+        <div className={playerContainerClasses}>
           <iframe
-            src={lecture.videoEmbedUrl}
+            src={newPlayerUrl}
             title={lecture.title}
             width="100%"
             height="100%"
@@ -148,7 +173,23 @@ export default function LecturePlayerClient() {
         </div>
       );
     }
-    return <p>Unsupported video type.</p>;
+
+    if (lecture.videoEmbedType === 'youtube' || lecture.videoEmbedType === 'iframe') {
+      return (
+        <div className={playerContainerClasses}>
+          <iframe
+            src={lecture.videoEmbedUrl} // This URL should already be the correct iframe src for YouTube/generic
+            title={lecture.title}
+            width="100%"
+            height="100%"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="border-0"
+          ></iframe>
+        </div>
+      );
+    }
+    return <p className="text-center text-muted-foreground">Unsupported video type: {lecture.videoEmbedType}.</p>;
   };
 
 
@@ -175,18 +216,19 @@ export default function LecturePlayerClient() {
               {lecture.title}
             </h1>
             {renderPlayer()}
-            {lecture.videoEmbedType !== 'hls' && (
+            {lecture.videoEmbedType !== 'hls' && lecture.videoEmbedUrl && ( // Show only if not HLS and URL exists
               <div className="mt-3 text-center text-sm text-muted-foreground p-2 bg-card/50 rounded-md max-w-md mx-auto">
                 <Maximize className="inline h-4 w-4 mr-1" />
-                For the best viewing experience, try double-clicking the video or using the player's full-screen button. Ensure your device rotation is enabled for landscape mode.
+                For the best viewing experience, try double-clicking the video or using the player's full-screen button.
               </div>
             )}
-            <p className="text-muted-foreground text-center mt-4">
+            <p className="text-muted-foreground text-center mt-4 text-sm px-2">
               Playing: {lecture.title} from {decodeURIComponent(topicParam || '')} - {decodeURIComponent(subjectParam || '')}
             </p>
              {nextLecture && nextLecture.videoEmbedUrl && (
-              <p className="text-primary text-center mt-2 text-sm">
-                Up next: {nextLecture.title} (will play automatically if using HLS player)
+              <p className="text-primary text-center mt-2 text-xs">
+                Up next: {nextLecture.title} 
+                {lecture.videoEmbedType !== 'hls' ? ' (will play automatically if player supports it)' : ''}
               </p>
             )}
           </div>

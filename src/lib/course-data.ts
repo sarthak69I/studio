@@ -3,7 +3,7 @@
 
 // Re-export types and utils from course-utils.ts
 export type { Lecture, Topic, SubjectContent, CourseContentMap } from './course-utils';
-export { slugify, m3u8PlayerBase } from './course-utils';
+export { slugify } from './course-utils'; // Removed m3u8PlayerBase from re-export
 
 // Re-export course content from specific files
 export { scienceCourseContent } from './science-data';
