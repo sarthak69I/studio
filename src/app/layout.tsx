@@ -1,6 +1,7 @@
 
 import type {Metadata} from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Script from 'next/script'; // Import next/script
 import './globals.css';
 import ClientLayoutWrapper from '@/components/client-layout-wrapper';
 
@@ -36,6 +37,12 @@ export default function RootLayout({
         <ClientLayoutWrapper>
           {children}
         </ClientLayoutWrapper>
+        <Script
+          id="adsbygoogle-script"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7372814899455347"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
       </body>
     </html>
   );
