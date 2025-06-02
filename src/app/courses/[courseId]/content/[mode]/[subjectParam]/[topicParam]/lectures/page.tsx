@@ -15,7 +15,7 @@ import {
   type Topic,
 } from '@/lib/course-data';
 import { getParamAsString } from '@/lib/utils';
-import { FaqDialogContent } from '@/components/faq-dialog-content'; 
+import { FaqDialogContent } from '@/components/faq-dialog-content';
 import {
   Dialog,
   DialogContent,
@@ -35,7 +35,7 @@ export default function TopicLecturesPage() {
   const mode = getParamAsString(params.mode);
   const subjectParam = getParamAsString(params.subjectParam);
   const topicParam = getParamAsString(params.topicParam);
-  
+
   const [topicName, setTopicName] = React.useState('');
   const [subjectName, setSubjectName] = React.useState('');
   const [lectures, setLectures] = React.useState<Lecture[]>([]);
@@ -63,7 +63,7 @@ export default function TopicLecturesPage() {
 
         if (currentCourseMap) {
           const subjectData = currentCourseMap[decodedSubjectName];
-          if (typeof subjectData === 'string') { 
+          if (typeof subjectData === 'string') {
             setStatusMessage(subjectData); // e.g., "Coming Soon"
             setLectures([]);
           } else if (Array.isArray(subjectData)) { // Array of Topic objects
@@ -121,9 +121,9 @@ export default function TopicLecturesPage() {
 
   const renderLectureCard = (lecture: Lecture, index: number) => {
     const cardContent = (
-      <div 
-        className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md 
-                   transform opacity-0 animate-fadeInUp-custom 
+      <div
+        className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md
+                   transform opacity-0 animate-fadeInUp-custom
                    transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90"
         style={{ animationDelay: `${index * 0.1}s` }}
       >
@@ -142,10 +142,10 @@ export default function TopicLecturesPage() {
 
     if (mode === 'notes' && lecture.notesLink && lecture.notesLink !== '#') {
       return (
-        <a 
-          key={lecture.id} 
-          href={lecture.notesLink} 
-          target="_blank" 
+        <a
+          key={lecture.id}
+          href={lecture.notesLink}
+          target="_blank"
           rel="noopener noreferrer"
           className="w-full max-w-md block mb-6 cursor-pointer"
         >
@@ -160,6 +160,8 @@ export default function TopicLecturesPage() {
           key={lecture.id}
           href={`/courses/${courseId}/content/video/${encodeURIComponent(subjectName)}/${encodeURIComponent(topicName)}/lectures/${encodeURIComponent(lecture.id)}/play`}
           className="w-full max-w-md block mb-6 cursor-pointer"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {cardContent}
         </Link>
@@ -167,7 +169,7 @@ export default function TopicLecturesPage() {
     }
 
     return (
-       <div 
+       <div
         key={lecture.id}
         className="w-full max-w-md block mb-6 cursor-default"
       >
@@ -196,7 +198,7 @@ export default function TopicLecturesPage() {
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">
             {topicName || "Loading Topic..."} <span className="capitalize">{mode}</span>
           </h1>
-          
+
           {statusMessage ? (
             (topicName === 'Unknown Topic' || topicName === 'Invalid Topic' || statusMessage.includes('Could not load') || statusMessage.includes('not found') || statusMessage.includes('not recognized')) ? (
                  <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{statusMessage}</p>
