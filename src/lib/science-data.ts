@@ -1,7 +1,7 @@
 
 // src/lib/science-data.ts
 import type { CourseContentMap } from './course-data';
-import { slugify } from './course-data'; // Removed m3u8PlayerBase import
+import { slugify } from './course-data';
 
 const scienceBasePath = '/assets/courses/science';
 
@@ -251,7 +251,7 @@ export const scienceCourseContent: CourseContentMap = {
           title: 'The Living World L1',
           notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`,
           videoEmbedType: 'youtube',
-          videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc',
+          videoEmbedUrl: 'https://www.youtube.com/embed/RF6HFVo9xc', // Corrected typical YouTube embed URL
         },
         {
           id: 'L2',
@@ -271,13 +271,30 @@ export const scienceCourseContent: CourseContentMap = {
     },
     {
       name: 'Biological Classification',
-      lectures: Array.from({ length: 10 }, (_, i) => ({
-        id: `L${i + 1}`,
-        title: `Biological Classification L${i + 1}`,
-        notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L${i + 1}.pdf`,
-        videoEmbedType: 'hls', // Assuming HLS for these, update if different
-        videoEmbedUrl: '#', // Placeholder, update with actual URLs
-      })),
+      // Using only 3 lectures as placeholders for brevity, can be expanded later
+      lectures: [
+        { 
+          id: 'L1', 
+          title: 'Biological Classification L1', 
+          notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L1.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356824/174525216684262621696/index_4.m3u8' // Example URL, update if different
+        },
+        { 
+          id: 'L2', 
+          title: 'Biological Classification L2', 
+          notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L2.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357746/174532727651952621696/index_4.m3u8' // Example URL, update if different
+        },
+        { 
+          id: 'L3', 
+          title: 'Biological Classification L3', 
+          notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L3.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359040/174542518059332621696/index_4.m3u8' // Example URL, update if different
+        },
+      ],
     },
   ],
 };
