@@ -26,7 +26,7 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-import { addRecentlyWatched } from '@/lib/recently-watched-utils';
+// Removed addRecentlyWatched import
 
 export default function LecturePlayerClient() {
   const router = useRouter();
@@ -86,17 +86,7 @@ export default function LecturePlayerClient() {
                   setLecture(currentLecture);
                   setStatusMessage(null);
 
-                  addRecentlyWatched({
-                    courseId,
-                    courseName: currentCourseName,
-                    subjectParam, // Already encoded
-                    subjectName: decodedSubjectName,
-                    topicParam, // Already encoded
-                    topicName: decodedTopicName,
-                    lectureId, // Already encoded
-                    lectureTitle: currentLecture.title,
-                    videoEmbedUrl: currentLecture.videoEmbedUrl,
-                  });
+                  // Removed call to addRecentlyWatched
 
                   // Find next lecture
                   if (currentLectureIndex + 1 < currentTopic.lectures.length) {
