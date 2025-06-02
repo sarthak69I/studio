@@ -155,16 +155,18 @@ export default function TopicLecturesPage() {
     }
 
     if (mode === 'video' && lecture.videoEmbedUrl) {
+      // Construct the external player URL
+      const externalPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl)}`;
       return (
-        <Link
+        <a // Changed from Link to <a> for direct external URL
           key={lecture.id}
-          href={`/courses/${courseId}/content/video/${encodeURIComponent(subjectName)}/${encodeURIComponent(topicName)}/lectures/${encodeURIComponent(lecture.id)}/play`}
+          href={externalPlayerUrl}
           className="w-full max-w-md block mb-6 cursor-pointer"
           target="_blank"
           rel="noopener noreferrer"
         >
           {cardContent}
-        </Link>
+        </a>
       );
     }
 
