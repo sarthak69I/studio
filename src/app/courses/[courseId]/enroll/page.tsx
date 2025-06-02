@@ -2,20 +2,11 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot, PartyPopper } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
 import { getParamAsString } from '@/lib/utils';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog";
 
 interface SubjectItemProps {
   name: string;
@@ -41,7 +32,7 @@ interface CourseSubjects {
 }
 
 const courseSpecificSubjects: CourseSubjects = {
-  '1': ['Physics', 'Chemistry', 'Mathematics'], // Science Batch
+  '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology'], // Science Batch
   '2': ['Business Studies', 'Accountancy', 'Economics', 'Mathematics'], // Commerce Batch
   '3': ['Social Science', 'Science', 'Mathematics'], // Aarambh Batch
 };
@@ -51,7 +42,6 @@ export default function EnrollPage() {
   const params = useParams();
   const courseId = getParamAsString(params.courseId);
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
-  const [isVacationDialogOpen, setIsVacationDialogOpen] = React.useState(false);
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -72,19 +62,7 @@ export default function EnrollPage() {
 
   const handleJoinLiveClassClick = () => {
     if (!isMounted) return;
-
-    const now = new Date();
-    const currentMonth = now.getMonth(); // 0-indexed, June is 5
-    const currentDay = now.getDate();
-
-    // Check if current date is between June 1st and June 7th (inclusive)
-    const isSummerVacationPeriod = currentMonth === 5 && currentDay >= 1 && currentDay <= 7;
-
-    if (isSummerVacationPeriod) {
-      setIsVacationDialogOpen(true);
-    } else {
-      router.push(`/courses/${courseId}/live`);
-    }
+    router.push(`/courses/${courseId}/live`);
   };
 
   const subjects = courseSpecificSubjects[courseId] || [];
@@ -187,31 +165,6 @@ export default function EnrollPage() {
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
-
-    <Dialog open={isVacationDialogOpen} onOpenChange={setIsVacationDialogOpen}>
-        <DialogContent className="sm:max-w-md rounded-xl shadow-2xl">
-          <DialogHeader className="text-center items-center">
-            <PartyPopper className="h-12 w-12 text-primary mb-3" />
-            <DialogTitle className="text-2xl font-bold">Summer Vacation Notice!</DialogTitle>
-          </DialogHeader>
-          <DialogDescription className="text-center text-md text-foreground/80 py-4 px-2">
-            From <strong className="text-primary">June 1st to June 7th</strong>, there will be no live classes due to summer vacation.
-            <br/><br/>
-            Enjoy your break! ☀️
-            <br/><br/>
-            <span className="text-sm text-muted-foreground">
-              (Recorded content may still be available via the 'Video' section for your course.)
-            </span>
-          </DialogDescription>
-          <DialogFooter className="sm:justify-center">
-            <DialogClose asChild>
-              <Button type="button" variant="default" size="lg" className="rounded-full">
-                Okay, Got It!
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </>
   );
 }
