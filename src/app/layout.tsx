@@ -20,7 +20,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app/
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: 'E-Leak Course Hub',
+  title: 'E-Leak Courses',
   description: 'Explore a wide range of courses on E-Leak. Join live classes, access notes, and watch video lectures for Science, Commerce, and Aarambh batches.',
   alternates: {
     canonical: '/',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     apple: 'https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png',
   },
   openGraph: {
-    title: 'E-Leak Course Hub',
+    title: 'E-Leak Courses',
     description: 'Explore a wide range of courses on E-Leak. Join live classes, access notes, and watch video lectures for Science, Commerce, and Aarambh batches.',
     url: '/',
     siteName: 'E-Leak',
