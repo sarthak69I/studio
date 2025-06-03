@@ -120,6 +120,46 @@ export const scienceCourseContent: CourseContentMap = {
         },
       ],
     },
+    {
+      name: 'Basic Mathematics',
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Basic Mathematics L1',
+          notesLink: `${scienceBasePath}/physics/${slugify('Basic Mathematics')}/notes/L1.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368402/174620181785161071993/index_4.m3u8',
+        },
+        {
+          id: 'L2',
+          title: 'Basic Mathematics L2',
+          notesLink: `${scienceBasePath}/physics/${slugify('Basic Mathematics')}/notes/L2.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370179/174628987185681071993/index_4.m3u8',
+        },
+        {
+          id: 'L3',
+          title: 'Basic Mathematics L3',
+          notesLink: `${scienceBasePath}/physics/${slugify('Basic Mathematics')}/notes/L3.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376221/174672074184601071993/index_4.m3u8',
+        },
+        {
+          id: 'L4',
+          title: 'Basic Mathematics L4',
+          notesLink: `${scienceBasePath}/physics/${slugify('Basic Mathematics')}/notes/L4.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377330/174680770411381071993/index_4.m3u8',
+        },
+        {
+          id: 'L5',
+          title: 'Basic Mathematics L5',
+          notesLink: `${scienceBasePath}/physics/${slugify('Basic Mathematics')}/notes/L5.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377993/174689329024511071993/index_4.m3u8',
+        },
+      ],
+    },
   ],
   'Chemistry': [
     {
@@ -270,7 +310,7 @@ export const scienceCourseContent: CourseContentMap = {
           title: 'The Living World L1',
           notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`,
           videoEmbedType: 'youtube',
-          videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc', // Corrected typical YouTube embed URL
+          videoEmbedUrl: 'https://www.youtube.com/embed/RF6HsVo9xc', 
         },
         {
           id: 'L2',
@@ -290,30 +330,30 @@ export const scienceCourseContent: CourseContentMap = {
     },
     {
       name: 'Biological Classification',
-      // Using only 3 lectures as placeholders for brevity, can be expanded later
       lectures: [
         { 
           id: 'L1', 
           title: 'Biological Classification L1', 
           notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L1.pdf`, 
           videoEmbedType: 'hls', 
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356824/174525216684262621696/index_4.m3u8' // Example URL, update if different
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356824/174525216684262621696/index_4.m3u8'
         },
         { 
           id: 'L2', 
           title: 'Biological Classification L2', 
           notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L2.pdf`, 
           videoEmbedType: 'hls', 
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357746/174532727651952621696/index_4.m3u8' // Example URL, update if different
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357746/174532727651952621696/index_4.m3u8'
         },
         { 
           id: 'L3', 
           title: 'Biological Classification L3', 
           notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L3.pdf`, 
           videoEmbedType: 'hls', 
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359040/174542518059332621696/index_4.m3u8' // Example URL, update if different
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359040/174542518059332621696/index_4.m3u8'
         },
       ],
     },
   ],
 };
+
