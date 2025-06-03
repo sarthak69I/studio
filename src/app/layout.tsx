@@ -25,6 +25,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: 'https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png',
+    apple: 'https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png',
+  },
   openGraph: {
     title: 'E-Leak Course Hub',
     description: 'Explore a wide range of courses on E-Leak. Join live classes, access notes, and watch video lectures for Science, Commerce, and Aarambh batches.',
@@ -32,9 +36,9 @@ export const metadata: Metadata = {
     siteName: 'E-Leak',
     images: [
       {
-        url: 'https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png', // Site image added here
-        width: 500, // Assuming a default width, adjust if known
-        height: 500, // Assuming a default height, adjust if known
+        url: 'https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png',
+        width: 500,
+        height: 500,
         alt: 'E-Leak Logo',
       },
     ],
