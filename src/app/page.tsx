@@ -27,7 +27,6 @@ import {
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
-// Removed Recently Watched imports
 
 
 interface Course {
@@ -113,8 +112,16 @@ export default function HomePage() {
   const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
-  // Removed Recently Watched state
+  const [showSplashScreen, setShowSplashScreen] = useState(true);
 
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplashScreen(false);
+    }, 2000); // 2 seconds
+
+    return () => clearTimeout(timer); // Cleanup on unmount
+  }, []);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
@@ -135,7 +142,15 @@ export default function HomePage() {
     localStorage.setItem('theme', newTheme);
   };
 
-  // Removed Recently Watched functions
+
+  if (showSplashScreen) {
+    return (
+      <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary mb-6"></div>
+        <h1 className="text-2xl font-semibold text-foreground">Redirecting To E-Leak Course...</h1>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -188,7 +203,6 @@ export default function HomePage() {
                 {currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
               </Button>
 
-              {/* Removed "Recently Watched" button */}
 
               <Dialog open={isClassUpdatesDialogOpen} onOpenChange={setIsClassUpdatesDialogOpen}>
                 <DialogTrigger asChild>
@@ -305,7 +319,6 @@ export default function HomePage() {
       </footer>
     </div>
 
-    {/* Removed Recently Watched Dialog */}
     </>
   );
 }
