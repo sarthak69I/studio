@@ -118,7 +118,7 @@ export default function HomePage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSplashScreen(false);
-    }, 2000); // 2 seconds
+    }, 500); // 0.5 seconds
 
     return () => clearTimeout(timer); // Cleanup on unmount
   }, []);
