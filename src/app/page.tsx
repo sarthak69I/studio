@@ -112,16 +112,7 @@ export default function HomePage() {
   const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
-  const [showSplashScreen, setShowSplashScreen] = useState(true);
 
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSplashScreen(false);
-    }, 500); // 0.5 seconds
-
-    return () => clearTimeout(timer); // Cleanup on unmount
-  }, []);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
@@ -141,16 +132,6 @@ export default function HomePage() {
     document.documentElement.className = newTheme;
     localStorage.setItem('theme', newTheme);
   };
-
-
-  if (showSplashScreen) {
-    return (
-      <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary mb-6"></div>
-        <h1 className="text-2xl font-semibold text-foreground">Redirecting To E-Leak Course...</h1>
-      </div>
-    );
-  }
 
   return (
     <>
