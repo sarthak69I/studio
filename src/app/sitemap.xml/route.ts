@@ -8,7 +8,15 @@ import {
   type Lecture,
 } from '@/lib/course-data';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app/";
+const BASE_URL_FROM_ENV = process.env.NEXT_PUBLIC_BASE_URL;
+const DEFAULT_BASE_URL = "https://e-leak.vercel.app/";
+
+function getEffectiveBaseUrl(): string {
+  if (BASE_URL_FROM_ENV && BASE_URL_FROM_ENV.trim() !== "" && BASE_URL_FROM_ENV.trim().startsWith("http")) {
+    return BASE_URL_FROM_ENV.trim();
+  }
+  return DEFAULT_BASE_URL;
+}
 
 function generateSiteMap(
   courseContents: { id: string; content: CourseContentMap; namePrefix: string }[],
@@ -17,7 +25,13 @@ function generateSiteMap(
   let xml = '<?xml version="1.0" encoding="UTF-8"?>';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
-  const safeBaseUrl = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL;
+  const baseUrl = getEffectiveBaseUrl();
+  const safeBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+
+  if (!safeBaseUrl || safeBaseUrl.trim() === "") {
+    console.error("Sitemap: Critical error - safeBaseUrl is empty or invalid even after fallback. Sitemap will be incorrect.");
+    // Potentially throw an error or return minimal valid XML to avoid full failure
+  }
 
   // Add static pages
   staticPages.forEach(page => {
@@ -30,10 +44,14 @@ function generateSiteMap(
       </url>`;
   });
 
-  // Add dynamic course pages
+  // Temporarily comment out dynamic course page generation for diagnostics
+  /*
   courseContents.forEach(course => {
-    const courseId = course.id;
-    if (!courseId) return; // Skip if courseId is invalid
+    const courseId = String(course.id || '').trim(); // Ensure courseId is a string and trimmed
+    if (!courseId) {
+      console.warn(`Sitemap: Skipping course with empty or invalid ID.`);
+      return;
+    }
 
     // Enroll page
     xml += `
@@ -51,9 +69,18 @@ function generateSiteMap(
         <priority>0.7</priority>
       </url>`;
     
-    // Content pages (subjects, topics, lectures)
-    Object.entries(course.content).forEach(([subjectName, subjectData]) => {
-      if (!subjectName) return; // Skip if subjectName is invalid
+    const courseContentData = course.content;
+    if (!courseContentData || typeof courseContentData !== 'object') {
+        console.warn(`Sitemap: Skipping course ID ${courseId} due to missing or invalid content data.`);
+        return;
+    }
+
+    Object.entries(courseContentData).forEach(([subjectKey, subjectData]) => {
+      const subjectName = String(subjectKey || '').trim();
+      if (!subjectName) {
+          console.warn(`Sitemap: Skipping subject with empty name in course ID ${courseId}.`);
+          return;
+      }
       const subjectParam = encodeURIComponent(subjectName);
       const modes = ['video', 'notes'];
 
@@ -68,10 +95,13 @@ function generateSiteMap(
 
         if (typeof subjectData !== 'string' && Array.isArray(subjectData)) {
           subjectData.forEach((topic: Topic) => {
-            if (!topic || !topic.name) return; // Skip if topic or topic.name is invalid
-            const topicParam = encodeURIComponent(topic.name);
+            const topicName = String(topic?.name || '').trim();
+            if (!topicName) {
+                console.warn(`Sitemap: Skipping topic with empty name in subject "${subjectName}", course ID ${courseId}.`);
+                return;
+            }
+            const topicParam = encodeURIComponent(topicName);
             
-            // Topic lectures list page
             if (topic.lectures && topic.lectures.length > 0) {
               xml += `
                 <url>
@@ -81,11 +111,11 @@ function generateSiteMap(
                 </url>`;
             }
 
-            // Lecture play pages (only for video mode as per current generateStaticParams)
             if (mode === 'video' && topic.lectures) {
               topic.lectures.forEach((lecture: Lecture) => {
-                if (lecture && lecture.id && lecture.videoEmbedUrl) { // Ensure lecture, id, and videoEmbedUrl are valid
-                  const lectureIdParam = encodeURIComponent(lecture.id);
+                const lectureId = String(lecture?.id || '').trim();
+                if (lectureId && lecture.videoEmbedUrl) {
+                  const lectureIdParam = encodeURIComponent(lectureId);
                   xml += `
                     <url>
                       <loc>${safeBaseUrl}/courses/${courseId}/content/video/${subjectParam}/${topicParam}/lectures/${lectureIdParam}/play</loc>
@@ -100,12 +130,14 @@ function generateSiteMap(
       });
     });
   });
+  */
 
   xml += '</urlset>';
   return xml;
 }
 
 export async function GET() {
+  console.log(`Sitemap generation started. NEXT_PUBLIC_BASE_URL from env: ${process.env.NEXT_PUBLIC_BASE_URL}`);
   try {
     const courses = [
       { id: '1', content: scienceCourseContent, namePrefix: 'science' },
@@ -124,12 +156,12 @@ export async function GET() {
     return new Response(body, {
       status: 200,
       headers: {
-        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate', // Corrected casing
+        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate',
         'Content-Type': 'application/xml',
       },
     });
   } catch (error) {
-    console.error('Error generating sitemap:', error);
+    console.error('Sitemap: Error during GET handler:', error);
     return new Response('Error generating sitemap. Check server logs.', {
       status: 500,
       headers: {
@@ -138,3 +170,4 @@ export async function GET() {
     });
   }
 }
+
