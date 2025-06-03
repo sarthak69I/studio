@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 // IMPORTANT: Replace "https://your-domain.com" with your actual domain
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://your-domain.com";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app/";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

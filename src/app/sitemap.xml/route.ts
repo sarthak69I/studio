@@ -9,7 +9,7 @@ import {
 } from '@/lib/course-data';
 
 // IMPORTANT: Replace "https://your-domain.com" with your actual domain
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://your-domain.com";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app/";
 
 function generateSiteMap(
   courseContents: { id: string; content: CourseContentMap; namePrefix: string }[],
@@ -22,7 +22,7 @@ function generateSiteMap(
   staticPages.forEach(page => {
     xml += `
       <url>
-        <loc>${BASE_URL}${page}</loc>
+        <loc>${BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL}${page === '/' ? '' : page}</loc>
         <lastmod>${new Date().toISOString()}</lastmod>
         <priority>${page === '/' ? '1.0' : '0.8'}</priority>
       </url>`;
@@ -35,7 +35,7 @@ function generateSiteMap(
     // Enroll page
     xml += `
       <url>
-        <loc>${BASE_URL}/courses/${courseId}/enroll</loc>
+        <loc>${BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL}/courses/${courseId}/enroll</loc>
         <lastmod>${new Date().toISOString()}</lastmod>
         <priority>0.7</priority>
       </url>`;
@@ -43,7 +43,7 @@ function generateSiteMap(
     // Live page
     xml += `
       <url>
-        <loc>${BASE_URL}/courses/${courseId}/live</loc>
+        <loc>${BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL}/courses/${courseId}/live</loc>
         <lastmod>${new Date().toISOString()}</lastmod>
         <priority>0.7</priority>
       </url>`;
@@ -57,7 +57,7 @@ function generateSiteMap(
         // Subject page
         xml += `
           <url>
-            <loc>${BASE_URL}/courses/${courseId}/content/${mode}/${subjectParam}</loc>
+            <loc>${BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL}/courses/${courseId}/content/${mode}/${subjectParam}</loc>
             <lastmod>${new Date().toISOString()}</lastmod>
             <priority>0.6</priority>
           </url>`;
@@ -70,7 +70,7 @@ function generateSiteMap(
             if (topic.lectures && topic.lectures.length > 0) {
               xml += `
                 <url>
-                  <loc>${BASE_URL}/courses/${courseId}/content/${mode}/${subjectParam}/${topicParam}/lectures</loc>
+                  <loc>${BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL}/courses/${courseId}/content/${mode}/${subjectParam}/${topicParam}/lectures</loc>
                   <lastmod>${new Date().toISOString()}</lastmod>
                   <priority>0.5</priority>
                 </url>`;
@@ -83,7 +83,7 @@ function generateSiteMap(
                   const lectureIdParam = encodeURIComponent(lecture.id);
                   xml += `
                     <url>
-                      <loc>${BASE_URL}/courses/${courseId}/content/video/${subjectParam}/${topicParam}/lectures/${lectureIdParam}/play</loc>
+                      <loc>${BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL}/courses/${courseId}/content/video/${subjectParam}/${topicParam}/lectures/${lectureIdParam}/play</loc>
                       <lastmod>${new Date().toISOString()}</lastmod>
                       <priority>0.4</priority>
                     </url>`;
