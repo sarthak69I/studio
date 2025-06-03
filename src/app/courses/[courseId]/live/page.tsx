@@ -142,7 +142,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
         });
         setClassStatus({
           status: 'upcoming',
-          badgeText: isVacationPeriod && liveStreamUrl ? 'Upcoming (Recording)' : 'Upcoming',
+          badgeText: 'Upcoming', // Changed from: isVacationPeriod && liveStreamUrl ? 'Upcoming (Recording)' : 'Upcoming',
           buttonText: 'JOIN NOW',
           buttonDisabled: true, 
           cardBorderClass: 'border-accent',
@@ -417,3 +417,4 @@ export default function LiveClassesPage() {
     </div>
   );
 }
+
