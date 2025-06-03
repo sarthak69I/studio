@@ -16,7 +16,6 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-// IMPORTANT: Replace "https://your-domain.com" with your actual domain
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app/";
 
 export const metadata: Metadata = {
@@ -31,13 +30,14 @@ export const metadata: Metadata = {
     description: 'Explore a wide range of courses on E-Leak. Join live classes, access notes, and watch video lectures for Science, Commerce, and Aarambh batches.',
     url: '/',
     siteName: 'E-Leak',
-    // images: [ // Optionally add a default image for sharing
-    //   {
-    //     url: '/og-image.png', // Create this image in your /public folder
-    //     width: 1200,
-    //     height: 630,
-    //   },
-    // ],
+    images: [
+      {
+        url: 'https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png', // Site image added here
+        width: 500, // Assuming a default width, adjust if known
+        height: 500, // Assuming a default height, adjust if known
+        alt: 'E-Leak Logo',
+      },
+    ],
     locale: 'en_US',
     type: 'website',
   },
