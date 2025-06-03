@@ -101,6 +101,25 @@ export const scienceCourseContent: CourseContentMap = {
         },
       ],
     },
+    {
+      name: 'Motion in a Plane',
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Motion in a Plane L1',
+          notesLink: `${scienceBasePath}/physics/${slugify('Motion in a Plane')}/notes/L1.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396270/174853512223368296383/index_4.m3u8',
+        },
+        {
+          id: 'L2',
+          title: 'Motion in a Plane L2',
+          notesLink: `${scienceBasePath}/physics/${slugify('Motion in a Plane')}/notes/L2.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397274/174862200978868296383/index_4.m3u8',
+        },
+      ],
+    },
   ],
   'Chemistry': [
     {
