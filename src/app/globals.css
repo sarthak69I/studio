@@ -141,12 +141,12 @@ body {
   padding: 15px 40px;
   font-size: 18px;
   color: white;
-  background-color: #e53935;
+  background-color: hsl(var(--primary)); /* Changed to primary blue */
   border: none;
   border-radius: 50px;
   cursor: pointer;
   overflow: hidden;
-  box-shadow: 0 0 20px #e53935;
+  box-shadow: 0 0 20px hsl(var(--primary)); /* Changed to primary blue shadow */
   transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
   animation: float 3s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
 }
@@ -167,7 +167,7 @@ body {
 
 .join-button:hover {
   transform: scale(1.08) rotate(1deg);
-  box-shadow: 0 0 30px #e53935, 0 0 60px #e53935, 0 0 90px #e53935;
+  box-shadow: 0 0 30px hsl(var(--primary)), 0 0 60px hsl(var(--primary)), 0 0 90px hsl(var(--primary)); /* Changed to primary blue shadow */
   animation: float 1.5s ease-in-out infinite, glowPulse 1.5s ease-in-out infinite;
 }
 
@@ -196,9 +196,9 @@ body {
 }
 
 @keyframes pulseText {
-  0% { text-shadow: 0 0 5px #fff, 0 0 10px #e53935; }
-  50% { text-shadow: 0 0 25px #fff, 0 0 50px #e53935; }
-  100% { text-shadow: 0 0 5px #fff, 0 0 10px #e53935; }
+  0% { text-shadow: 0 0 5px #fff, 0 0 10px hsl(var(--primary)); } /* Changed to primary blue glow */
+  50% { text-shadow: 0 0 25px #fff, 0 0 50px hsl(var(--primary)); } /* Changed to primary blue glow */
+  100% { text-shadow: 0 0 5px #fff, 0 0 10px hsl(var(--primary)); } /* Changed to primary blue glow */
 }
 
 @keyframes shine {
@@ -212,7 +212,7 @@ body {
 }
 
 @keyframes glowPulse {
-  0% { box-shadow: 0 0 10px #e53935; }
-  50% { box-shadow: 0 0 40px #e53935, 0 0 80px #e53935; }
-  100% { box-shadow: 0 0 10px #e53935; }
+  0% { box-shadow: 0 0 10px hsl(var(--primary)); } /* Changed to primary blue glow */
+  50% { box-shadow: 0 0 40px hsl(var(--primary)), 0 0 80px hsl(var(--primary)); } /* Changed to primary blue glow */
+  100% { box-shadow: 0 0 10px hsl(var(--primary)); } /* Changed to primary blue glow */
 }
