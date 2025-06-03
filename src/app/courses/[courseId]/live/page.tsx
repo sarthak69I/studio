@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, Bot } from 'lucide-react';
 import { getParamAsString } from '@/lib/utils';
+// Removed CustomHlsPlayer import
 
 interface LiveClassData {
   pageTitle: string;
@@ -17,32 +18,32 @@ interface LiveClassData {
   class2LiveStreamUrl?: string;
 }
 
-const streamPlayerBaseUrl = 'https://e-leak-strm.web.app/?url='; // New player base URL
+const newStreamPlayerBaseUrl = 'https://anym3u8player.com/tv/p.php?url=';
 
 const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "Class 11 Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "Chemistry", 
+    class1Subject: "Chemistry",
     class2Subject: "Physics",
-    class1LiveStreamUrl: undefined, 
-    class2LiveStreamUrl: `${streamPlayerBaseUrl}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353000/174481993295887555169/index_4.m3u8')}`,
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
     subtitle: "Interactive learning sessions for Commerce students",
     class1Subject: "Accountancy",
     class2Subject: "Economics",
-    class1LiveStreamUrl: `${streamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/a63dd48a9268402b8961662fc9993c8d/index_4.m3u8')}`,
-    class2LiveStreamUrl: `${streamPlayerBaseUrl}${encodeURIComponent('https://d2ypa0i2sdc0h2.cloudfront.net/out/v1/953b87b302b04b50a75b8ed04c215cc4/index_4.m3u8')}`,
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/a63dd48a9268402b8961662fc9993c8d/index_4.m3u8')}`,
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d2ypa0i2sdc0h2.cloudfront.net/out/v1/953b87b302b04b50a75b8ed04c215cc4/index_4.m3u8')}`,
   },
   '3': { // Aarambh (Foundation)
     pageTitle: "Class 10 Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Aarambh batch",
     class1Subject: "Science",
     class2Subject: "Mathematics",
-    class1LiveStreamUrl: `${streamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`, 
-    class2LiveStreamUrl: undefined, 
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`,
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4351817/174473442715988296383/index_4.m3u8')}`,
   }
 };
 
@@ -91,7 +92,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
     badgeText: 'Upcoming',
     buttonText: 'JOIN NOW',
     buttonDisabled: true,
-    cardBorderClass: 'border-accent', 
+    cardBorderClass: 'border-accent',
     badgeClass: 'bg-accent/20 text-accent',
   });
   const [isMounted, setIsMounted] = React.useState(false);
@@ -106,20 +107,19 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
     const calculateTimesAndVacation = () => {
       const now = new Date();
       const currentYear = now.getFullYear();
-      // Note: Month is 0-indexed (January is 0, June is 5)
       const vacationStartDate = new Date(currentYear, VACATION_START_MONTH, VACATION_START_DAY, 0, 0, 0);
       const vacationEndDate = new Date(vacationStartDate.getTime() + VACATION_DURATION_HOURS * 60 * 60 * 1000);
       const isVacationPeriod = now >= vacationStartDate && now < vacationEndDate;
 
       let classStartTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour, targetMinute, 0);
-      
-      const endOfDayReferenceHour = 20; 
+
+      const endOfDayReferenceHour = 20;
       const endOfDayReferenceMinute = 10;
-      const endOfDayReferenceDuration = 90; 
+      const endOfDayReferenceDuration = 90;
       let lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), endOfDayReferenceHour, endOfDayReferenceMinute, 0);
       lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + endOfDayReferenceDuration);
-      
-      if (now > lastClassEndTimeToday && targetHour < now.getHours()) { // Ensure class date increments if current time is past all classes for the day
+
+      if (now > lastClassEndTimeToday && targetHour < now.getHours()) {
          classStartTime.setDate(classStartTime.getDate() + 1);
       }
 
@@ -131,7 +131,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       const { now, classStartTime, classEndTime, isVacationPeriod } = calculateTimesAndVacation();
       const diff = classStartTime.getTime() - now.getTime();
 
-      if (now < classStartTime) { 
+      if (now < classStartTime) {
         const h = Math.floor(diff / (1000 * 60 * 60));
         const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((diff % (1000 * 60)) / 1000);
@@ -142,35 +142,35 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
         });
         setClassStatus({
           status: 'upcoming',
-          badgeText: 'Upcoming', // Changed from: isVacationPeriod && liveStreamUrl ? 'Upcoming (Recording)' : 'Upcoming',
+          badgeText: 'Upcoming',
           buttonText: 'JOIN NOW',
-          buttonDisabled: true, 
+          buttonDisabled: true,
           cardBorderClass: 'border-accent',
           badgeClass: 'bg-accent/20 text-accent',
         });
-      } else if (now >= classStartTime && now < classEndTime) { 
+      } else if (now >= classStartTime && now < classEndTime) {
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
         if (isVacationPeriod && liveStreamUrl) {
             setClassStatus({
                 status: 'recording_available',
                 badgeText: 'Recording Available',
                 buttonText: 'Watch Recording',
-                buttonDisabled: false, 
-                cardBorderClass: 'border-primary', // Use primary color for recording border
+                buttonDisabled: false,
+                cardBorderClass: 'border-primary',
                 badgeClass: 'bg-primary/20 text-primary',
             });
-        } else if (!isVacationPeriod && liveStreamUrl) { 
+        } else if (!isVacationPeriod && liveStreamUrl) {
             setClassStatus({
                 status: 'live',
                 badgeText: 'Live Now',
                 buttonText: 'JOIN NOW',
-                buttonDisabled: false, 
+                buttonDisabled: false,
                 cardBorderClass: 'border-destructive animate-live-pulse',
                 badgeClass: 'bg-destructive/20 text-destructive',
             });
-        } else { // Active slot, but no stream URL (regardless of vacation)
+        } else {
             setClassStatus({
-                status: 'completed', // Treat as completed or unavailable
+                status: 'completed',
                 badgeText: 'No Session Scheduled',
                 buttonText: 'Unavailable',
                 buttonDisabled: true,
@@ -178,20 +178,20 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
                 badgeClass: 'bg-muted/30 text-muted-foreground',
             });
         }
-      } else { 
+      } else {
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
         setClassStatus({
           status: 'completed',
           badgeText: isVacationPeriod && liveStreamUrl ? 'Recording Ended' : 'Completed',
           buttonText: 'Class Ended',
-          buttonDisabled: true, 
-          cardBorderClass: 'border-green-500', 
+          buttonDisabled: true,
+          cardBorderClass: 'border-green-500',
           badgeClass: 'bg-green-500/20 text-green-500',
         });
       }
     };
 
-    updateClassState(); 
+    updateClassState();
     const intervalId = setInterval(updateClassState, 1000);
 
     return () => clearInterval(intervalId);
@@ -211,7 +211,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       </span>
       <div className="text-lg font-semibold mb-2">{classTimeLabel}</div>
       <h2 className="text-2xl font-bold text-primary mb-4">{subject}</h2>
-      
+
       {!liveStreamUrl ? (
         <div className="text-center text-muted-foreground py-8">
           <p className="text-lg">No live class or recording scheduled for this subject today.</p>
@@ -230,7 +230,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
             ></iframe>
           </div>
           <p className="text-xs text-muted-foreground text-center -mt-2 mb-4">
-            {classStatus.status === 'live' 
+            {classStatus.status === 'live'
               ? "Double-click on video to Full Screen."
               : "This is a pre-recorded session. Full-screen option may be available via player controls."}
           </p>
@@ -251,12 +251,12 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
               <div className="text-xs uppercase text-muted-foreground opacity-70">Seconds</div>
             </div>
           </div>
-          
+
           <Button
-            className={`w-full py-3 text-base font-semibold rounded-full transition-all duration-300 ease-in-out 
+            className={`w-full py-3 text-base font-semibold rounded-full transition-all duration-300 ease-in-out
                         ${classStatus.buttonDisabled ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5'}`}
             disabled={classStatus.buttonDisabled}
-            onClick={() => { 
+            onClick={() => {
               // Action handled by iframe loading based on status
             }}
           >
@@ -298,19 +298,17 @@ export default function LiveClassesPage() {
   React.useEffect(() => {
     if (!isMounted) return;
 
-    // This useEffect determines the order of class cards based on the first class's general timing.
-    // The individual card's detailed status (live, recording, upcoming) is handled within LiveClassCard.
     const calculateFirstClassOriginalTimingStatus = () => {
         const now = new Date();
-        const targetHour1 = 17; // 5 PM - First class scheduled time
+        const targetHour1 = 17;
         const targetMinute1 = 10;
         const durationMinutes1 = 90;
 
         let classStartTime1 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour1, targetMinute1, 0);
-        
-        const endOfDayReferenceHour = 20; 
+
+        const endOfDayReferenceHour = 20;
         const endOfDayReferenceMinute = 10;
-        const endOfDayReferenceDuration = 90; 
+        const endOfDayReferenceDuration = 90;
         let lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), endOfDayReferenceHour, endOfDayReferenceMinute, 0);
         lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + endOfDayReferenceDuration);
 
@@ -322,15 +320,14 @@ export default function LiveClassesPage() {
         if (now < classStartTime1) {
             setFirstClassStatus('upcoming');
         } else if (now >= classStartTime1 && now < classEndTime1) {
-            // For ordering, consider it 'live' slot, card itself will show recording if vacation
-            setFirstClassStatus('live'); 
+            setFirstClassStatus('live');
         } else {
             setFirstClassStatus('completed');
         }
     };
 
     calculateFirstClassOriginalTimingStatus();
-    const intervalId = setInterval(calculateFirstClassOriginalTimingStatus, 60000); 
+    const intervalId = setInterval(calculateFirstClassOriginalTimingStatus, 60000);
     return () => clearInterval(intervalId);
   }, [isMounted]);
 
@@ -417,4 +414,3 @@ export default function LiveClassesPage() {
     </div>
   );
 }
-
