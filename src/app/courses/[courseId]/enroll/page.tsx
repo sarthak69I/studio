@@ -37,31 +37,34 @@ const courseSpecificSubjects: CourseSubjects = {
   '3': ['Social Science', 'Science', 'Mathematics'], // Aarambh Batch
 };
 
+const courseDisplayNames: Record<string, string> = {
+  '1': "Science Batch",
+  '2': "Commerce Batch",
+  '3': "Aarambh Batch",
+};
+
+
 export default function EnrollPage() {
   const router = useRouter();
   const params = useParams();
   const courseId = getParamAsString(params.courseId);
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
-  const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
-    setIsMounted(true);
-    // Set document title based on courseId or a generic title
-    let courseName = "";
-    if (courseId === '1') courseName = "Science Batch";
-    else if (courseId === '2') courseName = "Commerce Batch";
-    else if (courseId === '3') courseName = "Aarambh Batch";
+    let courseName = courseDisplayNames[courseId] || "";
     
     if (courseName) {
       document.title = `Enroll: ${courseName} | E-Leak`;
-    } else {
+    } else if (courseId) { // Fallback if courseId is present but not in map
+      document.title = `Enroll Course ${courseId} | E-Leak`;
+    }
+     else {
       document.title = 'Enroll | E-Leak';
     }
-  }, [courseId, isMounted]);
+  }, [courseId]);
 
 
   const handleJoinLiveClassClick = () => {
-    if (!isMounted) return;
     router.push(`/courses/${courseId}/live`);
   };
 
@@ -74,14 +77,6 @@ export default function EnrollPage() {
   const handleModeChange = (mode: 'notes' | 'video') => {
     setActiveContentMode(mode);
   };
-
-  if (!isMounted) {
-    return (
-      <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
-        <p>Loading Enrollment Options...</p>
-      </div>
-    );
-  }
 
   return (
     <>
@@ -145,7 +140,7 @@ export default function EnrollPage() {
                 ))}
               </div>
             ) : (
-              <p className="text-center text-muted-foreground">No subjects listed for this course.</p>
+              <p className="text-center text-muted-foreground">Select a course to see subjects or no subjects listed for this course.</p>
             )}
           </div>
         </div>
