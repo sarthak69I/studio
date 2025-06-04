@@ -215,7 +215,7 @@ export default function HomePage() {
                     </p>
                     <p>
                       This is the backup channel:
-                      <Link href="https://youtube.com/@nexttoppers-backup?si=GP3sqWU8fmCa8EQL" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                      <Link href="https://www.youtube.com/@e-leakcoursehub" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
                         Backup Channel
                       </Link>
                     </p>

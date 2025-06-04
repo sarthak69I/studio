@@ -310,7 +310,7 @@ export const scienceCourseContent: CourseContentMap = {
           title: 'The Living World L1',
           notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`,
           videoEmbedType: 'youtube',
-          videoEmbedUrl: 'https://www.youtube.com/embed/RF6HsVo9xc', 
+          videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc', 
         },
         {
           id: 'L2',
