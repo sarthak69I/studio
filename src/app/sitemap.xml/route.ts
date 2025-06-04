@@ -1,135 +1,44 @@
 
-import {
-  scienceCourseContent,
-  commerceCourseContent,
-  aarambhCourseContent,
-  type CourseContentMap,
-  type Topic,
-  type Lecture,
-} from '@/lib/course-data';
+// src/app/sitemap.xml/route.ts
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app/";
+export function GET() {
+  const BASE_URL = "https://e-leak.vercel.app"; // Ensure this is your correct production domain
 
-function generateSiteMap(
-  courseContents: { id: string; content: CourseContentMap; namePrefix: string }[],
-  staticPages: string[]
-): string {
+  const lastmod = new Date().toISOString();
+
+  const urls = [
+    { loc: `${BASE_URL}/`, priority: 1.0 },
+    { loc: `${BASE_URL}/help-center`, priority: 0.8 },
+    { loc: `${BASE_URL}/courses/1/enroll`, priority: 0.9 },
+    { loc: `${BASE_URL}/courses/2/enroll`, priority: 0.9 },
+    { loc: `${BASE_URL}/courses/3/enroll`, priority: 0.9 },
+    { loc: `${BASE_URL}/admin-tool`, priority: 0.1 }, // Keeping admin tool with low priority
+  ];
+
   let xml = '<?xml version="1.0" encoding="UTF-8"?>';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
-  const safeBaseUrl = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL;
-
-  // Add static pages
-  staticPages.forEach(page => {
-    const loc = page === '/' ? safeBaseUrl : `${safeBaseUrl}${page}`;
+  urls.forEach(url => {
     xml += `
-      <url>
-        <loc>${loc}</loc>
-        <lastmod>${new Date().toISOString()}</lastmod>
-        <priority>${page === '/' ? '1.0' : '0.8'}</priority>
-      </url>`;
-  });
-
-  // Add dynamic course pages
-  courseContents.forEach(course => {
-    const courseId = course.id;
-    if (!courseId) return; // Skip if courseId is invalid
-
-    // Enroll page
-    xml += `
-      <url>
-        <loc>${safeBaseUrl}/courses/${courseId}/enroll</loc>
-        <lastmod>${new Date().toISOString()}</lastmod>
-        <priority>0.7</priority>
-      </url>`;
-
-    // Live page
-    xml += `
-      <url>
-        <loc>${safeBaseUrl}/courses/${courseId}/live</loc>
-        <lastmod>${new Date().toISOString()}</lastmod>
-        <priority>0.7</priority>
-      </url>`;
-    
-    // Content pages (subjects, topics, lectures)
-    Object.entries(course.content).forEach(([subjectName, subjectData]) => {
-      if (!subjectName) return; // Skip if subjectName is invalid
-      const subjectParam = encodeURIComponent(subjectName);
-      const modes = ['video', 'notes'];
-
-      modes.forEach(mode => {
-        // Subject page
-        xml += `
-          <url>
-            <loc>${safeBaseUrl}/courses/${courseId}/content/${mode}/${subjectParam}</loc>
-            <lastmod>${new Date().toISOString()}</lastmod>
-            <priority>0.6</priority>
-          </url>`;
-
-        if (typeof subjectData !== 'string' && Array.isArray(subjectData)) {
-          subjectData.forEach((topic: Topic) => {
-            if (!topic || !topic.name) return; // Skip if topic or topic.name is invalid
-            const topicParam = encodeURIComponent(topic.name);
-            
-            // Topic lectures list page
-            if (topic.lectures && topic.lectures.length > 0) {
-              xml += `
-                <url>
-                  <loc>${safeBaseUrl}/courses/${courseId}/content/${mode}/${subjectParam}/${topicParam}/lectures</loc>
-                  <lastmod>${new Date().toISOString()}</lastmod>
-                  <priority>0.5</priority>
-                </url>`;
-            }
-
-            // Lecture play pages (only for video mode as per current generateStaticParams)
-            if (mode === 'video' && topic.lectures) {
-              topic.lectures.forEach((lecture: Lecture) => {
-                if (lecture && lecture.id && lecture.videoEmbedUrl) { // Ensure lecture, id, and videoEmbedUrl are valid
-                  const lectureIdParam = encodeURIComponent(lecture.id);
-                  xml += `
-                    <url>
-                      <loc>${safeBaseUrl}/courses/${courseId}/content/video/${subjectParam}/${topicParam}/lectures/${lectureIdParam}/play</loc>
-                      <lastmod>${new Date().toISOString()}</lastmod>
-                      <priority>0.4</priority>
-                    </url>`;
-                }
-              });
-            }
-          });
-        }
-      });
-    });
+    <url>
+      <loc>${url.loc}</loc>
+      <lastmod>${lastmod}</lastmod>
+      <priority>${url.priority}</priority>
+    </url>`;
   });
 
   xml += '</urlset>';
-  return xml;
-}
 
-export async function GET() {
   try {
-    const courses = [
-      { id: '1', content: scienceCourseContent, namePrefix: 'science' },
-      { id: '2', content: commerceCourseContent, namePrefix: 'commerce' },
-      { id: '3', content: aarambhCourseContent, namePrefix: 'aarambh' },
-    ];
-
-    const staticPages = [
-      '/',
-      '/help-center',
-      '/admin-tool',
-    ];
-
-    const body = generateSiteMap(courses, staticPages);
-
-    return new Response(body, {
+    return new Response(xml, {
       status: 200,
       headers: {
-        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate', // Corrected casing
+        'Cache-Control': 'public, max-age=0, s-maxage=86400, must-revalidate',
         'Content-Type': 'application/xml',
       },
     });
   } catch (error) {
-    console.error('Error generating sitemap:', error);
+    console.error('Sitemap: Critical error during new Response() construction:', error);
     return new Response('Error generating sitemap. Check server logs.', {
       status: 500,
       headers: {
