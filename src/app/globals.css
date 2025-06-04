@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -141,17 +142,23 @@ body {
   padding: 15px 40px;
   font-size: 18px;
   color: white;
-  background-color: hsl(var(--primary)); /* Changed to primary blue */
+  background-color: hsl(var(--primary));
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  overflow: hidden;
-  box-shadow: 0 0 20px hsl(var(--primary)); /* Changed to primary blue shadow */
+  overflow: visible; /* Changed from hidden to visible to allow glow to extend */
+  box-shadow: 0 0 20px hsl(var(--primary));
   transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
-  animation: float 3s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
+  animation: glowPulse 2s ease-in-out infinite;
 }
 
-.join-button::before {
+.join-button:hover {
+  transform: scale(1.08) rotate(1deg);
+  box-shadow: 0 0 30px hsl(var(--primary)), 0 0 60px hsl(var(--primary)), 0 0 90px hsl(var(--primary));
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+.join-button:active::before { /* Ripple effect on click */
   content: '';
   position: absolute;
   top: 50%;
@@ -165,54 +172,64 @@ body {
   pointer-events: none;
 }
 
-.join-button:hover {
-  transform: scale(1.08) rotate(1deg);
-  box-shadow: 0 0 30px hsl(var(--primary)), 0 0 60px hsl(var(--primary)), 0 0 90px hsl(var(--primary)); /* Changed to primary blue shadow */
-  animation: float 1.5s ease-in-out infinite, glowPulse 1.5s ease-in-out infinite;
-}
-
+/* This second rule block ensures the ripple appears instantly on active */
 .join-button:active::before {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
-  transition: 0s;
+  transition: 0s; /* Makes the appearance instant */
 }
 
 .join-button span {
   position: relative;
   z-index: 2;
-  animation: pulseText 2s infinite;
-}
-
-.join-button::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0));
-  transform: skewX(-20deg);
-  animation: shine 2s infinite;
-}
-
-@keyframes pulseText {
-  0% { text-shadow: 0 0 5px #fff, 0 0 10px hsl(var(--primary)); } /* Changed to primary blue glow */
-  50% { text-shadow: 0 0 25px #fff, 0 0 50px hsl(var(--primary)); } /* Changed to primary blue glow */
-  100% { text-shadow: 0 0 5px #fff, 0 0 10px hsl(var(--primary)); } /* Changed to primary blue glow */
-}
-
-@keyframes shine {
-  0% { left: -75%; }
-  100% { left: 125%; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
 }
 
 @keyframes glowPulse {
-  0% { box-shadow: 0 0 10px hsl(var(--primary)); } /* Changed to primary blue glow */
-  50% { box-shadow: 0 0 40px hsl(var(--primary)), 0 0 80px hsl(var(--primary)); } /* Changed to primary blue glow */
-  100% { box-shadow: 0 0 10px hsl(var(--primary)); } /* Changed to primary blue glow */
+  0% { box-shadow: 0 0 10px hsl(var(--primary)); }
+  50% { box-shadow: 0 0 40px hsl(var(--primary)), 0 0 80px hsl(var(--primary)); }
+  100% { box-shadow: 0 0 10px hsl(var(--primary)); }
 }
+
+
+/* Keyframes for other animations used in the app (ShadCN defaults + custom) */
+@keyframes accordion-down {
+  from { height: 0px; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0px; }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes bounce-custom {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulse-custom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes fadeIn-custom {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp-custom {
+  0% { transform: translateY(20px) scale(0.95); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0px hsla(0, 100%, 71%, 0.5); }
+  70% { box-shadow: 0 0 0 10px hsla(0, 100%, 71%, 0); }
+  100% { box-shadow: 0 0 0 0px hsla(0, 100%, 71%, 0); }
+}
+
