@@ -1,18 +1,15 @@
 
 // src/app/sitemap.xml/route.ts
 
+export const dynamic = 'force-dynamic'; // Ensures the sitemap is generated on each request
+
 export function GET() {
-  const BASE_URL = "https://e-leak.vercel.app"; // Ensure this is your correct production domain
+  const BASE_URL = "https://e-leak.vercel.app"; // Your production domain
+  const lastmod = new Date().toISOString(); // Current date and time
 
-  const lastmod = new Date().toISOString();
-
+  // For diagnostics, generate a sitemap with only the homepage
   const urls = [
     { loc: `${BASE_URL}/`, priority: 1.0 },
-    { loc: `${BASE_URL}/help-center`, priority: 0.8 },
-    { loc: `${BASE_URL}/courses/1/enroll`, priority: 0.9 },
-    { loc: `${BASE_URL}/courses/2/enroll`, priority: 0.9 },
-    { loc: `${BASE_URL}/courses/3/enroll`, priority: 0.9 },
-    { loc: `${BASE_URL}/admin-tool`, priority: 0.1 }, // Keeping admin tool with low priority
   ];
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -33,13 +30,15 @@ export function GET() {
     return new Response(xml, {
       status: 200,
       headers: {
-        'Cache-Control': 'public, max-age=0, s-maxage=86400, must-revalidate',
+        // Using a common and generally safe Cache-Control header for sitemaps
+        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate',
         'Content-Type': 'application/xml',
       },
     });
   } catch (error) {
     console.error('Sitemap: Critical error during new Response() construction:', error);
-    return new Response('Error generating sitemap. Check server logs.', {
+    // Fallback response in case of an unexpected error during Response creation
+    return new Response('Error generating sitemap. Please check server logs.', {
       status: 500,
       headers: {
         'Content-Type': 'text/plain',
