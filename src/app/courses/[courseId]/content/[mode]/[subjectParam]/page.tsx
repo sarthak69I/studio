@@ -36,16 +36,11 @@ export default function SubjectContentPage() {
   
   const [subjectName, setSubjectName] = React.useState('');
   const [displayedTopics, setDisplayedTopics] = React.useState<Topic[] | string | null>(null);
-  const [isMounted, setIsMounted] = React.useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
 
 
   React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  React.useEffect(() => {
-    if (isMounted && subjectParam && courseId) {
+    if (subjectParam && courseId) {
       try {
         const decodedSubjectName = decodeURIComponent(subjectParam);
         setSubjectName(decodedSubjectName);
@@ -79,14 +74,14 @@ export default function SubjectContentPage() {
         setSubjectName(fallbackName);
         setDisplayedTopics(`Content for '${subjectParam}' could not be loaded due to a decoding error.`);
       }
-    } else if (isMounted) { 
+    } else { 
       setSubjectName('Unknown Subject');
       setDisplayedTopics('No subject specified in URL or course ID missing.');
     }
-  }, [isMounted, subjectParam, courseId]); 
+  }, [subjectParam, courseId]); 
 
   React.useEffect(() => {
-    if (isMounted && subjectName) {
+    if (subjectName) {
       const modeText = mode === 'notes' ? 'Notes' : 'Videos';
       let pageTitleSegment = subjectName;
       
@@ -96,19 +91,11 @@ export default function SubjectContentPage() {
         pageTitleSegment = displayedTopics; // Use specific topic name if it's a single string topic
       }
       document.title = `${pageTitleSegment} - ${subjectName} ${modeText} | E-Leak`;
-    } else if (isMounted) {
+    } else {
       document.title = 'Subject Content | E-Leak';
     }
-  }, [isMounted, subjectName, mode, displayedTopics]);
+  }, [subjectName, mode, displayedTopics]);
 
-
-  if (!isMounted) {
-    return (
-      <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
-        <p>Loading...</p>
-      </div>
-    );
-  }
 
   const renderTopicCard = (topic: Topic, index: number) => {
     const cardContent = (
@@ -196,7 +183,7 @@ export default function SubjectContentPage() {
             if (!displayedTopics) {
                  return (subjectName === 'Unknown Subject' || (typeof displayedTopics === 'string' && displayedTopics && (displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified')))) ? (
                   <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">
-                    {typeof displayedTopics === 'string' ? displayedTopics : 'Content could not be loaded.'}
+                    {typeof displayedTopics === 'string' ? displayedTopics : 'Loading content or content not found.'}
                   </p>
                 ) : (
                   <p className="text-xl text-muted-foreground">Loading content or content not found.</p>
@@ -211,10 +198,6 @@ export default function SubjectContentPage() {
                         <p className="text-xl text-muted-foreground">{displayedTopics}</p>
                     )
                   ) : (
-                    // This case handles single-topic subjects that don't have an array of lectures.
-                    // The renderTopicCard expects a Topic object.
-                    // We pass a mock Topic object. This part might need adjustment if single-topic subjects
-                    // should behave differently (e.g., directly linking or showing different info).
                     renderTopicCard({ name: displayedTopics } as Topic, 0) 
                   );
             }
