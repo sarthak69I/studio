@@ -13,7 +13,7 @@ export const scienceCourseContent: CourseContentMap = {
         {
           id: 'L1',
           title: 'Units and Measurement L1',
-          notesLink: `${scienceBasePath}/physics/${slugify('Units and Measurement')}/notes/L1.pdf`,
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/350215509469119700.pdf`,
           videoEmbedType: 'youtube',
           videoEmbedUrl: 'https://www.youtube.com/embed/eYHkwzP0TkY',
         },
