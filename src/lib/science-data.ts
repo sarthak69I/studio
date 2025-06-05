@@ -212,7 +212,7 @@ export const scienceCourseContent: CourseContentMap = {
     {
       name: 'Structure of Atom',
       lectures: [
-        { id: 'L1', title: 'Structure of Atom L1', notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/648524728566613900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363320/174584946237347555169/index_4.m3u8' },
+        { id: 'L1', title: 'Structure of Atom L1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/648524728566613900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363320/174584946237347555169/index_4.m3u8' },
         { id: 'L2', title: 'Structure of Atom L2', notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/882253112379514100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364789/174594373555637555169/index_4.m3u8' },
         { id: 'L3', title: 'Structure of Atom L3', notesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365831/174601791723957555169/index_4.m3u8' },
         { id: 'L4', title: 'Structure of Atom L4', notesLink: `${scienceBasePath}/chemistry/${slugify('Structure of Atom')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372294/174646064983197555169/index_4.m3u8' },
