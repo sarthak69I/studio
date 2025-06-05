@@ -1,3 +1,4 @@
+
 // src/components/adsense-bottom-unit.tsx
 import React from 'react';
 import Script from 'next/script';
@@ -6,7 +7,7 @@ const AdsenseBottomUnit: React.FC = () => {
   return (
     <div className="my-8 w-full flex flex-col items-center" aria-label="Advertisement">
       {/* <!-- 1 s --> */}
-      <div className="w-full max-w-5xl px-2 sm:px-4">
+      <div className="w-full max-w-5xl px-2 sm:px-4 overflow-hidden"> {/* Added overflow-hidden here */}
         <ins
           className="adsbygoogle"
           style={{ display: 'block' }}
