@@ -24,18 +24,18 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "Class 11 Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "Chemistry",
-    class2Subject: "Physics",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353000/174481993295887555169/index_4.m3u8')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
+    class1Subject: "Mathematics",
+    class2Subject: "Chemistry",
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_3.m3u8')}`,
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
     subtitle: "Interactive learning sessions for Commerce students",
-    class1Subject: "Accountancy",
-    class2Subject: "Economics",
+    class1Subject: "Maths",
+    class2Subject: "Business",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/a63dd48a9268402b8961662fc9993c8d/index_4.m3u8')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d2ypa0i2sdc0h2.cloudfront.net/out/v1/953b87b302b04b50a75b8ed04c215cc4/index_4.m3u8')}`,
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/1a2e0a5970d84f82a93bebb2ae35314c/index_4.m3u8')}`,
   },
   '3': { // Aarambh (Foundation)
     pageTitle: "Class 10 Aarambh Live Classes",
@@ -232,7 +232,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           <p className="text-xs text-muted-foreground text-center -mt-2 mb-4">
             {classStatus.status === 'live'
               ? "Double-click on video to Full Screen."
-              : "This is a pre-recorded session. Full-screen option may be available via player controls."}
+              : "LIVE NOW ."}
           </p>
         </>
       ) : (
