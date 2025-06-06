@@ -216,7 +216,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
         <div className="text-center text-muted-foreground py-8">
           <p className="text-lg">No live class or recording scheduled for this subject today.</p>
         </div>
-      ) : (classStatus.status === 'live' || classStatus.status === 'recording_available') ? (
+      ) : (classStatus.status === 'live' || classStatus.status === 'LIVE_CLASS') ? (
         <>
           <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-border bg-black my-4">
             <iframe
@@ -232,7 +232,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           <p className="text-xs text-muted-foreground text-center -mt-2 mb-4">
             {classStatus.status === 'live'
               ? "Double-click on video to Full Screen."
-              : "LIVE NOW ."}
+              : "Double-click on video to Full Screen"}
           </p>
         </>
       ) : (
