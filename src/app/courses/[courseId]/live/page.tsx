@@ -399,13 +399,13 @@ export default function LiveClassesPage() {
       </main>
 
       <div className="mt-12 mb-6 text-center">
-        <p className="text-muted-foreground mb-2">Having Trouble?</p>
-        <Link href="/help-center" passHref>
+        <p className="text-muted-foreground mb-2">Need AI Assistance?</p>
+        <a href="https://eleakai.vercel.app/">
           <Button variant="outline" size="lg" className="rounded-lg">
             <Bot className="mr-2 h-5 w-5" />
-            E-Leak 24/7 Support
+            E-Leak AI
           </Button>
-        </Link>
+        </a>
       </div>
 
       <footer className="text-center text-sm text-muted-foreground mt-12 py-4">

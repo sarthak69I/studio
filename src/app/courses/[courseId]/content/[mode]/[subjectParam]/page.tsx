@@ -5,7 +5,7 @@ import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot } from 'lucide-react';
 import { 
   scienceCourseContent, 
   commerceCourseContent, 
@@ -23,7 +23,6 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-import { Bot } from 'lucide-react';
 
 
 export default function SubjectContentPage() {
@@ -211,13 +210,13 @@ export default function SubjectContentPage() {
         </main>
 
         <div className="mt-12 mb-6 text-center">
-          <p className="text-muted-foreground mb-2">Having Trouble?</p>
-          <Link href="/help-center" passHref>
+          <p className="text-muted-foreground mb-2">Need AI Assistance?</p>
+          <a href="https://eleakai.vercel.app/">
             <Button variant="outline" size="lg" className="rounded-lg">
               <Bot className="mr-2 h-5 w-5" />
-              E-Leak 24/7 Support
+              E-Leak AI
             </Button>
-          </Link>
+          </a>
         </div>
 
 

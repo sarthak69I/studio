@@ -255,19 +255,13 @@ export default function HomePage() {
               <Button
                 variant="ghost"
                 className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                aria-label="Open E-Leak 24/7 Support"
+                aria-label="Open E-Leak AI"
                 asChild
               >
-                <Link href="/help-center">
-                   <Image
-                    src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
-                    alt="E-Leak Logo"
-                    width={20}
-                    height={20}
-                    className="mr-3"
-                  />
-                  E-Leak 24/7 Support
-                </Link>
+                <a href="https://eleakai.vercel.app/">
+                   <Bot className="mr-3 h-5 w-5 text-primary" />
+                  E-Leak AI
+                </a>
               </Button>
 
             </div>
@@ -298,13 +292,13 @@ export default function HomePage() {
       </main>
       
       <div className="mt-16 mb-8 text-center">
-        <p className="text-muted-foreground mb-2">Having Trouble?</p>
-        <Link href="/help-center" passHref>
+        <p className="text-muted-foreground mb-2">Need AI Assistance?</p>
+        <a href="https://eleakai.vercel.app/">
           <Button variant="outline" size="lg" className="rounded-lg">
             <Bot className="mr-2 h-5 w-5" />
-            E-Leak 24/7 Support
+            E-Leak AI
           </Button>
-        </Link>
+        </a>
       </div>
 
       <footer className="text-center text-sm text-muted-foreground pt-4 pb-6 animate-pulse-custom">
