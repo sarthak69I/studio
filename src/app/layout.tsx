@@ -65,10 +65,28 @@ export const metadata: Metadata = {
     siteName: 'E Leak Course Hub',
     images: [
       {
-        url: 'https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png',
+        url: 'https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png', // E-Leak Logo
         width: 500,
         height: 500,
-        alt: 'E-Leak Logo',
+        alt: 'E-Leak Logo - Online Courses Hub',
+      },
+      {
+        url: 'https://i.ibb.co/qMN2dh3Q/Addaheadin.jpg', // Science Course Image
+        width: 1200, // Assuming a common banner width
+        height: 675,  // Assuming a 16:9 aspect ratio
+        alt: 'PRARAMBH CLASS 11th Science Batch Course Cover',
+      },
+      {
+        url: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/bundle_management/course/202309028610_11th%20prarambh%20comm%20app%20final%203499.jpg', // Commerce Course Image
+        width: 1200,
+        height: 675,
+        alt: 'CLASS 11th Commerce Batch Course Cover',
+      },
+      {
+        url: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/bundle_management/course/538903229246_aarambh%20banner%20app.jpg', // Aarambh Course Image
+        width: 1200,
+        height: 675,
+        alt: 'Class 10th Aarambh Foundation Batch Course Cover',
       },
     ],
     locale: 'en_US',
