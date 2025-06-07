@@ -127,6 +127,33 @@ body {
   object-fit: contain;
 }
 
+/* E-Leak Zone Floating Button Styles */
+.eleakzone-float {
+  position: fixed;
+  bottom: 20px;
+  right: 90px; /* Positioned to the left of Telegram icon (20px + 60px + 10px gap) */
+  width: 60px;
+  height: 60px;
+  z-index: 998; /* Can be same as telegram-float if no overlap issues, or slightly lower */
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3); /* Default shadow */
+}
+
+.eleakzone-float:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.6); /* Hover shadow (cyan glow) */
+}
+
+.eleakzone-float img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Changed from contain for potentially better fill if logo aspect ratio varies */
+  display: block;
+}
+
+
 @keyframes floatUpDown {
   0%, 100% {
     transform: translateY(0);
@@ -232,4 +259,3 @@ body {
   70% { box-shadow: 0 0 0 10px hsla(0, 100%, 71%, 0); }
   100% { box-shadow: 0 0 0 0px hsla(0, 100%, 71%, 0); }
 }
-

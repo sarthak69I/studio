@@ -148,8 +148,15 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       )}
 
       {children}
-      <AdsenseBottomUnit /> {/* Added AdSense unit here */}
+      <AdsenseBottomUnit />
       <Toaster />
+      
+      {/* New E-Leak Zone floating icon */}
+      <a href="https://e-leakzone.vercel.app" target="_blank" rel="noopener noreferrer" className="eleakzone-float" aria-label="E-Leak Zone">
+        <img src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png" alt="E-Leak Zone Logo" />
+      </a>
+
+      {/* Existing Telegram floating icon */}
       <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
       </a>
