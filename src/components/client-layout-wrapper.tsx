@@ -17,6 +17,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import AdsenseBottomUnit from './adsense-bottom-unit'; // Import the new AdSense component
+import CookieConsentBanner from './cookie-consent-banner'; // Added import for CookieConsentBanner
 
 interface AppNotification {
   id: string;
@@ -152,6 +153,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
       </a>
+      <CookieConsentBanner />
     </>
   );
 }
