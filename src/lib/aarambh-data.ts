@@ -61,7 +61,16 @@ export const aarambhCourseContent: CourseContentMap = {
     },
     {
       name: 'Light',
-      lectures: generateAarambhLectures('Light', 8, 'science')
+      lectures: [
+        { id: 'L1', title: 'Light L1', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365846/174601868499698296383/index_4.m3u8' },
+        { id: 'L2', title: 'Light L2', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367004/174610340159018296383/index_4.m3u8' },
+        { id: 'L3', title: 'Light L3', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368177/174619014979628296383/index_4.m3u8' },
+        { id: 'L4', title: 'Light L4', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370026/174627675448638296383/index_4.m3u8' },
+        { id: 'L5', title: 'Light L5', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4374886/174662262789208296383/index_4.m3u8' },
+        { id: 'L6', title: 'Light L6', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376022/174670906343678296383/index_4.m3u8' },
+        { id: 'L7', title: 'Light L7', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377192/174679471966318296383/index_4.m3u8' },
+        { id: 'L8', title: 'Light L8', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L8.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: '#' }, // L8 remains placeholder
+      ]
     },
     {
       name: 'Life Processes',
@@ -94,3 +103,5 @@ export const aarambhCourseContent: CourseContentMap = {
     }
   ],
 };
+
+    
