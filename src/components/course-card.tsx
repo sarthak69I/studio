@@ -129,13 +129,13 @@ export function CourseCard({
         <CardDescription className="text-sm md:text-base text-muted-foreground mb-0">{subtitle}</CardDescription>
       </CardHeader>
 
-      <div className="mx-5 aspect-[16/9] relative overflow-hidden rounded-lg border border-input">
+      <div className="mx-5 aspect-[16/9] relative overflow-hidden rounded-lg border border-input bg-muted/20">
         <Image
           src={imageUrl}
           alt={imageAlt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover rounded-lg"
+          className="object-contain rounded-lg"
           data-ai-hint={imageAiHint}
         />
       </div>
