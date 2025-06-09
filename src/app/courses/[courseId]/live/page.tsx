@@ -37,13 +37,21 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/a63dd48a9268402b8961662fc9993c8d/index_4.m3u8')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/1a2e0a5970d84f82a93bebb2ae35314c/index_4.m3u8')}`,
   },
-  '3': { // Aarambh (Foundation)
+  '3': { // Aarambh (Foundation Class 10)
     pageTitle: "Class 10 Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Aarambh batch",
     class1Subject: "Science",
     class2Subject: "Mathematics",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4351817/174473442715988296383/index_4.m3u8')}`,
+  },
+  '4': { // Aarambh (Foundation Class 9) - Using Class 10 Aarambh streams as placeholders
+    pageTitle: "Class 9 Aarambh Live Classes",
+    subtitle: "Interactive learning sessions for Class 9 Aarambh batch",
+    class1Subject: "Mathematics", // Placeholder subject
+    class2Subject: "Science",     // Placeholder subject
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4351817/174473442715988296383/index_4.m3u8')}`, // Copied from Class 10 Math
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`, // Copied from Class 10 Science
   }
 };
 
@@ -414,3 +422,5 @@ export default function LiveClassesPage() {
     </div>
   );
 }
+
+    

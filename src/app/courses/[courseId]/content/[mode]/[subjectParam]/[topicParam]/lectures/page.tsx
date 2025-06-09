@@ -9,7 +9,8 @@ import { ArrowLeft, Home as HomeIcon, ChevronRight, Video, FileText, Bot } from 
 import {
   scienceCourseContent,
   commerceCourseContent,
-  aarambhCourseContent,
+  aarambhCourseContent, // Class 10
+  aarambh9CourseContent, // Class 9
   type CourseContentMap,
   type Lecture,
   type Topic,
@@ -58,7 +59,8 @@ export default function TopicLecturesPage() {
         let currentCourseMap: CourseContentMap | undefined;
         if (courseId === '1') currentCourseMap = scienceCourseContent;
         else if (courseId === '2') currentCourseMap = commerceCourseContent;
-        else if (courseId === '3') currentCourseMap = aarambhCourseContent;
+        else if (courseId === '3') currentCourseMap = aarambhCourseContent; // Class 10
+        else if (courseId === '4') currentCourseMap = aarambh9CourseContent; // Class 9
 
         if (currentCourseMap) {
           const subjectData = currentCourseMap[decodedSubjectName];
@@ -245,3 +247,5 @@ export default function TopicLecturesPage() {
     </>
   );
 }
+
+    

@@ -9,7 +9,8 @@ import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot } from 'lucide-react';
 import { 
   scienceCourseContent, 
   commerceCourseContent, 
-  aarambhCourseContent,
+  aarambhCourseContent, // For Class 10
+  aarambh9CourseContent, // For Class 9
   type CourseContentMap,
   type Topic
 } from '@/lib/course-data';
@@ -50,7 +51,9 @@ export default function SubjectContentPage() {
         } else if (courseId === '2') { 
           currentCourseMap = commerceCourseContent;
         } else if (courseId === '3') { 
-          currentCourseMap = aarambhCourseContent;
+          currentCourseMap = aarambhCourseContent; // Class 10 Aarambh
+        } else if (courseId === '4') {
+          currentCourseMap = aarambh9CourseContent; // Class 9 Aarambh
         }
         
         const content = currentCourseMap ? currentCourseMap[decodedSubjectName] : undefined;
@@ -202,6 +205,9 @@ export default function SubjectContentPage() {
             }
             
             if (Array.isArray(displayedTopics)) {
+               if (displayedTopics.length === 0) {
+                return <p className="text-xl text-muted-foreground">No topics available for {subjectName} yet. Content coming soon!</p>;
+              }
               return displayedTopics.map((topic, index) => renderTopicCard(topic, index));
             }
 
@@ -242,3 +248,5 @@ export default function SubjectContentPage() {
     </>
   );
 }
+
+    

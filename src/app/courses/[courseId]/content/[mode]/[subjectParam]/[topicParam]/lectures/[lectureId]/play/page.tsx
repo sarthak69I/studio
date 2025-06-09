@@ -8,7 +8,8 @@ import LecturePlayerClient from '@/components/lecture-player-client';
 import {
   scienceCourseContent,
   commerceCourseContent,
-  aarambhCourseContent,
+  aarambhCourseContent, // Class 10
+  aarambh9CourseContent, // Class 9
   type Lecture,
   type Topic,
   // CourseContentMap is not directly used by generateStaticParams here, but Lecture and Topic are.
@@ -19,7 +20,8 @@ export function generateStaticParams() {
   const courses = [
     { id: '1', content: scienceCourseContent, name: 'science' },
     { id: '2', content: commerceCourseContent, name: 'commerce' },
-    { id: '3', content: aarambhCourseContent, name: 'aarambh' },
+    { id: '3', content: aarambhCourseContent, name: 'aarambh' }, // Class 10
+    { id: '4', content: aarambh9CourseContent, name: 'aarambh9' }, // Class 9
   ];
   
   courses.forEach(course => {
@@ -53,3 +55,5 @@ export default function LecturePlayPage() {
   // The LecturePlayerClient component will handle fetching params and rendering the player
   return <LecturePlayerClient />;
 }
+
+    

@@ -71,6 +71,24 @@ const coursesData: Course[] = [
     ],
   },
   {
+    id: '4', // New Class 9 Aarambh Batch
+    badgeText: 'NEW',
+    title: 'CLASS 9th Aarambh',
+    subtitle: 'Foundation Batch',
+    imageUrl: 'https://i.ibb.co/2Xk5qRQ/download.jpg',
+    imageAlt: 'Class 9 Aarambh Foundation Batch Course Cover',
+    imageAiHint: 'education foundation',
+    highlightText: 'Batch for Class 9th',
+    startDate: 'Started from Apr 2025',
+    enrollLink: '/courses/4/enroll',
+    youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
+    // timeTableImageUrl: 'placeholder-timetable-url-for-class9.jpg', // Optional: Add if available
+    liveSlots: [
+      { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
+      { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
+    ],
+  },
+  {
     id: '2',
     badgeText: 'NEW',
     title: 'CLASS 11th Commerce',
@@ -309,3 +327,5 @@ export default function HomePage() {
     </>
   );
 }
+
+    

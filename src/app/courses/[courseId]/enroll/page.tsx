@@ -34,13 +34,15 @@ interface CourseSubjects {
 const courseSpecificSubjects: CourseSubjects = {
   '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology'], // Science Batch
   '2': ['Business Studies', 'Accountancy', 'Economics', 'Mathematics'], // Commerce Batch
-  '3': ['Social Science', 'Science', 'Mathematics'], // Aarambh Batch
+  '3': ['Social Science', 'Science', 'Mathematics'], // Aarambh Batch (Class 10)
+  '4': ['Science', 'Social Science', 'Mathematics'], // Aarambh Batch (Class 9)
 };
 
 const courseDisplayNames: Record<string, string> = {
   '1': "Science Batch",
   '2': "Commerce Batch",
-  '3': "Aarambh Batch",
+  '3': "Aarambh Batch (Class 10)",
+  '4': "Class 9 Aarambh Batch",
 };
 
 
@@ -122,7 +124,7 @@ export default function EnrollPage() {
 
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold text-center text-foreground mb-6">
-              Subjects
+              Subjects for {courseDisplayNames[courseId] || `Course ${courseId}`}
             </h2>
             {subjects.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -163,3 +165,5 @@ export default function EnrollPage() {
     </>
   );
 }
+
+    
