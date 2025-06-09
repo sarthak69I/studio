@@ -153,7 +153,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       
       {/* New E-Leak Zone floating icon */}
       <a href="https://e-leakzone.vercel.app" target="_blank" rel="noopener noreferrer" className="eleakzone-float" aria-label="E-Leak Zone">
-        <img src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png" alt="E-Leak Zone Logo" />
+        <img src="https://i.ibb.co/Z1vLWgVF/ZONE-removebg-preview.png" alt="E-Leak Zone Logo" />
       </a>
 
       {/* Existing Telegram floating icon */}
