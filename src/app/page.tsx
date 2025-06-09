@@ -75,7 +75,7 @@ const coursesData: Course[] = [
     badgeText: 'NEW',
     title: 'CLASS 9th Aarambh',
     subtitle: 'Foundation Batch',
-    imageUrl: 'i have made https://i.ibb.co/KpH1HXVB/download.jpg',
+    imageUrl: 'https://i.ibb.co/2Xk5qRQ/download.jpg',
     imageAlt: 'Class 9 Aarambh Foundation Batch Course Cover',
     imageAiHint: 'education foundation',
     highlightText: 'Batch for Class 9th',
