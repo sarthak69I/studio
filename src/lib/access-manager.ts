@@ -2,70 +2,68 @@
 // src/lib/access-manager.ts
 'use client';
 
-const PENDING_TOKEN_KEY = 'eleakPendingAccessRequestToken_v3'; // Incremented version
-const ACCESS_KEY = 'eleakCourseAccessKey_v2'; // Incremented version
+const PENDING_ACTIVATION_TOKEN_KEY = 'eleakPendingActivationToken_v1';
+const ACCESS_KEY = 'eleakCourseAccessKey_v3'; // Incremented version for 12hr
 const ACCESS_KEY_EXPIRY_MS = 12 * 60 * 60 * 1000; // 12 hours
-export const AUTO_GRANT_DELAY_MS = 25 * 1000; // 25 seconds - Export for use in page
-const PENDING_TOKEN_MAX_AGE_MS = 5 * 60 * 1000; // 5 minutes for pending token validity
+const PENDING_ACTIVATION_TOKEN_MAX_AGE_MS = 10 * 60 * 1000; // 10 minutes for pending activation token validity
 
 interface AccessToken {
   value: string;
   expiry: number;
 }
 
-export interface PendingToken {
+export interface PendingActivationToken {
   value: string; // A random token value
   initiationTime: number; // Timestamp when the process was started
 }
 
-// For Pending Token
-export const setPendingToken = (): PendingToken | null => {
+// For Pending Activation Token (used in the callback flow)
+export const setPendingActivationToken = (): PendingActivationToken | null => {
   if (typeof window === 'undefined') return null;
   try {
-    const tokenValue = Math.random().toString(36).substring(2, 15);
+    const tokenValue = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 8);
     const now = Date.now();
-    const token: PendingToken = {
+    const token: PendingActivationToken = {
       value: tokenValue,
       initiationTime: now,
     };
-    localStorage.setItem(PENDING_TOKEN_KEY, JSON.stringify(token));
+    localStorage.setItem(PENDING_ACTIVATION_TOKEN_KEY, JSON.stringify(token));
     return token;
   } catch (error) {
-    console.error('Error setting pending token in localStorage:', error);
+    console.error('Error setting pending activation token in localStorage:', error);
     return null;
   }
 };
 
-export const getValidPendingToken = (): PendingToken | null => {
+export const getValidPendingActivationToken = (): PendingActivationToken | null => {
   if (typeof window === 'undefined') return null;
   try {
-    const storedToken = localStorage.getItem(PENDING_TOKEN_KEY);
+    const storedToken = localStorage.getItem(PENDING_ACTIVATION_TOKEN_KEY);
     if (!storedToken) return null;
 
-    const token: PendingToken = JSON.parse(storedToken);
-    // Check if the token itself is valid and not too old
+    const token: PendingActivationToken = JSON.parse(storedToken);
     if (token && token.value && token.initiationTime) {
-      if (Date.now() > token.initiationTime + PENDING_TOKEN_MAX_AGE_MS) {
-        localStorage.removeItem(PENDING_TOKEN_KEY); // Stale token
+      if (Date.now() > token.initiationTime + PENDING_ACTIVATION_TOKEN_MAX_AGE_MS) {
+        localStorage.removeItem(PENDING_ACTIVATION_TOKEN_KEY); // Stale token
         return null;
       }
       return token;
     }
-    localStorage.removeItem(PENDING_TOKEN_KEY); // Corrupted token
+    localStorage.removeItem(PENDING_ACTIVATION_TOKEN_KEY); // Corrupted token
     return null;
   } catch (error) {
-    console.error('Error getting pending token from localStorage:', error);
-    localStorage.removeItem(PENDING_TOKEN_KEY);
+    console.error('Error getting pending activation token from localStorage:', error);
+    localStorage.removeItem(PENDING_ACTIVATION_TOKEN_KEY);
     return null;
   }
 };
 
-export const clearPendingToken = () => {
+export const clearPendingActivationToken = () => {
   if (typeof window === 'undefined') return;
   try {
-    localStorage.removeItem(PENDING_TOKEN_KEY);
+    localStorage.removeItem(PENDING_ACTIVATION_TOKEN_KEY);
   } catch (error) {
-    console.error('Error clearing pending token from localStorage:', error);
+    console.error('Error clearing pending activation token from localStorage:', error);
   }
 };
 

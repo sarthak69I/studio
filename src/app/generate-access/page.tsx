@@ -3,22 +3,25 @@
 
 import * as React from 'react';
 import {
-  setPendingToken,
-  getValidPendingToken,
-  clearPendingToken,
-  setAccessKey,
+  setPendingActivationToken, // Updated function
   getValidAccessKey,
   getAccessKeyExpiry,
-  AUTO_GRANT_DELAY_MS,
+  clearAccessKey, // For generating a new key
+  type PendingActivationToken,
 } from '@/lib/access-manager';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { CheckCircle, Shield, Clock, KeyRound, AlertCircle, Loader2 } from 'lucide-react';
 
-type PageState = 'initial' | 'awaitingReturn' | 'processingActivation' | 'accessGranted' | 'error';
+type PageState = 'initial' | 'awaitingRedirect' | 'accessGranted' | 'error';
 
 const LINKCENTS_URL = 'https://linkcents.com/E-Leak';
 const TUTORIAL_VIDEO_URL = "https://www.youtube.com/embed/OTCuv1ps8bc?si=euD5avRVzHLqBa4Z&autoplay=1";
+// The callback URL that Linkcents should redirect to.
+// IMPORTANT: Linkcents must be configured to redirect to this URL and append the token.
+// e.g., https://yourdomain.com/auth/callback?token=[GENERATED_TOKEN_VALUE]
+const CALLBACK_URL_BASE = `${typeof window !== 'undefined' ? window.location.origin : ''}/auth/callback`;
+
 
 export default function GenerateAccessPage() {
   const router = useRouter();
@@ -28,34 +31,6 @@ export default function GenerateAccessPage() {
   const [isCustomVideoModalOpen, setIsCustomVideoModalOpen] = React.useState(false);
   const [isButtonAnimating, setIsButtonAnimating] = React.useState(false);
   
-  const autoGrantTimerRef = React.useRef<NodeJS.Timeout | null>(null);
-
-  const grantAccessAndSetState = React.useCallback(() => {
-    const newAccessKey = setAccessKey();
-    if (newAccessKey) {
-      clearPendingToken();
-      setPageState('accessGranted');
-      const expiry = getAccessKeyExpiry();
-      if (expiry) {
-        const expiryDate = new Date(expiry).toLocaleString();
-        setAccessKeyExpiryTime(expiryDate);
-        setInfoText(`Access Key Activated! Valid for 12 hours. Expires: ${expiryDate}`);
-      }
-    } else {
-      setPageState('error');
-      setInfoText('Error generating access key. Please try again later.');
-      clearPendingToken();
-    }
-  }, []);
-
-  const initiateActivationProcess = React.useCallback(() => {
-    if (pageState === 'processingActivation' || pageState === 'accessGranted') return;
-
-    setPageState('processingActivation');
-    setInfoText(`Your 12-hour access key is being generated. Please keep this page open. It will update automatically in about ${AUTO_GRANT_DELAY_MS / 1000} seconds.`);
-    if (autoGrantTimerRef.current) clearTimeout(autoGrantTimerRef.current);
-    autoGrantTimerRef.current = setTimeout(grantAccessAndSetState, AUTO_GRANT_DELAY_MS);
-  }, [grantAccessAndSetState, pageState]);
 
   React.useEffect(() => {
     document.title = "Generate Course Access | E-Leak";
@@ -71,40 +46,12 @@ export default function GenerateAccessPage() {
       }
       return;
     }
+    // If no active key, remain in initial state or handle errors from previous attempts if needed.
+    // The old logic for `awaitingReturn` or `processingActivation` based on timers is removed from this page.
+    setPageState('initial');
+    setInfoText("To access course content, you need to generate a key. This key will be valid for 12 hours. After it expires, you'll need to generate a new one. Please follow the steps below.");
 
-    const pendingToken = getValidPendingToken();
-    if (pendingToken) {
-      // If a pending token exists, and the page is visible, start activation process
-      if (document.visibilityState === 'visible') {
-        initiateActivationProcess();
-      } else {
-        // Otherwise, set to awaitingReturn, activation will start on visibility change
-        setPageState('awaitingReturn');
-        setInfoText("Please complete the step on the partner site. Return to this page to finalize your 12-hour access key. Activation will begin automatically upon your return.");
-      }
-    } else {
-      setPageState('initial');
-      setInfoText("To access course content, you need to generate a key. This key will be valid for 12 hours. After it expires, you'll need to generate a new one. Please follow the steps below.");
-    }
-
-    // Listener for visibility change
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible' && pageState === 'awaitingReturn' && getValidPendingToken()) {
-        initiateActivationProcess();
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('focus', handleVisibilityChange); // Also listen for focus
-
-    return () => {
-      if (autoGrantTimerRef.current) {
-        clearTimeout(autoGrantTimerRef.current);
-      }
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('focus', handleVisibilityChange);
-    };
-  }, [grantAccessAndSetState, pageState, initiateActivationProcess]);
+  }, []); // Runs on mount
 
 
   React.useEffect(() => {
@@ -120,15 +67,33 @@ export default function GenerateAccessPage() {
 
   const handleGenerateClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     e.preventDefault();
-    if (pageState !== 'initial') return; 
+    if (pageState === 'awaitingRedirect') return;
+
+    clearAccessKey(); // Clear any existing access key if user wants to generate a new one
+
+    const pendingToken = setPendingActivationToken();
+    if (!pendingToken) {
+      setPageState('error');
+      setInfoText('Could not initiate key generation. Please try again.');
+      return;
+    }
 
     setIsButtonAnimating(true);
     setTimeout(() => setIsButtonAnimating(false), 1000);
 
-    setPendingToken();
+    // IMPORTANT: This is where you'd ideally construct the Linkcents URL to include
+    // a redirect_uri parameter that points to your CALLBACK_URL_BASE WITH the pendingToken.value.
+    // For example: `${LINKCENTS_URL}?redirect_uri=${encodeURIComponent(CALLBACK_URL_BASE + '?token=' + pendingToken.value)}`
+    // Since we cannot be sure Linkcents supports this, we open the generic LINKCENTS_URL.
+    // The security then relies on Linkcents itself being configured to redirect to:
+    // `https://e-leak.vercel.app/auth/callback?token=THE_TOKEN_YOU_JUST_GENERATED`
+    // If Linkcents can't do this, the flow is less secure as /auth/callback would have to rely only on localStorage.
+    // For demonstration, we'll assume Linkcents *can* be configured to redirect correctly or that
+    // the /auth/callback page has a fallback to check localStorage only.
+
     window.open(LINKCENTS_URL, '_blank');
-    setPageState('awaitingReturn');
-    setInfoText("Please complete the step on the partner site. Return to this page to finalize your 12-hour access key. Activation will begin automatically upon your return.");
+    setPageState('awaitingRedirect');
+    setInfoText("You are being redirected to our partner site. Please complete the process there. You will be automatically returned to our app to finalize activation. Keep this tab open if your browser doesn't automatically switch back after completion on the partner site.");
   };
 
   const handleShowTutorial = () => {
@@ -153,16 +118,16 @@ export default function GenerateAccessPage() {
       );
     }
 
-    if (pageState === 'processingActivation' || pageState === 'awaitingReturn') {
-      return (
+    if (pageState === 'awaitingRedirect') {
+       return (
         <button className="genkey-btn" disabled>
           <Loader2 className="inline-block h-5 w-5 mr-2 animate-spin" />
-          <span>{pageState === 'processingActivation' ? 'Processing Access...' : 'Awaiting Return...'}</span>
+          <span>Awaiting Partner Site...</span>
         </button>
       );
     }
     
-    // Initial state
+    // Initial or error state
     return (
       <a href={LINKCENTS_URL} className={`genkey-btn genkey-floating ${isButtonAnimating ? 'genkey-animate-pulse' : ''}`} onClick={handleGenerateClick}>
         <span>Generate Key 🗝️</span>
@@ -186,7 +151,7 @@ export default function GenerateAccessPage() {
            {pageState === 'error' && (
              <div className="genkey-message-error mb-6">
               <AlertCircle className="inline-block h-5 w-5 mr-2" />
-              {infoText} {/* infoText will contain the error message */}
+              {infoText}
             </div>
           )}
           
@@ -222,8 +187,8 @@ export default function GenerateAccessPage() {
                  <KeyRound />
               </div>
               <div className="genkey-feature-content">
-                <h4>Automatic Activation</h4>
-                <p>Key activates ~{AUTO_GRANT_DELAY_MS / 1000}s after returning to this page and completing the process.</p>
+                <h4>Activation</h4>
+                <p>Key activates upon successful return from partner site.</p>
               </div>
             </div>
           </div>
