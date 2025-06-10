@@ -28,7 +28,7 @@ import {
 
 type PageState = 'initial' | 'pendingConfirmation' | 'accessGranted' | 'error';
 
-const LINKCENTS_URL = 'https://linkcents.com/E-Leak'; // Replace with your actual Linkcents URL
+const LINKCENTS_URL = 'https://linkcents.com/E-Leak'; // Your actual Linkcents URL
 
 export default function GenerateAccessPage() {
   const router = useRouter();
@@ -54,21 +54,26 @@ export default function GenerateAccessPage() {
     const pendingToken = getValidPendingToken();
     if (pendingToken) {
       setPageState('pendingConfirmation');
-      setStatusMessage('Welcome back! Please confirm to activate your access.');
+      setStatusMessage('You have initiated the process. Click "Activate Access Key" below to complete.');
     } else {
       setPageState('initial');
-      setStatusMessage('Complete two simple steps to get 6-hour access to all course batches.');
+      setStatusMessage('To access courses, you need to generate a 6-hour access key. Follow the steps below.');
     }
   }, []);
 
-  const handleStep1Click = () => {
+  const handleInitiateAccess = () => {
     setPendingToken();
-    setPageState('pendingConfirmation');
-    setStatusMessage('Please complete the action on the partner site and then return here to activate.');
+    // No need to change pageState here, as the effect of setting the token will be picked up
+    // by a page refresh or if the user navigates back. The main action is opening the link.
+    // The user will return to this page, and the useEffect will set 'pendingConfirmation'.
+    setStatusMessage('Redirecting to partner site... Return here after completing the action to activate your key.');
     window.open(LINKCENTS_URL, '_blank');
+    // To encourage user to come back and see the "Activate" button, we can set a slight delay
+    // and then optimistically update UI, or rely on them refreshing / re-navigating.
+    // For now, rely on them coming back and useEffect re-evaluating.
   };
 
-  const handleStep2Click = () => {
+  const handleActivateKey = () => {
     const pendingToken = getValidPendingToken();
     if (pendingToken) {
       const newAccessKey = setAccessKey();
@@ -83,11 +88,11 @@ export default function GenerateAccessPage() {
       } else {
         setPageState('error');
         setStatusMessage('Error generating access key. Please try again.');
-        clearPendingToken(); // Clear potentially corrupted token
+        clearPendingToken(); 
       }
     } else {
       setPageState('error');
-      setStatusMessage('Pending confirmation expired or invalid. Please start over.');
+      setStatusMessage('Activation step failed: pending confirmation may have expired or is invalid. Please start over.');
     }
   };
 
@@ -95,7 +100,7 @@ export default function GenerateAccessPage() {
     clearPendingToken();
     clearAccessKey();
     setPageState('initial');
-    setStatusMessage('Complete two simple steps to get 6-hour access to all course batches.');
+    setStatusMessage('To access courses, you need to generate a 6-hour access key. Follow the steps below.');
     setAccessKeyExpiryTime(null);
   };
 
@@ -111,19 +116,19 @@ export default function GenerateAccessPage() {
 
         {pageState === 'initial' && (
           <Button
-            onClick={handleStep1Click}
+            onClick={handleInitiateAccess}
             className="w-full py-3 text-base font-semibold rounded-lg bg-primary hover:bg-primary/90 transition-all duration-300 ease-in-out hover:shadow-lg transform hover:-translate-y-0.5"
           >
-            Step 1: Visit Partner Site <ExternalLink className="ml-2 h-5 w-5" />
+            Generate Access Key (Step 1: Visit Site) <ExternalLink className="ml-2 h-5 w-5" />
           </Button>
         )}
 
         {pageState === 'pendingConfirmation' && (
           <Button
-            onClick={handleStep2Click}
+            onClick={handleActivateKey}
             className="w-full py-3 text-base font-semibold rounded-lg bg-green-600 hover:bg-green-700 text-white transition-all duration-300 ease-in-out hover:shadow-lg transform hover:-translate-y-0.5"
           >
-            Step 2: Confirm & Get Key <CheckCircle className="ml-2 h-5 w-5" />
+            Activate Access Key (Step 2) <CheckCircle className="ml-2 h-5 w-5" />
           </Button>
         )}
 
@@ -150,22 +155,19 @@ export default function GenerateAccessPage() {
           <div className="text-center p-4 bg-destructive/10 border border-destructive/30 rounded-lg">
             <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-3" />
             <p className="font-semibold text-destructive-foreground">{statusMessage}</p>
-            <Button
-              onClick={handleStartOver}
-              variant="outline"
-              className="mt-4"
-            >
-              Start Over
-            </Button>
           </div>
         )}
-
-        {(pageState === 'initial' || pageState === 'pendingConfirmation') && (
-           <p className="text-xs text-muted-foreground text-center pt-2">
-            {pageState === 'initial' ? 'Click "Visit Partner Site". After completing the action there, return to this page and click "Confirm & Get Key".' 
-                                     : 'You have 25 seconds to confirm after returning from the partner site.'}
-          </p>
+        
+        {(pageState === 'initial' || pageState === 'pendingConfirmation' || pageState === 'error') && (
+             <Button
+                onClick={handleStartOver}
+                variant="outline"
+                className="w-full"
+              >
+                {pageState === 'error' ? 'Start Over' : 'Reset / Start Over'}
+              </Button>
         )}
+
 
         <div className="mt-6 border-t border-border pt-6">
           <Dialog open={isVideoDialogOpen} onOpenChange={setIsVideoDialogOpen}>
@@ -175,12 +177,13 @@ export default function GenerateAccessPage() {
                 className="w-full py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 onClick={() => setIsVideoDialogOpen(true)}
               >
-                <Youtube className="mr-2 h-5 w-5 text-red-500" /> How To Generate A Key
+                <Youtube className="mr-2 h-5 w-5 text-red-500" /> 
+                How to Generate/Activate Key
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-xl md:max-w-2xl p-0 rounded-xl overflow-hidden">
               <DialogHeader className="p-4 border-b">
-                <DialogTitle className="text-lg">Video Tutorial: How To Generate Access Key</DialogTitle>
+                <DialogTitle className="text-lg">Video Tutorial: How To Generate/Activate Access Key</DialogTitle>
               </DialogHeader>
               <div className="aspect-video w-full bg-black">
                 <iframe
@@ -206,7 +209,7 @@ export default function GenerateAccessPage() {
 
         {pageState === 'accessGranted' && (
            <Button
-              onClick={handleStartOver}
+              onClick={handleStartOver} // This button allows generating a new key, resetting the current one
               variant="outline"
               className="w-full mt-4"
             >
@@ -222,3 +225,5 @@ export default function GenerateAccessPage() {
     </div>
   );
 }
+
+    
