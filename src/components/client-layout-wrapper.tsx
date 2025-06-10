@@ -90,8 +90,9 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     setUnreadNotificationCount(0); 
   };
 
-  const showGlobalNotificationBell = pathname !== '/help-center';
+  const showGlobalNotificationBell = pathname !== '/help-center' && pathname !== '/generate-access';
   const showAdsenseUnit = pathname !== '/generate-access';
+  const showEleakZoneLogo = pathname !== '/generate-access';
 
   return (
     <>
@@ -152,9 +153,11 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       {showAdsenseUnit && <AdsenseBottomUnit />}
       <Toaster />
       
-      <a href="https://e-leakzone.vercel.app" target="_blank" rel="noopener noreferrer" className="eleakzone-float" aria-label="E-Leak Zone">
-        <img src="https://i.ibb.co/Z1vLWgVF/ZONE-removebg-preview.png" alt="E-Leak Zone Logo" />
-      </a>
+      {showEleakZoneLogo && (
+        <a href="https://e-leakzone.vercel.app" target="_blank" rel="noopener noreferrer" className="eleakzone-float" aria-label="E-Leak Zone">
+          <img src="https://i.ibb.co/Z1vLWgVF/ZONE-removebg-preview.png" alt="E-Leak Zone Logo" />
+        </a>
+      )}
 
       <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
