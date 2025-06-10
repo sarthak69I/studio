@@ -16,8 +16,8 @@ import {
   DialogClose,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import AdsenseBottomUnit from './adsense-bottom-unit'; // Import the new AdSense component
-import CookieConsentBanner from './cookie-consent-banner'; // Added import for CookieConsentBanner
+import AdsenseBottomUnit from './adsense-bottom-unit';
+import CookieConsentBanner from './cookie-consent-banner';
 
 interface AppNotification {
   id: string;
@@ -39,7 +39,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   const [notifications, setNotifications] = useState<AppNotification[]>([]);
   const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] = useState(false);
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
-  const pathname = usePathname(); // Get current pathname
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleContextmenu = (e: MouseEvent) => {
@@ -91,6 +91,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   };
 
   const showGlobalNotificationBell = pathname !== '/help-center';
+  const showAdsenseUnit = pathname !== '/generate-access';
 
   return (
     <>
@@ -148,15 +149,13 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       )}
 
       {children}
-      <AdsenseBottomUnit />
+      {showAdsenseUnit && <AdsenseBottomUnit />}
       <Toaster />
       
-      {/* New E-Leak Zone floating icon */}
       <a href="https://e-leakzone.vercel.app" target="_blank" rel="noopener noreferrer" className="eleakzone-float" aria-label="E-Leak Zone">
         <img src="https://i.ibb.co/Z1vLWgVF/ZONE-removebg-preview.png" alt="E-Leak Zone Logo" />
       </a>
 
-      {/* Existing Telegram floating icon */}
       <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
       </a>
