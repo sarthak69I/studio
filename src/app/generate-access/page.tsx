@@ -9,8 +9,8 @@ import {
   setAccessKey,
   getValidAccessKey,
   getAccessKeyExpiry,
-  clearAccessKey,
-  type PendingToken, // Import type if you defined it and exported
+  // clearAccessKey, // No longer explicitly used by a button
+  type PendingToken,
 } from '@/lib/access-manager';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -24,7 +24,7 @@ const TUTORIAL_VIDEO_URL = "https://www.youtube.com/embed/OTCuv1ps8bc?si=euD5avR
 export default function GenerateAccessPage() {
   const router = useRouter();
   const [pageState, setPageState] = React.useState<PageState>('initial');
-  const [infoText, setInfoText] = React.useState<string>("To access courses, generate a 6-hour access key. It will be automatically activated after 25 seconds. Follow the steps below.");
+  const [infoText, setInfoText] = React.useState<string>("To access course content, you need to generate a key. This key will be valid for 12 hours. After it expires, you'll need to generate a new one. Please follow the steps below.");
   const [accessKeyExpiryTime, setAccessKeyExpiryTime] = React.useState<string | null>(null);
   const [isCustomVideoModalOpen, setIsCustomVideoModalOpen] = React.useState(false);
   const [isButtonAnimating, setIsButtonAnimating] = React.useState(false);
@@ -40,11 +40,11 @@ export default function GenerateAccessPage() {
       if (expiry) {
         const expiryDate = new Date(expiry).toLocaleString();
         setAccessKeyExpiryTime(expiryDate);
-        setInfoText(`Access Key Activated! Valid for 6 hours. Expires: ${expiryDate}`);
+        setInfoText(`Access Key Activated! Valid for 12 hours. Expires: ${expiryDate}`);
       }
     } else {
       setPageState('error');
-      setInfoText('Error generating access key. Please try starting over.');
+      setInfoText('Error generating access key. Please try again later.');
       clearPendingToken();
     }
   }, []);
@@ -57,8 +57,9 @@ export default function GenerateAccessPage() {
       setPageState('accessGranted');
       const expiry = getAccessKeyExpiry();
       if (expiry) {
-        setAccessKeyExpiryTime(new Date(expiry).toLocaleString());
-        setInfoText(`Access Key Active! Valid for 6 hours. Expires: ${new Date(expiry).toLocaleString()}`);
+        const expiryDate = new Date(expiry).toLocaleString();
+        setAccessKeyExpiryTime(expiryDate);
+        setInfoText(`Access Key Active! Valid for 12 hours. Expires: ${expiryDate}`);
       }
       return;
     }
@@ -67,19 +68,17 @@ export default function GenerateAccessPage() {
     if (pendingToken && pendingToken.autoGrantTargetTime) {
       const now = Date.now();
       if (now >= pendingToken.autoGrantTargetTime) {
-        // Auto-grant time has passed, grant immediately
         grantAccessAndSetState();
       } else {
-        // Still waiting for auto-grant
         setPageState('processing');
-        setInfoText(`Your 6-hour access key is being generated. Please wait... This may take up to ${Math.ceil((pendingToken.autoGrantTargetTime - now)/1000)} seconds.`);
+        setInfoText(`Your 12-hour access key is being generated. Please wait... This page will update automatically.`);
         const remainingTime = pendingToken.autoGrantTargetTime - now;
         if (autoGrantTimerRef.current) clearTimeout(autoGrantTimerRef.current);
         autoGrantTimerRef.current = setTimeout(grantAccessAndSetState, remainingTime);
       }
     } else {
       setPageState('initial');
-      setInfoText("To access courses, generate a 6-hour access key. It will be automatically activated after 25 seconds. Follow the steps below.");
+      setInfoText("To access course content, you need to generate a key. This key will be valid for 12 hours. After it expires, you'll need to generate a new one. Please follow the steps below.");
     }
 
     return () => {
@@ -103,7 +102,7 @@ export default function GenerateAccessPage() {
 
   const handleGenerateClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     e.preventDefault();
-    if (pageState !== 'initial') return; // Prevent multiple clicks if already processing
+    if (pageState !== 'initial') return; 
 
     setIsButtonAnimating(true);
     setTimeout(() => setIsButtonAnimating(false), 1000);
@@ -113,13 +112,13 @@ export default function GenerateAccessPage() {
     
     if (pendingTokenData && pendingTokenData.autoGrantTargetTime) {
         window.open(LINKCENTS_URL, '_blank');
-        setInfoText("Your 6-hour access key is being generated. Please wait... This process is automatic and may take up to 25 seconds. You can leave this page open.");
+        setInfoText("Your 12-hour access key is being generated. Please keep this page open. It will update automatically in about 25 seconds.");
         
         if (autoGrantTimerRef.current) clearTimeout(autoGrantTimerRef.current);
         autoGrantTimerRef.current = setTimeout(grantAccessAndSetState, pendingTokenData.autoGrantTargetTime - Date.now());
     } else {
         setPageState('error');
-        setInfoText('Could not initiate access generation. Please try again.');
+        setInfoText('Could not initiate access generation. Please refresh and try again.');
     }
   };
 
@@ -131,14 +130,6 @@ export default function GenerateAccessPage() {
     setIsCustomVideoModalOpen(false);
   };
   
-  const handleStartOver = () => {
-    if (autoGrantTimerRef.current) clearTimeout(autoGrantTimerRef.current);
-    clearPendingToken();
-    clearAccessKey();
-    setPageState('initial');
-    setInfoText("To access courses, generate a 6-hour access key. It will be automatically activated after 25 seconds. Follow the steps below.");
-    setAccessKeyExpiryTime(null);
-  };
 
   const MainActionButton = () => {
     if (pageState === 'accessGranted') {
@@ -158,20 +149,17 @@ export default function GenerateAccessPage() {
       );
     }
     
-    // initial or error state
     return (
       <a href={LINKCENTS_URL} className={`genkey-btn genkey-floating ${isButtonAnimating ? 'genkey-animate-pulse' : ''}`} onClick={handleGenerateClick}>
-        <span>{pageState === 'error' ? 'Try Again: Generate Key' : 'Generate 6-Hour Access Key'}</span>
+        <span>Generate Key 🗝️</span>
       </a>
     );
   };
 
   return (
-    <div className="genkey-page-bg"> {/* Ensure this class applies the dark background */}
+    <div className="genkey-page-bg">
       <div className="genkey-container genkey-animate-fadeIn">
         <div className="genkey-content">
-          <div className="genkey-glow genkey-glow-1"></div>
-          <div className="genkey-glow genkey-glow-2"></div>
           
           <p className="genkey-info-text">{infoText}</p>
 
@@ -193,12 +181,6 @@ export default function GenerateAccessPage() {
           <button className="genkey-btn genkey-btn-secondary" onClick={handleShowTutorial}>
             <span>How To Generate Key</span>
           </button>
-
-          {(pageState === 'error' || pageState === 'accessGranted' || pageState === 'initial' || pageState === 'processing') && (
-             <button className="genkey-btn genkey-btn-secondary" onClick={handleStartOver}>
-                <span>{pageState === 'accessGranted' ? 'Generate New Key' : 'Start Over / Reset'}</span>
-            </button>
-          )}
           
           <div className="genkey-features">
             <div className="genkey-feature">
@@ -215,9 +197,9 @@ export default function GenerateAccessPage() {
               <div className="genkey-feature-icon">
                 <Clock />
               </div>
-              <div className="feature-content">
-                <h4>6-Hour Validity</h4>
-                <p>Access key expires after 6 hours for security.</p>
+              <div className="genkey-feature-content">
+                <h4>12-Hour Validity</h4>
+                <p>Access key expires after 12 hours for security.</p>
               </div>
             </div>
             
@@ -227,7 +209,7 @@ export default function GenerateAccessPage() {
               </div>
               <div className="genkey-feature-content">
                 <h4>Automatic Activation</h4>
-                <p>Key activates automatically after a short delay.</p>
+                <p>Key activates ~25s after starting the process.</p>
               </div>
             </div>
           </div>
