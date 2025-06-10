@@ -1,7 +1,7 @@
 
 // src/lib/aarambh-data.ts
-import type { CourseContentMap, Lecture } from './course-data'; // Keep existing import for Lecture if it's defined there
-import { slugify } from './course-data'; // Keep existing import for slugify
+import type { CourseContentMap, Lecture } from './course-data';
+import { slugify } from './course-data';
 
 const aarambhBasePath = '/assets/courses/aarambh';
 
@@ -128,7 +128,57 @@ export const aarambhCourseContent: CourseContentMap = {
     },
     {
       name: 'Nationalism in Europe',
-      lectures: generateAarambhLectures('Nationalism in Europe', 8, 'social-science', slugify('Nationalism in Europe'))
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Nationalism in Europe L1',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L1.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4385660/174765773598337880624/index_4.m3u8'
+        },
+        {
+          id: 'L2',
+          title: 'Nationalism in Europe L2',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L2.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4386901/174774447851067880624/index_4.m3u8'
+        },
+        {
+          id: 'L3',
+          title: 'Nationalism in Europe L3',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L3.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4388156/174784213776117880624/index_4.m3u8'
+        },
+        {
+          id: 'L4',
+          title: 'Nationalism in Europe L4',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L4.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4389229/174791822718927880624/index_4.m3u8'
+        },
+        {
+          id: 'L5',
+          title: 'Nationalism in Europe L5',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L5.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4393945/174835110070857880624/index_4.m3u8'
+        },
+        {
+          id: 'L6',
+          title: 'Nationalism in Europe L6',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L6.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4395114/174844758699447880624/index_4.m3u8'
+        },
+        {
+          id: 'L7',
+          title: 'Nationalism in Europe L7',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L7.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396261/174853315058577880624/index_4.m3u8'
+        }
+      ]
     }
   ],
   'Science': [
@@ -215,11 +265,125 @@ export const aarambhCourseContent: CourseContentMap = {
     },
     {
       name: 'Linear Equations',
-      lectures: generateAarambhLectures('Linear Equations', 8, 'mathematics', slugify('Linear Equations'))
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Linear Equations L1',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Linear Equations')}/notes/L1.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372312/174646254284121097666/index_5.m3u8'
+        },
+        {
+          id: 'L2',
+          title: 'Linear Equations L2',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Linear Equations')}/notes/L2.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373921/174654659565961097666/index_5.m3u8'
+        },
+        {
+          id: 'L3',
+          title: 'Linear Equations L3',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Linear Equations')}/notes/L3.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377325/174680602725391097666/index_5.m3u8'
+        },
+        {
+          id: 'L4',
+          title: 'Linear Equations L4',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Linear Equations')}/notes/L4.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377995/174689370672401097666/index_5.m3u8'
+        },
+        {
+          id: 'L5',
+          title: 'Linear Equations L5',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Linear Equations')}/notes/L5.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4379163/174706562215611097666/index_5.m3u8'
+        },
+        {
+          id: 'L6',
+          title: 'Linear Equations L6',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Linear Equations')}/notes/L6.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384128/174741081479871097666/index_5.m3u8'
+        },
+        {
+          id: 'L7',
+          title: 'Linear Equations L7',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Linear Equations')}/notes/L7.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384834/174749789730281097666/index_5.m3u8'
+        },
+        {
+          id: 'L8',
+          title: 'Linear Equations L8',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Linear Equations')}/notes/L8.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4385006/174758500568421097666/index_5.m3u8'
+        }
+      ]
     },
     {
       name: 'Trigonometry',
-      lectures: generateAarambhLectures('Trigonometry', 8, 'mathematics')
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Trigonometry L1',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Trigonometry')}/notes/L1.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4385837/174766945772321097666/index_5.m3u8'
+        },
+        {
+          id: 'L2',
+          title: 'Trigonometry L2',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Trigonometry')}/notes/L2.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4387086/174775745330681097666/index_5.m3u8'
+        },
+        {
+          id: 'L3',
+          title: 'Trigonometry L3',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Trigonometry')}/notes/L3.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4390972/174801504255421097666/index_5.m3u8'
+        },
+        {
+          id: 'L4',
+          title: 'Trigonometry L4',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Trigonometry')}/notes/L4.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4391537/174810128337891097666/index_5.m3u8'
+        },
+        {
+          id: 'L5',
+          title: 'Trigonometry L5',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Trigonometry')}/notes/L5.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4391700/174818000698001097666/index_5.m3u8'
+        },
+        {
+          id: 'L6',
+          title: 'Trigonometry L6',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Trigonometry')}/notes/L6.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4392906/174827565494671097666/index_5.m3u8'
+        },
+        {
+          id: 'L7',
+          title: 'Trigonometry L7',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Trigonometry')}/notes/L7.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394019/174836153096901097666/index_5.m3u8'
+        },
+        {
+          id: 'L8',
+          title: 'Trigonometry L8',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Trigonometry')}/notes/L8.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397236/174861941652361097666/index_5.m3u8'
+        }
+      ]
     }
   ],
 };
