@@ -5,7 +5,7 @@
 const PENDING_ACTIVATION_TOKEN_KEY = 'eleakPendingActivationToken_v1';
 const ACCESS_KEY = 'eleakCourseAccessKey_v3'; // Incremented version for 12hr
 const ACCESS_KEY_EXPIRY_MS = 12 * 60 * 60 * 1000; // 12 hours
-const PENDING_ACTIVATION_TOKEN_MAX_AGE_MS = 10 * 60 * 1000; // 10 minutes for pending activation token validity
+const PENDING_ACTIVATION_TOKEN_MAX_AGE_MS = 5 * 60 * 1000; // 5 minutes (reduced from 10)
 
 interface AccessToken {
   value: string;
@@ -123,3 +123,4 @@ export const getAccessKeyExpiry = (): number | null => {
     return null;
   }
 };
+
