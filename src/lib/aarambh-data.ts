@@ -34,11 +34,97 @@ export const aarambhCourseContent: CourseContentMap = {
     },
     {
       name: 'Resources and Development',
-      lectures: generateAarambhLectures('Resources and Development', 7, 'social-science', slugify('Resources and Development'))
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Resources and Development L1',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Resources and Development')}/notes/L1.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357716/174532560751637880624/index_4.m3u8'
+        },
+        {
+          id: 'L2',
+          title: 'Resources and Development L2',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Resources and Development')}/notes/L2.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359018/174542319983487880624/index_4.m3u8'
+        },
+        {
+          id: 'L3',
+          title: 'Resources and Development L3',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Resources and Development')}/notes/L3.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360148/174550914289447880624/index_4.m3u8'
+        },
+        {
+          id: 'L4',
+          title: 'Resources and Development L4',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Resources and Development')}/notes/L4.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363238/174584423215647880624/index_4.m3u8'
+        },
+        {
+          id: 'L5',
+          title: 'Resources and Development L5',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Resources and Development')}/notes/L5.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364563/174593072250617880624/index_4.m3u8'
+        },
+        {
+          id: 'L6',
+          title: 'Resources and Development L6',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Resources and Development')}/notes/L6.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4366034/174602805446617880624/index_4.m3u8'
+        },
+        {
+          id: 'L7',
+          title: 'Resources and Development L7',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Resources and Development')}/notes/L7.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367150/174611369995057880624/index_4.m3u8'
+        },
+      ]
     },
     {
       name: 'Power Sharing',
-      lectures: generateAarambhLectures('Power Sharing', 5, 'social-science', slugify('Power Sharing'))
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Power Sharing L1',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Power Sharing')}/notes/L1.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372168/174644893368577880624/index_4.m3u8'
+        },
+        {
+          id: 'L2',
+          title: 'Power Sharing L2',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Power Sharing')}/notes/L2.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373745/174653484988497880624/index_4.m3u8'
+        },
+        {
+          id: 'L3',
+          title: 'Power Sharing L3',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Power Sharing')}/notes/L3.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4374999/174663266860947880624/index_4.m3u8'
+        },
+        {
+          id: 'L4',
+          title: 'Power Sharing L4',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Power Sharing')}/notes/L4.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376187/174671890371767880624/index_4.m3u8'
+        },
+        {
+          id: 'L5',
+          title: 'Power Sharing L5',
+          notesLink: `${aarambhBasePath}/social-science/${slugify('Power Sharing')}/notes/L5.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4379050/174705654256247880624/index_4.m3u8'
+        }
+      ]
     },
     {
       name: 'Nationalism in Europe',
@@ -82,7 +168,50 @@ export const aarambhCourseContent: CourseContentMap = {
     },
     {
       name: 'Polynomials',
-      lectures: generateAarambhLectures('Polynomials', 6, 'mathematics')
+      lectures: [
+        {
+          id: 'L1',
+          title: 'Polynomials L1',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Polynomials')}/notes/L1.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361323/174559737034061097666/index_5.m3u8'
+        },
+        {
+          id: 'L2',
+          title: 'Polynomials L2',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Polynomials')}/notes/L2.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362134/174568400490071097666/index_5.m3u8'
+        },
+        {
+          id: 'L3',
+          title: 'Polynomials L3',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Polynomials')}/notes/L3.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363379/174585623134271097666/index_5.m3u8'
+        },
+        {
+          id: 'L4',
+          title: 'Polynomials L4',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Polynomials')}/notes/L4.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364779/174594155534621097666/index_5.m3u8'
+        },
+        {
+          id: 'L5',
+          title: 'Polynomials L5',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Polynomials')}/notes/L5.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368398/174620142857631097666/index_5.m3u8'
+        },
+        {
+          id: 'L6',
+          title: 'Polynomials L6',
+          notesLink: `${aarambhBasePath}/mathematics/${slugify('Polynomials')}/notes/L6.pdf`,
+          videoEmbedType: 'hls',
+          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370160/174628714218381097666/index_5.m3u8'
+        }
+      ]
     },
     {
       name: 'Linear Equations',
