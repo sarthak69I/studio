@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
 import { getParamAsString } from '@/lib/utils';
+import { getValidAccessKey } from '@/lib/access-manager'; // Import access key checker
 
 interface SubjectItemProps {
   name: string;
@@ -51,19 +52,36 @@ export default function EnrollPage() {
   const params = useParams();
   const courseId = getParamAsString(params.courseId);
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [isAccessGranted, setIsAccessGranted] = React.useState(false);
 
   React.useEffect(() => {
-    let courseName = courseDisplayNames[courseId] || "";
-    
-    if (courseName) {
-      document.title = `Enroll: ${courseName} | E-Leak`;
-    } else if (courseId) { // Fallback if courseId is present but not in map
-      document.title = `Enroll Course ${courseId} | E-Leak`;
+    const accessKey = getValidAccessKey();
+    if (!accessKey) {
+      // Access key protection is now re-enabled
+      router.push('/generate-access'); 
+    } else {
+      setIsAccessGranted(true);
     }
-     else {
-      document.title = 'Enroll | E-Leak';
+    setIsLoading(false);
+  }, [router]);
+
+  React.useEffect(() => {
+    if (!isLoading && isAccessGranted) {
+        let courseName = courseDisplayNames[courseId] || "";
+        
+        if (courseName) {
+          document.title = `Enroll: ${courseName} | E-Leak`;
+        } else if (courseId) { 
+          document.title = `Enroll Course ${courseId} | E-Leak`;
+        }
+         else {
+          document.title = 'Enroll | E-Leak';
+        }
+    } else if (!isLoading && !isAccessGranted) {
+        document.title = 'Access Required | E-Leak';
     }
-  }, [courseId]);
+  }, [courseId, isLoading, isAccessGranted]);
 
 
   const handleJoinLiveClassClick = () => {
@@ -79,6 +97,24 @@ export default function EnrollPage() {
   const handleModeChange = (mode: 'notes' | 'video') => {
     setActiveContentMode(mode);
   };
+  
+  if (isLoading) {
+    return (
+      <div className="flex flex-col min-h-screen items-center justify-center bg-background p-4 text-foreground">
+        <p>Loading and checking access...</p>
+      </div>
+    );
+  }
+
+  if (!isAccessGranted) {
+     // This part might not be reached if redirect happens quickly, but good as a fallback.
+    return (
+      <div className="flex flex-col min-h-screen items-center justify-center bg-background p-4 text-foreground">
+        <p>Redirecting to access generation page...</p>
+      </div>
+    );
+  }
+
 
   return (
     <>
@@ -165,5 +201,3 @@ export default function EnrollPage() {
     </>
   );
 }
-
-    
