@@ -46,17 +46,17 @@ body {
     --sidebar-ring: 207 90% 61%;
 
     /* New variables for generate-access page design */
-    --genkey-primary: #6c5ce7;
-    --genkey-primary-dark: #5649c0;
-    --genkey-secondary: #00cec9;
-    --genkey-dark: #121212;
-    --genkey-darker: #0a0a0a;
+    --genkey-primary: #6c5ce7; /* Kept for icon color */
+    --genkey-primary-dark: #5649c0; /* Kept for button gradient */
+    --genkey-secondary: #00cec9; /* For links */
+    --genkey-dark: #121212; /* Card background */
+    --genkey-darker: #0F172A; /* Page background - updated to dark navy blue */
     --genkey-light: #e0e0e0;
     --genkey-lighter: #f5f5f5;
     --genkey-danger: #ff6b6b;
     --genkey-success: #51cf66;
-    --genkey-success-rgb: 81, 207, 102; /* For rgba() */
-    --genkey-danger-rgb: 255, 107, 107; /* For rgba() */
+    --genkey-success-rgb: 81, 207, 102;
+    --genkey-danger-rgb: 255, 107, 107;
   }
 
   .dark {
@@ -289,7 +289,7 @@ body {
     background: var(--genkey-dark);
     border-radius: 16px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
+    overflow: hidden; /* remove if glow effects are desired outside */
     position: relative;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -353,7 +353,7 @@ body {
     transform: translateY(1px);
 }
 
-.genkey-btn::after {
+.genkey-btn::after { /* For gradient sweep on hover, if desired */
     content: '';
     position: absolute;
     top: 0;
@@ -374,26 +374,7 @@ body {
     z-index: 2;
 }
 
-.genkey-glow {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(108, 92, 231, 0.3) 0%, rgba(108, 92, 231, 0) 70%);
-    filter: blur(20px);
-    z-index: -1;
-}
-
-.genkey-glow-1 {
-    top: -50px;
-    right: -50px;
-}
-
-.genkey-glow-2 {
-    bottom: -30px;
-    left: -30px;
-    background: radial-gradient(circle, rgba(0, 206, 201, 0.2) 0%, rgba(0, 206, 201, 0) 70%);
-}
+/* Removed .genkey-glow and .genkey-glow-1, .genkey-glow-2 for cleaner background */
 
 @keyframes genkey-float {
     0% { transform: translateY(0px); }
@@ -429,13 +410,13 @@ body {
 .genkey-feature-icon {
     width: 40px;
     height: 40px;
-    background: rgba(108, 92, 231, 0.1);
+    background: rgba(255, 255, 255, 0.05); /* Changed from purpleish to neutral dark */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 15px;
-    color: var(--genkey-primary);
+    color: var(--genkey-primary); /* Icon color itself remains primary (purple) */
     flex-shrink: 0;
 }
 
@@ -557,5 +538,3 @@ body {
   text-align: center;
   font-size: 15px;
 }
-
-    

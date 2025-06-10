@@ -2,10 +2,11 @@
 // src/lib/access-manager.ts
 'use client';
 
-const PENDING_TOKEN_KEY = 'eleakPendingAccessRequestToken_v2';
-const ACCESS_KEY = 'eleakCourseAccessKey';
+const PENDING_TOKEN_KEY = 'eleakPendingAccessRequestToken_v3'; // Incremented version
+const ACCESS_KEY = 'eleakCourseAccessKey_v2'; // Incremented version
 const ACCESS_KEY_EXPIRY_MS = 12 * 60 * 60 * 1000; // 12 hours
-const AUTO_GRANT_DELAY_MS = 25 * 1000; // 25 seconds
+export const AUTO_GRANT_DELAY_MS = 25 * 1000; // 25 seconds - Export for use in page
+const PENDING_TOKEN_MAX_AGE_MS = 5 * 60 * 1000; // 5 minutes for pending token validity
 
 interface AccessToken {
   value: string;
@@ -13,12 +14,11 @@ interface AccessToken {
 }
 
 export interface PendingToken {
-  value: string;
-  initiationTime: number;
-  autoGrantTargetTime: number;
+  value: string; // A random token value
+  initiationTime: number; // Timestamp when the process was started
 }
 
-// For Pending Token (indicates visit to Linkcents initiated and auto-grant is scheduled)
+// For Pending Token
 export const setPendingToken = (): PendingToken | null => {
   if (typeof window === 'undefined') return null;
   try {
@@ -27,7 +27,6 @@ export const setPendingToken = (): PendingToken | null => {
     const token: PendingToken = {
       value: tokenValue,
       initiationTime: now,
-      autoGrantTargetTime: now + AUTO_GRANT_DELAY_MS
     };
     localStorage.setItem(PENDING_TOKEN_KEY, JSON.stringify(token));
     return token;
@@ -44,13 +43,15 @@ export const getValidPendingToken = (): PendingToken | null => {
     if (!storedToken) return null;
 
     const token: PendingToken = JSON.parse(storedToken);
-    if (token && token.autoGrantTargetTime) {
-        if (Date.now() > token.autoGrantTargetTime + 60000) { // 1 min buffer, if significantly past due
-            localStorage.removeItem(PENDING_TOKEN_KEY);
-            return null;
-        }
-        return token;
+    // Check if the token itself is valid and not too old
+    if (token && token.value && token.initiationTime) {
+      if (Date.now() > token.initiationTime + PENDING_TOKEN_MAX_AGE_MS) {
+        localStorage.removeItem(PENDING_TOKEN_KEY); // Stale token
+        return null;
+      }
+      return token;
     }
+    localStorage.removeItem(PENDING_TOKEN_KEY); // Corrupted token
     return null;
   } catch (error) {
     console.error('Error getting pending token from localStorage:', error);

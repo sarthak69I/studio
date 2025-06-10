@@ -9,14 +9,13 @@ import {
   setAccessKey,
   getValidAccessKey,
   getAccessKeyExpiry,
-  // clearAccessKey, // No longer explicitly used by a button
-  type PendingToken,
+  AUTO_GRANT_DELAY_MS,
 } from '@/lib/access-manager';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { CheckCircle, Shield, Clock, KeyRound, AlertCircle, Loader2 } from 'lucide-react';
 
-type PageState = 'initial' | 'processing' | 'accessGranted' | 'error';
+type PageState = 'initial' | 'awaitingReturn' | 'processingActivation' | 'accessGranted' | 'error';
 
 const LINKCENTS_URL = 'https://linkcents.com/E-Leak';
 const TUTORIAL_VIDEO_URL = "https://www.youtube.com/embed/OTCuv1ps8bc?si=euD5avRVzHLqBa4Z&autoplay=1";
@@ -49,6 +48,15 @@ export default function GenerateAccessPage() {
     }
   }, []);
 
+  const initiateActivationProcess = React.useCallback(() => {
+    if (pageState === 'processingActivation' || pageState === 'accessGranted') return;
+
+    setPageState('processingActivation');
+    setInfoText(`Your 12-hour access key is being generated. Please keep this page open. It will update automatically in about ${AUTO_GRANT_DELAY_MS / 1000} seconds.`);
+    if (autoGrantTimerRef.current) clearTimeout(autoGrantTimerRef.current);
+    autoGrantTimerRef.current = setTimeout(grantAccessAndSetState, AUTO_GRANT_DELAY_MS);
+  }, [grantAccessAndSetState, pageState]);
+
   React.useEffect(() => {
     document.title = "Generate Course Access | E-Leak";
 
@@ -65,28 +73,38 @@ export default function GenerateAccessPage() {
     }
 
     const pendingToken = getValidPendingToken();
-    if (pendingToken && pendingToken.autoGrantTargetTime) {
-      const now = Date.now();
-      if (now >= pendingToken.autoGrantTargetTime) {
-        grantAccessAndSetState();
+    if (pendingToken) {
+      // If a pending token exists, and the page is visible, start activation process
+      if (document.visibilityState === 'visible') {
+        initiateActivationProcess();
       } else {
-        setPageState('processing');
-        setInfoText(`Your 12-hour access key is being generated. Please wait... This page will update automatically.`);
-        const remainingTime = pendingToken.autoGrantTargetTime - now;
-        if (autoGrantTimerRef.current) clearTimeout(autoGrantTimerRef.current);
-        autoGrantTimerRef.current = setTimeout(grantAccessAndSetState, remainingTime);
+        // Otherwise, set to awaitingReturn, activation will start on visibility change
+        setPageState('awaitingReturn');
+        setInfoText("Please complete the step on the partner site. Return to this page to finalize your 12-hour access key. Activation will begin automatically upon your return.");
       }
     } else {
       setPageState('initial');
       setInfoText("To access course content, you need to generate a key. This key will be valid for 12 hours. After it expires, you'll need to generate a new one. Please follow the steps below.");
     }
 
+    // Listener for visibility change
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && pageState === 'awaitingReturn' && getValidPendingToken()) {
+        initiateActivationProcess();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', handleVisibilityChange); // Also listen for focus
+
     return () => {
       if (autoGrantTimerRef.current) {
         clearTimeout(autoGrantTimerRef.current);
       }
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', handleVisibilityChange);
     };
-  }, [grantAccessAndSetState]);
+  }, [grantAccessAndSetState, pageState, initiateActivationProcess]);
 
 
   React.useEffect(() => {
@@ -107,19 +125,10 @@ export default function GenerateAccessPage() {
     setIsButtonAnimating(true);
     setTimeout(() => setIsButtonAnimating(false), 1000);
 
-    setPageState('processing');
-    const pendingTokenData = setPendingToken();
-    
-    if (pendingTokenData && pendingTokenData.autoGrantTargetTime) {
-        window.open(LINKCENTS_URL, '_blank');
-        setInfoText("Your 12-hour access key is being generated. Please keep this page open. It will update automatically in about 25 seconds.");
-        
-        if (autoGrantTimerRef.current) clearTimeout(autoGrantTimerRef.current);
-        autoGrantTimerRef.current = setTimeout(grantAccessAndSetState, pendingTokenData.autoGrantTargetTime - Date.now());
-    } else {
-        setPageState('error');
-        setInfoText('Could not initiate access generation. Please refresh and try again.');
-    }
+    setPendingToken();
+    window.open(LINKCENTS_URL, '_blank');
+    setPageState('awaitingReturn');
+    setInfoText("Please complete the step on the partner site. Return to this page to finalize your 12-hour access key. Activation will begin automatically upon your return.");
   };
 
   const handleShowTutorial = () => {
@@ -130,25 +139,30 @@ export default function GenerateAccessPage() {
     setIsCustomVideoModalOpen(false);
   };
   
-
   const MainActionButton = () => {
     if (pageState === 'accessGranted') {
       return (
-        <button className={`genkey-btn genkey-floating ${isButtonAnimating ? 'genkey-animate-pulse' : ''}`} onClick={() => router.push('/')}>
-          <span>Go to Courses</span>
-        </button>
+        <>
+          <button className={`genkey-btn genkey-floating ${isButtonAnimating ? 'genkey-animate-pulse' : ''}`} onClick={() => router.push('/')}>
+            <span>Go to Courses</span>
+          </button>
+          <Link href="/" className="block text-sm text-[var(--genkey-secondary)] hover:underline mt-4">
+            Go to Homepage
+          </Link>
+        </>
       );
     }
 
-    if (pageState === 'processing') {
+    if (pageState === 'processingActivation' || pageState === 'awaitingReturn') {
       return (
         <button className="genkey-btn" disabled>
           <Loader2 className="inline-block h-5 w-5 mr-2 animate-spin" />
-          <span>Processing Access...</span>
+          <span>{pageState === 'processingActivation' ? 'Processing Access...' : 'Awaiting Return...'}</span>
         </button>
       );
     }
     
+    // Initial state
     return (
       <a href={LINKCENTS_URL} className={`genkey-btn genkey-floating ${isButtonAnimating ? 'genkey-animate-pulse' : ''}`} onClick={handleGenerateClick}>
         <span>Generate Key 🗝️</span>
@@ -172,7 +186,7 @@ export default function GenerateAccessPage() {
            {pageState === 'error' && (
              <div className="genkey-message-error mb-6">
               <AlertCircle className="inline-block h-5 w-5 mr-2" />
-              {infoText}
+              {infoText} {/* infoText will contain the error message */}
             </div>
           )}
           
@@ -209,13 +223,15 @@ export default function GenerateAccessPage() {
               </div>
               <div className="genkey-feature-content">
                 <h4>Automatic Activation</h4>
-                <p>Key activates ~25s after starting the process.</p>
+                <p>Key activates ~{AUTO_GRANT_DELAY_MS / 1000}s after returning to this page and completing the process.</p>
               </div>
             </div>
           </div>
-          <Link href="/" className="block text-sm text-[var(--genkey-secondary)] hover:underline mt-6">
-            Go to Homepage
-          </Link>
+           {pageState !== 'accessGranted' && (
+            <Link href="/" className="block text-sm text-[var(--genkey-secondary)] hover:underline mt-6">
+              Go to Homepage
+            </Link>
+           )}
         </div>
       </div>
       
