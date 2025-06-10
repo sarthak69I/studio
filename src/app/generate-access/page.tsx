@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
-import { AlertCircle, CheckCircle, ExternalLink, HelpCircle, Youtube } from 'lucide-react';
+import { AlertCircle, CheckCircle, ExternalLink, Youtube } from 'lucide-react';
 import {
   setPendingToken,
   getValidPendingToken,
@@ -47,30 +47,28 @@ export default function GenerateAccessPage() {
       if (expiry) {
         setAccessKeyExpiryTime(new Date(expiry).toLocaleString());
       }
-      setStatusMessage('You already have an active access key.');
+      // The main message for accessGranted is in the JSX, but this can be a fallback.
+      setStatusMessage('You already have an active access key.'); 
       return;
     }
 
     const pendingToken = getValidPendingToken();
     if (pendingToken) {
       setPageState('pendingConfirmation');
-      setStatusMessage('You have initiated the process. Click "Activate Access Key" below to complete.');
+      setStatusMessage("You have initiated the process. Click 'Activate Access Key' below to complete. Your access key will be valid for 6 hours from activation.");
     } else {
       setPageState('initial');
-      setStatusMessage('To access courses, you need to generate a 6-hour access key. Follow the steps below.');
+      setStatusMessage("To access course content, you need to generate an access key. This key will be valid for 6 hours. After it expires, you'll need to generate a new one. Please follow the steps below.");
     }
   }, []);
 
   const handleInitiateAccess = () => {
     setPendingToken();
-    // No need to change pageState here, as the effect of setting the token will be picked up
-    // by a page refresh or if the user navigates back. The main action is opening the link.
-    // The user will return to this page, and the useEffect will set 'pendingConfirmation'.
     setStatusMessage('Redirecting to partner site... Return here after completing the action to activate your key.');
     window.open(LINKCENTS_URL, '_blank');
-    // To encourage user to come back and see the "Activate" button, we can set a slight delay
-    // and then optimistically update UI, or rely on them refreshing / re-navigating.
-    // For now, rely on them coming back and useEffect re-evaluating.
+    // Optimistically update state, useEffect will confirm on focus/return if needed.
+    setPageState('pendingConfirmation'); 
+    setStatusMessage("You have initiated the process. Click 'Activate Access Key' below to complete. Your access key will be valid for 6 hours from activation.");
   };
 
   const handleActivateKey = () => {
@@ -84,7 +82,7 @@ export default function GenerateAccessPage() {
         if (expiry) {
           setAccessKeyExpiryTime(new Date(expiry).toLocaleString());
         }
-        setStatusMessage('Access granted for 6 hours!');
+        // Success message is primarily handled by the JSX for 'accessGranted' state
       } else {
         setPageState('error');
         setStatusMessage('Error generating access key. Please try again.');
@@ -100,7 +98,7 @@ export default function GenerateAccessPage() {
     clearPendingToken();
     clearAccessKey();
     setPageState('initial');
-    setStatusMessage('To access courses, you need to generate a 6-hour access key. Follow the steps below.');
+    setStatusMessage("To access course content, you need to generate a 6-hour access key. This key will be valid for 6 hours. After it expires, you'll need to generate a new one. Please follow the steps below.");
     setAccessKeyExpiryTime(null);
   };
 
@@ -110,7 +108,7 @@ export default function GenerateAccessPage() {
         <div className="text-center">
           <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-2">Course Access Gateway</h1>
           <p className="text-sm text-muted-foreground">
-            {statusMessage || "Follow the steps to unlock course content."}
+            {statusMessage || "Follow the steps to unlock course content for 6 hours."}
           </p>
         </div>
 
@@ -138,7 +136,7 @@ export default function GenerateAccessPage() {
             <p className="font-semibold text-green-600">Access Key Activated!</p>
             {accessKeyExpiryTime && (
               <p className="text-xs text-muted-foreground mt-1">
-                Valid until: {accessKeyExpiryTime}
+                Your access is valid for 6 hours. Expires: {accessKeyExpiryTime}
               </p>
             )}
             <Button
@@ -158,6 +156,48 @@ export default function GenerateAccessPage() {
           </div>
         )}
         
+        {/* Tutorial Button - visible when action is needed or error */}
+        {(pageState === 'initial' || pageState === 'pendingConfirmation' || pageState === 'error') && (
+            <div className="mt-6 border-t border-border pt-6">
+            <Dialog open={isVideoDialogOpen} onOpenChange={setIsVideoDialogOpen}>
+                <DialogTrigger asChild>
+                <Button
+                    variant="outline"
+                    className="w-full py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    onClick={() => setIsVideoDialogOpen(true)}
+                >
+                    <Youtube className="mr-2 h-5 w-5 text-red-500" /> 
+                    How to Generate/Activate Key
+                </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-xl md:max-w-2xl p-0 rounded-xl overflow-hidden">
+                <DialogHeader className="p-4 border-b">
+                    <DialogTitle className="text-lg">Video Tutorial: How To Generate/Activate Access Key</DialogTitle>
+                </DialogHeader>
+                <div className="aspect-video w-full bg-black">
+                    <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/qfI_cSI3MSc?autoplay=1"
+                    title="YouTube video player: How to Generate Key"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    ></iframe>
+                </div>
+                <DialogFooter className="p-4 border-t sm:justify-start">
+                    <DialogClose asChild>
+                    <Button type="button" variant="outline">
+                        Close Video
+                    </Button>
+                    </DialogClose>
+                </DialogFooter>
+                </DialogContent>
+            </Dialog>
+            </div>
+        )}
+
+        {/* Start Over / Generate New Key Button */}
         {(pageState === 'initial' || pageState === 'pendingConfirmation' || pageState === 'error') && (
              <Button
                 onClick={handleStartOver}
@@ -167,46 +207,6 @@ export default function GenerateAccessPage() {
                 {pageState === 'error' ? 'Start Over' : 'Reset / Start Over'}
               </Button>
         )}
-
-
-        <div className="mt-6 border-t border-border pt-6">
-          <Dialog open={isVideoDialogOpen} onOpenChange={setIsVideoDialogOpen}>
-            <DialogTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-full py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                onClick={() => setIsVideoDialogOpen(true)}
-              >
-                <Youtube className="mr-2 h-5 w-5 text-red-500" /> 
-                How to Generate/Activate Key
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-xl md:max-w-2xl p-0 rounded-xl overflow-hidden">
-              <DialogHeader className="p-4 border-b">
-                <DialogTitle className="text-lg">Video Tutorial: How To Generate/Activate Access Key</DialogTitle>
-              </DialogHeader>
-              <div className="aspect-video w-full bg-black">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/qfI_cSI3MSc?autoplay=1"
-                  title="YouTube video player: How to Generate Key"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                ></iframe>
-              </div>
-              <DialogFooter className="p-4 border-t sm:justify-start">
-                <DialogClose asChild>
-                  <Button type="button" variant="outline">
-                    Close Video
-                  </Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        </div>
-
         {pageState === 'accessGranted' && (
            <Button
               onClick={handleStartOver} // This button allows generating a new key, resetting the current one
@@ -219,7 +219,7 @@ export default function GenerateAccessPage() {
       </div>
 
       <footer className="text-center text-xs text-muted-foreground mt-8 py-4">
-        <p>© E-Leak All rights reserved. Key system for access validation.</p>
+        <p>© E-Leak All rights reserved. Key system for access validation (6-hour validity per key).</p>
          <Link href="/" className="hover:underline text-primary">Go to Homepage</Link>
       </footer>
     </div>
