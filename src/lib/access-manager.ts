@@ -2,10 +2,10 @@
 // src/lib/access-manager.ts
 'use client';
 
-const PENDING_ACTIVATION_TOKEN_KEY = 'eleakPendingActivationToken_v1';
-const ACCESS_KEY = 'eleakCourseAccessKey_v3'; // Incremented version for 12hr
+const PENDING_ACTIVATION_TOKEN_KEY = 'eleakPendingActivationToken_v2'; // Incremented version
+const ACCESS_KEY = 'eleakCourseAccessKey_v3';
 const ACCESS_KEY_EXPIRY_MS = 12 * 60 * 60 * 1000; // 12 hours
-const PENDING_ACTIVATION_TOKEN_MAX_AGE_MS = 5 * 60 * 1000; // 5 minutes (reduced from 10)
+const PENDING_ACTIVATION_TOKEN_MAX_AGE_MS = 5 * 60 * 1000; // 5 minutes
 
 interface AccessToken {
   value: string;
@@ -21,7 +21,7 @@ export interface PendingActivationToken {
 export const setPendingActivationToken = (): PendingActivationToken | null => {
   if (typeof window === 'undefined') return null;
   try {
-    const tokenValue = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 8);
+    const tokenValue = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
     const now = Date.now();
     const token: PendingActivationToken = {
       value: tokenValue,
@@ -45,11 +45,13 @@ export const getValidPendingActivationToken = (): PendingActivationToken | null 
     if (token && token.value && token.initiationTime) {
       if (Date.now() > token.initiationTime + PENDING_ACTIVATION_TOKEN_MAX_AGE_MS) {
         localStorage.removeItem(PENDING_ACTIVATION_TOKEN_KEY); // Stale token
+        console.warn('Pending activation token expired and removed.');
         return null;
       }
       return token;
     }
     localStorage.removeItem(PENDING_ACTIVATION_TOKEN_KEY); // Corrupted token
+    console.warn('Pending activation token corrupted and removed.');
     return null;
   } catch (error) {
     console.error('Error getting pending activation token from localStorage:', error);
@@ -72,7 +74,7 @@ export const clearPendingActivationToken = () => {
 export const setAccessKey = (): string | null => {
   if (typeof window === 'undefined') return null;
   try {
-    const keyValue = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    const keyValue = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
     const expiry = Date.now() + ACCESS_KEY_EXPIRY_MS;
     const keyData: AccessToken = { value: keyValue, expiry };
     localStorage.setItem(ACCESS_KEY, JSON.stringify(keyData));
@@ -123,4 +125,3 @@ export const getAccessKeyExpiry = (): number | null => {
     return null;
   }
 };
-

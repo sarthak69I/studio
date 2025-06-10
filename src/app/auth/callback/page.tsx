@@ -13,19 +13,19 @@ import { Loader2, CheckCircle, XCircle } from 'lucide-react';
 
 function AuthCallbackContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams(); // Keep using searchParams in case Linkcents *can* add a token in the future
   const [status, setStatus] = useState<'processing' | 'success' | 'error'>('processing');
   const [message, setMessage] = useState('Processing your activation...');
   const [expiryTime, setExpiryTime] = useState<string | null>(null);
 
   useEffect(() => {
-    const tokenFromUrl = searchParams.get('token');
+    const tokenFromUrl = searchParams.get('token'); // Still attempt to get, though likely null
     const pendingToken = getValidPendingActivationToken();
 
     let activationSuccess = false;
 
+    // Scenario 1: Token in URL (ideal, but Linkcents may not support it)
     if (tokenFromUrl && pendingToken && tokenFromUrl === pendingToken.value) {
-      // Scenario 1: Token in URL matches a valid pending token in localStorage
       const accessKey = setAccessKey();
       if (accessKey) {
         clearPendingActivationToken();
@@ -40,10 +40,11 @@ function AuthCallbackContent() {
         setMessage('Activation failed: Could not set access key.');
         setStatus('error');
       }
-    } else if (!tokenFromUrl && pendingToken) {
-      // Scenario 2 (Less Secure Fallback): No token in URL, but a valid pending token exists in localStorage.
-      // This might be used if Linkcents cannot append a token to the redirect URL.
-      console.warn('Activating based on localStorage token only. This is less secure.');
+    } 
+    // Scenario 2: No token in URL, but a valid pending token exists in localStorage.
+    // This is the primary path given Linkcents' limitation.
+    else if (!tokenFromUrl && pendingToken) {
+      console.warn('Activating based on localStorage pending token only. This is the expected flow with current Linkcents limitations.');
       const accessKey = setAccessKey();
       if (accessKey) {
         clearPendingActivationToken();
@@ -59,27 +60,31 @@ function AuthCallbackContent() {
         setStatus('error');
       }
     }
-     else {
-      // Scenario 3: No valid token found or mismatch
-      let errorReason = "Invalid or expired activation link.";
-      if (pendingToken && tokenFromUrl && tokenFromUrl !== pendingToken.value) {
+    // Scenario 3: No valid pending token found in localStorage, or other errors.
+    else {
+      let errorReason = "Invalid or expired activation process.";
+      if (!pendingToken) {
+        errorReason = "No pending activation found or it has expired. Please start the process again from the 'Generate Key' page.";
+      }
+      // If tokenFromUrl was present but didn't match a pendingToken (unlikely if pendingToken is null)
+      else if (tokenFromUrl && pendingToken && tokenFromUrl !== pendingToken.value) {
         errorReason = "Activation token mismatch.";
-      } else if (!pendingToken) {
-        errorReason = "No pending activation found. Please start the process again.";
       }
       setMessage(`Activation failed: ${errorReason}`);
       setStatus('error');
+      clearPendingActivationToken(); // Clear any potentially stale or mismatched token
     }
 
     if (activationSuccess) {
-      // Clean the URL by removing query parameters
+      // Clean the URL by removing query parameters (if any were present)
       window.history.replaceState(null, '', window.location.pathname);
       setTimeout(() => {
         router.push('/'); // Redirect to homepage
       }, 3000);
     } else {
+      // For errors, redirect to generate key page
       setTimeout(() => {
-        router.push('/generate-access'); // Redirect to generate key page on error
+        router.push('/generate-access'); 
       }, 4000);
     }
   }, [router, searchParams]);
