@@ -40,7 +40,7 @@ function AuthCallbackContent() {
         setMessage('Activation failed: Could not set access key.');
         setStatus('error');
       }
-    } 
+    }
     // Scenario 2: No token in URL, but a valid pending token exists in localStorage.
     // This is the primary path given Linkcents' limitation.
     else if (!tokenFromUrl && pendingToken) {
@@ -78,13 +78,11 @@ function AuthCallbackContent() {
     if (activationSuccess) {
       // Clean the URL by removing query parameters (if any were present)
       window.history.replaceState(null, '', window.location.pathname);
-      setTimeout(() => {
-        router.push('/'); // Redirect to homepage
-      }, 3000);
+      router.push('/'); // Redirect to homepage immediately
     } else {
       // For errors, redirect to generate key page
       setTimeout(() => {
-        router.push('/generate-access'); 
+        router.push('/generate-access');
       }, 4000);
     }
   }, [router, searchParams]);
@@ -113,7 +111,7 @@ function AuthCallbackContent() {
         )}
         <p className="text-muted-foreground mt-4">{message}</p>
         <p className="text-xs text-muted-foreground mt-6">
-          {status === 'success' && 'Redirecting to courses shortly...'}
+          {status === 'success' && 'Redirecting to courses...'}
           {status === 'error' && 'Redirecting to key generation page...'}
           {status === 'processing' && 'Please wait...'}
         </p>
