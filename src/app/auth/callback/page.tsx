@@ -20,12 +20,16 @@ function AuthCallbackContent() {
 
   useEffect(() => {
     const tokenFromUrl = searchParams.get('token');
+    console.warn('AuthCallback: useEffect triggered. Token from URL:', tokenFromUrl);
+
     const pendingToken = getValidPendingActivationToken();
+    console.warn('AuthCallback: Pending token from localStorage:', pendingToken);
 
     let activationSuccess = false;
 
     // Scenario 1: Token in URL (ideal, but Linkcents may not support it)
     if (tokenFromUrl && pendingToken && tokenFromUrl === pendingToken.value) {
+      console.warn('AuthCallback: Activating via Scenario 1 (URL token match).');
       const accessKey = setAccessKey();
       if (accessKey) {
         clearPendingActivationToken();
@@ -37,6 +41,7 @@ function AuthCallbackContent() {
         setStatus('success');
         activationSuccess = true;
       } else {
+        console.error('AuthCallback: Scenario 1 failed - Could not set access key.');
         setMessage('Activation failed: Could not set access key.');
         setStatus('error');
       }
@@ -44,7 +49,7 @@ function AuthCallbackContent() {
     // Scenario 2: No token in URL, but a valid pending token exists in localStorage.
     // This is the primary path given Linkcents' limitation.
     else if (!tokenFromUrl && pendingToken) {
-      console.warn('Activating based on localStorage pending token only. This is the expected flow with current Linkcents limitations.');
+      console.warn('AuthCallback: Activating via Scenario 2 (localStorage pending token only). This is the expected flow with current Linkcents limitations.');
       const accessKey = setAccessKey();
       if (accessKey) {
         clearPendingActivationToken();
@@ -56,6 +61,7 @@ function AuthCallbackContent() {
         setStatus('success');
         activationSuccess = true;
       } else {
+        console.error('AuthCallback: Scenario 2 failed - Could not set access key (fallback).');
         setMessage('Activation failed: Could not set access key (fallback).');
         setStatus('error');
       }
@@ -64,18 +70,25 @@ function AuthCallbackContent() {
     else {
       let errorReason = "Invalid or expired activation process.";
       if (!pendingToken) {
-        errorReason = "No pending activation found or it has expired. Please start the process again from the 'Generate Key' page.";
+        errorReason = "No pending activation found or it has expired. This could be because the 5-minute window passed, the token was not set correctly, or it was already used. Please start the process again from the 'Generate Key' page.";
+        console.error('AuthCallback: Activation failed - Scenario 3: No valid pendingToken in localStorage.');
       }
-      else if (tokenFromUrl && pendingToken && tokenFromUrl !== pendingToken.value) {
-        errorReason = "Activation token mismatch.";
+      else if (tokenFromUrl && pendingToken && tokenFromUrl !== pendingToken.value) { // Should not be hit if Linkcents sends no token
+        errorReason = "Activation token mismatch. The token in the URL does not match the expected token.";
+        console.error('AuthCallback: Activation failed - Scenario 3: Token mismatch.');
+      } else {
+        // This case might occur if tokenFromUrl is null, and pendingToken is also null (already covered by the first if in this block)
+        // or if tokenFromUrl is present but pendingToken is null (meaning pending token expired before URL token could be checked).
+        errorReason = "Activation failed. The activation process might have timed out or the link is invalid.";
+        console.error('AuthCallback: Activation failed - Scenario 3: Unexpected condition or pending token expired after URL check.');
       }
       setMessage(`Activation failed: ${errorReason}`);
       setStatus('error');
-      clearPendingActivationToken();
+      clearPendingActivationToken(); // Clear any potentially invalid/orphaned token
     }
 
     if (activationSuccess) {
-      window.history.replaceState(null, '', window.location.pathname);
+      window.history.replaceState(null, '', window.location.pathname); // Clean URL
       router.push('/'); // Redirect to homepage immediately
     } else {
       // For errors, redirect to generate key page after a short delay

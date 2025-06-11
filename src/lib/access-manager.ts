@@ -2,8 +2,8 @@
 // src/lib/access-manager.ts
 'use client';
 
-const PENDING_ACTIVATION_TOKEN_KEY = 'eleakPendingActivationToken_v2'; // Incremented version
-const ACCESS_KEY = 'eleakCourseAccessKey_v3';
+const PENDING_ACTIVATION_TOKEN_KEY = 'eleakPendingActivationToken_v3'; // Incremented version
+const ACCESS_KEY = 'eleakCourseAccessKey_v4'; // Incremented version
 const ACCESS_KEY_EXPIRY_MS = 12 * 60 * 60 * 1000; // 12 hours
 const PENDING_ACTIVATION_TOKEN_MAX_AGE_MS = 5 * 60 * 1000; // 5 minutes
 
@@ -39,22 +39,25 @@ export const getValidPendingActivationToken = (): PendingActivationToken | null 
   if (typeof window === 'undefined') return null;
   try {
     const storedToken = localStorage.getItem(PENDING_ACTIVATION_TOKEN_KEY);
-    if (!storedToken) return null;
+    if (!storedToken) {
+      console.warn('getValidPendingActivationToken: No token found in localStorage for key:', PENDING_ACTIVATION_TOKEN_KEY);
+      return null;
+    }
 
     const token: PendingActivationToken = JSON.parse(storedToken);
     if (token && token.value && token.initiationTime) {
       if (Date.now() > token.initiationTime + PENDING_ACTIVATION_TOKEN_MAX_AGE_MS) {
         localStorage.removeItem(PENDING_ACTIVATION_TOKEN_KEY); // Stale token
-        console.warn('Pending activation token expired and removed.');
+        console.warn('Pending activation token expired and removed. Initiation time:', new Date(token.initiationTime).toLocaleString(), 'Max age (ms):', PENDING_ACTIVATION_TOKEN_MAX_AGE_MS);
         return null;
       }
       return token;
     }
     localStorage.removeItem(PENDING_ACTIVATION_TOKEN_KEY); // Corrupted token
-    console.warn('Pending activation token corrupted and removed.');
+    console.warn('Pending activation token corrupted (missing value or initiationTime) and removed.');
     return null;
   } catch (error) {
-    console.error('Error getting pending activation token from localStorage:', error);
+    console.error('Error getting/parsing pending activation token from localStorage:', error);
     localStorage.removeItem(PENDING_ACTIVATION_TOKEN_KEY);
     return null;
   }
@@ -64,6 +67,7 @@ export const clearPendingActivationToken = () => {
   if (typeof window === 'undefined') return;
   try {
     localStorage.removeItem(PENDING_ACTIVATION_TOKEN_KEY);
+    console.warn('Cleared pending activation token.');
   } catch (error) {
     console.error('Error clearing pending activation token from localStorage:', error);
   }
@@ -78,6 +82,7 @@ export const setAccessKey = (): string | null => {
     const expiry = Date.now() + ACCESS_KEY_EXPIRY_MS;
     const keyData: AccessToken = { value: keyValue, expiry };
     localStorage.setItem(ACCESS_KEY, JSON.stringify(keyData));
+    console.warn('Access key set. Expires:', new Date(expiry).toLocaleString());
     return keyValue;
   } catch (error) {
     console.error('Error setting access key in localStorage:', error);
@@ -96,6 +101,7 @@ export const getValidAccessKey = (): string | null => {
       return keyData.value;
     } else {
       localStorage.removeItem(ACCESS_KEY); // Expired key
+      console.warn('Access key expired and removed.');
       return null;
     }
   } catch (error) {
@@ -109,6 +115,7 @@ export const clearAccessKey = () => {
   if (typeof window === 'undefined') return;
   try {
     localStorage.removeItem(ACCESS_KEY);
+    console.warn('Cleared access key.');
   } catch (error) {
     console.error('Error clearing access key from localStorage:', error);
   }
