@@ -15,7 +15,7 @@ import { CheckCircle, Shield, Clock, KeyRound, AlertCircle, Loader2 } from 'luci
 
 type PageState = 'initial' | 'awaitingRedirect' | 'accessGranted' | 'error';
 
-const LINKCENTS_URL = 'https://linkcents.com/E-Leak/auth/callback';
+const LINKCENTS_URL = 'https://linkcents.com/E-Leak';
 const TUTORIAL_VIDEO_URL = "https://www.youtube.com/embed/fl7xdCFRup0?si=euD5avRVzHLqBa4Z&autoplay=1";
 
 export default function GenerateAccessPage() {
