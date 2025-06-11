@@ -15,8 +15,8 @@ import { CheckCircle, Shield, Clock, KeyRound, AlertCircle, Loader2 } from 'luci
 
 type PageState = 'initial' | 'awaitingRedirect' | 'accessGranted' | 'error';
 
-const LINKCENTS_URL = 'https://linkcents.com/E-Leak';
-const TUTORIAL_VIDEO_URL = "https://www.youtube.com/embed/OTCuv1ps8bc?si=euD5avRVzHLqBa4Z&autoplay=1";
+const LINKCENTS_URL = 'https://linkcents.com/E-Leak/auth/callback';
+const TUTORIAL_VIDEO_URL = "https://www.youtube.com/embed/fl7xdCFRup0?si=euD5avRVzHLqBa4Z&autoplay=1";
 
 export default function GenerateAccessPage() {
   const router = useRouter();
@@ -174,7 +174,7 @@ export default function GenerateAccessPage() {
               </div>
               <div className="genkey-feature-content">
                 <h4>Activation</h4>
-                <p>Key activates upon successful return from partner site via their 'Go to website' button.</p>
+                <p>Key activates upon successful.</p>
               </div>
             </div>
           </div>
