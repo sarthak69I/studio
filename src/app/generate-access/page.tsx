@@ -7,7 +7,8 @@ import {
   getValidAccessKey,
   getAccessKeyExpiry,
   clearAccessKey,
-  getValidPendingActivationToken, // Added to check if user returns prematurely
+  PendingActivationToken,
+  getValidPendingActivationToken,
 } from '@/lib/access-manager';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -41,16 +42,14 @@ export default function GenerateAccessPage() {
       return;
     }
 
-    // Check if user has initiated but returned here without going through callback
     const pendingToken = getValidPendingActivationToken();
     if (pendingToken) {
-        setPageState('awaitingRedirect'); // Or a more specific state like 'pendingReturnFromPartner'
-        setInfoText("You've started the process. To activate your key, please complete the steps on our partner site and use their 'Go to website' button to return to our application.");
+        setPageState('awaitingRedirect');
+        setInfoText("You've started the key generation process. Please complete the steps on our partner site and use their 'Go to website' button to return to our application and activate your key.");
     } else {
         setPageState('initial');
         setInfoText("To access course content, you need to generate a key. This key will be valid for 12 hours. After it expires, you'll need to generate a new one. Please follow the steps below.");
     }
-
   }, []);
 
   React.useEffect(() => {
@@ -66,29 +65,28 @@ export default function GenerateAccessPage() {
 
   const handleGenerateClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     e.preventDefault();
-    if (pageState === 'awaitingRedirect' && getValidPendingActivationToken()) {
-        // If they are already awaiting redirect and click again, just re-open Linkcents
-        // or simply do nothing and let the info text guide them.
-        // Forcing a re-open might be confusing. Let's just ensure Linkcents is opened if somehow closed.
-        window.open(LINKCENTS_URL, '_blank');
-        return;
-    }
-
-
-    clearAccessKey(); // Clear any existing access key if user wants to generate a new one
-    const pendingToken = setPendingActivationToken();
-    if (!pendingToken) {
+    
+    // Always clear any old access key if initiating
+    clearAccessKey(); 
+    
+    const newPendingToken = setPendingActivationToken();
+    if (!newPendingToken) {
       setPageState('error');
-      setInfoText('Could not initiate key generation. Please try again.');
+      setInfoText('Could not initiate key generation. Please try again or contact support if this issue persists.');
       return;
     }
 
     setIsButtonAnimating(true);
-    setTimeout(() => setIsButtonAnimating(false), 1000);
+    setTimeout(() => setIsButtonAnimating(false), 1000); // Reset animation
 
-    window.open(LINKCENTS_URL, '_blank');
+    // Open Linkcents in the same tab
+    window.location.href = LINKCENTS_URL;
+
+    // Since we are navigating away, the state update below might not be visible for long,
+    // but it's good practice to set it. The useEffect on page load will handle
+    // the correct state if the user navigates back to this page manually.
     setPageState('awaitingRedirect');
-    setInfoText("You are being redirected to our partner site. Please complete the process there and click their 'Go to website' button. You will be automatically returned to our app to finalize activation. Keep this tab open.");
+    setInfoText("You are being redirected to our partner site. Please complete the process there and click their 'Go to website' button. You will be automatically returned to our app to finalize activation.");
   };
 
   const handleShowTutorial = () => {
@@ -112,8 +110,8 @@ export default function GenerateAccessPage() {
         </>
       );
     }
-
-    // Initial or awaitingRedirect state
+    
+    // For 'initial' or 'awaitingRedirect' states
     return (
       <a href={LINKCENTS_URL} className={`genkey-btn genkey-floating ${isButtonAnimating ? 'genkey-animate-pulse' : ''}`} onClick={handleGenerateClick}>
         <span>Generate Key 🗝️</span>
@@ -124,9 +122,10 @@ export default function GenerateAccessPage() {
   return (
     <div className="genkey-page-bg">
       <div className="genkey-container genkey-animate-fadeIn">
-        <div className="genkey-content">
+        <div className="content">
+          {/* Glow effects removed as per previous request */}
           
-          <p className="genkey-info-text">{infoText}</p>
+          <p className="info-text">{infoText}</p>
 
           {pageState === 'accessGranted' && (
             <div className="genkey-message-success mb-6">
@@ -147,34 +146,34 @@ export default function GenerateAccessPage() {
             <span>How To Generate Key</span>
           </button>
           
-          <div className="genkey-features">
-            <div className="genkey-feature">
-              <div className="genkey-feature-icon">
+          <div className="features">
+            <div className="feature">
+              <div className="feature-icon">
                 <Shield />
               </div>
-              <div className="genkey-feature-content">
+              <div className="feature-content">
                 <h4>Secure Process</h4>
                 <p>Your access generation is handled securely.</p>
               </div>
             </div>
             
-            <div className="genkey-feature">
-              <div className="genkey-feature-icon">
+            <div className="feature">
+              <div className="feature-icon">
                 <Clock />
               </div>
-              <div className="genkey-feature-content">
+              <div className="feature-content">
                 <h4>12-Hour Validity</h4>
                 <p>Access key expires after 12 hours for security.</p>
               </div>
             </div>
             
-            <div className="genkey-feature">
-              <div className="genkey-feature-icon">
+            <div className="feature">
+              <div className="feature-icon">
                  <KeyRound />
               </div>
-              <div className="genkey-feature-content">
+              <div className="feature-content">
                 <h4>Activation</h4>
-                <p>Key activates upon successful.</p>
+                <p>Key activates upon successful return from partner site.</p>
               </div>
             </div>
           </div>
