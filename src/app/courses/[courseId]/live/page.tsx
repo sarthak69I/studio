@@ -26,7 +26,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     subtitle: "Interactive learning sessions for Science students",
     class1Subject: "NO CLASS 5:10 PHYSICS ON 8:10",
     class2Subject: "PHYSICS",
-    class1LiveStreamUrl: 
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}',
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
   },
   '2': { // Commerce
