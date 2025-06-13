@@ -18,7 +18,7 @@ interface LiveClassData {
   class2LiveStreamUrl?: string;
 }
 
-const newStreamPlayerBaseUrl = 'https://anym3u8player.com/tv/p.php?url=';
+const newStreamPlayerBaseUrl = 'https://eleaklive.vercel.app/?liveurl=';
 
 const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
