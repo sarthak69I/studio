@@ -221,13 +221,13 @@ export default function HomePage() {
                   <div className="py-4 space-y-3 text-sm">
                     <p>
                       To get All Class Updates Join the telegram channel:
-                      <Link href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                      <Link href="https://t.me/eleakcoursehub" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
                         Telegram
                       </Link>
                     </p>
                     <p>
                       Subscribe on YouTube:
-                      <Link href="https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                      <Link href="https://youtube.com/@nexttopper-freebatch?si=SgEYNb-mxjw3AFpP" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
                         Main Channel
                       </Link>
                     </p>
