@@ -9,18 +9,18 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Development',
       lectures: [
-        { id: 'L1', title: 'Development L1', notesLink: ``, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/P3K2mVqgR7Y' },
-        { id: 'L2', title: 'Development L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4352990/174481810831487880624/index_4.m3u8' },
-        { id: 'L3', title: 'Development L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354004/174490425923587880624/index_4.m3u8' },
-        { id: 'L4', title: 'Development L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355307/174506622189247880624/index_4.m3u8' },
-        { id: 'L5', title: 'Development L5', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356674/174523974370667880624/index_4.m3u8' },
+        { id: 'L1', title: 'Development L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/828604674800411900.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/P3K2mVqgR7Y' },
+        { id: 'L2', title: 'Development L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/499211942268668900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4352990/174481810831487880624/index_4.m3u8' },
+        { id: 'L3', title: 'Development L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/757785193454953700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354004/174490425923587880624/index_4.m3u8' },
+        { id: 'L4', title: 'Development L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/531868284639640500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355307/174506622189247880624/index_4.m3u8' },
+        { id: 'L5', title: 'Development L5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/588945413789555000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356674/174523974370667880624/index_4.m3u8' },
       ]
     },
     {
       name: 'Resources and Development',
       lectures: [
-        { id: 'L1', title: 'Resources and Development L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357716/174532560751637880624/index_4.m3u8' },
-        { id: 'L2', title: 'Resources and Development L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359018/174542319983487880624/index_4.m3u8' },
+        { id: 'L1', title: 'Resources and Development L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/307992216764131200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357716/174532560751637880624/index_4.m3u8' },
+        { id: 'L2', title: 'Resources and Development L2', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359018/174542319983487880624/index_4.m3u8' },
         { id: 'L3', title: 'Resources and Development L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360148/174550914289447880624/index_4.m3u8' },
         { id: 'L4', title: 'Resources and Development L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363238/174584423215647880624/index_4.m3u8' },
         { id: 'L5', title: 'Resources and Development L5', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364563/174593072250617880624/index_4.m3u8' },
@@ -41,18 +41,18 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Nationalism in Europe',
       lectures: [
-        { id: 'L1', title: 'Nationalism in Europe L1', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4385660/174765773598337880624/index_4.m3u8' },
-        { id: 'L2', title: 'Nationalism in Europe L2', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4386901/174774447851067880624/index_4.m3u8' },
-        { id: 'L3', title: 'Nationalism in Europe L3', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4388156/174784213776117880624/index_4.m3u8' },
-        { id: 'L4', title: 'Nationalism in Europe L4', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4389229/174791822718927880624/index_4.m3u8' },
-        { id: 'L5', title: 'Nationalism in Europe L5', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4393945/174835110070857880624/index_4.m3u8' },
-        { id: 'L6', title: 'Nationalism in Europe L6', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4395114/174844758699447880624/index_4.m3u8' },
-        { id: 'L7', title: 'Nationalism in Europe L7', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396261/174853315058577880624/index_4.m3u8' },
-        { id: 'L8', title: 'Nationalism in Europe L8', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L8.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406159/174955875139637880624/index_4.m3u8' },
-        { id: 'L9', title: 'Nationalism in Europe L9', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L9.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406366/174956988532027880624/index_4.m3u8' },
-        { id: 'L10', title: 'Nationalism in Europe L10', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L9.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407324/174964584764377880624/index_4.m3u8' },
-        { id: 'L11', title: 'Nationalism in Europe L11', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L9.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407497/174965714629147880624/index_4.m3u8' },
-        { id: 'L12', title: 'Nationalism in Europe L12', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L9.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408429/174974249991017880624/index_4.m3u8' },
+        { id: 'L1', title: 'Nationalism in Europe L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4385660/174765773598337880624/index_4.m3u8' },
+        { id: 'L2', title: 'Nationalism in Europe L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4386901/174774447851067880624/index_4.m3u8' },
+        { id: 'L3', title: 'Nationalism in Europe L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4388156/174784213776117880624/index_4.m3u8' },
+        { id: 'L4', title: 'Nationalism in Europe L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4389229/174791822718927880624/index_4.m3u8' },
+        { id: 'L5', title: 'Nationalism in Europe L5', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4393945/174835110070857880624/index_4.m3u8' },
+        { id: 'L6', title: 'Nationalism in Europe L6', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4395114/174844758699447880624/index_4.m3u8' },
+        { id: 'L7', title: 'Nationalism in Europe L7', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396261/174853315058577880624/index_4.m3u8' },
+        { id: 'L8', title: 'Nationalism in Europe L8', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406159/174955875139637880624/index_4.m3u8' },
+        { id: 'L9', title: 'Nationalism in Europe L9', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406366/174956988532027880624/index_4.m3u8' },
+        { id: 'L10', title: 'Nationalism in Europe L10', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407324/174964584764377880624/index_4.m3u8' },
+        { id: 'L11', title: 'Nationalism in Europe L11', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407497/174965714629147880624/index_4.m3u8' },
+        { id: 'L12', title: 'Nationalism in Europe L12', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408429/174974249991017880624/index_4.m3u8' },
         
       ]
     }
@@ -61,26 +61,26 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Chemical Equations & Reaction',
       lectures: [
-        { id: 'L1', title: 'Chemical Equations & Reaction L1', notesLink: `${aarambhBasePath}/science/${slugify('Chemical Equations & Reaction')}/notes/L1.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/nAqkO1C6Z5c' },
-        { id: 'L2', title: 'Chemical Equations & Reaction L2', notesLink: `${aarambhBasePath}/science/${slugify('Chemical Equations & Reaction')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4352723/174480784354101097666/index_5.m3u8' },
-        { id: 'L3', title: 'Chemical Equations & Reaction L3', notesLink: `${aarambhBasePath}/science/${slugify('Chemical Equations & Reaction')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353809/174489432994287880624/index_4.m3u8' },
-        { id: 'L4', title: 'Chemical Equations & Reaction L4', notesLink: `${aarambhBasePath}/science/${slugify('Chemical Equations & Reaction')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354717/174498038229378296383/index_4.m3u8' },
-        { id: 'L5', title: 'Chemical Equations & Reaction L5', notesLink: `${aarambhBasePath}/science/${slugify('Chemical Equations & Reaction')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4358838/174541230763428296383/index_4.m3u8' },
-        { id: 'L6', title: 'Chemical Equations & Reaction L6', notesLink: `${aarambhBasePath}/science/${slugify('Chemical Equations & Reaction')}/notes/L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359955/174549890921018296383/index_4.m3u8' },
-        { id: 'L7', title: 'Chemical Equations & Reaction L7', notesLink: `${aarambhBasePath}/science/${slugify('Chemical Equations & Reaction')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361147/174558535223448296383/index_4.m3u8' },
-        { id: 'L8', title: 'Chemical Equations & Reaction L8', notesLink: `${aarambhBasePath}/science/${slugify('Chemical Equations & Reaction')}/notes/L8.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362037/174567339728038296383/index_4.m3u8' },
+        { id: 'L1', title: 'Chemical Equations & Reaction L1', notesLink: ``, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/nAqkO1C6Z5c' },
+        { id: 'L2', title: 'Chemical Equations & Reaction L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4352723/174480784354101097666/index_5.m3u8' },
+        { id: 'L3', title: 'Chemical Equations & Reaction L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353809/174489432994287880624/index_4.m3u8' },
+        { id: 'L4', title: 'Chemical Equations & Reaction L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354717/174498038229378296383/index_4.m3u8' },
+        { id: 'L5', title: 'Chemical Equations & Reaction L5', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4358838/174541230763428296383/index_4.m3u8' },
+        { id: 'L6', title: 'Chemical Equations & Reaction L6', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359955/174549890921018296383/index_4.m3u8' },
+        { id: 'L7', title: 'Chemical Equations & Reaction L7', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361147/174558535223448296383/index_4.m3u8' },
+        { id: 'L8', title: 'Chemical Equations & Reaction L8', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362037/174567339728038296383/index_4.m3u8' },
       ]
     },
     {
       name: 'Light',
       lectures: [
-        { id: 'L1', title: 'Light L1', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365846/174601868499698296383/index_4.m3u8' },
-        { id: 'L2', title: 'Light L2', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367004/174610340159018296383/index_1.m3u8' },
-        { id: 'L3', title: 'Light L3', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368177/174619014979628296383/index_4.m3u8' },
-        { id: 'L4', title: 'Light L4', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370026/174627675448638296383/index_4.m3u8' },
-        { id: 'L5', title: 'Light L5', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4374886/174662262789208296383/index_4.m3u8' },
-        { id: 'L6', title: 'Light L6', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376022/174670906343678296383/index_4.m3u8' },
-        { id: 'L7', title: 'Light L7', notesLink: `${aarambhBasePath}/science/${slugify('Light')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377192/174679471966318296383/index_1.m3u8' }
+        { id: 'L1', title: 'Light L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365846/174601868499698296383/index_4.m3u8' },
+        { id: 'L2', title: 'Light L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367004/174610340159018296383/index_1.m3u8' },
+        { id: 'L3', title: 'Light L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368177/174619014979628296383/index_4.m3u8' },
+        { id: 'L4', title: 'Light L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370026/174627675448638296383/index_4.m3u8' },
+        { id: 'L5', title: 'Light L5', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4374886/174662262789208296383/index_4.m3u8' },
+        { id: 'L6', title: 'Light L6', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376022/174670906343678296383/index_4.m3u8' },
+        { id: 'L7', title: 'Light L7', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377192/174679471966318296383/index_1.m3u8' }
       ]
     },
     {
