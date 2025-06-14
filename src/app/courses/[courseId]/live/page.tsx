@@ -24,7 +24,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "Class 11 Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "NO CLASS 5:10 PHYSICS ON 8:10",
+    class1Subject: "PHYSICS",
     class2Subject: "PHYSICS",
     class1LiveStreamUrl: "",
     class2LiveStreamUrl: "",
