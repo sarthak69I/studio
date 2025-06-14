@@ -33,7 +33,9 @@ export const scienceCourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Motion in a Plane L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/547569735312311360.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396270/174853512223368296383/index_4.m3u8' },
         { id: 'L2', title: 'Motion in a Plane L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/882950906399658500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397274/174862200978868296383/index_4.m3u8' },
-      ]
+        { id: 'L3', title: 'Motion in a Plane L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408448/174974624946198296383/index_4.m3u8' },
+        { id: 'L4', title: 'Motion in a Plane L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409511/174983228258958296383/index_4.m3u8' },
+     ]
     },
     {
       name: 'Basic Mathematics',
