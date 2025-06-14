@@ -27,7 +27,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class1Subject: "NO CLASS 5:10 PHYSICS ON 8:10",
     class2Subject: "PHYSICS",
     class1LiveStreamUrl: "",
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
+    class2LiveStreamUrl: "",
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
@@ -42,16 +42,16 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     subtitle: "Interactive learning sessions for Aarambh batch",
     class1Subject: "Science",
     class2Subject: "Mathematics",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d2xqn12y4qo6nr.cloudfront.net/out/v1/4dacc3cc62ed4047b817b91580e11584/index_4.m3u8')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_1.m3u8')}`,
+    class1LiveStreamUrl: "",
+    class2LiveStreamUrl: ""
   },
   '4': { // Aarambh (Foundation Class 9)
     pageTitle: "Class 9 Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Class 9 Aarambh batch",
     class1Subject: "Mathematics",
     class2Subject: "#",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/5df5be72d17649f79577314291c6d2fc/index_4.m3u8')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('')}`,
+    class1LiveStreamUrl: "",
+    class2LiveStreamUrl: "",
   }
 };
 
