@@ -81,6 +81,8 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L3', title: 'Classification of Elements L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/491303024172372400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4392905/174827564478927555169/index_4.m3u8' },
         { id: 'L4', title: 'Classification of Elements L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/320680653076158800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394025/174836245685127555169/index_4.m3u8' },
         { id: 'L5', title: 'Classification of Elements L5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/880517372972588500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394991/174843803458707555169/index_4.m3u8' },
+        { id: 'L6', title: 'Classification of Elements L6', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406376/174957160517507555169/index_4.m3u8' },
+        { id: 'L7', title: 'Classification of Elements L7', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407338/174964691183307555169/index_4.m3u8' },
       ]
     },
   ],
@@ -124,6 +126,7 @@ export const scienceCourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Trigonometry Function L1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405153/174947369130311261798/index_4.m3u8' },
         { id: 'L2', title: 'Trigonometry Function L2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406215/174956025952221261798/index_4.m3u8' },
+        { id: 'L3', title: 'Trigonometry Function L3', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407505/174965818393941261798/index_4.m3u8' },
       ]
     },
   ],
@@ -169,7 +172,8 @@ export const scienceCourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Animal Kingdom L1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405246/174947952083222621696/index_4.m3u8' },
         { id: 'L2', title: 'Animal Kingdom L2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406311/174956537678522621696/index_4.m3u8' },
-      ]
+        { id: 'L3', title: 'Animal Kingdom L3', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408305/174973168472882621696/index_4.m3u8' },
+     ]
     },
   ]
 };
