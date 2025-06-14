@@ -52,6 +52,8 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L9', title: 'Nationalism in Europe L9', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L9.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406366/174956988532027880624/index_4.m3u8' },
         { id: 'L10', title: 'Nationalism in Europe L10', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L9.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407324/174964584764377880624/index_4.m3u8' },
         { id: 'L11', title: 'Nationalism in Europe L11', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L9.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407497/174965714629147880624/index_4.m3u8' },
+        { id: 'L12', title: 'Nationalism in Europe L12', notesLink: `${aarambhBasePath}/social-science/${slugify('Nationalism in Europe')}/notes/L9.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408429/174974249991017880624/index_4.m3u8' },
+        
       ]
     }
   ],
@@ -93,6 +95,13 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L7', title: 'Life Processes L7', notesLink: `${aarambhBasePath}/science/${slugify('Life Processes')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4398033/174878264133148296383/index_1.m3u8' },
         { id: 'L8', title: 'Life Processes L8', notesLink: `${aarambhBasePath}/science/${slugify('Life Processes')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408313/174973219814568296383/index_4.m3u8' },
       ]
+    },
+    {
+      name: 'Acid base',
+      lectures: [
+        { id: 'L1', title: 'L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409353/174981921287648296383/index_4.m3u8' },
+        { id: 'L2', title: 'L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410136/174990583084158296383/index_4.m3u8' },
+     ]
     }
   ],
   'Mathematics': [
@@ -142,6 +151,13 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L6', title: 'Trigonometry L6', notesLink: `${aarambhBasePath}/mathematics/${slugify('Trigonometry')}/notes/L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4392906/174827565494671097666/index_5.m3u8' },
         { id: 'L7', title: 'Trigonometry L7', notesLink: `${aarambhBasePath}/mathematics/${slugify('Trigonometry')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394019/174836153096901097666/index_5.m3u8' },
         { id: 'L8', title: 'Trigonometry L8', notesLink: `${aarambhBasePath}/mathematics/${slugify('Trigonometry')}/notes/L8.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397236/174861941652361097666/index_5.m3u8' },
+      ]
+    },  
+    {
+      name: 'Some Application of Trigonometry',
+      lectures: [
+        { id: 'L1', title: 'Some Application of Trigonometry L1', notesLink: `${aarambhBasePath}/mathematics/${slugify('SomeApplicationofTrigonometry')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409472/174982914345591097666/index_5.m3u8' },
+        { id: 'L2', title: 'Some Application of Trigonometry L2', notesLink: `${aarambhBasePath}/mathematics/${slugify('SomeApplicationofTrigonometry')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410213/174991601648451097666/index_5.m3u8' },
       ]
     }
   ],
