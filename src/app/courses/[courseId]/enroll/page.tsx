@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
 import { getParamAsString } from '@/lib/utils';
-// import { getValidAccessKey } from '@/lib/access-manager'; // Access key checker import commented out
 
 interface SubjectItemProps {
   name: string;
@@ -33,10 +32,10 @@ interface CourseSubjects {
 }
 
 const courseSpecificSubjects: CourseSubjects = {
-  '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology'], // Science Batch
-  '2': ['Business Studies', 'Accountancy', 'Economics', 'Mathematics'], // Commerce Batch
-  '3': ['Social Science', 'Science', 'Mathematics'], // Aarambh Batch (Class 10)
-  '4': ['Science', 'Social Science', 'Mathematics'], // Aarambh Batch (Class 9)
+  '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'English'], // Science Batch
+  '2': ['Business Studies', 'Accountancy', 'Economics', 'Mathematics', 'English'], // Commerce Batch
+  '3': ['Social Science', 'Science', 'Mathematics', 'English'], // Aarambh Batch (Class 10)
+  '4': ['Science', 'Social Science', 'Mathematics', 'English'], // Aarambh Batch (Class 9)
 };
 
 const courseDisplayNames: Record<string, string> = {
@@ -52,20 +51,12 @@ export default function EnrollPage() {
   const params = useParams();
   const courseId = getParamAsString(params.courseId);
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
-  const [isLoading, setIsLoading] = React.useState(true); // Keep loading state for general readiness
-  const [isAccessGranted, setIsAccessGranted] = React.useState(true); // Assume access is granted for now
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [isAccessGranted, setIsAccessGranted] = React.useState(true); // Assume access is granted
 
   React.useEffect(() => {
-    // const accessKey = getValidAccessKey();
-    // if (!accessKey) {
-    //   // Access key protection is now DISABLED
-    //   // router.push('/generate-access'); 
-    //   console.warn("Access key protection is currently disabled for /enroll page.");
-    //   // setIsAccessGranted(false); // This would trigger the redirect if uncommented
-    // } else {
-    //   setIsAccessGranted(true);
-    // }
-    setIsAccessGranted(true); // For now, always grant access
+    // console.warn("Access key protection is currently disabled for /enroll page.");
+    setIsAccessGranted(true); 
     setIsLoading(false);
   }, [router]);
 
@@ -82,7 +73,6 @@ export default function EnrollPage() {
           document.title = 'Enroll | E-Leak';
         }
     } else if (!isLoading && !isAccessGranted) {
-        // This state should ideally not be reached if access is always granted
         document.title = 'Access Required | E-Leak';
     }
   }, [courseId, isLoading, isAccessGranted]);
@@ -109,16 +99,6 @@ export default function EnrollPage() {
       </div>
     );
   }
-
-  // This block is unlikely to be hit if isAccessGranted is always true.
-  // if (!isAccessGranted) {
-  //   return (
-  //     <div className="flex flex-col min-h-screen items-center justify-center bg-background p-4 text-foreground">
-  //       <p>Redirecting to access generation page...</p>
-  //     </div>
-  //   );
-  // }
-
 
   return (
     <>

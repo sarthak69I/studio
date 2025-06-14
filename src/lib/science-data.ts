@@ -3,7 +3,7 @@
 import type { CourseContentMap } from './course-data';
 import { slugify } from './course-data';
 
-const scienceBasePath = '/assets/courses/science';
+const scienceBasePath = '/assets/courses/science'; // This path isn't used if notes/videos are #
 
 export const scienceCourseContent: CourseContentMap = {
   'Physics': [
@@ -308,21 +308,21 @@ export const scienceCourseContent: CourseContentMap = {
         {
           id: 'L1',
           title: 'The Living World L1',
-          notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`,
+          notesLink: `#`, // Placeholder
           videoEmbedType: 'youtube',
           videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc', 
         },
         {
           id: 'L2',
           title: 'The Living World L2',
-          notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L2.pdf`,
+          notesLink: `#`, // Placeholder
           videoEmbedType: 'hls',
           videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8',
         },
         {
           id: 'L3',
           title: 'The Living World L3',
-          notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L3.pdf`,
+          notesLink: `#`, // Placeholder
           videoEmbedType: 'hls',
           videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8',
         },
@@ -334,26 +334,49 @@ export const scienceCourseContent: CourseContentMap = {
         { 
           id: 'L1', 
           title: 'Biological Classification L1', 
-          notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L1.pdf`, 
+          notesLink: `#`, // Placeholder
           videoEmbedType: 'hls', 
           videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356824/174525216684262621696/index_4.m3u8'
         },
         { 
           id: 'L2', 
           title: 'Biological Classification L2', 
-          notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L2.pdf`, 
+          notesLink: `#`, // Placeholder
           videoEmbedType: 'hls', 
           videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357746/174532727651952621696/index_4.m3u8'
         },
         { 
           id: 'L3', 
           title: 'Biological Classification L3', 
-          notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L3.pdf`, 
+          notesLink: `#`, // Placeholder
           videoEmbedType: 'hls', 
           videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359040/174542518059332621696/index_4.m3u8'
         },
       ],
     },
   ],
+  'English': [
+    {
+      name: 'Grammar Fundamentals',
+      lectures: [
+        { id: 'sci-eng-grm-l1', title: 'Parts of Speech Overview', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'sci-eng-grm-l2', title: 'Basic Sentence Structure', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'sci-eng-grm-l3', title: 'Introduction to Tenses', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+      ]
+    },
+    {
+      name: 'Literature Appreciation',
+      lectures: [
+        { id: 'sci-eng-lit-l1', title: 'Understanding Prose', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'sci-eng-lit-l2', title: 'Elements of Poetry', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+      ]
+    },
+    {
+      name: 'Writing & Composition',
+      lectures: [
+        { id: 'sci-eng-wrt-l1', title: 'Paragraph Writing', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'sci-eng-wrt-l2', title: 'Letter Writing Basics', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+      ]
+    }
+  ],
 };
-

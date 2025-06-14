@@ -1,6 +1,4 @@
 
-'use client';
-
 import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -9,8 +7,8 @@ import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot } from 'lucide-react';
 import { 
   scienceCourseContent, 
   commerceCourseContent, 
-  aarambhCourseContent, // For Class 10
-  aarambh9CourseContent, // For Class 9
+  aarambhCourseContent,
+  aarambh9CourseContent,
   type CourseContentMap,
   type Topic
 } from '@/lib/course-data';
@@ -24,6 +22,71 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
+import type { Metadata, ResolvingMetadata } from 'next';
+
+const courseDisplayNamesForMetadata: Record<string, string> = {
+  '1': "Science Batch (Class 11)",
+  '2': "Commerce Batch (Class 11)",
+  '3': "Aarambh Batch (Class 10)",
+  '4': "Aarambh Batch (Class 9)",
+};
+
+export async function generateMetadata(
+  { params }: { params: { courseId: string; mode: string; subjectParam: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { courseId, mode, subjectParam } = params;
+  
+  let subjectName = "Unknown Subject";
+  try {
+    subjectName = decodeURIComponent(subjectParam);
+  } catch (e) {
+    console.error("Error decoding subjectParam for metadata:", e);
+  }
+
+  const courseName = courseDisplayNamesForMetadata[courseId] || `Course ${courseId}`;
+  const modeText = mode === 'notes' ? 'Notes' : 'Video Lectures';
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app";
+
+  const pageTitle = `${subjectName} ${modeText} | ${courseName} | E-Leak`;
+  const pageDescription = `Access ${modeText.toLowerCase()} for ${subjectName} in the ${courseName} on E-Leak. Enhance your learning with comprehensive study materials and lectures.`;
+  
+  const keywordsBase = [
+    `${courseName} ${subjectName}`,
+    `${subjectName} ${modeText}`,
+    `E-Leak ${subjectName}`,
+    courseName,
+    "online learning",
+    `E-Leak ${courseName}`,
+  ];
+  // Add specific keywords if possible, ensuring uniqueness and relevance
+  if (courseName.includes("Class 11")) keywordsBase.push("Class 11");
+  if (courseName.includes("Class 10")) keywordsBase.push("Class 10");
+  if (courseName.includes("Class 9")) keywordsBase.push("Class 9");
+  if (subjectName.toLowerCase() === "physics") keywordsBase.push("Physics");
+  if (subjectName.toLowerCase() === "chemistry") keywordsBase.push("Chemistry");
+  if (subjectName.toLowerCase() === "mathematics") keywordsBase.push("Maths");
+  if (subjectName.toLowerCase() === "biology") keywordsBase.push("Biology");
+  if (subjectName.toLowerCase() === "english") keywordsBase.push("English Learning");
+  if (subjectName.toLowerCase() === "accountancy") keywordsBase.push("Accountancy Basics");
+  if (subjectName.toLowerCase() === "business studies") keywordsBase.push("Business Studies Online");
+  if (subjectName.toLowerCase() === "economics") keywordsBase.push("Economics Lectures");
+  if (subjectName.toLowerCase() === "social science") keywordsBase.push("Social Studies");
+
+
+  const uniqueKeywords = Array.from(new Set(keywordsBase.map(kw => kw.trim()).filter(Boolean)));
+
+  const canonicalUrl = `${BASE_URL}/courses/${courseId}/content/${mode}/${subjectParam}`; // subjectParam is already encoded
+
+  return {
+    title: pageTitle,
+    description: pageDescription,
+    keywords: uniqueKeywords.slice(0, 7), // Limit keywords
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
+}
 
 
 export default function SubjectContentPage() {
@@ -37,10 +100,14 @@ export default function SubjectContentPage() {
   const [subjectName, setSubjectName] = React.useState('');
   const [displayedTopics, setDisplayedTopics] = React.useState<Topic[] | string | null>(null);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
-
+  const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
-    if (subjectParam && courseId) {
+    setIsMounted(true);
+  }, []);
+
+  React.useEffect(() => {
+    if (isMounted && subjectParam && courseId) {
       try {
         const decodedSubjectName = decodeURIComponent(subjectParam);
         setSubjectName(decodedSubjectName);
@@ -51,17 +118,17 @@ export default function SubjectContentPage() {
         } else if (courseId === '2') { 
           currentCourseMap = commerceCourseContent;
         } else if (courseId === '3') { 
-          currentCourseMap = aarambhCourseContent; // Class 10 Aarambh
+          currentCourseMap = aarambhCourseContent;
         } else if (courseId === '4') {
-          currentCourseMap = aarambh9CourseContent; // Class 9 Aarambh
+          currentCourseMap = aarambh9CourseContent;
         }
         
         const content = currentCourseMap ? currentCourseMap[decodedSubjectName] : undefined;
         
         if (content) {
-          if (typeof content === 'string') { // e.g., "Coming Soon"
+          if (typeof content === 'string') {
             setDisplayedTopics(content);
-          } else if (Array.isArray(content)) { // Array of Topic objects
+          } else if (Array.isArray(content)) {
             setDisplayedTopics(content as Topic[]);
           } else {
             setDisplayedTopics(`Content for ${decodedSubjectName} is in an unrecognized format.`);
@@ -76,28 +143,13 @@ export default function SubjectContentPage() {
         setSubjectName(fallbackName);
         setDisplayedTopics(`Content for '${subjectParam}' could not be loaded due to a decoding error.`);
       }
-    } else { 
+    } else if (isMounted) { 
       setSubjectName('Unknown Subject');
       setDisplayedTopics('No subject specified in URL or course ID missing.');
     }
-  }, [subjectParam, courseId]); 
+  }, [isMounted, subjectParam, courseId]); 
 
-  React.useEffect(() => {
-    if (subjectName) {
-      const modeText = mode === 'notes' ? 'Notes' : 'Videos';
-      let pageTitleSegment = subjectName;
-      
-      if (Array.isArray(displayedTopics) && displayedTopics.length > 0 && typeof displayedTopics[0] !== 'string' && displayedTopics[0].name) {
-        // Use subject name if multiple topics
-      } else if (typeof displayedTopics === 'string' && !displayedTopics.includes('Coming Soon') && !displayedTopics.includes('could not be loaded') && !displayedTopics.includes('unrecognized format')) {
-        pageTitleSegment = displayedTopics; // Use specific topic name if it's a single string topic
-      }
-      document.title = `${pageTitleSegment} - ${subjectName} ${modeText} | E-Leak`;
-    } else {
-      document.title = 'Subject Content | E-Leak';
-    }
-  }, [subjectName, mode, displayedTopics]);
-
+  // Client-side document.title setting is no longer needed as generateMetadata handles it.
 
   const renderTopicCard = (topic: Topic, index: number) => {
     const cardContent = (
@@ -109,7 +161,7 @@ export default function SubjectContentPage() {
       >
         <div className="flex items-center justify-between">
           <span className="text-xl sm:text-2xl font-semibold">{topic.name}</span>
-          {(topic.lectures && topic.lectures.length > 0) || (mode === 'notes' && topic.topicNotesLink) || (mode === 'video' && topic.topicVideoLink) ? (
+          {(topic.lectures && topic.lectures.length > 0) || (mode === 'notes' && topic.topicNotesLink && topic.topicNotesLink !== '#') || (mode === 'video' && topic.topicVideoLink && topic.topicVideoLink !== '#') ? (
             <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
           ) : null}
         </div>
@@ -124,7 +176,7 @@ export default function SubjectContentPage() {
     if (hasLectures) {
       return (
         <Link 
-          key={index} 
+          key={topic.name + index} 
           href={`/courses/${courseId}/content/${mode}/${encodeURIComponent(subjectName)}/${encodeURIComponent(topic.name)}/lectures`}
           className="w-full max-w-md block mb-6 cursor-pointer"
         >
@@ -137,7 +189,7 @@ export default function SubjectContentPage() {
     if (directLink && directLink !== '#') { 
         return (
             <a 
-              key={index} 
+              key={topic.name + index} 
               href={directLink} 
               target="_blank" 
               rel="noopener noreferrer"
@@ -150,13 +202,21 @@ export default function SubjectContentPage() {
 
     return (
       <div 
-        key={index}
+        key={topic.name + index}
         className="w-full max-w-md block mb-6 cursor-default"
       >
         {cardContent}
       </div>
     );
   };
+
+  if (!isMounted) {
+    return (
+      <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -188,7 +248,7 @@ export default function SubjectContentPage() {
                     {typeof displayedTopics === 'string' ? displayedTopics : 'Loading content or content not found.'}
                   </p>
                 ) : (
-                  <p className="text-xl text-muted-foreground">Loading content or content not found.</p>
+                  <p className="text-xl text-muted-foreground">Loading content...</p>
                 );
             }
 
@@ -200,7 +260,9 @@ export default function SubjectContentPage() {
                         <p className="text-xl text-muted-foreground">{displayedTopics}</p>
                     )
                   ) : (
-                    renderTopicCard({ name: displayedTopics } as Topic, 0) 
+                    // This case might not be typical if string means "Coming Soon" or error
+                    // If a string is a valid topic, ensure it's wrapped in a Topic-like object for renderTopicCard
+                    renderTopicCard({ name: displayedTopics, lectures: [] } as Topic, 0) 
                   );
             }
             
@@ -211,7 +273,7 @@ export default function SubjectContentPage() {
               return displayedTopics.map((topic, index) => renderTopicCard(topic, index));
             }
 
-            return <p className="text-xl text-muted-foreground">Content format not recognized.</p>;
+            return <p className="text-xl text-muted-foreground">Content format not recognized or still loading.</p>;
           })()}
         </main>
 
@@ -248,5 +310,3 @@ export default function SubjectContentPage() {
     </>
   );
 }
-
-    
