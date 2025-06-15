@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState, type ReactNode } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; // Import usePathname
+import { usePathname } from 'next/navigation';
 import { Toaster } from "@/components/ui/toaster";
 import { Button } from '@/components/ui/button';
 import { Bell } from 'lucide-react';
@@ -17,7 +17,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import CookieConsentBanner from './cookie-consent-banner';
-// Removed MaintenancePage import
+import MaintenancePage from './maintenance-page'; // Maintenance page component
 
 interface AppNotification {
   id: string;
@@ -41,20 +41,46 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const pathname = usePathname();
   
-  // State and useEffect for maintenance mode removed
+  const [showMaintenance, setShowMaintenance] = useState(false);
+  const [maintenanceEndTime, setMaintenanceEndTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    // Maintenance mode check
+    const maintenanceModeEnabled = process.env.NEXT_PUBLIC_MAINTENANCE_MODE_ENABLED === 'true';
+    if (maintenanceModeEnabled) {
+      const endTimeStr = process.env.NEXT_PUBLIC_MAINTENANCE_END_TIME_HHMM; // e.g., "10:00"
+      if (endTimeStr && /^\d{2}:\d{2}$/.test(endTimeStr)) {
+        const [hours, minutes] = endTimeStr.split(':').map(Number);
+        const now = new Date();
+        const MaintEndTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, 0, 0);
+        
+        setMaintenanceEndTime(MaintEndTime);
+        if (now < MaintEndTime) {
+          setShowMaintenance(true);
+        } else {
+          setShowMaintenance(false);
+        }
+      } else {
+        // Invalid or no end time provided, so don't show maintenance
+        setShowMaintenance(false);
+        setMaintenanceEndTime(null); 
+      }
+    } else {
+      setShowMaintenance(false);
+    }
+
+    // Other useEffect logic
     const handleContextmenu = (e: MouseEvent) => {
       e.preventDefault();
     };
     document.addEventListener('contextmenu', handleContextmenu);
     
-    fetchNotifications(); // Fetch notifications unconditionally now
+    fetchNotifications();
 
     return () => {
       document.removeEventListener('contextmenu', handleContextmenu);
     };
-  }, []); // Removed showMaintenance dependency
+  }, [pathname]); // Re-check on pathname change if needed, or just once on mount
 
   const fetchNotifications = async () => {
     try {
@@ -93,11 +119,11 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   };
 
   const isSpecialPage = pathname === '/generate-access' || pathname === '/help-center';
-  // Logic for showMaintenance removed, showGlobalUIElements depends only on isSpecialPage
-  const showGlobalUIElements = !isSpecialPage;
+  const showGlobalUIElements = !isSpecialPage && !showMaintenance;
 
-
-  // Conditional rendering for MaintenancePage removed
+  if (showMaintenance && maintenanceEndTime) {
+    return <MaintenancePage maintenanceEndTime={maintenanceEndTime} />;
+  }
 
   return (
     <>
@@ -166,7 +192,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
       </a>
-      {/* CookieConsentBanner shown unconditionally (based on its own logic) */}
       <CookieConsentBanner /> 
     </>
   );

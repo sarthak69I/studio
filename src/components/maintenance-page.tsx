@@ -6,7 +6,7 @@ import { Loader2, Clock } from 'lucide-react';
 import Image from 'next/image';
 
 interface MaintenancePageProps {
-  maintenanceEndTime: Date | null;
+  maintenanceEndTime: Date | null; // Expecting a Date object
 }
 
 const MaintenancePage: React.FC<MaintenancePageProps> = ({ maintenanceEndTime }) => {
@@ -15,8 +15,10 @@ const MaintenancePage: React.FC<MaintenancePageProps> = ({ maintenanceEndTime })
 
   useEffect(() => {
     if (!maintenanceEndTime) {
-      setIsPastEndTime(true); // Or handle as an error/default state
-      setTimeRemaining('Maintenance configuration error.');
+      // This case should ideally be handled by the parent component not rendering this page
+      // if the end time is invalid or not set.
+      setIsPastEndTime(true);
+      setTimeRemaining('Maintenance end time not configured.');
       return;
     }
 
@@ -27,6 +29,8 @@ const MaintenancePage: React.FC<MaintenancePageProps> = ({ maintenanceEndTime })
         setIsPastEndTime(true);
         setTimeRemaining('Site should be live now! Please refresh.');
         if (intervalId) clearInterval(intervalId);
+        // Potentially trigger a page reload after a short delay
+        // setTimeout(() => window.location.reload(), 5000); 
         return;
       }
       setIsPastEndTime(false);
