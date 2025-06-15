@@ -1,4 +1,3 @@
-
 // src/lib/aarambh9-data.ts
 import type { CourseContentMap, Lecture } from './course-utils';
 import { slugify } from './course-utils';
@@ -30,13 +29,23 @@ export const aarambh9CourseContent: CourseContentMap = {
       ]
     },
     {
+      name: 'Is matter around us pure?',
+      lectures: [
+        { id: 'L1', title: 'Is matter around us pure? L1', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406208/174956007294357555169/index_4.m3u8' },
+        { id: 'L2', title: 'Is matter around us pure? L2', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407492/174965677724307555169/index_4.m3u8' },
+        { id: 'L3', title: 'Is matter around us pure? L3', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
+        { id: 'L4', title: 'Is matter around us pure? L4', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
+      ]
+    },
+    {
       name: 'The Fundamental Unit of Life',
       lectures: [
-        { id: 'L1', title: 'The Fundamental Unit of Life L1', notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: '#' },
-        { id: 'L2', title: 'The Fundamental Unit of Life L2', notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: '#' },
-        { id: 'L3', title: 'The Fundamental Unit of Life L3', notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: '#' },
-        { id: 'L4', title: 'The Fundamental Unit of Life L4', notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: '#' },
-        { id: 'L5', title: 'The Fundamental Unit of Life L5', notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'L1', title: 'The Fundamental Unit of Life L1', notesLink: `${aarambh9BasePath}/science/${slugify('The Fundamental Unit of Life')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4385663/174765778737748296383/174765778737748296383_8296383.m3u8' },
+        { id: 'L2', title: 'The Fundamental Unit of Life L2', notesLink: `${aarambh9BasePath}/science/${slugify('The Fundamental Unit of Life')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4388166/174784311082348296383/174784311082348296383_8296383.m3u8' },
+        { id: 'L3', title: 'The Fundamental Unit of Life L3', notesLink: `${aarambh9BasePath}/science/${slugify('The Fundamental Unit of Life')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4392729/174826422289318296383/index_4.m3u8' },
+        { id: 'L4', title: 'The Fundamental Unit of Life L4', notesLink: `${aarambh9BasePath}/science/${slugify('The Fundamental Unit of Life')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4393920/174834967737708296383/index_1.m3u8' },
+        { id: 'L5', title: 'The Fundamental Unit of Life L5', notesLink: `${aarambh9BasePath}/science/${slugify('The Fundamental Unit of Life')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4395109/174844706284808296383/index_1.m3u8' },
+        { id: 'L6', title: 'The Fundamental Unit of Life L6', notesLink: `${aarambh9BasePath}/science/${slugify('The Fundamental Unit of Life')}/notes/L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4404108/174931141517868296383/174931141517868296383_8296383.m3u8' },
       ]
     },
   ],
@@ -72,6 +81,16 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L4', title: 'The Story of Village Palampur L4', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4398034/174878305850708165220/index_4.m3u8' },
       ]
     },
+    {
+      name: 'What is Democracy & why is democracy',
+      lectures: [
+        { id: 'L1', title: 'What is Democracy & why is democracy L1', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405294/174948480645778165220/174948480645778165220_8165220.m3u8' },
+        { id: 'L2', title: 'What is Democracy & why is democracy L2', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406373/174957083156418165220/index_4.m3u8' },
+        { id: 'L3', title: 'What is Democracy & why is democracy L3', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407312/174964547257888165220/index_4.m3u8' },
+        { id: 'L4', title: 'What is Democracy & why is democracy L4', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
+        { id: 'L5', title: 'What is Democracy & why is democracy L5', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
+      ]
+    },
   ],
   'Mathematics': [
     {
@@ -104,8 +123,10 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'Coordinate Geometry',
       lectures: [
-        { id: 'L1', title: 'Coordinate Geometry L1', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396260/174853287832481261798/index_4.m3u8' },
-        { id: 'L2', title: 'Coordinate Geometry L2', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397075/174860816936171261798/index_4.m3u8' },
+        { id: 'L1', title: 'Coordinate Geometry L1', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396260/174853287832481261798/index_4.m3u8' },
+        { id: 'L2', title: 'Coordinate Geometry L2', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397075/174860816936171261798/index_4.m3u8' },
+        { id: 'L3', title: 'Coordinate Geometry L3', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397715/174869387171741261798/174869387171741261798_1261798.m3u8' },
+        { id: 'L4', title: 'Coordinate Geometry L4', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
       ]
     },
   ],

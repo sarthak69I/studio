@@ -1,4 +1,3 @@
-
 // src/lib/science-data.ts
 import type { CourseContentMap } from './course-data';
 import { slugify } from './course-data';
@@ -10,204 +9,58 @@ export const scienceCourseContent: CourseContentMap = {
     {
       name: 'Units and Measurement',
       lectures: [
-        {
-          id: 'L1',
-          title: 'Units and Measurement L1',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/350215509469119700.pdf`,
-          videoEmbedType: 'youtube',
-          videoEmbedUrl: 'https://www.youtube.com/embed/eYHkwzP0TkY',
-        },
-        {
-          id: 'L2',
-          title: 'Units and Measurement L2',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/320554157609896960.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354032/174490568189301097666/index_5.m3u8',
-        },
-        {
-          id: 'L3',
-          title: 'Units and Measurement L3',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/282566967198221150.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354885/174499396879388296383/index_4.m3u8',
-        },
-        {
-          id: 'L4',
-          title: 'Units and Measurement L4',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/141795108468127550.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360178/174551194721888296383/index_4.m3u8',
-        },
-        {
-          id: 'L5',
-          title: 'Units and Measurement L5',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/4024933903930072.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361337/174559902322678296383/index_4.m3u8',
-        },
-        {
-          id: 'L6',
-          title: 'Units and Measurement L6',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/42711989017558184.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362139/174568479092198296383/index_4.m3u8',
-        },
-      ],
+        { id: 'L1', title: 'Units and Measurement L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/350215509469119700.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/eYHkwzP0TkY' },
+        { id: 'L2', title: 'Units and Measurement L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/320554157609896960.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354032/174490568189301097666/index_5.m3u8' },
+        { id: 'L3', title: 'Units and Measurement L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/282566967198221150.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354885/174499396879388296383/index_4.m3u8' },
+        { id: 'L4', title: 'Units and Measurement L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/141795108468127550.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360178/174551194721888296383/index_4.m3u8' },
+        { id: 'L5', title: 'Units and Measurement L5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/4024933903930072.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361337/174559902322678296383/index_4.m3u8' },
+        { id: 'L6', title: 'Units and Measurement L6', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/42711989017558184.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362139/174568479092198296383/index_4.m3u8' },
+      ]
     },
     {
       name: 'Motion In a Straight Line',
       lectures: [
-        {
-          id: 'L1',
-          title: 'Motion In a Straight Line L1',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/671154171864929000.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367211/174611702457038296383/index_4.m3u8',
-        },
-        {
-          id: 'L2',
-          title: 'Motion In a Straight Line L2',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/534474456291874800.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384135/174741235930878296383/index_4.m3u8',
-        },
-        {
-          id: 'L3',
-          title: 'Motion In a Straight Line L3',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/197692296755338560.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384839/174749905027548296383/index_4.m3u8',
-        },
-        {
-          id: 'L4',
-          title: 'Motion In a Straight Line L4',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/258346732119085800.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4389362/174793149686398296383/index_4.m3u8',
-        },
-        {
-          id: 'L5',
-          title: 'Motion In a Straight Line L5',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/822723306838902300.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4390995/174801802012768296383/index_4.m3u8',
-        },
-        {
-          id: 'L6',
-          title: 'Motion In a Straight Line L6',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/547569735312311360.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4391550/174810397274838296383/index_4.m3u8',
-        },
-      ],
+        { id: 'L1', title: 'Motion In a Straight Line L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/671154171864929000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367211/174611702457038296383/index_4.m3u8' },
+        { id: 'L2', title: 'Motion In a Straight Line L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/534474456291874800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384135/174741235930878296383/index_4.m3u8' },
+        { id: 'L3', title: 'Motion In a Straight Line L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/197692296755338560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384839/174749905027548296383/index_4.m3u8' },
+        { id: 'L4', title: 'Motion In a Straight Line L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/258346732119085800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4389362/174793149686398296383/index_4.m3u8' },
+        { id: 'L5', title: 'Motion In a Straight Line L5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/822723306838902300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4390995/174801802012768296383/index_4.m3u8' },
+        { id: 'L6', title: 'Motion In a Straight Line L6', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/547569735312311360.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4391550/174810397274838296383/index_4.m3u8' },
+      ]
     },
     {
       name: 'Motion in a Plane',
       lectures: [
-        {
-          id: 'L1',
-          title: 'Motion in a Plane L1',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/547569735312311360.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396270/174853512223368296383/index_4.m3u8',
-        },
-        {
-          id: 'L2',
-          title: 'Motion in a Plane L2',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/882950906399658500.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397274/174862200978868296383/index_4.m3u8',
-        },
-      ],
+        { id: 'L1', title: 'Motion in a Plane L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/547569735312311360.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396270/174853512223368296383/index_4.m3u8' },
+        { id: 'L2', title: 'Motion in a Plane L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/882950906399658500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397274/174862200978868296383/index_4.m3u8' },
+        { id: 'L3', title: 'Motion in a Plane L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408448/174974624946198296383/index_4.m3u8' },
+        { id: 'L4', title: 'Motion in a Plane L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409511/174983228258958296383/index_4.m3u8' },
+        { id: 'L5', title: 'Motion in a Plane L5', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410224/174991883860928296383/index_4.m3u8' },
+        
+      ]
     },
     {
       name: 'Basic Mathematics',
       lectures: [
-        {
-          id: 'L1',
-          title: 'Basic Mathematics L1',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/63080286597865820.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368402/174620181785161071993/index_4.m3u8',
-        },
-        {
-          id: 'L2',
-          title: 'Basic Mathematics L2',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/781289778058012200.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370179/174628987185681071993/index_4.m3u8',
-        },
-        {
-          id: 'L3',
-          title: 'Basic Mathematics L3',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/311010593170532600.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376221/174672074184601071993/index_4.m3u8',
-        },
-        {
-          id: 'L4',
-          title: 'Basic Mathematics L4',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/512879724400887040.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377330/174680770411381071993/index_4.m3u8',
-        },
-        {
-          id: 'L5',
-          title: 'Basic Mathematics L5',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/294291601749770000.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377993/174689329024511071993/index_4.m3u8',
-        },
-      ],
+        { id: 'L1', title: 'Basic Mathematics L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/63080286597865820.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368402/174620181785161071993/index_4.m3u8' },
+        { id: 'L2', title: 'Basic Mathematics L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/781289778058012200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370179/174628987185681071993/index_4.m3u8' },
+        { id: 'L3', title: 'Basic Mathematics L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/311010593170532600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376221/174672074184601071993/index_4.m3u8' },
+        { id: 'L4', title: 'Basic Mathematics L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/512879724400887040.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377330/174680770411381071993/index_4.m3u8' },
+        { id: 'L5', title: 'Basic Mathematics L5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/294291601749770000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377993/174689329024511071993/index_4.m3u8' },
+      ]
     },
   ],
   'Chemistry': [
     {
       name: 'Some Basic Concepts of Chemistry',
       lectures: [
-        {
-          id: 'L1',
-          title: 'Some Basic Concepts of Chemistry L1',
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/365664162104436740.pdf`,
-          videoEmbedType: 'youtube',
-          videoEmbedUrl: 'https://www.youtube.com/embed/EVU_Bvc3HpE',
-        },
-        {
-          id: 'L2',
-          title: 'Some Basic Concepts of Chemistry L2',
-          notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/60665227316336800.pdf',
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353000/174481993295887555169/index_4.m3u8',
-        },
-        {
-          id: 'L3',
-          title: 'Some Basic Concepts of Chemistry L3',
-          notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/563943491510636200.pdf',
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355452/174507897732027555169/index_4.m3u8',
-        },
-        {
-          id: 'L4',
-          title: 'Some Basic Concepts of Chemistry L4',
-          notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/646257785235418800.pdf',
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357309/174530949861477555169/index_4.m3u8',
-        },
-        {
-          id: 'L5',
-          title: 'Some Basic Concepts of Chemistry L5',
-          notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/492924385069963100.pdf',
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357831/174533736975997555169/index_4.m3u8',
-        },
-        {
-          id: 'L6',
-          title: 'Some Basic Concepts of Chemistry L6',
-          notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/776962540288405800.pdf',
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4358829/174541226159937555169/index_4.m3u8',
-        },
-      ],
+        { id: 'L1', title: 'Some Basic Concepts of Chemistry L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/365664162104436740.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/EVU_Bvc3HpE' },
+        { id: 'L2', title: 'Some Basic Concepts of Chemistry L2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/60665227316336800.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353000/174481993295887555169/index_4.m3u8' },
+        { id: 'L3', title: 'Some Basic Concepts of Chemistry L3', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/563943491510636200.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355452/174507897732027555169/index_4.m3u8' },
+        { id: 'L4', title: 'Some Basic Concepts of Chemistry L4', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/646257785235418800.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357309/174530949861477555169/index_4.m3u8' },
+        { id: 'L5', title: 'Some Basic Concepts of Chemistry L5', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/492924385069963100.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357831/174533736975997555169/index_4.m3u8' },
+        { id: 'L6', title: 'Some Basic Concepts of Chemistry L6', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/776962540288405800.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4358829/174541226159937555169/index_4.m3u8' },
+      ]
     },
     {
       name: 'Structure of Atom',
@@ -222,7 +75,7 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L8', title: 'Structure of Atom L8', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/793662167351692000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4380760/174715119572127555169/index_4.m3u8' },
         { id: 'L9', title: 'Structure of Atom L9', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/759793162637350300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4381822/174722718560337555169/index_4.m3u8' },
         { id: 'L10', title: 'Structure of Atom L10', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/286340414077823100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4385842/174767006769507555169/index_4.m3u8' },
-      ],
+      ]
     },
     {
       name: 'Classification of Elements',
@@ -232,6 +85,8 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L3', title: 'Classification of Elements L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/491303024172372400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4392905/174827564478927555169/index_4.m3u8' },
         { id: 'L4', title: 'Classification of Elements L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/320680653076158800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394025/174836245685127555169/index_4.m3u8' },
         { id: 'L5', title: 'Classification of Elements L5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/880517372972588500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394991/174843803458707555169/index_4.m3u8' },
+        { id: 'L6', title: 'Classification of Elements L6', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406376/174957160517507555169/index_4.m3u8' },
+        { id: 'L7', title: 'Classification of Elements L7', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407338/174964691183307555169/index_4.m3u8' },
       ]
     },
   ],
@@ -239,41 +94,11 @@ export const scienceCourseContent: CourseContentMap = {
     {
       name: 'Sets',
       lectures: [
-        {
-          id: `L1`,
-          title: `Sets L1`,
-          notesLink: `https://drive.google.com/file/d/19Q6y1QGvyPJo3t87MnndIgWWiGalcT-o/preview`,
-          videoEmbedType: 'youtube',
-          videoEmbedUrl: 'https://www.youtube.com/embed/UT9CN9XFGYw',
-        },
-        {
-          id: `L2`,
-          title: `Sets L2`,
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5110820Sets%20L2.pdf_Sets%20L2.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8',
-        },
-        {
-          id: `L3`,
-          title: `Sets L3`,
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/798181586567513700.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356690/174524049345081097666/index_5.m3u8',
-        },
-        {
-          id: `L4`,
-          title: `Sets L4`,
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/452267096067597250.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357736/174532685248651097666/index_5.m3u8',
-        },
-        {
-          id: `L5`,
-          title: `Sets L5`,
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/397684346174967800.pdf`,
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359038/174542426999201097666/index_5.m3u8',
-        },
+        { id: 'L1', title: 'Sets L1', notesLink: `https://drive.google.com/file/d/19Q6y1QGvyPJo3t87MnndIgWWiGalcT-o/preview`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/UT9CN9XFGYw' },
+        { id: 'L2', title: 'Sets L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5110820Sets%20L2.pdf_Sets%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8' },
+        { id: 'L3', title: 'Sets L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/798181586567513700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356690/174524049345081097666/index_5.m3u8' },
+        { id: 'L4', title: 'Sets L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/452267096067597250.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357736/174532685248651097666/index_5.m3u8' },
+        { id: 'L5', title: 'Sets L5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/397684346174967800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359038/174542426999201097666/index_5.m3u8' },
       ]
     },
     {
@@ -284,8 +109,8 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L3', title: 'Complex Numbers L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/21963317727613020.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4366039/174602857795961261798/index_4.m3u8' },
         { id: 'L4', title: 'Complex Numbers L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/348718648836124700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367111/174610963914991261798/index_4.m3u8' },
         { id: 'L5', title: 'Complex Numbers L5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/446451742730990000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372190/174645001549831261798/index_4.m3u8' },
-        { id: 'L6', title: 'Complex Numbers L6', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8' },
-        { id: 'L7', title: 'Complex Numbers L7', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8' },
+        { id: 'L6', title: 'Complex Numbers L6', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373799/174653642467251261798/index_4.m3u8' },
+        { id: 'L7', title: 'Complex Numbers L7', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4375005/174663383331301261798/index_4.m3u8' },
       ]
     },
     {
@@ -300,83 +125,59 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L7', title: 'Relation & Functions L7', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/817730254422810200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4395110/174844717954831097666/index_5.m3u8' },
       ]
     },
+    {
+      name: 'Trigonometry Function',
+      lectures: [
+        { id: 'L1', title: 'Trigonometry Function L1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405153/174947369130311261798/index_4.m3u8' },
+        { id: 'L2', title: 'Trigonometry Function L2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406215/174956025952221261798/index_4.m3u8' },
+        { id: 'L3', title: 'Trigonometry Function L3', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407505/174965818393941261798/index_4.m3u8' },
+      ]
+    },
   ],
   'Biology': [
     {
       name: 'The Living World',
       lectures: [
-        {
-          id: 'L1',
-          title: 'The Living World L1',
-          notesLink: `#`, // Placeholder
-          videoEmbedType: 'youtube',
-          videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc', 
-        },
-        {
-          id: 'L2',
-          title: 'The Living World L2',
-          notesLink: `#`, // Placeholder
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8',
-        },
-        {
-          id: 'L3',
-          title: 'The Living World L3',
-          notesLink: `#`, // Placeholder
-          videoEmbedType: 'hls',
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8',
-        },
-      ],
+        { id: 'L1', title: 'The Living World L1', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc' },
+        { id: 'L2', title: 'The Living World L2', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8' },
+        { id: 'L3', title: 'The Living World L3', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8' },
+      ]
     },
     {
       name: 'Biological Classification',
       lectures: [
-        { 
-          id: 'L1', 
-          title: 'Biological Classification L1', 
-          notesLink: `#`, // Placeholder
-          videoEmbedType: 'hls', 
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356824/174525216684262621696/index_4.m3u8'
-        },
-        { 
-          id: 'L2', 
-          title: 'Biological Classification L2', 
-          notesLink: `#`, // Placeholder
-          videoEmbedType: 'hls', 
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357746/174532727651952621696/index_4.m3u8'
-        },
-        { 
-          id: 'L3', 
-          title: 'Biological Classification L3', 
-          notesLink: `#`, // Placeholder
-          videoEmbedType: 'hls', 
-          videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359040/174542518059332621696/index_4.m3u8'
-        },
-      ],
-    },
-  ],
-  'English': [
-    {
-      name: 'The Portrait of a lady ',
-      lectures: [
-        { id: 'l1', title: 'The Portrait of a lady 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3791390The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L1.pdf_The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355612/1745159224_9384778348109423/sunny/1745158131261_464915711062529660_video_VOD720p30.m3u8' },
-        { id: 'l2', title: 'The Portrait of a lady 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1786690The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L2.pdf_The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362029/1745700364_6861508399271443/sunny/1745672208426_612520282028803100_video_VOD720p30.m3u8' },
+        { id: 'L1', title: 'Biological Classification L1', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356754/174524546772032621696/index_4.m3u8' },
+        { id: 'L2', title: 'Biological Classification L2', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357796/174533217995822621696/index_4.m3u8' },
+        { id: 'L3', title: 'Biological Classification L3', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359956/174549899862182621696/index_4.m3u8' },
+        { id: 'L4', title: 'Biological Classification L4', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363375/174585552159492621696/index_4.m3u8' },
+        { id: 'L5', title: 'Biological Classification L5', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364707/174593615136972621696/index_4.m3u8' },
+        { id: 'L6', title: 'Biological Classification L6', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4366969/174610253788082621696/index_4.m3u8' },
+        { id: 'L7', title: 'Biological Classification L7', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372260/174645518133352621696/index_4.m3u8' },
+        { id: 'L8', title: 'Biological Classification L8', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L8.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373877/174654161051022621696/index_4.m3u8' },
+        { id: 'L9', title: 'Biological Classification L9', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L9.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376014/174670815163022621696/index_4.m3u8' },
+        { id: 'L10', title: 'Biological Classification L10', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L10.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4379100/174705957021312621696/index_4.m3u8' },
       ]
     },
     {
-      name: 'A Photograph',
+      name: 'Plant Kingdom',
       lectures: [
-        { id: 'l1', title: 'A Photograph 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/59141A%20photograph%20%20%20L1.pdf_A%20photograph%20%20%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362027/1745699824_5382116785203709/sunny/1745672048539_449041945338372300_video_VOD720p30.m3u8' },
-        { id: 'l2', title: 'A Photograph 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1875512A%20Photograph%20%20%20L2.pdf_A%20Photograph%20%20%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362028/1745700123_7827683171701798/sunny/1745672142046_1468116101409511_video_VOD720p30.m3u8' },
+        { id: 'L1', title: 'Plant Kingdom L1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4380724/174714587348772621696/index_4.m3u8' },
+        { id: 'L2', title: 'Plant Kingdom L2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4382830/174731342734562621696/index_4.m3u8' },
+        { id: 'L3', title: 'Plant Kingdom L3', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4385775/174766412670572621696/index_4.m3u8' },
+        { id: 'L4', title: 'Plant Kingdom L4', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4387033/174775110681002621696/index_4.m3u8' },
+        { id: 'L5', title: 'Plant Kingdom L5', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4389241/174791848422382621696/index_4.m3u8' },
+        { id: 'L6', title: 'Plant Kingdom L6', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4392848/174826911678352621696/index_4.m3u8' },
+        { id: 'L7', title: 'Plant Kingdom L7', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4393968/174835523751212621696/index_4.m3u8' },
+        { id: 'L8', title: 'Plant Kingdom L8', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396104/174852080879932621696/index_4.m3u8' },
       ]
     },
     {
-      name: 'We"re not afraid to die',
+      name: 'Animal Kingdom',
       lectures: [
-        { id: 'l1', title: 'We"re not afraid to die 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6959710We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L1.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376841/1746782584_5615518054046778/sunny/1746782168362_44751792912049930_video_VOD720p30.m3u8' },
-        { id: 'l2', title: 'We"re not afraid to die 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1490688We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L2.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376842/1746782588_1716697312405945/sunny/1746782291885_47950164792380220_video_VOD720p30.m3u8' },
-        { id: 'l3', title: 'We"re not afraid to die 3', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6835826We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L3.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L3.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376843/1746783246_9612936247338730/sunny/1746782427627_664906068054696800_video_VOD720p30.m3u8' }, 
-      ]
-    }
-  ],
+        { id: 'L1', title: 'Animal Kingdom L1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405246/174947952083222621696/index_4.m3u8' },
+        { id: 'L2', title: 'Animal Kingdom L2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406311/174956537678522621696/index_4.m3u8' },
+        { id: 'L3', title: 'Animal Kingdom L3', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408305/174973168472882621696/index_4.m3u8' },
+     ]
+    },
+  ]
 };

@@ -189,7 +189,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
         </a>
       )}
 
-      <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
+      <a href="https://t.me/eleakcoursehub" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
       </a>
       <CookieConsentBanner /> 

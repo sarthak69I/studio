@@ -75,14 +75,14 @@ const coursesData: Course[] = [
     badgeText: 'NEW',
     title: 'CLASS 9th Aarambh',
     subtitle: 'Foundation Batch',
-    imageUrl: 'https://i.ibb.co/KpH1HXVB/download.jpg',
+    imageUrl: 'https://i.ibb.co/bfm5bLc/download-1.jpg',
     imageAlt: 'Class 9 Aarambh Foundation Batch Course Cover',
     imageAiHint: 'education foundation',
     highlightText: 'Batch for Class 9th',
     startDate: 'Started from Apr 2025',
     enrollLink: '/courses/4/enroll',
     youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
-    timeTableImageUrl: 'https://i.ibb.co/k2ZRrfwj/IMG-20250609-223955.jpg',
+    timeTableImageUrl: 'https://i.ibb.co/WNf8vK29/IMG-20250612-220549.jpg',
     liveSlots: [
       { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
@@ -221,13 +221,13 @@ export default function HomePage() {
                   <div className="py-4 space-y-3 text-sm">
                     <p>
                       To get All Class Updates Join the telegram channel:
-                      <Link href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                      <Link href="https://t.me/eleakcoursehub" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
                         Telegram
                       </Link>
                     </p>
                     <p>
                       Subscribe on YouTube:
-                      <Link href="https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                      <Link href="https://youtube.com/@nexttopper-freebatch?si=SgEYNb-mxjw3AFpP" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
                         Main Channel
                       </Link>
                     </p>

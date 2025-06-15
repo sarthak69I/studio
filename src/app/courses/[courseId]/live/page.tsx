@@ -33,15 +33,15 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class1Visible: false,
     class2Visible: false,
   },
-  '2': { // Commerce
-    pageTitle: "Class 11 Commerce Live Classes",
-    subtitle: "Interactive learning sessions for Commerce students",
-    class1Subject: "Maths",
-    class2Subject: "Business",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/a63dd48a9268402b8961662fc9993c8d/index_4.m3u8')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/1a2e0a5970d84f82a93bebb2ae35314c/index_4.m3u8')}`,
-    class1Visible: true,
-    class2Visible: true,
+    '2': { // Commece
+      pageTitle: "Class 11 Science Live Classes",
+      subtitle: "Interactive learning sessions for Science students",
+      class1Subject: "Business",
+      class2Subject: "MATHS",
+      class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
+      class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
+      class1Visible: false,
+      class2Visible: false,
   },
   '3': { // Aarambh (Foundation Class 10)
     pageTitle: "Class 10 Aarambh Live Classes",
@@ -53,7 +53,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class1Visible: true,
     class2Visible: true,
   },
-  '4': { // Aarambh (Foundation Class 9) - Using Class 10 Aarambh streams as placeholders
+  '4': { // Aarambh (Foundation Class 9)
     pageTitle: "Class 9 Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Class 9 Aarambh batch",
     class1Subject: "Mathematics", // Placeholder subject
