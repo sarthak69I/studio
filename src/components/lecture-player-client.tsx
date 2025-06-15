@@ -7,11 +7,12 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, Maximize, Bot } from 'lucide-react';
 // CustomHlsPlayer is no longer used here directly for 'hls' type
-// import CustomHlsPlayer from '@/components/custom-hls-player'; 
+// import CustomHlsPlayer from '@/components/custom-hls-player';
 import {
   scienceCourseContent,
   commerceCourseContent,
   aarambhCourseContent,
+  aarambh9CourseContent, // Added for consistency
   type CourseContentMap,
   type Lecture,
   type Topic,
@@ -26,7 +27,8 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-// Removed addRecentlyWatched import
+import { markLectureAsCompleted } from '@/lib/progress-manager';
+
 
 export default function LecturePlayerClient() {
   const router = useRouter();
@@ -51,7 +53,7 @@ export default function LecturePlayerClient() {
   }, []);
 
   React.useEffect(() => {
-    if (isMounted && courseId && subjectParam && topicParam && lectureId) {
+    if (isMounted && courseId && subjectParam && topicParam && lectureId && mode === 'video') {
       try {
         const decodedSubjectName = decodeURIComponent(subjectParam);
         const decodedTopicName = decodeURIComponent(topicParam);
@@ -68,6 +70,9 @@ export default function LecturePlayerClient() {
         } else if (courseId === '3') {
           currentCourseMap = aarambhCourseContent;
           currentCourseName = 'Class 10th Aarambh Foundation Batch';
+        } else if (courseId === '4') { // Added Class 9 Aarambh
+          currentCourseMap = aarambh9CourseContent;
+          currentCourseName = 'Class 9th Aarambh Foundation Batch';
         }
         setCourseName(currentCourseName);
 
@@ -85,8 +90,7 @@ export default function LecturePlayerClient() {
                 if (currentLecture.videoEmbedUrl) {
                   setLecture(currentLecture);
                   setStatusMessage(null);
-
-                  // Removed call to addRecentlyWatched
+                  markLectureAsCompleted(courseId, decodedSubjectName, decodedTopicName, decodedLectureId);
 
                   // Find next lecture
                   if (currentLectureIndex + 1 < currentTopic.lectures.length) {
@@ -116,7 +120,11 @@ export default function LecturePlayerClient() {
         setStatusMessage("Could not load video due to an error.");
       }
     } else if (isMounted) {
-      setStatusMessage('Required information to load video is missing from URL.');
+      if (mode !== 'video') {
+        setStatusMessage('This player is for video content only.');
+      } else {
+        setStatusMessage('Required information to load video is missing from URL.');
+      }
     }
   }, [isMounted, courseId, subjectParam, topicParam, lectureId, mode]);
 
@@ -129,13 +137,11 @@ export default function LecturePlayerClient() {
   }, [isMounted, lecture, statusMessage]);
 
   const handlePlaybackEnded = () => {
-    // This function might be used by some players, but the new iframe player controls its own destiny.
-    // For the new HLS iframe player, auto-play next is not handled here.
-    if (nextLecture && nextLecture.videoEmbedUrl && lecture?.videoEmbedType !== 'hls') { // Only if not HLS, as HLS iframe handles its own
+    if (nextLecture && nextLecture.videoEmbedUrl && lecture?.videoEmbedType !== 'hls') {
       const nextLecturePath = `/courses/${courseId}/content/video/${subjectParam}/${topicParam}/lectures/${encodeURIComponent(nextLecture.id)}/play`;
       router.push(nextLecturePath);
     } else {
-      console.log("Playback ended. No next video lecture or next is HLS (handled by iframe) or no video URL.");
+      // console.log("Playback ended. No next video lecture or next is HLS (handled by iframe) or no video URL.");
     }
   };
 
@@ -147,7 +153,6 @@ export default function LecturePlayerClient() {
     const playerContainerClasses = "aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-black border border-border";
 
     if (lecture.videoEmbedType === 'hls') {
-      // Ensure lecture.videoEmbedUrl is the direct HLS stream URL
       const newPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl)}`;
       return (
         <div className={playerContainerClasses}>
@@ -168,13 +173,15 @@ export default function LecturePlayerClient() {
       return (
         <div className={playerContainerClasses}>
           <iframe
-            src={lecture.videoEmbedUrl} // This URL should already be the correct iframe src for YouTube/generic
+            src={lecture.videoEmbedUrl}
             title={lecture.title}
             width="100%"
             height="100%"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="border-0"
+            // onEnded is not a standard iframe attribute. Autoplay next for YouTube/generic iframes is complex.
+            // For simplicity, manual navigation or reliance on YouTube's own "up next" is assumed.
           ></iframe>
         </div>
       );
@@ -206,7 +213,7 @@ export default function LecturePlayerClient() {
               {lecture.title}
             </h1>
             {renderPlayer()}
-            {lecture.videoEmbedType !== 'hls' && lecture.videoEmbedUrl && ( // Show only if not HLS and URL exists
+            {lecture.videoEmbedType !== 'hls' && lecture.videoEmbedUrl && (
               <div className="mt-3 text-center text-sm text-muted-foreground p-2 bg-card/50 rounded-md max-w-md mx-auto">
                 <Maximize className="inline h-4 w-4 mr-1" />
                 For the best viewing experience, try double-clicking the video or using the player's full-screen button.
@@ -217,8 +224,8 @@ export default function LecturePlayerClient() {
             </p>
              {nextLecture && nextLecture.videoEmbedUrl && (
               <p className="text-primary text-center mt-2 text-xs">
-                Up next: {nextLecture.title} 
-                {lecture.videoEmbedType !== 'hls' ? ' (will play automatically if player supports it)' : ''}
+                Up next: {nextLecture.title}
+                {lecture.videoEmbedType !== 'hls' ? ' (Autoplay might depend on video source)' : ''}
               </p>
             )}
           </div>

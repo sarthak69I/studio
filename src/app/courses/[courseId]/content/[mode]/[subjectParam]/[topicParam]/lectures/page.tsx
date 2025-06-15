@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, Video, FileText, Bot } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Video, FileText, Bot, CheckCircle2 } from 'lucide-react';
 import {
   scienceCourseContent,
   commerceCourseContent,
@@ -25,6 +25,7 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
+import { markLectureAsCompleted, isLectureCompleted, getCompletedLectureKeys } from '@/lib/progress-manager';
 
 
 export default function TopicLecturesPage() {
@@ -42,10 +43,17 @@ export default function TopicLecturesPage() {
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
+  const [completedLectureKeys, setCompletedLectureKeys] = React.useState<Set<string>>(new Set());
 
+  const generateLectureStorageKey = (cId: string, sName: string, tName: string, lId: string): string => {
+    return `${cId}::${sName}::${tName}::${lId}`;
+  };
 
   React.useEffect(() => {
     setIsMounted(true);
+    if (typeof window !== 'undefined') {
+      setCompletedLectureKeys(getCompletedLectureKeys());
+    }
   }, []);
 
   React.useEffect(() => {
@@ -55,6 +63,7 @@ export default function TopicLecturesPage() {
         const decodedSubjectName = decodeURIComponent(subjectParam);
         setTopicName(decodedTopicName);
         setSubjectName(decodedSubjectName);
+        setCompletedLectureKeys(getCompletedLectureKeys()); // Refresh on param change
 
         let currentCourseMap: CourseContentMap | undefined;
         if (courseId === '1') currentCourseMap = scienceCourseContent;
@@ -112,25 +121,32 @@ export default function TopicLecturesPage() {
     }
   }, [isMounted, topicName, mode]);
 
-  if (!isMounted) {
-    return (
-      <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
-        <p>Loading...</p>
-      </div>
-    );
-  }
+  const handleLectureClick = (lecture: Lecture) => {
+    if (isMounted && courseId && subjectName && topicName) {
+      markLectureAsCompleted(courseId, subjectName, topicName, lecture.id);
+      setCompletedLectureKeys(prev => new Set(prev).add(generateLectureStorageKey(courseId, subjectName, topicName, lecture.id)));
+    }
+  };
 
   const renderLectureCard = (lecture: Lecture, index: number) => {
+    const isCompleted = completedLectureKeys.has(generateLectureStorageKey(courseId, subjectName, topicName, lecture.id));
+    const cardClasses = `bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md
+                       transform opacity-0 animate-fadeInUp-custom
+                       transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90
+                       ${isCompleted ? 'opacity-60 border-l-4 border-green-500' : ''}`;
+
     const cardContent = (
       <div
-        className="bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md
-                   transform opacity-0 animate-fadeInUp-custom
-                   transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90"
+        className={cardClasses}
         style={{ animationDelay: `${index * 0.1}s` }}
       >
         <div className="flex items-center justify-between">
-          <span className="text-xl sm:text-2xl font-semibold">{lecture.title}</span>
-           {(mode === 'notes' && lecture.notesLink && lecture.notesLink !== '#') || (mode === 'video' && lecture.videoEmbedUrl) ? (
+          <div className="flex items-center">
+            {isCompleted && <CheckCircle2 className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />}
+            <span className="text-xl sm:text-2xl font-semibold">{lecture.title}</span>
+          </div>
+           {(mode === 'notes' && lecture.notesLink && lecture.notesLink !== '#') || 
+            (mode === 'video' && lecture.videoEmbedType && lecture.videoEmbedUrl) ? (
             <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
           ) : null}
         </div>
@@ -141,14 +157,17 @@ export default function TopicLecturesPage() {
       </div>
     );
 
+    const commonClickHandler = () => handleLectureClick(lecture);
+
     if (mode === 'notes' && lecture.notesLink && lecture.notesLink !== '#') {
       return (
         <a
           key={lecture.id}
           href={lecture.notesLink}
-          target="_blank"
-          rel="noopener noreferrer"
+          // No target="_blank" to open in the same tab
+          rel="noopener noreferrer" // Still good for external links, though now same tab
           className="w-full max-w-md block mb-6 cursor-pointer"
+          onClick={commonClickHandler}
         >
           {cardContent}
         </a>
@@ -156,30 +175,52 @@ export default function TopicLecturesPage() {
     }
 
     if (mode === 'video' && lecture.videoEmbedUrl) {
-      // Construct the external player URL
-      const externalPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl)}`;
-      return (
-        <a // Changed from Link to <a> for direct external URL
-          key={lecture.id}
-          href={externalPlayerUrl}
-          className="w-full max-w-md block mb-6 cursor-pointer"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {cardContent}
-        </a>
-      );
+      if (lecture.videoEmbedType === 'hls') {
+        const externalPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl)}`;
+        return (
+          <a
+            key={lecture.id}
+            href={externalPlayerUrl}
+            className="w-full max-w-md block mb-6 cursor-pointer"
+            // No target="_blank"
+            rel="noopener noreferrer"
+            onClick={commonClickHandler}
+          >
+            {cardContent}
+          </a>
+        );
+      } else { // YouTube or generic iframe, navigate internally
+        return (
+          <Link
+            key={lecture.id}
+            href={`/courses/${courseId}/content/${mode}/${subjectParam}/${topicParam}/lectures/${encodeURIComponent(lecture.id)}/play`}
+            className="w-full max-w-md block mb-6 cursor-pointer"
+            onClick={commonClickHandler}
+          >
+            {cardContent}
+          </Link>
+        );
+      }
     }
 
     return (
        <div
         key={lecture.id}
         className="w-full max-w-md block mb-6 cursor-default"
+        // No onClick needed for non-interactive cards
       >
         {cardContent}
       </div>
     );
   };
+
+  if (!isMounted) {
+    return (
+      <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -247,5 +288,3 @@ export default function TopicLecturesPage() {
     </>
   );
 }
-
-    
