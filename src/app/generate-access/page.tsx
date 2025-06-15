@@ -7,29 +7,49 @@ import {
   getValidAccessKey,
   getAccessKeyExpiry,
   clearAccessKey,
-  type PendingActivationToken, // Ensure this is exported from access-manager
+  type PendingActivationToken,
   getValidPendingActivationToken,
+  setAccessKey as grantAccessKey, // Renamed to avoid conflict
 } from '@/lib/access-manager';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { CheckCircle, Shield, Clock, KeyRound, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle, Shield, Clock, KeyRound, AlertCircle, DoorOpen, ArrowRight } from 'lucide-react';
 
-type PageState = 'initial' | 'awaitingRedirect' | 'accessGranted' | 'error';
+type PageState = 'initial' | 'awaitingRedirect' | 'accessGranted' | 'error' | 'accessOpen';
 
 const LINKCENTS_URL = 'https://linkcents.com/E-Leak';
 const TUTORIAL_VIDEO_URL = "https://www.youtube.com/embed/fl7xdCFRup0?si=euD5avRVzHLqBa4Z&autoplay=1";
 
+// Read the environment variable
+const requireKeyGeneration = process.env.NEXT_PUBLIC_ENABLE_ACCESS_KEY_GENERATION === 'true';
+
 export default function GenerateAccessPage() {
   const router = useRouter();
   const [pageState, setPageState] = React.useState<PageState>('initial');
-  const [infoText, setInfoText] = React.useState<string>("To access course content, you need to generate a key. This key will be valid for 12 hours. After it expires, you'll need to generate a new one. Please follow the steps below.");
+  const [infoText, setInfoText] = React.useState<string>("Loading access status...");
   const [accessKeyExpiryTime, setAccessKeyExpiryTime] = React.useState<string | null>(null);
   const [isCustomVideoModalOpen, setIsCustomVideoModalOpen] = React.useState(false);
   const [isButtonAnimating, setIsButtonAnimating] = React.useState(false);
 
   React.useEffect(() => {
-    document.title = "Generate Course Access | E-Leak";
+    document.title = requireKeyGeneration ? "Generate Course Access | E-Leak" : "Course Access | E-Leak";
 
+    if (!requireKeyGeneration) {
+      setPageState('accessOpen');
+      setInfoText("Access to courses is currently open. No key generation is required at this time. You have been granted a temporary 12-hour access pass.");
+      // Automatically grant an access key if one doesn't exist or is invalid
+      const validKey = getValidAccessKey();
+      if (!validKey) {
+        grantAccessKey();
+      }
+      const expiry = getAccessKeyExpiry();
+      if (expiry) {
+        setAccessKeyExpiryTime(new Date(expiry).toLocaleString());
+      }
+      return;
+    }
+
+    // Logic for when key generation IS required
     const validAccessKey = getValidAccessKey();
     if (validAccessKey) {
       setPageState('accessGranted');
@@ -42,7 +62,6 @@ export default function GenerateAccessPage() {
       return;
     }
 
-    // Check if user has initiated the process (pending token exists) but not yet completed via callback
     const pendingToken = getValidPendingActivationToken();
     if (pendingToken) {
         setPageState('awaitingRedirect');
@@ -67,8 +86,9 @@ export default function GenerateAccessPage() {
 
   const handleGenerateClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     e.preventDefault();
+    if (!requireKeyGeneration) return; // Should not be callable if key gen is off
     
-    clearAccessKey(); // Always clear any old access key if initiating
+    clearAccessKey();
     
     const newPendingToken = setPendingActivationToken();
     if (!newPendingToken) {
@@ -80,7 +100,6 @@ export default function GenerateAccessPage() {
     setIsButtonAnimating(true);
     setTimeout(() => setIsButtonAnimating(false), 1000);
 
-    // Open Linkcents in the same tab
     window.location.href = LINKCENTS_URL;
 
     setPageState('awaitingRedirect');
@@ -96,10 +115,20 @@ export default function GenerateAccessPage() {
   };
   
   const MainActionButton = () => {
+    if (pageState === 'accessOpen') {
+      return (
+        <button className={`genkey-btn genkey-floating ${isButtonAnimating ? 'genkey-animate-pulse' : ''}`} onClick={() => router.push('/')}>
+          <DoorOpen className="mr-2 h-5 w-5" />
+          <span>Go to Courses</span>
+        </button>
+      );
+    }
+
     if (pageState === 'accessGranted') {
       return (
         <>
           <button className={`genkey-btn genkey-floating ${isButtonAnimating ? 'genkey-animate-pulse' : ''}`} onClick={() => router.push('/')}>
+            <ArrowRight className="mr-2 h-5 w-5" />
             <span>Go to Courses</span>
           </button>
           <Link href="/" className="block text-sm text-[var(--genkey-secondary)] hover:underline mt-4">
@@ -109,10 +138,11 @@ export default function GenerateAccessPage() {
       );
     }
     
-    // For 'initial' or 'awaitingRedirect' states
+    // For 'initial' or 'awaitingRedirect' states when key generation is required
     return (
       <a href={LINKCENTS_URL} className={`genkey-btn genkey-floating ${isButtonAnimating ? 'genkey-animate-pulse' : ''}`} onClick={handleGenerateClick}>
-        <span>Generate Key 🗝️</span>
+        <KeyRound className="mr-2 h-5 w-5" />
+        <span>Generate Key</span>
       </a>
     );
   };
@@ -121,17 +151,22 @@ export default function GenerateAccessPage() {
     <div className="genkey-page-bg">
       <div className="genkey-container genkey-animate-fadeIn">
         <div className="genkey-content">
-          {/* Glow effects were intentionally removed per user request, keeping the CSS simple */}
           
           <p className="genkey-info-text">{infoText}</p>
 
-          {pageState === 'accessGranted' && (
+          {pageState === 'accessGranted' && requireKeyGeneration && (
             <div className="genkey-message-success mb-6">
               <CheckCircle className="inline-block h-5 w-5 mr-2" />
               Access Key Activated! Valid until: {accessKeyExpiryTime}
             </div>
           )}
-           {pageState === 'error' && (
+          {pageState === 'accessOpen' && (
+             <div className="genkey-message-success mb-6">
+              <CheckCircle className="inline-block h-5 w-5 mr-2" />
+              Access is Open! Your temporary pass is active until: {accessKeyExpiryTime || 'loading...'}
+            </div>
+          )}
+           {pageState === 'error' && requireKeyGeneration && (
              <div className="genkey-message-error mb-6">
               <AlertCircle className="inline-block h-5 w-5 mr-2" />
               {infoText}
@@ -140,42 +175,46 @@ export default function GenerateAccessPage() {
           
           <MainActionButton />
           
-          <button className="genkey-btn genkey-btn-secondary" onClick={handleShowTutorial}>
-            <span>How To Generate Key</span>
-          </button>
+          {requireKeyGeneration && pageState !== 'accessGranted' && (
+            <button className="genkey-btn genkey-btn-secondary" onClick={handleShowTutorial}>
+              <span>How To Generate Key</span>
+            </button>
+          )}
           
-          <div className="genkey-features">
-            <div className="genkey-feature">
-              <div className="genkey-feature-icon">
-                <Shield />
+          {requireKeyGeneration && (
+            <div className="genkey-features">
+              <div className="genkey-feature">
+                <div className="genkey-feature-icon">
+                  <Shield />
+                </div>
+                <div className="genkey-feature-content">
+                  <h4>Secure Process</h4>
+                  <p>Your access generation is handled securely.</p>
+                </div>
               </div>
-              <div className="genkey-feature-content">
-                <h4>Secure Process</h4>
-                <p>Your access generation is handled securely.</p>
+              
+              <div className="genkey-feature">
+                <div className="genkey-feature-icon">
+                  <Clock />
+                </div>
+                <div className="genkey-feature-content">
+                  <h4>12-Hour Validity</h4>
+                  <p>Access key expires after 12 hours for security.</p>
+                </div>
+              </div>
+              
+              <div className="genkey-feature">
+                <div className="genkey-feature-icon">
+                   <KeyRound />
+                </div>
+                <div className="genkey-feature-content">
+                  <h4>Activation</h4>
+                  <p>Key activates upon successful return from partner site.</p>
+                </div>
               </div>
             </div>
-            
-            <div className="genkey-feature">
-              <div className="genkey-feature-icon">
-                <Clock />
-              </div>
-              <div className="genkey-feature-content">
-                <h4>12-Hour Validity</h4>
-                <p>Access key expires after 12 hours for security.</p>
-              </div>
-            </div>
-            
-            <div className="genkey-feature">
-              <div className="genkey-feature-icon">
-                 <KeyRound />
-              </div>
-              <div className="genkey-feature-content">
-                <h4>Activation</h4>
-                <p>Key activates upon successful return from partner site.</p>
-              </div>
-            </div>
-          </div>
-           {pageState !== 'accessGranted' && (
+           )}
+           {(pageState !== 'accessGranted' || !requireKeyGeneration) && (
             <Link href="/" className="block text-sm text-[var(--genkey-secondary)] hover:underline mt-6">
               Go to Homepage
             </Link>
@@ -183,7 +222,7 @@ export default function GenerateAccessPage() {
         </div>
       </div>
       
-      {isCustomVideoModalOpen && (
+      {isCustomVideoModalOpen && requireKeyGeneration && (
         <div className="genkey-video-container active" onClick={handleCloseTutorial}>
           <div className="genkey-video-wrapper" onClick={(e) => e.stopPropagation()}>
             <button className="genkey-close-btn" onClick={handleCloseTutorial}>✕</button>
@@ -201,5 +240,4 @@ export default function GenerateAccessPage() {
     </div>
   );
 }
-
     

@@ -20,7 +20,7 @@ interface LiveClassData {
   class2Visible?: boolean;
 }
 
-const newStreamPlayerBaseUrl = 'https://anym3u8player.com/tv/p.php?url=';
+const newStreamPlayerBaseUrl = 'https://eleaklive.vercel.app/?liveurl=';
 
 const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
@@ -30,8 +30,8 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class2Subject: "MATHS",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
-    class1Visible: true,
-    class2Visible: true,
+    class1Visible: false,
+    class2Visible: false,
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
@@ -422,7 +422,7 @@ export default function LiveClassesPage() {
           </div>
         ) : (
           <div className="text-center text-xl text-muted-foreground mt-10">
-            <p>No live classes are currently scheduled or visible for this course.</p>
+            <p>No live classes are currently scheduled for this course.</p>
           </div>
         )}
       </main>

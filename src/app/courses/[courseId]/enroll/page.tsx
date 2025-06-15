@@ -2,11 +2,12 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot, Lock, Unlock } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
 import { getParamAsString } from '@/lib/utils';
+import { getValidAccessKey } from '@/lib/access-manager';
 
 interface SubjectItemProps {
   name: string;
@@ -39,12 +40,14 @@ const courseSpecificSubjects: CourseSubjects = {
 };
 
 const courseDisplayNames: Record<string, string> = {
-  '1': "Science Batch",
-  '2': "Commerce Batch",
+  '1': "Science Batch (Class 11)",
+  '2': "Commerce Batch (Class 11)",
   '3': "Aarambh Batch (Class 10)",
-  '4': "Class 9 Aarambh Batch",
+  '4': "Aarambh Batch (Class 9)",
 };
 
+// Read the environment variable
+const requireKeyGeneration = process.env.NEXT_PUBLIC_ENABLE_ACCESS_KEY_GENERATION === 'true';
 
 export default function EnrollPage() {
   const router = useRouter();
@@ -52,13 +55,24 @@ export default function EnrollPage() {
   const courseId = getParamAsString(params.courseId);
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
   const [isLoading, setIsLoading] = React.useState(true);
-  const [isAccessGranted, setIsAccessGranted] = React.useState(true); // Assume access is granted
+  const [isAccessGranted, setIsAccessGranted] = React.useState(!requireKeyGeneration); // Grant access if key gen is off
 
   React.useEffect(() => {
-    // console.warn("Access key protection is currently disabled for /enroll page.");
-    setIsAccessGranted(true); 
+    if (!requireKeyGeneration) {
+      setIsAccessGranted(true);
+      setIsLoading(false);
+      return;
+    }
+
+    // Logic for when key generation IS required
+    const validAccessKey = getValidAccessKey();
+    if (!validAccessKey) {
+      router.replace('/generate-access'); // Use replace to prevent back button to this locked page
+    } else {
+      setIsAccessGranted(true);
+    }
     setIsLoading(false);
-  }, [router]);
+  }, [router, requireKeyGeneration]);
 
   React.useEffect(() => {
     if (!isLoading && isAccessGranted) {
@@ -95,7 +109,24 @@ export default function EnrollPage() {
   if (isLoading) {
     return (
       <div className="flex flex-col min-h-screen items-center justify-center bg-background p-4 text-foreground">
-        <p>Loading...</p> 
+        <p>Loading access status...</p> 
+      </div>
+    );
+  }
+
+  if (!isAccessGranted && requireKeyGeneration) { // Only show locked state if key gen is required
+    return (
+      <div className="flex flex-col min-h-screen items-center justify-center bg-background p-6 text-foreground">
+        <div className="bg-card p-8 rounded-xl shadow-xl text-center max-w-md">
+          <Lock className="h-16 w-16 text-destructive mx-auto mb-6" />
+          <h1 className="text-2xl font-bold mb-3">Access Denied</h1>
+          <p className="text-muted-foreground mb-6">
+            You need to generate an access key to view this content.
+          </p>
+          <Button onClick={() => router.push('/generate-access')} size="lg">
+            Generate Access Key
+          </Button>
+        </div>
       </div>
     );
   }
@@ -118,6 +149,17 @@ export default function EnrollPage() {
 
       <main className="flex-grow flex flex-col items-center pt-8 md:pt-12">
         <div className="w-full max-w-2xl space-y-6">
+          {!requireKeyGeneration && (
+            <div className="p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-md shadow-sm mb-6">
+              <div className="flex items-center">
+                <Unlock className="h-6 w-6 mr-3 text-green-600" />
+                <div>
+                  <p className="font-semibold">Access Open!</p>
+                  <p className="text-sm">Key generation is currently not required. Enjoy the courses!</p>
+                </div>
+              </div>
+            </div>
+          )}
           <button
             className="join-button w-full"
             onClick={handleJoinLiveClassClick}
@@ -185,3 +227,4 @@ export default function EnrollPage() {
     </>
   );
 }
+    
