@@ -5,24 +5,33 @@ import React, { useState, useEffect } from 'react';
 import { Loader2, Clock } from 'lucide-react';
 import Image from 'next/image';
 
-const MaintenancePage: React.FC = () => {
+interface MaintenancePageProps {
+  maintenanceEndTime: Date | null;
+}
+
+const MaintenancePage: React.FC<MaintenancePageProps> = ({ maintenanceEndTime }) => {
   const [timeRemaining, setTimeRemaining] = useState<string>('');
-  const [isPastTenAM, setIsPastTenAM] = useState<boolean>(false);
+  const [isPastEndTime, setIsPastEndTime] = useState<boolean>(false);
 
   useEffect(() => {
+    if (!maintenanceEndTime) {
+      setIsPastEndTime(true); // Or handle as an error/default state
+      setTimeRemaining('Maintenance configuration error.');
+      return;
+    }
+
     const calculateTimeRemaining = () => {
       const now = new Date();
-      let targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0, 0, 0); // 10:00:00 AM today
 
-      if (now >= targetTime) {
-        setIsPastTenAM(true);
+      if (now >= maintenanceEndTime) {
+        setIsPastEndTime(true);
         setTimeRemaining('Site should be live now! Please refresh.');
-        // Optionally, trigger a page refresh or a check in ClientLayoutWrapper
-        // For now, this message informs the user.
+        if (intervalId) clearInterval(intervalId);
         return;
       }
+      setIsPastEndTime(false);
 
-      const diff = targetTime.getTime() - now.getTime();
+      const diff = maintenanceEndTime.getTime() - now.getTime();
       const hours = Math.floor(diff / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
@@ -36,13 +45,13 @@ const MaintenancePage: React.FC = () => {
     const intervalId = setInterval(calculateTimeRemaining, 1000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [maintenanceEndTime]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white p-6 text-center">
       <div className="bg-slate-800/50 backdrop-blur-md p-8 sm:p-12 rounded-xl shadow-2xl max-w-md w-full border border-slate-700">
         <Image
-          src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png" // Your E-Leak logo
+          src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png" 
           alt="E-Leak Logo"
           width={80}
           height={80}
@@ -57,9 +66,9 @@ const MaintenancePage: React.FC = () => {
         <div className="bg-slate-700/50 p-6 rounded-lg shadow-inner">
           <div className="flex items-center justify-center text-lg sm:text-xl font-semibold text-amber-400 mb-3">
             <Clock className="h-6 w-6 mr-3 animate-spin" />
-            Returning In:
+            {isPastEndTime ? "Status:" : "Returning In:"}
           </div>
-          {isPastTenAM ? (
+          {isPastEndTime ? (
             <p className="text-2xl sm:text-3xl font-mono font-bold text-green-400">
               {timeRemaining}
             </p>

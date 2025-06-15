@@ -16,9 +16,8 @@ import {
   DialogClose,
   DialogTrigger,
 } from "@/components/ui/dialog";
-// Removed AdsenseBottomUnit import
 import CookieConsentBanner from './cookie-consent-banner';
-import MaintenancePage from './maintenance-page'; // Maintenance page component
+import MaintenancePage from './maintenance-page'; 
 
 interface AppNotification {
   id: string;
@@ -41,31 +40,62 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] = useState(false);
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const pathname = usePathname();
-  const [isMaintenanceMode, setIsMaintenanceMode] = useState(true); // Default to maintenance mode
+  
+  const [effectiveMaintenanceEndTime, setEffectiveMaintenanceEndTime] = useState<Date | null>(null);
+  const [showMaintenance, setShowMaintenance] = useState(false);
 
   useEffect(() => {
-    const checkMaintenanceTime = () => {
-      const now = new Date();
-      const maintenanceEndTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0, 0); // 10:00 AM today
+    const maintenanceMode = process.env.NEXT_PUBLIC_MAINTENANCE_MODE;
+    
+    if (maintenanceMode === 'yes') {
+      const endTimeStr = process.env.NEXT_PUBLIC_MAINTENANCE_END_TIME_HHMM || "10:00";
+      const parts = endTimeStr.split(':');
+      let targetHour = 10;
+      let targetMinute = 0;
 
-      if (now >= maintenanceEndTime) {
-        setIsMaintenanceMode(false);
-        localStorage.setItem('maintenanceModeCompleted', 'true'); // Mark as completed for this session
-      } else {
-        // If not yet 10 AM, ensure maintenance mode is true (unless already completed in this session)
-        if (localStorage.getItem('maintenanceModeCompleted') !== 'true') {
-          setIsMaintenanceMode(true);
-        } else {
-          setIsMaintenanceMode(false); // Already completed in this session
+      if (parts.length === 2) {
+        const parsedHour = parseInt(parts[0], 10);
+        const parsedMinute = parseInt(parts[1], 10);
+        if (!isNaN(parsedHour) && parsedHour >= 0 && parsedHour <= 23 &&
+            !isNaN(parsedMinute) && parsedMinute >= 0 && parsedMinute <= 59) {
+          targetHour = parsedHour;
+          targetMinute = parsedMinute;
         }
       }
+      
+      const now = new Date();
+      const maintenanceEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour, targetMinute, 0);
+      setEffectiveMaintenanceEndTime(maintenanceEnd);
+
+      if (now < maintenanceEnd) {
+        setShowMaintenance(true);
+      } else {
+        setShowMaintenance(false);
+        // Clear session-based completion flag if maintenance time has passed.
+        localStorage.removeItem('maintenanceModeCompleted'); 
+      }
+    } else {
+      setShowMaintenance(false);
+      localStorage.removeItem('maintenanceModeCompleted');
+    }
+
+    // Interval to re-check if maintenance time has passed, only if maintenance mode is active.
+    let intervalId: NodeJS.Timeout | undefined;
+    if (maintenanceMode === 'yes') {
+      intervalId = setInterval(() => {
+        const currentTime = new Date();
+        if (effectiveMaintenanceEndTime && currentTime >= effectiveMaintenanceEndTime) {
+          setShowMaintenance(false);
+          localStorage.removeItem('maintenanceModeCompleted');
+          if (intervalId) clearInterval(intervalId); 
+        }
+      }, 60000); // Check every minute
+    }
+    
+    return () => {
+      if (intervalId) clearInterval(intervalId);
     };
-
-    checkMaintenanceTime(); // Initial check
-    const interval = setInterval(checkMaintenanceTime, 60000); // Check every minute
-
-    return () => clearInterval(interval);
-  }, []);
+  }, [effectiveMaintenanceEndTime]); // Re-run if effectiveMaintenanceEndTime changes (though it's set once)
 
 
   useEffect(() => {
@@ -74,14 +104,14 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     };
     document.addEventListener('contextmenu', handleContextmenu);
     
-    if (!isMaintenanceMode) {
+    if (!showMaintenance) {
       fetchNotifications();
     }
 
     return () => {
       document.removeEventListener('contextmenu', handleContextmenu);
     };
-  }, [isMaintenanceMode]);
+  }, [showMaintenance]);
 
   const fetchNotifications = async () => {
     try {
@@ -119,18 +149,17 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     setUnreadNotificationCount(0); 
   };
 
-  const showGlobalNotificationBell = !isMaintenanceMode && pathname !== '/help-center' && pathname !== '/generate-access';
-  // Adsense unit removed
-  const showEleakZoneLogo = !isMaintenanceMode && pathname !== '/generate-access';
+  const isSpecialPage = pathname === '/generate-access' || pathname === '/help-center';
+  const showGlobalUIElements = !showMaintenance && !isSpecialPage;
 
-  if (isMaintenanceMode && pathname !== '/generate-access' && pathname !== '/help-center') {
-    return <MaintenancePage />;
+
+  if (showMaintenance && !isSpecialPage) {
+    return <MaintenancePage maintenanceEndTime={effectiveMaintenanceEndTime} />;
   }
-
 
   return (
     <>
-      {showGlobalNotificationBell && (
+      {showGlobalUIElements && (
         <div className="fixed top-6 left-6 z-50">
           <Dialog open={isNotificationsDialogOpen} onOpenChange={setIsNotificationsDialogOpen}>
             <DialogTrigger asChild>
@@ -184,10 +213,9 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       )}
 
       {children}
-      {/* AdsenseBottomUnit removed */}
       <Toaster />
       
-      {showEleakZoneLogo && (
+      {showGlobalUIElements && (
         <a href="https://e-leakzone.vercel.app" target="_blank" rel="noopener noreferrer" className="eleakzone-float" aria-label="E-Leak Zone">
           <img src="https://i.ibb.co/Z1vLWgVF/ZONE-removebg-preview.png" alt="E-Leak Zone Logo" />
         </a>
@@ -196,7 +224,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
       </a>
-      {!isMaintenanceMode && <CookieConsentBanner />}
+      {!showMaintenance && <CookieConsentBanner />}
     </>
   );
 }
