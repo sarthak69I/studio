@@ -144,23 +144,39 @@ export const aarambhCourseContent: CourseContentMap = {
   ],
   'English': [
     {
-      name: 'Grammar Basics (Class 10)',
+      name: 'Letter To God ',
       lectures: [
-        { id: 'c10-eng-grm-l1', title: 'Sentence Types', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
-        { id: 'c10-eng-grm-l2', title: 'Active & Passive Voice', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'l1', title: 'Letter To God 1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355437/1745094964_5789358984187695/sunny/1745075625242_69087200894049560_video_VOD720p30.m3u8' },
+        { id: 'l2', title: 'Letter To God 2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355438/1745092805_3842501733043505/sunny/1745075729856_273253030448162560_video_VOD720p30.m3u8' },
       ]
     },
     {
-      name: 'Literature Insights (Class 10)',
+      name: 'Dust Of Snow',
       lectures: [
-        { id: 'c10-eng-lit-l1', title: 'Character Analysis', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'l1', title: 'Dust Of Snow 1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362883/1745829064_8896744564209427/sunny/1745823405144_213803673785664260_video_VOD720p30.m3u8' },
+        { id: 'l2', title: 'Dust Of Snow 2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362884/1745829304_9832761018325665/sunny/1745823991438_632000197320964000_video_VOD720p30.m3u8' },
       ]
     },
     {
-      name: 'Writing Practice (Class 10)',
+      name: 'Fire & Ice',
       lectures: [
-        { id: 'c10-eng-wrt-l1', title: 'Formal Letter Writing', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'l1', title: 'Fire & Ice 1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367124/1746114124_9255773397148498/sunny/1746110633800_95893697207908130_video_VOD720p30.m3u8' },
+        { id: 'l2', title: 'Fire & Ice 2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367125/1746114604_3028472308291210/sunny/1746110727065_699236270267016600_video_VOD720p30.m3u8' },
       ]
+    },
+    {
+      name: ' Poetic Devices',
+      lectures: [
+        { id: 'l1', title: ' Poetic Devices 1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355433/1745094005_5545466457120453/sunny/1745074688660_697469926988172200_video_VOD720p30.m3u8' },
+        { id: 'l2', title: ' Poetic Devices 2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' },
+      ]
+    },
+    {
+      name: 'A Triumph of Surgery',
+      lectures: [
+        { id: 'l1', title: 'A Triumph of Surgery 1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378115/1747004104_5093798446180655/sunny/1746963761393_790760791059125000_video_VOD720p30.m3u8' },
+        { id: 'l2', title: 'A Triumph of Surgery 2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378116/1747003684_6295147578406091/sunny/1746963929440_149734756542958400_video_VOD720p30.m3u8' },
+       ]
     }
   ],
 };

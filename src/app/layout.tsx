@@ -1,7 +1,7 @@
 
 import type {Metadata} from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import Script from 'next/script'; // Import next/script
+// Script import for Adsense is removed
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import './globals.css';
@@ -92,9 +92,9 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
   },
-  other: {
-    'google-adsense-account': 'ca-pub-7372814899455347',
-  },
+  // other: { // Removed google-adsense-account
+  //   'google-adsense-account': 'ca-pub-7372814899455347',
+  // },
   verification: {
     google: 'xVUZLpoXMp0utqG7cQh-faRAO-BIdkcADQ1TyQh2uCo',
   },
@@ -111,12 +111,7 @@ export default function RootLayout({
         <ClientLayoutWrapper>
           {children}
         </ClientLayoutWrapper>
-        <Script
-          id="adsbygoogle-script"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7372814899455347"
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
-        />
+        {/* Adsense script removed */}
         <Analytics />
         <SpeedInsights />
       </body>

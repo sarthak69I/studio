@@ -16,8 +16,9 @@ import {
   DialogClose,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import AdsenseBottomUnit from './adsense-bottom-unit';
+// Removed AdsenseBottomUnit import
 import CookieConsentBanner from './cookie-consent-banner';
+import MaintenancePage from './maintenance-page'; // Maintenance page component
 
 interface AppNotification {
   id: string;
@@ -40,6 +41,32 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] = useState(false);
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const pathname = usePathname();
+  const [isMaintenanceMode, setIsMaintenanceMode] = useState(true); // Default to maintenance mode
+
+  useEffect(() => {
+    const checkMaintenanceTime = () => {
+      const now = new Date();
+      const maintenanceEndTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0, 0); // 10:00 AM today
+
+      if (now >= maintenanceEndTime) {
+        setIsMaintenanceMode(false);
+        localStorage.setItem('maintenanceModeCompleted', 'true'); // Mark as completed for this session
+      } else {
+        // If not yet 10 AM, ensure maintenance mode is true (unless already completed in this session)
+        if (localStorage.getItem('maintenanceModeCompleted') !== 'true') {
+          setIsMaintenanceMode(true);
+        } else {
+          setIsMaintenanceMode(false); // Already completed in this session
+        }
+      }
+    };
+
+    checkMaintenanceTime(); // Initial check
+    const interval = setInterval(checkMaintenanceTime, 60000); // Check every minute
+
+    return () => clearInterval(interval);
+  }, []);
+
 
   useEffect(() => {
     const handleContextmenu = (e: MouseEvent) => {
@@ -47,12 +74,14 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     };
     document.addEventListener('contextmenu', handleContextmenu);
     
-    fetchNotifications();
+    if (!isMaintenanceMode) {
+      fetchNotifications();
+    }
 
     return () => {
       document.removeEventListener('contextmenu', handleContextmenu);
     };
-  }, []);
+  }, [isMaintenanceMode]);
 
   const fetchNotifications = async () => {
     try {
@@ -90,9 +119,14 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     setUnreadNotificationCount(0); 
   };
 
-  const showGlobalNotificationBell = pathname !== '/help-center' && pathname !== '/generate-access';
-  const showAdsenseUnit = pathname !== '/generate-access';
-  const showEleakZoneLogo = pathname !== '/generate-access';
+  const showGlobalNotificationBell = !isMaintenanceMode && pathname !== '/help-center' && pathname !== '/generate-access';
+  // Adsense unit removed
+  const showEleakZoneLogo = !isMaintenanceMode && pathname !== '/generate-access';
+
+  if (isMaintenanceMode && pathname !== '/generate-access' && pathname !== '/help-center') {
+    return <MaintenancePage />;
+  }
+
 
   return (
     <>
@@ -150,7 +184,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       )}
 
       {children}
-      {showAdsenseUnit && <AdsenseBottomUnit />}
+      {/* AdsenseBottomUnit removed */}
       <Toaster />
       
       {showEleakZoneLogo && (
@@ -162,7 +196,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
       </a>
-      <CookieConsentBanner />
+      {!isMaintenanceMode && <CookieConsentBanner />}
     </>
   );
 }

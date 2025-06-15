@@ -191,25 +191,25 @@ export const commerceCourseContent: CourseContentMap = {
   ],
   'English': [
     {
-      name: 'Grammar Fundamentals',
+      name: 'The Portrait of a lady ',
       lectures: [
-        { id: 'com-eng-grm-l1', title: 'Nouns and Pronouns', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
-        { id: 'com-eng-grm-l2', title: 'Verbs and Adjectives', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
-        { id: 'com-eng-grm-l3', title: 'Tenses and Usage', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'l1', title: 'The Portrait of a lady 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3791390The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L1.pdf_The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355612/1745159224_9384778348109423/sunny/1745158131261_464915711062529660_video_VOD720p30.m3u8' },
+        { id: 'l2', title: 'The Portrait of a lady 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1786690The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L2.pdf_The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362029/1745700364_6861508399271443/sunny/1745672208426_612520282028803100_video_VOD720p30.m3u8' },
       ]
     },
     {
-      name: 'Reading Comprehension',
+      name: 'A Photograph',
       lectures: [
-        { id: 'com-eng-read-l1', title: 'Analyzing Passages', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
-        { id: 'com-eng-read-l2', title: 'Identifying Main Ideas', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'l1', title: 'A Photograph 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/59141A%20photograph%20%20%20L1.pdf_A%20photograph%20%20%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362027/1745699824_5382116785203709/sunny/1745672048539_449041945338372300_video_VOD720p30.m3u8' },
+        { id: 'l2', title: 'A Photograph 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1875512A%20Photograph%20%20%20L2.pdf_A%20Photograph%20%20%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362028/1745700123_7827683171701798/sunny/1745672142046_1468116101409511_video_VOD720p30.m3u8' },
       ]
     },
     {
-      name: 'Business Communication',
+      name: 'We"re not afraid to die',
       lectures: [
-        { id: 'com-eng-biz-l1', title: 'Formal Letter Writing', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
-        { id: 'com-eng-biz-l2', title: 'Report Writing Basics', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'l1', title: 'We"re not afraid to die 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6959710We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L1.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376841/1746782584_5615518054046778/sunny/1746782168362_44751792912049930_video_VOD720p30.m3u8' },
+        { id: 'l2', title: 'We"re not afraid to die 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1490688We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L2.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376842/1746782588_1716697312405945/sunny/1746782291885_47950164792380220_video_VOD720p30.m3u8' },
+        { id: 'l3', title: 'We"re not afraid to die 3', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6835826We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L3.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L3.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376843/1746783246_9612936247338730/sunny/1746782427627_664906068054696800_video_VOD720p30.m3u8' }, 
       ]
     }
   ],
