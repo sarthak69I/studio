@@ -111,10 +111,11 @@ export const aarambh9CourseContent: CourseContentMap = {
   ],
   'English': [
     {
-      name: 'Grammar Essentials (Class 9)',
+      name: 'Tenses',
       lectures: [
-        { id: 'c9-eng-grm-l1', title: 'Nouns and Articles', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
-        { id: 'c9-eng-grm-l2', title: 'Subject-Verb Agreement', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'c9-eng-grm-l1', title: 'Tenses 1', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: '#' },
+        { id: 'c9-eng-grm-l2', title: 'Tenses 2', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: '#' },
+        
       ]
     },
     {

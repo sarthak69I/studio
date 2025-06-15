@@ -4,12 +4,12 @@
 export const dynamic = 'force-dynamic'; // Ensures the sitemap is generated on each request
 
 export function GET() {
-  const BASE_URL = "https://e-leak.vercel.app"; // Your production domain
+  const BASE_URL = "https://e-leak.vercel.app/"; // Your production domain with trailing slash
   const lastmod = new Date().toISOString(); // Current date and time
 
   // For diagnostics, generate a sitemap with only the homepage
   const urls = [
-    { loc: `${BASE_URL}/`, priority: 1.0 },
+    { loc: `${BASE_URL}`, priority: 1.0 },
   ];
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?>';

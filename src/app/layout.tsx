@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app/";
+const BASE_URL = "https://e-leak.vercel.app/";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
