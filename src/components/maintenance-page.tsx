@@ -2,11 +2,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Loader2, Clock } from 'lucide-react';
+import { Loader2, Clock, Send, Youtube } from 'lucide-react'; // Added Send and Youtube icons
 import Image from 'next/image';
+import { Button } from '@/components/ui/button'; // Added Button import
 
 interface MaintenancePageProps {
-  maintenanceEndTime: Date | null; // Expecting a Date object
+  maintenanceEndTime: Date | null;
 }
 
 const MaintenancePage: React.FC<MaintenancePageProps> = ({ maintenanceEndTime }) => {
@@ -15,8 +16,6 @@ const MaintenancePage: React.FC<MaintenancePageProps> = ({ maintenanceEndTime })
 
   useEffect(() => {
     if (!maintenanceEndTime) {
-      // This case should ideally be handled by the parent component not rendering this page
-      // if the end time is invalid or not set.
       setIsPastEndTime(true);
       setTimeRemaining('Maintenance end time not configured.');
       return;
@@ -29,7 +28,6 @@ const MaintenancePage: React.FC<MaintenancePageProps> = ({ maintenanceEndTime })
         setIsPastEndTime(true);
         setTimeRemaining('Site should be live now! Please refresh.');
         if (intervalId) clearInterval(intervalId);
-        // Potentially trigger a page reload after a short delay
         // setTimeout(() => window.location.reload(), 5000); 
         return;
       }
@@ -45,7 +43,7 @@ const MaintenancePage: React.FC<MaintenancePageProps> = ({ maintenanceEndTime })
       );
     };
 
-    calculateTimeRemaining(); // Initial calculation
+    calculateTimeRemaining();
     const intervalId = setInterval(calculateTimeRemaining, 1000);
 
     return () => clearInterval(intervalId);
@@ -84,7 +82,31 @@ const MaintenancePage: React.FC<MaintenancePageProps> = ({ maintenanceEndTime })
             <Loader2 className="h-8 w-8 text-slate-400 animate-spin mx-auto" />
           )}
         </div>
-        <p className="text-xs text-slate-500 mt-8">
+
+        <div className="mt-10 space-y-4 sm:space-y-0 sm:flex sm:flex-row sm:justify-center sm:gap-5">
+          <Button
+            asChild
+            variant="outline"
+            className="w-full sm:w-auto py-3 px-6 bg-sky-600/80 border-sky-500 hover:bg-sky-500/80 hover:border-sky-400 text-white transition-all duration-300 ease-in-out transform hover:scale-105 group rounded-lg shadow-md hover:shadow-lg"
+          >
+            <a href="https://t.me/eleakcoursehub" target="_blank" rel="noopener noreferrer">
+              <Send className="mr-2 h-4 w-4 transition-transform duration-500 group-hover:rotate-[15deg]" />
+              Join Telegram
+            </a>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            className="w-full sm:w-auto py-3 px-6 bg-red-700/80 border-red-600 hover:bg-red-600/80 hover:border-red-500 text-white transition-all duration-300 ease-in-out transform hover:scale-105 group rounded-lg shadow-md hover:shadow-lg"
+          >
+            <a href="https://youtube.com/@nexttopper-freebatch?si=SgEYNb-mxjw3AFpP" target="_blank" rel="noopener noreferrer">
+              <Youtube className="mr-2 h-4 w-4 transition-transform group-hover:animate-pulse-custom" />
+              Subscribe YouTube
+            </a>
+          </Button>
+        </div>
+
+        <p className="text-xs text-slate-500 mt-10">
           Thank you for your patience.
         </p>
       </div>

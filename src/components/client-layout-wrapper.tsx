@@ -23,12 +23,12 @@ import MaintenancePage from './maintenance-page'; // Maintenance page component
 // To toggle maintenance mode, change this value and redeploy.
 // true: Maintenance mode is ENABLED (site shows "Under Construction").
 // false: Maintenance mode is DISABLED (site is live).
-const MAINTENANCE_MODE_ENABLED = false;
+const MAINTENANCE_MODE_ENABLED = true;
 
 // If MAINTENANCE_MODE_ENABLED is true, set the end time here in "HH:MM" (24-hour format).
 // Example: "10:00" for 10 AM, "17:30" for 5:30 PM.
 // If null or invalid format, maintenance page won't show even if enabled (safety measure).
-const MAINTENANCE_END_TIME_HHMM: string | null = null; // e.g., "10:00" 
+const MAINTENANCE_END_TIME_HHMM: string | null = "10:00"; // e.g., "10:00" 
 // --- Configuration End ---
 
 
