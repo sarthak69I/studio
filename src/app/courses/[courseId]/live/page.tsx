@@ -16,6 +16,8 @@ interface LiveClassData {
   class2Subject: string;
   class1LiveStreamUrl?: string;
   class2LiveStreamUrl?: string;
+  class1Visible?: boolean;
+  class2Visible?: boolean;
 }
 
 const newStreamPlayerBaseUrl = 'https://anym3u8player.com/tv/p.php?url=';
@@ -28,6 +30,8 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class2Subject: "MATHS",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
+    class1Visible: true,
+    class2Visible: true,
   },
   '2': { // Commerce
     pageTitle: "Class 11 Commerce Live Classes",
@@ -36,6 +40,8 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class2Subject: "Business",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/a63dd48a9268402b8961662fc9993c8d/index_4.m3u8')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/1a2e0a5970d84f82a93bebb2ae35314c/index_4.m3u8')}`,
+    class1Visible: true,
+    class2Visible: true,
   },
   '3': { // Aarambh (Foundation Class 10)
     pageTitle: "Class 10 Aarambh Live Classes",
@@ -44,6 +50,8 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class2Subject: "Mathematics",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4351817/174473442715988296383/index_4.m3u8')}`,
+    class1Visible: true,
+    class2Visible: true,
   },
   '4': { // Aarambh (Foundation Class 9) - Using Class 10 Aarambh streams as placeholders
     pageTitle: "Class 9 Aarambh Live Classes",
@@ -52,6 +60,8 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class2Subject: "Science",     // Placeholder subject
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4351817/174473442715988296383/index_4.m3u8')}`, // Copied from Class 10 Math
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`, // Copied from Class 10 Science
+    class1Visible: true,
+    class2Visible: true,
   }
 };
 
@@ -295,6 +305,8 @@ export default function LiveClassesPage() {
     class2Subject: "Subject 2",
     class1LiveStreamUrl: undefined,
     class2LiveStreamUrl: undefined,
+    class1Visible: true,
+    class2Visible: true,
   };
 
   React.useEffect(() => {
@@ -367,6 +379,9 @@ export default function LiveClassesPage() {
     durationMinutes: 90,
     liveStreamUrl: courseDetails.class2LiveStreamUrl,
   };
+  
+  const showClass1 = courseDetails.class1Visible !== false && !!courseDetails.class1LiveStreamUrl;
+  const showClass2 = courseDetails.class2Visible !== false && !!courseDetails.class2LiveStreamUrl;
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground p-4 md:p-6">
@@ -391,19 +406,25 @@ export default function LiveClassesPage() {
           <p className="text-muted-foreground opacity-80 text-lg">{courseDetails.subtitle}</p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {firstClassStatus === 'completed' ? (
-            <>
-              <LiveClassCard {...class2Props} />
-              <LiveClassCard {...class1Props} />
-            </>
-          ) : (
-            <>
-              <LiveClassCard {...class1Props} />
-              <LiveClassCard {...class2Props} />
-            </>
-          )}
-        </div>
+        {showClass1 || showClass2 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {firstClassStatus === 'completed' ? (
+              <>
+                {showClass2 && <LiveClassCard {...class2Props} />}
+                {showClass1 && <LiveClassCard {...class1Props} />}
+              </>
+            ) : (
+              <>
+                {showClass1 && <LiveClassCard {...class1Props} />}
+                {showClass2 && <LiveClassCard {...class2Props} />}
+              </>
+            )}
+          </div>
+        ) : (
+          <div className="text-center text-xl text-muted-foreground mt-10">
+            <p>No live classes are currently scheduled or visible for this course.</p>
+          </div>
+        )}
       </main>
 
       <div className="mt-12 mb-6 text-center">
