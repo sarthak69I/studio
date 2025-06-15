@@ -55,8 +55,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   icons: {
-    icon: 'https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png',
-    apple: 'https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png',
+    icon: 'https://i.postimg.cc/ZKGmmSyr/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1-1.webp',
+    apple: 'https://i.postimg.cc/ZKGmmSyr/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1-1.webp',
   },
   openGraph: {
     title: 'E Leak Courses Hub',
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     siteName: 'E Leak Course Hub',
     images: [
       {
-        url: 'https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png', // E-Leak Logo
+        url: 'https://i.postimg.cc/ZKGmmSyr/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1-1.webp', // E-Leak Logo
         width: 500,
         height: 500,
         alt: 'E-Leak Logo - Online Courses Hub',

@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
         hostname: 'dxixtlyravvxx.cloudfront.net',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.postimg.cc',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
