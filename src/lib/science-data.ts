@@ -177,7 +177,31 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L1', title: 'Animal Kingdom L1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405246/174947952083222621696/index_4.m3u8' },
         { id: 'L2', title: 'Animal Kingdom L2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406311/174956537678522621696/index_4.m3u8' },
         { id: 'L3', title: 'Animal Kingdom L3', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408305/174973168472882621696/index_4.m3u8' },
-     ]
+      ]
     },
-  ]
+  ],
+  'English': [
+    {
+      name: 'The Portrait of a lady ',
+      lectures: [
+        { id: 'l1', title: 'The Portrait of a lady 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3791390The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L1.pdf_The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355612/1745159224_9384778348109423/sunny/1745158131261_464915711062529660_video_VOD720p30.m3u8' },
+        { id: 'l2', title: 'The Portrait of a lady 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1786690The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L2.pdf_The%20Portrait%20of%20a%20Lady%20%28Prose%29%20%20%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362029/1745700364_6861508399271443/sunny/1745672208426_612520282028803100_video_VOD720p30.m3u8' },
+      ]
+    },
+    {
+      name: 'A Photograph',
+      lectures: [
+        { id: 'l1', title: 'A Photograph 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/59141A%20photograph%20%20%20L1.pdf_A%20photograph%20%20%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362027/1745699824_5382116785203709/sunny/1745672048539_449041945338372300_video_VOD720p30.m3u8' },
+        { id: 'l2', title: 'A Photograph 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1875512A%20Photograph%20%20%20L2.pdf_A%20Photograph%20%20%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362028/1745700123_7827683171701798/sunny/1745672142046_1468116101409511_video_VOD720p30.m3u8' },
+      ]
+    },
+    {
+      name: 'We"re not afraid to die',
+      lectures: [
+        { id: 'l1', title: 'We"re not afraid to die 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6959710We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L1.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376841/1746782584_5615518054046778/sunny/1746782168362_44751792912049930_video_VOD720p30.m3u8' },
+        { id: 'l2', title: 'We"re not afraid to die 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1490688We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L2.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376842/1746782588_1716697312405945/sunny/1746782291885_47950164792380220_video_VOD720p30.m3u8' },
+        { id: 'l3', title: 'We"re not afraid to die 3', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6835826We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L3.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L3.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376843/1746783246_9612936247338730/sunny/1746782427627_664906068054696800_video_VOD720p30.m3u8' }, 
+      ]
+    }
+  ],
 };
