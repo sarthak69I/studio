@@ -19,6 +19,19 @@ import {
 import CookieConsentBanner from './cookie-consent-banner';
 import MaintenancePage from './maintenance-page'; // Maintenance page component
 
+// --- Configuration Start ---
+// To toggle maintenance mode, change this value and redeploy.
+// true: Maintenance mode is ENABLED (site shows "Under Construction").
+// false: Maintenance mode is DISABLED (site is live).
+const MAINTENANCE_MODE_ENABLED = false;
+
+// If MAINTENANCE_MODE_ENABLED is true, set the end time here in "HH:MM" (24-hour format).
+// Example: "10:00" for 10 AM, "17:30" for 5:30 PM.
+// If null or invalid format, maintenance page won't show even if enabled (safety measure).
+const MAINTENANCE_END_TIME_HHMM: string | null = null; // e.g., "10:00" 
+// --- Configuration End ---
+
+
 interface AppNotification {
   id: string;
   timestamp: string;
@@ -46,11 +59,9 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
 
   useEffect(() => {
     // Maintenance mode check
-    const maintenanceModeEnabled = process.env.NEXT_PUBLIC_MAINTENANCE_MODE_ENABLED === 'true';
-    if (maintenanceModeEnabled) {
-      const endTimeStr = process.env.NEXT_PUBLIC_MAINTENANCE_END_TIME_HHMM; // e.g., "10:00"
-      if (endTimeStr && /^\d{2}:\d{2}$/.test(endTimeStr)) {
-        const [hours, minutes] = endTimeStr.split(':').map(Number);
+    if (MAINTENANCE_MODE_ENABLED) {
+      if (MAINTENANCE_END_TIME_HHMM && /^\d{2}:\d{2}$/.test(MAINTENANCE_END_TIME_HHMM)) {
+        const [hours, minutes] = MAINTENANCE_END_TIME_HHMM.split(':').map(Number);
         const now = new Date();
         const MaintEndTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, 0, 0);
         
@@ -80,7 +91,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     return () => {
       document.removeEventListener('contextmenu', handleContextmenu);
     };
-  }, [pathname]); // Re-check on pathname change if needed, or just once on mount
+  }, [pathname]);
 
   const fetchNotifications = async () => {
     try {
@@ -196,3 +207,4 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     </>
   );
 }
+

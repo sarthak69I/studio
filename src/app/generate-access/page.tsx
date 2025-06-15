@@ -20,8 +20,13 @@ type PageState = 'initial' | 'awaitingRedirect' | 'accessGranted' | 'error' | 'a
 const LINKCENTS_URL = 'https://linkcents.com/E-Leak';
 const TUTORIAL_VIDEO_URL = "https://www.youtube.com/embed/fl7xdCFRup0?si=euD5avRVzHLqBa4Z&autoplay=1";
 
-// Read the environment variable
-const requireKeyGeneration = process.env.NEXT_PUBLIC_ENABLE_ACCESS_KEY_GENERATION === 'true';
+// --- Configuration Start ---
+// To toggle access key generation requirement, change this value and redeploy.
+// true: Key generation is REQUIRED.
+// false: Key generation is BYPASSED (access is open).
+const REQUIRE_KEY_GENERATION = true;
+// --- Configuration End ---
+
 
 export default function GenerateAccessPage() {
   const router = useRouter();
@@ -32,9 +37,9 @@ export default function GenerateAccessPage() {
   const [isButtonAnimating, setIsButtonAnimating] = React.useState(false);
 
   React.useEffect(() => {
-    document.title = requireKeyGeneration ? "Generate Course Access | E-Leak" : "Course Access | E-Leak";
+    document.title = REQUIRE_KEY_GENERATION ? "Generate Course Access | E-Leak" : "Course Access | E-Leak";
 
-    if (!requireKeyGeneration) {
+    if (!REQUIRE_KEY_GENERATION) {
       setPageState('accessOpen');
       setInfoText("Access to courses is currently open. No key generation is required at this time. You have been granted a temporary 12-hour access pass.");
       // Automatically grant an access key if one doesn't exist or is invalid
@@ -86,7 +91,7 @@ export default function GenerateAccessPage() {
 
   const handleGenerateClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     e.preventDefault();
-    if (!requireKeyGeneration) return; // Should not be callable if key gen is off
+    if (!REQUIRE_KEY_GENERATION) return; // Should not be callable if key gen is off
     
     clearAccessKey();
     
@@ -154,7 +159,7 @@ export default function GenerateAccessPage() {
           
           <p className="genkey-info-text">{infoText}</p>
 
-          {pageState === 'accessGranted' && requireKeyGeneration && (
+          {pageState === 'accessGranted' && REQUIRE_KEY_GENERATION && (
             <div className="genkey-message-success mb-6">
               <CheckCircle className="inline-block h-5 w-5 mr-2" />
               Access Key Activated! Valid until: {accessKeyExpiryTime}
@@ -166,7 +171,7 @@ export default function GenerateAccessPage() {
               Access is Open! Your temporary pass is active until: {accessKeyExpiryTime || 'loading...'}
             </div>
           )}
-           {pageState === 'error' && requireKeyGeneration && (
+           {pageState === 'error' && REQUIRE_KEY_GENERATION && (
              <div className="genkey-message-error mb-6">
               <AlertCircle className="inline-block h-5 w-5 mr-2" />
               {infoText}
@@ -175,13 +180,13 @@ export default function GenerateAccessPage() {
           
           <MainActionButton />
           
-          {requireKeyGeneration && pageState !== 'accessGranted' && (
+          {REQUIRE_KEY_GENERATION && pageState !== 'accessGranted' && (
             <button className="genkey-btn genkey-btn-secondary" onClick={handleShowTutorial}>
               <span>How To Generate Key</span>
             </button>
           )}
           
-          {requireKeyGeneration && (
+          {REQUIRE_KEY_GENERATION && (
             <div className="genkey-features">
               <div className="genkey-feature">
                 <div className="genkey-feature-icon">
@@ -214,7 +219,7 @@ export default function GenerateAccessPage() {
               </div>
             </div>
            )}
-           {(pageState !== 'accessGranted' || !requireKeyGeneration) && (
+           {(pageState !== 'accessGranted' || !REQUIRE_KEY_GENERATION) && (
             <Link href="/" className="block text-sm text-[var(--genkey-secondary)] hover:underline mt-6">
               Go to Homepage
             </Link>
@@ -222,7 +227,7 @@ export default function GenerateAccessPage() {
         </div>
       </div>
       
-      {isCustomVideoModalOpen && requireKeyGeneration && (
+      {isCustomVideoModalOpen && REQUIRE_KEY_GENERATION && (
         <div className="genkey-video-container active" onClick={handleCloseTutorial}>
           <div className="genkey-video-wrapper" onClick={(e) => e.stopPropagation()}>
             <button className="genkey-close-btn" onClick={handleCloseTutorial}>✕</button>

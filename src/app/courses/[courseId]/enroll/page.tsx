@@ -15,6 +15,14 @@ interface SubjectItemProps {
   disabled?: boolean;
 }
 
+// --- Configuration Start ---
+// To toggle access key generation requirement, change this value and redeploy.
+// true: Key generation is REQUIRED for course access.
+// false: Key generation is BYPASSED (access is open).
+const REQUIRE_KEY_GENERATION = true; 
+// --- Configuration End ---
+
+
 const SubjectItem: React.FC<SubjectItemProps> = ({ name, onClick, disabled }) => (
   <Button
     variant="secondary"
@@ -46,8 +54,6 @@ const courseDisplayNames: Record<string, string> = {
   '4': "Aarambh Batch (Class 9)",
 };
 
-// Read the environment variable
-const requireKeyGeneration = process.env.NEXT_PUBLIC_ENABLE_ACCESS_KEY_GENERATION === 'true';
 
 export default function EnrollPage() {
   const router = useRouter();
@@ -55,10 +61,10 @@ export default function EnrollPage() {
   const courseId = getParamAsString(params.courseId);
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
   const [isLoading, setIsLoading] = React.useState(true);
-  const [isAccessGranted, setIsAccessGranted] = React.useState(!requireKeyGeneration); // Grant access if key gen is off
+  const [isAccessGranted, setIsAccessGranted] = React.useState(!REQUIRE_KEY_GENERATION); // Grant access if key gen is off
 
   React.useEffect(() => {
-    if (!requireKeyGeneration) {
+    if (!REQUIRE_KEY_GENERATION) {
       setIsAccessGranted(true);
       setIsLoading(false);
       return;
@@ -72,7 +78,7 @@ export default function EnrollPage() {
       setIsAccessGranted(true);
     }
     setIsLoading(false);
-  }, [router, requireKeyGeneration]);
+  }, [router, courseId]); // Removed REQUIRE_KEY_GENERATION from deps as it's a const now
 
   React.useEffect(() => {
     if (!isLoading && isAccessGranted) {
@@ -114,7 +120,7 @@ export default function EnrollPage() {
     );
   }
 
-  if (!isAccessGranted && requireKeyGeneration) { // Only show locked state if key gen is required
+  if (!isAccessGranted && REQUIRE_KEY_GENERATION) { // Only show locked state if key gen is required
     return (
       <div className="flex flex-col min-h-screen items-center justify-center bg-background p-6 text-foreground">
         <div className="bg-card p-8 rounded-xl shadow-xl text-center max-w-md">
@@ -149,7 +155,7 @@ export default function EnrollPage() {
 
       <main className="flex-grow flex flex-col items-center pt-8 md:pt-12">
         <div className="w-full max-w-2xl space-y-6">
-          {!requireKeyGeneration && (
+          {!REQUIRE_KEY_GENERATION && (
             <div className="p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-md shadow-sm mb-6">
               <div className="flex items-center">
                 <Unlock className="h-6 w-6 mr-3 text-green-600" />
