@@ -33,8 +33,7 @@ export const aarambh9CourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Is matter around us pure? L1', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406208/174956007294357555169/index_4.m3u8' },
         { id: 'L2', title: 'Is matter around us pure? L2', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407492/174965677724307555169/index_4.m3u8' },
-        { id: 'L3', title: 'Is matter around us pure? L3', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'L4', title: 'Is matter around us pure? L4', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
+        { id: 'L3', title: 'Is matter around us pure? L3', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411204/175007761623082764802/index_5.m3u8' },
       ]
     },
     {
@@ -87,7 +86,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L1', title: 'What is Democracy & why is democracy L1', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405294/174948480645778165220/174948480645778165220_8165220.m3u8' },
         { id: 'L2', title: 'What is Democracy & why is democracy L2', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406373/174957083156418165220/index_4.m3u8' },
         { id: 'L3', title: 'What is Democracy & why is democracy L3', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407312/174964547257888165220/index_4.m3u8' },
-        { id: 'L4', title: 'What is Democracy & why is democracy L4', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
+        { id: 'L4', title: 'What is Democracy & why is democracy L4', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411383/175008874685142809295/index_3.m3u8' },
         { id: 'L5', title: 'What is Democracy & why is democracy L5', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
       ]
     },
@@ -126,7 +125,14 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L1', title: 'Coordinate Geometry L1', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396260/174853287832481261798/index_4.m3u8' },
         { id: 'L2', title: 'Coordinate Geometry L2', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397075/174860816936171261798/index_4.m3u8' },
         { id: 'L3', title: 'Coordinate Geometry L3', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397715/174869387171741261798/174869387171741261798_1261798.m3u8' },
-        { id: 'L4', title: 'Coordinate Geometry L4', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
+       ]
+    },
+    {
+      name: 'Linear Equations in Two Variables',
+      lectures: [
+        { id: 'L1', title: 'Linear Equations in Two Variables L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/28876332252753430.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408426/174974223257041261798/index_4.m3u8' },
+        { id: 'L2', title: 'Linear Equations in Two Variables L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/898296706271436700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409327/174981810598981261798/index_4.m3u8' },
+        { id: 'L3', title: 'Linear Equations in Two Variables L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/647579420880400400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410122/174990428067631261798/index_4.m3u8' },
       ]
     },
   ],
