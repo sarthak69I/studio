@@ -25,10 +25,7 @@ import {
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
-import FeedbackForm from '@/components/FeedbackForm'; // Added import
-import FeedbackList from '@/components/FeedbackList'; // Added import
-import { Separator } from '@/components/ui/separator'; // Added import
-
+// Removed FeedbackForm, FeedbackList, and Separator imports as they are now global
 
 interface Course {
   id: string;
@@ -260,13 +257,6 @@ export default function HomePage() {
           {coursesData.map((course) => (
             <CourseCard key={course.id} {...course} />
           ))}
-        </div>
-
-        <Separator className="my-12 md:my-16 w-full max-w-3xl" />
-
-        <div className="w-full flex flex-col items-center space-y-10">
-          <FeedbackForm />
-          <FeedbackList />
         </div>
       </main>
       
