@@ -134,7 +134,7 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'Tenses',
       lectures: [
-        { id: 'c9-eng-grm-l1', title: 'Tenses 1', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376992/1746790926_2620131171601548/sunny/1746785842321_68968204127858800_video_VOD720p30.m3u8' },
+        { id: 'c9-eng-grm-l1', title: 'Tenses 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/498967843075806340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376992/1746790926_2620131171601548/sunny/1746785842321_68968204127858800_video_VOD720p30.m3u8' },
         { id: 'c9-eng-grm-l2', title: 'Tenses 2', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376993/1746791165_4683530659641818/sunny/1746786281807_635426128592612900_video_VOD720p30.m3u8' },
         { id: 'c9-eng-grm-l3', title: 'Tenses 3', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376994/1746791225_3697514107018118/sunny/1746786504709_85453328252238460_video_VOD720p30.m3u8' },
       ]
@@ -142,15 +142,15 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'The Fun They Had',
       lectures: [
-        { id: 'c9-eng-lit-l1', title: 'The Fun They Had 1', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362885/1745829485_2048536674804334/sunny/1745824193994_820484776522091000_video_VOD720p30.m3u8' },
-        { id: 'c9-eng-lit-l2', title: 'The Fun They Had 2', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362888/1745829005_4828557523576252/sunny/1745825520195_860858436100445400_video_VOD720p30.m3u8' },
+        { id: 'c9-eng-lit-l1', title: 'The Fun They Had 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5115291fun%20they%20had%20L1.pdf_fun%20they%20had%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362885/1745829485_2048536674804334/sunny/1745824193994_820484776522091000_video_VOD720p30.m3u8' },
+        { id: 'c9-eng-lit-l2', title: 'The Fun They Had 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6861657fun%20they%20had%20%20L2.pdf_fun%20they%20had%20%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362888/1745829005_4828557523576252/sunny/1745825520195_860858436100445400_video_VOD720p30.m3u8' },
       ]
     },
     {
       name: 'The Road Not Taken',
       lectures: [
-        { id: 'c9-eng-wrt-l1', title: 'The Road Not Taken 1', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376945/1746790146_9952541808084121/sunny/1746785890101_885502576654220900_video_VOD720p30.m3u8' },
-        { id: 'c9-eng-wrt-l2', title: 'The Road Not Taken 2', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376944/1746789785_1046241985025655/sunny/1746785657092_863095031696032600_video_VOD720p30.m3u8' },     
+        { id: 'c9-eng-wrt-l1', title: 'The Road Not Taken 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3975724The%20Road%20Not%20Taken%20L1.pdf_The%20Road%20Not%20Taken%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376945/1746790146_9952541808084121/sunny/1746785890101_885502576654220900_video_VOD720p30.m3u8' },
+        { id: 'c9-eng-wrt-l2', title: 'The Road Not Taken 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/722803The%20Road%20Not%20Taken%20L2.pdf_The%20Road%20Not%20Taken%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376944/1746789785_1046241985025655/sunny/1746785657092_863095031696032600_video_VOD720p30.m3u8' },     
     ]
    }, 
     {
@@ -163,15 +163,15 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'The Sound Of Music',
       lectures: [
-        { id: 'c9-enl1', title: 'The Sound Of Music 1', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409060/1749824044_3361889869046858/sunny/1749811523668_756560226864072100_video_VOD720p30.m3u8' },
-        { id: 'c9-enl2', title: 'The Sound Of Music 2', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409061/1749824105_2359363804227323/sunny/1749812109420_686057178732817300_video_VOD720p30.m3u8' },     
+        { id: 'c9-enl1', title: 'The Sound Of Music 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7497880sound%20of%20music%20part%201%20L1.pdf_sound%20of%20music%20part%201%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409060/1749824044_3361889869046858/sunny/1749811523668_756560226864072100_video_VOD720p30.m3u8' },
+        { id: 'c9-enl2', title: 'The Sound Of Music 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6803599sound%20of%20music%20part%201%20L2.pdf_sound%20of%20music%20part%201%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409061/1749824105_2359363804227323/sunny/1749812109420_686057178732817300_video_VOD720p30.m3u8' },     
    ]
   }, 
     {
       name: 'Poetic Devices',
       lectures: [
-        { id: 'c9l1', title: 'Poetic Devices 1', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355434/1745094064_6558196120167470/sunny/1745074746600_243414202639413570_video_VOD720p30.m3u8' },
-        { id: 'c9l2', title: 'Poetic Devices 2', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' },     
+        { id: 'c9l1', title: 'Poetic Devices 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/276001057449717760.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355434/1745094064_6558196120167470/sunny/1745074746600_243414202639413570_video_VOD720p30.m3u8' },
+        { id: 'c9l2', title: 'Poetic Devices 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/498967843075806340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' },     
       ]
     }
   ],
