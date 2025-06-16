@@ -110,7 +110,7 @@ export default function FeedbackForm() {
                 )}
               />
               <Button type="submit" className="w-full py-3 rounded-lg text-base group" disabled={isSubmitting || isUsernameDialogOpen}>
-                Next: Add Your Name
+                Submit Feedback
                 <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </form>
@@ -131,7 +131,7 @@ export default function FeedbackForm() {
               <User className="mr-2 h-5 w-5 text-primary" /> Add Your Name (Optional)
             </DialogTitle>
             <DialogDescription className="pt-2">
-              You can submit anonymously, or let us know who you are!
+              
             </DialogDescription>
           </DialogHeader>
           <div className="py-4 space-y-4">
@@ -139,7 +139,7 @@ export default function FeedbackForm() {
               <Label htmlFor="username-dialog" className="text-foreground/80">Username</Label>
               <Input
                 id="username-dialog"
-                placeholder="Your name or alias (leave blank for Anonymous)"
+                placeholder=""
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="bg-background/80 focus:bg-background"
