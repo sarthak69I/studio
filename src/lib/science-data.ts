@@ -131,6 +131,7 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L1', title: 'Trigonometry Function L1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405153/174947369130311261798/index_4.m3u8' },
         { id: 'L2', title: 'Trigonometry Function L2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406215/174956025952221261798/index_4.m3u8' },
         { id: 'L3', title: 'Trigonometry Function L3', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407505/174965818393941261798/index_4.m3u8' },
+        { id: 'L4', title: 'Trigonometry Function L4', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411239/175007836684925373082/index_4.m3u8' },
       ]
     },
   ],
