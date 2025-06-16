@@ -25,7 +25,6 @@ import {
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
-// FeedbackForm, FeedbackList, and Separator imports are removed as they are now global
 
 interface Course {
   id: string;
@@ -64,7 +63,7 @@ const coursesData: Course[] = [
     youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
     timeTableImageUrl: 'https://drive.google.com/file/d/1NeenjN2AfvXmTB6_JKVps4_uVZ66jmaj/preview',
     liveSlots: [
-      { targetHour: 17, targetMinute: 10, durationMinutes: 90 }, 
+      { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
     ],
   },
@@ -134,12 +133,12 @@ export default function HomePage() {
       setCurrentTheme(storedTheme);
       document.documentElement.className = storedTheme;
     } else {
-      setCurrentTheme('dark'); 
+      setCurrentTheme('dark');
       localStorage.setItem('theme', 'dark');
       document.documentElement.className = 'dark';
     }
   }, []);
-  
+
   const toggleTheme = () => {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     setCurrentTheme(newTheme);
@@ -150,7 +149,7 @@ export default function HomePage() {
   return (
     <>
     <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
-      
+
       <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
         <DialogContent className="sm:max-w-lg rounded-xl">
           <DialogHeader>
@@ -197,7 +196,7 @@ export default function HomePage() {
                 )}
                 {currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
               </Button>
-              
+
               <Button
                 variant="ghost"
                 className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
@@ -219,7 +218,7 @@ export default function HomePage() {
                   Download App
                 </a>
               </Button>
-              
+
               <Button
                 variant="ghost"
                 className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
@@ -231,7 +230,7 @@ export default function HomePage() {
                   E-Leak 24/7 Support
                 </Link>
               </Button>
-              
+
                <Button
                 variant="ghost"
                 className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
@@ -270,20 +269,10 @@ export default function HomePage() {
           ))}
         </div>
       </main>
-      
-      <div className="mt-16 mb-8 text-center">
-        <p className="text-muted-foreground mb-2">Need Support?</p>
-        <Link href="/help-center">
-          <Button variant="outline" size="lg" className="rounded-lg">
-            <Bot className="mr-2 h-5 w-5" />
-            E-Leak 24/7 Support
-          </Button>
-        </Link>
-      </div>
 
-      <footer className="text-center text-sm text-muted-foreground pt-4 pb-6 animate-pulse-custom">
-        <p>© E-Leak All rights reserved.</p>
-      </footer>
+      {/* The "Need Support?" section and footer have been removed from here */}
+      {/* It is now handled by client-layout-wrapper.tsx */}
+
     </div>
     </>
   );
