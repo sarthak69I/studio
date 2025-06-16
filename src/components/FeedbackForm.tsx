@@ -8,14 +8,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input'; // Added Input
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
-import { Send } from 'lucide-react';
+import { Send, User } from 'lucide-react'; // Added User icon
 
 const feedbackFormSchema = z.object({
+  username: z.string().max(50, { message: 'Username must not exceed 50 characters.' }).optional(), // Optional username
   feedbackText: z.string().min(10, { message: 'Feedback must be at least 10 characters.' }).max(1000, { message: 'Feedback must not exceed 1000 characters.' }),
 });
 
@@ -26,6 +28,7 @@ export default function FeedbackForm() {
   const form = useForm<FeedbackFormValues>({
     resolver: zodResolver(feedbackFormSchema),
     defaultValues: {
+      username: '',
       feedbackText: '',
     },
   });
@@ -35,10 +38,11 @@ export default function FeedbackForm() {
     setIsSubmitting(true);
     try {
       await addDoc(collection(db, 'feedback'), {
+        username: data.username || 'Anonymous', // Default to Anonymous if empty
         text: data.feedbackText,
         timestamp: serverTimestamp(),
-        likes: 0, // Initialize likes
-        dislikes: 0, // Initialize dislikes
+        likes: 0,
+        dislikes: 0,
       });
       toast({
         title: 'Feedback Submitted!',
@@ -68,6 +72,26 @@ export default function FeedbackForm() {
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center text-foreground/80">
+                    <User className="mr-2 h-4 w-4" /> Username (Optional)
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Your name or alias"
+                      className="bg-background/80 focus:bg-background"
+                      {...field}
+                      disabled={isSubmitting}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="feedbackText"

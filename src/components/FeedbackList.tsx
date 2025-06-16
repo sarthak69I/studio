@@ -15,6 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 
 interface FeedbackEntry {
   id: string;
+  username: string;
   text: string;
   timestamp: Timestamp | null;
   likes: number;
@@ -26,7 +27,7 @@ interface UserVotes {
   [feedbackId: string]: UserVote;
 }
 
-const FEEDBACK_VOTES_KEY = 'eleakFeedbackVotes_v1'; // Key for localStorage
+const FEEDBACK_VOTES_KEY = 'eleakFeedbackVotes_v1';
 
 export default function FeedbackList() {
   const [feedbackEntries, setFeedbackEntries] = React.useState<FeedbackEntry[]>([]);
@@ -56,6 +57,7 @@ export default function FeedbackList() {
         const data = docSnap.data();
         entries.push({
           id: docSnap.id,
+          username: data.username || 'Anonymous', // Handle missing username
           text: data.text,
           timestamp: data.timestamp as Timestamp | null,
           likes: data.likes || 0,
@@ -82,7 +84,7 @@ export default function FeedbackList() {
 
     setVotingStates(prev => ({...prev, [feedbackId]: true}));
 
-    const currentVote = userVotes[feedbackId] || null;
+    const currentStoredVote = userVotes[feedbackId] || null;
     let newVoteState: UserVote = null;
 
     const feedbackDocRef = doc(db, 'feedback', feedbackId);
@@ -96,7 +98,7 @@ export default function FeedbackList() {
 
         const updates: { likes?: any; dislikes?: any } = {};
 
-        if (currentVote === voteType) { // User is un-voting
+        if (currentStoredVote === voteType) { // User is un-voting
           newVoteState = null;
           if (voteType === 'like') updates.likes = increment(-1);
           else updates.dislikes = increment(-1);
@@ -104,10 +106,10 @@ export default function FeedbackList() {
           newVoteState = voteType;
           if (voteType === 'like') {
             updates.likes = increment(1);
-            if (currentVote === 'dislike') updates.dislikes = increment(-1);
+            if (currentStoredVote === 'dislike') updates.dislikes = increment(-1);
           } else { // voteType is 'dislike'
             updates.dislikes = increment(1);
-            if (currentVote === 'like') updates.likes = increment(-1);
+            if (currentStoredVote === 'like') updates.likes = increment(-1);
           }
         }
         transaction.update(feedbackDocRef, updates);
@@ -183,14 +185,14 @@ export default function FeedbackList() {
           <div className="space-y-4">
             {feedbackEntries.map((entry) => {
               const userVoteForThisItem = userVotes[entry.id];
-              const isVoting = votingStates[entry.id];
+              const isItemVoting = votingStates[entry.id];
               return (
                 <Card key={entry.id} className="bg-card/90 backdrop-blur-sm shadow-lg border-border/70 transition-all hover:shadow-xl hover:border-primary/30">
                   <CardHeader className="pb-2 pt-4">
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <div className="flex items-center">
                          <UserCircle className="mr-1.5 h-4 w-4 text-primary/70" />
-                         <span>Anonymous User</span>
+                         <span className="font-medium text-foreground/90">{entry.username || 'Anonymous'}</span>
                       </div>
                       <div className="flex items-center">
                         <CalendarDays className="mr-1.5 h-4 w-4 text-primary/70" />
@@ -206,28 +208,28 @@ export default function FeedbackList() {
                       variant="ghost"
                       size="sm"
                       onClick={() => handleVote(entry.id, 'like')}
-                      disabled={isVoting}
+                      disabled={isItemVoting}
                       className={cn(
                         "text-muted-foreground hover:text-green-500",
                         userVoteForThisItem === 'like' && "text-green-500"
                       )}
                       aria-label={`Like feedback (currently ${entry.likes} likes)`}
                     >
-                      {isVoting && userVoteForThisItem !== 'dislike' && !(currentVote === 'like' && userVoteForThisItem === null) ? <Loader2 className="h-4 w-4 animate-spin" /> : <ThumbsUp className={cn("h-5 w-5", userVoteForThisItem === 'like' && "fill-green-500")} />}
+                      {isItemVoting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ThumbsUp className={cn("h-5 w-5", userVoteForThisItem === 'like' && "fill-green-500")} />}
                       <span className="ml-1.5 text-xs tabular-nums">{entry.likes}</span>
                     </Button>
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => handleVote(entry.id, 'dislike')}
-                      disabled={isVoting}
+                      disabled={isItemVoting}
                       className={cn(
                         "text-muted-foreground hover:text-red-500",
                         userVoteForThisItem === 'dislike' && "text-red-500"
                       )}
                       aria-label={`Dislike feedback (currently ${entry.dislikes} dislikes)`}
                     >
-                       {isVoting && userVoteForThisItem !== 'like' && !(currentVote === 'dislike' && userVoteForThisItem === null) ? <Loader2 className="h-4 w-4 animate-spin" /> : <ThumbsDown className={cn("h-5 w-5", userVoteForThisItem === 'dislike' && "fill-red-500")} />}
+                       {isItemVoting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ThumbsDown className={cn("h-5 w-5", userVoteForThisItem === 'dislike' && "fill-red-500")} />}
                       <span className="ml-1.5 text-xs tabular-nums">{entry.dislikes}</span>
                     </Button>
                   </CardFooter>
