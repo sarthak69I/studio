@@ -5,12 +5,13 @@
 import * as React from 'react';
 import { db } from '@/lib/firebase';
 import { collection, query, orderBy, onSnapshot, Timestamp, type DocumentData, doc, runTransaction, increment } from 'firebase/firestore';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'; // Removed CardTitle, CardDescription
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
 import { MessageSquareText, CalendarDays, UserCircle, ThumbsUp, ThumbsDown, Loader2 } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
 
 interface FeedbackEntry {
   id: string;
@@ -25,16 +26,16 @@ interface UserVotes {
   [feedbackId: string]: UserVote;
 }
 
-const FEEDBACK_VOTES_KEY = 'eleakFeedbackVotes_v1';
+const FEEDBACK_VOTES_KEY = 'eleakFeedbackVotes_v1'; // Key for localStorage
 
 export default function FeedbackList() {
   const [feedbackEntries, setFeedbackEntries] = React.useState<FeedbackEntry[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [userVotes, setUserVotes] = React.useState<UserVotes>({});
-  const [votingStates, setVotingStates] = React.useState<{[feedbackId: string]: boolean}>({}); // To show loading on vote buttons
+  const [votingStates, setVotingStates] = React.useState<{[feedbackId: string]: boolean}>({});
+  const { toast } = useToast();
 
   React.useEffect(() => {
-    // Load user votes from localStorage
     if (typeof window !== 'undefined') {
       const storedVotes = localStorage.getItem(FEEDBACK_VOTES_KEY);
       if (storedVotes) {
@@ -42,7 +43,7 @@ export default function FeedbackList() {
           setUserVotes(JSON.parse(storedVotes));
         } catch (e) {
           console.error("Failed to parse votes from localStorage", e);
-          localStorage.removeItem(FEEDBACK_VOTES_KEY); // Clear corrupted data
+          localStorage.removeItem(FEEDBACK_VOTES_KEY);
         }
       }
     }
@@ -57,8 +58,8 @@ export default function FeedbackList() {
           id: docSnap.id,
           text: data.text,
           timestamp: data.timestamp as Timestamp | null,
-          likes: data.likes || 0, // Default to 0 if not present
-          dislikes: data.dislikes || 0, // Default to 0 if not present
+          likes: data.likes || 0,
+          dislikes: data.dislikes || 0,
         });
       });
       setFeedbackEntries(entries);
@@ -66,13 +67,18 @@ export default function FeedbackList() {
     }, (error) => {
       console.error("Error fetching feedback:", error);
       setIsLoading(false);
+      toast({
+        variant: 'destructive',
+        title: 'Error Fetching Feedback',
+        description: 'Could not load feedback entries. Please try again later.',
+      });
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [toast]);
 
   const handleVote = async (feedbackId: string, voteType: 'like' | 'dislike') => {
-    if (votingStates[feedbackId]) return; // Prevent multiple clicks while processing
+    if (votingStates[feedbackId]) return;
 
     setVotingStates(prev => ({...prev, [feedbackId]: true}));
 
@@ -88,8 +94,6 @@ export default function FeedbackList() {
           throw new Error("Document does not exist!");
         }
 
-        let currentLikes = feedbackDoc.data().likes || 0;
-        let currentDislikes = feedbackDoc.data().dislikes || 0;
         const updates: { likes?: any; dislikes?: any } = {};
 
         if (currentVote === voteType) { // User is un-voting
@@ -100,19 +104,18 @@ export default function FeedbackList() {
           newVoteState = voteType;
           if (voteType === 'like') {
             updates.likes = increment(1);
-            if (currentVote === 'dislike') updates.dislikes = increment(-1); // Was disliked, now liked
+            if (currentVote === 'dislike') updates.dislikes = increment(-1);
           } else { // voteType is 'dislike'
             updates.dislikes = increment(1);
-            if (currentVote === 'like') updates.likes = increment(-1); // Was liked, now disliked
+            if (currentVote === 'like') updates.likes = increment(-1);
           }
         }
         transaction.update(feedbackDocRef, updates);
       });
 
-      // Update localStorage and local state after successful transaction
       const updatedVotes = { ...userVotes, [feedbackId]: newVoteState };
       if (newVoteState === null) {
-        delete updatedVotes[feedbackId]; // Remove if unvoted
+        delete updatedVotes[feedbackId];
       }
       setUserVotes(updatedVotes);
       if (typeof window !== 'undefined') {
@@ -121,12 +124,15 @@ export default function FeedbackList() {
 
     } catch (error) {
       console.error("Error processing vote:", error);
-      // Optionally, show a toast notification for error
+      toast({
+        variant: 'destructive',
+        title: 'Vote Failed',
+        description: 'Could not process your vote. Please try again.',
+      });
     } finally {
        setVotingStates(prev => ({...prev, [feedbackId]: false}));
     }
   };
-
 
   const formatDate = (timestamp: Timestamp | null) => {
     if (!timestamp) return 'Just now';
@@ -136,7 +142,7 @@ export default function FeedbackList() {
     });
   };
 
-  if (isLoading && feedbackEntries.length === 0) { // Show skeleton only on initial load
+  if (isLoading && feedbackEntries.length === 0) {
     return (
       <div className="w-full max-w-2xl mt-10">
         <h2 className="text-2xl font-semibold text-center mb-6 text-primary">Recent Feedback</h2>
@@ -170,10 +176,10 @@ export default function FeedbackList() {
         <MessageSquareText className="inline-block mr-2 h-7 w-7 align-text-bottom" />
         Recent Feedback
       </h2>
-      {feedbackEntries.length === 0 ? (
+      {feedbackEntries.length === 0 && !isLoading ? (
         <p className="text-center text-muted-foreground py-10">No feedback submitted yet. Be the first!</p>
       ) : (
-        <ScrollArea className="h-[500px] pr-4 -mr-4"> 
+        <ScrollArea className="h-[500px] pr-4 -mr-4">
           <div className="space-y-4">
             {feedbackEntries.map((entry) => {
               const userVoteForThisItem = userVotes[entry.id];
@@ -207,7 +213,7 @@ export default function FeedbackList() {
                       )}
                       aria-label={`Like feedback (currently ${entry.likes} likes)`}
                     >
-                      {isVoting && userVoteForThisItem !== 'dislike' ? <Loader2 className="h-4 w-4 animate-spin" /> : <ThumbsUp className={cn("h-5 w-5", userVoteForThisItem === 'like' && "fill-green-500")} />}
+                      {isVoting && userVoteForThisItem !== 'dislike' && !(currentVote === 'like' && userVoteForThisItem === null) ? <Loader2 className="h-4 w-4 animate-spin" /> : <ThumbsUp className={cn("h-5 w-5", userVoteForThisItem === 'like' && "fill-green-500")} />}
                       <span className="ml-1.5 text-xs tabular-nums">{entry.likes}</span>
                     </Button>
                     <Button
@@ -221,7 +227,7 @@ export default function FeedbackList() {
                       )}
                       aria-label={`Dislike feedback (currently ${entry.dislikes} dislikes)`}
                     >
-                       {isVoting && userVoteForThisItem !== 'like' ? <Loader2 className="h-4 w-4 animate-spin" /> : <ThumbsDown className={cn("h-5 w-5", userVoteForThisItem === 'dislike' && "fill-red-500")} />}
+                       {isVoting && userVoteForThisItem !== 'like' && !(currentVote === 'dislike' && userVoteForThisItem === null) ? <Loader2 className="h-4 w-4 animate-spin" /> : <ThumbsDown className={cn("h-5 w-5", userVoteForThisItem === 'dislike' && "fill-red-500")} />}
                       <span className="ml-1.5 text-xs tabular-nums">{entry.dislikes}</span>
                     </Button>
                   </CardFooter>

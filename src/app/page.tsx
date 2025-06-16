@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, HelpCircle, Sun, Moon, Bot, Download } from 'lucide-react';
+import { Menu, HelpCircle, Sun, Moon, Bot, Download, MessageSquare } from 'lucide-react'; // Added MessageSquare for consistency
 import Image from 'next/image';
 import {
   Sheet,
@@ -25,7 +25,7 @@ import {
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
-// Removed FeedbackForm, FeedbackList, and Separator imports as they are now global
+// FeedbackForm, FeedbackList, and Separator imports are removed as they are now global
 
 interface Course {
   id: string;
@@ -128,7 +128,6 @@ export default function HomePage() {
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
 
-
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme) {
@@ -230,6 +229,18 @@ export default function HomePage() {
                 <Link href="/help-center">
                    <Bot className="mr-3 h-5 w-5 text-primary" />
                   E-Leak 24/7 Support
+                </Link>
+              </Button>
+              
+               <Button
+                variant="ghost"
+                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                aria-label="Open Public Chat"
+                asChild
+              >
+                <Link href="/public-chat">
+                   <MessageSquare className="mr-3 h-5 w-5 text-primary" />
+                  Public Chat
                 </Link>
               </Button>
 
