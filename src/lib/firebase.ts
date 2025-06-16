@@ -5,15 +5,14 @@ import { getFirestore, type Firestore } from "firebase/firestore";
 // import { getAuth, type Auth } from "firebase/auth"; // If you need auth later
 
 // Your web app's Firebase configuration
-// IMPORTANT: Replace this with your actual Firebase project configuration!
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID" // Optional
+  apiKey: "AIzaSyDHdIfzMXstsyv2OG9ewPLTxceFIW7-rjA",
+  authDomain: "e-leak-3sed1.firebaseapp.com",
+  projectId: "e-leak-3sed1",
+  storageBucket: "e-leak-3sed1.appspot.com", // Corrected common pattern for storageBucket
+  messagingSenderId: "989355921943",
+  appId: "1:989355921943:web:da5854f22d8965c0140252",
+  measurementId: "G-SLH88GT2PZ"
 };
 
 let app: FirebaseApp;
