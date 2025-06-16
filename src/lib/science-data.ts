@@ -87,6 +87,12 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L5', title: 'Classification of Elements L5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/880517372972588500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394991/174843803458707555169/index_4.m3u8' },
         { id: 'L6', title: 'Classification of Elements L6', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406376/174957160517507555169/index_4.m3u8' },
         { id: 'L7', title: 'Classification of Elements L7', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407338/174964691183307555169/index_4.m3u8' },
+     ]
+    },
+    {
+      name: 'Redox Reaction',
+      lectures: [
+        { id: 'L1', title: 'Redox Reaction', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411390/175008942555082764802/index_5.m3u8' },
       ]
     },
   ],
