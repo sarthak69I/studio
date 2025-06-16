@@ -67,7 +67,7 @@ export default function FeedbackForm() {
                 <FormLabel>Your Feedback</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Tell us what you think about E-Leak..."
+                    placeholder=""
                     className="min-h-[120px] resize-none"
                     {...field}
                     disabled={isSubmitting}
