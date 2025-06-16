@@ -9,7 +9,7 @@ import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label'; // Added missing import
+import { Label } from '@/components/ui/label';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription, DialogClose } from '@/components/ui/dialog';
@@ -46,7 +46,7 @@ export default function FeedbackForm() {
 
   // Triggered when the final "Submit Feedback" button in the dialog is clicked
   const handleFinalSubmit = async () => {
-    if (!pendingFeedbackText) return; // Should not happen if flow is correct
+    if (!pendingFeedbackText) return;
 
     setIsSubmitting(true);
     try {
@@ -54,14 +54,13 @@ export default function FeedbackForm() {
         username: username.trim() || 'Anonymous',
         text: pendingFeedbackText,
         timestamp: serverTimestamp(),
-        likes: 0,
-        dislikes: 0,
+        // likes and dislikes removed
       });
       toast({
         title: 'Feedback Submitted!',
         description: 'Thank you for your valuable feedback.',
       });
-      feedbackTextForm.reset(); // Reset the main form
+      feedbackTextForm.reset();
       setPendingFeedbackText('');
       setUsername('');
       setIsUsernameDialogOpen(false);
@@ -111,7 +110,7 @@ export default function FeedbackForm() {
                 )}
               />
               <Button type="submit" className="w-full py-3 rounded-lg text-base group" disabled={isSubmitting || isUsernameDialogOpen}>
-                Submit Feedback
+                Next: Add Your Name
                 <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </form>
@@ -120,8 +119,9 @@ export default function FeedbackForm() {
       </Card>
 
       <Dialog open={isUsernameDialogOpen} onOpenChange={(open) => {
-        if (!open && !isSubmitting) { // If dialog is closed without submitting
-            setPendingFeedbackText(''); // Clear pending text
+        if (!open && !isSubmitting) {
+            setPendingFeedbackText('');
+            setUsername('');
         }
         setIsUsernameDialogOpen(open);
       }}>
