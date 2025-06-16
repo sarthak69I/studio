@@ -1,18 +1,4 @@
-
 {
-  "badgeCount": 2,
-  "items": [
-    {
-      "id": "notif_20240729_002",
-      "timestamp": "2024-07-29T10:30:00Z",
-      "title": "New Course Available!",
-      "message": "Check out our latest 'Advanced JavaScript Techniques' course, now open for enrollment."
-    },
-    {
-      "id": "notif_20240728_001",
-      "timestamp": "2024-07-28T15:00:00Z",
-      "title": "Maintenance Update",
-      "message": "Scheduled maintenance is complete. All systems are back online."
-    }
-  ]
+  "badgeCount": 0,
+  "items": []
 }
