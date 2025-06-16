@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, HelpCircle, Sun, Moon, Bell as BellIcon, Bot, Download } from 'lucide-react';
+import { Menu, HelpCircle, Sun, Moon, Bot, Download } from 'lucide-react';
 import Image from 'next/image';
 import {
   Sheet,
@@ -22,7 +22,6 @@ import {
   DialogFooter,
   DialogClose,
   DialogTrigger,
-  DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -127,7 +126,6 @@ const coursesData: Course[] = [
 ];
 
 export default function HomePage() {
-  const [isClassUpdatesDialogOpen, setIsClassUpdatesDialogOpen] = useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
 
@@ -201,52 +199,6 @@ export default function HomePage() {
                 )}
                 {currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
               </Button>
-
-
-              <Dialog open={isClassUpdatesDialogOpen} onOpenChange={setIsClassUpdatesDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                    aria-label="View Class Updates"
-                  >
-                    <BellIcon className="mr-3 h-5 w-5 text-primary" />
-                    Class Updates
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md rounded-xl">
-                  <DialogHeader>
-                    <DialogTitle className="text-xl">Class Updates</DialogTitle>
-                  </DialogHeader>
-                  <div className="py-4 space-y-3 text-sm">
-                    <p>
-                      To get All Class Updates Join the telegram channel:
-                      <Link href="https://t.me/eleakcoursehub" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
-                        Telegram
-                      </Link>
-                    </p>
-                    <p>
-                      Subscribe on YouTube:
-                      <Link href="https://youtube.com/@nexttopper-freebatch?si=SgEYNb-mxjw3AFpP" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
-                        Main Channel
-                      </Link>
-                    </p>
-                    <p>
-                      This is the backup channel:
-                      <Link href="https://www.youtube.com/@e-leakcoursehub" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
-                        Backup Channel
-                      </Link>
-                    </p>
-                  </div>
-                  <DialogFooter className="sm:justify-start">
-                    <DialogClose asChild>
-                      <Button type="button" variant="outline">
-                        Close
-                      </Button>
-                    </DialogClose>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
               
               <Button
                 variant="ghost"
@@ -273,13 +225,13 @@ export default function HomePage() {
               <Button
                 variant="ghost"
                 className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                aria-label="Open E-Leak AI"
+                aria-label="Open E-Leak 24/7 Support"
                 asChild
               >
-                <a href="https://eleakai.vercel.app/">
+                <Link href="/help-center">
                    <Bot className="mr-3 h-5 w-5 text-primary" />
-                  E-Leak AI
-                </a>
+                  E-Leak 24/7 Support
+                </Link>
               </Button>
 
             </div>
@@ -310,13 +262,13 @@ export default function HomePage() {
       </main>
       
       <div className="mt-16 mb-8 text-center">
-        <p className="text-muted-foreground mb-2">Need AI Assistance?</p>
-        <a href="https://eleakai.vercel.app/">
+        <p className="text-muted-foreground mb-2">Need Support?</p>
+        <Link href="/help-center">
           <Button variant="outline" size="lg" className="rounded-lg">
             <Bot className="mr-2 h-5 w-5" />
-            E-Leak AI
+            E-Leak 24/7 Support
           </Button>
-        </a>
+        </Link>
       </div>
 
       <footer className="text-center text-sm text-muted-foreground pt-4 pb-6 animate-pulse-custom">
@@ -327,5 +279,3 @@ export default function HomePage() {
     </>
   );
 }
-
-    
