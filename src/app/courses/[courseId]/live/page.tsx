@@ -25,40 +25,40 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "Class 11 Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "CHEMISTRY",
-    class2Subject: "MATHS",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
-    class1Visible: false,
-    class2Visible: false,
+    class1Subject: "MATHS",
+    class2Subject: "CHEMISTRY",
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/49856fa811d3403facbfba24d0db04ab/index_1.m3u8')}`,
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/ac361b0bc5c84abba22ce98a674f14a3/index_1.m3u8')}`,
+    class1Visible: true,
+    class2Visible: true,
   },
     '2': { // Commece
       pageTitle: "Class 11 Science Live Classes",
       subtitle: "Interactive learning sessions for Science students",
       class1Subject: "Business",
-      class2Subject: "MATHS",
+      class2Subject: "BUSINESS",
       class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
-      class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
+      class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/4882f3a454494165b396de72e412d7aa/index_1.m3u8')}`,
       class1Visible: false,
-      class2Visible: false,
+      class2Visible: true,
   },
   '3': { // Aarambh (Foundation Class 10)
     pageTitle: "Class 10 Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Aarambh batch",
-    class1Subject: "Science",
+    class1Subject: "SST",
     class2Subject: "Mathematics",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4351817/174473442715988296383/index_4.m3u8')}`,
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index.m3u8')}`,
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_1.m3u8')}`,
     class1Visible: true,
     class2Visible: true,
   },
   '4': { // Aarambh (Foundation Class 9)
     pageTitle: "Class 9 Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Class 9 Aarambh batch",
-    class1Subject: "Mathematics", // Placeholder subject
-    class2Subject: "Science",     // Placeholder subject
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4351817/174473442715988296383/index_4.m3u8')}`, // Copied from Class 10 Math
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d1kw75zcv4u98c.cloudfront.net/out/v1/287810d967cc428e9bd992002e55b72c/index_5.m3u8')}`, // Copied from Class 10 Science
+    class1Subject: "Chemistry",
+    class2Subject: "SST",
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_4.m3u8')}`, 
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d2ypa0i2sdc0h2.cloudfront.net/out/v1/953b87b302b04b50a75b8ed04c215cc4/index_4.m3u8')}`, 
     class1Visible: true,
     class2Visible: true,
   }
@@ -442,4 +442,3 @@ export default function LiveClassesPage() {
     </div>
   );
 }
-    
