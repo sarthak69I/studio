@@ -53,7 +53,13 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L10', title: 'Nationalism in Europe L10', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407324/174964584764377880624/index_4.m3u8' },
         { id: 'L11', title: 'Nationalism in Europe L11', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407497/174965714629147880624/index_4.m3u8' },
         { id: 'L12', title: 'Nationalism in Europe L12', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408429/174974249991017880624/index_4.m3u8' },
-      ]
+        ]
+    },
+    {
+      name: 'Forest And Wildlife Resources',
+      lectures: [
+        { id: 'L1', title: 'Forest And Wildlife Resources L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411210/175007770550547125088/index_4.m3u8' },
+       ] 
     }
   ],
   'Science': [
@@ -155,10 +161,9 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Some Application of Trigonometry',
       lectures: [
-        { id: 'L1', title: 'Some Application of Trigonometry L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409472/174982914345591097666/index_5.m3u8' },
-        { id: 'L2', title: 'Some Application of Trigonometry L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410213/174991601648451097666/index_5.m3u8' },
-
-      
+        { id: 'L1', title: 'Some Application of Trigonometry L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/409970325793336960.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409472/174982914345591097666/index_5.m3u8' },
+        { id: 'L2', title: 'Some Application of Trigonometry L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/234701559771625340.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410213/174991601648451097666/index_5.m3u8' },
+        { id: 'L3', title: 'Some Application of Trigonometry L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411382/175008869822868752407/index_4.m3u8' },
       ]
     }
   ],
