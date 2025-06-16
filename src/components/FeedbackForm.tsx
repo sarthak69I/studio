@@ -86,7 +86,7 @@ export default function FeedbackForm() {
             Share Your Thoughts
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            We value your input! Let us know how we can improve E-Leak.
+            Let us know how we can improve E-Leak.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -111,7 +111,7 @@ export default function FeedbackForm() {
                 )}
               />
               <Button type="submit" className="w-full py-3 rounded-lg text-base group" disabled={isSubmitting || isUsernameDialogOpen}>
-                Next: Add Your Name
+                Submit Feedback
                 <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </form>
