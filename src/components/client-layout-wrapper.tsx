@@ -17,18 +17,21 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import CookieConsentBanner from './cookie-consent-banner';
-import MaintenancePage from './maintenance-page'; // Maintenance page component
+import MaintenancePage from './maintenance-page';
+import FeedbackForm from '@/components/FeedbackForm';
+import FeedbackList from '@/components/FeedbackList';
+import { Separator } from '@/components/ui/separator';
 
 // --- Configuration Start ---
 // To toggle maintenance mode, change this value and redeploy.
 // true: Maintenance mode is ENABLED (site shows "Under Construction").
 // false: Maintenance mode is DISABLED (site is live).
-const MAINTENANCE_MODE_ENABLED = true;
+const MAINTENANCE_MODE_ENABLED = false;
 
 // If MAINTENANCE_MODE_ENABLED is true, set the end time here in "HH:MM" (24-hour format).
 // Example: "10:00" for 10 AM, "17:30" for 5:30 PM.
 // If null or invalid format, maintenance page won't show even if enabled (safety measure).
-const MAINTENANCE_END_TIME_HHMM: string | null = ""; // e.g., "10:00" 
+const MAINTENANCE_END_TIME_HHMM: string | null = "10:00";
 // --- Configuration End ---
 
 
@@ -58,7 +61,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   const [maintenanceEndTime, setMaintenanceEndTime] = useState<Date | null>(null);
 
   useEffect(() => {
-    // Maintenance mode check
     if (MAINTENANCE_MODE_ENABLED) {
       if (MAINTENANCE_END_TIME_HHMM && /^\d{2}:\d{2}$/.test(MAINTENANCE_END_TIME_HHMM)) {
         const [hours, minutes] = MAINTENANCE_END_TIME_HHMM.split(':').map(Number);
@@ -72,7 +74,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
           setShowMaintenance(false);
         }
       } else {
-        // Invalid or no end time provided, so don't show maintenance
         setShowMaintenance(false);
         setMaintenanceEndTime(null); 
       }
@@ -80,7 +81,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       setShowMaintenance(false);
     }
 
-    // Other useEffect logic
     const handleContextmenu = (e: MouseEvent) => {
       e.preventDefault();
     };
@@ -129,8 +129,10 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     setUnreadNotificationCount(0); 
   };
 
-  const isSpecialPage = pathname === '/generate-access' || pathname === '/help-center';
-  const showGlobalUIElements = !isSpecialPage && !showMaintenance;
+  const excludedPathsForFeedback = ['/help-center', '/generate-access', '/auth/callback'];
+  const showFeedbackSection = !excludedPathsForFeedback.includes(pathname) && !showMaintenance;
+  const showGlobalUIElements = !pathname.startsWith('/auth/callback') && !pathname.startsWith('/generate-access') && !showMaintenance;
+
 
   if (showMaintenance && maintenanceEndTime) {
     return <MaintenancePage maintenanceEndTime={maintenanceEndTime} />;
@@ -192,6 +194,17 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       )}
 
       {children}
+      
+      {showFeedbackSection && (
+        <div className="container mx-auto px-4 py-8 md:py-12">
+          <Separator className="my-8 md:my-12" />
+          <div className="flex flex-col items-center gap-10 md:gap-16">
+            <FeedbackForm />
+            <FeedbackList />
+          </div>
+        </div>
+      )}
+
       <Toaster />
       
       {showGlobalUIElements && (
@@ -207,4 +220,3 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     </>
   );
 }
-
