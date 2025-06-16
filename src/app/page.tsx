@@ -21,11 +21,13 @@ import {
   DialogTitle,
   DialogFooter,
   DialogClose,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
+import FeedbackForm from '@/components/FeedbackForm'; // Added import
+import FeedbackList from '@/components/FeedbackList'; // Added import
+import { Separator } from '@/components/ui/separator'; // Added import
 
 
 interface Course {
@@ -250,14 +252,21 @@ export default function HomePage() {
         </h1>
       </header>
 
-      <main className="w-full max-w-6xl flex-grow">
-        <div className="flex items-center justify-between mb-6">
+      <main className="w-full max-w-6xl flex-grow flex flex-col items-center">
+        <div className="flex items-center justify-between mb-6 w-full">
           <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Our Courses</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center w-full">
           {coursesData.map((course) => (
             <CourseCard key={course.id} {...course} />
           ))}
+        </div>
+
+        <Separator className="my-12 md:my-16 w-full max-w-3xl" />
+
+        <div className="w-full flex flex-col items-center space-y-10">
+          <FeedbackForm />
+          <FeedbackList />
         </div>
       </main>
       
@@ -275,7 +284,6 @@ export default function HomePage() {
         <p>© E-Leak All rights reserved.</p>
       </footer>
     </div>
-
     </>
   );
 }

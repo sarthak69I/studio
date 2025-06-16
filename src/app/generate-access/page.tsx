@@ -24,7 +24,7 @@ const TUTORIAL_VIDEO_URL = "https://www.youtube.com/embed/fl7xdCFRup0?si=euD5avR
 // To toggle access key generation requirement, change this value and redeploy.
 // true: Key generation is REQUIRED.
 // false: Key generation is BYPASSED (access is open).
-const REQUIRE_KEY_GENERATION = true;
+const REQUIRE_KEY_GENERATION = false;
 // --- Configuration End ---
 
 
