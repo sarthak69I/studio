@@ -28,7 +28,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class1Subject: "MATHS",
     class2Subject: "CHEMISTRY",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/49856fa811d3403facbfba24d0db04ab/index_1.m3u8')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/ac361b0bc5c84abba22ce98a674f14a3/index_1.m3u8')}`,
     class1Visible: true,
     class2Visible: true,
   },
