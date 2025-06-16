@@ -9,7 +9,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDHdIfzMXstsyv2OG9ewPLTxceFIW7-rjA",
   authDomain: "e-leak-3sed1.firebaseapp.com",
   projectId: "e-leak-3sed1",
-  storageBucket: "e-leak-3sed1.appspot.com", // Corrected common pattern for storageBucket
+  storageBucket: "e-leak-3sed1.appspot.com", 
   messagingSenderId: "989355921943",
   appId: "1:989355921943:web:da5854f22d8965c0140252",
   measurementId: "G-SLH88GT2PZ"
