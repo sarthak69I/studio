@@ -143,11 +143,11 @@ export const commerceCourseContent: CourseContentMap = {
      {
       name: 'Demand ',
       lectures: [
-        { id: 'L1', title: 'Demand L1', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: '' },
-        { id: 'L2', title: 'Demand L2', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: '' },
-        { id: 'L3', title: 'Demand L3', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: '' },
-        { id: 'L4', title: 'Demand L4', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: '' },
-        { id: 'L5', title: 'Demand L5', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L1', title: 'Demand L1', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397240/174862089750828165220/index_4.m3u8' },
+        { id: 'L2', title: 'Demand L2', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397816/174870766591618165220/index_4.m3u8' },
+        { id: 'L3', title: 'Demand L3', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408432/174974368056738165220/index_4.m3u8' },
+        { id: 'L4', title: 'Demand L4', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409492/174983113549798165220/index_4.m3u8' },
+        { id: 'L5', title: 'Demand L5', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410220/174991724197498165220/index_4.m3u8' },
       ]
     }
   ],
