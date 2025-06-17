@@ -85,8 +85,14 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L3', title: 'Classification of Elements L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/491303024172372400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4392905/174827564478927555169/index_4.m3u8' },
         { id: 'L4', title: 'Classification of Elements L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/320680653076158800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394025/174836245685127555169/index_4.m3u8' },
         { id: 'L5', title: 'Classification of Elements L5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/880517372972588500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394991/174843803458707555169/index_4.m3u8' },
-        { id: 'L6', title: 'Classification of Elements L6', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406376/174957160517507555169/index_4.m3u8' },
-        { id: 'L7', title: 'Classification of Elements L7', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407338/174964691183307555169/index_4.m3u8' },
+        { id: 'L6', title: 'Classification of Elements L6', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/819360381627027700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406376/174957160517507555169/index_4.m3u8' },
+        { id: 'L7', title: 'Classification of Elements L7', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/279084987190089100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407338/174964691183307555169/index_4.m3u8' },
+     ]
+    },
+    {
+      name: 'Redox Reaction',
+      lectures: [
+        { id: 'L1', title: 'Redox Reaction 1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411390/175008942555082764802/index_5.m3u8' },
       ]
     },
   ],
@@ -131,6 +137,7 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L1', title: 'Trigonometry Function L1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405153/174947369130311261798/index_4.m3u8' },
         { id: 'L2', title: 'Trigonometry Function L2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406215/174956025952221261798/index_4.m3u8' },
         { id: 'L3', title: 'Trigonometry Function L3', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407505/174965818393941261798/index_4.m3u8' },
+        { id: 'L4', title: 'Trigonometry Function L4', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411239/175007836684925373082/index_4.m3u8' },
       ]
     },
   ],
@@ -138,24 +145,24 @@ export const scienceCourseContent: CourseContentMap = {
     {
       name: 'The Living World',
       lectures: [
-        { id: 'L1', title: 'The Living World L1', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L1.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc' },
-        { id: 'L2', title: 'The Living World L2', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8' },
-        { id: 'L3', title: 'The Living World L3', notesLink: `${scienceBasePath}/biology/${slugify('The Living World')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8' },
+        { id: 'L1', title: 'The Living World L1', notesLink: ``, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc' },
+        { id: 'L2', title: 'The Living World L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8' },
+        { id: 'L3', title: 'The Living World L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8' },
       ]
     },
     {
       name: 'Biological Classification',
       lectures: [
-        { id: 'L1', title: 'Biological Classification L1', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356754/174524546772032621696/index_4.m3u8' },
-        { id: 'L2', title: 'Biological Classification L2', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357796/174533217995822621696/index_4.m3u8' },
-        { id: 'L3', title: 'Biological Classification L3', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359956/174549899862182621696/index_4.m3u8' },
-        { id: 'L4', title: 'Biological Classification L4', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363375/174585552159492621696/index_4.m3u8' },
-        { id: 'L5', title: 'Biological Classification L5', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364707/174593615136972621696/index_4.m3u8' },
-        { id: 'L6', title: 'Biological Classification L6', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4366969/174610253788082621696/index_4.m3u8' },
-        { id: 'L7', title: 'Biological Classification L7', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L7.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372260/174645518133352621696/index_4.m3u8' },
-        { id: 'L8', title: 'Biological Classification L8', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L8.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373877/174654161051022621696/index_4.m3u8' },
-        { id: 'L9', title: 'Biological Classification L9', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L9.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376014/174670815163022621696/index_4.m3u8' },
-        { id: 'L10', title: 'Biological Classification L10', notesLink: `${scienceBasePath}/biology/${slugify('Biological Classification')}/notes/L10.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4379100/174705957021312621696/index_4.m3u8' },
+        { id: 'L1', title: 'Biological Classification L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356754/174524546772032621696/index_4.m3u8' },
+        { id: 'L2', title: 'Biological Classification L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357796/174533217995822621696/index_4.m3u8' },
+        { id: 'L3', title: 'Biological Classification L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359956/174549899862182621696/index_4.m3u8' },
+        { id: 'L4', title: 'Biological Classification L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363375/174585552159492621696/index_4.m3u8' },
+        { id: 'L5', title: 'Biological Classification L5', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364707/174593615136972621696/index_4.m3u8' },
+        { id: 'L6', title: 'Biological Classification L6', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4366969/174610253788082621696/index_4.m3u8' },
+        { id: 'L7', title: 'Biological Classification L7', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372260/174645518133352621696/index_4.m3u8' },
+        { id: 'L8', title: 'Biological Classification L8', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373877/174654161051022621696/index_4.m3u8' },
+        { id: 'L9', title: 'Biological Classification L9', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376014/174670815163022621696/index_4.m3u8' },
+        { id: 'L10', title: 'Biological Classification L10', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4379100/174705957021312621696/index_4.m3u8' },
       ]
     },
     {
@@ -177,6 +184,7 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L1', title: 'Animal Kingdom L1', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405246/174947952083222621696/index_4.m3u8' },
         { id: 'L2', title: 'Animal Kingdom L2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406311/174956537678522621696/index_4.m3u8' },
         { id: 'L3', title: 'Animal Kingdom L3', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408305/174973168472882621696/index_4.m3u8' },
+        { id: 'L4', title: 'Animal Kingdom L4', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411317/175008298317313740487/index_4.m3u8' },
       ]
     },
   ],

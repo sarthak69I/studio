@@ -78,14 +78,11 @@ export default function FeedbackList() {
     });
 
     return () => unsubscribe();
-  }, [toast]); // Removed feedbackReplies and isLoadingReplies from deps to avoid re-fetching on their change
+  }, [toast]);
 
-  const fetchReplies = React.useCallback((feedbackId: string) => { // useCallback to memoize
+  const fetchReplies = (feedbackId: string) => {
     setIsLoadingReplies(prev => ({ ...prev, [feedbackId]: true }));
     const repliesQuery = query(collection(db, 'feedback', feedbackId, 'replies'), orderBy('timestamp', 'asc'));
-    
-    // Storing unsubscribe functions in a ref to call them on component unmount or when feedbackId is removed
-    // This is a more complex pattern for managing multiple listeners. For now, simple listener per call.
     const unsubscribeReplies = onSnapshot(repliesQuery, (snapshot) => {
       const replies: ReplyEntry[] = [];
       snapshot.forEach((docSnap) => {
@@ -108,9 +105,8 @@ export default function FeedbackList() {
       });
       setIsLoadingReplies(prev => ({ ...prev, [feedbackId]: false }));
     });
-    // Consider returning unsubscribeReplies and managing it if feedback items can be deleted/dynamically removed.
-  }, [toast]);
-
+    // This unsubscribe should be managed, e.g., stored and called on unmount or when feedbackId changes.
+  };
 
   const handleToggleReplyForm = (feedbackId: string) => {
     if (replyingToFeedbackId === feedbackId) {
@@ -154,12 +150,12 @@ export default function FeedbackList() {
         description: 'Your reply has been posted.',
       });
       setCurrentReplyText('');
-      setReplyingToFeedbackId(null); // Close the reply form
+      setReplyingToFeedbackId(null);
       setReplyUsername('');
       setPendingReplyData(null);
       setIsReplyUsernameDialogOpen(false);
       setExpandedReplies(prev => ({ ...prev, [feedbackId]: true })); // Auto-expand replies after posting
-      fetchReplies(feedbackId); // Re-fetch replies for this feedback item
+      fetchReplies(feedbackId);
     } catch (error) {
       console.error('Error submitting reply:', error);
       toast({
@@ -174,10 +170,6 @@ export default function FeedbackList() {
 
   const toggleRepliesVisibility = (feedbackId: string) => {
     setExpandedReplies(prev => ({ ...prev, [feedbackId]: !prev[feedbackId] }));
-    // Optionally fetch replies here if not already fetched, or if you want to ensure freshness
-    // if (!feedbackReplies[feedbackId] && !isLoadingReplies[feedbackId]) {
-    //   fetchReplies(feedbackId);
-    // }
   };
 
 
@@ -243,22 +235,7 @@ export default function FeedbackList() {
                     <p className="text-foreground leading-relaxed prose prose-sm max-w-none">{entry.text}</p>
                   </CardContent>
                   <CardFooter className="pt-1 pb-3 px-6 flex flex-col items-start">
-                    <div className="w-full flex justify-between items-center mb-2">
-                      <div> {/* Wrapper for View/Hide Replies button or skeleton */}
-                        {isLoadingReplies[entry.id] && <Skeleton className="h-8 w-28" />}
-                        {!isLoadingReplies[entry.id] && feedbackReplies[entry.id] && feedbackReplies[entry.id].length > 0 && (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => toggleRepliesVisibility(entry.id)}
-                            className="text-xs"
-                          >
-                            {expandedReplies[entry.id] ? <EyeOff className="mr-1.5 h-3.5 w-3.5" /> : <Eye className="mr-1.5 h-3.5 w-3.5" />}
-                            {expandedReplies[entry.id] ? 'Hide Replies' : `View ${feedbackReplies[entry.id].length} Repl${feedbackReplies[entry.id].length === 1 ? 'y' : 'ies'}`}
-                          </Button>
-                        )}
-                        {/* No explicit spacer needed here as justify-between will handle it if the View Replies button isn't rendered */}
-                      </div>
+                    <div className="w-full flex justify-end">
                       <Button
                         variant="ghost"
                         size="sm"
@@ -271,7 +248,7 @@ export default function FeedbackList() {
                     </div>
 
                     {replyingToFeedbackId === entry.id && (
-                      <div className="w-full mt-1 space-y-2 animate-fadeIn-custom">
+                      <div className="w-full mt-3 space-y-2 animate-fadeIn-custom">
                         <Textarea
                           placeholder="Write your reply... (5-500 characters)"
                           value={currentReplyText}
@@ -291,8 +268,22 @@ export default function FeedbackList() {
                       </div>
                     )}
 
-                    {expandedReplies[entry.id] && !isLoadingReplies[entry.id] && feedbackReplies[entry.id] && feedbackReplies[entry.id].length > 0 && (
-                      <div className="mt-2 w-full">
+                    {/* Replies Section */}
+                    <div className="mt-3 w-full">
+                      {isLoadingReplies[entry.id] && <Skeleton className="h-4 w-1/3 my-2" />}
+                      {!isLoadingReplies[entry.id] && feedbackReplies[entry.id] && feedbackReplies[entry.id].length > 0 && (
+                        <>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => toggleRepliesVisibility(entry.id)}
+                            className="text-xs mb-2"
+                          >
+                            {expandedReplies[entry.id] ? <EyeOff className="mr-1.5 h-3.5 w-3.5" /> : <Eye className="mr-1.5 h-3.5 w-3.5" />}
+                            {expandedReplies[entry.id] ? 'Hide Replies' : `View ${feedbackReplies[entry.id].length} Repl${feedbackReplies[entry.id].length === 1 ? 'y' : 'ies'}`}
+                          </Button>
+
+                          {expandedReplies[entry.id] && (
                             <div className="space-y-2 pl-4 border-l-2 border-muted/50 animate-fadeIn-custom">
                               {feedbackReplies[entry.id].map(reply => (
                                 <div key={reply.id} className="text-xs bg-muted/30 p-2.5 rounded-md shadow-sm">
@@ -308,8 +299,11 @@ export default function FeedbackList() {
                                 </div>
                               ))}
                             </div>
-                      </div>
-                    )}
+                          )}
+                        </>
+                      )}
+                      {/* "No replies yet" text has been removed */}
+                    </div>
                   </CardFooter>
                 </Card>
               ))}
@@ -328,10 +322,10 @@ export default function FeedbackList() {
         <DialogContent className="sm:max-w-md rounded-xl">
           <DialogHeader>
             <DialogTitle className="text-xl flex items-center">
-              <User className="mr-2 h-5 w-5 text-primary" /> Add Your Name for Reply (Optional)
+              <User className="mr-2 h-5 w-5 text-primary" /> Add Your Name 
             </DialogTitle>
             <DialogDescription className="pt-2">
-              Your name will be displayed with your reply. Leave blank to reply as "Anonymous".
+              
             </DialogDescription>
           </DialogHeader>
           <div className="py-4 space-y-4">

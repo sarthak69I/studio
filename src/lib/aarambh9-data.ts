@@ -33,8 +33,7 @@ export const aarambh9CourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Is matter around us pure? L1', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406208/174956007294357555169/index_4.m3u8' },
         { id: 'L2', title: 'Is matter around us pure? L2', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407492/174965677724307555169/index_4.m3u8' },
-        { id: 'L3', title: 'Is matter around us pure? L3', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'L4', title: 'Is matter around us pure? L4', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
+        { id: 'L3', title: 'Is matter around us pure? L3', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411204/175007761623082764802/index_5.m3u8' },
       ]
     },
     {
@@ -87,7 +86,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L1', title: 'What is Democracy & why is democracy L1', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405294/174948480645778165220/174948480645778165220_8165220.m3u8' },
         { id: 'L2', title: 'What is Democracy & why is democracy L2', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406373/174957083156418165220/index_4.m3u8' },
         { id: 'L3', title: 'What is Democracy & why is democracy L3', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407312/174964547257888165220/index_4.m3u8' },
-        { id: 'L4', title: 'What is Democracy & why is democracy L4', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
+        { id: 'L4', title: 'What is Democracy & why is democracy L4', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411383/175008874685142809295/index_3.m3u8' },
         { id: 'L5', title: 'What is Democracy & why is democracy L5', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
       ]
     },
@@ -126,7 +125,14 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L1', title: 'Coordinate Geometry L1', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396260/174853287832481261798/index_4.m3u8' },
         { id: 'L2', title: 'Coordinate Geometry L2', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397075/174860816936171261798/index_4.m3u8' },
         { id: 'L3', title: 'Coordinate Geometry L3', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397715/174869387171741261798/174869387171741261798_1261798.m3u8' },
-        { id: 'L4', title: 'Coordinate Geometry L4', notesLink: `${aarambh9BasePath}/mathematics/${slugify('Coordinate Geometry')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
+       ]
+    },
+    {
+      name: 'Linear Equations in Two Variables',
+      lectures: [
+        { id: 'L1', title: 'Linear Equations in Two Variables L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/28876332252753430.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408426/174974223257041261798/index_4.m3u8' },
+        { id: 'L2', title: 'Linear Equations in Two Variables L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/898296706271436700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409327/174981810598981261798/index_4.m3u8' },
+        { id: 'L3', title: 'Linear Equations in Two Variables L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/647579420880400400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410122/174990428067631261798/index_4.m3u8' },
       ]
     },
   ],
@@ -134,21 +140,44 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'Tenses',
       lectures: [
-        { id: 'c9-eng-grm-l1', title: 'Tenses 1', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        { id: 'c9-eng-grm-l2', title: 'Tenses 2', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: '#' },
-        
+        { id: 'c9-eng-grm-l1', title: 'Tenses 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/498967843075806340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376992/1746790926_2620131171601548/sunny/1746785842321_68968204127858800_video_VOD720p30.m3u8' },
+        { id: 'c9-eng-grm-l2', title: 'Tenses 2', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376993/1746791165_4683530659641818/sunny/1746786281807_635426128592612900_video_VOD720p30.m3u8' },
+        { id: 'c9-eng-grm-l3', title: 'Tenses 3', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376994/1746791225_3697514107018118/sunny/1746786504709_85453328252238460_video_VOD720p30.m3u8' },
       ]
     },
     {
-      name: 'Literary Devices (Class 9)',
+      name: 'The Fun They Had',
       lectures: [
-        { id: 'c9-eng-lit-l1', title: 'Similes and Metaphors', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'c9-eng-lit-l1', title: 'The Fun They Had 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5115291fun%20they%20had%20L1.pdf_fun%20they%20had%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362885/1745829485_2048536674804334/sunny/1745824193994_820484776522091000_video_VOD720p30.m3u8' },
+        { id: 'c9-eng-lit-l2', title: 'The Fun They Had 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6861657fun%20they%20had%20%20L2.pdf_fun%20they%20had%20%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362888/1745829005_4828557523576252/sunny/1745825520195_860858436100445400_video_VOD720p30.m3u8' },
       ]
     },
     {
-      name: 'Creative Writing (Class 9)',
+      name: 'The Road Not Taken',
       lectures: [
-        { id: 'c9-eng-wrt-l1', title: 'Story Writing', notesLink: '#', videoEmbedType: 'youtube', videoEmbedUrl: '#' },
+        { id: 'c9-eng-wrt-l1', title: 'The Road Not Taken 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3975724The%20Road%20Not%20Taken%20L1.pdf_The%20Road%20Not%20Taken%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376945/1746790146_9952541808084121/sunny/1746785890101_885502576654220900_video_VOD720p30.m3u8' },
+        { id: 'c9-eng-wrt-l2', title: 'The Road Not Taken 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/722803The%20Road%20Not%20Taken%20L2.pdf_The%20Road%20Not%20Taken%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376944/1746789785_1046241985025655/sunny/1746785657092_863095031696032600_video_VOD720p30.m3u8' },     
+    ]
+   }, 
+    {
+      name: 'The Lost Child',
+      lectures: [
+        { id: 'c9-eng-l1', title: 'The Lost Child 1', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376942/1746789365_8519999002932256/sunny/1746784978966_22068690813281_video_VOD720p30.m3u8' },
+        { id: 'c9-eng-l2', title: 'The Lost Child 2', notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376943/1746789425_1181554534695089/sunny/1746785432591_190200542431737380_video_VOD720p30.m3u8' },     
+   ]
+  }, 
+    {
+      name: 'The Sound Of Music',
+      lectures: [
+        { id: 'c9-enl1', title: 'The Sound Of Music 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7497880sound%20of%20music%20part%201%20L1.pdf_sound%20of%20music%20part%201%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409060/1749824044_3361889869046858/sunny/1749811523668_756560226864072100_video_VOD720p30.m3u8' },
+        { id: 'c9-enl2', title: 'The Sound Of Music 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6803599sound%20of%20music%20part%201%20L2.pdf_sound%20of%20music%20part%201%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409061/1749824105_2359363804227323/sunny/1749812109420_686057178732817300_video_VOD720p30.m3u8' },     
+   ]
+  }, 
+    {
+      name: 'Poetic Devices',
+      lectures: [
+        { id: 'c9l1', title: 'Poetic Devices 1', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/276001057449717760.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355434/1745094064_6558196120167470/sunny/1745074746600_243414202639413570_video_VOD720p30.m3u8' },
+        { id: 'c9l2', title: 'Poetic Devices 2', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/498967843075806340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' },     
       ]
     }
   ],
