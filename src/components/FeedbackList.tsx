@@ -322,10 +322,10 @@ export default function FeedbackList() {
         <DialogContent className="sm:max-w-md rounded-xl">
           <DialogHeader>
             <DialogTitle className="text-xl flex items-center">
-              <User className="mr-2 h-5 w-5 text-primary" /> Add Your Name for Reply (Optional)
+              <User className="mr-2 h-5 w-5 text-primary" /> Add Your Name 
             </DialogTitle>
             <DialogDescription className="pt-2">
-              Your name will be displayed with your reply. Leave blank to reply as "Anonymous".
+              ".
             </DialogDescription>
           </DialogHeader>
           <div className="py-4 space-y-4">
