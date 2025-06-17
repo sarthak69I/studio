@@ -1,0 +1,46 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main # Or your default branch
+    paths:
+      - 'android/**' # Only run if files in android/ directory change
+  pull_request:
+    paths:
+      - 'android/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3 # Updated to v3
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3 # Updated to v3
+      with:
+        java-version: '11'
+        distribution: 'temurin' # Or another distribution like 'adopt'
+
+    - name: Set up Gradle
+      uses: gradle/gradle-build-action@v2
+      with:
+        gradle-version: wrapper # Use the wrapper defined in the project
+        # Optional: cache Gradle dependencies
+        # cache-read-only: ${{ github.ref != 'refs/heads/main' }} 
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x android/gradlew
+      working-directory: ./android # Ensure this is relative to repo root
+
+    - name: Build APK with Gradle
+      run: ./gradlew assembleDebug
+      working-directory: ./android
+
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v3 # Updated to v3
+      with:
+        name: app-debug.apk
+        path: android/app/build/outputs/apk/debug/app-debug.apk

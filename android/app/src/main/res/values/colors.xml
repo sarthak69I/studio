@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#42A5F5</color> <!-- Deep sky blue from your theme -->
+    <color name="primary_dark">#1E88E5</color> <!-- Darker variant of primary -->
+    <color name="accent">#00BCD4</color> <!-- Cyan from your theme -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="splash_background_color">#F0F4F8</color> <!-- Light grayish-blue from your theme -->
+</resources>
