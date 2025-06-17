@@ -1,28 +1,52 @@
-
 // src/components/FeedbackList.tsx
 'use client';
 
 import * as React from 'react';
 import { db } from '@/lib/firebase';
-import { collection, query, orderBy, onSnapshot, Timestamp, type DocumentData } from 'firebase/firestore';
-import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card'; // Removed CardFooter if not used
+import { collection, query, orderBy, onSnapshot, Timestamp, type DocumentData, addDoc, serverTimestamp, doc } from 'firebase/firestore';
+import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { MessageSquareText, CalendarDays, UserCircle } from 'lucide-react'; // Removed ThumbsUp, ThumbsDown, Loader2
+import { MessageSquareText, CalendarDays, UserCircle, MessageSquareReply, Send, CornerDownRight, User, Eye, EyeOff } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from '@/components/ui/dialog';
 
 interface FeedbackEntry {
   id: string;
   username: string;
   text: string;
   timestamp: Timestamp | null;
-  // likes and dislikes removed
+}
+
+interface ReplyEntry {
+  id: string;
+  username: string;
+  text: string;
+  timestamp: Timestamp | null;
 }
 
 export default function FeedbackList() {
   const [feedbackEntries, setFeedbackEntries] = React.useState<FeedbackEntry[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const { toast } = useToast();
+
+  const [feedbackReplies, setFeedbackReplies] = React.useState<{ [feedbackId: string]: ReplyEntry[] }>({});
+  const [isLoadingReplies, setIsLoadingReplies] = React.useState<{ [feedbackId: string]: boolean }>({});
+  const [expandedReplies, setExpandedReplies] = React.useState<{ [feedbackId: string]: boolean }>({});
+
+
+  const [replyingToFeedbackId, setReplyingToFeedbackId] = React.useState<string | null>(null);
+  const [currentReplyText, setCurrentReplyText] = React.useState<string>('');
+
+  const [isReplyUsernameDialogOpen, setIsReplyUsernameDialogOpen] = React.useState(false);
+  const [pendingReplyData, setPendingReplyData] = React.useState<{ feedbackId: string; text: string } | null>(null);
+  const [replyUsername, setReplyUsername] = React.useState('');
+  const [isSubmittingReply, setIsSubmittingReply] = React.useState(false);
+
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -36,8 +60,10 @@ export default function FeedbackList() {
           username: data.username || 'Anonymous',
           text: data.text,
           timestamp: data.timestamp as Timestamp | null,
-          // likes and dislikes removed
         });
+        if (!feedbackReplies[docSnap.id] && !isLoadingReplies[docSnap.id]) {
+          fetchReplies(docSnap.id);
+        }
       });
       setFeedbackEntries(entries);
       setIsLoading(false);
@@ -53,6 +79,99 @@ export default function FeedbackList() {
 
     return () => unsubscribe();
   }, [toast]);
+
+  const fetchReplies = (feedbackId: string) => {
+    setIsLoadingReplies(prev => ({ ...prev, [feedbackId]: true }));
+    const repliesQuery = query(collection(db, 'feedback', feedbackId, 'replies'), orderBy('timestamp', 'asc'));
+    const unsubscribeReplies = onSnapshot(repliesQuery, (snapshot) => {
+      const replies: ReplyEntry[] = [];
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        replies.push({
+          id: docSnap.id,
+          username: data.username || 'Anonymous',
+          text: data.text,
+          timestamp: data.timestamp as Timestamp | null,
+        });
+      });
+      setFeedbackReplies(prev => ({ ...prev, [feedbackId]: replies }));
+      setIsLoadingReplies(prev => ({ ...prev, [feedbackId]: false }));
+    }, (error) => {
+      console.error(`Error fetching replies for feedback ${feedbackId}:`, error);
+      toast({
+        variant: 'destructive',
+        title: 'Error Fetching Replies',
+        description: `Could not load replies for a feedback item.`,
+      });
+      setIsLoadingReplies(prev => ({ ...prev, [feedbackId]: false }));
+    });
+    // This unsubscribe should be managed, e.g., stored and called on unmount or when feedbackId changes.
+  };
+
+  const handleToggleReplyForm = (feedbackId: string) => {
+    if (replyingToFeedbackId === feedbackId) {
+      setReplyingToFeedbackId(null);
+      setCurrentReplyText('');
+    } else {
+      setReplyingToFeedbackId(feedbackId);
+      setCurrentReplyText('');
+    }
+  };
+
+  const handleReplyTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCurrentReplyText(e.target.value);
+  };
+
+  const handleInitiateReplySubmit = () => {
+    if (!replyingToFeedbackId || currentReplyText.trim().length < 5 || currentReplyText.trim().length > 500) {
+      toast({
+        variant: 'destructive',
+        title: 'Invalid Reply',
+        description: 'Reply must be between 5 and 500 characters.',
+      });
+      return;
+    }
+    setPendingReplyData({ feedbackId: replyingToFeedbackId, text: currentReplyText });
+    setIsReplyUsernameDialogOpen(true);
+  };
+
+  const handleFinalReplySubmit = async () => {
+    if (!pendingReplyData) return;
+    setIsSubmittingReply(true);
+    try {
+      const { feedbackId, text } = pendingReplyData;
+      await addDoc(collection(db, 'feedback', feedbackId, 'replies'), {
+        username: replyUsername.trim() || 'Anonymous',
+        text: text,
+        timestamp: serverTimestamp(),
+      });
+      toast({
+        title: 'Reply Submitted!',
+        description: 'Your reply has been posted.',
+      });
+      setCurrentReplyText('');
+      setReplyingToFeedbackId(null);
+      setReplyUsername('');
+      setPendingReplyData(null);
+      setIsReplyUsernameDialogOpen(false);
+      setExpandedReplies(prev => ({ ...prev, [feedbackId]: true })); // Auto-expand replies after posting
+      fetchReplies(feedbackId);
+    } catch (error) {
+      console.error('Error submitting reply:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Reply Failed',
+        description: 'Could not submit your reply. Please try again.',
+      });
+    } finally {
+      setIsSubmittingReply(false);
+    }
+  };
+
+  const toggleRepliesVisibility = (feedbackId: string) => {
+    setExpandedReplies(prev => ({ ...prev, [feedbackId]: !prev[feedbackId] }));
+  };
+
 
   const formatDate = (timestamp: Timestamp | null) => {
     if (!timestamp) return 'Just now';
@@ -79,7 +198,6 @@ export default function FeedbackList() {
                 <Skeleton className="h-4 w-full mb-2" />
                 <Skeleton className="h-4 w-3/4 mb-4" />
               </CardContent>
-              {/* Footer with like/dislike skeletons removed */}
             </Card>
           ))}
         </div>
@@ -88,18 +206,18 @@ export default function FeedbackList() {
   }
 
   return (
-    <div className="w-full max-w-2xl mt-12">
-      <h2 className="text-2xl font-semibold text-center mb-8 text-primary">
-        <MessageSquareText className="inline-block mr-2 h-7 w-7 align-text-bottom" />
-        Recent Feedback
-      </h2>
-      {feedbackEntries.length === 0 && !isLoading ? (
-        <p className="text-center text-muted-foreground py-10">No feedback submitted yet. Be the first!</p>
-      ) : (
-        <ScrollArea className="h-[500px] pr-4 -mr-4">
-          <div className="space-y-4">
-            {feedbackEntries.map((entry) => {
-              return (
+    <>
+      <div className="w-full max-w-2xl mt-12">
+        <h2 className="text-2xl font-semibold text-center mb-8 text-primary">
+          <MessageSquareText className="inline-block mr-2 h-7 w-7 align-text-bottom" />
+          Recent Feedback
+        </h2>
+        {feedbackEntries.length === 0 && !isLoading ? (
+          <p className="text-center text-muted-foreground py-10">No feedback submitted yet. Be the first!</p>
+        ) : (
+          <ScrollArea className="h-[600px] pr-4 -mr-4 opacity-100">
+            <div className="space-y-4">
+              {feedbackEntries.map((entry) => (
                 <Card key={entry.id} className="bg-card/90 backdrop-blur-sm shadow-lg border-border/70 transition-all hover:shadow-xl hover:border-primary/30">
                   <CardHeader className="pb-2 pt-4">
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
@@ -113,16 +231,131 @@ export default function FeedbackList() {
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="pt-2 pb-4">
+                  <CardContent className="pt-2 pb-3">
                     <p className="text-foreground leading-relaxed prose prose-sm max-w-none">{entry.text}</p>
                   </CardContent>
-                  {/* CardFooter with like/dislike buttons removed. Can add other actions here later if needed. */}
+                  <CardFooter className="pt-1 pb-3 px-6 flex flex-col items-start">
+                    <div className="w-full flex justify-end">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleToggleReplyForm(entry.id)}
+                        className="text-xs text-primary hover:text-primary/80 px-2 py-1 h-auto"
+                      >
+                        <MessageSquareReply className="mr-1.5 h-3.5 w-3.5" />
+                        {replyingToFeedbackId === entry.id ? 'Cancel' : 'Reply'}
+                      </Button>
+                    </div>
+
+                    {replyingToFeedbackId === entry.id && (
+                      <div className="w-full mt-3 space-y-2 animate-fadeIn-custom">
+                        <Textarea
+                          placeholder="Write your reply... (5-500 characters)"
+                          value={currentReplyText}
+                          onChange={handleReplyTextChange}
+                          className="min-h-[80px] text-sm bg-background/70"
+                          maxLength={500}
+                        />
+                        <Button
+                          size="sm"
+                          onClick={handleInitiateReplySubmit}
+                          disabled={currentReplyText.trim().length < 5 || currentReplyText.trim().length > 500 || isSubmittingReply}
+                          className="text-xs"
+                        >
+                          <Send className="mr-1.5 h-3.5 w-3.5" />
+                          Post Reply
+                        </Button>
+                      </div>
+                    )}
+
+                    {/* Replies Section */}
+                    <div className="mt-3 w-full">
+                      {isLoadingReplies[entry.id] && <Skeleton className="h-4 w-1/3 my-2" />}
+                      {!isLoadingReplies[entry.id] && feedbackReplies[entry.id] && feedbackReplies[entry.id].length > 0 && (
+                        <>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => toggleRepliesVisibility(entry.id)}
+                            className="text-xs mb-2"
+                          >
+                            {expandedReplies[entry.id] ? <EyeOff className="mr-1.5 h-3.5 w-3.5" /> : <Eye className="mr-1.5 h-3.5 w-3.5" />}
+                            {expandedReplies[entry.id] ? 'Hide Replies' : `View ${feedbackReplies[entry.id].length} Repl${feedbackReplies[entry.id].length === 1 ? 'y' : 'ies'}`}
+                          </Button>
+
+                          {expandedReplies[entry.id] && (
+                            <div className="space-y-2 pl-4 border-l-2 border-muted/50 animate-fadeIn-custom">
+                              {feedbackReplies[entry.id].map(reply => (
+                                <div key={reply.id} className="text-xs bg-muted/30 p-2.5 rounded-md shadow-sm">
+                                  <div className="flex items-center justify-between mb-1 text-muted-foreground/80">
+                                    <div className="flex items-center font-medium text-foreground/80">
+                                      <CornerDownRight className="h-3.5 w-3.5 mr-1.5 text-primary/60" />
+                                      <UserCircle className="mr-1 h-3.5 w-3.5 text-primary/60" />
+                                      {reply.username || 'Anonymous'}
+                                    </div>
+                                    <span className="text-xs">{formatDate(reply.timestamp)}</span>
+                                  </div>
+                                  <p className="text-foreground/90 pl-1">{reply.text}</p>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </>
+                      )}
+                      {/* "No replies yet" text has been removed */}
+                    </div>
+                  </CardFooter>
                 </Card>
-              );
-            })}
+              ))}
+            </div>
+          </ScrollArea>
+        )}
+      </div>
+
+      <Dialog open={isReplyUsernameDialogOpen} onOpenChange={(open) => {
+        if (!open && !isSubmittingReply) {
+            setPendingReplyData(null);
+            setReplyUsername('');
+        }
+        setIsReplyUsernameDialogOpen(open);
+      }}>
+        <DialogContent className="sm:max-w-md rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl flex items-center">
+              <User className="mr-2 h-5 w-5 text-primary" /> Add Your Name for Reply (Optional)
+            </DialogTitle>
+            <DialogDescription className="pt-2">
+              Your name will be displayed with your reply. Leave blank to reply as "Anonymous".
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4 space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="reply-username-dialog" className="text-foreground/80">Username</Label>
+              <Input
+                id="reply-username-dialog"
+                placeholder="Your name (e.g., Alex)"
+                value={replyUsername}
+                onChange={(e) => setReplyUsername(e.target.value)}
+                className="bg-background/80 focus:bg-background"
+                disabled={isSubmittingReply}
+                maxLength={50}
+              />
+              {replyUsername.length > 50 && <p className="text-sm text-destructive">Username must not exceed 50 characters.</p>}
+            </div>
           </div>
-        </ScrollArea>
-      )}
-    </div>
+          <DialogFooter className="mt-2 flex flex-col sm:flex-row gap-2">
+             <DialogClose asChild>
+                <Button type="button" variant="outline" onClick={() => { setPendingReplyData(null); setReplyUsername(''); }} disabled={isSubmittingReply}>
+                    Cancel
+                </Button>
+            </DialogClose>
+            <Button type="button" onClick={handleFinalReplySubmit} className="group" disabled={isSubmittingReply || replyUsername.length > 50}>
+              {isSubmittingReply ? 'Posting Reply...' : 'Post Reply'}
+              <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
