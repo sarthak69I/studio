@@ -8,6 +8,8 @@ import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
 import { getParamAsString } from '@/lib/utils';
 import { getValidAccessKey } from '@/lib/access-manager';
+import Image from 'next/image'; // Added for new ScienceSubjectCard
+import { scienceCourseContent, type Topic } from '@/lib/course-data'; // Added for topic count
 
 interface SubjectItemProps {
   name: string;
@@ -16,31 +18,11 @@ interface SubjectItemProps {
 }
 
 // --- Configuration Start ---
-// To toggle access key generation requirement, change this value and redeploy.
-// true: Key generation is REQUIRED for course access.
-// false: Key generation is BYPASSED (access is open).
 const REQUIRE_KEY_GENERATION = true; 
 // --- Configuration End ---
 
 
-const SubjectItem: React.FC<SubjectItemProps> = ({ name, onClick, disabled }) => (
-  <Button
-    variant="secondary"
-    className="w-full justify-between p-6 text-lg rounded-xl shadow-sm hover:bg-muted/80 
-               transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-md"
-    onClick={onClick}
-    disabled={disabled}
-  >
-    {name}
-    <ChevronRight className="h-5 w-5 text-muted-foreground" />
-  </Button>
-);
-
-interface CourseSubjects {
-  [key: string]: string[];
-}
-
-const courseSpecificSubjects: CourseSubjects = {
+const courseSpecificSubjects: Record<string, string[]> = {
   '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'English'], // Science Batch
   '2': ['Business Studies', 'Accountancy', 'Economics', 'Mathematics', 'English'], // Commerce Batch
   '3': ['Social Science', 'Science', 'Mathematics', 'English'], // Aarambh Batch (Class 10)
@@ -54,6 +36,60 @@ const courseDisplayNames: Record<string, string> = {
   '4': "Aarambh Batch (Class 9)",
 };
 
+const scienceSubjectImageMap: Record<string, string> = {
+  'Physics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/395380615606_Physics.jpeg',
+  'Chemistry': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/203426323782_Chemestry.jpeg',
+  'Mathematics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/topic/424695935848_Maths.png',
+  'Biology': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/22273823798_Biology.jpeg',
+  'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
+};
+
+// Original SubjectItem for non-science courses
+const SubjectItem: React.FC<SubjectItemProps> = ({ name, onClick, disabled }) => (
+  <Button
+    variant="secondary"
+    className="w-full justify-between p-6 text-lg rounded-xl shadow-sm hover:bg-muted/80 
+               transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-md"
+    onClick={onClick}
+    disabled={disabled}
+  >
+    {name}
+    <ChevronRight className="h-5 w-5 text-muted-foreground" />
+  </Button>
+);
+
+// New Card for Science Subjects
+interface ScienceSubjectCardProps {
+  subjectName: string;
+  imageUrl: string;
+  topicCountText: string;
+  onClick?: () => void;
+}
+
+const ScienceSubjectCard: React.FC<ScienceSubjectCardProps> = ({ subjectName, imageUrl, topicCountText, onClick }) => (
+  <button
+    onClick={onClick}
+    className="flex items-center bg-slate-800 text-white p-3 rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-200 w-full text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+    aria-label={`Select ${subjectName}`}
+  >
+    <div className="relative w-[100px] h-[100px] flex-shrink-0 mr-4">
+      <Image 
+        src={imageUrl} 
+        alt={subjectName} 
+        fill
+        sizes="(max-width: 640px) 80px, 100px"
+        className="object-contain rounded bg-transparent"
+        data-ai-hint={`${subjectName.toLowerCase()} education`}
+      />
+    </div>
+    <div className="flex-grow">
+      <div className="text-lg font-bold text-slate-50">{subjectName}</div>
+      <div className="text-sm text-slate-400">{topicCountText}</div>
+    </div>
+    <div className="text-2xl text-slate-500 ml-auto transition-transform group-hover:translate-x-1">➔</div>
+  </button>
+);
+
 
 export default function EnrollPage() {
   const router = useRouter();
@@ -61,7 +97,7 @@ export default function EnrollPage() {
   const courseId = getParamAsString(params.courseId);
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
   const [isLoading, setIsLoading] = React.useState(true);
-  const [isAccessGranted, setIsAccessGranted] = React.useState(!REQUIRE_KEY_GENERATION); // Grant access if key gen is off
+  const [isAccessGranted, setIsAccessGranted] = React.useState(!REQUIRE_KEY_GENERATION);
 
   React.useEffect(() => {
     if (!REQUIRE_KEY_GENERATION) {
@@ -69,11 +105,9 @@ export default function EnrollPage() {
       setIsLoading(false);
       return;
     }
-
-    // Logic for when key generation IS required
     const validAccessKey = getValidAccessKey();
     if (!validAccessKey) {
-      router.replace('/generate-access'); // Use replace to prevent back button to this locked page
+      router.replace('/generate-access');
     } else {
       setIsAccessGranted(true);
     }
@@ -83,20 +117,17 @@ export default function EnrollPage() {
   React.useEffect(() => {
     if (!isLoading && isAccessGranted) {
         let courseName = courseDisplayNames[courseId] || "";
-        
         if (courseName) {
           document.title = `Enroll: ${courseName} | E-Leak`;
         } else if (courseId) { 
           document.title = `Enroll Course ${courseId} | E-Leak`;
-        }
-         else {
+        } else {
           document.title = 'Enroll | E-Leak';
         }
     } else if (!isLoading && !isAccessGranted) {
         document.title = 'Access Required | E-Leak';
     }
   }, [courseId, isLoading, isAccessGranted]);
-
 
   const handleJoinLiveClassClick = () => {
     router.push(`/courses/${courseId}/live`);
@@ -120,7 +151,7 @@ export default function EnrollPage() {
     );
   }
 
-  if (!isAccessGranted && REQUIRE_KEY_GENERATION) { // Only show locked state if key gen is required
+  if (!isAccessGranted && REQUIRE_KEY_GENERATION) {
     return (
       <div className="flex flex-col min-h-screen items-center justify-center bg-background p-6 text-foreground">
         <div className="bg-card p-8 rounded-xl shadow-xl text-center max-w-md">
@@ -196,18 +227,40 @@ export default function EnrollPage() {
             </h2>
             {subjects.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {subjects.map((subject, index) => (
-                  <div
-                    key={subject}
-                    className="transform opacity-0 animate-fadeInUp-custom"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <SubjectItem
-                      name={subject}
-                      onClick={() => handleSubjectClick(subject)}
-                    />
-                  </div>
-                ))}
+                {subjects.map((subject, index) => {
+                  if (courseId === '1') { // Science Batch
+                    const subjectData = scienceCourseContent[subject];
+                    const topicCount = Array.isArray(subjectData) ? subjectData.length : 0;
+                    const topicCountText = `${topicCount} Topic${topicCount !== 1 ? 's' : ''}`;
+                    return (
+                      <div
+                        key={subject}
+                        className="transform opacity-0 animate-fadeInUp-custom"
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                      >
+                        <ScienceSubjectCard
+                          subjectName={subject}
+                          imageUrl={scienceSubjectImageMap[subject] || 'https://placehold.co/120x120.png'}
+                          topicCountText={topicCountText}
+                          onClick={() => handleSubjectClick(subject)}
+                        />
+                      </div>
+                    );
+                  } else { // Other courses
+                    return (
+                      <div
+                        key={subject}
+                        className="transform opacity-0 animate-fadeInUp-custom"
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                      >
+                        <SubjectItem
+                          name={subject}
+                          onClick={() => handleSubjectClick(subject)}
+                        />
+                      </div>
+                    );
+                  }
+                })}
               </div>
             ) : (
               <p className="text-center text-muted-foreground">Select a course to see subjects or no subjects listed for this course.</p>
