@@ -93,6 +93,7 @@ export const scienceCourseContent: CourseContentMap = {
       name: 'Redox Reaction',
       lectures: [
         { id: 'L1', title: 'Redox Reaction 1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411390/175008942555082764802/index_5.m3u8' },
+        { id: 'L2', title: '', notesLink: `MEMEMATI`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/FrzkCnOel5U?si=qUBqjOTC8KPn8Ad2' },
       ]
     },
   ],
