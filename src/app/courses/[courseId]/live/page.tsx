@@ -35,11 +35,11 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     '2': { // Commece
       pageTitle: "Class 11 Science Live Classes",
       subtitle: "Interactive learning sessions for Science students",
-      class1Subject: "Business",
+      class1Subject: "Maths",
       class2Subject: "BUSINESS",
-      class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_3.m3u8')}`,
+      class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/49856fa811d3403facbfba24d0db04ab/index_1.m3u8')}`,
       class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/4882f3a454494165b396de72e412d7aa/index_1.m3u8')}`,
-      class1Visible: false,
+      class1Visible: true,
       class2Visible: true,
   },
   '3': { // Aarambh (Foundation Class 10)
