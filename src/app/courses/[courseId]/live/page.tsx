@@ -34,7 +34,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   },
     '2': { // Commece
       pageTitle: "Class 11 Commerce Live Classes",
-      subtitle: "Interactive learning sessions for Science students",
+      subtitle: "Interactive learning sessions for Commerce students",
       class1Subject: "Maths",
       class2Subject: "BUSINESS",
       class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/49856fa811d3403facbfba24d0db04ab/index_1.m3u8')}`,
