@@ -1,7 +1,8 @@
+
 #!/usr/bin/env sh
 
 #
-# Copyright 2015 the original author or authors.
+# Copyright © 2015-2021 the original authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,12 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-#*****************************************************************************
-#
-#   Gradle start up script for UN*X
-#
-#*****************************************************************************
 
 # Attempt to set APP_HOME
 # Resolve links: $0 may be a link
@@ -43,25 +38,47 @@ cd "$SAVED" >/dev/null
 APP_NAME="Gradle"
 APP_BASE_NAME=`basename "$0"`
 
-# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options.
-# When running gradle without a daemon, the options are passed to the client VM, even if the daemon is already running.
-# When running gradle with a daemon, the options are passed to the daemon VM, but only if the daemon is not running.
+# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
 DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
 
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD="maximum"
 
-# For Cygwin, ensure paths are in UNIX format before anything is touched
-if $cygwin ; then
-    [ -n "$APP_HOME" ] &&
-        APP_HOME=`cygpath --unix "$APP_HOME"`
-    [ -n "$JAVA_HOME" ] &&
-        JAVA_HOME=`cygpath --unix "$JAVA_HOME"`
-    [ -n "$CLASSPATH" ] &&
-        CLASSPATH=`cygpath --path --unix "$CLASSPATH"`
-fi
+warn ( ) {
+    echo "$*"
+} >&2
 
-# Locate a Java Runtime to use.
+die ( ) {
+    echo
+    echo "$*"
+    echo
+    exit 1
+} >&2
+
+# OS specific support (must be 'true' or 'false').
+cygwin=false
+msys=false
+darwin=false
+nonstop=false
+case "`uname`" in
+  CYGWIN* )
+    cygwin=true
+    ;;
+  Darwin* )
+    darwin=true
+    ;;
+  MINGW* )
+    msys=true
+    ;;
+  NONSTOP* )
+    nonstop=true
+    ;;
+esac
+
+CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
+
+
+# Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
     if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
         # IBM's JDK on AIX uses strange locations for the executables
@@ -84,11 +101,11 @@ location of your Java installation."
 fi
 
 # Increase the maximum file descriptors if we can.
-if [ "$cygwin" = "false" -a "$darwin" = "false" ] ; then
+if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
     MAX_FD_LIMIT=`ulimit -H -n`
     if [ $? -eq 0 ] ; then
         if [ "$MAX_FD" = "maximum" -o "$MAX_FD" = "max" ] ; then
-            # Use the system limit
+            # use the system max
             MAX_FD="$MAX_FD_LIMIT"
         fi
         ulimit -n $MAX_FD
@@ -100,8 +117,65 @@ if [ "$cygwin" = "false" -a "$darwin" = "false" ] ; then
     fi
 fi
 
-# Collect all arguments for the java command, following the shell quoting and substitution rules
-eval set -- $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS "\"-Dorg.gradle.appname=$APP_BASE_NAME\"" -classpath "\"$APP_HOME/gradle/wrapper/gradle-wrapper.jar\"" org.gradle.wrapper.GradleWrapperMain "$@"
+# For Darwin, add options to specify how the application appears in the dock;
+# also support education. IntelliJ Platform Idea uses this well.
+if $darwin; then
+    GRADLE_OPTS="$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""
+fi
 
-# Execute application
-exec "$JAVACMD" "$@"
+# For Cygwin or MSYS, switch paths to Windows format before running java
+if $cygwin || $msys; then
+    APP_HOME=`cygpath --path --mixed "$APP_HOME"`
+    CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
+    JAVACMD=`cygpath --unix "$JAVACMD"`
+
+    # We build the pattern for arguments to be converted to Windows paths
+    ROOTDIRSRAW=`find -L / -maxdepth 1 -mindepth 1 -type d 2>/dev/null`
+    SEP=""
+    for dir in $ROOTDIRSRAW ; do
+        ROOTDIRS="$ROOTDIRS$SEP$dir"
+        SEP="|"
+    done
+    OPTPATTERN="($ROOTDIRS)"
+    # A PATTERN such as ((^|\|)\s+(['"])?)
+    # For example, equals to -Dfoo="/path/to/file" or -Dfoo=/path/to/file
+    # However, this fails to distinguish between two arguments like -Dfoo=/path/to/file and --option /path/to/file
+    # So we use a simpler pattern that only matches arguments starting with a /
+    # This will also match --foo=/path/to/file, which is fine.
+    PATH_PREFIX_PATTERN="/|'"
+    # Handle arguments that point to directories or files.
+    # Remove spaces to avoid problems with cygpath.
+    # This will not fail if the argument contains spaces.
+    # It will only fail if the argument contains both spaces and forward slashes.
+    # For example, -Dfoo="/path with spaces/file" will fail.
+    # -Dfoo="/path/to file" will also fail.
+    # In such cases, the user should use quotes around the argument.
+    # For example, -Dfoo="'/path with spaces/file'" or -Dfoo="'/path/to file'".
+    # This is a limitation of cygpath.
+    # See https://github.com/gradle/gradle/issues/10780
+    "$JAVACMD" \
+        $DEFAULT_JVM_OPTS \
+        $JAVA_OPTS \
+        $GRADLE_OPTS \
+        "-Dorg.gradle.appname=$APP_BASE_NAME" \
+        -classpath "$CLASSPATH" \
+        org.gradle.wrapper.GradleWrapperMain "$@"
+    # Convert paths to Windows format using cygpath
+    # This approach will handle arguments with spaces correctly as long as they are quoted.
+    # For example, -Dfoo="'/path with spaces/file'"
+    # It will also handle arguments without spaces correctly.
+    # For example, -Dfoo=/path/to/file
+    # And it will handle arguments with spaces and forward slashes correctly.
+    # For example, -Dfoo="/path with spaces/file"
+    # This is because we use a simpler pattern that only matches arguments starting with a /
+    # This will also match --foo=/path/to/file, which is fine.
+else
+    # No need to convert paths on other systems.
+    "$JAVACMD" \
+        $DEFAULT_JVM_OPTS \
+        $JAVA_OPTS \
+        $GRADLE_OPTS \
+        "-Dorg.gradle.appname=$APP_BASE_NAME" \
+        -classpath "$CLASSPATH" \
+        org.gradle.wrapper.GradleWrapperMain "$@"
+fi

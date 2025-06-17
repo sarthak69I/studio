@@ -1,14 +1,19 @@
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = '1.8.20' // Or a recent stable version
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.2' // Or a recent stable version
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.android.tools.build:gradle:8.2.0' // Use a recent stable version
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22" // Match Kotlin version
     }
+}
+
+plugins {
+    // id 'com.android.application' version '8.2.0' apply false
+    // id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
 }
 
 allprojects {
@@ -18,6 +23,6 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }

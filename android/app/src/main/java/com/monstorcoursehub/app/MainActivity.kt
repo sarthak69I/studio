@@ -1,34 +1,48 @@
-package com.monstorcoursehub.app
 
+package com.monstorcoursehub.app // Ensure this matches your AndroidManifest.xml and build.gradle namespace
+
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.webkit.WebSettings
 import android.webkit.WebView
-import android.webkit.WebSettings // Import WebSettings
+import android.webkit.WebViewClient
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var webView: WebView
+
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Set the AppTheme after the SplashTheme has done its job
-        // This should be called before super.onCreate() and setContentView()
-        setTheme(R.style.AppTheme) 
         super.onCreate(savedInstanceState)
+        // Set the theme back to AppTheme after splash
+        setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_main)
 
-        val webView = findViewById<WebView>(R.id.webview)
-        webView.apply {
-            // Enable JavaScript
-            settings.javaScriptEnabled = true
+        webView = findViewById(R.id.webview)
+        webView.webViewClient = WebViewClient() // Handles page navigation within the WebView
 
-            // Optional: Improve WebView security and performance
-            settings.domStorageEnabled = true // If your web app uses localStorage
-            // settings.cacheMode = WebSettings.LOAD_DEFAULT // Control caching behavior
+        // Configure WebView settings
+        webView.settings.apply {
+            javaScriptEnabled = true // Essential for modern web apps
+            domStorageEnabled = true // For localStorage and sessionStorage
+            loadWithOverviewMode = true // Load the WebView completely zoomed out
+            useWideViewPort = true // Makes the WebView have a normal viewport (like a desktop browser)
+            setSupportZoom(false) // Disable pinch-to-zoom
+            builtInZoomControls = false // Disable built-in zoom controls
+            displayZoomControls = false // Do not display on-screen zoom controls
+            cacheMode = WebSettings.LOAD_DEFAULT // Default cache behavior
+        }
 
-            // Disable zoom/text selection as requested
-            settings.setSupportZoom(false)
-            settings.builtInZoomControls = false
-            settings.displayZoomControls = false
-            
-            // Load your Vercel app URL
-            loadUrl("https://e-leak.vercel.app")
+        // Load your Vercel app URL
+        webView.loadUrl("https://e-leak.vercel.app")
+    }
+
+    // Handle back button press to navigate WebView history
+    override fun onBackPressed() {
+        if (webView.canGoBack()) {
+            webView.goBack()
+        } else {
+            super.onBackPressed()
         }
     }
 }

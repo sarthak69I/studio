@@ -1,3 +1,4 @@
+
 @rem
 @rem Copyright 2015 the original author or authors.
 @rem
@@ -29,9 +30,7 @@ if "%DIRNAME%" == "" set DIRNAME=.
 set APP_BASE_NAME=%~n0
 set APP_HOME=%DIRNAME%
 
-@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options.
-@rem When running gradle without a daemon, the options are passed to the client VM, even if the daemon is already running.
-@rem When running gradle with a daemon, the options are passed to the daemon VM, but only if the daemon is not running.
+@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
 set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
 
 @rem Find java.exe
@@ -47,7 +46,7 @@ echo.
 echo Please set the JAVA_HOME variable in your environment to match the
 echo location of your Java installation.
 
-goto fail
+goto quit
 
 :findJavaFromJavaHome
 set JAVA_HOME=%JAVA_HOME:"=%
@@ -61,7 +60,7 @@ echo.
 echo Please set the JAVA_HOME variable in your environment to match the
 echo location of your Java installation.
 
-goto fail
+goto quit
 
 :execute
 @rem Setup the command line
@@ -71,21 +70,7 @@ set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 @rem Execute Gradle
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*
 
-:end
-@rem End local scope for the variables with windows NT shell
-if "%ERRORLEVEL%"=="0" goto mainEnd
-
-:fail
-rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
-rem the _cmd.exe /c_ return code after running gradle.
-rem More details: https://github.com/gradle/gradle/issues/14623
-if not "%GRADLE_EXIT_CONSOLE%" == "" (
-  exit /b 1
-) else (
-  exit 1
-)
-
-:mainEnd
+:quit
 if "%OS%"=="Windows_NT" endlocal
 
-:omega
+:end
