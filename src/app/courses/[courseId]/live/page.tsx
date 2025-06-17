@@ -57,7 +57,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     subtitle: "Interactive learning sessions for Class 9 Aarambh batch",
     class1Subject: "Chemistry",
     class2Subject: "SST",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d3rho91jos7925.cloudfront.net/out/v1/04e48ce150b5494fa5bca97d1bea5bb0/index_4.m3u8')}`, 
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/ac361b0bc5c84abba22ce98a674f14a3/index_5.m3u8')}`, 
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d2ypa0i2sdc0h2.cloudfront.net/out/v1/953b87b302b04b50a75b8ed04c215cc4/index_4.m3u8')}`, 
     class1Visible: true,
     class2Visible: true,
