@@ -8,8 +8,15 @@ import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
 import { getParamAsString } from '@/lib/utils';
 import { getValidAccessKey } from '@/lib/access-manager';
-import Image from 'next/image'; // Added for new ScienceSubjectCard
-import { scienceCourseContent, type Topic } from '@/lib/course-data'; // Added for topic count
+import Image from 'next/image';
+import { 
+  scienceCourseContent, 
+  commerceCourseContent,
+  aarambhCourseContent,
+  aarambh9CourseContent,
+  type Topic,
+  type CourseContentMap
+} from '@/lib/course-data'; 
 
 interface SubjectItemProps {
   name: string;
@@ -24,9 +31,9 @@ const REQUIRE_KEY_GENERATION = true;
 
 const courseSpecificSubjects: Record<string, string[]> = {
   '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'English'], // Science Batch
-  '2': ['Business Studies', 'Accountancy', 'Economics', 'Mathematics', 'English'], // Commerce Batch
-  '3': ['Social Science', 'Science', 'Mathematics', 'English'], // Aarambh Batch (Class 10)
-  '4': ['Science', 'Social Science', 'Mathematics', 'English'], // Aarambh Batch (Class 9)
+  '2': ['Accountancy', 'Mathematics', 'Economics', 'Business Studies', 'English'], // Commerce Batch
+  '3': ['Science', 'Mathematics', 'Social Science', 'English'], // Aarambh Batch (Class 10)
+  '4': ['Science', 'Mathematics', 'Social Science', 'English'], // Aarambh Batch (Class 9)
 };
 
 const courseDisplayNames: Record<string, string> = {
@@ -44,7 +51,30 @@ const scienceSubjectImageMap: Record<string, string> = {
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
 };
 
-// Original SubjectItem for non-science courses
+const commerceSubjectImageMap: Record<string, string> = {
+  'Accountancy': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/360629323799_Account.jpeg',
+  'Mathematics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/topic/424695935848_Maths.png',
+  'Economics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/56643923786_Economic.jpeg',
+  'Business Studies': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/627728423781_BST.jpeg',
+  'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
+};
+
+const aarambhSubjectImageMap: Record<string, string> = { // For Class 10 (courseId '3')
+  'Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/28070448615_WhatsApp%20Image%202025-04-25%20at%204.25.51%20PM.jpeg',
+  'Mathematics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/topic/424695935848_Maths.png',
+  'Social Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/60137688614_Social%20Science.jpeg',
+  'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
+};
+
+const aarambh9SubjectImageMap: Record<string, string> = { // For Class 9 (courseId '4')
+  'Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/28070448615_WhatsApp%20Image%202025-04-25%20at%204.25.51%20PM.jpeg',
+  'Mathematics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/topic/424695935848_Maths.png',
+  'Social Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/60137688614_Social%20Science.jpeg',
+  'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
+};
+
+
+// Original SubjectItem for courses not using the new styled card
 const SubjectItem: React.FC<SubjectItemProps> = ({ name, onClick, disabled }) => (
   <Button
     variant="secondary"
@@ -58,15 +88,15 @@ const SubjectItem: React.FC<SubjectItemProps> = ({ name, onClick, disabled }) =>
   </Button>
 );
 
-// New Card for Science Subjects
-interface ScienceSubjectCardProps {
+// Renamed from ScienceSubjectCard to StyledSubjectCard for broader use
+interface StyledSubjectCardProps {
   subjectName: string;
   imageUrl: string;
   topicCountText: string;
   onClick?: () => void;
 }
 
-const ScienceSubjectCard: React.FC<ScienceSubjectCardProps> = ({ subjectName, imageUrl, topicCountText, onClick }) => (
+const StyledSubjectCard: React.FC<StyledSubjectCardProps> = ({ subjectName, imageUrl, topicCountText, onClick }) => (
   <button
     onClick={onClick}
     className="flex items-center bg-slate-800 text-white p-3 rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-200 w-full text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
@@ -78,7 +108,7 @@ const ScienceSubjectCard: React.FC<ScienceSubjectCardProps> = ({ subjectName, im
         alt={subjectName} 
         fill
         sizes="(max-width: 640px) 80px, 100px"
-        className="object-contain rounded bg-transparent"
+        className="object-contain rounded-sm bg-transparent" // Changed to rounded-sm for 4px radius
         data-ai-hint={`${subjectName.toLowerCase()} education`}
       />
     </div>
@@ -168,6 +198,27 @@ export default function EnrollPage() {
     );
   }
 
+  // Determine if the styled card should be used
+  const useStyledCard = ['1', '2', '3', '4'].includes(courseId);
+  let currentCourseData: CourseContentMap | undefined;
+  let currentImageMap: Record<string, string> = {};
+
+  if (useStyledCard) {
+    if (courseId === '1') {
+      currentCourseData = scienceCourseContent;
+      currentImageMap = scienceSubjectImageMap;
+    } else if (courseId === '2') {
+      currentCourseData = commerceCourseContent;
+      currentImageMap = commerceSubjectImageMap;
+    } else if (courseId === '3') {
+      currentCourseData = aarambhCourseContent;
+      currentImageMap = aarambhSubjectImageMap;
+    } else if (courseId === '4') {
+      currentCourseData = aarambh9CourseContent;
+      currentImageMap = aarambh9SubjectImageMap;
+    }
+  }
+
   return (
     <>
     <div className="flex flex-col min-h-screen bg-background text-foreground p-4 md:p-6">
@@ -226,10 +277,10 @@ export default function EnrollPage() {
               Subjects for {courseDisplayNames[courseId] || `Course ${courseId}`}
             </h2>
             {subjects.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className={`grid grid-cols-1 ${useStyledCard ? 'sm:grid-cols-1' : 'sm:grid-cols-2'} gap-4`}>
                 {subjects.map((subject, index) => {
-                  if (courseId === '1') { // Science Batch
-                    const subjectData = scienceCourseContent[subject];
+                  if (useStyledCard && currentCourseData && currentImageMap) {
+                    const subjectData = currentCourseData[subject];
                     const topicCount = Array.isArray(subjectData) ? subjectData.length : 0;
                     const topicCountText = `${topicCount} Topic${topicCount !== 1 ? 's' : ''}`;
                     return (
@@ -238,15 +289,15 @@ export default function EnrollPage() {
                         className="transform opacity-0 animate-fadeInUp-custom"
                         style={{ animationDelay: `${index * 0.1}s` }}
                       >
-                        <ScienceSubjectCard
+                        <StyledSubjectCard
                           subjectName={subject}
-                          imageUrl={scienceSubjectImageMap[subject] || 'https://placehold.co/120x120.png'}
+                          imageUrl={currentImageMap[subject] || 'https://placehold.co/120x120.png'}
                           topicCountText={topicCountText}
                           onClick={() => handleSubjectClick(subject)}
                         />
                       </div>
                     );
-                  } else { // Other courses
+                  } else { // Original card style for other courses
                     return (
                       <div
                         key={subject}
