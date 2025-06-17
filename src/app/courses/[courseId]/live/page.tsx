@@ -33,7 +33,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class2Visible: true,
   },
     '2': { // Commece
-      pageTitle: "Class 11 Science Live Classes",
+      pageTitle: "Class 11 Commerce Live Classes",
       subtitle: "Interactive learning sessions for Science students",
       class1Subject: "Maths",
       class2Subject: "BUSINESS",
