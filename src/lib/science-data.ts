@@ -93,6 +93,8 @@ export const scienceCourseContent: CourseContentMap = {
       name: 'Redox Reaction',
       lectures: [
         { id: 'L1', title: 'Redox Reaction 1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411390/175008942555082764802/index_5.m3u8' },
+        { id: 'L2', title: 'Redox Reaction 2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412647/175017601245432764802/index_5.m3u8' },
+        
       ]
     },
   ],
@@ -138,6 +140,8 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L2', title: 'Trigonometry Function L2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406215/174956025952221261798/index_4.m3u8' },
         { id: 'L3', title: 'Trigonometry Function L3', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407505/174965818393941261798/index_4.m3u8' },
         { id: 'L4', title: 'Trigonometry Function L4', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411239/175007836684925373082/index_4.m3u8' },
+        { id: 'L5', title: 'Trigonometry Function L5', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412499/175016476027615373082/index_4.m3u8' },
+        
       ]
     },
   ],
@@ -185,6 +189,8 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L2', title: 'Animal Kingdom L2', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406311/174956537678522621696/index_4.m3u8' },
         { id: 'L3', title: 'Animal Kingdom L3', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408305/174973168472882621696/index_4.m3u8' },
         { id: 'L4', title: 'Animal Kingdom L4', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411317/175008298317313740487/index_4.m3u8' },
+        { id: 'L5', title: 'Animal Kingdom L5', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412598/175017045022253740487/index_4.m3u8' },
+        
       ]
     },
   ],
