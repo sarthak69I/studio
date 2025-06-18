@@ -36,7 +36,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
       pageTitle: "Class 11 Commerce Live Classes",
       subtitle: "Interactive learning sessions for Commerce students",
       class1Subject: "Business Studies",
-      class2Subject: "BUSINESS",
+      class2Subject: "Mathematics",
       class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/4882f3a454494165b396de72e412d7aa/index_1.m3u8')}`,
       class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/49856fa811d3403facbfba24d0db04ab/index_1.m3u8')}`,
       class1Visible: true,
