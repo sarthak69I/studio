@@ -46,7 +46,7 @@ const courseDisplayNames: Record<string, string> = {
 const scienceSubjectImageMap: Record<string, string> = {
   'Physics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/395380615606_Physics.jpeg',
   'Chemistry': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/203426323782_Chemestry.jpeg',
-  'Mathematics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/topic/424695935848_Maths.png',
+  'Mathematics': 'https://i.ibb.co/DfhJL87V/300c8aba-6815-4a44-a303-74b5987add62.png',
   'Biology': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/22273823798_Biology.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
 };
