@@ -94,7 +94,7 @@ export const scienceCourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Redox Reaction 1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/599116557212790000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411390/175008942555082764802/index_5.m3u8' },
         { id: 'L2', title: 'Redox Reaction 2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/774174145147878800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412647/175017601245432764802/index_5.m3u8' },
-        
+        { id: 'L3', title: 'Redox Reaction 3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413737/175025171821132764802/index_5.m3u8' },
       ]
     },
   ],
@@ -141,7 +141,7 @@ export const scienceCourseContent: CourseContentMap = {
         { id: 'L3', title: 'Trigonometry Function L3', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/104188128771684820.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407505/174965818393941261798/index_4.m3u8' },
         { id: 'L4', title: 'Trigonometry Function L4', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/599391613802409200.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411239/175007836684925373082/index_4.m3u8' },
         { id: 'L5', title: 'Trigonometry Function L5', notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/767035803064220800.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412499/175016476027615373082/index_4.m3u8' },
-        
+        { id: 'L6', title: 'Trigonometry Function L6', notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413863/175026237552875373082/index_4.m3u8' },
       ]
     },
   ],
