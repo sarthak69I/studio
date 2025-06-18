@@ -46,14 +46,14 @@ const courseDisplayNames: Record<string, string> = {
 const scienceSubjectImageMap: Record<string, string> = {
   'Physics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/395380615606_Physics.jpeg',
   'Chemistry': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/203426323782_Chemestry.jpeg',
-  'Mathematics': 'https://i.ibb.co/DfhJL87V/300c8aba-6815-4a44-a303-74b5987add62.png',
+  'Mathematics': 'https://i.ibb.co/3ymmbq9K/image.png',
   'Biology': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/22273823798_Biology.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
 };
 
 const commerceSubjectImageMap: Record<string, string> = {
   'Accountancy': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/360629323799_Account.jpeg',
-  'Mathematics': 'https://i.ibb.co/DfhJL87V/300c8aba-6815-4a44-a303-74b5987add62.png',
+  'Mathematics': 'https://i.ibb.co/3ymmbq9K/image.png',
   'Economics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/56643923786_Economic.jpeg',
   'Business Studies': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/627728423781_BST.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
@@ -61,14 +61,14 @@ const commerceSubjectImageMap: Record<string, string> = {
 
 const aarambhSubjectImageMap: Record<string, string> = { // For Class 10 (courseId '3')
   'Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/28070448615_WhatsApp%20Image%202025-04-25%20at%204.25.51%20PM.jpeg',
-  'Mathematics': 'https://i.ibb.co/DfhJL87V/300c8aba-6815-4a44-a303-74b5987add62.png',
+  'Mathematics': 'https://i.ibb.co/3ymmbq9K/image.png',
   'Social Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/60137688614_Social%20Science.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
 };
 
 const aarambh9SubjectImageMap: Record<string, string> = { // For Class 9 (courseId '4')
   'Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/28070448615_WhatsApp%20Image%202025-04-25%20at%204.25.51%20PM.jpeg',
-  'Mathematics': 'https://i.ibb.co/DfhJL87V/300c8aba-6815-4a44-a303-74b5987add62.png',
+  'Mathematics': 'https://i.ibb.co/3ymmbq9K/image.png',
   'Social Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/60137688614_Social%20Science.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
 };
