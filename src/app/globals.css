@@ -102,6 +102,35 @@ body {
   }
 }
 
+/* Custom Global Scrollbar Styles */
+/* For Webkit-based browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--secondary) / 0.5); /* Use secondary color with some transparency */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--primary)); /* Blue thumb from theme */
+  border-radius: 10px;
+  border: 2px solid hsl(var(--secondary) / 0.5); /* Creates a padding effect using transparent secondary */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--primary) / 0.85); /* Slightly more intense blue on hover */
+}
+
+/* For Firefox */
+html { /* Apply to html for global effect, respects body background */
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary)) hsl(var(--secondary) / 0.5);
+}
+
+
 /* Custom animation for the logo text gradient */
 .logo-gradient-text {
   background-image: linear-gradient(90deg, #ff4d4d, #f9cb28, #ff4d4d);
@@ -147,7 +176,7 @@ body {
   left: 20px; /* Changed from right to left */
   width: 60px;
   height: 60px;
-  z-index: 998; 
+  z-index: 998;
   border-radius: 50%;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -162,7 +191,7 @@ body {
 .eleakzone-float img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
   display: block;
 }
 
@@ -186,7 +215,7 @@ body {
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  overflow: visible; 
+  overflow: visible;
   box-shadow: 0 0 20px hsl(var(--primary));
   transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
   animation: glowPulse 2s ease-in-out infinite;
@@ -198,7 +227,7 @@ body {
   animation: glowPulse 1.5s ease-in-out infinite;
 }
 
-.join-button:active::before { 
+.join-button:active::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -215,7 +244,7 @@ body {
 .join-button:active::before {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
-  transition: 0s; 
+  transition: 0s;
 }
 
 .join-button span {
