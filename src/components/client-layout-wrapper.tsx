@@ -22,7 +22,7 @@ import {
   SheetTitle,
   SheetClose,
   SheetDescription,
-  SheetTrigger, // Added missing import
+  SheetTrigger,
 } from "@/components/ui/sheet";
 import NotificationItem from '@/components/NotificationItem';
 import type { Announcement as AnnouncementType } from '@/components/NotificationItem';
@@ -33,7 +33,7 @@ const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "10:00";
 const FEEDBACK_PROMPT_INTERVAL_HOURS = 20;
 const LAST_NOTIFICATIONS_VIEWED_KEY = 'eleakLastNotificationsViewedAt_v2';
-const NOTIFICATIONS_POLL_INTERVAL_MS = 60000;
+const NOTIFICATIONS_POLL_INTERVAL_MS = 60000; // 1 minute
 // --- Configuration End ---
 
 interface ClientLayoutWrapperProps {
@@ -54,13 +54,17 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   const [isLoadingAnnouncements, setIsLoadingAnnouncements] = useState(false);
   const [announcementsError, setAnnouncementsError] = useState<string | null>(null);
   const [showBellIconBasedOnScroll, setShowBellIconBasedOnScroll] = useState(true);
-  const [latestFetchedTimestamp, setLatestFetchedTimestamp] = useState<number>(0);
+
+  // Stores the latest timestamp ever fetched from ANY announcement source (polling or direct sheet open)
+  // This helps ensure markNotificationsAsViewed uses the absolute latest known announcement time.
+  const [globallyLatestFetchedTimestamp, setGloballyLatestFetchedTimestamp] = useState<number>(0);
   const initialCheckDone = useRef(false);
 
-  const fetchAnnouncementsForSheet = useCallback(async () => {
+
+  const fetchAnnouncementsForSheet = useCallback(async (): Promise<number> => {
     setIsLoadingAnnouncements(true);
     setAnnouncementsError(null);
-    setAnnouncements([]);
+    let latestTimestampFromThisFetch = 0;
     try {
       const q = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(20));
       const querySnapshot = await getDocs(q);
@@ -75,16 +79,14 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
           type: data.type,
         };
         fetchedAnnouncements.push(announcementItem);
+        if (announcementItem.timestamp instanceof Timestamp) {
+            latestTimestampFromThisFetch = Math.max(latestTimestampFromThisFetch, announcementItem.timestamp.toMillis());
+        }
       });
       setAnnouncements(fetchedAnnouncements);
 
-      if (fetchedAnnouncements.length > 0 && fetchedAnnouncements[0].timestamp) {
-        setLatestFetchedTimestamp(prev => {
-            if (fetchedAnnouncements[0].timestamp instanceof Timestamp) {
-               return Math.max(prev, fetchedAnnouncements[0].timestamp.toMillis());
-            }
-            return prev;
-        });
+      if (latestTimestampFromThisFetch > 0) {
+        setGloballyLatestFetchedTimestamp(prev => Math.max(prev, latestTimestampFromThisFetch));
       }
     } catch (error) {
       console.error("Error fetching announcements for sheet:", error);
@@ -92,29 +94,33 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     } finally {
       setIsLoadingAnnouncements(false);
     }
-  }, []);
+    return latestTimestampFromThisFetch;
+  }, [setIsLoadingAnnouncements, setAnnouncementsError, setAnnouncements, setGloballyLatestFetchedTimestamp]);
 
-  const markNotificationsAsViewed = useCallback(() => {
+
+  const markNotificationsAsViewed = useCallback((viewedTimestamp: number) => {
     if (typeof window !== 'undefined') {
-      let effectiveLatestTimestamp = latestFetchedTimestamp;
-
-      if (announcements.length > 0 && announcements[0].timestamp && announcements[0].timestamp instanceof Timestamp) {
-        effectiveLatestTimestamp = Math.max(effectiveLatestTimestamp, announcements[0].timestamp.toMillis());
-      }
-      
-      const timestampToStore = effectiveLatestTimestamp > 0 ? effectiveLatestTimestamp : Date.now();
-
+      // Use the provided viewedTimestamp (latest from the current fetch) or fall back to a global latest if it's higher,
+      // or finally Date.now() if no valid timestamp is available.
+      const timestampToStore = viewedTimestamp > 0 ? viewedTimestamp : (globallyLatestFetchedTimestamp > 0 ? globallyLatestFetchedTimestamp : Date.now());
       localStorage.setItem(LAST_NOTIFICATIONS_VIEWED_KEY, timestampToStore.toString());
       setHasUnreadNotifications(false);
     }
-  }, [announcements, latestFetchedTimestamp]);
+  }, [setHasUnreadNotifications, globallyLatestFetchedTimestamp]);
 
 
   useEffect(() => {
+    let isMounted = true;
     if (isSheetOpen) {
-      fetchAnnouncementsForSheet();
-      markNotificationsAsViewed();
+      fetchAnnouncementsForSheet().then(fetchedLatestTimestampForSheet => {
+        if (isMounted) {
+          markNotificationsAsViewed(fetchedLatestTimestampForSheet);
+        }
+      });
     }
+    return () => {
+      isMounted = false;
+    };
   }, [isSheetOpen, fetchAnnouncementsForSheet, markNotificationsAsViewed]);
 
 
@@ -127,7 +133,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       if (new Date() < endTime) {
         setShowMaintenance(true);
       } else {
-        setShowMaintenance(false); 
+        setShowMaintenance(false);
       }
     } else {
       setShowMaintenance(false);
@@ -135,7 +141,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
 
     const handleContextmenu = (e: MouseEvent) => e.preventDefault();
     document.addEventListener('contextmenu', handleContextmenu);
-    
+
     if (typeof window !== 'undefined') {
       const lastPromptTime = localStorage.getItem('lastFeedbackPromptTime');
       const now = Date.now();
@@ -146,10 +152,10 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
           setShowFeedbackPrompt(true);
         }
       } else {
-        setShowFeedbackPrompt(false); 
+        setShowFeedbackPrompt(false);
       }
     }
-    
+
     return () => document.removeEventListener('contextmenu', handleContextmenu);
   }, [pathname, showMaintenance]);
 
@@ -165,22 +171,20 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
         if (!querySnapshot.empty) {
           const latestAnnouncementDoc = querySnapshot.docs[0];
           const latestAnnouncementData = latestAnnouncementDoc.data();
-          
-          if (latestAnnouncementData.timestamp && latestAnnouncementData.timestamp instanceof Timestamp) {
-            const newLatestTimestamp = latestAnnouncementData.timestamp.toMillis();
-            setLatestFetchedTimestamp(prev => Math.max(prev, newLatestTimestamp)); // Keep track of the absolute latest timestamp seen
+
+          if (latestAnnouncementData.timestamp instanceof Timestamp) {
+            const newLatestTimestampMillis = latestAnnouncementData.timestamp.toMillis();
+            setGloballyLatestFetchedTimestamp(prev => Math.max(prev, newLatestTimestampMillis));
             const lastViewedTimestamp = parseInt(localStorage.getItem(LAST_NOTIFICATIONS_VIEWED_KEY) || '0', 10);
 
-            if (newLatestTimestamp > lastViewedTimestamp) {
+            if (newLatestTimestampMillis > lastViewedTimestamp) {
               setHasUnreadNotifications(true);
-              if (!isInitialCheck && !isSheetOpen) { // Only toast if not initial check and sheet is not already open
+              if (!isInitialCheck && !isSheetOpen) {
                 toast({
                   title: "New Announcement!",
                   description: (latestAnnouncementData.message || "Check out the latest updates.").substring(0, 70) + ((latestAnnouncementData.message || "").length > 70 ? "..." : ""),
                   action: (
-                    <Button variant="outline" size="sm" onClick={() => {
-                      setIsSheetOpen(true); 
-                    }}>
+                    <Button variant="outline" size="sm" onClick={() => setIsSheetOpen(true)}>
                       View
                     </Button>
                   ),
@@ -190,16 +194,14 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
               setHasUnreadNotifications(false);
             }
           } else {
-             console.warn("Latest announcement has missing or invalid timestamp:", latestAnnouncementData);
-             setHasUnreadNotifications(false); 
+            console.warn("Latest announcement has missing or invalid Firestore timestamp:", latestAnnouncementData);
+            setHasUnreadNotifications(false);
           }
         } else {
           setHasUnreadNotifications(false); // No announcements found
         }
       } catch (error) {
         console.error("Error checking for new announcements:", error);
-        // Don't set hasUnreadNotifications to false here, as there might be a temporary network issue.
-        // UI should rely on announcementsError for display issues in the sheet.
       }
       if (isInitialCheck) {
         initialCheckDone.current = true;
@@ -207,9 +209,9 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     };
 
     if (!initialCheckDone.current) {
-       checkNewAnnouncements(true);
+      checkNewAnnouncements(true);
     }
-    
+
     const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback'];
     const shouldPoll = !excludedPathsForPolling.includes(pathname) && !showMaintenance;
 
@@ -221,7 +223,8 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     return () => {
       if (pollInterval) clearInterval(pollInterval);
     };
-  }, [pathname, showMaintenance, toast]); // Removed isSheetOpen
+  }, [pathname, showMaintenance, toast, isSheetOpen, setGloballyLatestFetchedTimestamp, setHasUnreadNotifications, setIsSheetOpen]);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -238,7 +241,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
 
   const excludedPathsForFeedbackAndSupport = ['/help-center', '/generate-access', '/auth/callback'];
   const showFeedbackAndSupportSection = !excludedPathsForFeedbackAndSupport.includes(pathname) && !showMaintenance;
-  
+
   const showGlobalUIElements = !pathname.startsWith('/auth/callback') && !pathname.startsWith('/generate-access') && !showMaintenance;
   const showNotificationBellTrigger = !['/help-center', '/generate-access', '/auth/callback'].includes(pathname) && !showMaintenance && showBellIconBasedOnScroll;
 
@@ -313,7 +316,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       )}
 
       {children}
-      
+
       {showFeedbackAndSupportSection && (
         <div ref={feedbackSectionRef} className="container mx-auto px-4 py-8 md:py-12">
           <Separator className="my-8 md:my-12" />
@@ -337,7 +340,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       )}
 
       <Toaster />
-      
+
       {showGlobalUIElements && (
         <>
           <a href="https://e-leakzone.vercel.app" target="_blank" rel="noopener noreferrer" className="eleakzone-float" aria-label="E-Leak Zone">
@@ -346,7 +349,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
           <a href="https://t.me/eleakcoursehub" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
             <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
           </a>
-          <CookieConsentBanner /> 
+          <CookieConsentBanner />
         </>
       )}
 
@@ -364,3 +367,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     </>
   );
 }
+    
+
+    
