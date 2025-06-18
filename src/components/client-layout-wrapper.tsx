@@ -60,7 +60,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   const fetchAnnouncementsForSheet = useCallback(async () => {
     setIsLoadingAnnouncements(true);
     setAnnouncementsError(null);
-    setAnnouncements([]); // Clear previous announcements
+    setAnnouncements([]);
     try {
       const q = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(20));
       const querySnapshot = await getDocs(q);
@@ -70,7 +70,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
         const announcementItem: AnnouncementType = {
           id: doc.id,
           message: data.message || "No message content",
-          // Ensure timestamp is a valid Firestore Timestamp or null
           timestamp: data.timestamp instanceof Timestamp ? data.timestamp : null,
           link: data.link,
           type: data.type,
@@ -80,8 +79,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       setAnnouncements(fetchedAnnouncements);
 
       if (fetchedAnnouncements.length > 0 && fetchedAnnouncements[0].timestamp) {
-        // This specific setLatestFetchedTimestamp is for the sheet's context, primarily.
-        // The polling function also maintains its own sense of latest.
         setLatestFetchedTimestamp(prev => {
             if (fetchedAnnouncements[0].timestamp instanceof Timestamp) {
                return Math.max(prev, fetchedAnnouncements[0].timestamp.toMillis());
@@ -91,7 +88,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       }
     } catch (error) {
       console.error("Error fetching announcements for sheet:", error);
-      setAnnouncementsError("Could not load announcements. Please try again later.");
+      setAnnouncementsError("Could not load announcements. Please check your internet connection and try again.");
     } finally {
       setIsLoadingAnnouncements(false);
     }
@@ -99,7 +96,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
 
   const markNotificationsAsViewed = useCallback(() => {
     if (typeof window !== 'undefined') {
-      let effectiveLatestTimestamp = latestFetchedTimestamp; 
+      let effectiveLatestTimestamp = latestFetchedTimestamp;
 
       if (announcements.length > 0 && announcements[0].timestamp && announcements[0].timestamp instanceof Timestamp) {
         effectiveLatestTimestamp = Math.max(effectiveLatestTimestamp, announcements[0].timestamp.toMillis());
@@ -171,12 +168,12 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
           
           if (latestAnnouncementData.timestamp && latestAnnouncementData.timestamp instanceof Timestamp) {
             const newLatestTimestamp = latestAnnouncementData.timestamp.toMillis();
-            setLatestFetchedTimestamp(prev => Math.max(prev, newLatestTimestamp));
+            setLatestFetchedTimestamp(prev => Math.max(prev, newLatestTimestamp)); // Keep track of the absolute latest timestamp seen
             const lastViewedTimestamp = parseInt(localStorage.getItem(LAST_NOTIFICATIONS_VIEWED_KEY) || '0', 10);
 
             if (newLatestTimestamp > lastViewedTimestamp) {
               setHasUnreadNotifications(true);
-              if (!isInitialCheck && !isSheetOpen) {
+              if (!isInitialCheck && !isSheetOpen) { // Only toast if not initial check and sheet is not already open
                 toast({
                   title: "New Announcement!",
                   description: (latestAnnouncementData.message || "Check out the latest updates.").substring(0, 70) + ((latestAnnouncementData.message || "").length > 70 ? "..." : ""),
@@ -197,10 +194,12 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
              setHasUnreadNotifications(false); 
           }
         } else {
-          setHasUnreadNotifications(false);
+          setHasUnreadNotifications(false); // No announcements found
         }
       } catch (error) {
         console.error("Error checking for new announcements:", error);
+        // Don't set hasUnreadNotifications to false here, as there might be a temporary network issue.
+        // UI should rely on announcementsError for display issues in the sheet.
       }
       if (isInitialCheck) {
         initialCheckDone.current = true;
@@ -222,7 +221,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     return () => {
       if (pollInterval) clearInterval(pollInterval);
     };
-  }, [pathname, showMaintenance, toast]);
+  }, [pathname, showMaintenance, toast]); // Removed isSheetOpen
 
   useEffect(() => {
     const handleScroll = () => {
@@ -365,4 +364,3 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     </>
   );
 }
-
