@@ -9,7 +9,7 @@ export const scienceCourseContent: CourseContentMap = {
     {
       name: 'Units and Measurement',
       lectures: [
-        { id: 'L1', title: 'Units and Measurement L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/350215509469119700.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/eYHkwzP0TkY' },
+        { id: 'L1', title: 'Units and Measurement L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/350215509469119700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/embed/eYHkwzP0TkY' },
         { id: 'L2', title: 'Units and Measurement L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/320554157609896960.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354032/174490568189301097666/index_5.m3u8' },
         { id: 'L3', title: 'Units and Measurement L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/282566967198221150.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354885/174499396879388296383/index_4.m3u8' },
         { id: 'L4', title: 'Units and Measurement L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/141795108468127550.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360178/174551194721888296383/index_4.m3u8' },
@@ -102,7 +102,7 @@ export const scienceCourseContent: CourseContentMap = {
     {
       name: 'Sets',
       lectures: [
-        { id: 'L1', title: 'Sets L1', notesLink: `https://drive.google.com/file/d/19Q6y1QGvyPJo3t87MnndIgWWiGalcT-o/preview`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/UT9CN9XFGYw' },
+        { id: 'L1', title: 'Sets L1', notesLink: `https://drive.google.com/file/d/19Q6y1QGvyPJo3t87MnndIgWWiGalcT-o/preview`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/embed/UT9CN9XFGYw' },
         { id: 'L2', title: 'Sets L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5110820Sets%20L2.pdf_Sets%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353889/174489667533668296383/index_4.m3u8' },
         { id: 'L3', title: 'Sets L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/798181586567513700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356690/174524049345081097666/index_5.m3u8' },
         { id: 'L4', title: 'Sets L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/452267096067597250.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357736/174532685248651097666/index_5.m3u8' },
@@ -149,7 +149,7 @@ export const scienceCourseContent: CourseContentMap = {
     {
       name: 'The Living World',
       lectures: [
-        { id: 'L1', title: 'The Living World L1', notesLink: `https://drive.google.com/file/d/1pwuQqik49QOyY2MD4eWUwdPpKX6TpXlX/view?usp=drive_link`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc?si=brqVi6ajJpepWicA' },
+        { id: 'L1', title: 'The Living World L1', notesLink: `https://drive.google.com/file/d/1pwuQqik49QOyY2MD4eWUwdPpKX6TpXlX/view?usp=drive_link`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/embed/RF6xfHVo9xc?si=brqVi6ajJpepWicA' },
         { id: 'L2', title: 'The Living World L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/840347643747496200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353875/174489575453452621696/index_4.m3u8' },
         { id: 'L3', title: 'The Living World L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/568137344888524700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354742/174498168131232621696/index_4.m3u8' },
       ]
