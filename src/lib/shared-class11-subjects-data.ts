@@ -1,3 +1,4 @@
+
 // src/lib/shared-class11-subjects-data.ts
 import type { CourseContentMap } from './course-utils';
 
@@ -74,36 +75,77 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
   ],
   'Hindi': [
     {
-      "name": "ईदगाह",
-      "lectures": [
-        { "id": "L1", "title": "ईदगाह 1", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358420/1745405764_3640097601269065/1745396728112_553393261079668160_video_VOD720p30.m3u8" },
-        { "id": "L2", "title": "ईदगाह 2", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358419/1745405165_6785757864981238/1745396695509_210095496519486820_video_VOD720p30.m3u8" },
-        { "id": "L3", "title": "ईदगाह MCQ", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358421/1745406665_9982673534662950/1745396812306_698622959847869200_video_VOD720p30.m3u8" },
-        { "id": "L4", "title": "NCERT SOLUTIONS", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358418/1745404925_4856650900953861/1745396670780_406859459444341300_video_VOD720p30.m3u8" }
+      name: "ईदगाह",
+      lectures: [
+        { id: "L1", title: "ईदगाह 1", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358420/1745405764_3640097601269065/1745396728112_553393261079668160_video_VOD720p30.m3u8" },
+        { id: "L2", title: "ईदगाह 2", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358419/1745405165_6785757864981238/1745396695509_210095496519486820_video_VOD720p30.m3u8" },
+        { id: "L3", title: "ईदगाह MCQ", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358421/1745406665_9982673534662950/1745396812306_698622959847869200_video_VOD720p30.m3u8" },
+        { id: "L4", title: "NCERT SOLUTIONS", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358418/1745404925_4856650900953861/1745396670780_406859459444341300_video_VOD720p30.m3u8" }
       ]
     },
     {
-      "name": "दोपहर का भोजन",
-      "lectures": [
-        { "id": "L1", "title": "अंतरा- दोपहर का भोजन - (ऐच्छिक) पाठ - 2 Complete Chapter Revision", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373815/1746542224_4919730510504804/sunny/1746531740827_117907691693140910_video_VOD720p30.m3u8" },
-        { "id": "L2", "title": "अंतरा - दोपहर का भोजन - (ऐच्छिक) पाठ - 2 MCQs", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373808/1746540904_6600857480385821/sunny/1746531396121_353280015597578300_video_VOD720p30.m3u8" },
-        { "id": "L3", "title": "अंतरा - दोपहर का भोजन - (ऐच्छिक) पाठ - 2 NCERT SOLUTION", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373805/1746542345_6467174965893976/sunny/1746531128826_502374752294248770_video_VOD720p30.m3u8" },
-        { "id": "L4", "title": "अंतरा - दोपहर का भोजन - (ऐच्छिक) पाठ - 2 व्याख्या", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373801/1746542405_3556877328703407/sunny/1746530690625_705519530275068000_video_VOD720p30.m3u8" }
+      name: "दोपहर का भोजन",
+      lectures: [
+        { id: "L1", title: "अंतरा- दोपहर का भोजन - (ऐच्छिक) पाठ - 2 Complete Chapter Revision", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373815/1746542224_4919730510504804/sunny/1746531740827_117907691693140910_video_VOD720p30.m3u8" },
+        { id: "L2", title: "अंतरा - दोपहर का भोजन - (ऐच्छिक) पाठ - 2 MCQs", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373808/1746540904_6600857480385821/sunny/1746531396121_353280015597578300_video_VOD720p30.m3u8" },
+        { id: "L3", title: "अंतरा - दोपहर का भोजन - (ऐच्छिक) पाठ - 2 NCERT SOLUTION", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373805/1746542345_6467174965893976/sunny/1746531128826_502374752294248770_video_VOD720p30.m3u8" },
+        { id: "L4", title: "अंतरा - दोपहर का भोजन - (ऐच्छिक) पाठ - 2 व्याख्या", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373801/1746542405_3556877328703407/sunny/1746530690625_705519530275068000_video_VOD720p30.m3u8" }
       ]
     },
     {
-      "name": "अंतरा - टार्च बेचनेवाले",
-      "lectures": [
-        { "id": "L1", "title": "टार्च बेचनेवाले - (ऐच्छिक) पाठ - 3 व्याख्या", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4382887/1747320964_9867427516013627/sunny/1747315431978_748015525792064800_video_VOD720p30.m3u8" },
-        { "id": "L2", "title": "टार्च बेचनेवाले - (ऐच्छिक) पाठ - 3 NCERT SOLUTION, MCQs", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4382888/1747321024_5410075080792619/sunny/1747315561001_388428930583151550_video_VOD720p30.m3u8" }
+      name: "अंतरा - टार्च बेचनेवाले",
+      lectures: [
+        { id: "L1", title: "टार्च बेचनेवाले - (ऐच्छिक) पाठ - 3 व्याख्या", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4382887/1747320964_9867427516013627/sunny/1747315431978_748015525792064800_video_VOD720p30.m3u8" },
+        { id: "L2", title: "टार्च बेचनेवाले - (ऐच्छिक) पाठ - 3 NCERT SOLUTION, MCQs", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4382888/1747321024_5410075080792619/sunny/1747315561001_388428930583151550_video_VOD720p30.m3u8" }
       ]
     },
     {
-      "name": "अंतरा - गूँगे",
-      "lectures": [
-        { "id": "L1", "title": "गूँगे - (ऐच्छिक) पाठ - 4 व्याख्या", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4389061/1747913345_3037150020926925/sunny/1747904804192_252774294206489280_video_VOD720p30.m3u8" },
-        { "id": "L2", "title": "गूँगे - (ऐच्छिक) पाठ - 4 NCERT SOLUTION MCQs", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4389060/1747912925_4204572298779712/sunny/1747904586776_670314428658591900_video_VOD720p30.m3u8" }
+      name: "अंतरा - गूँगे",
+      lectures: [
+        { id: "L1", title: "गूँगे - (ऐच्छिक) पाठ - 4 व्याख्या", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4389061/1747913345_3037150020926925/sunny/1747904804192_252774294206489280_video_VOD720p30.m3u8" },
+        { id: "L2", title: "गूँगे - (ऐच्छिक) पाठ - 4 NCERT SOLUTION MCQs", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4389060/1747912925_4204572298779712/sunny/1747904586776_670314428658591900_video_VOD720p30.m3u8" }
+      ]
+    },
+    {
+      name: "आरोह - नमक का दारोगा",
+      lectures: [
+        { id: "L1", title: "आरोह - नमक का दारोगा (आधार) पाठ - 1 NCERT SOLUTION", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362004/1745698204_6593084934746345/sunny/1745671125522_759271665741653600_video_VOD720p30.m3u8" },
+        { id: "L2", title: "नमक का दारोगा (आधार) पाठ - 1 Complete Chapter Revision", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362005/1745698564_5159888090681133/sunny/1745671190215_129619002601026830_video_VOD720p30.m3u8" },
+        { id: "L3", title: "आरोह - नमक का दारोगा (आधार) पाठ - 1 व्याख्या", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362006/1745698805_4891727664902941/sunny/1745671230837_9456711927203786_video_VOD720p30.m3u8" },
+        { id: "L4", title: "आरोह - नमक का दारोगा (आधार) पाठ - 1 MCQS", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362007/1745699044_4140987688514681/sunny/1745671394021_278759237485560480_video_VOD720p30.m3u8" }
+      ]
+    },
+    {
+      name: "आरोह - मियाँ नसीरुद्दीन",
+      lectures: [
+        { id: "L1", title: "आरोह - मियाँ नसीरुद्दीन - (आधार) पाठ - 2 MCQs (1)", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373812/1746541984_6316945284613919/sunny/1746531675054_142862495898429090_video_VOD720p30.m3u8" },
+        { id: "L2", title: "आरोह - मियाँ नसीरुद्दीन - (आधार) पाठ - 2 NCERT SOLUTION", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373806/1746540124_6822105023656087/sunny/1746531196751_301405681393743300_video_VOD720p30.m3u8" },
+        { id: "L3", title: "आरोह - मियाँ नसीरुद्दीन - (आधार) पाठ - 2 Complete Chapter Revision", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373803/1746542645_5746067122324674/sunny/1746530907080_753797595507440600_video_VOD720p30.m3u8" },
+        { id: "L4", title: "आरोह - मियाँ नसीरुद्दीन - (आधार) पाठ - 2 व्याख्या", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392261/1748250906_8930092536239985/sunny/1748250829722_231039785230211550_video_VOD720p30.m3u8" }
+      ]
+    },
+    {
+      name: "आरोह - अपू के साथ ढाई साल",
+      lectures: [
+        { id: "L1", title: "आरोह - अपू के साथ ढाई साल- (आधार) पाठ - 3 NCERT SOLUTION, MCQs", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4382890/1747321683_7091590483856463/sunny/1747315860304_65710492347041560_video_VOD720p30.m3u8" },
+        { id: "L2", title: "आरोह - अपू के साथ ढाई साल - (आधार) पाठ - 3 व्याख्या", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4382889/1747321443_6028392625862711/sunny/1747315716635_291036083361061600_video_VOD720p30.m3u8" }
+      ]
+    },
+    {
+      name: "आरोह - विदाई-संभाषण",
+      lectures: [
+        { id: "L1", title: "आरोह - विदाई-संभाषण (आधार) पाठ - 4 व्याख्या", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4389067/1747912506_1259851052984665/sunny/1747911757379_189948211034319000_video_VOD720p30.m3u8" },
+        { id: "L2", title: "आरोह - विदाई-संभाषण (आधार) पाठ - 4 NCERT SOLUTION MCQs", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4389066/1747914725_7953539660138910/sunny/1747905806169_399307875717869760_video_VOD720p30.m3u8" }
+      ]
+    },
+    {
+      name: "आरोह - गलता लोहा",
+      lectures: [
+        { id: "L1", title: "आरोह - गलता लोहा (आधार) पाठ - 5 व्याख्या", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4389065/1747911965_3894781586794335/sunny/1747905561216_854340589892758000_video_VOD720p30.m3u8" },
+        { id: "L2", title: "आरोह - गलता लोहा (आधार) पाठ - 5 NCERT SOLUTION MCQs", notesLink: "", videoEmbedType: "hls", videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4389064/1747914544_8295590892372819/sunny/1747905416257_599655860080132500_video_VOD720p30.m3u8" }
       ]
     }
   ],
 };
+
+    
