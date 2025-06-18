@@ -32,8 +32,10 @@ import { useToast } from '@/hooks/use-toast';
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "10:00";
 const FEEDBACK_PROMPT_INTERVAL_HOURS = 20;
-const LAST_NOTIFICATIONS_VIEWED_KEY = 'eleakLastNotificationsViewedAt_v2';
+const LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY = 'eleakLastNotificationsSheetOpenedAt_v1';
+const LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY = 'eleakLastToastedAnnouncementTimestamp_v1';
 const NOTIFICATIONS_POLL_INTERVAL_MS = 60000; // 1 minute
+const ANNOUNCEMENTS_FETCH_LIMIT = 20; // How many announcements to fetch for sheet and badge calculation
 // --- Configuration End ---
 
 interface ClientLayoutWrapperProps {
@@ -48,25 +50,21 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   const feedbackSectionRef = useRef<HTMLDivElement>(null);
   const [showFeedbackPrompt, setShowFeedbackPrompt] = useState(false);
 
-  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
+  const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [announcements, setAnnouncements] = useState<AnnouncementType[]>([]);
   const [isLoadingAnnouncements, setIsLoadingAnnouncements] = useState(false);
   const [announcementsError, setAnnouncementsError] = useState<string | null>(null);
   const [showBellIconBasedOnScroll, setShowBellIconBasedOnScroll] = useState(true);
-
-  // Stores the latest timestamp ever fetched from ANY announcement source (polling or direct sheet open)
-  // This helps ensure markNotificationsAsViewed uses the absolute latest known announcement time.
-  const [globallyLatestFetchedTimestamp, setGloballyLatestFetchedTimestamp] = useState<number>(0);
   const initialCheckDone = useRef(false);
 
-
-  const fetchAnnouncementsForSheet = useCallback(async (): Promise<number> => {
+  // Fetches announcements for display in the sheet
+  const fetchAnnouncementsForSheetContent = useCallback(async (): Promise<number> => {
     setIsLoadingAnnouncements(true);
     setAnnouncementsError(null);
-    let latestTimestampFromThisFetch = 0;
+    let latestTimestampInFetchedBatch = 0;
     try {
-      const q = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(20));
+      const q = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(ANNOUNCEMENTS_FETCH_LIMIT));
       const querySnapshot = await getDocs(q);
       const fetchedAnnouncements: AnnouncementType[] = [];
       querySnapshot.forEach((doc) => {
@@ -80,48 +78,127 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
         };
         fetchedAnnouncements.push(announcementItem);
         if (announcementItem.timestamp instanceof Timestamp) {
-            latestTimestampFromThisFetch = Math.max(latestTimestampFromThisFetch, announcementItem.timestamp.toMillis());
+          latestTimestampInFetchedBatch = Math.max(latestTimestampInFetchedBatch, announcementItem.timestamp.toMillis());
         }
       });
       setAnnouncements(fetchedAnnouncements);
-
-      if (latestTimestampFromThisFetch > 0) {
-        setGloballyLatestFetchedTimestamp(prev => Math.max(prev, latestTimestampFromThisFetch));
-      }
     } catch (error) {
       console.error("Error fetching announcements for sheet:", error);
-      setAnnouncementsError("Could not load announcements. Please check your internet connection and try again.");
+      setAnnouncementsError("Could not load announcements. Please check your internet connection.");
     } finally {
       setIsLoadingAnnouncements(false);
     }
-    return latestTimestampFromThisFetch;
-  }, [setIsLoadingAnnouncements, setAnnouncementsError, setAnnouncements, setGloballyLatestFetchedTimestamp]);
+    return latestTimestampInFetchedBatch;
+  }, [setIsLoadingAnnouncements, setAnnouncementsError, setAnnouncements]);
 
+  // Polls for new announcements, updates badge count, and triggers toasts for new items
+  const checkNewAnnouncementsAndBadge = useCallback(async (isInitial: boolean = false) => {
+    try {
+      // 1. Handle Toasts for genuinely new announcements
+      const latestAnnQuery = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(1));
+      const latestAnnSnapshot = await getDocs(latestAnnQuery);
+      let newLatestOverallTimestamp = 0;
 
-  const markNotificationsAsViewed = useCallback((viewedTimestamp: number) => {
-    if (typeof window !== 'undefined') {
-      // Use the provided viewedTimestamp (latest from the current fetch) or fall back to a global latest if it's higher,
-      // or finally Date.now() if no valid timestamp is available.
-      const timestampToStore = viewedTimestamp > 0 ? viewedTimestamp : (globallyLatestFetchedTimestamp > 0 ? globallyLatestFetchedTimestamp : Date.now());
-      localStorage.setItem(LAST_NOTIFICATIONS_VIEWED_KEY, timestampToStore.toString());
-      setHasUnreadNotifications(false);
+      if (!latestAnnSnapshot.empty) {
+        const latestDoc = latestAnnSnapshot.docs[0];
+        const latestData = latestDoc.data();
+        if (latestData.timestamp instanceof Timestamp) {
+          newLatestOverallTimestamp = latestData.timestamp.toMillis();
+          const lastToastedTimestamp = parseInt(localStorage.getItem(LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY) || '0', 10);
+
+          if (newLatestOverallTimestamp > lastToastedTimestamp && !isInitial) { // Don't toast on initial load
+            toast({
+              title: latestData.type === 'warning' ? "Important Update" : "New Announcement!",
+              description: (latestData.message || "Check out the latest updates.").substring(0, 70) + ((latestData.message || "").length > 70 ? "..." : ""),
+              action: (
+                <Button variant="outline" size="sm" onClick={() => setIsSheetOpen(true)}>
+                  View
+                </Button>
+              ),
+              variant: latestData.type === 'warning' ? 'destructive' : 'default',
+            });
+            localStorage.setItem(LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY, newLatestOverallTimestamp.toString());
+          } else if (isInitial) {
+            // On initial load, if there's a new announcement, set the last toasted timestamp
+            // to avoid toasting it immediately if it's already seen on a previous session.
+             const storedLastToasted = parseInt(localStorage.getItem(LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY) || '0', 10);
+             if (newLatestOverallTimestamp > storedLastToasted) {
+                // If it's truly newer than anything toasted before, update, but don't toast yet.
+                // This line is to sync up the "last toasted" if the user cleared localStorage or something.
+                // The toast logic above (with !isInitial) will handle subsequent new items.
+             }
+          }
+        }
+      }
+
+      // 2. Update Badge Count
+      // Fetch recent announcements to calculate unread count for the badge
+      const recentAnnouncementsQuery = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(ANNOUNCEMENTS_FETCH_LIMIT));
+      const recentAnnouncementsSnapshot = await getDocs(recentAnnouncementsQuery);
+      let unreadCount = 0;
+      const lastSheetOpenTimestamp = parseInt(localStorage.getItem(LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY) || '0', 10);
+
+      recentAnnouncementsSnapshot.forEach(doc => {
+        const data = doc.data();
+        if (data.timestamp instanceof Timestamp) {
+          if (data.timestamp.toMillis() > lastSheetOpenTimestamp) {
+            unreadCount++;
+          }
+        }
+      });
+      setUnreadNotificationCount(unreadCount);
+
+    } catch (error) {
+      console.error("Error checking for new announcements/badge:", error);
+      // Don't show a toast for this error, as it's a background check
     }
-  }, [setHasUnreadNotifications, globallyLatestFetchedTimestamp]);
+    if (isInitial) {
+        initialCheckDone.current = true;
+    }
+  }, [toast, setUnreadNotificationCount, setIsSheetOpen]);
 
 
+  // Effect for handling sheet opening and marking notifications as viewed
   useEffect(() => {
     let isMounted = true;
     if (isSheetOpen) {
-      fetchAnnouncementsForSheet().then(fetchedLatestTimestampForSheet => {
+      fetchAnnouncementsForSheetContent().then(latestTimestampInSheet => {
+        if (isMounted && latestTimestampInSheet > 0) {
+          localStorage.setItem(LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY, latestTimestampInSheet.toString());
+        } else if (isMounted && latestTimestampInSheet === 0 && announcements.length === 0) {
+          // If sheet is opened and there are no announcements, still update the viewed time to now
+          // so any future announcement becomes "new" for the badge.
+          localStorage.setItem(LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY, Date.now().toString());
+        }
         if (isMounted) {
-          markNotificationsAsViewed(fetchedLatestTimestampForSheet);
+          setUnreadNotificationCount(0); // Clear badge count once sheet is opened
         }
       });
     }
     return () => {
       isMounted = false;
     };
-  }, [isSheetOpen, fetchAnnouncementsForSheet, markNotificationsAsViewed]);
+  }, [isSheetOpen, fetchAnnouncementsForSheetContent, announcements.length, setUnreadNotificationCount]);
+
+
+  // Effect for initial check and polling
+  useEffect(() => {
+    if (!initialCheckDone.current) {
+      checkNewAnnouncementsAndBadge(true);
+    }
+
+    const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback'];
+    const shouldPoll = !excludedPathsForPolling.includes(pathname) && !showMaintenance;
+
+    let pollInterval: NodeJS.Timeout | undefined;
+    if (shouldPoll) {
+      pollInterval = setInterval(() => checkNewAnnouncementsAndBadge(false), NOTIFICATIONS_POLL_INTERVAL_MS);
+    }
+
+    return () => {
+      if (pollInterval) clearInterval(pollInterval);
+    };
+  }, [pathname, showMaintenance, checkNewAnnouncementsAndBadge]);
 
 
   useEffect(() => {
@@ -158,72 +235,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
 
     return () => document.removeEventListener('contextmenu', handleContextmenu);
   }, [pathname, showMaintenance]);
-
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const checkNewAnnouncements = async (isInitialCheck = false) => {
-      try {
-        const q = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(1));
-        const querySnapshot = await getDocs(q);
-
-        if (!querySnapshot.empty) {
-          const latestAnnouncementDoc = querySnapshot.docs[0];
-          const latestAnnouncementData = latestAnnouncementDoc.data();
-
-          if (latestAnnouncementData.timestamp instanceof Timestamp) {
-            const newLatestTimestampMillis = latestAnnouncementData.timestamp.toMillis();
-            setGloballyLatestFetchedTimestamp(prev => Math.max(prev, newLatestTimestampMillis));
-            const lastViewedTimestamp = parseInt(localStorage.getItem(LAST_NOTIFICATIONS_VIEWED_KEY) || '0', 10);
-
-            if (newLatestTimestampMillis > lastViewedTimestamp) {
-              setHasUnreadNotifications(true);
-              if (!isInitialCheck && !isSheetOpen) {
-                toast({
-                  title: "New Announcement!",
-                  description: (latestAnnouncementData.message || "Check out the latest updates.").substring(0, 70) + ((latestAnnouncementData.message || "").length > 70 ? "..." : ""),
-                  action: (
-                    <Button variant="outline" size="sm" onClick={() => setIsSheetOpen(true)}>
-                      View
-                    </Button>
-                  ),
-                });
-              }
-            } else {
-              setHasUnreadNotifications(false);
-            }
-          } else {
-            console.warn("Latest announcement has missing or invalid Firestore timestamp:", latestAnnouncementData);
-            setHasUnreadNotifications(false);
-          }
-        } else {
-          setHasUnreadNotifications(false); // No announcements found
-        }
-      } catch (error) {
-        console.error("Error checking for new announcements:", error);
-      }
-      if (isInitialCheck) {
-        initialCheckDone.current = true;
-      }
-    };
-
-    if (!initialCheckDone.current) {
-      checkNewAnnouncements(true);
-    }
-
-    const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback'];
-    const shouldPoll = !excludedPathsForPolling.includes(pathname) && !showMaintenance;
-
-    let pollInterval: NodeJS.Timeout | undefined;
-    if (shouldPoll) {
-      pollInterval = setInterval(() => checkNewAnnouncements(false), NOTIFICATIONS_POLL_INTERVAL_MS);
-    }
-
-    return () => {
-      if (pollInterval) clearInterval(pollInterval);
-    };
-  }, [pathname, showMaintenance, toast, isSheetOpen, setGloballyLatestFetchedTimestamp, setHasUnreadNotifications, setIsSheetOpen]);
 
 
   useEffect(() => {
@@ -273,8 +284,10 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
               aria-label="View Notifications"
             >
               <Bell className="h-5 w-5" />
-              {hasUnreadNotifications && (
-                <span className="absolute top-0 right-0 block h-2.5 w-2.5 transform -translate-y-1/2 translate-x-1/2 rounded-full bg-red-500 ring-2 ring-background" />
+              {unreadNotificationCount > 0 && (
+                <span className="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold transform -translate-y-1/2 translate-x-1/2 ring-2 ring-background">
+                  {unreadNotificationCount > 9 ? '9+' : unreadNotificationCount}
+                </span>
               )}
             </Button>
           </SheetTrigger>
@@ -367,6 +380,4 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     </>
   );
 }
-    
-
     
