@@ -218,4 +218,6 @@ export const scienceCourseContent: CourseContentMap = {
       ]
     }
   ],
+  'Hindi': [], // New shared Hindi subject, initially with no topics
 };
+

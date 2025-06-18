@@ -30,8 +30,8 @@ const REQUIRE_KEY_GENERATION = true;
 
 
 const courseSpecificSubjects: Record<string, string[]> = {
-  '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'English'], // Science Batch
-  '2': ['Accountancy', 'Mathematics', 'Economics', 'Business Studies', 'English'], // Commerce Batch
+  '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'English', 'Hindi'], // Science Batch
+  '2': ['Accountancy', 'Mathematics', 'Economics', 'Business Studies', 'English', 'Hindi'], // Commerce Batch
   '3': ['Science', 'Mathematics', 'Social Science', 'English'], // Aarambh Batch (Class 10)
   '4': ['Science', 'Mathematics', 'Social Science', 'English'], // Aarambh Batch (Class 9)
 };
@@ -49,6 +49,7 @@ const scienceSubjectImageMap: Record<string, string> = {
   'Mathematics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/50239338613_Maths.jpeg',
   'Biology': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/22273823798_Biology.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
+  'Hindi': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/447837223848_Hindi.jpeg',
 };
 
 const commerceSubjectImageMap: Record<string, string> = {
@@ -57,6 +58,7 @@ const commerceSubjectImageMap: Record<string, string> = {
   'Economics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/56643923786_Economic.jpeg',
   'Business Studies': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/627728423781_BST.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
+  'Hindi': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/447837223848_Hindi.jpeg',
 };
 
 const aarambhSubjectImageMap: Record<string, string> = { // For Class 10 (courseId '3')
