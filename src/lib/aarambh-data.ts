@@ -1,3 +1,4 @@
+
 // src/lib/aarambh-data.ts
 import type { CourseContentMap, Lecture } from './course-data';
 import { slugify } from './course-data';
@@ -207,4 +208,6 @@ export const aarambhCourseContent: CourseContentMap = {
        ]
     }
   ],
+  'IT': "Content Coming Soon",
+  'Hindi': "Content Coming Soon",
 };

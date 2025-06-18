@@ -32,8 +32,8 @@ const REQUIRE_KEY_GENERATION = true;
 const courseSpecificSubjects: Record<string, string[]> = {
   '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'English', 'Hindi'], // Science Batch
   '2': ['Accountancy', 'Mathematics', 'Economics', 'Business Studies', 'English', 'Hindi'], // Commerce Batch
-  '3': ['Science', 'Mathematics', 'Social Science', 'English'], // Aarambh Batch (Class 10)
-  '4': ['Science', 'Mathematics', 'Social Science', 'English'], // Aarambh Batch (Class 9)
+  '3': ['Science', 'Mathematics', 'Social Science', 'English', 'IT', 'Hindi'], // Aarambh Batch (Class 10)
+  '4': ['Science', 'Mathematics', 'Social Science', 'English', 'IT', 'Hindi'], // Aarambh Batch (Class 9)
 };
 
 const courseDisplayNames: Record<string, string> = {
@@ -66,6 +66,8 @@ const aarambhSubjectImageMap: Record<string, string> = { // For Class 10 (course
   'Mathematics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/50239338613_Maths.jpeg',
   'Social Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/60137688614_Social%20Science.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
+  'IT': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/290274114891_Artificial%20Intelligence-2.png',
+  'Hindi': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/447837223848_Hindi.jpeg',
 };
 
 const aarambh9SubjectImageMap: Record<string, string> = { // For Class 9 (courseId '4')
@@ -73,6 +75,8 @@ const aarambh9SubjectImageMap: Record<string, string> = { // For Class 9 (course
   'Mathematics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/50239338613_Maths.jpeg',
   'Social Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/60137688614_Social%20Science.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
+  'IT': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/290274114891_Artificial%20Intelligence-2.png',
+  'Hindi': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/447837223848_Hindi.jpeg',
 };
 
 
@@ -344,5 +348,4 @@ export default function EnrollPage() {
     </>
   );
 }
-
     

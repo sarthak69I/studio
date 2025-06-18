@@ -1,3 +1,4 @@
+
 // src/lib/aarambh9-data.ts
 import type { CourseContentMap, Lecture } from './course-utils';
 import { slugify } from './course-utils';
@@ -181,4 +182,11 @@ export const aarambh9CourseContent: CourseContentMap = {
       ]
     }
   ],
+  'IT': [
+    {
+      name: 'Self Management Skills',
+      lectures: [] // No lectures yet as requested
+    }
+  ],
+  'Hindi': "Content Coming Soon",
 };
