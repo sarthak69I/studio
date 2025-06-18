@@ -20,6 +20,8 @@ export interface Announcement {
   type?: 'info' | 'warning' | 'new_content' | string; // Allow custom types
 }
 
+const LAST_NOTIFICATIONS_VIEWED_KEY = 'eleakLastNotificationsViewedAt';
+
 export default function NotificationsPage() {
   const router = useRouter();
   const [announcements, setAnnouncements] = React.useState<Announcement[]>([]);
@@ -32,12 +34,26 @@ export default function NotificationsPage() {
     const q = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const fetchedAnnouncements: Announcement[] = [];
+      let latestTimestamp = 0;
       querySnapshot.forEach((doc: DocumentData) => {
-        fetchedAnnouncements.push({ id: doc.id, ...doc.data() } as Announcement);
+        const announcementData = { id: doc.id, ...doc.data() } as Announcement;
+        fetchedAnnouncements.push(announcementData);
+        if (announcementData.timestamp && announcementData.timestamp.toMillis() > latestTimestamp) {
+          latestTimestamp = announcementData.timestamp.toMillis();
+        }
       });
       setAnnouncements(fetchedAnnouncements);
       setIsLoading(false);
       setError(null);
+
+      // Mark notifications as viewed by setting the timestamp of the latest one seen (or current time if none)
+      if (typeof window !== 'undefined') {
+        const viewTimestamp = latestTimestamp > 0 ? latestTimestamp : Date.now();
+        localStorage.setItem(LAST_NOTIFICATIONS_VIEWED_KEY, viewTimestamp.toString());
+        // Optionally, dispatch a custom event if client-layout-wrapper needs to react immediately
+        // window.dispatchEvent(new CustomEvent('notificationsViewed'));
+      }
+
     }, (err) => {
       console.error("Error fetching announcements:", err);
       setError("Could not load announcements. Please try again later.");

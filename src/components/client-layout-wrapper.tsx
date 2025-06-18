@@ -12,12 +12,15 @@ import FeedbackList from '@/components/FeedbackList';
 import { Separator } from '@/components/ui/separator';
 import FeedbackPromptDialog from './FeedbackPromptDialog';
 import { Button } from '@/components/ui/button';
-import { Bot, Bell } from 'lucide-react'; // Added Bell
+import { Bot, Bell } from 'lucide-react';
+import { db } from '@/lib/firebase';
+import { collection, query, orderBy, limit, getDocs, Timestamp } from 'firebase/firestore';
 
 // --- Configuration Start ---
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "10:00";
 const FEEDBACK_PROMPT_INTERVAL_HOURS = 20;
+const LAST_NOTIFICATIONS_VIEWED_KEY = 'eleakLastNotificationsViewedAt';
 // --- Configuration End ---
 
 interface ClientLayoutWrapperProps {
@@ -30,6 +33,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   const [maintenanceEndTime, setMaintenanceEndTime] = useState<Date | null>(null);
   const feedbackSectionRef = useRef<HTMLDivElement>(null);
   const [showFeedbackPrompt, setShowFeedbackPrompt] = useState(false);
+  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
 
   useEffect(() => {
     if (MAINTENANCE_MODE_ENABLED) {
@@ -72,10 +76,44 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       }
     }
 
+    // Check for unread notifications
+    const checkUnreadNotifications = async () => {
+      try {
+        const q = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(1));
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+          const latestAnnouncement = querySnapshot.docs[0].data();
+          const latestTimestamp = (latestAnnouncement.timestamp as Timestamp)?.toMillis();
+          if (latestTimestamp) {
+            const lastViewedTimestamp = parseInt(localStorage.getItem(LAST_NOTIFICATIONS_VIEWED_KEY) || '0', 10);
+            if (latestTimestamp > lastViewedTimestamp) {
+              setHasUnreadNotifications(true);
+            } else {
+              setHasUnreadNotifications(false);
+            }
+          }
+        } else {
+          setHasUnreadNotifications(false); // No announcements, so no unread
+        }
+      } catch (error) {
+        console.error("Error checking unread notifications:", error);
+        setHasUnreadNotifications(false);
+      }
+    };
+
+    // Only check notifications if not on excluded pages
+    const showNotificationBellForPath = !['/help-center', '/generate-access', '/auth/callback', '/notifications'].includes(pathname) && !showMaintenance;
+    if (showNotificationBellForPath) {
+      checkUnreadNotifications();
+    } else {
+      setHasUnreadNotifications(false); // Ensure badge is hidden on excluded pages
+    }
+    
+
     return () => {
       document.removeEventListener('contextmenu', handleContextmenu);
     };
-  }, [pathname]);
+  }, [pathname, showMaintenance]); // Rerun on pathname change to update badge status
 
   const excludedPathsForFeedbackAndSupport = ['/help-center', '/generate-access', '/auth/callback', '/public-chat', '/notifications'];
   const showFeedbackAndSupportSection = !excludedPathsForFeedbackAndSupport.includes(pathname) && !showMaintenance;
@@ -104,10 +142,13 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   return (
     <>
       {showNotificationBell && (
-        <div className="fixed top-4 right-20 z-50 sm:top-6 sm:right-24">
-          <Link href="/notifications" passHref>
+        <div className="fixed top-4 left-4 z-50 sm:top-6 sm:left-6">
+          <Link href="/notifications" passHref className="relative">
             <Button variant="outline" size="icon" className="rounded-full bg-background/80 backdrop-blur-sm hover:bg-muted" aria-label="View Notifications">
               <Bell className="h-5 w-5" />
+              {hasUnreadNotifications && (
+                <span className="absolute top-0 right-0 block h-2.5 w-2.5 transform -translate-y-1/2 translate-x-1/2 rounded-full bg-red-500 ring-2 ring-background" />
+              )}
             </Button>
           </Link>
         </div>
