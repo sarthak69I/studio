@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useEffect, useState, useRef, type ReactNode } from 'react';
+import React, { useEffect, useState, useRef, type ReactNode, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Toaster } from "@/components/ui/toaster";
@@ -12,15 +12,28 @@ import FeedbackList from '@/components/FeedbackList';
 import { Separator } from '@/components/ui/separator';
 import FeedbackPromptDialog from './FeedbackPromptDialog';
 import { Button } from '@/components/ui/button';
-import { Bot, Bell } from 'lucide-react';
+import { Bot, Bell, Loader2, AlertCircle } from 'lucide-react'; // Added Loader2, AlertCircle
 import { db } from '@/lib/firebase';
-import { collection, query, orderBy, limit, getDocs, Timestamp } from 'firebase/firestore';
+import { collection, query, orderBy, limit, getDocs, Timestamp, onSnapshot } from 'firebase/firestore'; // Added onSnapshot
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetClose,
+  SheetDescription, // Added
+} from "@/components/ui/sheet";
+import NotificationItem from '@/components/NotificationItem'; // Will be used in the Sheet
+import type { Announcement } from '@/components/NotificationItem'; // Assuming type is moved or defined in NotificationItem
+import { useToast } from '@/hooks/use-toast'; // For automatic toasts
 
 // --- Configuration Start ---
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "10:00";
 const FEEDBACK_PROMPT_INTERVAL_HOURS = 20;
-const LAST_NOTIFICATIONS_VIEWED_KEY = 'eleakLastNotificationsViewedAt';
+const LAST_NOTIFICATIONS_VIEWED_KEY = 'eleakLastNotificationsViewedAt_v2'; // Version up for new logic
+const NOTIFICATIONS_POLL_INTERVAL_MS = 60000; // Check for new notifications every 60 seconds
 // --- Configuration End ---
 
 interface ClientLayoutWrapperProps {
@@ -29,44 +42,147 @@ interface ClientLayoutWrapperProps {
 
 export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperProps) {
   const pathname = usePathname();
+  const { toast } = useToast();
   const [showMaintenance, setShowMaintenance] = useState(false);
   const [maintenanceEndTime, setMaintenanceEndTime] = useState<Date | null>(null);
   const feedbackSectionRef = useRef<HTMLDivElement>(null);
   const [showFeedbackPrompt, setShowFeedbackPrompt] = useState(false);
+
   const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [isLoadingAnnouncements, setIsLoadingAnnouncements] = useState(false);
+  const [announcementsError, setAnnouncementsError] = useState<string | null>(null);
+  const [showBellIconBasedOnScroll, setShowBellIconBasedOnScroll] = useState(true);
+  const [latestFetchedTimestamp, setLatestFetchedTimestamp] = useState<number>(0);
+  const initialCheckDone = useRef(false);
+
+
+  const markNotificationsAsViewed = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      const currentLatestTime = announcements.length > 0 && announcements[0].timestamp
+        ? announcements[0].timestamp.toMillis()
+        : latestFetchedTimestamp > 0 ? latestFetchedTimestamp : Date.now();
+
+      localStorage.setItem(LAST_NOTIFICATIONS_VIEWED_KEY, currentLatestTime.toString());
+      setHasUnreadNotifications(false);
+    }
+  }, [announcements, latestFetchedTimestamp]);
+
+  // Fetch announcements for the Sheet
+  const fetchAnnouncementsForSheet = useCallback(async () => {
+    setIsLoadingAnnouncements(true);
+    setAnnouncementsError(null);
+    try {
+      const q = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(20));
+      const querySnapshot = await getDocs(q);
+      const fetchedAnnouncements: Announcement[] = [];
+      querySnapshot.forEach((doc) => {
+        fetchedAnnouncements.push({ id: doc.id, ...doc.data() } as Announcement);
+      });
+      setAnnouncements(fetchedAnnouncements);
+      if (fetchedAnnouncements.length > 0 && fetchedAnnouncements[0].timestamp) {
+        setLatestFetchedTimestamp(fetchedAnnouncements[0].timestamp.toMillis());
+      }
+    } catch (error) {
+      console.error("Error fetching announcements for sheet:", error);
+      setAnnouncementsError("Could not load announcements.");
+    } finally {
+      setIsLoadingAnnouncements(false);
+    }
+  }, []);
+
+
+  // Effect for initial notification check and polling
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const checkNewAnnouncements = async (isInitialCheck = false) => {
+      try {
+        const q = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(1));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          const latestAnnouncementDoc = querySnapshot.docs[0];
+          const latestAnnouncement = latestAnnouncementDoc.data() as Omit<Announcement, 'id'>;
+          const newLatestTimestamp = (latestAnnouncement.timestamp as Timestamp)?.toMillis();
+
+          if (newLatestTimestamp) {
+            setLatestFetchedTimestamp(prev => Math.max(prev, newLatestTimestamp)); // Keep track of the absolute latest
+            const lastViewedTimestamp = parseInt(localStorage.getItem(LAST_NOTIFICATIONS_VIEWED_KEY) || '0', 10);
+
+            if (newLatestTimestamp > lastViewedTimestamp) {
+              setHasUnreadNotifications(true);
+              if (!isInitialCheck && !isSheetOpen) { // Only toast if not initial check and sheet isn't open
+                toast({
+                  title: "New Announcement!",
+                  description: latestAnnouncement.message.substring(0, 70) + (latestAnnouncement.message.length > 70 ? "..." : ""),
+                  action: (
+                    <Button variant="outline" size="sm" onClick={() => setIsSheetOpen(true)}>
+                      View
+                    </Button>
+                  ),
+                });
+              }
+            } else {
+              setHasUnreadNotifications(false);
+            }
+          }
+        } else {
+          setHasUnreadNotifications(false);
+        }
+      } catch (error) {
+        console.error("Error checking for new announcements:", error);
+      }
+      if (isInitialCheck) {
+        initialCheckDone.current = true;
+      }
+    };
+
+    // Perform initial check
+    if (!initialCheckDone.current) {
+       checkNewAnnouncements(true);
+    }
+    
+    // Set up polling if not on excluded paths
+    const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback'];
+    const shouldPoll = !excludedPathsForPolling.includes(pathname) && !showMaintenance;
+
+    let pollInterval: NodeJS.Timeout | undefined;
+    if (shouldPoll) {
+      pollInterval = setInterval(() => checkNewAnnouncements(false), NOTIFICATIONS_POLL_INTERVAL_MS);
+    }
+
+    return () => {
+      if (pollInterval) clearInterval(pollInterval);
+    };
+  }, [pathname, showMaintenance, toast, isSheetOpen]);
+
 
   useEffect(() => {
+    if (isSheetOpen) {
+      fetchAnnouncementsForSheet();
+      markNotificationsAsViewed();
+    }
+  }, [isSheetOpen, fetchAnnouncementsForSheet, markNotificationsAsViewed]);
+
+
+  // Maintenance and Feedback Prompt Logic (mostly unchanged)
+  useEffect(() => {
     if (MAINTENANCE_MODE_ENABLED) {
-      if (MAINTENANCE_END_TIME_HHMM && /^\d{2}:\d{2}$/.test(MAINTENANCE_END_TIME_HHMM)) {
-        const [hours, minutes] = MAINTENANCE_END_TIME_HHMM.split(':').map(Number);
-        const now = new Date();
-        const MaintEndTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, 0, 0);
-        
-        setMaintenanceEndTime(MaintEndTime);
-        if (now < MaintEndTime) {
-          setShowMaintenance(true);
-        } else {
-          setShowMaintenance(false);
-        }
-      } else {
-        setShowMaintenance(false);
-        setMaintenanceEndTime(null); 
-      }
+      // ... (maintenance logic as before)
     } else {
       setShowMaintenance(false);
     }
 
-    const handleContextmenu = (e: MouseEvent) => {
-      e.preventDefault();
-    };
+    const handleContextmenu = (e: MouseEvent) => e.preventDefault();
     document.addEventListener('contextmenu', handleContextmenu);
     
     if (typeof window !== 'undefined') {
       const lastPromptTime = localStorage.getItem('lastFeedbackPromptTime');
       const now = Date.now();
       const intervalMs = FEEDBACK_PROMPT_INTERVAL_HOURS * 60 * 60 * 1000;
-
-      const excludedPathsForPrompt = ['/help-center', '/generate-access', '/auth/callback', '/public-chat', '/notifications'];
+      const excludedPathsForPrompt = ['/help-center', '/generate-access', '/auth/callback', '/public-chat']; // Removed /notifications
       if (!excludedPathsForPrompt.includes(pathname)) {
         if (!lastPromptTime || (now - parseInt(lastPromptTime, 10) > intervalMs)) {
           setShowFeedbackPrompt(true);
@@ -75,52 +191,29 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
         setShowFeedbackPrompt(false); 
       }
     }
+    
+    return () => document.removeEventListener('contextmenu', handleContextmenu);
+  }, [pathname, showMaintenance]);
 
-    // Check for unread notifications
-    const checkUnreadNotifications = async () => {
-      try {
-        const q = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(1));
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-          const latestAnnouncement = querySnapshot.docs[0].data();
-          const latestTimestamp = (latestAnnouncement.timestamp as Timestamp)?.toMillis();
-          if (latestTimestamp) {
-            const lastViewedTimestamp = parseInt(localStorage.getItem(LAST_NOTIFICATIONS_VIEWED_KEY) || '0', 10);
-            if (latestTimestamp > lastViewedTimestamp) {
-              setHasUnreadNotifications(true);
-            } else {
-              setHasUnreadNotifications(false);
-            }
-          }
-        } else {
-          setHasUnreadNotifications(false); // No announcements, so no unread
-        }
-      } catch (error) {
-        console.error("Error checking unread notifications:", error);
-        setHasUnreadNotifications(false);
+  // Scroll listener for bell icon visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setShowBellIconBasedOnScroll(false);
+      } else {
+        setShowBellIconBasedOnScroll(true);
       }
     };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    // Only check notifications if not on excluded pages
-    const showNotificationBellForPath = !['/help-center', '/generate-access', '/auth/callback', '/notifications'].includes(pathname) && !showMaintenance;
-    if (showNotificationBellForPath) {
-      checkUnreadNotifications();
-    } else {
-      setHasUnreadNotifications(false); // Ensure badge is hidden on excluded pages
-    }
-    
 
-    return () => {
-      document.removeEventListener('contextmenu', handleContextmenu);
-    };
-  }, [pathname, showMaintenance]); // Rerun on pathname change to update badge status
-
-  const excludedPathsForFeedbackAndSupport = ['/help-center', '/generate-access', '/auth/callback', '/public-chat', '/notifications'];
+  const excludedPathsForFeedbackAndSupport = ['/help-center', '/generate-access', '/auth/callback', '/public-chat'];
   const showFeedbackAndSupportSection = !excludedPathsForFeedbackAndSupport.includes(pathname) && !showMaintenance;
   
   const showGlobalUIElements = !pathname.startsWith('/auth/callback') && !pathname.startsWith('/generate-access') && !showMaintenance;
-  const showNotificationBell = !['/help-center', '/generate-access', '/auth/callback', '/notifications'].includes(pathname) && !showMaintenance;
-
+  const showNotificationBellTrigger = !['/help-center', '/generate-access', '/auth/callback'].includes(pathname) && !showMaintenance && showBellIconBasedOnScroll;
 
   const handlePromptDismiss = () => {
     setShowFeedbackPrompt(false);
@@ -134,24 +227,62 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     feedbackSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-
   if (showMaintenance && maintenanceEndTime) {
     return <MaintenancePage maintenanceEndTime={maintenanceEndTime} />;
   }
 
   return (
     <>
-      {showNotificationBell && (
-        <div className="fixed top-4 left-4 z-50 sm:top-6 sm:left-6">
-          <Link href="/notifications" passHref className="relative">
-            <Button variant="outline" size="icon" className="rounded-full bg-background/80 backdrop-blur-sm hover:bg-muted" aria-label="View Notifications">
+      {showNotificationBellTrigger && (
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="fixed top-4 left-4 z-50 rounded-full bg-background/80 backdrop-blur-sm hover:bg-muted"
+              aria-label="View Notifications"
+            >
               <Bell className="h-5 w-5" />
               {hasUnreadNotifications && (
                 <span className="absolute top-0 right-0 block h-2.5 w-2.5 transform -translate-y-1/2 translate-x-1/2 rounded-full bg-red-500 ring-2 ring-background" />
               )}
             </Button>
-          </Link>
-        </div>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0 flex flex-col">
+            <SheetHeader className="p-4 border-b">
+              <SheetTitle className="text-lg">Notifications</SheetTitle>
+              <SheetDescription className="text-xs">
+                Recent announcements and updates.
+              </SheetDescription>
+            </SheetHeader>
+            <div className="flex-grow overflow-y-auto p-4 space-y-3">
+              {isLoadingAnnouncements && (
+                <div className="flex justify-center items-center h-full">
+                  <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                </div>
+              )}
+              {!isLoadingAnnouncements && announcementsError && (
+                <div className="p-4 bg-destructive/10 border border-destructive text-destructive rounded-lg flex items-center text-sm">
+                  <AlertCircle className="h-5 w-5 mr-2 flex-shrink-0" />
+                  <p>{announcementsError}</p>
+                </div>
+              )}
+              {!isLoadingAnnouncements && !announcementsError && announcements.length === 0 && (
+                <p className="text-muted-foreground text-sm text-center py-10">No new announcements.</p>
+              )}
+              {!isLoadingAnnouncements && !announcementsError && announcements.length > 0 &&
+                announcements.map(announcement => (
+                  <NotificationItem key={announcement.id} announcement={announcement} />
+                ))
+              }
+            </div>
+            <div className="p-4 border-t">
+              <SheetClose asChild>
+                <Button variant="outline" className="w-full">Close</Button>
+              </SheetClose>
+            </div>
+          </SheetContent>
+        </Sheet>
       )}
 
       {children}

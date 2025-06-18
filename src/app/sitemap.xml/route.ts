@@ -28,6 +28,7 @@ export function GET() {
   urls.push({ loc: `${BASE_URL}/`, lastmod, priority: 1.0 });
   urls.push({ loc: `${BASE_URL}/generate-access`, lastmod, priority: 0.8 });
   urls.push({ loc: `${BASE_URL}/help-center`, lastmod, priority: 0.5 });
+  // Removed /notifications as it's no longer a separate page
 
   const courses = [
     { id: '1', content: scienceCourseContent, name: 'science' },
