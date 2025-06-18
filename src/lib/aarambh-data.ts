@@ -5,6 +5,66 @@ import { slugify } from './course-data';
 
 const aarambhBasePath = '/assets/courses/aarambh'; // This path isn't used if notes/videos are #
 
+const itTopicsForClass9and10: CourseContentMap['IT'] = [
+  {
+    name: "Overview",
+    lectures: [
+      {
+        id: "L1",
+        title: "Overview",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391690/1748179084_2580180814420977/sunny/1748177591970_70156498151999930_video_VOD720p30.m3u8",
+        notesLink: "", // from null
+        videoEmbedType: 'hls'
+      }
+    ]
+  },
+  {
+    name: "Communication Skills",
+    lectures: [
+      {
+        id: "L2",
+        title: "Communication Skills - L1",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391691/1748179089_8667406066067348/sunny/1748177660740_217256690396284670_video_VOD720p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/563827473449322750.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L3",
+        title: "Communication Skills - L2",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393991/1748364784_5017725046609362/sunny/1748356442252_86529907763754190_video_VOD720p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/37833447878276420.pdf",
+        videoEmbedType: 'hls'
+      }
+    ]
+  },
+  {
+    name: "Self Management Skills",
+    lectures: [
+      {
+        id: "L4",
+        title: "Self Management - L1",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4398520/1748854269_7032334158082272/sunny/1748854130932_455431202240548030_video_VOD720p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/596857939255353100.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L5",
+        title: "Self Management - L2",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4403235/1749235927_6400627130495496/sunny/1749222493198_533557279449811200_video_VOD720p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/898042366895235000.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L6",
+        title: "Self Management - L3",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4411250/1750089971_2490412765566086/sunny/1750078811761_514574969298403000_video_VOD720p30.m3u8",
+        notesLink: "https://drive.google.com/file/d/116WTsVxjbJVHG6YAvxDxpuRUGSheAUqC/view?usp=drivesdk",
+        videoEmbedType: 'hls'
+      }
+    ]
+  }
+];
+
 export const aarambhCourseContent: CourseContentMap = {
   'Social Science': [
     {
@@ -208,6 +268,8 @@ export const aarambhCourseContent: CourseContentMap = {
        ]
     }
   ],
-  'IT': "Content Coming Soon",
+  'IT': itTopicsForClass9and10,
   'Hindi': "Content Coming Soon",
 };
+
+    

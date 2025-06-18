@@ -5,12 +5,72 @@ import { slugify } from './course-utils';
 
 const aarambh9BasePath = '/assets/courses/aarambh9'; // This path isn't used if notes/videos are #
 
+const itTopicsForClass9and10: CourseContentMap['IT'] = [
+  {
+    name: "Overview",
+    lectures: [
+      {
+        id: "L1",
+        title: "Overview",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391690/1748179084_2580180814420977/sunny/1748177591970_70156498151999930_video_VOD720p30.m3u8",
+        notesLink: "", // from null
+        videoEmbedType: 'hls'
+      }
+    ]
+  },
+  {
+    name: "Communication Skills",
+    lectures: [
+      {
+        id: "L2",
+        title: "Communication Skills - L1",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391691/1748179089_8667406066067348/sunny/1748177660740_217256690396284670_video_VOD720p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/563827473449322750.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L3",
+        title: "Communication Skills - L2",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393991/1748364784_5017725046609362/sunny/1748356442252_86529907763754190_video_VOD720p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/37833447878276420.pdf",
+        videoEmbedType: 'hls'
+      }
+    ]
+  },
+  {
+    name: "Self Management Skills",
+    lectures: [
+      {
+        id: "L4",
+        title: "Self Management - L1",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4398520/1748854269_7032334158082272/sunny/1748854130932_455431202240548030_video_VOD720p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/596857939255353100.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L5",
+        title: "Self Management - L2",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4403235/1749235927_6400627130495496/sunny/1749222493198_533557279449811200_video_VOD720p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/898042366895235000.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L6",
+        title: "Self Management - L3",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4411250/1750089971_2490412765566086/sunny/1750078811761_514574969298403000_video_VOD720p30.m3u8",
+        notesLink: "https://drive.google.com/file/d/116WTsVxjbJVHG6YAvxDxpuRUGSheAUqC/view?usp=drivesdk",
+        videoEmbedType: 'hls'
+      }
+    ]
+  }
+];
+
 export const aarambh9CourseContent: CourseContentMap = {
   'Science': [
     {
       name: 'Motion',
       lectures: [
-        { id: 'L1', title: 'Motion L1', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/live/dmgct2gWAJY?si=9lSqUy3LCKKZjlR8' },
+        { id: 'L1', title: 'Motion L1', notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/live/dmgct2gWAJY?si=9lSqUy3LCKKZjlR8' },
         { id: 'L2', title: 'Motion L2', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357724/174532620129898296383/174532620129898296383_8296383.m3u8' },
         { id: 'L3', title: 'Motion L3', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359011/174542283188648296383/174542283188648296383_8296383.m3u8' },
         { id: 'L4', title: 'Motion L4', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363242/174584458672078296383/174584458672078296383_8296383.m3u8' },
@@ -53,7 +113,7 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'The French Revolution',
       lectures: [
-        { id: 'L1', title: 'The French Revolution L1', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/live/EDMXz3jVgZA?si=BvCXav6zfaUMg1UT' },
+        { id: 'L1', title: 'The French Revolution L1', notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/live/EDMXz3jVgZA?si=BvCXav6zfaUMg1UT' },
         { id: 'L2', title: 'The French Revolution L2', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359911/174549813759727880624/174549813759727880624_7880624.m3u8' },
         { id: 'L3', title: 'The French Revolution L3', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364774/174594113722007880624/174594113722007880624_7880624.m3u8' },
         { id: 'L4', title: 'The French Revolution L4', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365809/174601655378227880624/174601655378227880624_7880624.m3u8' },
@@ -96,7 +156,7 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'Number System',
       lectures: [
-        { id: 'L1', title: 'Number System L1', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/live/F6v_8tOEYrc?si=g-oAx-P-9Sa5BjXo' },
+        { id: 'L1', title: 'Number System L1', notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/live/F6v_8tOEYrc?si=g-oAx-P-9Sa5BjXo' },
         { id: 'L2', title: 'Number System L2', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360152/174550928629871097666/174550928629871097666_1097666.m3u8' },
         { id: 'L3', title: 'Number System L3', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361156/174558576440391097666/174558576440391097666_1097666.m3u8' },
         { id: 'L4', title: 'Number System L4', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362008/174567183539581097666/174567183539581097666_1097666.m3u8' },
@@ -182,11 +242,8 @@ export const aarambh9CourseContent: CourseContentMap = {
       ]
     }
   ],
-  'IT': [
-    {
-      name: 'Self Management Skills',
-      lectures: [] // No lectures yet as requested
-    }
-  ],
+  'IT': itTopicsForClass9and10,
   'Hindi': "Content Coming Soon",
 };
+
+    
