@@ -12,7 +12,7 @@ import FeedbackList from '@/components/FeedbackList';
 import { Separator } from '@/components/ui/separator';
 import FeedbackPromptDialog from './FeedbackPromptDialog';
 import { Button } from '@/components/ui/button';
-import { Bot, Bell, BellRing, Loader2, AlertCircle } from 'lucide-react'; // Added BellRing
+import { Bot, Bell, BellRing, Loader2, AlertCircle } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { collection, query, orderBy, limit, getDocs, Timestamp } from 'firebase/firestore';
 import {
@@ -53,12 +53,12 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [announcements, setAnnouncements] = useState<AnnouncementType[]>([]);
-  const [isLoadingAnnouncements, setIsLoadingAnnouncements] = useState(true); // Start true
+  const [isLoadingAnnouncements, setIsLoadingAnnouncements] = useState(true);
   const [announcementsError, setAnnouncementsError] = useState<string | null>(null);
-  const [showBellIconBasedOnScroll, setShowBellIconBasedOnScroll] = useState(true);
-  const initialCheckDone = useRef(false); // To ensure initial check runs only once
+  const initialCheckDone = useRef(false);
+  const [globallyLatestFetchedTimestamp, setGloballyLatestFetchedTimestamp] = useState<number>(0);
 
-  // Fetches announcements for display in the sheet
+
   const fetchAnnouncementsForSheetContent = useCallback(async (): Promise<number> => {
     setIsLoadingAnnouncements(true);
     setAnnouncementsError(null);
@@ -69,19 +69,21 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       const fetchedAnnouncements: AnnouncementType[] = [];
       querySnapshot.forEach((doc) => {
         const data = doc.data();
+        const timestamp = data.timestamp instanceof Timestamp ? data.timestamp : null;
         const announcementItem: AnnouncementType = {
           id: doc.id,
           message: data.message || "No message content",
-          timestamp: data.timestamp instanceof Timestamp ? data.timestamp : null,
+          timestamp: timestamp,
           link: data.link,
           type: data.type,
         };
         fetchedAnnouncements.push(announcementItem);
-        if (announcementItem.timestamp instanceof Timestamp) {
-          latestTimestampInFetchedBatch = Math.max(latestTimestampInFetchedBatch, announcementItem.timestamp.toMillis());
+        if (timestamp) {
+          latestTimestampInFetchedBatch = Math.max(latestTimestampInFetchedBatch, timestamp.toMillis());
         }
       });
       setAnnouncements(fetchedAnnouncements);
+      setGloballyLatestFetchedTimestamp(prev => Math.max(prev, latestTimestampInFetchedBatch));
     } catch (error) {
       console.error("Error fetching announcements for sheet:", error);
       setAnnouncementsError("Could not load announcements. Please check your internet connection and try again.");
@@ -89,10 +91,16 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       setIsLoadingAnnouncements(false);
     }
     return latestTimestampInFetchedBatch;
-  }, [setIsLoadingAnnouncements, setAnnouncementsError, setAnnouncements]);
+  }, [setAnnouncements, setIsLoadingAnnouncements, setAnnouncementsError, setGloballyLatestFetchedTimestamp]);
+
+  const markNotificationsAsViewed = useCallback((viewedTimestamp: number) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY, viewedTimestamp.toString());
+      setUnreadNotificationCount(0);
+    }
+  }, [setUnreadNotificationCount]);
 
 
-  // Polls for new announcements, updates badge count, and triggers toasts for new items
   const checkNewAnnouncementsAndBadge = useCallback(async (isInitial: boolean = false) => {
     try {
       const latestAnnQuery = query(collection(db, 'global_announcements'), orderBy('timestamp', 'desc'), limit(1));
@@ -104,6 +112,8 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
         const latestData = latestDoc.data();
         if (latestData.timestamp instanceof Timestamp) {
           newLatestOverallTimestamp = latestData.timestamp.toMillis();
+          setGloballyLatestFetchedTimestamp(prev => Math.max(prev, newLatestOverallTimestamp)); // Update global tracker
+
           const lastToastedTimestamp = parseInt(localStorage.getItem(LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY) || '0', 10);
 
           if (newLatestOverallTimestamp > lastToastedTimestamp && !isInitial) {
@@ -119,9 +129,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
             });
             localStorage.setItem(LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY, newLatestOverallTimestamp.toString());
           } else if (isInitial && newLatestOverallTimestamp > lastToastedTimestamp) {
-             // On initial load, if there's a new announcement (newer than any previously toasted),
-             // update the last toasted timestamp to *this* announcement's time.
-             // This prevents an immediate toast if the app was closed and reopened with this announcement already being the latest.
              localStorage.setItem(LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY, newLatestOverallTimestamp.toString());
           }
         }
@@ -148,31 +155,29 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     if (isInitial) {
         initialCheckDone.current = true;
     }
-  }, [toast, setUnreadNotificationCount, setIsSheetOpen]);
+  }, [toast, setUnreadNotificationCount, setIsSheetOpen, setGloballyLatestFetchedTimestamp]);
 
 
-  // Effect for handling sheet opening and marking notifications as viewed
   useEffect(() => {
     let isMounted = true;
     if (isSheetOpen) {
       fetchAnnouncementsForSheetContent().then(latestTimestampInSheet => {
         if (isMounted) {
-          const viewedTimestamp = latestTimestampInSheet > 0 ? latestTimestampInSheet : Date.now();
-          localStorage.setItem(LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY, viewedTimestamp.toString());
-          setUnreadNotificationCount(0); // Clear badge count once sheet is opened and content is loaded/attempted
+          // Use the greater of the sheet's latest content or any globally known latest timestamp
+          const effectiveViewedTimestamp = Math.max(latestTimestampInSheet, globallyLatestFetchedTimestamp, Date.now());
+          markNotificationsAsViewed(effectiveViewedTimestamp);
         }
       });
     }
     return () => {
       isMounted = false;
     };
-  }, [isSheetOpen, fetchAnnouncementsForSheetContent, setUnreadNotificationCount]);
+  }, [isSheetOpen, fetchAnnouncementsForSheetContent, markNotificationsAsViewed, globallyLatestFetchedTimestamp]);
 
 
-  // Effect for initial check and polling
   useEffect(() => {
     if (!initialCheckDone.current) {
-      checkNewAnnouncementsAndBadge(true); // isInitial = true
+      checkNewAnnouncementsAndBadge(true);
     }
 
     const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback'];
@@ -225,23 +230,10 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   }, [pathname, showMaintenance]);
 
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setShowBellIconBasedOnScroll(false);
-      } else {
-        setShowBellIconBasedOnScroll(true);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-
   const excludedPathsForFeedbackAndSupport = ['/help-center', '/generate-access', '/auth/callback'];
   const showFeedbackAndSupportSection = !excludedPathsForFeedbackAndSupport.includes(pathname) && !showMaintenance;
 
-  const showNotificationBellTrigger = !['/help-center', '/generate-access', '/auth/callback'].includes(pathname) && !showMaintenance && showBellIconBasedOnScroll;
+  const showNotificationBellTrigger = !['/help-center', '/generate-access', '/auth/callback'].includes(pathname) && !showMaintenance;
 
   const handlePromptDismiss = () => {
     setShowFeedbackPrompt(false);
@@ -259,7 +251,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     return <MaintenancePage maintenanceEndTime={maintenanceEndTime} />;
   }
 
-  const NotificationBellIcon = unreadNotificationCount > 0 ? BellRing : Bell;
+  const NotificationBellIconToUse = unreadNotificationCount > 0 ? BellRing : Bell;
 
   return (
     <>
@@ -272,7 +264,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
               className="fixed top-4 left-4 z-50 rounded-full bg-background/80 backdrop-blur-sm hover:bg-muted"
               aria-label="View Notifications"
             >
-              <NotificationBellIcon className="h-5 w-5" />
+              <NotificationBellIconToUse className="h-5 w-5" />
               {unreadNotificationCount > 0 && (
                 <span className="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold transform -translate-y-1/2 translate-x-1/2 ring-2 ring-background">
                   {unreadNotificationCount > 9 ? '9+' : unreadNotificationCount}
@@ -343,7 +335,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
 
       <Toaster />
 
-      {showFeedbackAndSupportSection && ( // Changed condition to match feedback section
+      {showFeedbackAndSupportSection && (
         <>
           <a href="https://e-leakzone.vercel.app" target="_blank" rel="noopener noreferrer" className="eleakzone-float" aria-label="E-Leak Zone">
             <img src="https://i.ibb.co/Z1vLWgVF/ZONE-removebg-preview.png" alt="E-Leak Zone Logo" />
@@ -355,7 +347,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
         </>
       )}
 
-      {showFeedbackPrompt && !showMaintenance && ( // Ensure prompt doesn't show during maintenance
+      {showFeedbackPrompt && !showMaintenance && (
          <FeedbackPromptDialog
           open={showFeedbackPrompt}
           onOpenChange={(isOpen) => {
