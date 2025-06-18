@@ -16,11 +16,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogD
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
-import { Send, User, MessageSquarePlus } from 'lucide-react';
+import { Send, User, MessageSquarePlus, Star } from 'lucide-react';
+import RatingStars from '@/components/ui/rating-stars'; // Import new component
 
 // Schema for the main feedback text
 const feedbackTextSchema = z.object({
   feedbackText: z.string().min(10, { message: 'Feedback must be at least 10 characters.' }).max(1000, { message: 'Feedback must not exceed 1000 characters.' }),
+  rating: z.number().min(0).max(5).optional(), // Rating is 0-5, 0 means not rated
 });
 type FeedbackTextFormValues = z.infer<typeof feedbackTextSchema>;
 
@@ -28,40 +30,45 @@ export default function FeedbackForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isUsernameDialogOpen, setIsUsernameDialogOpen] = React.useState(false);
-  const [pendingFeedbackText, setPendingFeedbackText] = React.useState('');
-  const [username, setUsername] = React.useState(''); // For the dialog input
+  const [pendingFeedback, setPendingFeedback] = React.useState<FeedbackTextFormValues | null>(null);
+  const [username, setUsername] = React.useState('');
+  const [currentRating, setCurrentRating] = React.useState(0); // For star rating component
 
   const feedbackTextForm = useForm<FeedbackTextFormValues>({
     resolver: zodResolver(feedbackTextSchema),
     defaultValues: {
       feedbackText: '',
+      rating: 0,
     },
   });
 
-  // Triggered when the "Next: Add Your Name" button is clicked
   const handleFeedbackTextSubmit = (data: FeedbackTextFormValues) => {
-    setPendingFeedbackText(data.feedbackText);
+    setPendingFeedback({ ...data, rating: currentRating });
     setIsUsernameDialogOpen(true);
   };
 
-  // Triggered when the final "Submit Feedback" button in the dialog is clicked
   const handleFinalSubmit = async () => {
-    if (!pendingFeedbackText) return;
+    if (!pendingFeedback) return;
 
     setIsSubmitting(true);
     try {
-      await addDoc(collection(db, 'feedback'), {
+      const feedbackData: any = {
         username: username.trim() || 'Anonymous',
-        text: pendingFeedbackText,
+        text: pendingFeedback.feedbackText,
         timestamp: serverTimestamp(),
-        // likes and dislikes removed
-      });
+      };
+      if (pendingFeedback.rating && pendingFeedback.rating > 0) {
+        feedbackData.rating = pendingFeedback.rating;
+      }
+
+      await addDoc(collection(db, 'feedback'), feedbackData);
       toast({
         title: 'Feedback Submitted!',
         description: 'Thank you for your valuable feedback.',
       });
       feedbackTextForm.reset();
-      setPendingFeedbackText('');
+      setCurrentRating(0);
+      setPendingFeedback(null);
       setUsername('');
       setIsUsernameDialogOpen(false);
     } catch (error) {
@@ -85,7 +92,7 @@ export default function FeedbackForm() {
             Share Your Thoughts
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            Let us know how we can improve E-Leak.
+            Let us know how we can improve E-Leak. Add a rating if you like!
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -109,6 +116,12 @@ export default function FeedbackForm() {
                   </FormItem>
                 )}
               />
+              <FormItem>
+                <FormLabel className="block text-sm font-medium text-foreground/80 mb-2 text-center">Rate your experience (Optional)</FormLabel>
+                <div className="flex justify-center">
+                   <RatingStars currentRating={currentRating} onRatingChange={setCurrentRating} maxRating={5} size="lg" interactive={!(isSubmitting || isUsernameDialogOpen)} />
+                </div>
+              </FormItem>
               <Button type="submit" className="w-full py-3 rounded-lg text-base group" disabled={isSubmitting || isUsernameDialogOpen}>
                 Submit Feedback
                 <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -120,7 +133,7 @@ export default function FeedbackForm() {
 
       <Dialog open={isUsernameDialogOpen} onOpenChange={(open) => {
         if (!open && !isSubmitting) {
-            setPendingFeedbackText('');
+            setPendingFeedback(null);
             setUsername('');
         }
         setIsUsernameDialogOpen(open);
@@ -131,7 +144,7 @@ export default function FeedbackForm() {
               <User className="mr-2 h-5 w-5 text-primary" /> Add Your Name (Optional)
             </DialogTitle>
             <DialogDescription className="pt-2">
-              
+              Your name will be displayed with your feedback. Leave blank to submit as "Anonymous".
             </DialogDescription>
           </DialogHeader>
           <div className="py-4 space-y-4">
@@ -139,18 +152,19 @@ export default function FeedbackForm() {
               <Label htmlFor="username-dialog" className="text-foreground/80">Username</Label>
               <Input
                 id="username-dialog"
-                placeholder=""
+                placeholder="e.g. Alex"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="bg-background/80 focus:bg-background"
                 disabled={isSubmitting}
+                maxLength={50}
               />
-              {username.length > 50 && <p className="text-sm text-destructive">Username must not exceed 50 characters.</p>}
+               {username.length > 50 && <p className="text-sm text-destructive">Username must not exceed 50 characters.</p>}
             </div>
           </div>
           <DialogFooter className="mt-2 flex flex-col sm:flex-row gap-2">
              <DialogClose asChild>
-                <Button type="button" variant="outline" onClick={() => { setPendingFeedbackText(''); setUsername(''); }} disabled={isSubmitting}>
+                <Button type="button" variant="outline" onClick={() => { setPendingFeedback(null); setUsername(''); }} disabled={isSubmitting}>
                     Cancel
                 </Button>
             </DialogClose>

@@ -1,3 +1,4 @@
+
 // src/components/FeedbackList.tsx
 'use client';
 
@@ -6,7 +7,7 @@ import { db } from '@/lib/firebase';
 import { collection, query, orderBy, onSnapshot, Timestamp, type DocumentData, addDoc, serverTimestamp, doc } from 'firebase/firestore';
 import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { MessageSquareText, CalendarDays, UserCircle, MessageSquareReply, Send, CornerDownRight, User, Eye, EyeOff } from 'lucide-react';
+import { MessageSquareText, CalendarDays, UserCircle, MessageSquareReply, Send, CornerDownRight, User, Eye, EyeOff, Star } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -14,12 +15,14 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from '@/components/ui/dialog';
+import RatingStars from '@/components/ui/rating-stars'; // Import the RatingStars component
 
 interface FeedbackEntry {
   id: string;
   username: string;
   text: string;
   timestamp: Timestamp | null;
+  rating?: number; // Optional rating
 }
 
 interface ReplyEntry {
@@ -60,6 +63,7 @@ export default function FeedbackList() {
           username: data.username || 'Anonymous',
           text: data.text,
           timestamp: data.timestamp as Timestamp | null,
+          rating: data.rating, // Add rating here
         });
         if (!feedbackReplies[docSnap.id] && !isLoadingReplies[docSnap.id]) {
           fetchReplies(docSnap.id);
@@ -78,7 +82,7 @@ export default function FeedbackList() {
     });
 
     return () => unsubscribe();
-  }, [toast]);
+  }, [toast]); // Removed feedbackReplies and isLoadingReplies from dependencies to avoid re-fetching on reply load
 
   const fetchReplies = (feedbackId: string) => {
     setIsLoadingReplies(prev => ({ ...prev, [feedbackId]: true }));
@@ -105,7 +109,8 @@ export default function FeedbackList() {
       });
       setIsLoadingReplies(prev => ({ ...prev, [feedbackId]: false }));
     });
-    // This unsubscribe should be managed, e.g., stored and called on unmount or when feedbackId changes.
+    // TODO: Manage unsubscription for replies, e.g., store unsubscribe functions and call on component unmount
+    // or when a specific feedback item is no longer relevant/visible.
   };
 
   const handleToggleReplyForm = (feedbackId: string) => {
@@ -154,8 +159,8 @@ export default function FeedbackList() {
       setReplyUsername('');
       setPendingReplyData(null);
       setIsReplyUsernameDialogOpen(false);
-      setExpandedReplies(prev => ({ ...prev, [feedbackId]: true })); // Auto-expand replies after posting
-      fetchReplies(feedbackId);
+      setExpandedReplies(prev => ({ ...prev, [feedbackId]: true })); 
+      fetchReplies(feedbackId); // Re-fetch replies for this specific feedback item
     } catch (error) {
       console.error('Error submitting reply:', error);
       toast({
@@ -170,6 +175,9 @@ export default function FeedbackList() {
 
   const toggleRepliesVisibility = (feedbackId: string) => {
     setExpandedReplies(prev => ({ ...prev, [feedbackId]: !prev[feedbackId] }));
+    if (!feedbackReplies[feedbackId] && !isLoadingReplies[feedbackId] && !expandedReplies[feedbackId]) {
+        fetchReplies(feedbackId); // Fetch if not already fetched and not loading, and about to expand
+    }
   };
 
 
@@ -193,6 +201,7 @@ export default function FeedbackList() {
                     <Skeleton className="h-5 w-2/5" />
                     <Skeleton className="h-4 w-1/4" />
                 </div>
+                 <Skeleton className="h-5 w-1/3 mt-1" /> {/* Skeleton for rating */}
               </CardHeader>
               <CardContent className="pt-2 pb-4">
                 <Skeleton className="h-4 w-full mb-2" />
@@ -230,13 +239,34 @@ export default function FeedbackList() {
                         <span>{formatDate(entry.timestamp)}</span>
                       </div>
                     </div>
+                    {entry.rating && entry.rating > 0 && (
+                      <div className="mt-1.5">
+                        <RatingStars currentRating={entry.rating} maxRating={5} size="sm" />
+                      </div>
+                    )}
                   </CardHeader>
                   <CardContent className="pt-2 pb-3">
                     <p className="text-foreground leading-relaxed prose prose-sm max-w-none">{entry.text}</p>
                   </CardContent>
                   <CardFooter className="pt-1 pb-3 px-6 flex flex-col items-start">
-                    <div className="w-full flex justify-end">
-                      <Button
+                    <div className="w-full flex justify-between items-center mb-2">
+                        {isLoadingReplies[entry.id] && <Skeleton className="h-6 w-24" /> }
+                        {!isLoadingReplies[entry.id] && feedbackReplies[entry.id] && feedbackReplies[entry.id].length > 0 && (
+                             <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => toggleRepliesVisibility(entry.id)}
+                                className="text-xs px-2 py-1 h-auto"
+                            >
+                                {expandedReplies[entry.id] ? <EyeOff className="mr-1.5 h-3.5 w-3.5" /> : <Eye className="mr-1.5 h-3.5 w-3.5" />}
+                                {expandedReplies[entry.id] ? 'Hide Replies' : `View ${feedbackReplies[entry.id].length} Repl${feedbackReplies[entry.id].length === 1 ? 'y' : 'ies'}`}
+                            </Button>
+                        )}
+                        {/* Ensure there's a placeholder if no "View Replies" button to keep "Reply" button on right */}
+                        {!isLoadingReplies[entry.id] && (!feedbackReplies[entry.id] || feedbackReplies[entry.id].length === 0) && (
+                            <div></div> // Empty div for spacing if no view replies button
+                        )}
+                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => handleToggleReplyForm(entry.id)}
@@ -246,9 +276,9 @@ export default function FeedbackList() {
                         {replyingToFeedbackId === entry.id ? 'Cancel' : 'Reply'}
                       </Button>
                     </div>
-
+                    
                     {replyingToFeedbackId === entry.id && (
-                      <div className="w-full mt-3 space-y-2 animate-fadeIn-custom">
+                      <div className="w-full mt-1 space-y-2 animate-fadeIn-custom">
                         <Textarea
                           placeholder="Write your reply... (5-500 characters)"
                           value={currentReplyText}
@@ -268,42 +298,23 @@ export default function FeedbackList() {
                       </div>
                     )}
 
-                    {/* Replies Section */}
-                    <div className="mt-3 w-full">
-                      {isLoadingReplies[entry.id] && <Skeleton className="h-4 w-1/3 my-2" />}
-                      {!isLoadingReplies[entry.id] && feedbackReplies[entry.id] && feedbackReplies[entry.id].length > 0 && (
-                        <>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => toggleRepliesVisibility(entry.id)}
-                            className="text-xs mb-2"
-                          >
-                            {expandedReplies[entry.id] ? <EyeOff className="mr-1.5 h-3.5 w-3.5" /> : <Eye className="mr-1.5 h-3.5 w-3.5" />}
-                            {expandedReplies[entry.id] ? 'Hide Replies' : `View ${feedbackReplies[entry.id].length} Repl${feedbackReplies[entry.id].length === 1 ? 'y' : 'ies'}`}
-                          </Button>
-
-                          {expandedReplies[entry.id] && (
-                            <div className="space-y-2 pl-4 border-l-2 border-muted/50 animate-fadeIn-custom">
-                              {feedbackReplies[entry.id].map(reply => (
-                                <div key={reply.id} className="text-xs bg-muted/30 p-2.5 rounded-md shadow-sm">
-                                  <div className="flex items-center justify-between mb-1 text-muted-foreground/80">
-                                    <div className="flex items-center font-medium text-foreground/80">
-                                      <CornerDownRight className="h-3.5 w-3.5 mr-1.5 text-primary/60" />
-                                      <UserCircle className="mr-1 h-3.5 w-3.5 text-primary/60" />
-                                      {reply.username || 'Anonymous'}
-                                    </div>
-                                    <span className="text-xs">{formatDate(reply.timestamp)}</span>
-                                  </div>
-                                  <p className="text-foreground/90 pl-1">{reply.text}</p>
+                    {expandedReplies[entry.id] && feedbackReplies[entry.id] && feedbackReplies[entry.id].length > 0 && (
+                        <div className="mt-2 w-full space-y-2 pl-4 border-l-2 border-muted/50 animate-fadeIn-custom">
+                            {feedbackReplies[entry.id].map(reply => (
+                            <div key={reply.id} className="text-xs bg-muted/30 p-2.5 rounded-md shadow-sm">
+                                <div className="flex items-center justify-between mb-1 text-muted-foreground/80">
+                                <div className="flex items-center font-medium text-foreground/80">
+                                    <CornerDownRight className="h-3.5 w-3.5 mr-1.5 text-primary/60" />
+                                    <UserCircle className="mr-1 h-3.5 w-3.5 text-primary/60" />
+                                    {reply.username || 'Anonymous'}
                                 </div>
-                              ))}
+                                <span className="text-xs">{formatDate(reply.timestamp)}</span>
+                                </div>
+                                <p className="text-foreground/90 pl-1">{reply.text}</p>
                             </div>
-                          )}
-                        </>
-                      )}
-                      {/* "No replies yet" text has been removed */}
-                    </div>
+                            ))}
+                        </div>
+                    )}
                   </CardFooter>
                 </Card>
               ))}
@@ -322,10 +333,10 @@ export default function FeedbackList() {
         <DialogContent className="sm:max-w-md rounded-xl">
           <DialogHeader>
             <DialogTitle className="text-xl flex items-center">
-              <User className="mr-2 h-5 w-5 text-primary" /> Add Your Name 
+              <User className="mr-2 h-5 w-5 text-primary" /> Add Your Name for Reply (Optional)
             </DialogTitle>
             <DialogDescription className="pt-2">
-              
+              Your name will be displayed with your reply. Leave blank to reply as "Anonymous".
             </DialogDescription>
           </DialogHeader>
           <div className="py-4 space-y-4">

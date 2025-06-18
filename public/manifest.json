@@ -1,0 +1,23 @@
+{
+  "name": "E-Leak Courses Hub",
+  "short_name": "E-Leak",
+  "description": "Explore a range of Next Toppers courses on E-Leak. Join live classes, access notes, and watch video lectures.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#18232f",
+  "theme_color": "#42A5F5",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

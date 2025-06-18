@@ -11,8 +11,8 @@ import FeedbackForm from '@/components/FeedbackForm';
 import FeedbackList from '@/components/FeedbackList';
 import { Separator } from '@/components/ui/separator';
 import FeedbackPromptDialog from './FeedbackPromptDialog';
-import { Button } from '@/components/ui/button'; // Added for Support Button
-import { Bot } from 'lucide-react'; // Added for Support Button Icon
+import { Button } from '@/components/ui/button';
+import { Bot, Bell } from 'lucide-react'; // Added Bell
 
 // --- Configuration Start ---
 const MAINTENANCE_MODE_ENABLED = false;
@@ -62,13 +62,13 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       const now = Date.now();
       const intervalMs = FEEDBACK_PROMPT_INTERVAL_HOURS * 60 * 60 * 1000;
 
-      const excludedPathsForPrompt = ['/help-center', '/generate-access', '/auth/callback', '/public-chat'];
+      const excludedPathsForPrompt = ['/help-center', '/generate-access', '/auth/callback', '/public-chat', '/notifications'];
       if (!excludedPathsForPrompt.includes(pathname)) {
         if (!lastPromptTime || (now - parseInt(lastPromptTime, 10) > intervalMs)) {
           setShowFeedbackPrompt(true);
         }
       } else {
-        setShowFeedbackPrompt(false); // Don't show on excluded paths
+        setShowFeedbackPrompt(false); 
       }
     }
 
@@ -77,12 +77,11 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     };
   }, [pathname]);
 
-  const excludedPathsForFeedbackAndSupport = ['/help-center', '/generate-access', '/auth/callback', '/public-chat'];
+  const excludedPathsForFeedbackAndSupport = ['/help-center', '/generate-access', '/auth/callback', '/public-chat', '/notifications'];
   const showFeedbackAndSupportSection = !excludedPathsForFeedbackAndSupport.includes(pathname) && !showMaintenance;
   
-  // Global UI elements visibility (Telegram, EleakZone button, Cookie Banner)
-  // These should generally be visible unless on specific system pages or maintenance.
   const showGlobalUIElements = !pathname.startsWith('/auth/callback') && !pathname.startsWith('/generate-access') && !showMaintenance;
+  const showNotificationBell = !['/help-center', '/generate-access', '/auth/callback', '/notifications'].includes(pathname) && !showMaintenance;
 
 
   const handlePromptDismiss = () => {
@@ -104,6 +103,16 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
 
   return (
     <>
+      {showNotificationBell && (
+        <div className="fixed top-4 right-20 z-50 sm:top-6 sm:right-24">
+          <Link href="/notifications" passHref>
+            <Button variant="outline" size="icon" className="rounded-full bg-background/80 backdrop-blur-sm hover:bg-muted" aria-label="View Notifications">
+              <Bell className="h-5 w-5" />
+            </Button>
+          </Link>
+        </div>
+      )}
+
       {children}
       
       {showFeedbackAndSupportSection && (

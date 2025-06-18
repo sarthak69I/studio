@@ -53,7 +53,7 @@ const scienceSubjectImageMap: Record<string, string> = {
 
 const commerceSubjectImageMap: Record<string, string> = {
   'Accountancy': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/360629323799_Account.jpeg',
-  'Mathematics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/topic/424695935848_Maths.png',
+  'Mathematics': 'https://i.ibb.co/DfhJL87V/300c8aba-6815-4a44-a303-74b5987add62.png',
   'Economics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/56643923786_Economic.jpeg',
   'Business Studies': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/627728423781_BST.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
@@ -61,14 +61,14 @@ const commerceSubjectImageMap: Record<string, string> = {
 
 const aarambhSubjectImageMap: Record<string, string> = { // For Class 10 (courseId '3')
   'Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/28070448615_WhatsApp%20Image%202025-04-25%20at%204.25.51%20PM.jpeg',
-  'Mathematics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/topic/424695935848_Maths.png',
+  'Mathematics': 'https://i.ibb.co/DfhJL87V/300c8aba-6815-4a44-a303-74b5987add62.png',
   'Social Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/60137688614_Social%20Science.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
 };
 
 const aarambh9SubjectImageMap: Record<string, string> = { // For Class 9 (courseId '4')
   'Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/28070448615_WhatsApp%20Image%202025-04-25%20at%204.25.51%20PM.jpeg',
-  'Mathematics': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/topic/424695935848_Maths.png',
+  'Mathematics': 'https://i.ibb.co/DfhJL87V/300c8aba-6815-4a44-a303-74b5987add62.png',
   'Social Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/60137688614_Social%20Science.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
 };
