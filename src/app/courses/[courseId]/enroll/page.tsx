@@ -92,12 +92,13 @@ interface ImageOnlySubjectCardProps {
   subjectName: string;
   imageUrl: string;
   onClick?: () => void;
+  topicCount: number;
 }
 
-const ImageOnlySubjectCard: React.FC<ImageOnlySubjectCardProps> = ({ subjectName, imageUrl, onClick }) => (
+const ImageOnlySubjectCard: React.FC<ImageOnlySubjectCardProps> = ({ subjectName, imageUrl, onClick, topicCount }) => (
   <button
     onClick={onClick}
-    className="bg-slate-800 rounded-xl shadow-xl hover:scale-102 hover:shadow-2xl transition-transform duration-300 ease-in-out w-full h-[120px] overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+    className="bg-slate-800 rounded-xl shadow-xl hover:scale-102 hover:shadow-2xl transition-transform duration-300 ease-in-out w-full h-[120px] overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background relative"
     aria-label={`Select ${subjectName}`}
   >
     <div className="relative w-full h-full">
@@ -109,6 +110,11 @@ const ImageOnlySubjectCard: React.FC<ImageOnlySubjectCardProps> = ({ subjectName
         className="object-cover rounded-xl"
         data-ai-hint={`${subjectName.toLowerCase()} education`}
       />
+      <div className="absolute bottom-0 left-0 right-0 p-2 bg-black/50 backdrop-blur-sm rounded-b-xl">
+        <p className="text-white text-xs font-semibold text-center truncate">
+          {topicCount} {topicCount === 1 ? 'Topic' : 'Topics'}
+        </p>
+      </div>
     </div>
   </button>
 );
@@ -193,18 +199,32 @@ export default function EnrollPage() {
 
   const useImageOnlyCard = ['1', '2', '3', '4'].includes(courseId);
   let currentImageMap: Record<string, string> = {};
+  let currentCourseContent: CourseContentMap | undefined;
 
   if (useImageOnlyCard) {
     if (courseId === '1') {
       currentImageMap = scienceSubjectImageMap;
+      currentCourseContent = scienceCourseContent;
     } else if (courseId === '2') {
       currentImageMap = commerceSubjectImageMap;
+      currentCourseContent = commerceCourseContent;
     } else if (courseId === '3') {
       currentImageMap = aarambhSubjectImageMap;
+      currentCourseContent = aarambhCourseContent;
     } else if (courseId === '4') {
       currentImageMap = aarambh9SubjectImageMap;
+      currentCourseContent = aarambh9CourseContent;
     }
   }
+
+  const getTopicCount = (subjectName: string): number => {
+    if (!currentCourseContent) return 0;
+    const subjectData = currentCourseContent[subjectName];
+    if (Array.isArray(subjectData)) {
+      return subjectData.length;
+    }
+    return 0; // Return 0 if content is a string (e.g., "Coming Soon") or undefined
+  };
 
   return (
     <>
@@ -267,6 +287,7 @@ export default function EnrollPage() {
               <div className={`grid grid-cols-1 sm:grid-cols-1 gap-4`}> {/* Simplified grid for vertical stacking */}
                 {subjects.map((subject, index) => {
                   if (useImageOnlyCard && currentImageMap) {
+                    const topicCount = getTopicCount(subject);
                     return (
                       <div
                         key={subject}
@@ -277,6 +298,7 @@ export default function EnrollPage() {
                           subjectName={subject}
                           imageUrl={currentImageMap[subject] || 'https://placehold.co/400x120.png'}
                           onClick={() => handleSubjectClick(subject)}
+                          topicCount={topicCount}
                         />
                       </div>
                     );
@@ -320,3 +342,5 @@ export default function EnrollPage() {
     </>
   );
 }
+
+    
