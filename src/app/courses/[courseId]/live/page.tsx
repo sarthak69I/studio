@@ -45,8 +45,8 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '3': { // Aarambh (Foundation Class 10)
     pageTitle: "Class 10 Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Aarambh batch",
-    class1Subject: "Science",
-    class2Subject: "Social Science",
+    class1Subject: " Social Science",
+    class2Subject: "Science",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index.m3u8')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index.m3u8')}`,
     class1Visible: true,
