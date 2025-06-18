@@ -9,7 +9,7 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'Motion',
       lectures: [
-        { id: 'L1', title: 'Motion L1', notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/live/dmgct2gWAJY?si=9lSqUy3LCKKZjlR8' },
+        { id: 'L1', title: 'Motion L1', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/live/dmgct2gWAJY?si=9lSqUy3LCKKZjlR8' },
         { id: 'L2', title: 'Motion L2', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357724/174532620129898296383/174532620129898296383_8296383.m3u8' },
         { id: 'L3', title: 'Motion L3', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359011/174542283188648296383/174542283188648296383_8296383.m3u8' },
         { id: 'L4', title: 'Motion L4', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363242/174584458672078296383/174584458672078296383_8296383.m3u8' },
@@ -52,7 +52,7 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'The French Revolution',
       lectures: [
-        { id: 'L1', title: 'The French Revolution L1', notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/live/EDMXz3jVgZA?si=BvCXav6zfaUMg1UT' },
+        { id: 'L1', title: 'The French Revolution L1', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/live/EDMXz3jVgZA?si=BvCXav6zfaUMg1UT' },
         { id: 'L2', title: 'The French Revolution L2', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359911/174549813759727880624/174549813759727880624_7880624.m3u8' },
         { id: 'L3', title: 'The French Revolution L3', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364774/174594113722007880624/174594113722007880624_7880624.m3u8' },
         { id: 'L4', title: 'The French Revolution L4', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365809/174601655378227880624/174601655378227880624_7880624.m3u8' },
@@ -95,7 +95,7 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'Number System',
       lectures: [
-        { id: 'L1', title: 'Number System L1', notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/live/F6v_8tOEYrc?si=g-oAx-P-9Sa5BjXo' },
+        { id: 'L1', title: 'Number System L1', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/live/F6v_8tOEYrc?si=g-oAx-P-9Sa5BjXo' },
         { id: 'L2', title: 'Number System L2', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360152/174550928629871097666/174550928629871097666_1097666.m3u8' },
         { id: 'L3', title: 'Number System L3', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361156/174558576440391097666/174558576440391097666_1097666.m3u8' },
         { id: 'L4', title: 'Number System L4', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362008/174567183539581097666/174567183539581097666_1097666.m3u8' },
