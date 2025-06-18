@@ -34,6 +34,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L1', title: 'Is matter around us pure? L1', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406208/174956007294357555169/index_4.m3u8' },
         { id: 'L2', title: 'Is matter around us pure? L2', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407492/174965677724307555169/index_4.m3u8' },
         { id: 'L3', title: 'Is matter around us pure? L3', notesLink: `${aarambh9BasePath}/science/${slugify('Is matter around us pure?')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411204/175007761623082764802/index_5.m3u8' },
+        { id: 'L4', title: 'Is matter around us pure? L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412480/175016393583812764802/index_5.m3u8' },
       ]
     },
     {
@@ -87,7 +88,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L2', title: 'What is Democracy & why is democracy L2', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406373/174957083156418165220/index_4.m3u8' },
         { id: 'L3', title: 'What is Democracy & why is democracy L3', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L3.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407312/174964547257888165220/index_4.m3u8' },
         { id: 'L4', title: 'What is Democracy & why is democracy L4', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L4.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411383/175008874685142809295/index_3.m3u8' },
-        { id: 'L5', title: 'What is Democracy & why is democracy L5', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '#' },
+        { id: 'L5', title: 'What is Democracy & why is democracy L5', notesLink: `${aarambh9BasePath}/social-science/${slugify('What is Democracy & why is democracy')}/notes/L5.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412652/175017742429362809295/index_4.m3u8' },
       ]
     },
   ],
