@@ -273,37 +273,37 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       "name": "पाठ 1 सूरदास पद",
       "lectures": [
-        { "id": "L1", "title": "पाठ 1 सूरदास पद Part 1", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186201/1729265541_2410105506345580/1T-z7_tVWEOoVElSMKj6nYFwnPxaf5e1h_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L2", "title": "पाठ 1 सूरदास पद Part 2 MCQ", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186200/1729265538_7083754923792877/1zNCdHHMwJyWePiOVJe4J8BmsbVUmTAZ7_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L3", "title": "पाठ 1 सूरदास पद NCERT solution", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4024977/1729246983_4599555018953880/1rg3wohpXBFYB05RJpzt6KKEMJlgNs4L7_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L4", "title": "पाठ 1 सूरदास पद Part 4", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186199/1729265536_7680652203501416/1JK6BORv2rwZp2Uxm77iFjYbG2q36Drn__video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
+        { "id": "L1", "title": "पाठ 1 सूरदास पद Part 1", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186201/1729265541_2410105506345580/1T-z7_tVWEOoVElSMKj6nYFwnPxaf5e1h720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L2", "title": "पाठ 1 सूरदास पद Part 2 MCQ", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186200/1729265538_7083754923792877/1zNCdHHMwJyWePiOVJe4J8BmsbVUmTAZ7720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L3", "title": "पाठ 1 सूरदास पद NCERT solution", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4024977/1729246983_4599555018953880/1rg3wohpXBFYB05RJpzt6KKEMJlgNs4L7720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L4", "title": "पाठ 1 सूरदास पद Part 4", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186199/1729265536_7680652203501416/1JK6BORv2rwZp2Uxm77iFjYbG2q36Drn_720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
       ]
     },
     {
       "name": "राम - लक्ष्मण - परशुराम संवाद",
       "lectures": [
-        { "id": "L1", "title": "राम - लक्ष्मण - परशुराम संवाद व्याख्या", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4027213/1729246988_2924527634767824/1BTZmE06ydNw5S5xhkayCinmIBats6UhU_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/789303873377040800.pdf", "videoEmbedType": "hls" },
-        { "id": "L2", "title": "राम - लक्ष्मण - परशुराम संवाद NCERT solution", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4027210/1729246987_5520520446678697/1fFdctu5EMGN0XGe9H6VlfekB_6EKch_M_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L3", "title": "राम - लक्ष्मण - परशुराम संवाद MCQs", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4027254/1729246989_7436779504232047/1u8JDzOj-xfiZDTigH8VomE2YulrPKc1T_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L4", "title": "राम - लक्ष्मण - परशुराम संवाद Complete Revision", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4027255/1729246990_6541419237933644/1UMhxW2fNwZ8IIQB4B5gHzDLezAg4t3Tz_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
+        { "id": "L1", "title": "राम - लक्ष्मण - परशुराम संवाद व्याख्या", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4027213/1729246988_2924527634767824/1BTZmE06ydNw5S5xhkayCinmIBats6UhU720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/789303873377040800.pdf", "videoEmbedType": "hls" },
+        { "id": "L2", "title": "राम - लक्ष्मण - परशुराम संवाद NCERT solution", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4027210/1729246987_5520520446678697/1fFdctu5EMGN0XGe9H6VlfekB_6EKch_M720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L3", "title": "राम - लक्ष्मण - परशुराम संवाद MCQs", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4027254/1729246989_7436779504232047/1u8JDzOj-xfiZDTigH8VomE2YulrPKc1T720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L4", "title": "राम - लक्ष्मण - परशुराम संवाद Complete Revision", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4027255/1729246990_6541419237933644/1UMhxW2fNwZ8IIQB4B5gHzDLezAg4t3Tz720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
       ]
     },
     {
       "name": "आत्मकथ्य",
       "lectures": [
         { "id": "L1", "title": "आत्मकथ्य व्याख्या", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4385768/1747663749_2705447000621275/sunny/1747663347090_298315341830591400_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/690521834032034400.pdf", "videoEmbedType": "hls" },
-        { "id": "L2", "title": "आत्मकथ्य NCERT Solutions", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4385785/1747665069_5871654612294206/sunny/1747663672831_250637210850573980_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L3", "title": "आत्मकथ्य Complete Chapter Revision", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4047704/1729246994_6221740304385315/1ckkgP-tEUaM84SKTngCLf9soPW1lZl-3_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L4", "title": "आत्मकथ्य Mcqs", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4385786/1747665130_7974256570522104/sunny/1747664586187_863180552173840600_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
+        { "id": "L2", "title": "आत्मकथ्य NCERT Solutions", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4385785/1747665069_5871654612294206/1747663672831_250637210850573980_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L3", "title": "आत्मकथ्य Complete Chapter Revision", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4047704/1729246994_6221740304385315/1ckkgP-tEUaM84SKTngCLf9soPW1lZl-3720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L4", "title": "आत्मकथ्य Mcqs", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4385786/1747665130_7974256570522104/1747664586187_863180552173840600_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
       ]
     },
     {
       "name": "स्वयं प्रकाश नेताजी का चश्मा",
       "lectures": [
-        { "id": "L1", "title": "स्वयं प्रकाश नेताजी का चश्मा व्याख्या", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386615/1747739344_5895889211490543/sunny/1747733769932_786195607074400600_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/554889646678124500.pdf", "videoEmbedType": "hls" },
-        { "id": "L2", "title": "स्वयं प्रकाश नेताजी का चश्मा NCERT Solutions", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386617/1747740064_6945065777663847/sunny/1747733825545_143661140781959490_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L3", "title": "स्वयं प्रकाश नेताजी का चश्मा Complete Chapter Revision", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386614/1747739104_5562195517508276/sunny/1747733758660_373061725447395700_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L4", "title": "स्वयं प्रकाश नेताजी का चश्मा Mcqs", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386616/1747739586_2981294043039759/sunny/1747733816098_75298579390464800_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
+        { "id": "L1", "title": "स्वयं प्रकाश नेताजी का चश्मा व्याख्या", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386615/1747739344_5895889211490543/1747733769932_786195607074400600_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/554889646678124500.pdf", "videoEmbedType": "hls" },
+        { "id": "L2", "title": "स्वयं प्रकाश नेताजी का चश्मा NCERT Solutions", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386617/1747740064_6945065777663847/1747733825545_143661140781959490_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L3", "title": "स्वयं प्रकाश नेताजी का चश्मा Complete Chapter Revision", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386614/1747739104_5562195517508276/1747733758660_373061725447395700_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L4", "title": "स्वयं प्रकाश नेताजी का चश्मा Mcqs", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386616/1747739586_2981294043039759/1747733816098_75298579390464800_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
       ]
     },
     {
@@ -313,8 +313,39 @@ export const aarambhCourseContent: CourseContentMap = {
         { "id": "L2", "title": "पाठ 4 उत्साह, अट नहीं रही है NCERT solutions Lecture 2", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410186/1749915308_3840734996272597/sunny/1749912196262_461166863025187500_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
         { "id": "L3", "title": "पाठ 4 उत्साह, अट नहीं रही है Complete Chapter Revision Lecture 3", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410184/1749914765_5495751221321111/sunny/1749912092768_233487924942992640_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
       ]
+    },
+    { 
+   "name": "माता का अँचल",
+      "lectures": [
+        {
+          "id": "L1",
+          "title": "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय व्याख्या Lecture 1",
+          "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186198/1729265533_8059479010359567/1BtyJnTEnw7CtMzUeC6JzD04RcYxkLY_h720p30.m3u8",
+          "notesLink": ``,
+          "videoEmbedType": 'hls', 
+        },
+        {
+          "id": "L2",
+          "title": "माता का अँचल शिवपूजन सहाय NCERT solutions Lecture 2",
+          "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057679/1729247001_2102951454222923/13er8e0QTz_ZEt29EvpIDlRkw1_N36SNb720p30.m3u8",
+          "notesLink": ``,
+          "videoEmbedType": 'hls', 
+        },
+        {
+          id: "L3",
+          title: "माता का अँचल शिवपूजन सहाय Mcqs Lecture 3",
+          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057680/1729247001_7590193763429474/1Z6ELWKQm8CjGONfvOaH1lv--rvWc6nEq720p30.m3u8",
+          notesLink: "",
+          videoEmbedType: "hls"
+        },
+        {
+          id: "L4",
+          title: "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय Complete Chapter Revision Lecture 4",
+          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186197/1729265530_8082650506315087/1cQy6uA6zxO3Q-fzKguG-cc6iZ1Vgj-Oa720p30.m3u8",
+          notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/827292862967255600.pdf",
+          videoEmbedType: "hls"
+        }
+      ]
     }
-  ],
-};
-
-    
+  ]
+}

@@ -399,13 +399,6 @@ export const aarambh9CourseContent: CourseContentMap = {
           "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362877/1745828705_3761006170981689/sunny/1745824255110_166106644150187650_video_VOD720p30.m3u8",
           "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3878617_%E0%A4%AA%E0%A4%BE%E0%A4%A0%201%20%E0%A4%A6%E0%A5%81%E0%A4%83%E0%A4%96%20%E0%A4%95%E0%A4%BE%20%E0%A4%85%E0%A4%A7%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B0%20%28%E0%A4%AF%E0%A4%B6%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision%20.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%201%20%E0%A4%A6%E0%A5%81%E0%A4%83%E0%A4%96%20%E0%A4%95%E0%A4%BE%20%E0%A4%85%E0%A4%A7%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B0%20%28%E0%A4%AF%E0%A4%B6%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision%20.pdf",
           "videoEmbedType": 'hls'
-        },
-        {
-          "id": "L4",
-          "title": "NCERT Solution",
-          videoEmbedUrl: null,
-          "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/285701_%E0%A4%AA%E0%A4%BE%E0%A4%A0%201%20%E0%A4%A6%E0%A5%81%E0%A4%83%E0%A4%96%20%E0%A4%95%E0%A4%BE%20%E0%A4%85%E0%A4%A7%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B0%20%28%E0%A4%AF%E0%A4%B6%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20NCERT%20Solutions.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%201%20%E0%A4%A6%E0%A5%81%E0%A4%83%E0%A4%96%20%E0%A4%95%E0%A4%BE%20%E0%A4%85%E0%A4%A7%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B0%20%28%E0%A4%AF%E0%A4%B6%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20NCERT%20Solutions.pdf",
-          "videoEmbedType": 'hls'
         }
       ]
     },
@@ -456,21 +449,21 @@ export const aarambh9CourseContent: CourseContentMap = {
           "id": "L2",
           "title": "NCERT Solution",
           "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410210/1749917044_8399600522927768/sunny/1749914529743_742052701283870300_video_VOD720p30.m3u8",
-          "notesLink": null,
+          "notesLink":  ``,
           "videoEmbedType": 'hls'
         },
         {
           "id": "L3",
           "title": "MCQs",
           "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410209/1749916807_3654632768008049/sunny/1749914455005_175749411760681820_video_VOD720p30.m3u8",
-          "notesLink": null,
+          "notesLink":  ``,
           "videoEmbedType": 'hls'
         },
         {
           "id": "L4",
           "title": "Revision",
           "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410208/1749916624_4139724354398230/sunny/1749914374150_547188533863034100_video_VOD720p30.m3u8",
-          "notesLink": null,
+          "notesLink":  ``,
           "videoEmbedType": 'hls'
         }
       ]
