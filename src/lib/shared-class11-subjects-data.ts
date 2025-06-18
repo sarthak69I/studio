@@ -72,5 +72,38 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
       ]
     }
   ],
-  'Hindi': [], // Initially empty, content to be added here
+  'Hindi': [
+    {
+      "name": "ईदगाह",
+      "lectures": [
+        { "id": "L1", "title": "ईदगाह 1", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358420/1745405764_3640097601269065/1745396728112_553393261079668160_video_VOD720p30.m3u8" },
+        { "id": "L2", "title": "ईदगाह 2", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358419/1745405165_6785757864981238/1745396695509_210095496519486820_video_VOD720p30.m3u8" },
+        { "id": "L3", "title": "ईदगाह MCQ", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358421/1745406665_9982673534662950/1745396812306_698622959847869200_video_VOD720p30.m3u8" },
+        { "id": "L4", "title": "NCERT SOLUTIONS", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4358418/1745404925_4856650900953861/1745396670780_406859459444341300_video_VOD720p30.m3u8" }
+      ]
+    },
+    {
+      "name": "दोपहर का भोजन",
+      "lectures": [
+        { "id": "L1", "title": "अंतरा- दोपहर का भोजन - (ऐच्छिक) पाठ - 2 Complete Chapter Revision", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373815/1746542224_4919730510504804/sunny/1746531740827_117907691693140910_video_VOD720p30.m3u8" },
+        { "id": "L2", "title": "अंतरा - दोपहर का भोजन - (ऐच्छिक) पाठ - 2 MCQs", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373808/1746540904_6600857480385821/sunny/1746531396121_353280015597578300_video_VOD720p30.m3u8" },
+        { "id": "L3", "title": "अंतरा - दोपहर का भोजन - (ऐच्छिक) पाठ - 2 NCERT SOLUTION", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373805/1746542345_6467174965893976/sunny/1746531128826_502374752294248770_video_VOD720p30.m3u8" },
+        { "id": "L4", "title": "अंतरा - दोपहर का भोजन - (ऐच्छिक) पाठ - 2 व्याख्या", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4373801/1746542405_3556877328703407/sunny/1746530690625_705519530275068000_video_VOD720p30.m3u8" }
+      ]
+    },
+    {
+      "name": "अंतरा - टार्च बेचनेवाले",
+      "lectures": [
+        { "id": "L1", "title": "टार्च बेचनेवाले - (ऐच्छिक) पाठ - 3 व्याख्या", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4382887/1747320964_9867427516013627/sunny/1747315431978_748015525792064800_video_VOD720p30.m3u8" },
+        { "id": "L2", "title": "टार्च बेचनेवाले - (ऐच्छिक) पाठ - 3 NCERT SOLUTION, MCQs", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4382888/1747321024_5410075080792619/sunny/1747315561001_388428930583151550_video_VOD720p30.m3u8" }
+      ]
+    },
+    {
+      "name": "अंतरा - गूँगे",
+      "lectures": [
+        { "id": "L1", "title": "गूँगे - (ऐच्छिक) पाठ - 4 व्याख्या", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4389061/1747913345_3037150020926925/sunny/1747904804192_252774294206489280_video_VOD720p30.m3u8" },
+        { "id": "L2", "title": "गूँगे - (ऐच्छिक) पाठ - 4 NCERT SOLUTION MCQs", "notesLink": "", "videoEmbedType": "hls", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4389060/1747912925_4204572298779712/sunny/1747904586776_670314428658591900_video_VOD720p30.m3u8" }
+      ]
+    }
+  ],
 };
