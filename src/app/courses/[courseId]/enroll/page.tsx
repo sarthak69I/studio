@@ -9,14 +9,14 @@ import * as React from 'react';
 import { getParamAsString } from '@/lib/utils';
 import { getValidAccessKey } from '@/lib/access-manager';
 import Image from 'next/image';
-import { 
-  scienceCourseContent, 
+import {
+  scienceCourseContent,
   commerceCourseContent,
   aarambhCourseContent,
   aarambh9CourseContent,
   type Topic,
   type CourseContentMap
-} from '@/lib/course-data'; 
+} from '@/lib/course-data';
 
 interface SubjectItemProps {
   name: string;
@@ -25,7 +25,7 @@ interface SubjectItemProps {
 }
 
 // --- Configuration Start ---
-const REQUIRE_KEY_GENERATION = true; 
+const REQUIRE_KEY_GENERATION = true;
 // --- Configuration End ---
 
 
@@ -78,7 +78,7 @@ const aarambh9SubjectImageMap: Record<string, string> = { // For Class 9 (course
 const SubjectItem: React.FC<SubjectItemProps> = ({ name, onClick, disabled }) => (
   <Button
     variant="secondary"
-    className="w-full justify-between p-6 text-lg rounded-xl shadow-sm hover:bg-muted/80 
+    className="w-full justify-between p-6 text-lg rounded-xl shadow-sm hover:bg-muted/80
                transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-md"
     onClick={onClick}
     disabled={disabled}
@@ -88,35 +88,28 @@ const SubjectItem: React.FC<SubjectItemProps> = ({ name, onClick, disabled }) =>
   </Button>
 );
 
-// Renamed from ScienceSubjectCard to StyledSubjectCard for broader use
-interface StyledSubjectCardProps {
+interface ImageOnlySubjectCardProps {
   subjectName: string;
   imageUrl: string;
-  topicCountText: string;
   onClick?: () => void;
 }
 
-const StyledSubjectCard: React.FC<StyledSubjectCardProps> = ({ subjectName, imageUrl, topicCountText, onClick }) => (
+const ImageOnlySubjectCard: React.FC<ImageOnlySubjectCardProps> = ({ subjectName, imageUrl, onClick }) => (
   <button
     onClick={onClick}
-    className="flex items-center bg-slate-800 text-white p-3 rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-200 w-full text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+    className="bg-slate-800 rounded-xl shadow-xl hover:scale-102 hover:shadow-2xl transition-transform duration-300 ease-in-out w-full h-[120px] overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
     aria-label={`Select ${subjectName}`}
   >
-    <div className="relative w-[100px] h-[100px] flex-shrink-0 mr-4">
-      <Image 
-        src={imageUrl} 
-        alt={subjectName} 
+    <div className="relative w-full h-full">
+      <Image
+        src={imageUrl}
+        alt={subjectName}
         fill
-        sizes="(max-width: 640px) 80px, 100px"
-        className="object-contain rounded-sm bg-transparent" // Changed to rounded-sm for 4px radius
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="object-cover rounded-xl"
         data-ai-hint={`${subjectName.toLowerCase()} education`}
       />
     </div>
-    <div className="flex-grow">
-      <div className="text-lg font-bold text-slate-50">{subjectName}</div>
-      <div className="text-sm text-slate-400">{topicCountText}</div>
-    </div>
-    <div className="text-2xl text-slate-500 ml-auto transition-transform group-hover:translate-x-1">➔</div>
   </button>
 );
 
@@ -149,7 +142,7 @@ export default function EnrollPage() {
         let courseName = courseDisplayNames[courseId] || "";
         if (courseName) {
           document.title = `Enroll: ${courseName} | E-Leak`;
-        } else if (courseId) { 
+        } else if (courseId) {
           document.title = `Enroll Course ${courseId} | E-Leak`;
         } else {
           document.title = 'Enroll | E-Leak';
@@ -172,11 +165,11 @@ export default function EnrollPage() {
   const handleModeChange = (mode: 'notes' | 'video') => {
     setActiveContentMode(mode);
   };
-  
+
   if (isLoading) {
     return (
       <div className="flex flex-col min-h-screen items-center justify-center bg-background p-4 text-foreground">
-        <p>Loading access status...</p> 
+        <p>Loading access status...</p>
       </div>
     );
   }
@@ -198,23 +191,17 @@ export default function EnrollPage() {
     );
   }
 
-  // Determine if the styled card should be used
-  const useStyledCard = ['1', '2', '3', '4'].includes(courseId);
-  let currentCourseData: CourseContentMap | undefined;
+  const useImageOnlyCard = ['1', '2', '3', '4'].includes(courseId);
   let currentImageMap: Record<string, string> = {};
 
-  if (useStyledCard) {
+  if (useImageOnlyCard) {
     if (courseId === '1') {
-      currentCourseData = scienceCourseContent;
       currentImageMap = scienceSubjectImageMap;
     } else if (courseId === '2') {
-      currentCourseData = commerceCourseContent;
       currentImageMap = commerceSubjectImageMap;
     } else if (courseId === '3') {
-      currentCourseData = aarambhCourseContent;
       currentImageMap = aarambhSubjectImageMap;
     } else if (courseId === '4') {
-      currentCourseData = aarambh9CourseContent;
       currentImageMap = aarambh9SubjectImageMap;
     }
   }
@@ -277,22 +264,18 @@ export default function EnrollPage() {
               Subjects for {courseDisplayNames[courseId] || `Course ${courseId}`}
             </h2>
             {subjects.length > 0 ? (
-              <div className={`grid grid-cols-1 ${useStyledCard ? 'sm:grid-cols-1' : 'sm:grid-cols-2'} gap-4`}>
+              <div className={`grid grid-cols-1 sm:grid-cols-1 gap-4`}> {/* Simplified grid for vertical stacking */}
                 {subjects.map((subject, index) => {
-                  if (useStyledCard && currentCourseData && currentImageMap) {
-                    const subjectData = currentCourseData[subject];
-                    const topicCount = Array.isArray(subjectData) ? subjectData.length : 0;
-                    const topicCountText = `${topicCount} Topic${topicCount !== 1 ? 's' : ''}`;
+                  if (useImageOnlyCard && currentImageMap) {
                     return (
                       <div
                         key={subject}
                         className="transform opacity-0 animate-fadeInUp-custom"
                         style={{ animationDelay: `${index * 0.1}s` }}
                       >
-                        <StyledSubjectCard
+                        <ImageOnlySubjectCard
                           subjectName={subject}
-                          imageUrl={currentImageMap[subject] || 'https://placehold.co/120x120.png'}
-                          topicCountText={topicCountText}
+                          imageUrl={currentImageMap[subject] || 'https://placehold.co/400x120.png'}
                           onClick={() => handleSubjectClick(subject)}
                         />
                       </div>
