@@ -23,7 +23,7 @@ const newStreamPlayerBaseUrl = 'https://eleaklive.vercel.app/?liveurl=';
 
 const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
-    pageTitle: "Class 11 Science Live Classes",
+    pageTitle: "11th Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
     class1Subject: "CHEMISTRY",
     class2Subject: "MATHEMATICS",
@@ -33,7 +33,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class2Visible: true,
   },
     '2': { // Commece
-      pageTitle: "Class 11 Commerce Live Classes",
+      pageTitle: "11th Commerce Live Classes",
       subtitle: "Interactive learning sessions for Commerce students",
       class1Subject: "Business Studies",
       class2Subject: "Mathematics",
@@ -43,7 +43,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
       class2Visible: true,
   },
   '3': { // Aarambh (Foundation Class 10)
-    pageTitle: "Class 10 Aarambh Live Classes",
+    pageTitle: "10th Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Aarambh batch",
     class1Subject: " Social Science",
     class2Subject: "Science",
@@ -53,7 +53,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class2Visible: true,
   },
   '4': { // Aarambh (Foundation Class 9)
-    pageTitle: "Class 9 Aarambh Live Classes",
+    pageTitle: "9th Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Class 9 Aarambh batch",
     class1Subject: "Social Science",
     class2Subject: "Science",
