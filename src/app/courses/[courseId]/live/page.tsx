@@ -47,7 +47,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     subtitle: "Interactive learning sessions for Aarambh batch",
     class1Subject: " Social Science",
     class2Subject: "Science",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index.m3u8')}`,
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_3.m3u8')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index.m3u8')}`,
     class1Visible: true,
     class2Visible: true,
