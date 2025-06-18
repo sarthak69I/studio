@@ -109,8 +109,8 @@ export function CourseCard({
   return (
     <Card className="w-full max-w-sm overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-border flex flex-col relative">
       {isCourseLive && (
-         <Badge variant="destructive" className="absolute top-3 right-3 text-xs font-bold animate-pulse z-10 px-2 py-1">
-           <RadioTower className="mr-1 h-3 w-3" /> LIVE
+         <Badge variant="destructive" className="absolute top-3 right-3 text-xs font-semibold animate-live-pulse z-10 px-2.5 py-1 rounded-full">
+           <RadioTower className="mr-1 h-3.5 w-3.5" /> LIVE
          </Badge>
        )}
       <CardHeader className="p-5">
@@ -120,7 +120,7 @@ export function CourseCard({
           </Badge>
         )}
          {badgeText && isCourseLive && ( 
-          <Badge variant="destructive" className="text-xs font-bold mb-2 animate-bounce-custom self-start px-2 py-1 mr-12">
+          <Badge variant="destructive" className="text-xs font-bold mb-2 animate-bounce-custom self-start px-2 py-1 mr-12"> {/* Adjusted margin for when LIVE badge is also present */}
             {badgeText}
           </Badge>
         )}
@@ -224,3 +224,4 @@ export function CourseCard({
     </Card>
   );
 }
+
