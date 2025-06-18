@@ -1,11 +1,9 @@
 // src/lib/commerce-data.ts
 import type { CourseContentMap } from './course-utils';
-import { slugify } from './course-utils';
-import { scienceCourseContent } from './science-data'; // Import science content to reference shared subjects
+import { sharedClass11SubjectsContent } from './shared-class11-subjects-data';
 
-const commerceBasePath = '/assets/courses/commerce'; // This path isn't used if notes/videos are #
-
-export const commerceCourseContent: CourseContentMap = {
+// Commerce-specific subjects
+const commerceOnlySubjects: CourseContentMap = {
   'Business Studies': [
     { name: 'Business, Trade & Commerce',
       lectures: [
@@ -34,7 +32,7 @@ export const commerceCourseContent: CourseContentMap = {
         { id: 'L10', title: 'Forms of Business Organisations L10', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394020/174836176027458661500/index_4.m3u8' },
         { id: 'L11', title: 'Forms of Business Organisations L11', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394995/174843818528908661500/index_4.m3u8' },
         { id: 'L12', title: 'Forms of Business Organisations L12', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4405285/174948346750638661500/index_4.m3u8' },
-       ]
+      ]
     },
     { name: 'Private,Public & Global enterprises',
       lectures: [
@@ -151,9 +149,10 @@ export const commerceCourseContent: CourseContentMap = {
       ]
     }
   ],
-  // Shared subjects are referenced from scienceCourseContent
-  'Mathematics': scienceCourseContent['Mathematics'],
-  'English': scienceCourseContent['English'],
-  'Hindi': scienceCourseContent['Hindi'], // Also referencing the new Hindi subject
 };
 
+// Combine commerce-only subjects with shared subjects
+export const commerceCourseContent: CourseContentMap = {
+  ...commerceOnlySubjects,
+  ...sharedClass11SubjectsContent,
+};
