@@ -38,7 +38,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
       class1Subject: "ACCOUNTS",
       class2Subject: "ECONOMICS",
       class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/ca26d3ff165b4e07a358b55f5455cd98/index_1.m3u8')}`,
-      class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('')}`,
+      class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/c923787f6b3b40cbbfbdc51d2d76e51e/index_1.m3u8')}`,
       class1Visible: true,
       class2Visible: true,
   },
