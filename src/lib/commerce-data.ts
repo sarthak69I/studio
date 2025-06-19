@@ -39,6 +39,9 @@ const commerceOnlySubjects: CourseContentMap = {
         { id: 'L1', title: 'Private,Public & Global enterprises L1', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406374/174957111252968661500/index_4.m3u8' },
         { id: 'L2', title: 'Private,Public & Global enterprises L2', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407342/174964695058678661500/index_4.m3u8' },
         { id: 'L3', title: 'Private,Public & Global enterprises L3', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411413/175009183176652266688/index_4.m3u8' },
+       { id: 'L4', title: 'Private,Public & Global enterprises L4', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412638/175017539912532266688/index_4.m3u8' },
+          { id: 'L5', title: 'Private,Public & Global enterprises L5', notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413731/175025130677182266688/index_4.m3u8' },
+      
       ]
     },
   ],
