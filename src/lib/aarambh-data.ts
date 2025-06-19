@@ -229,8 +229,8 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L2', title: 'Some Application of Trigonometry L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/234701559771625340.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410213/174991601648451097666/index_5.m3u8' },
         { id: 'L3', title: 'Some Application of Trigonometry L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411382/175008869822868752407/index_4.m3u8' },
         { id: 'L4', title: 'Some Application of Trigonometry L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412636/175017526367988752407/index_4.m3u8' },
-
-      ]
+        { id: 'L5', title: 'Some Application of Trigonometry L5', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+      ] 
     }
   ],
   'English': [
