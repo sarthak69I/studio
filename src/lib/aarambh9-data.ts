@@ -156,7 +156,7 @@ export const aarambh9CourseContent: CourseContentMap = {
       name: 'Physical Features Of India',
       lectures: [
         { id: 'L1', title: 'Physical Features Of India L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413709/175025027154897125088/index_3.m3u8' },
-        { id: 'L2', title: 'Physical Features Of India L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L2', title: 'Physical Features Of India L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414844/175033680741617125088/index_3.m3u8' },
 
        ]
     },
