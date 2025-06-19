@@ -170,7 +170,7 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'acid bases and salts L1', title: 'L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409353/174981921287648296383/index_4.m3u8' },
         { id: 'acid bases and salts L2', title: 'L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410136/174990583084158296383/index_4.m3u8' },
         { id: 'acid bases and salts L3', title: 'L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413730/175025130196888929414/index_4.m3u8' },
-        { id: 'acid bases and salts L3', title: 'L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414866/175033738727468929414/index_4.m3u8' },
+        { id: 'acid bases and salts L4', title: 'L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414866/175033738727468929414/index_4.m3u8' },
       ]
     }
   ],
