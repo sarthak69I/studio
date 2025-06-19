@@ -150,7 +150,15 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L3', title: 'What is Democracy & why is democracy L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/493110752813854600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407312/174964547257888165220/index_4.m3u8' },
         { id: 'L4', title: 'What is Democracy & why is democracy L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/593029986503166100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411383/175008874685142809295/index_3.m3u8' },
         { id: 'L5', title: 'What is Democracy & why is democracy L5', notesLink: `https://drive.google.com/file/d/1WdT7n55ztCR_Waio5b2joVZpHVGNLPp8/view?usp=sharing`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412652/175017742429362809295/index_4.m3u8' },
-      ]
+        ]
+    },
+    {
+      name: 'Physical Features Of India',
+      lectures: [
+        { id: 'L1', title: 'Physical Features Of India L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413709/175025027154897125088/index_3.m3u8' },
+        { id: 'L2', title: 'Physical Features Of India L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+
+       ]
     },
   ],
   'Mathematics': [
