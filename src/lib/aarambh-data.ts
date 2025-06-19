@@ -170,6 +170,7 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'acid bases and salts L1', title: 'L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409353/174981921287648296383/index_4.m3u8' },
         { id: 'acid bases and salts L2', title: 'L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410136/174990583084158296383/index_4.m3u8' },
         { id: 'acid bases and salts L3', title: 'L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413730/175025130196888929414/index_4.m3u8' },
+        { id: 'acid bases and salts L3', title: 'L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414866/175033738727468929414/index_4.m3u8' },
       ]
     }
   ],
@@ -177,7 +178,7 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Real Numbers',
       lectures: [
-        { id: 'L1', title: 'Real Numbers L1', notesLink: `https://drive.google.com/file/d/1WBeW1CFXzY8b0n0URfVFGCMH6w12etYf/view?usp=sharing`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/2cS9g5RQ2gA' },
+        { id: 'L1', title: 'Real Numbers L1', notesLink: `https://drive.google.com/file/d/1WBeW1CFXzY8b0n0URfVFGCMH6w12etYf/view?usp=sharing`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/embed/2cS9g5RQ2gA' },
         { id: 'L2', title: 'Real Numbers L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/22420916723093830.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4351817/174473442715988296383/index_4.m3u8' },
         { id: 'L3', title: 'Real Numbers L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/440507540857891140.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354873/174499225616481097666/index_5.m3u8' },
         { id: 'L4', title: 'Real Numbers L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/805714130200073600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355458/174508004648941097666/index_5.m3u8' },
