@@ -70,7 +70,7 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'Motion',
       lectures: [
-        { id: 'L1', title: 'Motion L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/796634275304162200.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/live/dmgct2gWAJY?si=9lSqUy3LCKKZjlR8' },
+        { id: 'L1', title: 'Motion L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/796634275304162200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/live/dmgct2gWAJY?si=9lSqUy3LCKKZjlR8' },
         { id: 'L2', title: 'Motion L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/565320984368797060.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357724/174532620129898296383/174532620129898296383_8296383.m3u8' },
         { id: 'L3', title: 'Motion L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/246363599307751300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359011/174542283188648296383/174542283188648296383_8296383.m3u8' },
         { id: 'L4', title: 'Motion L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/207401592156435200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4363242/174584458672078296383/174584458672078296383_8296383.m3u8' },
@@ -95,7 +95,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L1', title: 'Is matter around us pure? L1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/844977822701788000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4406208/174956007294357555169/index_4.m3u8' },
         { id: 'L2', title: 'Is matter around us pure? L2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/691619710171838000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4407492/174965677724307555169/index_4.m3u8' },
         { id: 'L3', title: 'Is matter around us pure? L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/724334028128615800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411204/175007761623082764802/index_5.m3u8' },
-        { id: 'L4', title: 'Is matter around us pure? L4', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412480/175016393583812764802/index_5.m3u8' },
+        { id: 'L4', title: 'Is matter around us pure? L4', notesLink: `https://drive.google.com/file/d/1QwN4BhoJHuss3T7EvfkKolLg8hRK6UYl/view?usp=sharing`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412480/175016393583812764802/index_5.m3u8' },
       ]
     },
     {
