@@ -5,6 +5,7 @@
 export interface Lecture {
   id: string;
   title: string;
+  notesTitle?: string; // Title specific for the notes entry
   notesLink?: string;
   videoLink?: string; // Original direct link
   videoEmbedType?: 'youtube' | 'iframe' | 'hls';
@@ -34,3 +35,4 @@ export const slugify = (text: string | undefined | null): string => {
 };
 
 // Removed m3u8PlayerBase as it's no longer used or being replaced by specific player logic.
+

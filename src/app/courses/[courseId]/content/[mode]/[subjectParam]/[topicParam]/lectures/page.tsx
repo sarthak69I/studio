@@ -38,8 +38,8 @@ export default function TopicLecturesPage() {
   const topicParam = getParamAsString(params.topicParam);
 
   const [topicName, setTopicName] = React.useState('');
-  const [subjectName, setSubjectName] = React.useState('');
-  const [lectures, setLectures] = React.useState<Lecture[]>([]);
+  const [subjectNameState, setSubjectNameState] = React.useState(''); // Renamed to avoid conflict
+  const [displayedLectures, setDisplayedLectures] = React.useState<Lecture[]>([]);
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
@@ -62,58 +62,78 @@ export default function TopicLecturesPage() {
         const decodedTopicName = decodeURIComponent(topicParam);
         const decodedSubjectName = decodeURIComponent(subjectParam);
         setTopicName(decodedTopicName);
-        setSubjectName(decodedSubjectName);
-        setCompletedLectureKeys(getCompletedLectureKeys()); // Refresh on param change
+        setSubjectNameState(decodedSubjectName); // Use renamed state setter
+        setCompletedLectureKeys(getCompletedLectureKeys()); 
 
         let currentCourseMap: CourseContentMap | undefined;
         if (courseId === '1') currentCourseMap = scienceCourseContent;
         else if (courseId === '2') currentCourseMap = commerceCourseContent;
-        else if (courseId === '3') currentCourseMap = aarambhCourseContent; // Class 10
-        else if (courseId === '4') currentCourseMap = aarambh9CourseContent; // Class 9
+        else if (courseId === '3') currentCourseMap = aarambhCourseContent; 
+        else if (courseId === '4') currentCourseMap = aarambh9CourseContent; 
 
         if (currentCourseMap) {
           const subjectData = currentCourseMap[decodedSubjectName];
           if (typeof subjectData === 'string') {
-            setStatusMessage(subjectData); // e.g., "Coming Soon"
-            setLectures([]);
-          } else if (Array.isArray(subjectData)) { // Array of Topic objects
+            setStatusMessage(subjectData); 
+            setDisplayedLectures([]);
+          } else if (Array.isArray(subjectData)) { 
             const currentTopic = subjectData.find((t: Topic) => t.name === decodedTopicName);
             if (currentTopic && currentTopic.lectures && currentTopic.lectures.length > 0) {
-              setLectures(currentTopic.lectures);
-              setStatusMessage(null);
+              let filteredLectures: Lecture[] = [];
+              if (mode === 'notes') {
+                filteredLectures = currentTopic.lectures.filter(
+                  lec => lec.notesLink && lec.notesLink.trim() !== '' && lec.notesLink.trim() !== '#' &&
+                         (lec.notesTitle?.trim() || lec.title?.trim())
+                );
+              } else if (mode === 'video') {
+                filteredLectures = currentTopic.lectures.filter(
+                  lec => lec.videoEmbedUrl && lec.videoEmbedUrl.trim() !== ''
+                );
+              } else {
+                // Fallback or default behavior if mode is neither 'notes' nor 'video'
+                filteredLectures = currentTopic.lectures;
+              }
+              
+              setDisplayedLectures(filteredLectures);
+              if (filteredLectures.length === 0) {
+                 setStatusMessage(`No ${mode} available for ${decodedTopicName}.`);
+              } else {
+                setStatusMessage(null);
+              }
+
             } else if (currentTopic) {
               setStatusMessage(`Lectures for ${decodedTopicName} are not yet available.`);
-              setLectures([]);
+              setDisplayedLectures([]);
             } else {
               setStatusMessage(`Topic "${decodedTopicName}" not found in ${decodedSubjectName}.`);
-              setLectures([]);
+              setDisplayedLectures([]);
             }
           } else {
              setStatusMessage(`Content structure for ${decodedSubjectName} is not recognized.`);
-             setLectures([]);
+             setDisplayedLectures([]);
           }
         } else {
           setStatusMessage(`Course data not found for course ID: ${courseId}.`);
-          setLectures([]);
+          setDisplayedLectures([]);
         }
       } catch (e) {
         console.error("Failed to decode params or load lectures:", e);
         setTopicName("Invalid Topic");
         setStatusMessage("Could not load lectures due to a decoding error.");
-        setLectures([]);
+        setDisplayedLectures([]);
       }
     } else if (isMounted) {
       setTopicName('Unknown Topic');
       setStatusMessage('No topic or subject specified in URL.');
-      setLectures([]);
+      setDisplayedLectures([]);
     }
-  }, [isMounted, topicParam, subjectParam, courseId]);
+  }, [isMounted, topicParam, subjectParam, courseId, mode]);
 
 
   React.useEffect(() => {
     if (isMounted && topicName && topicName !== 'Unknown Topic' && topicName !== 'Invalid Topic') {
       const modeText = mode === 'notes' ? 'Notes' : 'Videos';
-      document.title = `Lectures: ${topicName} - ${modeText} | E-Leak`;
+      document.title = `${topicName} - ${modeText} | E-Leak`;
     } else if (isMounted && topicName) {
       document.title = `${topicName} | E-Leak`;
     } else if (isMounted) {
@@ -122,18 +142,23 @@ export default function TopicLecturesPage() {
   }, [isMounted, topicName, mode]);
 
   const handleLectureClick = (lecture: Lecture) => {
-    if (isMounted && courseId && subjectName && topicName) {
-      markLectureAsCompleted(courseId, subjectName, topicName, lecture.id);
-      setCompletedLectureKeys(prev => new Set(prev).add(generateLectureStorageKey(courseId, subjectName, topicName, lecture.id)));
+    if (isMounted && courseId && subjectNameState && topicName) {
+      markLectureAsCompleted(courseId, subjectNameState, topicName, lecture.id);
+      setCompletedLectureKeys(prev => new Set(prev).add(generateLectureStorageKey(courseId, subjectNameState, topicName, lecture.id)));
     }
   };
 
   const renderLectureCard = (lecture: Lecture, index: number) => {
-    const isCompleted = completedLectureKeys.has(generateLectureStorageKey(courseId, subjectName, topicName, lecture.id));
+    const isCompleted = completedLectureKeys.has(generateLectureStorageKey(courseId, subjectNameState, topicName, lecture.id));
     const cardClasses = `bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md
                        transform opacity-0 animate-fadeInUp-custom
                        transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90
                        ${isCompleted ? 'opacity-60 border-l-4 border-green-500' : ''}`;
+
+    let displayTitle = lecture.title;
+    if (mode === 'notes' && lecture.notesTitle && lecture.notesTitle.trim() !== '') {
+      displayTitle = lecture.notesTitle;
+    }
 
     const cardContent = (
       <div
@@ -143,29 +168,28 @@ export default function TopicLecturesPage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             {isCompleted && <CheckCircle2 className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />}
-            <span className="text-xl sm:text-2xl font-semibold">{lecture.title}</span>
+            <span className="text-xl sm:text-2xl font-semibold">{displayTitle}</span>
           </div>
-           {(mode === 'notes' && lecture.notesLink && lecture.notesLink !== '#') || 
-            (mode === 'video' && lecture.videoEmbedType && lecture.videoEmbedUrl) ? (
+           {(mode === 'notes' && lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') || 
+            (mode === 'video' && lecture.videoEmbedUrl && lecture.videoEmbedUrl.trim() !== '') ? (
             <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
           ) : null}
         </div>
         <p className="text-sm text-muted-foreground mt-2 capitalize">
           {mode === 'notes' ? <FileText className="inline h-4 w-4 mr-1" /> : <Video className="inline h-4 w-4 mr-1" />}
-          {lecture.title} - {mode}
+          {displayTitle} - {mode}
         </p>
       </div>
     );
 
     const commonClickHandler = () => handleLectureClick(lecture);
 
-    if (mode === 'notes' && lecture.notesLink && lecture.notesLink !== '#') {
+    if (mode === 'notes' && lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') {
       return (
         <a
-          key={lecture.id}
+          key={lecture.id + '-notes'}
           href={lecture.notesLink}
-          // No target="_blank" to open in the same tab
-          rel="noopener noreferrer" // Still good for external links, though now same tab
+          rel="noopener noreferrer"
           className="w-full max-w-md block mb-6 cursor-pointer"
           onClick={commonClickHandler}
         >
@@ -174,15 +198,14 @@ export default function TopicLecturesPage() {
       );
     }
 
-    if (mode === 'video' && lecture.videoEmbedUrl) {
+    if (mode === 'video' && lecture.videoEmbedUrl && lecture.videoEmbedUrl.trim() !== '') {
       if (lecture.videoEmbedType === 'hls') {
         const externalPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl)}`;
         return (
           <a
-            key={lecture.id}
+            key={lecture.id + '-video-hls'}
             href={externalPlayerUrl}
             className="w-full max-w-md block mb-6 cursor-pointer"
-            // No target="_blank"
             rel="noopener noreferrer"
             onClick={commonClickHandler}
           >
@@ -192,7 +215,7 @@ export default function TopicLecturesPage() {
       } else { // YouTube or generic iframe, navigate internally
         return (
           <Link
-            key={lecture.id}
+            key={lecture.id + '-video-iframe'}
             href={`/courses/${courseId}/content/${mode}/${subjectParam}/${topicParam}/lectures/${encodeURIComponent(lecture.id)}/play`}
             className="w-full max-w-md block mb-6 cursor-pointer"
             onClick={commonClickHandler}
@@ -202,14 +225,14 @@ export default function TopicLecturesPage() {
         );
       }
     }
-
+    // If lecture is filtered out by the logic in useEffect, it shouldn't reach here often.
+    // This acts as a fallback if a lecture somehow passes filtering but isn't displayable.
     return (
        <div
-        key={lecture.id}
+        key={lecture.id + '-nodisplay'}
         className="w-full max-w-md block mb-6 cursor-default"
-        // No onClick needed for non-interactive cards
       >
-        {cardContent}
+        {cardContent} {/* Show the card, but it won't be interactive */}
       </div>
     );
   };
@@ -244,15 +267,15 @@ export default function TopicLecturesPage() {
           </h1>
 
           {statusMessage ? (
-            (topicName === 'Unknown Topic' || topicName === 'Invalid Topic' || statusMessage.includes('Could not load') || statusMessage.includes('not found') || statusMessage.includes('not recognized')) ? (
+            (topicName === 'Unknown Topic' || topicName === 'Invalid Topic' || statusMessage.includes('Could not load') || statusMessage.includes('not found') || statusMessage.includes('not recognized') || statusMessage.includes('No lectures available') || statusMessage.includes(`No ${mode} available`)) ? (
                  <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{statusMessage}</p>
             ) : (
                  <p className="text-xl text-muted-foreground">{statusMessage}</p>
             )
-          ) : lectures.length > 0 ? (
-            lectures.map((lecture, index) => renderLectureCard(lecture, index))
+          ) : displayedLectures.length > 0 ? (
+            displayedLectures.map((lecture, index) => renderLectureCard(lecture, index))
           ) : (
-             <p className="text-xl text-muted-foreground">Loading lectures or no lectures available for this topic.</p>
+             <p className="text-xl text-muted-foreground">Loading {mode} or no {mode} available for this topic.</p>
           )}
         </main>
 
@@ -288,3 +311,4 @@ export default function TopicLecturesPage() {
     </>
   );
 }
+
