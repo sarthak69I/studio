@@ -35,6 +35,7 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L3', title: 'Motion in a Plane L3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/63779615092842720.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408448/174974624946198296383/index_4.m3u8' },
         { id: 'L4', title: 'Motion in a Plane L4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/377581231189625900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409511/174983228258958296383/index_4.m3u8' },
         { id: 'L5', title: 'Motion in a Plane L5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/858212590728421200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410224/174991883860928296383/index_4.m3u8' },
+        { id: 'L6', title: 'Motion in a Plane L6', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4415009/175035109311478929414/index_4.m3u8' },
       ]
     },
     {
