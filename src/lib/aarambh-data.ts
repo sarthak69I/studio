@@ -200,6 +200,9 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L4', title: 'Real Numbers L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/805714130200073600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355458/174508004648941097666/index_5.m3u8' },
         { id: 'L5', title: 'Real Numbers L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/187284260099181220.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4356796/174525209654081097666/index_5.m3u8' },
         { id: 'L6', title: 'Real Numbers L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/601835403370027400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4357843/174533856999441097666/index_5.m3u8' },
+     { id: 'L7', title: 'Mathematics DPP 1', notesTitle: 'Mathematics DPP 1', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/665158324670948500.pdf` },
+      { id: 'L8', title: 'Mathematics DPP 2', notesTitle: 'Mathematics DPP 2', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/754506419720273500.pdf` },
+  { id: 'L9', title: 'Mathematics DPP 3', notesTitle: 'Mathematics DPP 3', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/50352740213663790.pdf` },
       ]
     },
     {
@@ -211,6 +214,9 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L4', title: 'Polynomials L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/555085639820711100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364779/174594155534621097666/index_5.m3u8' },
         { id: 'L5', title: 'Polynomials L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5742474Polynomials%20L5%20Aarambh%202026.pdf_Polynomials%20L5%20Aarambh%202026.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368398/174620142857631097666/index_5.m3u8' },
         { id: 'L6', title: 'Polynomials L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/196833841022277150.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370160/174628714218381097666/index_5.m3u8' },
+       { id: 'L7', title: 'Mathematics DPP 4', notesTitle: 'Mathematics DPP 4', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/77872188217647540.pdf` },
+  { id: 'L8', title: 'Mathematics DPP 5', notesTitle: 'Mathematics DPP 5', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/463630041745735040.pdf` },
+  { id: 'L9', title: 'Mathematics DPP 6', notesTitle: 'Mathematics DPP 6', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/353737326249153000.pdf` },
       ]
     },
     {
@@ -224,6 +230,9 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L6', title: 'Linear Equations L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/527607373820262850.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384128/174741081479871097666/index_5.m3u8' },
         { id: 'L7', title: 'Linear Equations L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/775070612422014800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384834/174749789730281097666/index_5.m3u8' },
         { id: 'L8', title: 'Linear Equations L8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/639498005252691500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4385006/174758500568421097666/index_5.m3u8' },
+       { id: 'L9', title: 'Mathematics DPP 7', notesTitle: 'Mathematics DPP 7', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/17162183325825642.pdf` },
+  { id: 'L10', title: 'Mathematics DPP 8', notesTitle: 'Mathematics DPP 8', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/609681176298919600.pdf` },
+  { id: 'L11', title: 'Mathematics DPP 9', notesTitle: 'Mathematics DPP 9', notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/623728210th%20Aarambh%20DPP%209.pdf_10th%20Aarambh%20DPP%209.pdf` },
       ]
     },
     {
@@ -237,6 +246,9 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L6', title: 'Trigonometry L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/846209721527154400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4392906/174827565494671097666/index_5.m3u8' },
         { id: 'L7', title: 'Trigonometry L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/57814913196021350.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394019/174836153096901097666/index_5.m3u8' },
         { id: 'L8', title: 'Trigonometry L8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/447306842114246300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397236/174861941652361097666/index_5.m3u8' },
+       { id: 'L9', title: 'Mathematics DPP 10', notesTitle: 'Mathematics DPP 10', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/629573474530629900.pdf` },
+  { id: 'L10', title: 'Mathematics DPP 11', notesTitle: 'Mathematics DPP 11', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/360874131302271400.pdf` },
+  { id: 'L11', title: 'Mathematics DPP 12', notesTitle: 'Mathematics DPP 12', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/793376952012110200.pdf` },
       ]
     },
     {
@@ -247,6 +259,9 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L3', title: 'Some Application of Trigonometry L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411382/175008869822868752407/index_4.m3u8' },
         { id: 'L4', title: 'Some Application of Trigonometry L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412636/175017526367988752407/index_4.m3u8' },
         { id: 'L5', title: 'Some Application of Trigonometry L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L16', title: 'Mathematics DPP 13', notesTitle: 'Mathematics DPP 13', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/295999082180152200.pdf` },
+  { id: 'L14', title: 'Mathematics DPP 14', notesTitle: 'Mathematics DPP 14', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/789844870294324200.pdf` },
+  { id: 'L15', title: 'Mathematics DPP 15', notesTitle: 'Mathematics DPP 15', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/11948867526303130.pdf` },
       ]
     }
   ],
