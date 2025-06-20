@@ -122,6 +122,13 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L1', title: 'Forest And Wildlife Resources L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411210/175007770550547125088/index_4.m3u8' },
         { id: 'L2', title: 'Forest And Wildlife Resources L2', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412488/175016414550777125088/index_4.m3u8' },
         { id: 'L3', title: 'Forest And Wildlife Resources L3', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413854/175026084256997125088/index_4.m3u8' },
+       ]
+    },
+    {
+      name: 'Sectors of the Indian Economy',
+      lectures: [
+        { id: 'L1', title: 'Sectors of the Indian Economy L1', notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414989/175034785995657125088/index_4.m3u8' },
+
       ] 
     }
   ],
