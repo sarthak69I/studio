@@ -113,6 +113,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
     badgeClass: 'bg-accent/20 text-accent',
   });
   const [isMounted, setIsMounted] = React.useState(false);
+  const [showPlayer, setShowPlayer] = React.useState(false); // New state
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -165,6 +166,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           cardBorderClass: 'border-accent',
           badgeClass: 'bg-accent/20 text-accent',
         });
+        setShowPlayer(false); // Reset player visibility if class becomes upcoming
       } else if (now >= classStartTime && now < classEndTime) {
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
         if (isVacationPeriod && liveStreamUrl) {
@@ -180,12 +182,12 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
             setClassStatus({
                 status: 'live',
                 badgeText: 'Live Now',
-                buttonText: 'JOIN NOW',
+                buttonText: 'JOIN LIVE NOW', // Changed for clarity
                 buttonDisabled: false,
                 cardBorderClass: 'border-destructive animate-live-pulse',
                 badgeClass: 'bg-destructive/20 text-destructive',
             });
-        } else {
+        } else { // No stream URL even if time matches (should not happen with current data)
             setClassStatus({
                 status: 'completed',
                 badgeText: 'No Session Scheduled',
@@ -194,8 +196,9 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
                 cardBorderClass: 'border-muted-foreground/50',
                 badgeClass: 'bg-muted/30 text-muted-foreground',
             });
+            setShowPlayer(false);
         }
-      } else {
+      } else { // Class time has passed
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
         setClassStatus({
           status: 'completed',
@@ -205,6 +208,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           cardBorderClass: 'border-green-500',
           badgeClass: 'bg-green-500/20 text-green-500',
         });
+        setShowPlayer(false); // Reset player visibility
       }
     };
 
@@ -213,6 +217,12 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
 
     return () => clearInterval(intervalId);
   }, [isMounted, targetHour, targetMinute, durationMinutes, liveStreamUrl]);
+
+  const handleJoinClick = () => {
+    if ((classStatus.status === 'live' || classStatus.status === 'recording_available') && liveStreamUrl) {
+      setShowPlayer(true);
+    }
+  };
 
   if (!isMounted) {
     return <div className="bg-card rounded-2xl p-6 shadow-lg relative overflow-hidden min-h-[200px] flex items-center justify-center"><p>Loading class info...</p></div>;
@@ -234,25 +244,38 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           <p className="text-lg">No live class or recording scheduled for this subject today.</p>
         </div>
       ) : (classStatus.status === 'live' || classStatus.status === 'recording_available') ? (
-        <>
-          <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-border bg-black my-4">
-            <iframe
-              src={liveStreamUrl}
-              title={`${subject} ${classStatus.status === 'live' ? 'Live Stream' : 'Recording'}`}
-              width="100%"
-              height="100%"
-              allowFullScreen
-              allow="autoplay; encrypted-media; picture-in-picture; web-share"
-              className="border-0"
-            ></iframe>
+        showPlayer ? (
+          <>
+            <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-border bg-black my-4">
+              <iframe
+                src={liveStreamUrl}
+                title={`${subject} ${classStatus.status === 'live' ? 'Live Stream' : 'Recording'}`}
+                width="100%"
+                height="100%"
+                allowFullScreen
+                allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                className="border-0"
+              ></iframe>
+            </div>
+            <p className="text-xs text-muted-foreground text-center -mt-2 mb-4">
+              Double-click on video to Full Screen.
+            </p>
+          </>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-8 min-h-[150px]">
+            <Button
+              onClick={handleJoinClick}
+              className={`w-full max-w-xs mx-auto py-3 text-base font-semibold rounded-full transition-all duration-300 ease-in-out
+                          ${classStatus.buttonDisabled ? 'bg-muted text-muted-foreground cursor-not-allowed' : 
+                            (classStatus.status === 'live' ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse' : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5') }`}
+              disabled={classStatus.buttonDisabled}
+            >
+              {classStatus.buttonText}
+            </Button>
+            <p className="text-sm text-muted-foreground mt-3">Click to start viewing</p>
           </div>
-          <p className="text-xs text-muted-foreground text-center -mt-2 mb-4">
-            {classStatus.status === 'live'
-              ? "Double-click on video to Full Screen."
-              : "Double-click on video to Full Screen"}
-          </p>
-        </>
-      ) : (
+        )
+      ) : ( // Upcoming or Completed (but not live/recording_available)
         <>
           <div className="flex justify-between mb-6">
             <div className="text-center bg-muted/30 p-3 rounded-lg min-w-[70px] sm:min-w-[80px] flex-1 mx-1">
@@ -268,14 +291,11 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
               <div className="text-xs uppercase text-muted-foreground opacity-70">Seconds</div>
             </div>
           </div>
-
           <Button
             className={`w-full py-3 text-base font-semibold rounded-full transition-all duration-300 ease-in-out
                         ${classStatus.buttonDisabled ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5'}`}
             disabled={classStatus.buttonDisabled}
-            onClick={() => {
-              // Action handled by iframe loading based on status
-            }}
+            // No onClick action needed for upcoming/completed button
           >
             {classStatus.buttonText}
           </Button>
@@ -442,3 +462,4 @@ export default function LiveClassesPage() {
     </div>
   );
 }
+
