@@ -16,8 +16,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogD
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
-import { Send, User, MessageSquarePlus, Star } from 'lucide-react';
-import RatingStars from '@/components/ui/rating-stars'; // Import new component
+import { Send, User, MessageSquarePlus, Star, KeyRound, AlertCircle } from 'lucide-react';
+import RatingStars from '@/components/ui/rating-stars';
+import { cn } from '@/lib/utils';
 
 // Schema for the main feedback text
 const feedbackTextSchema = z.object({
@@ -32,7 +33,9 @@ export default function FeedbackForm() {
   const [isUsernameDialogOpen, setIsUsernameDialogOpen] = React.useState(false);
   const [pendingFeedback, setPendingFeedback] = React.useState<FeedbackTextFormValues | null>(null);
   const [username, setUsername] = React.useState('');
-  const [currentRating, setCurrentRating] = React.useState(0); // For star rating component
+  const [passwordInput, setPasswordInput] = React.useState('');
+  const [passwordError, setPasswordError] = React.useState<string | null>(null);
+  const [currentRating, setCurrentRating] = React.useState(0);
 
   const feedbackTextForm = useForm<FeedbackTextFormValues>({
     resolver: zodResolver(feedbackTextSchema),
@@ -50,7 +53,16 @@ export default function FeedbackForm() {
   const handleFinalSubmit = async () => {
     if (!pendingFeedback) return;
 
+    // Admin password check
+    if (username.trim().toLowerCase() === 'admin') {
+      if (passwordInput !== 'admin123') {
+        setPasswordError('Incorrect admin password.');
+        return; // Stop submission
+      }
+    }
+
     setIsSubmitting(true);
+    setPasswordError(null);
     try {
       const feedbackData: any = {
         username: username.trim() || 'Anonymous',
@@ -70,6 +82,7 @@ export default function FeedbackForm() {
       setCurrentRating(0);
       setPendingFeedback(null);
       setUsername('');
+      setPasswordInput('');
       setIsUsernameDialogOpen(false);
     } catch (error) {
       console.error('Error submitting feedback:', error);
@@ -81,6 +94,16 @@ export default function FeedbackForm() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+  
+  const handleDialogClose = () => {
+    if (!isSubmitting) {
+        setPendingFeedback(null);
+        setUsername('');
+        setPasswordInput('');
+        setPasswordError(null);
+    }
+    setIsUsernameDialogOpen(false);
   };
 
   return (
@@ -131,13 +154,7 @@ export default function FeedbackForm() {
         </CardContent>
       </Card>
 
-      <Dialog open={isUsernameDialogOpen} onOpenChange={(open) => {
-        if (!open && !isSubmitting) {
-            setPendingFeedback(null);
-            setUsername('');
-        }
-        setIsUsernameDialogOpen(open);
-      }}>
+      <Dialog open={isUsernameDialogOpen} onOpenChange={(open) => { if (!open) handleDialogClose() }}>
         <DialogContent className="sm:max-w-md rounded-xl">
           <DialogHeader>
             <DialogTitle className="text-xl flex items-center">
@@ -154,20 +171,43 @@ export default function FeedbackForm() {
                 id="username-dialog"
                 placeholder="e.g. Alex"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  if (passwordError) setPasswordError(null);
+                }}
                 className="bg-background/80 focus:bg-background"
                 disabled={isSubmitting}
                 maxLength={50}
               />
                {username.length > 50 && <p className="text-sm text-destructive">Username must not exceed 50 characters.</p>}
             </div>
+            {username.trim().toLowerCase() === 'admin' && (
+              <div className="space-y-2 animate-fadeIn-custom">
+                <Label htmlFor="password-dialog" className="text-destructive flex items-center">
+                  <KeyRound className="mr-2 h-4 w-4" /> Admin Password Required
+                </Label>
+                <Input
+                  id="password-dialog"
+                  type="password"
+                  placeholder="Enter admin password"
+                  value={passwordInput}
+                  onChange={(e) => {
+                    setPasswordInput(e.target.value);
+                    if (passwordError) setPasswordError(null);
+                  }}
+                  className={cn("bg-background/80 focus:bg-background", passwordError && "border-destructive ring-destructive focus-visible:ring-destructive")}
+                  disabled={isSubmitting}
+                />
+                {passwordError && (
+                  <p className="text-sm text-destructive flex items-center"><AlertCircle className="mr-1 h-4 w-4" />{passwordError}</p>
+                )}
+              </div>
+            )}
           </div>
           <DialogFooter className="mt-2 flex flex-col sm:flex-row gap-2">
-             <DialogClose asChild>
-                <Button type="button" variant="outline" onClick={() => { setPendingFeedback(null); setUsername(''); }} disabled={isSubmitting}>
+             <Button type="button" variant="outline" onClick={handleDialogClose} disabled={isSubmitting}>
                     Cancel
                 </Button>
-            </DialogClose>
             <Button type="button" onClick={handleFinalSubmit} className="group" disabled={isSubmitting || username.length > 50}>
               {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
               <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
