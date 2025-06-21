@@ -50,57 +50,59 @@ const commerceOnlySubjects: CourseContentMap = {
     {
       name: 'Basic Concepts of Accounts',
       lectures: [
-        { id: 'L1', title: 'Basic Accounting terms L1', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/embed/N0UH3xznWko' },
-        { id: 'L2', title: 'Basic Accounting terms L2', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354736/174498147635838037481/index_3.m3u8' },
-        { id: 'L3', title: 'Basic Accounting terms L3', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355332/174506775549578037481/index_4.m3u8' },
-        { id: 'L4', title: 'Basic Accounting terms L4', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360049/174550144387958037481/index_3.m3u8' },
+        { id: 'L1', title: 'Basic Accounting terms L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/803820482603262600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/embed/N0UH3xznWko' },
+        { id: 'L2', title: 'Basic Accounting terms L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/774325982957170600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354736/174498147635838037481/index_3.m3u8' },
+        { id: 'L3', title: 'Basic Accounting terms L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/178085380838346560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355332/174506775549578037481/index_4.m3u8' },
+        { id: 'L4', title: 'Basic Accounting terms L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/578058390509307900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360049/174550144387958037481/index_3.m3u8' },
       ],
     },
     {
       name: 'Introduction To accounting',
       lectures: [
-        { id: 'L1', title: 'Introduction To Accounting L1', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361169/174558615865988037481/index_4.m3u8' },
-        { id: 'L2', title: 'Introduction To Accounting L2', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362045/174567417274348037481/index_4.m3u8' },
-        { id: 'L3', title: 'Introduction To Accounting L3', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367025/174610386875138037481/index_4.m3u8' },
-        { id: 'L4', title: 'Introduction To Accounting L4', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368221/174619101874588037481/index_4.m3u8' },
-        { id: 'L5', title: 'Introduction To Accounting L5', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370044/174627841879878037481/index_4.m3u8' },
+        { id: 'L1', title: 'Introduction To Accounting L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/863964617756794500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4361169/174558615865988037481/index_4.m3u8' },
+        { id: 'L2', title: 'Introduction To Accounting L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/731061565495302100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4362045/174567417274348037481/index_4.m3u8' },
+        { id: 'L3', title: 'Introduction To Accounting L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/501212161493975940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367025/174610386875138037481/index_4.m3u8' },
+        { id: 'L4', title: 'Introduction To Accounting L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/619345401735258600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368221/174619101874588037481/index_4.m3u8' },
+        { id: 'L5', title: 'Introduction To Accounting L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/799051154600758500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370044/174627841879878037481/index_4.m3u8' },
       ],
     },
     {
       name: 'Accounting Principles',
       lectures: [
-        { id: 'L1', title: 'Accounting Principles L1', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384771/174748750880628037481/index_4.m3u8' },
-        { id: 'L2', title: 'Accounting Principles L2', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4389259/174791900427358037481/index_4.m3u8' },
-        { id: 'L3', title: 'Accounting Principles L3', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4390873/174800541698838037481/index_4.m3u8' },
-        { id: 'L4', title: 'Accounting Principles L4', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4391460/174809140367138037481/index_4.m3u8' },
+        { id: 'L1', title: 'Accounting Principles L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/327670841992662850.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384771/174748750880628037481/index_4.m3u8' },
+        { id: 'L2', title: 'Accounting Principles L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/506006396632993300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4389259/174791900427358037481/index_4.m3u8' },
+        { id: 'L3', title: 'Accounting Principles L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/144372908741871100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4390873/174800541698838037481/index_4.m3u8' },
+        { id: 'L4', title: 'Accounting Principles L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/589667308579954700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4391460/174809140367138037481/index_4.m3u8' },
+        { id: 'L5', title: 'DOUBT SOLVING SESSION', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/789606722095046800.pdf` },
       ]
     },
     {
       name: 'Rule of Debit & Credit',
       lectures: [
-        { id: 'L1', title: 'Rule of Debit & Credit L1', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396176/174852449790338037481/index_4.m3u8' },
-        { id: 'L2', title: 'Rule of Debit & Credit L2', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397162/174861059962958037481/index_4.m3u8' },
-        { id: 'L3', title: 'Rule of Debit & Credit L3', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397746/174869594012398037481/index_4.m3u8' },
+        { id: 'L1', title: 'Rule of Debit & Credit L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/481438332371070000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4396176/174852449790338037481/index_4.m3u8' },
+        { id: 'L2', title: 'Rule of Debit & Credit L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/497142897763380200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397162/174861059962958037481/index_4.m3u8' },
+        { id: 'L3', title: 'Rule of Debit & Credit L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/161430676331339840.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4397746/174869594012398037481/index_4.m3u8' },
      ]
     },
     {
       name: ' Journal entries',
       lectures: [
-        { id: 'L1', title: 'Journal entries L1', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408325/174973307450318037481/index_4.m3u8' },
-        { id: 'L2', title: ' Journal entries L2', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409389/174982110860048037481/index_4.m3u8' },
-        { id: 'L3', title: ' Journal entries L3', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: '' },
-    { id: 'L4', title: ' Journal entries L4', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: '' },
-         { id: 'L5', title: ' Journal entries L5', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: '' },
-     ]
+        { id: 'L1', title: 'Journal entries L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/666624169512282000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408325/174973307450318037481/index_4.m3u8' },
+        { id: 'L2', title: ' Journal entries L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/694223550151547400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409389/174982110860048037481/index_4.m3u8' },
+        { id: 'L3', title: ' Journal entries L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/46811810398189170.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L4', title: ' Journal entries L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/864730540488885000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L5', title: ' Journal entries L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/81500474716869970.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L6', title: ' Journal entries - Doubt Solving Session', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/329082110115233150.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '' },
+      ]
     },
     {
       name: 'Accounting Equations',
       lectures: [
-        { id: 'L1', title: 'Accounting Equations L1', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376039/174670969584618037481/index_4.m3u8' },
-        { id: 'L2', title: 'Accounting Equations L2', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377210/174679578632678037481/index_4.m3u8' },
-        { id: 'L3', title: 'Accounting Equations L3', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377926/174688241250748037481/index_4.m3u8' },
-        { id: 'L4', title: 'Accounting Equations L4', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4382851/174731428796208037481/index_4.m3u8' },
-        { id: 'L5', title: 'Accounting Equations L5', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384003/174739986338128037481/index_4.m3u8' },
+        { id: 'L1', title: 'Accounting Equations L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/854530337505626200.PDF`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376039/174670969584618037481/index_4.m3u8' },
+        { id: 'L2', title: 'Accounting Equations L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/143098651680953120.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377210/174679578632678037481/index_4.m3u8' },
+        { id: 'L3', title: 'Accounting Equations L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/206998002243398940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377926/174688241250748037481/index_4.m3u8' },
+        { id: 'L4', title: 'Accounting Equations L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/502302909891879900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4382851/174731428796208037481/index_4.m3u8' },
+        { id: 'L5', title: 'Accounting Equations L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/383055783158645440.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384003/174739986338128037481/index_4.m3u8' },
       ]
     }
   ],
