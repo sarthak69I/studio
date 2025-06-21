@@ -30,7 +30,7 @@ auth = getAuth(app);
 
 const googleProvider = new GoogleAuthProvider();
 
-export const saveUserToFirestore = async (user: User) => {
+export const saveUserToFirestore = async (user: User): Promise<boolean> => {
   const userRef = doc(db, 'users', user.uid);
   const docSnap = await getDoc(userRef);
 
@@ -44,22 +44,19 @@ export const saveUserToFirestore = async (user: User) => {
       createdAt: serverTimestamp(),
       lastLogin: serverTimestamp(),
     });
+    return true; // Indicates a new user was created
   } else {
     // User exists, update last login time
     await setDoc(userRef, { lastLogin: serverTimestamp() }, { merge: true });
+    return false; // Indicates an existing user logged in
   }
 };
 
 export const signInWithGoogle = async () => {
   try {
-    // Set a flag in sessionStorage. This helps us know the user just tried to sign in
-    // when they are redirected back to the app.
-    sessionStorage.setItem('isNewLogin', 'true');
     await signInWithRedirect(auth, googleProvider);
   } catch (error) {
     console.error("Error initiating Google sign-in redirect:", error);
-    // If there's an error, remove the flag.
-    sessionStorage.removeItem('isNewLogin');
   }
 };
 
