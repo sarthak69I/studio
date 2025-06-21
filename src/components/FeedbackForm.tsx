@@ -1,4 +1,3 @@
-
 // src/components/FeedbackForm.tsx
 'use client';
 
@@ -20,10 +19,18 @@ import { Send, User, MessageSquarePlus, Star, KeyRound, AlertCircle } from 'luci
 import RatingStars from '@/components/ui/rating-stars';
 import { cn } from '@/lib/utils';
 
-// Schema for the main feedback text
+// Schema for the main feedback text with added validation
 const feedbackTextSchema = z.object({
-  feedbackText: z.string().min(10, { message: 'Feedback must be at least 10 characters.' }).max(1000, { message: 'Feedback must not exceed 1000 characters.' }),
-  rating: z.number().min(0).max(5).optional(), // Rating is 0-5, 0 means not rated
+  feedbackText: z.string()
+    .min(10, { message: 'Feedback must be at least 10 characters.' })
+    .max(1000, { message: 'Feedback must not exceed 1000 characters.' })
+    .refine(value => !/\d/.test(value), {
+      message: 'Feedback should not contain numbers.',
+    })
+    .refine(value => !/https?:\/\//.test(value), {
+      message: 'Feedback should not contain links or URLs.',
+    }),
+  rating: z.number().min(0).max(5).optional(),
 });
 type FeedbackTextFormValues = z.infer<typeof feedbackTextSchema>;
 
@@ -218,4 +225,3 @@ export default function FeedbackForm() {
     </>
   );
 }
-

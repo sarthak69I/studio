@@ -58,6 +58,10 @@ function AppContent({ children }: { children: ReactNode }) {
   const [globallyLatestFetchedTimestamp, setGloballyLatestFetchedTimestamp] = useState<number>(0);
   const initialLoadDone = useRef(false);
 
+  // --- FEATURE FLAG ---
+  const SHOW_FEEDBACK_SECTION = false;
+  // --- END FEATURE FLAG ---
+
   const markNotificationsAsViewed = useCallback((viewedTimestamp: number) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem(LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY, viewedTimestamp.toString());
@@ -212,11 +216,13 @@ function AppContent({ children }: { children: ReactNode }) {
     const shouldShowPrompts = !excludedPathsForPrompt.includes(pathname) && !showMaintenance;
 
     if (shouldShowPrompts) {
-      // Logic for feedback prompt
-      const lastFeedbackPromptTime = localStorage.getItem('lastFeedbackPromptTime');
-      const feedbackIntervalMs = FEEDBACK_PROMPT_INTERVAL_HOURS * 60 * 60 * 1000;
-      if (!lastFeedbackPromptTime || (Date.now() - parseInt(lastFeedbackPromptTime, 10) > feedbackIntervalMs)) {
-        setShowFeedbackPrompt(true);
+      // Logic for feedback prompt - only show if feature is enabled
+      if (SHOW_FEEDBACK_SECTION) {
+        const lastFeedbackPromptTime = localStorage.getItem('lastFeedbackPromptTime');
+        const feedbackIntervalMs = FEEDBACK_PROMPT_INTERVAL_HOURS * 60 * 60 * 1000;
+        if (!lastFeedbackPromptTime || (Date.now() - parseInt(lastFeedbackPromptTime, 10) > feedbackIntervalMs)) {
+          setShowFeedbackPrompt(true);
+        }
       }
       
       // Logic for login prompt
@@ -232,7 +238,7 @@ function AppContent({ children }: { children: ReactNode }) {
       setShowLoginPrompt(false);
     }
 
-  }, [pathname, showMaintenance, authLoading, user]);
+  }, [pathname, showMaintenance, authLoading, user, SHOW_FEEDBACK_SECTION]);
 
   const excludedPathsForFeatures = ['/help-center', '/generate-access', '/auth/callback'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
@@ -346,11 +352,15 @@ function AppContent({ children }: { children: ReactNode }) {
 
       {showAppFeatures && (
         <div ref={feedbackSectionRef} className="container mx-auto px-4 py-8 md:py-12">
-          <Separator className="my-8 md:my-12" />
-          <div className="flex flex-col items-center gap-10 md:gap-16">
-            <FeedbackForm />
-            <FeedbackList />
-          </div>
+          {SHOW_FEEDBACK_SECTION && (
+            <>
+              <Separator className="my-8 md:my-12" />
+              <div className="flex flex-col items-center gap-10 md:gap-16">
+                <FeedbackForm />
+                <FeedbackList />
+              </div>
+            </>
+          )}
           <div className="mt-16 mb-8 text-center">
             <p className="text-muted-foreground mb-2">Need Support?</p>
             <Link href="/help-center">
@@ -380,7 +390,7 @@ function AppContent({ children }: { children: ReactNode }) {
         </>
       )}
 
-      {showAppFeatures && showFeedbackPrompt && (
+      {showAppFeatures && SHOW_FEEDBACK_SECTION && showFeedbackPrompt && (
          <FeedbackPromptDialog
           open={showFeedbackPrompt}
           onOpenChange={(isOpen) => {
@@ -405,7 +415,7 @@ function AppContent({ children }: { children: ReactNode }) {
   );
 }
 
-export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperProps) {
+export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <AuthProvider>
       <AppContent>{children}</AppContent>
