@@ -4,6 +4,7 @@
 import React, { createContext, useContext, ReactNode, useEffect, useRef } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, signInWithGoogle, saveUserToFirestore } from '@/lib/firebase';
+import { getRedirectResult } from "firebase/auth";
 import type { User } from 'firebase/auth';
 import { useToast } from '@/hooks/use-toast';
 
@@ -19,31 +20,40 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { toast } = useToast();
   const [user, loading, error] = useAuthState(auth);
-  // Use a ref to track if the post-login logic has already run for this user instance
-  const processedUserRef = useRef<string | null>(null);
+  // Ref to prevent showing the welcome message more than once per session
+  const welcomeToastShownRef = useRef(false);
 
   useEffect(() => {
-    // This effect handles the post-login logic after a redirect.
-    if (!loading && user && user.uid !== processedUserRef.current) {
-      // A user is logged in, and we haven't processed this specific user yet.
-      
-      saveUserToFirestore(user).then((isNewUser) => {
-         toast({
-           title: 'Sign In Successful!',
-           description: `${isNewUser ? 'Welcome to E-Leak' : 'Welcome back'}, ${user.displayName || 'User'}!`,
-         });
-      });
+    const processRedirectResult = async () => {
+      // Don't run if the main auth state is still loading, or if we've already welcomed the user.
+      if (loading || welcomeToastShownRef.current) return;
 
-      // Mark this user as processed to prevent the effect from re-running
-      processedUserRef.current = user.uid;
-    }
+      try {
+        const result = await getRedirectResult(auth);
 
-    // If the user signs out, reset the ref.
-    if (!loading && !user) {
-      processedUserRef.current = null;
-    }
+        // If 'result' is not null, the user has just signed in via redirect.
+        if (result && result.user) {
+          // Mark the toast as shown *before* we show it to prevent race conditions
+          welcomeToastShownRef.current = true;
+          const isNewUser = await saveUserToFirestore(result.user);
+          toast({
+            title: 'Sign In Successful!',
+            description: `${isNewUser ? 'Welcome to E-Leak' : 'Welcome back'}, ${result.user.displayName || 'User'}!`,
+          });
+        }
+      } catch (redirectError) {
+        // Handle specific errors from the redirect result if necessary
+        console.error('Error processing redirect result:', redirectError);
+        toast({
+          variant: 'destructive',
+          title: 'Sign-in failed',
+          description: 'Could not complete the sign-in process. Please try again.',
+        });
+      }
+    };
 
-  }, [user, loading, toast]);
+    processRedirectResult();
+  }, [loading, toast]); // Dependency on `loading` ensures it runs after initial auth state is determined.
 
   const value = {
     user,
