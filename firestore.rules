@@ -3,24 +3,31 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // Feedback can be read by anyone, and created by anyone.
-    // Replies can be created by anyone.
+    // Public feedback collection
     match /feedback/{feedbackId} {
-      allow read, create;
-      
+      allow read, create: if true;
+      // Only authenticated users can update/delete feedback (for future moderation)
+      allow update, delete: if request.auth != null;
+
+      // Public replies
       match /replies/{replyId} {
-        allow read, create;
+        allow read, create: if true;
       }
     }
-    
-    // Rules for the users collection
+
+    // Users collection
     match /users/{userId} {
-      // A user can create their own document if they are signed in and the UID matches.
+      // Anyone can read user data (e.g., for showing author names)
+      allow read: if true;
+
+      // An authenticated user can create their own user document
       allow create: if request.auth != null && request.auth.uid == userId;
-      
-      // A user can read or update their own document if they are signed in and the UID matches.
-      allow read, update: if request.auth != null && request.auth.uid == userId;
+
+      // An authenticated user can update their own user document
+      allow update: if request.auth != null && request.auth.uid == userId;
+
+      // Disallow deletion of user documents from the client
+      allow delete: if false;
     }
   }
 }
