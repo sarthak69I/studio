@@ -2,7 +2,7 @@
 // src/lib/firebase.ts
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import { getFirestore, setDoc, doc, serverTimestamp, getDoc, type Firestore } from "firebase/firestore";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, type Auth, type User } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithRedirect, signOut, type Auth, type User } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -30,7 +30,7 @@ auth = getAuth(app);
 
 const googleProvider = new GoogleAuthProvider();
 
-const saveUserToFirestore = async (user: User) => {
+export const saveUserToFirestore = async (user: User) => {
   const userRef = doc(db, 'users', user.uid);
   const docSnap = await getDoc(userRef);
 
@@ -52,13 +52,11 @@ const saveUserToFirestore = async (user: User) => {
 
 export const signInWithGoogle = async () => {
   try {
-    const result = await signInWithPopup(auth, googleProvider);
-    const user = result.user;
-    await saveUserToFirestore(user);
-    return user;
+    // This doesn't return a user, it just starts the redirect flow.
+    // The result is handled by the useAuthState hook when the user returns to the app.
+    await signInWithRedirect(auth, googleProvider);
   } catch (error) {
-    console.error("Error during Google sign-in:", error);
-    return null;
+    console.error("Error initiating Google sign-in redirect:", error);
   }
 };
 
