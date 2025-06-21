@@ -50,7 +50,7 @@ const commerceOnlySubjects: CourseContentMap = {
     {
       name: 'Basic Concepts of Accounts',
       lectures: [
-        { id: 'L1', title: 'Basic Accounting terms L1', notesTitle: "", notesLink: `#`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/N0UH3xznWko' },
+        { id: 'L1', title: 'Basic Accounting terms L1', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/embed/N0UH3xznWko' },
         { id: 'L2', title: 'Basic Accounting terms L2', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354736/174498147635838037481/index_3.m3u8' },
         { id: 'L3', title: 'Basic Accounting terms L3', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355332/174506775549578037481/index_4.m3u8' },
         { id: 'L4', title: 'Basic Accounting terms L4', notesTitle: "", notesLink: `#`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4360049/174550144387958037481/index_3.m3u8' },
