@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, HelpCircle, Sun, Moon, Bot, Download } from 'lucide-react'; // Removed Bell
+import { Menu, HelpCircle, Sun, Moon, Bot, Download, LogIn, LayoutDashboard } from 'lucide-react';
 import Image from 'next/image';
 import {
   Sheet,
@@ -25,6 +25,9 @@ import {
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
+import { useAuth } from '@/context/AuthContext';
+import { signInWithGoogle } from '@/lib/firebase';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 interface Course {
   id: string;
@@ -126,6 +129,7 @@ const coursesData: Course[] = [
 export default function HomePage() {
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
+  const { user, loading: authLoading } = useAuth();
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
@@ -145,6 +149,11 @@ export default function HomePage() {
     document.documentElement.className = newTheme;
     localStorage.setItem('theme', newTheme);
   };
+  
+  const getInitials = (name: string | null | undefined) => {
+    if (!name) return 'U';
+    return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+  }
 
   return (
     <>
@@ -183,6 +192,35 @@ export default function HomePage() {
               <SheetTitle className="text-2xl font-semibold">Menu</SheetTitle>
             </SheetHeader>
             <div className="space-y-1 p-4 flex-grow">
+              
+              {user ? (
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                  aria-label="Go to Dashboard"
+                  asChild
+                >
+                  <Link href="/dashboard" className="flex items-center">
+                    <Avatar className="mr-3 h-7 w-7">
+                      <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
+                      <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
+                    </Avatar>
+                    My Dashboard
+                  </Link>
+                </Button>
+              ) : (
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                  aria-label="Sign In"
+                  onClick={signInWithGoogle}
+                  disabled={authLoading}
+                >
+                  <LogIn className="mr-3 h-5 w-5 text-primary" />
+                  {authLoading ? 'Signing in...' : 'Sign In / Register'}
+                </Button>
+              )}
+
               <Button
                 variant="ghost"
                 className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"

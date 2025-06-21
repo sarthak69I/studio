@@ -1,4 +1,3 @@
-
 // src/lib/shared-class11-subjects-data.ts
 import type { CourseContentMap } from './course-utils';
 

@@ -1,8 +1,8 @@
 
 // src/lib/firebase.ts
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
-import { getFirestore, type Firestore } from "firebase/firestore";
-// import { getAuth, type Auth } from "firebase/auth"; // If you need auth later
+import { getFirestore, setDoc, doc, serverTimestamp, getDoc, type Firestore } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, type Auth, type User } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,7 +17,7 @@ const firebaseConfig = {
 
 let app: FirebaseApp;
 let db: Firestore;
-// let auth: Auth; // If you need auth later
+let auth: Auth;
 
 if (getApps().length === 0) {
   app = initializeApp(firebaseConfig);
@@ -26,6 +26,48 @@ if (getApps().length === 0) {
 }
 
 db = getFirestore(app);
-// auth = getAuth(app); // If you need auth later
+auth = getAuth(app);
 
-export { app, db /*, auth */ };
+const googleProvider = new GoogleAuthProvider();
+
+const saveUserToFirestore = async (user: User) => {
+  const userRef = doc(db, 'users', user.uid);
+  const docSnap = await getDoc(userRef);
+
+  if (!docSnap.exists()) {
+    // User is new, create a new document
+    await setDoc(userRef, {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      createdAt: serverTimestamp(),
+      lastLogin: serverTimestamp(),
+    });
+  } else {
+    // User exists, update last login time
+    await setDoc(userRef, { lastLogin: serverTimestamp() }, { merge: true });
+  }
+};
+
+export const signInWithGoogle = async () => {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+    await saveUserToFirestore(user);
+    return user;
+  } catch (error) {
+    console.error("Error during Google sign-in:", error);
+    return null;
+  }
+};
+
+export const logout = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error("Error signing out:", error);
+  }
+};
+
+export { app, db, auth };
