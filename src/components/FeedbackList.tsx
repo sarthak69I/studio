@@ -7,7 +7,7 @@ import { db } from '@/lib/firebase';
 import { collection, query, orderBy, onSnapshot, Timestamp, type DocumentData, addDoc, serverTimestamp, doc } from 'firebase/firestore';
 import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { MessageSquareText, CalendarDays, UserCircle, MessageSquareReply, Send, CornerDownRight, User, Eye, EyeOff, Star } from 'lucide-react';
+import { MessageSquareText, CalendarDays, UserCircle, MessageSquareReply, Send, CornerDownRight, User, Eye, EyeOff, Star, KeyRound, AlertCircle } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -15,7 +15,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from '@/components/ui/dialog';
-import RatingStars from '@/components/ui/rating-stars'; // Import the RatingStars component
+import RatingStars from '@/components/ui/rating-stars';
+import { cn } from '@/lib/utils';
 
 interface FeedbackEntry {
   id: string;
@@ -48,6 +49,8 @@ export default function FeedbackList() {
   const [isReplyUsernameDialogOpen, setIsReplyUsernameDialogOpen] = React.useState(false);
   const [pendingReplyData, setPendingReplyData] = React.useState<{ feedbackId: string; text: string } | null>(null);
   const [replyUsername, setReplyUsername] = React.useState('');
+  const [replyPasswordInput, setReplyPasswordInput] = React.useState('');
+  const [replyPasswordError, setReplyPasswordError] = React.useState<string | null>(null);
   const [isSubmittingReply, setIsSubmittingReply] = React.useState(false);
 
 
@@ -109,8 +112,6 @@ export default function FeedbackList() {
       });
       setIsLoadingReplies(prev => ({ ...prev, [feedbackId]: false }));
     });
-    // TODO: Manage unsubscription for replies, e.g., store unsubscribe functions and call on component unmount
-    // or when a specific feedback item is no longer relevant/visible.
   };
 
   const handleToggleReplyForm = (feedbackId: string) => {
@@ -142,7 +143,16 @@ export default function FeedbackList() {
 
   const handleFinalReplySubmit = async () => {
     if (!pendingReplyData) return;
+
+    if (replyUsername.trim().toLowerCase() === 'admin') {
+      if (replyPasswordInput !== 'admin123') {
+        setReplyPasswordError('Incorrect admin password.');
+        return;
+      }
+    }
+    
     setIsSubmittingReply(true);
+    setReplyPasswordError(null);
     try {
       const { feedbackId, text } = pendingReplyData;
       await addDoc(collection(db, 'feedback', feedbackId, 'replies'), {
@@ -157,10 +167,11 @@ export default function FeedbackList() {
       setCurrentReplyText('');
       setReplyingToFeedbackId(null);
       setReplyUsername('');
+      setReplyPasswordInput('');
       setPendingReplyData(null);
       setIsReplyUsernameDialogOpen(false);
       setExpandedReplies(prev => ({ ...prev, [feedbackId]: true })); 
-      fetchReplies(feedbackId); // Re-fetch replies for this specific feedback item
+      fetchReplies(feedbackId);
     } catch (error) {
       console.error('Error submitting reply:', error);
       toast({
@@ -178,6 +189,16 @@ export default function FeedbackList() {
     if (!feedbackReplies[feedbackId] && !isLoadingReplies[feedbackId] && !expandedReplies[feedbackId]) {
         fetchReplies(feedbackId); // Fetch if not already fetched and not loading, and about to expand
     }
+  };
+
+  const handleReplyDialogClose = () => {
+    if (!isSubmittingReply) {
+      setPendingReplyData(null);
+      setReplyUsername('');
+      setReplyPasswordInput('');
+      setReplyPasswordError(null);
+    }
+    setIsReplyUsernameDialogOpen(false);
   };
 
 
@@ -201,7 +222,7 @@ export default function FeedbackList() {
                     <Skeleton className="h-5 w-2/5" />
                     <Skeleton className="h-4 w-1/4" />
                 </div>
-                 <Skeleton className="h-5 w-1/3 mt-1" /> {/* Skeleton for rating */}
+                 <Skeleton className="h-5 w-1/3 mt-1" />
               </CardHeader>
               <CardContent className="pt-2 pb-4">
                 <Skeleton className="h-4 w-full mb-2" />
@@ -262,9 +283,8 @@ export default function FeedbackList() {
                                 {expandedReplies[entry.id] ? 'Hide Replies' : `View ${feedbackReplies[entry.id].length} Repl${feedbackReplies[entry.id].length === 1 ? 'y' : 'ies'}`}
                             </Button>
                         )}
-                        {/* Ensure there's a placeholder if no "View Replies" button to keep "Reply" button on right */}
                         {!isLoadingReplies[entry.id] && (!feedbackReplies[entry.id] || feedbackReplies[entry.id].length === 0) && (
-                            <div></div> // Empty div for spacing if no view replies button
+                            <div></div>
                         )}
                        <Button
                         variant="ghost"
@@ -323,13 +343,7 @@ export default function FeedbackList() {
         )}
       </div>
 
-      <Dialog open={isReplyUsernameDialogOpen} onOpenChange={(open) => {
-        if (!open && !isSubmittingReply) {
-            setPendingReplyData(null);
-            setReplyUsername('');
-        }
-        setIsReplyUsernameDialogOpen(open);
-      }}>
+      <Dialog open={isReplyUsernameDialogOpen} onOpenChange={(open) => { if (!open) handleReplyDialogClose(); }}>
         <DialogContent className="sm:max-w-md rounded-xl">
           <DialogHeader>
             <DialogTitle className="text-xl flex items-center">
@@ -346,20 +360,43 @@ export default function FeedbackList() {
                 id="reply-username-dialog"
                 placeholder="Your name (e.g., Alex)"
                 value={replyUsername}
-                onChange={(e) => setReplyUsername(e.target.value)}
+                onChange={(e) => {
+                  setReplyUsername(e.target.value);
+                  if (replyPasswordError) setReplyPasswordError(null);
+                }}
                 className="bg-background/80 focus:bg-background"
                 disabled={isSubmittingReply}
                 maxLength={50}
               />
               {replyUsername.length > 50 && <p className="text-sm text-destructive">Username must not exceed 50 characters.</p>}
             </div>
+            {replyUsername.trim().toLowerCase() === 'admin' && (
+               <div className="space-y-2 animate-fadeIn-custom">
+                <Label htmlFor="reply-password-dialog" className="text-destructive flex items-center">
+                  <KeyRound className="mr-2 h-4 w-4" /> Admin Password Required
+                </Label>
+                <Input
+                  id="reply-password-dialog"
+                  type="password"
+                  placeholder="Enter admin password"
+                  value={replyPasswordInput}
+                  onChange={(e) => {
+                    setReplyPasswordInput(e.target.value);
+                    if (replyPasswordError) setReplyPasswordError(null);
+                  }}
+                  className={cn("bg-background/80 focus:bg-background", replyPasswordError && "border-destructive ring-destructive focus-visible:ring-destructive")}
+                  disabled={isSubmittingReply}
+                />
+                {replyPasswordError && (
+                  <p className="text-sm text-destructive flex items-center"><AlertCircle className="mr-1 h-4 w-4" />{replyPasswordError}</p>
+                )}
+              </div>
+            )}
           </div>
           <DialogFooter className="mt-2 flex flex-col sm:flex-row gap-2">
-             <DialogClose asChild>
-                <Button type="button" variant="outline" onClick={() => { setPendingReplyData(null); setReplyUsername(''); }} disabled={isSubmittingReply}>
+             <Button type="button" variant="outline" onClick={handleReplyDialogClose} disabled={isSubmittingReply}>
                     Cancel
                 </Button>
-            </DialogClose>
             <Button type="button" onClick={handleFinalReplySubmit} className="group" disabled={isSubmittingReply || replyUsername.length > 50}>
               {isSubmittingReply ? 'Posting Reply...' : 'Post Reply'}
               <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
