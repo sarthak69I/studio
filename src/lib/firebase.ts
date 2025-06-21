@@ -1,8 +1,8 @@
-
 // src/lib/firebase.ts
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import { getFirestore, setDoc, doc, serverTimestamp, getDoc, type Firestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithRedirect, signOut, type Auth, type User } from "firebase/auth";
+import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,6 +24,15 @@ if (getApps().length === 0) {
 } else {
   app = getApps()[0];
 }
+
+// Initialize App Check
+if (typeof window !== 'undefined') {
+  initializeAppCheck(app, {
+    provider: new ReCaptchaV3Provider('6Lfg6WgrAAAAAPK83a_ApBr48YtFVVimC2CqvhCd'),
+    isTokenAutoRefreshEnabled: true
+  });
+}
+
 
 db = getFirestore(app);
 auth = getAuth(app);
