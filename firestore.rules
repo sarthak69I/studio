@@ -3,37 +3,24 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Users can only read/write their own user document
-    match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-
-    // Feedback collection rules
+    
+    // Feedback can be read by anyone, and created by anyone.
+    // Replies can be created by anyone.
     match /feedback/{feedbackId} {
-      // Anyone can read feedback.
-      allow read: if true;
-
-      // Anyone can create (submit) new feedback.
-      // This is open for public submission. For more security, you could
-      // enforce authentication by changing this to: if request.auth != null;
-      allow create: if true;
-
-      // For simplicity and security, updating/deleting is disabled for now.
-      // To enable this, you would need to store the author's UID on each document
-      // and check it here.
-      allow update, delete: if false;
-
-      // Rules for the 'replies' subcollection within each feedback document
+      allow read, create;
+      
       match /replies/{replyId} {
-        // Anyone can read replies.
-        allow read: if true;
-
-        // Anyone can create (post) new replies.
-        allow create: if true;
-
-        // For simplicity and security, updating/deleting is disabled for now.
-        allow update, delete: if false;
+        allow read, create;
       }
+    }
+    
+    // Rules for the users collection
+    match /users/{userId} {
+      // A user can create their own document if they are signed in and the UID matches.
+      allow create: if request.auth != null && request.auth.uid == userId;
+      
+      // A user can read or update their own document if they are signed in and the UID matches.
+      allow read, update: if request.auth != null && request.auth.uid == userId;
     }
   }
 }

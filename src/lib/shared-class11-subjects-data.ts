@@ -146,4 +146,4 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
       ]
     }
   ]
-};
+}; 
