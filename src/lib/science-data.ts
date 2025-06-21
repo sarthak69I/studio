@@ -95,7 +95,7 @@ const scienceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Redox Reaction 1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/599116557212790000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411390/175008942555082764802/index_5.m3u8' },
         { id: 'L2', title: 'Redox Reaction 2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/774174145147878800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412647/175017601245432764802/index_5.m3u8' },
-        { id: 'L3', title: 'Redox Reaction 3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413737/175025171821132764802/index_5.m3u8' },
+        { id: 'L3', title: 'Redox Reaction 3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/566424016679826750.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413737/175025171821132764802/index_5.m3u8' },
       ]
     },
   ],
