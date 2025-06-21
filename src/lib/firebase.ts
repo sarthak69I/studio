@@ -52,11 +52,14 @@ export const saveUserToFirestore = async (user: User) => {
 
 export const signInWithGoogle = async () => {
   try {
-    // This doesn't return a user, it just starts the redirect flow.
-    // The result is handled by the useAuthState hook when the user returns to the app.
+    // Set a flag in sessionStorage. This helps us know the user just tried to sign in
+    // when they are redirected back to the app.
+    sessionStorage.setItem('isNewLogin', 'true');
     await signInWithRedirect(auth, googleProvider);
   } catch (error) {
     console.error("Error initiating Google sign-in redirect:", error);
+    // If there's an error, remove the flag.
+    sessionStorage.removeItem('isNewLogin');
   }
 };
 

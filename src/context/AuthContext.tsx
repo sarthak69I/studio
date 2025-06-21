@@ -19,23 +19,25 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { toast } = useToast();
   const [user, loading, error] = useAuthState(auth);
-  const prevLoadingRef = useRef(true); // Assume it's loading initially
 
   useEffect(() => {
-    // This effect detects the moment authentication finishes after a redirect.
-    // It checks if the PREVIOUS state was loading, and the CURRENT state is not.
-    if (prevLoadingRef.current && !loading) {
-      if (user) {
-        // This is the moment a user has successfully signed in.
+    // This effect handles the post-login logic after a redirect.
+    if (!loading && user) {
+      // Check if our 'isNewLogin' flag was set in sessionStorage before the redirect.
+      const isNewLogin = sessionStorage.getItem('isNewLogin');
+
+      if (isNewLogin === 'true') {
+        // The user has just logged in.
         saveUserToFirestore(user);
         toast({
           title: 'Sign In Successful!',
           description: `Welcome back, ${user.displayName || 'User'}!`,
         });
+
+        // IMPORTANT: Remove the flag so this block doesn't run again on page refresh.
+        sessionStorage.removeItem('isNewLogin');
       }
     }
-    // Update the ref to the current loading state for the next render.
-    prevLoadingRef.current = loading;
   }, [user, loading, toast]);
 
   const value = {
