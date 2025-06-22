@@ -30,7 +30,7 @@ import type { Announcement as AnnouncementType } from '@/components/Notification
 import { useToast } from '@/hooks/use-toast';
 
 const MAINTENANCE_MODE_ENABLED = true;
-const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
+const MAINTENANCE_END_TIME_HHMM: string | null = "13:00";
 const FEEDBACK_PROMPT_INTERVAL_HOURS = 20;
 const LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY = 'eleakLastNotificationsSheetOpenedAt_v3';
 const LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY = 'eleakLastToastedAnnouncementTimestamp_v3';
