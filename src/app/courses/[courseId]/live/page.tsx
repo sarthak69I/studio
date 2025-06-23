@@ -29,7 +29,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class2Subject: "PHYSICS",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/e01baa20ccaf46c3b67bec6d03ff6138/index_1.m3u8')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_3.m3u8')}`,
-    class1Visible: false,
+    class1Visible: true,
     class2Visible: true,
   },
     '2': { // Commece
@@ -60,7 +60,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_1.m3u8')}`, 
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_1.m3u8')}`, 
     class1Visible: true,
-    class2Visible: false,
+    class2Visible: true,
   }
 };
 
