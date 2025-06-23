@@ -134,7 +134,8 @@ export const aarambhCourseContent: CourseContentMap = {
       name: 'Sectors of the Indian Economy',
       lectures: [
         { id: 'L1', title: 'Sectors of the Indian Economy L1', notesTitle: "Sectors of the Indian Economy - 1", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/606322833395919900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414989/175034785995657125088/index_4.m3u8' },
-
+        { id: 'L2', title: 'Sectors of Indian Economy 2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417609/175068233385897125088/index_4.m3u8' },
+        
       ]
     }
   ],
