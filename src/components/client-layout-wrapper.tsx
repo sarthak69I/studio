@@ -28,26 +28,26 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import NotificationItem from '@/components/NotificationItem';
 import type { Announcement as AnnouncementType } from '@/components/NotificationItem';
 import { useToast } from '@/hooks/use-toast';
+import { AuthProvider, useAuth } from '@/context/AuthContext';
+import LoginPromptDialog from './LoginPromptDialog';
 
-const MAINTENANCE_MODE_ENABLED = true;
-const MAINTENANCE_END_TIME_HHMM: string | null = "13:00";
+const MAINTENANCE_MODE_ENABLED = false;
+const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
 const FEEDBACK_PROMPT_INTERVAL_HOURS = 20;
 const LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY = 'eleakLastNotificationsSheetOpenedAt_v3';
 const LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY = 'eleakLastToastedAnnouncementTimestamp_v3';
 const NOTIFICATIONS_POLL_INTERVAL_MS = 30000; // Poll every 30 seconds
 const ANNOUNCEMENTS_FETCH_LIMIT = 20;
 
-interface ClientLayoutWrapperProps {
-  children: ReactNode;
-}
-
-export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperProps) {
+function AppContent({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const { toast } = useToast();
   const [showMaintenance, setShowMaintenance] = useState(false);
   const [maintenanceEndTime, setMaintenanceEndTime] = useState<Date | null>(null);
   const feedbackSectionRef = useRef<HTMLDivElement>(null);
   const [showFeedbackPrompt, setShowFeedbackPrompt] = useState(false);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const { user, loading: authLoading } = useAuth();
 
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -55,15 +55,17 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
   const [isLoadingAnnouncements, setIsLoadingAnnouncements] = useState(true);
   const [announcementsError, setAnnouncementsError] = useState<string | null>(null);
   
-  // Stores the timestamp of the newest announcement ever seen by any check, used for badge logic if sheet is opened.
   const [globallyLatestFetchedTimestamp, setGloballyLatestFetchedTimestamp] = useState<number>(0);
-  const initialLoadDone = useRef(false); // To call checkNewAnnouncements only once on mount for initial state
+  const initialLoadDone = useRef(false);
+
+  // --- FEATURE FLAG ---
+  const SHOW_FEEDBACK_SECTION = false;
+  // --- END FEATURE FLAG ---
 
   const markNotificationsAsViewed = useCallback((viewedTimestamp: number) => {
     if (typeof window !== 'undefined') {
-      // console.log(`Marking notifications as viewed up to timestamp: ${new Date(viewedTimestamp).toLocaleString()}`);
       localStorage.setItem(LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY, viewedTimestamp.toString());
-      setUnreadNotificationCount(0); // Assume all currently fetched unread are now viewed
+      setUnreadNotificationCount(0);
     }
   }, [setUnreadNotificationCount]);
 
@@ -91,7 +93,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       });
       setAnnouncements(fetchedAnnouncements);
       setGloballyLatestFetchedTimestamp(prev => Math.max(prev, latestTimestampInFetchedBatch));
-      // Mark as viewed when sheet content is fetched
       markNotificationsAsViewed(latestTimestampInFetchedBatch || Date.now());
     } catch (error) {
       console.error("Error fetching announcements for sheet:", error);
@@ -124,8 +125,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
           if (currentDocTimestamp > lastSheetOpenTimestamp) {
             unreadCountForBadge++;
           }
-
-          // Determine the newest announcement in this fetched batch for potential toasting
+          
           if (currentDocTimestamp > lastToastedTimestamp) {
             if (!newestAnnouncementForToast || currentDocTimestamp > (newestAnnouncementForToast.timestamp?.toMillis() || 0)) {
               newestAnnouncementForToast = {
@@ -143,7 +143,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
       setGloballyLatestFetchedTimestamp(prev => Math.max(prev, overallLatestTimestampInBatch));
       setUnreadNotificationCount(unreadCountForBadge);
 
-      // Toast logic: if there's a new announcement eligible for toasting
       if (newestAnnouncementForToast && newestAnnouncementForToast.timestamp) {
         const newToastTimestamp = newestAnnouncementForToast.timestamp.toMillis();
         toast({
@@ -151,8 +150,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
           description: (newestAnnouncementForToast.message.substring(0, 70) + (newestAnnouncementForToast.message.length > 70 ? "..." : "")),
           action: (
             <Button variant="outline" size="sm" onClick={() => {
-              setIsSheetOpen(true); // Open the sheet
-              // Mark this specific announcement (and potentially others up to its time) as viewed for badge purposes
+              setIsSheetOpen(true);
               markNotificationsAsViewed(newToastTimestamp); 
             }}>
               View
@@ -160,7 +158,6 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
           ),
           variant: newestAnnouncementForToast.type === 'warning' ? 'destructive' : 'default',
         });
-        // Update last toasted timestamp to the timestamp of the announcement we just toasted
         localStorage.setItem(LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY, newToastTimestamp.toString());
       }
 
@@ -169,16 +166,13 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     }
   }, [toast, markNotificationsAsViewed, setIsSheetOpen, setGloballyLatestFetchedTimestamp, setUnreadNotificationCount]);
 
-  // Effect for initial check and polling
   useEffect(() => {
     if (!initialLoadDone.current) {
-      checkNewAnnouncements(); // Initial check without toasting
+      checkNewAnnouncements();
       initialLoadDone.current = true;
     }
-
-    const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback'];
+    const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback', '/dashboard'];
     const shouldPoll = !excludedPathsForPolling.includes(pathname) && !showMaintenance;
-
     let pollInterval: NodeJS.Timeout | undefined;
     if (shouldPoll) {
       pollInterval = setInterval(checkNewAnnouncements, NOTIFICATIONS_POLL_INTERVAL_MS);
@@ -188,18 +182,15 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     };
   }, [pathname, showMaintenance, checkNewAnnouncements]);
 
-  // Effect to fetch announcements when the sheet is opened
   useEffect(() => {
     let isMounted = true;
     if (isSheetOpen) {
       fetchAnnouncementsForSheetContent();
-      // The markNotificationsAsViewed call is now inside fetchAnnouncementsForSheetContent
     }
     return () => {
       isMounted = false;
     };
   }, [isSheetOpen, fetchAnnouncementsForSheetContent]);
-
 
   useEffect(() => {
     if (MAINTENANCE_MODE_ENABLED && MAINTENANCE_END_TIME_HHMM) {
@@ -214,23 +205,40 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
 
     const handleContextmenu = (e: MouseEvent) => e.preventDefault();
     document.addEventListener('contextmenu', handleContextmenu);
+    
+    return () => document.removeEventListener('contextmenu', handleContextmenu);
+  }, []);
 
-    if (typeof window !== 'undefined') {
-      const lastPromptTime = localStorage.getItem('lastFeedbackPromptTime');
-      const now = Date.now();
-      const intervalMs = FEEDBACK_PROMPT_INTERVAL_HOURS * 60 * 60 * 1000;
-      const excludedPathsForPrompt = ['/help-center', '/generate-access', '/auth/callback'];
-      
-      if (!excludedPathsForPrompt.includes(pathname) && !showMaintenance) {
-        if (!lastPromptTime || (now - parseInt(lastPromptTime, 10) > intervalMs)) {
+  useEffect(() => {
+    if (typeof window === 'undefined' || authLoading) return;
+
+    const excludedPathsForPrompt = ['/help-center', '/generate-access', '/auth/callback', '/dashboard'];
+    const shouldShowPrompts = !excludedPathsForPrompt.includes(pathname) && !showMaintenance;
+
+    if (shouldShowPrompts) {
+      // Logic for feedback prompt - only show if feature is enabled
+      if (SHOW_FEEDBACK_SECTION) {
+        const lastFeedbackPromptTime = localStorage.getItem('lastFeedbackPromptTime');
+        const feedbackIntervalMs = FEEDBACK_PROMPT_INTERVAL_HOURS * 60 * 60 * 1000;
+        if (!lastFeedbackPromptTime || (Date.now() - parseInt(lastFeedbackPromptTime, 10) > feedbackIntervalMs)) {
           setShowFeedbackPrompt(true);
         }
-      } else {
-        setShowFeedbackPrompt(false);
       }
+      
+      // Logic for login prompt
+      if (!user) { // Only show if user is not logged in
+        const sessionLoginPromptShown = sessionStorage.getItem('loginPromptShown');
+        if (!sessionLoginPromptShown) {
+          // Show after a delay to not be too intrusive
+          setTimeout(() => setShowLoginPrompt(true), 5000); 
+        }
+      }
+    } else {
+      setShowFeedbackPrompt(false);
+      setShowLoginPrompt(false);
     }
-    return () => document.removeEventListener('contextmenu', handleContextmenu);
-  }, [pathname, showMaintenance]);
+
+  }, [pathname, showMaintenance, authLoading, user, SHOW_FEEDBACK_SECTION]);
 
   const excludedPathsForFeatures = ['/help-center', '/generate-access', '/auth/callback'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
@@ -239,6 +247,13 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
     setShowFeedbackPrompt(false);
     if (typeof window !== 'undefined') {
       localStorage.setItem('lastFeedbackPromptTime', Date.now().toString());
+    }
+  };
+  
+  const handleLoginPromptDismiss = () => {
+    setShowLoginPrompt(false);
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('loginPromptShown', 'true');
     }
   };
 
@@ -337,11 +352,15 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
 
       {showAppFeatures && (
         <div ref={feedbackSectionRef} className="container mx-auto px-4 py-8 md:py-12">
-          <Separator className="my-8 md:my-12" />
-          <div className="flex flex-col items-center gap-10 md:gap-16">
-            <FeedbackForm />
-            <FeedbackList />
-          </div>
+          {SHOW_FEEDBACK_SECTION && (
+            <>
+              <Separator className="my-8 md:my-12" />
+              <div className="flex flex-col items-center gap-10 md:gap-16">
+                <FeedbackForm />
+                <FeedbackList />
+              </div>
+            </>
+          )}
           <div className="mt-16 mb-8 text-center">
             <p className="text-muted-foreground mb-2">Need Support?</p>
             <Link href="/help-center">
@@ -371,7 +390,7 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
         </>
       )}
 
-      {showAppFeatures && showFeedbackPrompt && (
+      {showAppFeatures && SHOW_FEEDBACK_SECTION && showFeedbackPrompt && (
          <FeedbackPromptDialog
           open={showFeedbackPrompt}
           onOpenChange={(isOpen) => {
@@ -382,6 +401,24 @@ export default function ClientLayoutWrapper({ children }: ClientLayoutWrapperPro
           onDismiss={handlePromptDismiss}
         />
       )}
+
+      {showAppFeatures && showLoginPrompt && (
+         <LoginPromptDialog
+          open={showLoginPrompt}
+          onOpenChange={(isOpen) => {
+            if (!isOpen) handleLoginPromptDismiss();
+            else setShowLoginPrompt(true);
+          }}
+        />
+      )}
     </>
   );
 }
+
+export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <AuthProvider>
+      <AppContent>{children}</AppContent>
+    </AuthProvider>
+  );
+             }
