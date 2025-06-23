@@ -267,6 +267,13 @@ export const aarambhCourseContent: CourseContentMap = {
   { id: 'L14', title: 'Mathematics DPP 14', notesTitle: 'Mathematics DPP 14', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/789844870294324200.pdf` },
   { id: 'L15', title: 'Mathematics DPP 15', notesTitle: 'Mathematics DPP 15', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/11948867526303130.pdf` },
      ]
+    },
+    {
+      name: 'Quadratic Equations',
+      lectures: [
+        { id: 'L1', title: 'Quadratic Equations L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        
+      ]
     }
   ],
   'English': [
