@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useState, useRef, type ReactNode, useCallback } from 'react';
@@ -28,8 +27,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import NotificationItem from '@/components/NotificationItem';
 import type { Announcement as AnnouncementType } from '@/components/NotificationItem';
 import { useToast } from '@/hooks/use-toast';
-import { AuthProvider, useAuth } from '@/context/AuthContext';
-import LoginPromptDialog from './LoginPromptDialog';
 
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
@@ -46,8 +43,6 @@ function AppContent({ children }: { children: ReactNode }) {
   const [maintenanceEndTime, setMaintenanceEndTime] = useState<Date | null>(null);
   const feedbackSectionRef = useRef<HTMLDivElement>(null);
   const [showFeedbackPrompt, setShowFeedbackPrompt] = useState(false);
-  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
-  const { user, loading: authLoading } = useAuth();
 
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -210,35 +205,21 @@ function AppContent({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || authLoading) return;
+    if (typeof window === 'undefined') return;
 
     const excludedPathsForPrompt = ['/help-center', '/generate-access', '/auth/callback', '/dashboard'];
     const shouldShowPrompts = !excludedPathsForPrompt.includes(pathname) && !showMaintenance;
 
-    if (shouldShowPrompts) {
-      // Logic for feedback prompt - only show if feature is enabled
-      if (SHOW_FEEDBACK_SECTION) {
-        const lastFeedbackPromptTime = localStorage.getItem('lastFeedbackPromptTime');
-        const feedbackIntervalMs = FEEDBACK_PROMPT_INTERVAL_HOURS * 60 * 60 * 1000;
-        if (!lastFeedbackPromptTime || (Date.now() - parseInt(lastFeedbackPromptTime, 10) > feedbackIntervalMs)) {
-          setShowFeedbackPrompt(true);
-        }
-      }
-      
-      // Logic for login prompt
-      if (!user) { // Only show if user is not logged in
-        const sessionLoginPromptShown = sessionStorage.getItem('loginPromptShown');
-        if (!sessionLoginPromptShown) {
-          // Show after a delay to not be too intrusive
-          setTimeout(() => setShowLoginPrompt(true), 5000); 
-        }
+    if (shouldShowPrompts && SHOW_FEEDBACK_SECTION) {
+      const lastFeedbackPromptTime = localStorage.getItem('lastFeedbackPromptTime');
+      const feedbackIntervalMs = FEEDBACK_PROMPT_INTERVAL_HOURS * 60 * 60 * 1000;
+      if (!lastFeedbackPromptTime || (Date.now() - parseInt(lastFeedbackPromptTime, 10) > feedbackIntervalMs)) {
+        setShowFeedbackPrompt(true);
       }
     } else {
       setShowFeedbackPrompt(false);
-      setShowLoginPrompt(false);
     }
-
-  }, [pathname, showMaintenance, authLoading, user, SHOW_FEEDBACK_SECTION]);
+  }, [pathname, showMaintenance, SHOW_FEEDBACK_SECTION]);
 
   const excludedPathsForFeatures = ['/help-center', '/generate-access', '/auth/callback'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
@@ -250,13 +231,6 @@ function AppContent({ children }: { children: ReactNode }) {
     }
   };
   
-  const handleLoginPromptDismiss = () => {
-    setShowLoginPrompt(false);
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('loginPromptShown', 'true');
-    }
-  };
-
   const handleGoToFeedback = () => {
     handlePromptDismiss();
     feedbackSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -401,24 +375,10 @@ function AppContent({ children }: { children: ReactNode }) {
           onDismiss={handlePromptDismiss}
         />
       )}
-
-      {showAppFeatures && showLoginPrompt && (
-         <LoginPromptDialog
-          open={showLoginPrompt}
-          onOpenChange={(isOpen) => {
-            if (!isOpen) handleLoginPromptDismiss();
-            else setShowLoginPrompt(true);
-          }}
-        />
-      )}
     </>
   );
 }
 
 export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
-  return (
-    <AuthProvider>
-      <AppContent>{children}</AppContent>
-    </AuthProvider>
-  );
+  return <AppContent>{children}</AppContent>;
 }
