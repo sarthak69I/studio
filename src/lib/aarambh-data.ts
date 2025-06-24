@@ -271,7 +271,7 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Quadratic Equations',
       lectures: [
-        { id: 'L1', title: 'Quadratic Equations L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L1', title: 'Quadratic Equations L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417726/175069337476008752407/index_4.m3u8' },
         
       ]
     }
