@@ -134,7 +134,8 @@ export const aarambhCourseContent: CourseContentMap = {
       name: 'Sectors of the Indian Economy',
       lectures: [
         { id: 'L1', title: 'Sectors of the Indian Economy L1', notesTitle: "Sectors of the Indian Economy - 1", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/606322833395919900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414989/175034785995657125088/index_4.m3u8' },
-        { id: 'L2', title: 'Sectors of Indian Economy 2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417609/175068233385897125088/index_4.m3u8' },
+        { id: 'L2', title: 'Sectors of Indian Economy 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/210793941689131230.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417609/175068233385897125088/index_4.m3u8' },
+        { id: 'L3', title: 'Sectors of Indian Economy 3', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4418570/175076895626987125088/index_4.m3u8' },
         
       ]
     }
@@ -261,8 +262,8 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L2', title: 'Some Application of Trigonometry L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/234701559771625340.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410213/174991601648451097666/index_5.m3u8' },
         { id: 'L3', title: 'Some Application of Trigonometry L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/153726209154047780.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411382/175008869822868752407/index_4.m3u8' },
         { id: 'L4', title: 'Some Application of Trigonometry L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/499421961949314600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412636/175017526367988752407/index_4.m3u8' },
-        { id: 'L5', title: 'Some Application of Trigonometry L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416060/175043509429588752407/index_1.m3u8' },
-       { id: 'L6', title: 'Some Application of Trigonometry L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416695/175052142386308752407/index_4.m3u8' },
+        { id: 'L5', title: 'Some Application of Trigonometry L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/798315639415928700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416060/175043509429588752407/index_1.m3u8' },
+       { id: 'L6', title: 'Some Application of Trigonometry L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/883122022526354400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416695/175052142386308752407/index_4.m3u8' },
         { id: 'L16', title: 'Mathematics DPP 13', notesTitle: 'Mathematics DPP 13', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/295999082180152200.pdf` },
   { id: 'L14', title: 'Mathematics DPP 14', notesTitle: 'Mathematics DPP 14', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/789844870294324200.pdf` },
   { id: 'L15', title: 'Mathematics DPP 15', notesTitle: 'Mathematics DPP 15', notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/11948867526303130.pdf` },
@@ -271,7 +272,7 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Quadratic Equations',
       lectures: [
-        { id: 'L1', title: 'Quadratic Equations L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417726/175069337476008752407/index_4.m3u8' },
+        { id: 'L1', title: 'Quadratic Equations L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/215880257111139400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417726/175069337476008752407/index_4.m3u8' },
         
       ]
     }
