@@ -99,7 +99,13 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L3', title: 'Redox Reaction 3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/566424016679826750.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413737/175025171821132764802/index_5.m3u8' },
         { id: 'L4', title: 'Redox Reaction 4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/882823727762434200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417737/175069489128322764802/index_5.m3u8' },
         { id: 'L5', title: 'Redox Reaction 5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/136986275193504830.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4418728/175078208680382764802/index_5.m3u8' },
-        
+        ]
+    },
+    {
+      name: 'SURPRISE TEST',
+      lectures: [
+        { id: 'L1', title: 'SURPRISE TEST', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419713/175085599785582764802/index_5.m3u8' },
+    
         
       ]
     },
