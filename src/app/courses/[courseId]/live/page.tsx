@@ -28,7 +28,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class1Subject: "BIOLOGY",
     class2Subject: "PHYSICS",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/e01baa20ccaf46c3b67bec6d03ff6138/index_4.m3u8')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/49856fa811d3403facbfba24d0db04ab/index_1.m3u8')}`,
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_1.m3u8')}`,
     class1Visible: true,
     class2Visible: true,
   },
