@@ -52,9 +52,9 @@ const scienceOnlySubjects: CourseContentMap = {
         ]
     },
     {
-      name: 'NEW LECTURE',
+      name: 'Laws of Motion',
       lectures: [
-        { id: 'L1', title: 'NEW LECTURE L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L1', title: ' L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420958/175095472124975910848/index_4.m3u8' },
         
       ]
     },
