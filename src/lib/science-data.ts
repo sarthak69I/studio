@@ -49,6 +49,13 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L3', title: 'Basic Mathematics L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/311010593170532600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376221/174672074184601071993/index_4.m3u8' },
         { id: 'L4', title: 'Basic Mathematics L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/512879724400887040.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377330/174680770411381071993/index_4.m3u8' },
         { id: 'L5', title: 'Basic Mathematics L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/294291601749770000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377993/174689329024511071993/index_4.m3u8' },
+        ]
+    },
+    {
+      name: 'NEW LECTURE',
+      lectures: [
+        { id: 'L1', title: 'NEW LECTURE L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        
       ]
     },
   ],
@@ -205,6 +212,8 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L6', title: 'Animal Kingdom L6', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/857175346896140000.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414812/175033535661553740487/index_4.m3u8' },
         { id: 'L7', title: 'Animal Kingdom L7', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/302439581726665300.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417680/175068839657313740487/index_4.m3u8' },
         { id: 'L8', title: 'Animal Kingdom L8', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/682273925071040000.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4418662/175077474924783740487/index_4.m3u8' },
+        { id: 'L9', title: 'Animal Kingdom L9', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420719/175094220969903740487/index_4.m3u8' },
+      
       ]
     },
   ],
