@@ -200,8 +200,8 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L5', title: 'Number System L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/434141207850167900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4367149/174611361544421097666/174611361544421097666_1097666.m3u8' },
         { id: 'L6', title: 'Number System L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/989861Number%20System%20L6.pdf_Number%20System%20L6.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4368222/174619110643541097666/174619110643541097666_1097666.m3u8' },
         { id: 'L7', title: 'Number System L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/566549363460292200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4370049/174627933537761097666/174627933537761097666_1097666.m3u8' },
-      { id: 'L9', title: 'DPP #1', notesTitle: "", notesLink: ``},
-      { id: 'L11', title: 'DPP #2', notesTitle: "", notesLink: ``},
+      { id: 'L9', title: 'DPP #1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/898364746538794500.pdf`},
+      { id: 'L11', title: 'DPP #2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/428966108575780160.pdf`},
       
       ]
     },
@@ -217,8 +217,8 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L7', title: 'Polynomials L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/790702335187412500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4389346/174793035190161097666/174793035190161097666_1097666.m3u8' },
         { id: 'L8', title: 'Polynomials L8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/719024689970129900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4390842/174800460375161097666/174800460375161097666_1097666.m3u8' },
         { id: 'L9', title: 'Polynomials L9', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/781709921566277400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4391472/174809232290121097666/174809232290121097666_1097666.m3u8' },
-        { id: 'L11', title: 'DPP #3', notesTitle: "", notesLink: ``},
-        { id: 'L12', title: 'DPP #4', notesTitle: "", notesLink: ``},
+        { id: 'L11', title: 'DPP #3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/181500649969413280.pdf`},
+        { id: 'L12', title: 'DPP #4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/28274969th%20Aarambh%202026%20DPP%204.pdf.pdf_9th%20Aarambh%202026%20DPP%204.pdf.pdf`},
       ]
     },
     {
