@@ -27,7 +27,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     subtitle: "Interactive learning sessions for Science students",
     class1Subject: "NO CLASS _ PHYSICS 8:10",
     class2Subject: "PHYSICS",
-    class1LiveStreamUrl: ``,
+    class1LiveStreamUrl: `y`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_1.m3u8')}`,
     class1Visible: true,
     class2Visible: true,
@@ -58,7 +58,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class1Subject: "MATHS",
     class2Subject: "NO CLASS",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8')}`, 
-    class2LiveStreamUrl: ``, 
+    class2LiveStreamUrl: ` t`, 
     class1Visible: true,
     class2Visible: true,
   }
