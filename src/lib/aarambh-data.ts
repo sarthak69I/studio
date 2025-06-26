@@ -192,6 +192,13 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'acid bases and salts L4', title: 'Acid bases and salts L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/807993603967894500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414866/175033738727468929414/index_4.m3u8' },
         { id: 'acid bases and salts L5', title: 'Acid bases and salts L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/78532354687740060.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4415940/175042369115078929414/index_4.m3u8' },
     { id: 'Doubt Solving Class', title: 'Doubt Solving Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416573/175050899233748929414/index_4.m3u8' },
+     ]
+    },
+    {
+      name: 'Human eye',
+      lectures: [
+        { id: 'Human eye L1', title: 'Human eye L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420694/175094118357238929414/index_4.m3u8' },
+        
       ]       
     }
   ],
