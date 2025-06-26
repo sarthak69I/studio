@@ -142,7 +142,8 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L6', title: 'The French Revolution L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/574213608445127800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4372289/174645974230447880624/174645974230447880624_7880624.m3u8' },
         { id: 'L7', title: 'The French Revolution L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/574213608445127800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4373916/174654612513167880624/174654612513167880624_7880624.m3u8' },
         { id: 'L8', title: 'The French Revolution L8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/42451599701414660.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4374872/174662189759057880624/174662189759057880624_7880624.m3u8' },
-        { id: 'L9', title: 'WPP #1', notesTitle: "", notesLink: ``},
+        { id: 'L9', title: 'WPP #1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/531020738549552000.pdf`},
+       { id: 'L11', title: 'WPP #1 SOLUTION', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/366929396803575550.pdf`},
       ]
     },
     {
@@ -152,7 +153,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L2', title: 'India - Size and Location L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/734183618179824500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4385836/174766937560807880624/174766937560807880624_7880624.m3u8' },
         { id: 'L3', title: 'India - Size and Location L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/50808763094542670.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4387074/174775592115227880624/174775592115227880624_7880624.m3u8' },
         { id: 'L4', title: 'India - Size and Location L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/149232902457935520.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4388030/174783135735827880624/174783135735827880624_7880624.m3u8' },
-        { id: 'L9', title: 'WPP #2', notesTitle: "", notesLink: ``},
+        { id: 'L9', title: 'WPP #2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/708358583816420700.pdf`},
       ]
     },
     {
@@ -162,7 +163,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L2', title: 'The Story of Village Palampur L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/477484595681899200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394021/174836179392228165220/index_4.m3u8' },
         { id: 'L3', title: 'The Story of Village Palampur L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/102756455791104770.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4394988/174843781540668165220/index_4.m3u8' },
         { id: 'L4', title: 'The Story of Village Palampur L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/589183403000720000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4398034/174878305850708165220/index_4.m3u8' },
-       { id: 'L9', title: 'WPP #3', notesTitle: "", notesLink: ``},
+       { id: 'L9', title: 'WPP #3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/554631426365239550.pdf`},
       ]
     },
     {
