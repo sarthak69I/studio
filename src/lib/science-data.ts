@@ -38,7 +38,7 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L5', title: 'Motion in a Plane L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/858212590728421200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410224/174991883860928296383/index_4.m3u8' },
         { id: 'L6', title: 'Motion in a Plane L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4415009/175035109311478929414/index_4.m3u8' },
         { id: 'L7', title: 'Motion in a Plane L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/887967050474244900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416071/175043766229598929414/index_4.m3u8' },
-        { id: 'L8', title: 'Motion in a Plane L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L8', title: 'Motion in a Plane L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416703/175052339715868929414/index_4.m3u8' },
       ]
     },
     {
@@ -49,6 +49,13 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L3', title: 'Basic Mathematics L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/311010593170532600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4376221/174672074184601071993/index_4.m3u8' },
         { id: 'L4', title: 'Basic Mathematics L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/512879724400887040.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377330/174680770411381071993/index_4.m3u8' },
         { id: 'L5', title: 'Basic Mathematics L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/294291601749770000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4377993/174689329024511071993/index_4.m3u8' },
+        ]
+    },
+    {
+      name: 'Laws of Motion',
+      lectures: [
+        { id: 'L1', title: ' L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420958/175095472124975910848/index_4.m3u8' },
+        
       ]
     },
   ],
@@ -97,6 +104,16 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L1', title: 'Redox Reaction 1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/599116557212790000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411390/175008942555082764802/index_5.m3u8' },
         { id: 'L2', title: 'Redox Reaction 2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/774174145147878800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412647/175017601245432764802/index_5.m3u8' },
         { id: 'L3', title: 'Redox Reaction 3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/566424016679826750.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413737/175025171821132764802/index_5.m3u8' },
+        { id: 'L4', title: 'Redox Reaction 4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/882823727762434200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417737/175069489128322764802/index_5.m3u8' },
+        { id: 'L5', title: 'Redox Reaction 5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/136986275193504830.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4418728/175078208680382764802/index_5.m3u8' },
+        ]
+    },
+    {
+      name: 'SURPRISE TEST',
+      lectures: [
+        { id: 'L1', title: 'SURPRISE TEST', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419713/175085599785582764802/index_5.m3u8' },
+    
+        
       ]
     },
   ],
@@ -192,7 +209,11 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L3', title: 'Animal Kingdom L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/14218466333748936.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408305/174973168472882621696/index_4.m3u8' },
         { id: 'L4', title: 'Animal Kingdom L4', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/35600704906820824.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411317/175008298317313740487/index_4.m3u8' },
         { id: 'L5', title: 'Animal Kingdom L5', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/521588388759391550.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412598/175017045022253740487/index_4.m3u8' },
-        { id: 'L6', title: 'Animal Kingdom L6', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414812/175033535661553740487/index_4.m3u8' },
+        { id: 'L6', title: 'Animal Kingdom L6', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/857175346896140000.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414812/175033535661553740487/index_4.m3u8' },
+        { id: 'L7', title: 'Animal Kingdom L7', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/302439581726665300.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417680/175068839657313740487/index_4.m3u8' },
+        { id: 'L8', title: 'Animal Kingdom L8', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/682273925071040000.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4418662/175077474924783740487/index_4.m3u8' },
+        { id: 'L9', title: 'Animal Kingdom L9', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420719/175094220969903740487/index_4.m3u8' },
+      
       ]
     },
   ],

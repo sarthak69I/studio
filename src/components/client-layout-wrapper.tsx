@@ -88,7 +88,7 @@ function AppContent({ children }: { children: ReactNode }) {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     setCurrentTheme(newTheme);
     document.documentElement.className = newTheme;
-    localStorage.setItem('theme', 'dark');
+    localStorage.setItem('theme', newTheme);
   };
   
   const getInitials = (name: string | null | undefined) => {
@@ -145,7 +145,7 @@ function AppContent({ children }: { children: ReactNode }) {
       setIsLoadingAnnouncements(false);
     }
     return latestTimestampInFetchedBatch;
-  }, [markNotificationsAsViewed, setAnnouncements, setIsLoadingAnnouncements, setAnnouncementsError, setGloballyLatestFetchedTimestamp]);
+  }, [markNotificationsAsViewed]);
 
   const checkNewAnnouncements = useCallback(async () => {
     try {
@@ -207,7 +207,7 @@ function AppContent({ children }: { children: ReactNode }) {
     } catch (error) {
       console.error("Error checking for new announcements/badge:", error);
     }
-  }, [toast, markNotificationsAsViewed, setIsNotificationsSheetOpen, setGloballyLatestFetchedTimestamp, setUnreadNotificationCount]);
+  }, [toast, markNotificationsAsViewed]);
 
   useEffect(() => {
     if (!initialLoadDone.current) {
@@ -301,7 +301,6 @@ function AppContent({ children }: { children: ReactNode }) {
   
   const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
-
 
   return (
     <>
@@ -554,7 +553,7 @@ function AppContent({ children }: { children: ReactNode }) {
   );
 }
 
-export default function ClientLayoutWrapper({ children }: { children: React.Node }) {
+export default function ClientLayoutWrapper({ children }: { children: ReactNode }) {
   return (
     <AuthProvider>
       <AppContent>{children}</AppContent>

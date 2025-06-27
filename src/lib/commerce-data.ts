@@ -42,7 +42,8 @@ const commerceOnlySubjects: CourseContentMap = {
         { id: 'L3', title: 'Private,Public & Global enterprises L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/147105766907851420.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4411413/175009183176652266688/index_4.m3u8' },
        { id: 'L4', title: 'Private,Public & Global enterprises L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/86761163414833900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4412638/175017539912532266688/index_4.m3u8' },
           { id: 'L5', title: 'Private,Public & Global enterprises L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/509535719015138940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413731/175025130677182266688/index_4.m3u8' },
-
+          { id: 'L6', title: 'Private,Public & Global enterprises DOUBT SOLVING SESSION', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/215476670043708770.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417724/175069304244642266688/index_4.m3u8' },
+          { id: 'L8', title: 'REVISION', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419633/175085493458462266688/index_4.m3u8' },
       ]
     },
   ],
@@ -89,10 +90,10 @@ const commerceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Journal entries L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/666624169512282000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4408325/174973307450318037481/index_4.m3u8' },
         { id: 'L2', title: ' Journal entries L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/694223550151547400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4409389/174982110860048037481/index_4.m3u8' },
-        { id: 'L3', title: ' Journal entries L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/46811810398189170.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '' },
-        { id: 'L4', title: ' Journal entries L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/864730540488885000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '' },
-        { id: 'L5', title: ' Journal entries L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/81500474716869970.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '' },
-        { id: 'L6', title: ' Journal entries - Doubt Solving Session', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/329082110115233150.pdf`, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L3', title: ' Journal entries L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/46811810398189170.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414878/175033841015148680586/index_4.m3u8' },
+        { id: 'L4', title: ' Journal entries L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/864730540488885000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414878/175033841015148680586/index_4.m3u8' },
+        { id: 'L5', title: ' Journal entries L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/81500474716869970.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4415952/175042426513728680586/index_4.m3u8' },
+        { id: 'L6', title: ' Journal entries - Doubt Solving Session', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/329082110115233150.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416607/175051155064978680586/index_4.m3u8' },
       ]
     },
     {
