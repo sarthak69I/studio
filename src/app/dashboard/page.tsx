@@ -62,7 +62,7 @@ const RecentlyViewedCard = ({ recentlyViewed }: { recentlyViewed: RecentlyViewed
   }
 
   return (
-    <Card className="col-span-1 md:col-span-2">
+    <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-3 text-xl"><History className="text-primary"/>Recently Viewed</CardTitle>
         <CardDescription>Lectures you've watched in the last hour.</CardDescription>
@@ -104,7 +104,7 @@ const ContinueLearningCard = ({ lastWatchedKey }: { lastWatchedKey: string | nul
   const lectureUrl = `/courses/${courseId}/content/video/${encodeURIComponent(subjectName)}/${encodeURIComponent(topic.name)}/lectures/${encodeURIComponent(lecture.id)}/play`;
 
   return (
-    <Card className="bg-primary/10 border-primary/20 col-span-1 md:col-span-2">
+    <Card className="bg-primary/10 border-primary/20">
       <CardHeader>
         <CardTitle className="flex items-center gap-3 text-xl">
           <Play className="text-primary"/>
@@ -386,7 +386,7 @@ export default function DashboardPage() {
                         <TrendingUp className="text-primary"/>
                         Your Learning Progress
                     </CardTitle>
-                    <CardDescription>You're on the right track. Keep going!</CardDescription>
+                    <CardDescription>You've completed {completedCount} lectures. You're on the right track!</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-baseline gap-2">
@@ -402,12 +402,9 @@ export default function DashboardPage() {
             </Card>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ContinueLearningCard lastWatchedKey={lastWatchedKey} />
-            <EnrolledCoursesCard enrolledCourseIds={enrolledCourseIds} />
-        </div>
-
+        <ContinueLearningCard lastWatchedKey={lastWatchedKey} />
         <RecentlyViewedCard recentlyViewed={recentlyViewed} />
+        <EnrolledCoursesCard enrolledCourseIds={enrolledCourseIds} />
         
         <div className="text-center mt-4">
              <Button onClick={handleSignOut} variant="destructive" className="w-full max-w-xs mx-auto">
