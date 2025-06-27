@@ -1,4 +1,3 @@
-
 // src/lib/firebase.ts
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import { getFirestore, setDoc, doc, serverTimestamp, getDoc, type Firestore } from "firebase/firestore";
@@ -49,34 +48,33 @@ auth = getAuth(app);
 
 const googleProvider = new GoogleAuthProvider();
 
-export const saveUserToFirestore = async (user: User): Promise<boolean> => {
+export const saveUserToFirestore = async (user: User): Promise<void> => {
   const userRef = doc(db, 'users', user.uid);
   try {
-    const docSnap = await getDoc(userRef);
+    // Use setDoc with merge: true. This creates the document if it doesn't exist,
+    // or updates it if it does. This is a robust "upsert" operation.
+    await setDoc(userRef, {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      lastLogin: serverTimestamp(),
+    }, { merge: true });
 
-    if (!docSnap.exists()) {
-      // User is new, create a new document
-      await setDoc(userRef, {
-        uid: user.uid,
-        displayName: user.displayName,
-        email: user.email,
-        photoURL: user.photoURL,
-        createdAt: serverTimestamp(),
-        lastLogin: serverTimestamp(),
-      });
-      return true; // Indicates a new user was created
-    } else {
-      // User exists, update last login time
-      await setDoc(userRef, { lastLogin: serverTimestamp() }, { merge: true });
-      return false; // Indicates an existing user logged in
+    // To set 'createdAt' only once, we can do a quick check.
+    // This is a secondary operation and less likely to fail.
+    const docSnap = await getDoc(userRef);
+    if (docSnap.exists() && !docSnap.data().createdAt) {
+      await setDoc(userRef, { createdAt: serverTimestamp() }, { merge: true });
     }
+
   } catch (error) {
     console.error("Error saving user to Firestore:", error);
-    // This function failing might be the root cause of UI not updating.
-    // We re-throw the error so the calling function can handle it.
-    throw new Error("Could not save user data. Please check Firestore permissions.");
+    // Re-throwing the error to be caught by the calling function.
+    throw new Error("Could not save user data. Please check Firestore permissions and configuration.");
   }
 };
+
 
 export const signInWithGoogle = async () => {
   try {
@@ -99,7 +97,7 @@ export const signInWithEmail = async (email: string, password: string) => {
   const userCredential = await signInWithEmailAndPassword(auth, email, password);
   if (userCredential.user) {
     // The useAuthState hook will handle the UI update, but we can still update lastLogin
-     await setDoc(doc(db, 'users', userCredential.user.uid), { lastLogin: serverTimestamp() }, { merge: true });
+     await saveUserToFirestore(userCredential.user);
   }
   return userCredential;
 };

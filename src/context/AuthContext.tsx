@@ -29,10 +29,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const result = await getRedirectResult(auth);
         if (result && result.user) {
           welcomeToastShownRef.current = true;
-          const isNewUser = await saveUserToFirestore(result.user);
+          // The saveUserToFirestore function now handles both new and existing users.
+          await saveUserToFirestore(result.user);
           toast({
             title: 'Sign In Successful!',
-            description: `${isNewUser ? 'Welcome to E-Leak' : 'Welcome back'}, ${result.user.displayName || 'User'}!`,
+            description: `Welcome, ${result.user.displayName || 'User'}!`,
           });
         }
       } catch (redirectError: any) {
