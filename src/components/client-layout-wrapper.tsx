@@ -7,10 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Toaster } from "@/components/ui/toaster";
 import CookieConsentBanner from './cookie-consent-banner';
 import MaintenancePage from './maintenance-page';
-import FeedbackForm from '@/components/FeedbackForm';
-import FeedbackList from '@/components/FeedbackList';
-import { Separator } from '@/components/ui/separator';
-import FeedbackPromptDialog from './FeedbackPromptDialog';
+import LoginPromptDialog from './LoginPromptDialog';
 import { Button } from '@/components/ui/button';
 import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X } from 'lucide-react';
 import { db } from '@/lib/firebase';
@@ -29,11 +26,9 @@ import NotificationItem from '@/components/NotificationItem';
 import type { Announcement as AnnouncementType } from '@/components/NotificationItem';
 import { useToast } from '@/hooks/use-toast';
 import { AuthProvider, useAuth } from '@/context/AuthContext';
-import LoginPromptDialog from './LoginPromptDialog';
 
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
-const FEEDBACK_PROMPT_INTERVAL_HOURS = 20;
 const LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY = 'eleakLastNotificationsSheetOpenedAt_v3';
 const LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY = 'eleakLastToastedAnnouncementTimestamp_v3';
 const NOTIFICATIONS_POLL_INTERVAL_MS = 30000; // Poll every 30 seconds
@@ -44,8 +39,6 @@ function AppContent({ children }: { children: ReactNode }) {
   const { toast } = useToast();
   const [showMaintenance, setShowMaintenance] = useState(false);
   const [maintenanceEndTime, setMaintenanceEndTime] = useState<Date | null>(null);
-  const feedbackSectionRef = useRef<HTMLDivElement>(null);
-  const [showFeedbackPrompt, setShowFeedbackPrompt] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const { user, loading: authLoading } = useAuth();
 
@@ -57,10 +50,6 @@ function AppContent({ children }: { children: ReactNode }) {
   
   const [globallyLatestFetchedTimestamp, setGloballyLatestFetchedTimestamp] = useState<number>(0);
   const initialLoadDone = useRef(false);
-
-  // --- FEATURE FLAG ---
-  const SHOW_FEEDBACK_SECTION = false;
-  // --- END FEATURE FLAG ---
 
   const markNotificationsAsViewed = useCallback((viewedTimestamp: number) => {
     if (typeof window !== 'undefined') {
@@ -216,15 +205,6 @@ function AppContent({ children }: { children: ReactNode }) {
     const shouldShowPrompts = !excludedPathsForPrompt.includes(pathname) && !showMaintenance;
 
     if (shouldShowPrompts) {
-      // Logic for feedback prompt - only show if feature is enabled
-      if (SHOW_FEEDBACK_SECTION) {
-        const lastFeedbackPromptTime = localStorage.getItem('lastFeedbackPromptTime');
-        const feedbackIntervalMs = FEEDBACK_PROMPT_INTERVAL_HOURS * 60 * 60 * 1000;
-        if (!lastFeedbackPromptTime || (Date.now() - parseInt(lastFeedbackPromptTime, 10) > feedbackIntervalMs)) {
-          setShowFeedbackPrompt(true);
-        }
-      }
-      
       // Logic for login prompt
       if (!user) { // Only show if user is not logged in
         const sessionLoginPromptShown = sessionStorage.getItem('loginPromptShown');
@@ -234,32 +214,19 @@ function AppContent({ children }: { children: ReactNode }) {
         }
       }
     } else {
-      setShowFeedbackPrompt(false);
       setShowLoginPrompt(false);
     }
 
-  }, [pathname, showMaintenance, authLoading, user, SHOW_FEEDBACK_SECTION]);
+  }, [pathname, showMaintenance, authLoading, user]);
 
   const excludedPathsForFeatures = ['/help-center', '/generate-access', '/auth/callback'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
 
-  const handlePromptDismiss = () => {
-    setShowFeedbackPrompt(false);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('lastFeedbackPromptTime', Date.now().toString());
-    }
-  };
-  
   const handleLoginPromptDismiss = () => {
     setShowLoginPrompt(false);
     if (typeof window !== 'undefined') {
       sessionStorage.setItem('loginPromptShown', 'true');
     }
-  };
-
-  const handleGoToFeedback = () => {
-    handlePromptDismiss();
-    feedbackSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   if (showMaintenance && maintenanceEndTime) {
@@ -351,16 +318,7 @@ function AppContent({ children }: { children: ReactNode }) {
       {children}
 
       {showAppFeatures && (
-        <div ref={feedbackSectionRef} className="container mx-auto px-4 py-8 md:py-12">
-          {SHOW_FEEDBACK_SECTION && (
-            <>
-              <Separator className="my-8 md:my-12" />
-              <div className="flex flex-col items-center gap-10 md:gap-16">
-                <FeedbackForm />
-                <FeedbackList />
-              </div>
-            </>
-          )}
+        <div className="container mx-auto px-4 py-8 md:py-12">
           <div className="mt-16 mb-8 text-center">
             <p className="text-muted-foreground mb-2">Need Support?</p>
             <Link href="/help-center">
@@ -388,18 +346,6 @@ function AppContent({ children }: { children: ReactNode }) {
           </a>
           <CookieConsentBanner />
         </>
-      )}
-
-      {showAppFeatures && SHOW_FEEDBACK_SECTION && showFeedbackPrompt && (
-         <FeedbackPromptDialog
-          open={showFeedbackPrompt}
-          onOpenChange={(isOpen) => {
-            if (!isOpen) handlePromptDismiss();
-            else setShowFeedbackPrompt(true);
-          }}
-          onGoToFeedback={handleGoToFeedback}
-          onDismiss={handlePromptDismiss}
-        />
       )}
 
       {showAppFeatures && showLoginPrompt && (

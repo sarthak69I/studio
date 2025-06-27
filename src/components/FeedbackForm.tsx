@@ -15,8 +15,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogD
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
-import { Send, User, MessageSquarePlus, Star, KeyRound, AlertCircle } from 'lucide-react';
-import RatingStars from '@/components/ui/rating-stars';
+import { Send, User, MessageSquarePlus, KeyRound, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Schema for the main feedback text with added validation
@@ -30,9 +29,12 @@ const feedbackTextSchema = z.object({
     .refine(value => !/https?:\/\//.test(value), {
       message: 'Feedback should not contain links or URLs.',
     }),
-  rating: z.number().min(0).max(5).optional(),
 });
 type FeedbackTextFormValues = z.infer<typeof feedbackTextSchema>;
+
+// --- Configuration Start ---
+const SHOW_FEEDBACK_SECTION = false;
+// --- Configuration End ---
 
 export default function FeedbackForm() {
   const { toast } = useToast();
@@ -42,18 +44,16 @@ export default function FeedbackForm() {
   const [username, setUsername] = React.useState('');
   const [passwordInput, setPasswordInput] = React.useState('');
   const [passwordError, setPasswordError] = React.useState<string | null>(null);
-  const [currentRating, setCurrentRating] = React.useState(0);
 
   const feedbackTextForm = useForm<FeedbackTextFormValues>({
     resolver: zodResolver(feedbackTextSchema),
     defaultValues: {
       feedbackText: '',
-      rating: 0,
     },
   });
 
   const handleFeedbackTextSubmit = (data: FeedbackTextFormValues) => {
-    setPendingFeedback({ ...data, rating: currentRating });
+    setPendingFeedback(data);
     setIsUsernameDialogOpen(true);
   };
 
@@ -76,9 +76,6 @@ export default function FeedbackForm() {
         text: pendingFeedback.feedbackText,
         timestamp: serverTimestamp(),
       };
-      if (pendingFeedback.rating && pendingFeedback.rating > 0) {
-        feedbackData.rating = pendingFeedback.rating;
-      }
 
       await addDoc(collection(db, 'feedback'), feedbackData);
       toast({
@@ -86,7 +83,6 @@ export default function FeedbackForm() {
         description: 'Thank you for your valuable feedback.',
       });
       feedbackTextForm.reset();
-      setCurrentRating(0);
       setPendingFeedback(null);
       setUsername('');
       setPasswordInput('');
@@ -113,6 +109,10 @@ export default function FeedbackForm() {
     setIsUsernameDialogOpen(false);
   };
 
+  if (!SHOW_FEEDBACK_SECTION) {
+    return null;
+  }
+
   return (
     <>
       <Card className="w-full max-w-xl bg-card/70 backdrop-blur-md border-border/50 shadow-xl">
@@ -122,7 +122,7 @@ export default function FeedbackForm() {
             Share Your Thoughts
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            Let us know how we can improve E-Leak. Add a rating if you like!
+            Let us know how we can improve E-Leak.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -146,12 +146,6 @@ export default function FeedbackForm() {
                   </FormItem>
                 )}
               />
-              <FormItem>
-                <FormLabel className="block text-sm font-medium text-foreground/80 mb-2 text-center">Rate your experience (Optional)</FormLabel>
-                <div className="flex justify-center">
-                   <RatingStars currentRating={currentRating} onRatingChange={setCurrentRating} maxRating={5} size="lg" interactive={!(isSubmitting || isUsernameDialogOpen)} />
-                </div>
-              </FormItem>
               <Button type="submit" className="w-full py-3 rounded-lg text-base group" disabled={isSubmitting || isUsernameDialogOpen}>
                 Submit Feedback
                 <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

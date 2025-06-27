@@ -1,4 +1,3 @@
-
 // src/components/FeedbackList.tsx
 'use client';
 
@@ -7,7 +6,7 @@ import { db } from '@/lib/firebase';
 import { collection, query, orderBy, onSnapshot, Timestamp, type DocumentData, addDoc, serverTimestamp, doc } from 'firebase/firestore';
 import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { MessageSquareText, CalendarDays, UserCircle, MessageSquareReply, Send, CornerDownRight, User, Eye, EyeOff, Star, KeyRound, AlertCircle } from 'lucide-react';
+import { MessageSquareText, CalendarDays, UserCircle, MessageSquareReply, Send, CornerDownRight, User, Eye, EyeOff, KeyRound, AlertCircle } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -15,7 +14,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from '@/components/ui/dialog';
-import RatingStars from '@/components/ui/rating-stars';
 import { cn } from '@/lib/utils';
 
 interface FeedbackEntry {
@@ -23,7 +21,6 @@ interface FeedbackEntry {
   username: string;
   text: string;
   timestamp: Timestamp | null;
-  rating?: number; // Optional rating
 }
 
 interface ReplyEntry {
@@ -66,7 +63,6 @@ export default function FeedbackList() {
           username: data.username || 'Anonymous',
           text: data.text,
           timestamp: data.timestamp as Timestamp | null,
-          rating: data.rating, // Add rating here
         });
         if (!feedbackReplies[docSnap.id] && !isLoadingReplies[docSnap.id]) {
           fetchReplies(docSnap.id);
@@ -260,11 +256,6 @@ export default function FeedbackList() {
                         <span>{formatDate(entry.timestamp)}</span>
                       </div>
                     </div>
-                    {entry.rating && entry.rating > 0 && (
-                      <div className="mt-1.5">
-                        <RatingStars currentRating={entry.rating} maxRating={5} size="sm" />
-                      </div>
-                    )}
                   </CardHeader>
                   <CardContent className="pt-2 pb-3">
                     <p className="text-foreground leading-relaxed prose prose-sm max-w-none">{entry.text}</p>
