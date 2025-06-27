@@ -16,16 +16,22 @@ interface RecentlyViewedCardProps {
 export default function RecentlyViewedCard({ recentlyViewed }: RecentlyViewedCardProps) {
 
   const recentLectures = useMemo(() => {
-    if (!recentlyViewed || recentlyViewed.length === 0) {
+    if (!Array.isArray(recentlyViewed) || recentlyViewed.length === 0) {
       return [];
     }
     const oneHourAgo = Date.now() - 60 * 60 * 1000;
     
     return recentlyViewed
-      .filter(item => item.timestamp && item.timestamp.toMillis() > oneHourAgo)
+      .filter(item => {
+        // Defensive check: ensure item and timestamp are valid
+        if (!item || !item.timestamp || typeof item.timestamp.toMillis !== 'function') {
+          return false;
+        }
+        return item.timestamp.toMillis() > oneHourAgo;
+      })
       .sort((a, b) => b.timestamp.toMillis() - a.timestamp.toMillis())
       .map(item => ({...getLectureDetailsFromKey(item.key), viewedAt: item.timestamp.toDate()}))
-      .filter(details => details !== null)
+      .filter(details => details !== null && details.lecture)
       .filter((value, index, self) => 
          self.findIndex(v => v?.lecture.id === value?.lecture.id) === index
       )
@@ -50,7 +56,7 @@ export default function RecentlyViewedCard({ recentlyViewed }: RecentlyViewedCar
                     <p className="font-semibold">{details.lecture.title}</p>
                     <p className="text-xs text-muted-foreground">{details.subjectName} - {details.topic.name}</p>
                 </div>
-                <span className="text-xs text-muted-foreground">{formatDistanceToNow(details.viewedAt, { addSuffix: true })}</span>
+                <span className="text-xs text-muted-foreground shrink-0 ml-4 text-right">{formatDistanceToNow(details.viewedAt, { addSuffix: true })}</span>
             </div>
           </Link>
         ))}

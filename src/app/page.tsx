@@ -102,7 +102,7 @@ const coursesData: Course[] = [
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col items-center p-5 pt-24 sm:p-8 md:p-10 md:pt-28 animate-fadeIn-custom">
+    <div className="flex min-h-screen flex-col items-center p-5 pt-8 sm:p-8 md:p-10 md:pt-12 animate-fadeIn-custom">
 
       <header className="text-center mb-8 md:mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wider logo-gradient-text animate-gradient">

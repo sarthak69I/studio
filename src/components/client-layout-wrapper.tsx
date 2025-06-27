@@ -26,7 +26,6 @@ import {
   SheetClose,
   SheetDescription,
   SheetTrigger,
-  SheetFooter,
 } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import NotificationItem from '@/components/NotificationItem';
@@ -34,13 +33,16 @@ import type { Announcement as AnnouncementType } from '@/components/Notification
 import { useToast } from '@/hooks/use-toast';
 import { AuthProvider, useAuth } from '@/context/AuthContext';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel } from '@/components/ui/dropdown-menu';
+import SubscriptionPrompt from './SubscriptionPrompt';
+import Footer from './Footer';
 
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
 const LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY = 'eleakLastNotificationsSheetOpenedAt_v3';
 const LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY = 'eleakLastToastedAnnouncementTimestamp_v3';
 const LOGIN_PROMPT_LAST_SHOWN_KEY = 'loginPromptLastShown_v1';
-const NOTIFICATIONS_POLL_INTERVAL_MS = 30000; // Poll every 30 seconds
+const SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY = 'subscriptionPromptLastShown_v1';
+const NOTIFICATIONS_POLL_INTERVAL_MS = 30000;
 const ANNOUNCEMENTS_FETCH_LIMIT = 20;
 
 function AppContent({ children }: { children: ReactNode }) {
@@ -60,14 +62,13 @@ function AppContent({ children }: { children: ReactNode }) {
   const [globallyLatestFetchedTimestamp, setGloballyLatestFetchedTimestamp] = useState<number>(0);
   const initialLoadDone = useRef(false);
 
-  // State for components moved from page.tsx
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
   const [isMenuSheetOpen, setIsMenuSheetOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
   const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = React.useState(false);
+  const [showSubscriptionPrompt, setShowSubscriptionPrompt] = useState(false);
 
-  // Theme effect from page.tsx
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme) {
@@ -249,20 +250,27 @@ function AppContent({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || authLoading || user) return;
+    if (typeof window === 'undefined' || authLoading) return;
   
-    const excludedPathsForPrompt = ['/help-center', '/generate-access', '/auth/callback', '/dashboard'];
-    const shouldShowPrompts = !excludedPathsForPrompt.includes(pathname) && !showMaintenance;
+    const excludedPathsForPrompts = ['/help-center', '/generate-access', '/auth/callback'];
+    const shouldShowPrompts = !excludedPathsForPrompts.includes(pathname) && !showMaintenance;
   
     if (shouldShowPrompts) {
-      const lastPromptTime = localStorage.getItem(LOGIN_PROMPT_LAST_SHOWN_KEY);
-      const now = Date.now();
-      const twentyFourHours = 24 * 60 * 60 * 1000;
-  
-      if (!lastPromptTime || now - parseInt(lastPromptTime, 10) > twentyFourHours) {
-        const timer = setTimeout(() => {
-          setShowLoginPrompt(true);
-        }, 5000); // Show after 5 seconds
+      // Login Prompt Logic
+      if (!user) {
+        const lastLoginPromptTime = localStorage.getItem(LOGIN_PROMPT_LAST_SHOWN_KEY);
+        const twentyFourHours = 24 * 60 * 60 * 1000;
+        if (!lastLoginPromptTime || Date.now() - parseInt(lastLoginPromptTime, 10) > twentyFourHours) {
+          const timer = setTimeout(() => setShowLoginPrompt(true), 5000);
+          return () => clearTimeout(timer);
+        }
+      }
+
+      // Subscription Prompt Logic
+      const lastSubPromptTime = localStorage.getItem(SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY);
+      const threeDays = 3 * 24 * 60 * 60 * 1000;
+      if (!lastSubPromptTime || Date.now() - parseInt(lastSubPromptTime, 10) > threeDays) {
+        const timer = setTimeout(() => setShowSubscriptionPrompt(true), 15000); // Show after 15 seconds
         return () => clearTimeout(timer);
       }
     }
@@ -275,20 +283,27 @@ function AppContent({ children }: { children: ReactNode }) {
     }
   };
 
+  const handleSubscriptionPromptClose = () => {
+    setShowSubscriptionPrompt(false);
+    localStorage.setItem(SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY, Date.now().toString());
+  };
+
   if (showMaintenance && maintenanceEndTime) {
     return <MaintenancePage maintenanceEndTime={maintenanceEndTime} />;
   }
 
   const NotificationBellIconToUse = unreadNotificationCount > 0 ? BellRing : Bell;
-  const showHeader = !['/auth/callback', '/generate-access', '/help-center'].includes(pathname) && !showMaintenance;
-  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center'];
+  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center'];
+  const showHeader = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
+  
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/dashboard'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
+
 
   return (
     <>
       {showHeader && (
         <header className="fixed top-0 left-0 right-0 z-50 p-2 sm:p-4 flex items-center justify-between bg-background/80 backdrop-blur-sm border-b border-border/80">
-          {/* Left side: Notification Bell */}
           <Sheet open={isNotificationsSheetOpen} onOpenChange={setIsNotificationsSheetOpen}>
             <SheetTrigger asChild>
               <Button
@@ -324,7 +339,6 @@ function AppContent({ children }: { children: ReactNode }) {
               </SheetHeader>
               <ScrollArea className="flex-grow">
                 <div className="p-4 space-y-3">
-                   {/* ... notification rendering logic ... */}
                     {isLoadingAnnouncements && (
                       <div className="flex flex-col items-center justify-center h-64 text-muted-foreground">
                         <Loader2 className="h-10 w-10 animate-spin text-primary mb-4" />
@@ -358,28 +372,21 @@ function AppContent({ children }: { children: ReactNode }) {
                     }
                 </div>
               </ScrollArea>
-              <SheetFooter className="p-4 border-t border-border">
-                <SheetClose asChild>
-                  <Button variant="outline" className="w-full">Close Menu</Button>
-                </SheetClose>
-              </SheetFooter>
             </SheetContent>
           </Sheet>
 
-          {/* Right side: Login/Avatar and Menu */}
           <div className="flex items-center gap-2">
              {authLoading ? (
                 <Skeleton className="h-10 w-32 rounded-full" />
               ) : user ? (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="flex items-center gap-2 h-10 px-3 rounded-full border border-border">
+                    <Button variant="outline" className="flex items-center gap-2 h-10 px-3 rounded-full border border-border hover:bg-muted">
                         <span className="text-sm font-medium text-foreground">Hi, {user.displayName?.split(' ')[0]}</span>
                         <Avatar className="h-8 w-8">
                             <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
                             <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
                         </Avatar>
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
                     </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-56">
@@ -463,11 +470,9 @@ function AppContent({ children }: { children: ReactNode }) {
                     </Link>
                   </Button>
                 </div>
-                 <SheetFooter className="p-4 border-t border-border">
-                  <SheetClose asChild>
-                    <Button variant="outline" className="w-full">Close Menu</Button>
+                 <SheetClose asChild>
+                    <Button variant="outline" className="w-full m-4 mt-0">Close Menu</Button>
                   </SheetClose>
-                </SheetFooter>
               </SheetContent>
             </Sheet>
           </div>
@@ -478,9 +483,10 @@ function AppContent({ children }: { children: ReactNode }) {
         {children}
       </main>
 
+      {showAppFeatures && <Footer />}
+
       <Toaster />
       
-      {/* FAQ Dialog moved here to be controlled globally */}
        <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
         <DialogContent className="sm:max-w-lg rounded-xl">
           <DialogHeader>
@@ -497,26 +503,20 @@ function AppContent({ children }: { children: ReactNode }) {
         </DialogContent>
       </Dialog>
       
-      {/* Login Dialog moved here to be controlled globally */}
       <LoginDialog open={isLoginDialogOpen} onOpenChange={setIsLoginDialogOpen} />
 
-      {showAppFeatures && (
-        <>
-          <Link href="/help-center" className="support-float" aria-label="E-Leak 24/7 Support">
-            <Bot />
-          </Link>
-          <a href="https://t.me/eleakcoursehub" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
-            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
-          </a>
-          <CookieConsentBanner />
-        </>
-      )}
+      <CookieConsentBanner />
 
       <LoginPromptDialog
           open={showLoginPrompt}
           onOpenChange={(isOpen) => {
             if (!isOpen) handleLoginPromptDismiss();
           }}
+      />
+      
+      <SubscriptionPrompt 
+        open={showSubscriptionPrompt}
+        onClose={handleSubscriptionPromptClose}
       />
 
       <AlertDialog open={isLogoutConfirmOpen} onOpenChange={setIsLogoutConfirmOpen}>
@@ -544,5 +544,3 @@ export default function ClientLayoutWrapper({ children }: { children: React.Node
     </AuthProvider>
   );
 }
-    
-    
