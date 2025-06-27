@@ -155,6 +155,13 @@ export default function HomePage() {
     if (!name) return 'U';
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   }
+  
+  const handleDashboardClick = () => {
+    if (!user) {
+      setIsLoginDialogOpen(true);
+    }
+    // If user is logged in, the <Link> component will handle navigation.
+  };
 
   return (
     <>
@@ -197,18 +204,13 @@ export default function HomePage() {
             <div className="space-y-1 p-4 flex-grow">
               
               {user ? (
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                  aria-label="Go to Dashboard"
-                  asChild
-                >
+                 <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2" asChild>
                   <Link href="/dashboard" className="flex items-center">
                     <Avatar className="mr-3 h-7 w-7">
                       <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
                       <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
                     </Avatar>
-                    My Dashboard
+                    {user.displayName || 'Dashboard'}
                   </Link>
                 </Button>
               ) : (
@@ -223,6 +225,26 @@ export default function HomePage() {
                   {authLoading ? 'Loading...' : 'Sign In / Register'}
                 </Button>
               )}
+
+              <Button
+                variant="ghost"
+                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
+                onClick={handleDashboardClick}
+                asChild={!!user} // Use asChild only if user is logged in
+              >
+                {user ? (
+                  <Link href="/dashboard" className="flex items-center">
+                     <LayoutDashboard className="mr-3 h-5 w-5 text-primary" />
+                     My Dashboard
+                  </Link>
+                ) : (
+                  // When not logged in, it's a regular button
+                  <div className="flex items-center w-full">
+                     <LayoutDashboard className="mr-3 h-5 w-5 text-primary" />
+                     My Dashboard
+                  </div>
+                )}
+              </Button>
 
               <Button
                 variant="ghost"
@@ -303,3 +325,4 @@ export default function HomePage() {
     </>
   );
 }
+

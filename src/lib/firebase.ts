@@ -1,3 +1,4 @@
+
 // src/lib/firebase.ts
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import { getFirestore, setDoc, doc, serverTimestamp, getDoc, type Firestore } from "firebase/firestore";
@@ -51,22 +52,28 @@ const googleProvider = new GoogleAuthProvider();
 export const saveUserToFirestore = async (user: User): Promise<void> => {
   const userRef = doc(db, 'users', user.uid);
   try {
-    // Use setDoc with merge: true. This creates the document if it doesn't exist,
-    // or updates it if it does. This is a robust "upsert" operation.
-    await setDoc(userRef, {
+    const docSnap = await getDoc(userRef);
+    
+    // Prepare the data to be written.
+    // We always update these fields on login/signup.
+    const userData = {
       uid: user.uid,
       displayName: user.displayName,
       email: user.email,
       photoURL: user.photoURL,
       lastLogin: serverTimestamp(),
-    }, { merge: true });
+    };
 
-    // To set 'createdAt' only once, we can do a quick check.
-    // This is a secondary operation and less likely to fail.
-    const docSnap = await getDoc(userRef);
-    if (docSnap.exists() && !docSnap.data().createdAt) {
-      await setDoc(userRef, { createdAt: serverTimestamp() }, { merge: true });
+    // If the user document does not exist, it's a new user.
+    // Add the `createdAt` field only in this case.
+    if (!docSnap.exists()) {
+      (userData as any).createdAt = serverTimestamp();
     }
+    
+    // Use setDoc with merge:true. This will create the document if it doesn't exist,
+    // or update the fields if it does. This single 'upsert' operation is more
+    // robust for security rules than a separate read then write.
+    await setDoc(userRef, userData, { merge: true });
 
   } catch (error) {
     console.error("Error saving user to Firestore:", error);
