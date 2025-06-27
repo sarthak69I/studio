@@ -26,8 +26,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
 import { useAuth } from '@/context/AuthContext';
-import { signInWithGoogle } from '@/lib/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import LoginDialog from '@/components/LoginDialog'; // Import the new LoginDialog
 
 interface Course {
   id: string;
@@ -128,6 +128,7 @@ const coursesData: Course[] = [
 
 export default function HomePage() {
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
+  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
   const { user, loading: authLoading } = useAuth();
 
@@ -174,6 +175,8 @@ export default function HomePage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      
+      <LoginDialog open={isLoginDialogOpen} onOpenChange={setIsLoginDialogOpen} />
 
       <div className="fixed top-6 right-6 z-50">
         <Sheet>
@@ -213,11 +216,11 @@ export default function HomePage() {
                   variant="ghost"
                   className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
                   aria-label="Sign In"
-                  onClick={signInWithGoogle}
+                  onClick={() => setIsLoginDialogOpen(true)}
                   disabled={authLoading}
                 >
                   <LogIn className="mr-3 h-5 w-5 text-primary" />
-                  {authLoading ? 'Signing in...' : 'Sign In / Register'}
+                  {authLoading ? 'Loading...' : 'Sign In / Register'}
                 </Button>
               )}
 
