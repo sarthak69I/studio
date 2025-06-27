@@ -482,9 +482,6 @@ function AppContent({ children }: { children: ReactNode }) {
 
       {showAppFeatures && (
         <>
-          <Link href="/help-center" className="telegram-float" style={{ right: 'auto', left: '20px', backgroundColor: '#6c5ce7' }} aria-label="E-Leak 24/7 Support" title="E-Leak 24/7 Support">
-            <Bot className="h-7 w-7 text-white" />
-          </Link>
           <a
             href="https://t.me/eleakcoursehub"
             target="_blank"

@@ -19,23 +19,31 @@ export default function RecentlyViewedCard({ recentlyViewed }: RecentlyViewedCar
     if (!Array.isArray(recentlyViewed) || recentlyViewed.length === 0) {
       return [];
     }
-    const oneHourAgo = Date.now() - 60 * 60 * 1000;
+    // Increased window to 24 hours for better visibility during testing
+    const twentyFourHoursAgo = Date.now() - 24 * 60 * 60 * 1000;
     
-    return recentlyViewed
+    const processedLectures = recentlyViewed
       .filter(item => {
         // Defensive check: ensure item and timestamp are valid
         if (!item || !item.timestamp || typeof item.timestamp.toMillis !== 'function') {
           return false;
         }
-        return item.timestamp.toMillis() > oneHourAgo;
+        return item.timestamp.toMillis() > twentyFourHoursAgo;
       })
       .sort((a, b) => b.timestamp.toMillis() - a.timestamp.toMillis())
       .map(item => ({...getLectureDetailsFromKey(item.key), viewedAt: item.timestamp.toDate()}))
-      .filter(details => details !== null && details.lecture)
-      .filter((value, index, self) => 
-         self.findIndex(v => v?.lecture.id === value?.lecture.id) === index
-      )
-      .slice(0, 5);
+      .filter(details => details !== null && details.lecture);
+
+    // Simplified unique filter logic
+    const uniqueLectures = new Map();
+    processedLectures.forEach(l => {
+        if (l && !uniqueLectures.has(l.lecture.id)) {
+            uniqueLectures.set(l.lecture.id, l);
+        }
+    });
+
+    return Array.from(uniqueLectures.values()).slice(0, 5);
+
   }, [recentlyViewed]);
 
   if (recentLectures.length === 0) {
@@ -46,7 +54,7 @@ export default function RecentlyViewedCard({ recentlyViewed }: RecentlyViewedCar
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-3 text-xl"><History className="text-primary"/>Recently Viewed</CardTitle>
-        <CardDescription>Lectures you've watched in the last hour.</CardDescription>
+        <CardDescription>Lectures you've watched recently.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
         {recentLectures.map((details, index) => details && (
