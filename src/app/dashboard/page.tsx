@@ -11,19 +11,21 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, Trophy, User as UserIcon, History } from 'lucide-react';
+import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, Trophy, User as UserIcon } from 'lucide-react';
 import { logout, updateUserProfile, db } from '@/lib/firebase';
 import Link from 'next/link';
 import { listenToProgress, RecentlyViewedEntry } from '@/lib/progress-manager';
-import { getTotalLectureCount, getLectureDetailsFromKey, getCourseNameById } from '@/lib/course-analytics';
+import { getTotalLectureCount, getCourseNameById } from '@/lib/course-analytics';
 import type { Lecture, Topic } from '@/lib/course-data';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import { doc, getDoc, Timestamp } from 'firebase/firestore';
-import { format, formatDistanceToNow } from 'date-fns';
+import { format } from 'date-fns';
 import ImageCropperDialog from '@/components/ImageCropperDialog';
+import RecentlyViewedCard from '@/components/RecentlyViewedCard';
+
 
 // --- Edit Profile Dialog Schema ---
 const profileSchema = z.object({
@@ -42,54 +44,12 @@ interface UserData {
 
 // --- Dashboard Cards ---
 
-const RecentlyViewedCard = ({ recentlyViewed }: { recentlyViewed: RecentlyViewedEntry[] }) => {
-  const recentLectures = useMemo(() => {
-    const oneHourAgo = Date.now() - 60 * 60 * 1000;
-    return recentlyViewed
-      .filter(item => item.timestamp && item.timestamp.toMillis() > oneHourAgo)
-      .sort((a, b) => b.timestamp.toMillis() - a.timestamp.toMillis())
-      .map(item => ({...getLectureDetailsFromKey(item.key), viewedAt: item.timestamp.toDate()}))
-      .filter(details => details !== null)
-      // Deduplicate based on lecture key
-      .filter((value, index, self) => 
-         self.findIndex(v => v?.lecture.id === value?.lecture.id) === index
-      )
-      .slice(0, 5); // show max 5
-  }, [recentlyViewed]);
-
-  if (recentLectures.length === 0) {
-    return null;
-  }
-
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-3 text-xl"><History className="text-primary"/>Recently Viewed</CardTitle>
-        <CardDescription>Lectures you've watched in the last hour.</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-3">
-        {recentLectures.map((details, index) => details && (
-          <Link key={index} href={`/courses/${details.courseId}/content/video/${encodeURIComponent(details.subjectName)}/${encodeURIComponent(details.topic.name)}/lectures/${encodeURIComponent(details.lecture.id)}/play`}>
-             <div className="flex items-center justify-between p-3 rounded-lg hover:bg-muted transition-colors">
-                <div>
-                    <p className="font-semibold">{details.lecture.title}</p>
-                    <p className="text-xs text-muted-foreground">{details.subjectName} - {details.topic.name}</p>
-                </div>
-                <span className="text-xs text-muted-foreground">{formatDistanceToNow(details.viewedAt, { addSuffix: true })}</span>
-            </div>
-          </Link>
-        ))}
-      </CardContent>
-    </Card>
-  );
-};
-
-
 const ContinueLearningCard = ({ lastWatchedKey }: { lastWatchedKey: string | null }) => {
   const [details, setDetails] = useState<{ lecture: Lecture, topic: Topic, subjectName: string, courseId: string } | null>(null);
 
   useEffect(() => {
     if (lastWatchedKey) {
+      const { getLectureDetailsFromKey } = require('@/lib/course-analytics');
       setDetails(getLectureDetailsFromKey(lastWatchedKey));
     } else {
       setDetails(null);
@@ -351,8 +311,10 @@ export default function DashboardPage() {
     <div className="flex flex-col items-center min-h-screen bg-background p-4 sm:p-6 md:p-8">
       <div className="w-full max-w-5xl mx-auto space-y-8 animate-fadeIn-custom">
         <header>
-          <h1 className="text-3xl md:text-4xl font-bold">Welcome back, {user.displayName?.split(' ')[0] || 'Student'}!</h1>
-          <p className="text-muted-foreground">Here's your learning snapshot. Keep up the great work!</p>
+          <h1 className="text-4xl md:text-5xl font-bold logo-gradient-text animate-gradient">
+            Welcome back, {user.displayName?.split(' ')[0] || 'Student'}!
+          </h1>
+          <p className="text-muted-foreground mt-2">Here's your learning snapshot. Keep up the great work!</p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -386,7 +348,7 @@ export default function DashboardPage() {
                         <TrendingUp className="text-primary"/>
                         Your Learning Progress
                     </CardTitle>
-                    <CardDescription>You've completed {completedCount} lectures. You're on the right track!</CardDescription>
+                    <CardDescription>You're on the right track! Keep learning to unlock achievements!</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-baseline gap-2">
@@ -397,7 +359,7 @@ export default function DashboardPage() {
                 </CardContent>
                  <CardFooter className="text-xs text-muted-foreground">
                     <Trophy className="mr-2 h-4 w-4 text-amber-500" />
-                    Keep learning to unlock achievements!
+                    Every lecture you watch moves you one step closer to your goal.
                 </CardFooter>
             </Card>
         </div>
@@ -423,3 +385,4 @@ export default function DashboardPage() {
     </>
   );
 }
+

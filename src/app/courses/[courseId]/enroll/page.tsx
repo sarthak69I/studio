@@ -1,7 +1,8 @@
+
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot, Lock, Unlock, History } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Unlock, History } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
@@ -13,14 +14,12 @@ import {
   commerceCourseContent,
   aarambhCourseContent,
   aarambh9CourseContent,
-  type Topic,
   type CourseContentMap
 } from '@/lib/course-data';
 import { useAuth } from '@/context/AuthContext';
 import { markCourseAsEnrolled, listenToProgress, type RecentlyViewedEntry } from '@/lib/progress-manager';
-import { getLectureDetailsFromKey } from '@/lib/course-analytics';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { formatDistanceToNow } from 'date-fns';
+import RecentlyViewedCard from '@/components/RecentlyViewedCard';
 
 
 interface SubjectItemProps {
@@ -156,16 +155,6 @@ export default function EnrollPage() {
     }
   }, [user]);
 
-  const recentLectures = React.useMemo(() => {
-    const oneHourAgo = Date.now() - 60 * 60 * 1000;
-    return recentlyViewed
-      .filter(item => item.timestamp && item.timestamp.toMillis() > oneHourAgo)
-      .map(item => ({...getLectureDetailsFromKey(item.key), viewedAt: item.timestamp.toDate()}))
-      .filter(details => details !== null)
-      .filter((value, index, self) => self.findIndex(v => v?.lecture.id === value?.lecture.id) === index)
-      .slice(0, 3); // Show max 3 recent lectures on this page
-  }, [recentlyViewed]);
-
   React.useEffect(() => {
     if (!REQUIRE_KEY_GENERATION) {
       setIsAccessGranted(true);
@@ -222,7 +211,7 @@ export default function EnrollPage() {
     return (
       <div className="flex flex-col min-h-screen items-center justify-center bg-background p-6 text-foreground">
         <div className="bg-card p-8 rounded-xl shadow-xl text-center max-w-md">
-          <Lock className="h-16 w-16 text-destructive mx-auto mb-6" />
+          <History className="h-16 w-16 text-destructive mx-auto mb-6" />
           <h1 className="text-2xl font-bold mb-3">Access Denied</h1>
           <p className="text-muted-foreground mb-6">
             You need to generate an access key to view this content.
@@ -362,27 +351,9 @@ export default function EnrollPage() {
           </div>
         </div>
 
-        {user && recentLectures.length > 0 && (
+        {user && (
             <div className="w-full max-w-2xl mt-12">
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-3 text-xl"><History className="text-primary"/>Recently Viewed</CardTitle>
-                        <CardDescription>Lectures you've watched in the last hour.</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                    {recentLectures.map((details, index) => details && (
-                        <Link key={index} href={`/courses/${details.courseId}/content/video/${encodeURIComponent(details.subjectName)}/${encodeURIComponent(details.topic.name)}/lectures/${encodeURIComponent(details.lecture.id)}/play`}>
-                            <div className="flex items-center justify-between p-3 rounded-lg hover:bg-muted transition-colors">
-                                <div>
-                                    <p className="font-semibold">{details.lecture.title}</p>
-                                    <p className="text-xs text-muted-foreground">{details.subjectName} - {details.topic.name}</p>
-                                </div>
-                                <span className="text-xs text-muted-foreground">{formatDistanceToNow(details.viewedAt, { addSuffix: true })}</span>
-                            </div>
-                        </Link>
-                    ))}
-                    </CardContent>
-                </Card>
+                <RecentlyViewedCard recentlyViewed={recentlyViewed} />
             </div>
         )}
       </main>
@@ -391,5 +362,5 @@ export default function EnrollPage() {
   );
 }
     
-
     
+

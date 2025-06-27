@@ -26,6 +26,7 @@ import {
   SheetClose,
   SheetDescription,
   SheetTrigger,
+  SheetFooter,
 } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import NotificationItem from '@/components/NotificationItem';
@@ -280,7 +281,7 @@ function AppContent({ children }: { children: ReactNode }) {
 
   const NotificationBellIconToUse = unreadNotificationCount > 0 ? BellRing : Bell;
   const showHeader = !['/auth/callback', '/generate-access', '/help-center'].includes(pathname) && !showMaintenance;
-  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/dashboard', '/help-center'];
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
 
   return (
@@ -357,11 +358,11 @@ function AppContent({ children }: { children: ReactNode }) {
                     }
                 </div>
               </ScrollArea>
-              <div className="p-4 border-t border-border">
+              <SheetFooter className="p-4 border-t border-border">
                 <SheetClose asChild>
                   <Button variant="outline" className="w-full">Close Menu</Button>
                 </SheetClose>
-              </div>
+              </SheetFooter>
             </SheetContent>
           </Sheet>
 
@@ -372,7 +373,7 @@ function AppContent({ children }: { children: ReactNode }) {
               ) : user ? (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="flex items-center gap-2 h-10 pl-2 pr-3 rounded-full">
+                    <Button variant="ghost" className="flex items-center gap-2 h-10 px-3 rounded-full border border-border">
                         <span className="text-sm font-medium text-foreground">Hi, {user.displayName?.split(' ')[0]}</span>
                         <Avatar className="h-8 w-8">
                             <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
@@ -462,18 +463,18 @@ function AppContent({ children }: { children: ReactNode }) {
                     </Link>
                   </Button>
                 </div>
-                 <div className="p-4 border-t border-border">
+                 <SheetFooter className="p-4 border-t border-border">
                   <SheetClose asChild>
                     <Button variant="outline" className="w-full">Close Menu</Button>
                   </SheetClose>
-                </div>
+                </SheetFooter>
               </SheetContent>
             </Sheet>
           </div>
         </header>
       )}
 
-      <main>
+      <main className={showHeader ? 'pt-20' : ''}>
         {children}
       </main>
 
