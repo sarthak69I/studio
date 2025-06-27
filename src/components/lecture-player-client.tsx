@@ -155,9 +155,9 @@ export default function LecturePlayerClient() {
       let newPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl)}`;
       if (lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') {
         newPlayerUrl += `&notesUrl=${encodeURIComponent(lecture.notesLink)}`;
-        if (lecture.notesTitle && lecture.notesTitle.trim() !== '') {
-          newPlayerUrl += `&notesTitle=${encodeURIComponent(lecture.notesTitle)}`;
-        }
+        // Use lecture.notesTitle if available, otherwise fallback to lecture.title
+        const titleForNotes = (lecture.notesTitle && lecture.notesTitle.trim()) ? lecture.notesTitle : lecture.title;
+        newPlayerUrl += `&notesTitle=${encodeURIComponent(titleForNotes)}`;
       }
       return (
         <div className={playerContainerClasses}>
