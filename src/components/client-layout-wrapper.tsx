@@ -329,11 +329,6 @@ function AppContent({ children }: { children: ReactNode }) {
                     <Bell className="mr-2 h-5 w-5 text-primary"/>
                     Updates & Announcements
                   </SheetTitle>
-                  <SheetClose asChild>
-                    <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 text-muted-foreground hover:bg-muted">
-                      <X className="h-5 w-5" />
-                    </Button>
-                  </SheetClose>
                 </div>
                 <SheetDescription className="text-sm text-muted-foreground pt-1">
                   Stay informed with the latest news and updates from E-Leak.
@@ -486,16 +481,21 @@ function AppContent({ children }: { children: ReactNode }) {
       </main>
 
       {showAppFeatures && (
-        <a
-          href="https://t.me/eleakcoursehub"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="telegram-float"
-          aria-label="Join our Telegram channel"
-          title="Join our Telegram channel"
-        >
-          <Send className="h-7 w-7 text-white" />
-        </a>
+        <>
+          <Link href="/help-center" className="telegram-float" style={{ right: 'auto', left: '20px', backgroundColor: '#6c5ce7' }} aria-label="E-Leak 24/7 Support" title="E-Leak 24/7 Support">
+            <Bot className="h-7 w-7 text-white" />
+          </Link>
+          <a
+            href="https://t.me/eleakcoursehub"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="telegram-float"
+            aria-label="Join our Telegram channel"
+            title="Join our Telegram channel"
+          >
+            <Send className="h-7 w-7 text-white" />
+          </a>
+        </>
       )}
 
       {showAppFeatures && <Footer />}
