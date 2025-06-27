@@ -389,9 +389,9 @@ export default function DashboardPage() {
                     <CardDescription>You're on the right track. Keep going!</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                    <div className="flex justify-between items-baseline">
+                    <div className="flex items-baseline gap-2">
                         <h3 className="text-4xl font-bold text-primary">{completedCount}</h3>
-                        <p className="text-muted-foreground">/ {totalLectures} lectures completed</p>
+                        <p className="text-muted-foreground">lectures completed</p>
                     </div>
                     <Progress value={progressPercentage} aria-label={`${progressPercentage.toFixed(0)}% complete`} />
                 </CardContent>
