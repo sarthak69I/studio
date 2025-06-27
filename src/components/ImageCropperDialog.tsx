@@ -15,7 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2, Crop } from 'lucide-react';
 import ReactCrop, { centerCrop, makeAspectCrop, type Crop as CropType } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-import { uploadAvatar, updateUserProfile } from '@/lib/firebase';
+import { updateUserProfile } from '@/lib/firebase'; // Removed uploadAvatar
 import type { User } from 'firebase/auth';
 
 interface ImageCropperDialogProps {
@@ -44,10 +44,15 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
 
   const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      if (file.size > 4 * 1024 * 1024) { // 4MB size limit
+        toast({ variant: "destructive", title: "Image Too Large", description: "Please select an image smaller than 4MB." });
+        return;
+      }
       setCrop(undefined);
       const reader = new FileReader();
       reader.addEventListener('load', () => setImgSrc(reader.result?.toString() || ''));
-      reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(file);
     }
   };
 
@@ -67,8 +72,10 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
     const scaleX = imgRef.current.naturalWidth / imgRef.current.width;
     const scaleY = imgRef.current.naturalHeight / imgRef.current.height;
     
-    canvas.width = Math.floor(completedCrop.width * scaleX);
-    canvas.height = Math.floor(completedCrop.height * scaleY);
+    // For better quality on high-res devices, let's limit the canvas size
+    const targetWidth = 256;
+    canvas.width = targetWidth;
+    canvas.height = targetWidth;
     
     const ctx = canvas.getContext('2d');
     if (!ctx) {
@@ -79,31 +86,33 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
 
     const cropX = completedCrop.x * scaleX;
     const cropY = completedCrop.y * scaleY;
+    const cropWidth = completedCrop.width * scaleX;
+    const cropHeight = completedCrop.height * scaleY;
 
     ctx.drawImage(
       imgRef.current,
       cropX,
       cropY,
-      canvas.width,
-      canvas.height,
+      cropWidth,
+      cropHeight,
       0,
       0,
-      canvas.width,
-      canvas.height
+      targetWidth,
+      targetWidth
     );
 
-    const base64Image = canvas.toDataURL('image/jpeg', 0.85);
+    const base64Image = canvas.toDataURL('image/jpeg', 0.9);
 
     try {
-        const downloadURL = await uploadAvatar(user.uid, base64Image);
-        await updateUserProfile(user, user.displayName || '', downloadURL);
+        // Instead of uploading to storage, we pass the data URL directly to the user profile
+        await updateUserProfile(user, user.displayName || '', base64Image);
 
         toast({ title: "Avatar Updated!", description: "Your new profile picture has been saved." });
         onUploadComplete();
         handleClose();
     } catch (error: any) {
-        console.error("Upload failed:", error);
-        toast({ variant: "destructive", title: "Upload Failed", description: error.message || "Could not upload your new avatar." });
+        console.error("Update profile failed:", error);
+        toast({ variant: "destructive", title: "Update Failed", description: error.message || "Could not update your avatar." });
     } finally {
         setIsLoading(false);
     }
@@ -123,14 +132,14 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
         <DialogHeader>
           <DialogTitle>Update Profile Picture</DialogTitle>
           <DialogDescription>
-            Select and crop an image to use as your new avatar.
+            Select and crop an image to use as your new avatar. (Max 4MB)
           </DialogDescription>
         </DialogHeader>
         <div className="py-4 space-y-4">
           <Input
             ref={fileInputRef}
             type="file"
-            accept="image/*"
+            accept="image/png, image/jpeg, image/webp"
             onChange={onSelectFile}
           />
           {imgSrc && (

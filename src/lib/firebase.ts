@@ -12,7 +12,7 @@ import {
   type Auth, 
   type User 
 } from "firebase/auth";
-import { getStorage, ref as storageRef, uploadString, getDownloadURL, type FirebaseStorage } from "firebase/storage";
+// Removed Firebase Storage imports as they are no longer needed
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 // Your web app's Firebase configuration
@@ -29,7 +29,7 @@ const firebaseConfig = {
 let app: FirebaseApp;
 let db: Firestore;
 let auth: Auth;
-let storage: FirebaseStorage;
+// let storage: FirebaseStorage; // storage is no longer needed
 
 if (getApps().length === 0) {
   app = initializeApp(firebaseConfig);
@@ -47,7 +47,7 @@ if (typeof window !== 'undefined') {
 
 db = getFirestore(app);
 auth = getAuth(app);
-storage = getStorage(app);
+// storage = getStorage(app); // storage is no longer needed
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -112,18 +112,7 @@ export const logout = async () => {
   }
 };
 
-export const uploadAvatar = async (userId: string, dataUrl: string): Promise<string> => {
-  if (!userId) throw new Error("User not authenticated for avatar upload.");
-  const avatarRef = storageRef(storage, `avatars/${userId}.jpg`);
-  
-  // Upload the base64 string
-  const snapshot = await uploadString(avatarRef, dataUrl, 'data_url');
-
-  // Get the public download URL
-  const downloadURL = await getDownloadURL(snapshot.ref);
-  
-  return downloadURL;
-};
+// uploadAvatar function is now removed as it's no longer needed.
 
 export const updateUserProfile = async (user: User, newName: string, newPhotoURL: string) => {
   if (!user) throw new Error("User not authenticated");
