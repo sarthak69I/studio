@@ -1,8 +1,7 @@
-
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot, Lock, Unlock } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Bot, Lock, Unlock, History } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
@@ -18,7 +17,11 @@ import {
   type CourseContentMap
 } from '@/lib/course-data';
 import { useAuth } from '@/context/AuthContext';
-import { markCourseAsEnrolled } from '@/lib/progress-manager';
+import { markCourseAsEnrolled, listenToProgress, type RecentlyViewedEntry } from '@/lib/progress-manager';
+import { getLectureDetailsFromKey } from '@/lib/course-analytics';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { formatDistanceToNow } from 'date-fns';
+
 
 interface SubjectItemProps {
   name: string;
@@ -136,12 +139,32 @@ export default function EnrollPage() {
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
   const [isLoading, setIsLoading] = React.useState(true);
   const [isAccessGranted, setIsAccessGranted] = React.useState(!REQUIRE_KEY_GENERATION);
+  const [recentlyViewed, setRecentlyViewed] = React.useState<RecentlyViewedEntry[]>([]);
 
   React.useEffect(() => {
       if (user && courseId) {
           markCourseAsEnrolled(courseId);
       }
   }, [user, courseId]);
+
+  React.useEffect(() => {
+    if (user) {
+        const unsubscribe = listenToProgress(user.uid, (progress) => {
+            setRecentlyViewed(progress.recentlyViewed || []);
+        });
+        return () => unsubscribe();
+    }
+  }, [user]);
+
+  const recentLectures = React.useMemo(() => {
+    const oneHourAgo = Date.now() - 60 * 60 * 1000;
+    return recentlyViewed
+      .filter(item => item.timestamp && item.timestamp.toMillis() > oneHourAgo)
+      .map(item => ({...getLectureDetailsFromKey(item.key), viewedAt: item.timestamp.toDate()}))
+      .filter(details => details !== null)
+      .filter((value, index, self) => self.findIndex(v => v?.lecture.id === value?.lecture.id) === index)
+      .slice(0, 3); // Show max 3 recent lectures on this page
+  }, [recentlyViewed]);
 
   React.useEffect(() => {
     if (!REQUIRE_KEY_GENERATION) {
@@ -338,6 +361,30 @@ export default function EnrollPage() {
             )}
           </div>
         </div>
+
+        {user && recentLectures.length > 0 && (
+            <div className="w-full max-w-2xl mt-12">
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-3 text-xl"><History className="text-primary"/>Recently Viewed</CardTitle>
+                        <CardDescription>Lectures you've watched in the last hour.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                    {recentLectures.map((details, index) => details && (
+                        <Link key={index} href={`/courses/${details.courseId}/content/video/${encodeURIComponent(details.subjectName)}/${encodeURIComponent(details.topic.name)}/lectures/${encodeURIComponent(details.lecture.id)}/play`}>
+                            <div className="flex items-center justify-between p-3 rounded-lg hover:bg-muted transition-colors">
+                                <div>
+                                    <p className="font-semibold">{details.lecture.title}</p>
+                                    <p className="text-xs text-muted-foreground">{details.subjectName} - {details.topic.name}</p>
+                                </div>
+                                <span className="text-xs text-muted-foreground">{formatDistanceToNow(details.viewedAt, { addSuffix: true })}</span>
+                            </div>
+                        </Link>
+                    ))}
+                    </CardContent>
+                </Card>
+            </div>
+        )}
       </main>
     </div>
     </>

@@ -14,8 +14,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
-import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User } from 'lucide-react';
-import { db } from '@/lib/firebase';
+import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut } from 'lucide-react';
+import { db, logout } from '@/lib/firebase';
 import { collection, query, orderBy, limit, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
 import {
   Sheet,
@@ -32,6 +32,7 @@ import NotificationItem from '@/components/NotificationItem';
 import type { Announcement as AnnouncementType } from '@/components/NotificationItem';
 import { useToast } from '@/hooks/use-toast';
 import { AuthProvider, useAuth } from '@/context/AuthContext';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel } from '@/components/ui/dropdown-menu';
 
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
@@ -89,11 +90,12 @@ function AppContent({ children }: { children: ReactNode }) {
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   }
 
-  const handleDashboardClick = () => {
-    if (!user) {
-      setIsLoginDialogOpen(true);
-    }
-    // If user is logged in, the <Link> component will handle navigation.
+  const handleLogout = async () => {
+    await logout();
+    toast({
+        title: "Signed Out",
+        description: "You have been successfully logged out.",
+    });
   };
 
   const markNotificationsAsViewed = useCallback((viewedTimestamp: number) => {
@@ -353,25 +355,53 @@ function AppContent({ children }: { children: ReactNode }) {
                     }
                 </div>
               </ScrollArea>
-               <div className="p-4 border-t border-border">
+               <SheetFooter className="p-4 border-t border-border">
                 <SheetClose asChild>
-                  <Button variant="outline" className="w-full">Close</Button>
+                  <Button variant="outline" className="w-full">Close Menu</Button>
                 </SheetClose>
-              </div>
+              </SheetFooter>
             </SheetContent>
           </Sheet>
 
           {/* Right side: Login/Avatar and Menu */}
           <div className="flex items-center gap-2">
              {authLoading ? (
-                <Skeleton className="h-9 w-28 rounded-md" />
+                <Skeleton className="h-10 w-32 rounded-full" />
               ) : user ? (
-                 <Link href="/dashboard" aria-label="Go to dashboard">
-                    <Avatar className="h-9 w-9 border-2 border-primary/50">
-                      <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
-                      <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
-                    </Avatar>
-                  </Link>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="flex items-center gap-2 h-10 px-3 rounded-full">
+                        <span className="text-sm font-medium text-foreground hidden sm:inline">Hi, {user.displayName?.split(' ')[0]}</span>
+                        <Avatar className="h-8 w-8">
+                            <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
+                            <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
+                        </Avatar>
+                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                    </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-56">
+                        <DropdownMenuLabel className="font-normal">
+                            <div className="flex flex-col space-y-1">
+                            <p className="text-sm font-medium leading-none">{user.displayName}</p>
+                            <p className="text-xs leading-none text-muted-foreground">
+                                {user.email}
+                            </p>
+                            </div>
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem asChild>
+                            <Link href="/dashboard">
+                                <LayoutDashboard className="mr-2 h-4 w-4" />
+                                <span>Dashboard</span>
+                            </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={handleLogout}>
+                            <LogOut className="mr-2 h-4 w-4" />
+                            <span>Log out</span>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
               ) : (
                 <Button className="btn-login rounded-full" onClick={() => setIsLoginDialogOpen(true)}>
                   Login/Register
@@ -394,37 +424,18 @@ function AppContent({ children }: { children: ReactNode }) {
                   <SheetTitle className="text-2xl font-semibold">Menu</SheetTitle>
                 </SheetHeader>
                 <div className="space-y-1 p-4 flex-grow">
-                  {user ? (
+                  {user && (
                     <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
                       <Link href="/dashboard" onClick={() => setIsMenuSheetOpen(false)} className="flex items-center">
                         <Avatar className="mr-3 h-7 w-7">
                           <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
                           <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
                         </Avatar>
-                        {user.displayName || 'Dashboard'}
+                        My Dashboard
                       </Link>
-                    </Button>
-                  ) : (
-                    <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" onClick={() => { setIsLoginDialogOpen(true); setIsMenuSheetOpen(false); }} disabled={authLoading}>
-                      <LogIn className="mr-3 h-5 w-5 text-primary" />
-                      {authLoading ? 'Loading...' : 'Sign In / Register'}
                     </Button>
                   )}
                   
-                  <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" onClick={() => { handleDashboardClick(); setIsMenuSheetOpen(false); }} asChild={!!user}>
-                    {user ? (
-                      <Link href="/dashboard" className="flex items-center">
-                        <LayoutDashboard className="mr-3 h-5 w-5 text-primary" />
-                        My Dashboard
-                      </Link>
-                    ) : (
-                      <div className="flex items-center w-full">
-                        <LayoutDashboard className="mr-3 h-5 w-5 text-primary" />
-                        My Dashboard
-                      </div>
-                    )}
-                  </Button>
-
                   <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" onClick={toggleTheme}>
                     {currentTheme === 'light' ? <Moon className="mr-3 h-5 w-5 text-primary" /> : <Sun className="mr-3 h-5 w-5 text-primary" />}
                     {currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
