@@ -2,7 +2,6 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
 import {
   Dialog,
   DialogContent,
@@ -12,47 +11,47 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { User, LogIn, AlertTriangle } from 'lucide-react';
-import { signInWithGoogle } from '@/lib/firebase';
+import { LogIn, ShieldCheck, TrendingUp, UserCog } from 'lucide-react';
 
 interface LoginPromptDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onOpenLoginDialog: () => void;
 }
 
-export default function LoginPromptDialog({ open, onOpenChange }: LoginPromptDialogProps) {
-  const handleSignIn = async () => {
-    await signInWithGoogle();
-    onOpenChange(false); // Close dialog after sign-in attempt
-  };
+export default function LoginPromptDialog({ open, onOpenChange, onOpenLoginDialog }: LoginPromptDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md rounded-xl">
         <DialogHeader className="text-center sm:text-left">
           <DialogTitle className="text-xl flex items-center justify-center sm:justify-start">
-            <User className="mr-2 h-6 w-6 text-primary" />
-            Sign In to Unlock More Features
+            Sign In to Unlock All Features
           </DialogTitle>
           <DialogDescription className="pt-2 text-muted-foreground">
-            Create a free account to save your course progress across devices, participate in discussions, and get a personalized experience.
+            You need to sign in to this website to get the best experience.
           </DialogDescription>
         </DialogHeader>
         
-        <div className="my-4 p-3 bg-destructive/10 border-l-4 border-destructive text-destructive-foreground rounded-md text-sm">
-           <div className="flex items-start">
-              <AlertTriangle className="h-5 w-5 mr-3 mt-0.5 flex-shrink-0" />
-              <div>
-                <p className="font-semibold">Important Notice</p>
-                <p>To ensure continuous access and prevent misuse, creating an account is highly recommended. Unregistered users may face access restrictions in the future.</p>
-              </div>
-           </div>
-        </div>
+        <ul className="space-y-3 text-left my-6 text-sm text-foreground">
+          <li className="flex items-center gap-3">
+            <ShieldCheck className="h-5 w-5 text-primary flex-shrink-0" />
+            <span>Advance level security for your account.</span>
+          </li>
+          <li className="flex items-center gap-3">
+            <TrendingUp className="h-5 w-5 text-primary flex-shrink-0" />
+            <span>Track your course progress across all devices.</span>
+          </li>
+          <li className="flex items-center gap-3">
+            <UserCog className="h-5 w-5 text-primary flex-shrink-0" />
+            <span>Get a personalized learning experience.</span>
+          </li>
+        </ul>
         
         <DialogFooter className="mt-4">
-          <Button type="button" onClick={handleSignIn} className="w-full group">
+          <Button type="button" onClick={onOpenLoginDialog} className="w-full group">
             <LogIn className="mr-2 h-4 w-4" />
-            Sign In with Google
+            Sign In / Register
           </Button>
         </DialogFooter>
       </DialogContent>

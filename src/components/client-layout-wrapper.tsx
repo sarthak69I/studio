@@ -40,10 +40,12 @@ const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
 const LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY = 'eleakLastNotificationsSheetOpenedAt_v3';
 const LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY = 'eleakLastToastedAnnouncementTimestamp_v3';
-const LOGIN_PROMPT_LAST_SHOWN_KEY = 'loginPromptLastShown_v1';
+const LOGIN_PROMPT_LAST_SHOWN_KEY = 'loginPromptLastShown_v2';
 const SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY = 'subscriptionPromptLastShown_v1';
 const NOTIFICATIONS_POLL_INTERVAL_MS = 30000;
 const ANNOUNCEMENTS_FETCH_LIMIT = 20;
+const LOGIN_PROMPT_DELAY_DAYS = 2;
+
 
 function AppContent({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -259,8 +261,8 @@ function AppContent({ children }: { children: ReactNode }) {
       // Login Prompt Logic
       if (!user) {
         const lastLoginPromptTime = localStorage.getItem(LOGIN_PROMPT_LAST_SHOWN_KEY);
-        const twentyFourHours = 24 * 60 * 60 * 1000;
-        if (!lastLoginPromptTime || Date.now() - parseInt(lastLoginPromptTime, 10) > twentyFourHours) {
+        const twoDays = LOGIN_PROMPT_DELAY_DAYS * 24 * 60 * 60 * 1000;
+        if (!lastLoginPromptTime || Date.now() - parseInt(lastLoginPromptTime, 10) > twoDays) {
           const timer = setTimeout(() => setShowLoginPrompt(true), 5000);
           return () => clearTimeout(timer);
         }
@@ -524,6 +526,10 @@ function AppContent({ children }: { children: ReactNode }) {
           open={showLoginPrompt}
           onOpenChange={(isOpen) => {
             if (!isOpen) handleLoginPromptDismiss();
+          }}
+          onOpenLoginDialog={() => {
+            handleLoginPromptDismiss();
+            setIsLoginDialogOpen(true);
           }}
       />
       
