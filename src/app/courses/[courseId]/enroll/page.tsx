@@ -330,20 +330,6 @@ export default function EnrollPage() {
           </div>
         </div>
       </main>
-
-      <div className="mt-12 mb-6 text-center">
-        <p className="text-muted-foreground mb-2">Need Support?</p>
-        <Link href="/help-center">
-          <Button variant="outline" size="lg" className="rounded-lg">
-            <Bot className="mr-2 h-5 w-5" />
-            E-Leak 24/7 Support
-          </Button>
-        </Link>
-      </div>
-
-      <footer className="text-center text-sm text-muted-foreground mt-12 py-4">
-        <p>© E-Leak All rights reserved.</p>
-      </footer>
     </div>
     </>
   );
