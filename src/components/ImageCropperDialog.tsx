@@ -73,8 +73,8 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
     const scaleX = imgRef.current.naturalWidth / imgRef.current.width;
     const scaleY = imgRef.current.naturalHeight / imgRef.current.height;
     
-    // For better quality on high-res devices, let's limit the canvas size
-    const targetWidth = 128; // Reduced from 256 to 128 to fix "URL too long" error
+    // Further reduced targetWidth to 96px to ensure the data URL is small enough.
+    const targetWidth = 96; 
     canvas.width = targetWidth;
     canvas.height = targetWidth;
     
@@ -102,10 +102,10 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
       targetWidth
     );
 
-    const base64Image = canvas.toDataURL('image/jpeg', 0.9);
+    // Using a slightly lower quality setting to reduce data URL length.
+    const base64Image = canvas.toDataURL('image/jpeg', 0.85);
 
     try {
-        // Instead of uploading to storage, we pass the data URL directly to the user profile
         await updateUserProfile(user, user.displayName || '', base64Image);
 
         toast({ title: "Avatar Updated!", description: "Your new profile picture has been saved." });
@@ -113,7 +113,11 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
         handleClose();
     } catch (error: any) {
         console.error("Update profile failed:", error);
-        toast({ variant: "destructive", title: "Update Failed", description: error.message || "Could not update your avatar." });
+        if (error.code === 'auth/invalid-profile-attribute') {
+             toast({ variant: "destructive", title: "Upload Failed", description: "The cropped image is still too large. Please try a smaller or simpler image." });
+        } else {
+             toast({ variant: "destructive", title: "Update Failed", description: error.message || "Could not update your avatar." });
+        }
     } finally {
         setIsLoading(false);
     }
