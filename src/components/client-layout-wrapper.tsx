@@ -219,7 +219,7 @@ function AppContent({ children }: { children: ReactNode }) {
     }
   }, [pathname, showMaintenance, authLoading, user]);
 
-  const excludedPathsForFeatures = ['/generate-access', '/auth/callback'];
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/dashboard'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
 
   const handleLoginPromptDismiss = () => {

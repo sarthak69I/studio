@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useState, useMemo } from 'react';
@@ -13,7 +14,7 @@ import { Progress } from '@/components/ui/progress';
 import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, Trophy, User as UserIcon, History } from 'lucide-react';
 import { logout, updateUserProfile, db } from '@/lib/firebase';
 import Link from 'next/link';
-import { listenToProgress, getCompletedLectureKeys, RecentlyViewedEntry } from '@/lib/progress-manager';
+import { listenToProgress, RecentlyViewedEntry } from '@/lib/progress-manager';
 import { getTotalLectureCount, getLectureDetailsFromKey, getCourseNameById } from '@/lib/course-analytics';
 import type { Lecture, Topic } from '@/lib/course-data';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';

@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useRef } from 'react';
@@ -15,7 +16,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2, Crop } from 'lucide-react';
 import ReactCrop, { centerCrop, makeAspectCrop, type Crop as CropType } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-import { updateUserProfile } from '@/lib/firebase'; // Removed uploadAvatar
+import { updateUserProfile } from '@/lib/firebase';
 import type { User } from 'firebase/auth';
 
 interface ImageCropperDialogProps {
