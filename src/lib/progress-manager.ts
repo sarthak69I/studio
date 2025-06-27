@@ -1,12 +1,26 @@
-
 // src/lib/progress-manager.ts
 'use client';
 
 import { db, auth } from './firebase';
-import { doc, getDoc, setDoc, onSnapshot, serverTimestamp } from 'firebase/firestore';
+import { doc, getDoc, setDoc, onSnapshot, serverTimestamp, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import type { User } from 'firebase/auth';
+import type { Timestamp } from 'firebase/firestore';
+
 
 const COMPLETED_LECTURES_KEY = 'eleakCompletedLectures_v2';
+
+export interface RecentlyViewedEntry {
+    key: string;
+    timestamp: Timestamp;
+}
+
+interface UserProgress {
+    completedLectures: string[];
+    lastWatchedLectureKey: string | null;
+    enrolledCourseIds: string[];
+    recentlyViewed: RecentlyViewedEntry[];
+}
+
 
 const generateLectureStorageKey = (courseId: string, subjectName: string, topicName: string, lectureId: string): string => {
   return `${courseId}::${subjectName}::${topicName}::${lectureId}`;
@@ -35,25 +49,27 @@ const setLocalCompletedKeys = (keys: Set<string>): void => {
 
 
 // --- Firestore Functions ---
-const getFirestoreProgress = async (userId: string): Promise<{ keys: Set<string>, lastWatchedKey: string | null }> => {
+const getFirestoreProgress = async (userId: string): Promise<UserProgress> => {
   try {
     const userProgressRef = doc(db, 'userProgress', userId);
     const docSnap = await getDoc(userProgressRef);
     if (docSnap.exists()) {
       const data = docSnap.data();
       return {
-        keys: new Set(data.completedLectures || []),
-        lastWatchedKey: data.lastWatchedLectureKey || null,
+        completedLectures: data.completedLectures || [],
+        lastWatchedLectureKey: data.lastWatchedLectureKey || null,
+        enrolledCourseIds: data.enrolledCourseIds || [],
+        recentlyViewed: data.recentlyViewed || [],
       };
     }
-    return { keys: new Set(), lastWatchedKey: null };
+    return { completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [] };
   } catch (error) {
     console.error("Error fetching progress from Firestore:", error);
-    return { keys: new Set(), lastWatchedKey: null };
+    return { completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [] };
   }
 };
 
-const saveProgressToFirestore = async (userId: string, data: { completedLectures: string[], lastWatchedLectureKey?: string }): Promise<void> => {
+const saveProgressToFirestore = async (userId: string, data: Partial<UserProgress>): Promise<void> => {
     if (!userId) return;
     try {
         const userProgressRef = doc(db, 'userProgress', userId);
@@ -61,6 +77,7 @@ const saveProgressToFirestore = async (userId: string, data: { completedLectures
             ...data,
             lastUpdated: serverTimestamp()
         };
+        // Use merge:true to create or update the document
         await setDoc(userProgressRef, dataToSave, { merge: true });
     } catch (error) {
         console.error("Error saving progress to Firestore:", error);
@@ -78,14 +95,43 @@ export const markLectureAsCompleted = async (courseId: string, subjectName: stri
 
   const user = auth.currentUser;
   if (user) {
-    const remoteProgress = await getFirestoreProgress(user.uid);
-    remoteProgress.keys.add(key);
-    await saveProgressToFirestore(user.uid, {
-        completedLectures: Array.from(remoteProgress.keys),
-        lastWatchedLectureKey: key
+    const progressDocRef = doc(db, 'userProgress', user.uid);
+    const newHistoryEntry = { key, timestamp: serverTimestamp() };
+    
+    // Atomically update fields
+    await updateDoc(progressDocRef, {
+        completedLectures: arrayUnion(key),
+        lastWatchedLectureKey: key,
+        recentlyViewed: arrayUnion(newHistoryEntry)
+    }).catch(async (err) => {
+        // If the document doesn't exist, create it
+        if (err.code === 'not-found') {
+            await setDoc(progressDocRef, {
+                completedLectures: [key],
+                lastWatchedLectureKey: key,
+                recentlyViewed: [newHistoryEntry],
+                enrolledCourseIds: [courseId] // also enroll in course
+            });
+        }
     });
   }
 };
+
+export const markCourseAsEnrolled = async (courseId: string): Promise<void> => {
+    const user = auth.currentUser;
+    if (user) {
+        const progressDocRef = doc(db, 'userProgress', user.uid);
+        await updateDoc(progressDocRef, {
+            enrolledCourseIds: arrayUnion(courseId)
+        }).catch(async (err) => {
+             if (err.code === 'not-found') {
+                await setDoc(progressDocRef, {
+                    enrolledCourseIds: [courseId]
+                });
+             }
+        });
+    }
+}
 
 export const isLectureCompleted = (courseId: string, subjectName: string, topicName: string, lectureId: string): boolean => {
   const key = generateLectureStorageKey(courseId, subjectName, topicName, lectureId);
@@ -103,34 +149,39 @@ export const syncProgressOnLogin = async (user: User): Promise<void> => {
     const localKeys = getLocalCompletedKeys();
     const remoteProgress = await getFirestoreProgress(user.uid);
     
-    const mergedKeys = new Set([...localKeys, ...remoteProgress.keys]);
-
+    const mergedKeys = new Set([...localKeys, ...remoteProgress.completedLectures]);
+    
     setLocalCompletedKeys(mergedKeys);
     
-    if (mergedKeys.size > remoteProgress.keys.size) {
+    if (mergedKeys.size > remoteProgress.completedLectures.length) {
         await saveProgressToFirestore(user.uid, { completedLectures: Array.from(mergedKeys) });
     }
 };
 
-export const listenToProgress = (userId: string, callback: (progress: { keys: Set<string>, lastWatchedKey: string | null }) => void): (() => void) => {
+export const listenToProgress = (userId: string, callback: (progress: UserProgress) => void): (() => void) => {
     const userProgressRef = doc(db, 'userProgress', userId);
     const unsubscribe = onSnapshot(userProgressRef, (docSnap) => {
         if (docSnap.exists()) {
-            const data = docSnap.data();
-            const keys = new Set<string>(data.completedLectures || []);
-            const lastWatchedKey = data.lastWatchedLectureKey || null;
-            setLocalCompletedKeys(keys); // Keep local storage in sync with firestore
-            callback({ keys, lastWatchedKey });
+            const data = docSnap.data() as UserProgress;
+            // Ensure local storage is always in sync with Firestore for a logged-in user.
+            setLocalCompletedKeys(new Set(data.completedLectures || []));
+            callback({
+                completedLectures: data.completedLectures || [],
+                lastWatchedLectureKey: data.lastWatchedLectureKey || null,
+                enrolledCourseIds: data.enrolledCourseIds || [],
+                recentlyViewed: data.recentlyViewed || [],
+            });
         } else {
+            // If no remote progress, sync local progress up to Firestore.
             const localKeys = getLocalCompletedKeys();
             if (localKeys.size > 0) {
               saveProgressToFirestore(userId, { completedLectures: Array.from(localKeys) });
             }
-            callback({ keys: localKeys, lastWatchedKey: null });
+            callback({ completedLectures: Array.from(localKeys), lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [] });
         }
     }, (error) => {
         console.error("Error listening to progress updates:", error);
-        callback({ keys: new Set(), lastWatchedKey: null });
+        callback({ completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [] });
     });
 
     return unsubscribe;

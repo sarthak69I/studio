@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -17,6 +16,8 @@ import {
   type Topic,
   type CourseContentMap
 } from '@/lib/course-data';
+import { useAuth } from '@/context/AuthContext';
+import { markCourseAsEnrolled } from '@/lib/progress-manager';
 
 interface SubjectItemProps {
   name: string;
@@ -129,10 +130,17 @@ const ImageOnlySubjectCard: React.FC<ImageOnlySubjectCardProps> = ({ subjectName
 export default function EnrollPage() {
   const router = useRouter();
   const params = useParams();
+  const { user } = useAuth();
   const courseId = getParamAsString(params.courseId);
   const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
   const [isLoading, setIsLoading] = React.useState(true);
   const [isAccessGranted, setIsAccessGranted] = React.useState(!REQUIRE_KEY_GENERATION);
+
+  React.useEffect(() => {
+      if (user && courseId) {
+          markCourseAsEnrolled(courseId);
+      }
+  }, [user, courseId]);
 
   React.useEffect(() => {
     if (!REQUIRE_KEY_GENERATION) {

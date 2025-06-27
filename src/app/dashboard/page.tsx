@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useState, useMemo } from 'react';
@@ -11,24 +10,23 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, LogOut, ShieldCheck, Mail, BookOpen, Lightbulb, TrendingUp, PlayCircle, Play, Compass, Edit, CalendarPlus, Trophy, Link as LinkIcon, AlertTriangle, User as UserIcon } from 'lucide-react';
+import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, Trophy, User as UserIcon, History } from 'lucide-react';
 import { logout, updateUserProfile, db } from '@/lib/firebase';
 import Link from 'next/link';
-import { listenToProgress } from '@/lib/progress-manager';
+import { listenToProgress, getCompletedLectureKeys, RecentlyViewedEntry } from '@/lib/progress-manager';
 import { getTotalLectureCount, getLectureDetailsFromKey, getCourseNameById } from '@/lib/course-analytics';
 import type { Lecture, Topic } from '@/lib/course-data';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import { doc, getDoc, Timestamp } from 'firebase/firestore';
-import { format } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
+import ImageCropperDialog from '@/components/ImageCropperDialog';
 
 // --- Edit Profile Dialog Schema ---
 const profileSchema = z.object({
   displayName: z.string().min(2, { message: "Name must be at least 2 characters." }).max(50, { message: "Name cannot exceed 50 characters." }),
-  photoURL: z.string().url({ message: "Please enter a valid URL." }).or(z.literal('')),
 });
 
 // --- User Data type from Firestore ---
@@ -41,7 +39,52 @@ interface UserData {
     createdAt: Timestamp;
 }
 
-// Component for "Continue Learning"
+// --- Dashboard Cards ---
+
+const RecentlyViewedCard = ({ recentlyViewed }: { recentlyViewed: RecentlyViewedEntry[] }) => {
+  const oneHourAgo = Date.now() - 60 * 60 * 1000;
+  
+  const recentLectures = useMemo(() => {
+    return recentlyViewed
+      .filter(item => item.timestamp && item.timestamp.toMillis() > oneHourAgo)
+      .sort((a, b) => b.timestamp.toMillis() - a.timestamp.toMillis())
+      .map(item => ({...getLectureDetailsFromKey(item.key), viewedAt: item.timestamp.toDate()}))
+      .filter(details => details !== null)
+      // Deduplicate based on lecture key
+      .filter((value, index, self) => 
+         self.findIndex(v => v?.lecture.id === value?.lecture.id) === index
+      )
+      .slice(0, 5); // show max 5
+  }, [recentlyViewed, oneHourAgo]);
+
+  if (recentLectures.length === 0) {
+    return null;
+  }
+
+  return (
+    <Card className="col-span-1 md:col-span-2">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-3 text-xl"><History className="text-primary"/>Recently Viewed</CardTitle>
+        <CardDescription>Lectures you've watched in the last hour.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        {recentLectures.map((details, index) => details && (
+          <Link key={index} href={`/courses/${details.courseId}/content/video/${encodeURIComponent(details.subjectName)}/${encodeURIComponent(details.topic.name)}/lectures/${encodeURIComponent(details.lecture.id)}/play`}>
+             <div className="flex items-center justify-between p-3 rounded-lg hover:bg-muted transition-colors">
+                <div>
+                    <p className="font-semibold">{details.lecture.title}</p>
+                    <p className="text-xs text-muted-foreground">{details.subjectName} - {details.topic.name}</p>
+                </div>
+                <span className="text-xs text-muted-foreground">{formatDistanceToNow(details.viewedAt, { addSuffix: true })}</span>
+            </div>
+          </Link>
+        ))}
+      </CardContent>
+    </Card>
+  );
+};
+
+
 const ContinueLearningCard = ({ lastWatchedKey }: { lastWatchedKey: string | null }) => {
   const [details, setDetails] = useState<{ lecture: Lecture, topic: Topic, subjectName: string, courseId: string } | null>(null);
 
@@ -64,7 +107,7 @@ const ContinueLearningCard = ({ lastWatchedKey }: { lastWatchedKey: string | nul
     <Card className="bg-primary/10 border-primary/20 col-span-1 md:col-span-2">
       <CardHeader>
         <CardTitle className="flex items-center gap-3 text-xl">
-          <PlayCircle className="text-primary"/>
+          <Play className="text-primary"/>
           Continue Learning
         </CardTitle>
         <CardDescription>Pick up right where you left off.</CardDescription>
@@ -85,23 +128,13 @@ const ContinueLearningCard = ({ lastWatchedKey }: { lastWatchedKey: string | nul
   );
 };
 
-// Component for Enrolled Courses
-const EnrolledCoursesCard = ({ completedLectures }: { completedLectures: Set<string> }) => {
-    const enrolledCourseIds = useMemo(() => {
-        const ids = new Set<string>();
-        completedLectures.forEach(key => {
-            const courseId = key.split('::')[0];
-            if (courseId) ids.add(courseId);
-        });
-        return Array.from(ids);
-    }, [completedLectures]);
-
+const EnrolledCoursesCard = ({ enrolledCourseIds }: { enrolledCourseIds: string[] }) => {
     if (enrolledCourseIds.length === 0) {
         return (
              <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-3 text-xl"><Compass className="text-primary" />Your Courses</CardTitle>
-                    <CardDescription>Start a lecture to see your courses here.</CardDescription>
+                    <CardDescription>Click 'Enroll Now' on any course from the homepage to see it here.</CardDescription>
                 </CardHeader>
                 <CardContent>
                    <Button asChild className="w-full">
@@ -118,22 +151,24 @@ const EnrolledCoursesCard = ({ completedLectures }: { completedLectures: Set<str
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-xl"><Compass className="text-primary" />Your Courses</CardTitle>
-                <CardDescription>Courses you have started.</CardDescription>
+                <CardTitle className="flex items-center gap-3 text-xl"><Compass className="text-primary" />Your Enrolled Courses</CardTitle>
+                <CardDescription>Quick access to the courses you've started.</CardDescription>
             </CardHeader>
             <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                  {enrolledCourseIds.map(courseId => {
                     const courseName = getCourseNameById(courseId);
                     return (
-                        <Button key={courseId} asChild variant="secondary" className="justify-start text-left h-auto py-3">
-                            <Link href={`/courses/${courseId}/enroll`}>
-                                <BookOpen className="mr-3 h-5 w-5 flex-shrink-0 text-primary"/>
+                        <Link key={courseId} href={`/courses/${courseId}/enroll`}>
+                            <div className="p-4 rounded-lg border hover:bg-muted transition-colors flex flex-col justify-between h-full">
                                 <div>
                                     <p className="font-semibold">{courseName.split(' (')[0]}</p>
                                     <p className="text-xs text-muted-foreground">{courseName.split(' (')[1] ? `Class ${courseName.split(' (')[1]}`: ''}</p>
                                 </div>
-                            </Link>
-                        </Button>
+                                <div className="mt-3 text-right">
+                                    <span className="text-sm font-bold text-green-500">Free</span>
+                                </div>
+                            </div>
+                        </Link>
                     );
                 })}
             </CardContent>
@@ -141,26 +176,31 @@ const EnrolledCoursesCard = ({ completedLectures }: { completedLectures: Set<str
     )
 }
 
-// Edit Profile Dialog Component
 const EditProfileDialog = ({ open, onOpenChange, user, onProfileUpdate }: { open: boolean, onOpenChange: (open: boolean) => void, user: User, onProfileUpdate: () => void }) => {
     const { toast } = useToast();
     const [isLoading, setIsLoading] = React.useState(false);
+    const [isCropperOpen, setIsCropperOpen] = React.useState(false);
 
     const form = useForm<z.infer<typeof profileSchema>>({
         resolver: zodResolver(profileSchema),
         defaultValues: {
             displayName: user.displayName || "",
-            photoURL: user.photoURL || "",
         },
     });
+    
+    // Reset form when user data changes
+    useEffect(() => {
+        form.reset({ displayName: user.displayName || "" });
+    }, [user, form]);
+
 
     const onSubmit = async (values: z.infer<typeof profileSchema>) => {
         setIsLoading(true);
         try {
-            await updateUserProfile(user, values.displayName, values.photoURL);
+            await updateUserProfile(user, values.displayName, user.photoURL || "");
             toast({
                 title: "Profile Updated!",
-                description: "Your changes have been saved successfully.",
+                description: "Your display name has been saved.",
             });
             onProfileUpdate(); // Callback to refresh dashboard data
             onOpenChange(false);
@@ -176,52 +216,57 @@ const EditProfileDialog = ({ open, onOpenChange, user, onProfileUpdate }: { open
     };
     
     return (
-        <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                    <DialogTitle className="text-xl">Edit Your Profile</DialogTitle>
-                    <DialogDescription>
-                        Update your display name and profile picture URL.
-                    </DialogDescription>
-                </DialogHeader>
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 py-4">
-                        <FormField
-                            control={form.control}
-                            name="displayName"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Display Name</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Your Name" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="photoURL"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Photo URL</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="https://example.com/image.png" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <DialogFooter>
-                            <Button type="submit" disabled={isLoading} className="w-full">
-                                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                Save Changes
-                            </Button>
-                        </DialogFooter>
-                    </form>
-                </Form>
-            </DialogContent>
-        </Dialog>
+        <>
+            <Dialog open={open} onOpenChange={onOpenChange}>
+                <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                        <DialogTitle className="text-xl">Edit Your Profile</DialogTitle>
+                        <DialogDescription>
+                            Update your display name and profile picture.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="flex items-center gap-4 py-4">
+                        <Avatar className="h-20 w-20">
+                           <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
+                           <AvatarFallback className="text-2xl bg-muted">{user.displayName?.charAt(0).toUpperCase()}</AvatarFallback>
+                        </Avatar>
+                        <Button variant="outline" onClick={() => setIsCropperOpen(true)}>Change Photo</Button>
+                    </div>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                            <FormField
+                                control={form.control}
+                                name="displayName"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Display Name</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Your Name" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <DialogFooter>
+                                <Button type="submit" disabled={isLoading} className="w-full">
+                                    {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                    Save Name Changes
+                                </Button>
+                            </DialogFooter>
+                        </form>
+                    </Form>
+                </DialogContent>
+            </Dialog>
+            <ImageCropperDialog
+                open={isCropperOpen}
+                onOpenChange={setIsCropperOpen}
+                user={user}
+                onUploadComplete={() => {
+                    setIsCropperOpen(false);
+                    onProfileUpdate();
+                }}
+            />
+        </>
     );
 };
 
@@ -229,8 +274,11 @@ const EditProfileDialog = ({ open, onOpenChange, user, onProfileUpdate }: { open
 export default function DashboardPage() {
   const router = useRouter();
   const { user, loading } = useAuth();
-  const [completedLectures, setCompletedLectures] = useState<Set<string>>(new Set());
+  const [completedCount, setCompletedCount] = useState(0);
   const [lastWatchedKey, setLastWatchedKey] = useState<string | null>(null);
+  const [enrolledCourseIds, setEnrolledCourseIds] = useState<string[]>([]);
+  const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedEntry[]>([]);
+
   const [isProgressLoading, setIsProgressLoading] = useState(true);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -258,8 +306,10 @@ export default function DashboardPage() {
       setIsProgressLoading(true);
       fetchUserData(user.uid);
       const unsubscribe = listenToProgress(user.uid, (progress) => {
-        setCompletedLectures(progress.keys);
-        setLastWatchedKey(progress.lastWatchedKey);
+        setCompletedCount(progress.completedLectures.length);
+        setLastWatchedKey(progress.lastWatchedLectureKey);
+        setEnrolledCourseIds(progress.enrolledCourseIds);
+        setRecentlyViewed(progress.recentlyViewed);
         setIsProgressLoading(false);
       });
       
@@ -293,7 +343,6 @@ export default function DashboardPage() {
     router.push('/');
   };
 
-  const completedCount = completedLectures.size;
   const progressPercentage = totalLectures > 0 ? (completedCount / totalLectures) * 100 : 0;
   const joinedDate = userData.createdAt ? format(userData.createdAt.toDate(), 'MMMM d, yyyy') : 'N/A';
 
@@ -352,11 +401,13 @@ export default function DashboardPage() {
                 </CardFooter>
             </Card>
         </div>
-
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ContinueLearningCard lastWatchedKey={lastWatchedKey} />
-            <EnrolledCoursesCard completedLectures={completedLectures} />
+            <EnrolledCoursesCard enrolledCourseIds={enrolledCourseIds} />
         </div>
+
+        <RecentlyViewedCard recentlyViewed={recentlyViewed} />
         
         <div className="text-center mt-4">
              <Button onClick={handleSignOut} variant="destructive" className="w-full max-w-xs mx-auto">

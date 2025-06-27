@@ -1,7 +1,6 @@
-
 // src/lib/firebase.ts
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
-import { getFirestore, setDoc, doc, serverTimestamp, getDoc, updateDoc, type Firestore } from "firebase/firestore";
+import { getFirestore, setDoc, doc, serverTimestamp, getDoc, updateDoc, type Firestore, Timestamp } from "firebase/firestore";
 import { 
   getAuth, 
   GoogleAuthProvider, 
@@ -13,6 +12,7 @@ import {
   type Auth, 
   type User 
 } from "firebase/auth";
+import { getStorage, ref as storageRef, uploadString, getDownloadURL, type FirebaseStorage } from "firebase/storage";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 // Your web app's Firebase configuration
@@ -29,6 +29,7 @@ const firebaseConfig = {
 let app: FirebaseApp;
 let db: Firestore;
 let auth: Auth;
+let storage: FirebaseStorage;
 
 if (getApps().length === 0) {
   app = initializeApp(firebaseConfig);
@@ -46,6 +47,7 @@ if (typeof window !== 'undefined') {
 
 db = getFirestore(app);
 auth = getAuth(app);
+storage = getStorage(app);
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -54,20 +56,22 @@ export const saveUserToFirestore = async (user: User): Promise<void> => {
   try {
     const docSnap = await getDoc(userRef);
     
-    const userData: any = {
-      uid: user.uid,
-      displayName: user.displayName,
-      email: user.email,
-      photoURL: user.photoURL,
-      lastLogin: serverTimestamp(),
-    };
-
     if (!docSnap.exists()) {
-      userData.createdAt = serverTimestamp();
+      // Document doesn't exist, create it with all fields
+      await setDoc(userRef, {
+        uid: user.uid,
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        createdAt: serverTimestamp(),
+        lastLogin: serverTimestamp(),
+      });
+    } else {
+      // Document exists, update only the lastLogin field
+      await updateDoc(userRef, {
+        lastLogin: serverTimestamp(),
+      });
     }
-    
-    await setDoc(userRef, userData, { merge: true });
-
   } catch (error) {
     console.error("Error saving user to Firestore:", error);
     throw new Error("Could not save user data. Please check Firestore permissions and configuration.");
@@ -106,6 +110,19 @@ export const logout = async () => {
   } catch (error) {
     console.error("Error signing out:", error);
   }
+};
+
+export const uploadAvatar = async (userId: string, dataUrl: string): Promise<string> => {
+  if (!userId) throw new Error("User not authenticated for avatar upload.");
+  const avatarRef = storageRef(storage, `avatars/${userId}.jpg`);
+  
+  // Upload the base64 string
+  const snapshot = await uploadString(avatarRef, dataUrl, 'data_url');
+
+  // Get the public download URL
+  const downloadURL = await getDownloadURL(snapshot.ref);
+  
+  return downloadURL;
 };
 
 export const updateUserProfile = async (user: User, newName: string, newPhotoURL: string) => {
