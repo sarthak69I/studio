@@ -1,7 +1,11 @@
 
 "use client";
 
+import * as React from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 import { CourseCard } from '@/components/course-card';
+import { Loader2 } from 'lucide-react';
 
 interface Course {
   id: string;
@@ -101,6 +105,27 @@ const coursesData: Course[] = [
 ];
 
 export default function HomePage() {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+
+  React.useEffect(() => {
+    // If auth state is done loading and the user is logged in, redirect them.
+    if (!loading && user) {
+      router.replace('/dashboard');
+    }
+  }, [user, loading, router]);
+  
+  // While we're checking for the user's auth state, or if they are logged in and we're about to redirect,
+  // show a loading screen. This prevents the homepage content from flashing briefly for a logged-in user.
+  if (loading || user) {
+    return (
+      <div className="flex h-screen w-full items-center justify-center bg-background">
+        <Loader2 className="h-12 w-12 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  // If we're not loading and the user is null, show the homepage.
   return (
     <div className="flex min-h-screen flex-col items-center p-5 pt-8 sm:p-8 md:p-10 md:pt-12 animate-fadeIn-custom">
 
