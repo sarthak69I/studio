@@ -3,18 +3,16 @@
 'use client';
 
 import { db, auth } from './firebase';
-import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
+import { doc, getDoc, setDoc, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import type { User } from 'firebase/auth';
 
-const COMPLETED_LECTURES_KEY = 'eleakCompletedLectures_v2'; // version bump for new structure
+const COMPLETED_LECTURES_KEY = 'eleakCompletedLectures_v2';
 
-// Generates a unique key for storing lecture completion status
 const generateLectureStorageKey = (courseId: string, subjectName: string, topicName: string, lectureId: string): string => {
   return `${courseId}::${subjectName}::${topicName}::${lectureId}`;
 };
 
 // --- LocalStorage Functions ---
-
 const getLocalCompletedKeys = (): Set<string> => {
   if (typeof window === 'undefined') return new Set();
   try {
@@ -37,51 +35,55 @@ const setLocalCompletedKeys = (keys: Set<string>): void => {
 
 
 // --- Firestore Functions ---
-
-const getFirestoreCompletedKeys = async (userId: string): Promise<Set<string>> => {
+const getFirestoreProgress = async (userId: string): Promise<{ keys: Set<string>, lastWatchedKey: string | null }> => {
   try {
     const userProgressRef = doc(db, 'userProgress', userId);
     const docSnap = await getDoc(userProgressRef);
     if (docSnap.exists()) {
       const data = docSnap.data();
-      return new Set(data.completedLectures || []);
+      return {
+        keys: new Set(data.completedLectures || []),
+        lastWatchedKey: data.lastWatchedLectureKey || null,
+      };
     }
-    return new Set();
+    return { keys: new Set(), lastWatchedKey: null };
   } catch (error) {
     console.error("Error fetching progress from Firestore:", error);
-    return new Set();
+    return { keys: new Set(), lastWatchedKey: null };
   }
 };
 
-const saveKeysToFirestore = async (userId: string, keys: Set<string>): Promise<void> => {
+const saveProgressToFirestore = async (userId: string, data: { completedLectures: string[], lastWatchedLectureKey?: string }): Promise<void> => {
     if (!userId) return;
     try {
         const userProgressRef = doc(db, 'userProgress', userId);
-        await setDoc(userProgressRef, { completedLectures: Array.from(keys) }, { merge: true });
+        const dataToSave: any = {
+            ...data,
+            lastUpdated: serverTimestamp()
+        };
+        await setDoc(userProgressRef, dataToSave, { merge: true });
     } catch (error) {
         console.error("Error saving progress to Firestore:", error);
     }
 };
 
-// --- Combined Public Functions ---
 
+// --- Combined Public Functions ---
 export const markLectureAsCompleted = async (courseId: string, subjectName: string, topicName: string, lectureId: string): Promise<void> => {
   const key = generateLectureStorageKey(courseId, subjectName, topicName, lectureId);
   
   const localKeys = getLocalCompletedKeys();
-  if (localKeys.has(key)) return; // Already completed locally
-
   localKeys.add(key);
   setLocalCompletedKeys(localKeys);
 
   const user = auth.currentUser;
   if (user) {
-    // No need to fetch, just add the new key to the existing set in firestore
-    const remoteKeys = await getFirestoreCompletedKeys(user.uid);
-    if (!remoteKeys.has(key)) {
-      remoteKeys.add(key);
-      await saveKeysToFirestore(user.uid, remoteKeys);
-    }
+    const remoteProgress = await getFirestoreProgress(user.uid);
+    remoteProgress.keys.add(key);
+    await saveProgressToFirestore(user.uid, {
+        completedLectures: Array.from(remoteProgress.keys),
+        lastWatchedLectureKey: key
+    });
   }
 };
 
@@ -95,43 +97,40 @@ export const getCompletedLectureKeys = (): Set<string> => {
     return getLocalCompletedKeys();
 }
 
-// Function to sync local and remote progress on login
 export const syncProgressOnLogin = async (user: User): Promise<void> => {
     if (!user) return;
     
     const localKeys = getLocalCompletedKeys();
-    const remoteKeys = await getFirestoreCompletedKeys(user.uid);
+    const remoteProgress = await getFirestoreProgress(user.uid);
     
-    const mergedKeys = new Set([...localKeys, ...remoteKeys]);
+    const mergedKeys = new Set([...localKeys, ...remoteProgress.keys]);
 
     setLocalCompletedKeys(mergedKeys);
     
-    // Only write to firestore if the merged set is larger than what's already there
-    if (mergedKeys.size > remoteKeys.size) {
-        await saveKeysToFirestore(user.uid, mergedKeys);
+    if (mergedKeys.size > remoteProgress.keys.size) {
+        await saveProgressToFirestore(user.uid, { completedLectures: Array.from(mergedKeys) });
     }
 };
 
-// Function for the dashboard to get live updates on progress
-export const listenToProgress = (userId: string, callback: (keys: Set<string>) => void): (() => void) => {
+export const listenToProgress = (userId: string, callback: (progress: { keys: Set<string>, lastWatchedKey: string | null }) => void): (() => void) => {
     const userProgressRef = doc(db, 'userProgress', userId);
     const unsubscribe = onSnapshot(userProgressRef, (docSnap) => {
         if (docSnap.exists()) {
             const data = docSnap.data();
             const keys = new Set<string>(data.completedLectures || []);
+            const lastWatchedKey = data.lastWatchedLectureKey || null;
             setLocalCompletedKeys(keys); // Keep local storage in sync with firestore
-            callback(keys);
+            callback({ keys, lastWatchedKey });
         } else {
-            // If no document, sync local keys up to firestore for the first time
             const localKeys = getLocalCompletedKeys();
             if (localKeys.size > 0) {
-              saveKeysToFirestore(userId, localKeys);
+              saveProgressToFirestore(userId, { completedLectures: Array.from(localKeys) });
             }
-            callback(localKeys);
+            callback({ keys: localKeys, lastWatchedKey: null });
         }
     }, (error) => {
         console.error("Error listening to progress updates:", error);
-        callback(new Set()); // On error, return empty set
+        callback({ keys: new Set(), lastWatchedKey: null });
     });
 
     return unsubscribe;

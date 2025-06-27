@@ -219,7 +219,7 @@ function AppContent({ children }: { children: ReactNode }) {
     }
   }, [pathname, showMaintenance, authLoading, user]);
 
-  const excludedPathsForFeatures = ['/help-center', '/generate-access', '/auth/callback'];
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
 
   const handleLoginPromptDismiss = () => {
@@ -321,9 +321,9 @@ function AppContent({ children }: { children: ReactNode }) {
 
       {showAppFeatures && (
         <>
-          <a href="https://e-leakzone.vercel.app" target="_blank" rel="noopener noreferrer" className="eleakzone-float" aria-label="E-Leak Zone">
-            <img src="https://i.ibb.co/Z1vLWgVF/ZONE-removebg-preview.png" alt="E-Leak Zone Logo" />
-          </a>
+          <Link href="/help-center" className="support-float" aria-label="E-Leak 24/7 Support">
+            <Bot />
+          </Link>
           <a href="https://t.me/eleakcoursehub" target="_blank" rel="noopener noreferrer" className="telegram-float" aria-label="Join Telegram">
             <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
           </a>

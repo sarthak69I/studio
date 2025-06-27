@@ -6,6 +6,7 @@ import {
   aarambh9CourseContent,
   type CourseContentMap,
   type Topic,
+  type Lecture,
 } from '@/lib/course-data';
 
 // A single function to calculate the total number of lectures.
@@ -34,4 +35,32 @@ export function getTotalLectureCount(): number {
   }
 
   return total;
+}
+
+export function getLectureDetailsFromKey(key: string): { lecture: Lecture, topic: Topic, subjectName: string, courseId: string } | null {
+  if (!key) return null;
+  const parts = key.split('::');
+  if (parts.length !== 4) return null;
+
+  const [courseId, subjectName, topicName, lectureId] = parts;
+
+  let courseMap: CourseContentMap | undefined;
+  switch (courseId) {
+    case '1': courseMap = scienceCourseContent; break;
+    case '2': courseMap = commerceCourseContent; break;
+    case '3': courseMap = aarambhCourseContent; break;
+    case '4': courseMap = aarambh9CourseContent; break;
+    default: return null;
+  }
+
+  const subjectData = courseMap[decodeURIComponent(subjectName)];
+  if (!subjectData || typeof subjectData === 'string') return null;
+  
+  const topic = (subjectData as Topic[]).find(t => t.name === decodeURIComponent(topicName));
+  if (!topic || !topic.lectures) return null;
+
+  const lecture = topic.lectures.find(l => l.id === decodeURIComponent(lectureId));
+  if (!lecture) return null;
+
+  return { lecture, topic, subjectName: decodeURIComponent(subjectName), courseId };
 }

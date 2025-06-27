@@ -8,13 +8,87 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, LogOut, ShieldCheck, Mail, BookOpen, Lightbulb, TrendingUp } from 'lucide-react';
+import { Loader2, LogOut, ShieldCheck, Mail, BookOpen, Lightbulb, TrendingUp, PlayCircle, Play, Compass } from 'lucide-react';
 import { logout } from '@/lib/firebase';
 import Link from 'next/link';
 import { listenToProgress } from '@/lib/progress-manager';
-import { getTotalLectureCount } from '@/lib/course-analytics';
+import { getTotalLectureCount, getLectureDetailsFromKey } from '@/lib/course-analytics';
+import type { Lecture, Topic } from '@/lib/course-data';
 
-// New component for the Study Tip
+// Component for "Continue Learning"
+const ContinueLearningCard = ({ lastWatchedKey }: { lastWatchedKey: string | null }) => {
+  const [details, setDetails] = useState<{ lecture: Lecture, topic: Topic, subjectName: string, courseId: string } | null>(null);
+
+  useEffect(() => {
+    if (lastWatchedKey) {
+      setDetails(getLectureDetailsFromKey(lastWatchedKey));
+    }
+  }, [lastWatchedKey]);
+
+  if (!details) {
+    return null; // Don't render if no last watched lecture or details not found
+  }
+
+  const { lecture, topic, subjectName, courseId } = details;
+  const lectureUrl = `/courses/${courseId}/content/video/${encodeURIComponent(subjectName)}/${encodeURIComponent(topic.name)}/lectures/${encodeURIComponent(lecture.id)}/play`;
+
+  return (
+    <Card className="bg-primary/10 border-primary/20 col-span-1 md:col-span-2">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-3 text-xl">
+          <PlayCircle className="text-primary"/>
+          Continue Learning
+        </CardTitle>
+        <CardDescription>Pick up right where you left off.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="font-semibold text-lg">{lecture.title}</p>
+        <p className="text-sm text-muted-foreground">{subjectName} - {topic.name}</p>
+      </CardContent>
+      <CardFooter>
+        <Button asChild className="w-full">
+          <Link href={lectureUrl}>
+            <Play className="mr-2"/>
+            Watch Now
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+};
+
+// Component for "Quick Access" Links
+const QuickLinksCard = () => {
+    const courses = [
+        { id: '1', name: 'Science Batch (11th)' },
+        { id: '4', name: 'Aarambh Batch (9th)' },
+        { id: '2', name: 'Commerce Batch (11th)' },
+        { id: '3', name: 'Aarambh Batch (10th)' },
+    ];
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3 text-xl"><Compass className="text-primary" />Quick Access</CardTitle>
+                <CardDescription>Jump right into your courses.</CardDescription>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {courses.map(course => (
+                    <Button key={course.id} asChild variant="secondary" className="justify-start text-left h-auto py-3">
+                        <Link href={`/courses/${course.id}/enroll`}>
+                            <BookOpen className="mr-3 h-5 w-5 flex-shrink-0 text-primary"/>
+                            <div>
+                                <p className="font-semibold">{course.name.split(' (')[0]}</p>
+                                <p className="text-xs text-muted-foreground">{`Class ${course.name.split(' (')[1]}`}</p>
+                            </div>
+                        </Link>
+                    </Button>
+                ))}
+            </CardContent>
+        </Card>
+    )
+}
+
+// Study Tip Card (No changes needed, but kept for context)
 const StudyTipCard = () => {
     const tips = [
         "Create a study schedule and stick to it.",
@@ -46,14 +120,13 @@ const StudyTipCard = () => {
     );
 };
 
-
 export default function DashboardPage() {
   const router = useRouter();
   const { user, loading } = useAuth();
   const [completedLectures, setCompletedLectures] = useState<Set<string>>(new Set());
+  const [lastWatchedKey, setLastWatchedKey] = useState<string | null>(null);
   const [isProgressLoading, setIsProgressLoading] = useState(true);
 
-  // Memoize total lecture count to avoid re-calculating on every render
   const totalLectures = useMemo(() => getTotalLectureCount(), []);
 
   useEffect(() => {
@@ -67,12 +140,12 @@ export default function DashboardPage() {
       document.title = `${user.displayName}'s Dashboard | E-Leak`;
       
       setIsProgressLoading(true);
-      const unsubscribe = listenToProgress(user.uid, (keys) => {
-        setCompletedLectures(keys);
+      const unsubscribe = listenToProgress(user.uid, (progress) => {
+        setCompletedLectures(progress.keys);
+        setLastWatchedKey(progress.lastWatchedKey);
         setIsProgressLoading(false);
       });
       
-      // Cleanup listener on component unmount
       return () => unsubscribe();
     }
   }, [user]);
@@ -82,7 +155,7 @@ export default function DashboardPage() {
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   }
 
-  if (loading) {
+  if (loading || isProgressLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-background">
         <Loader2 className="h-12 w-12 animate-spin text-primary" />
@@ -108,15 +181,15 @@ export default function DashboardPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-background p-4 sm:p-6 md:p-8">
-      <div className="w-full max-w-4xl mx-auto space-y-8 animate-fadeIn-custom">
+      <div className="w-full max-w-5xl mx-auto space-y-8 animate-fadeIn-custom">
         <header>
           <h1 className="text-3xl md:text-4xl font-bold">Welcome back, {user.displayName?.split(' ')[0] || 'Student'}!</h1>
           <p className="text-muted-foreground">Here's your learning snapshot. Keep up the great work!</p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Profile Card */}
-            <Card className="lg:col-span-1">
+            <Card className="md:col-span-1">
                 <CardHeader className="text-center items-center">
                     <Avatar className="h-20 w-20 mb-3 border-4 border-primary">
                         <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
@@ -134,7 +207,7 @@ export default function DashboardPage() {
             </Card>
 
             {/* Progress Card */}
-            <Card className="md:col-span-2 lg:col-span-2">
+            <Card className="md:col-span-2">
                 <CardHeader>
                     <CardTitle className="text-xl flex items-center gap-3">
                         <TrendingUp className="text-primary"/>
@@ -143,44 +216,37 @@ export default function DashboardPage() {
                     <CardDescription>You're on the right track. Keep going!</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                    {isProgressLoading ? (
-                        <div className="flex items-center justify-center h-24">
-                           <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                        </div>
-                    ) : (
-                        <>
-                            <div className="flex justify-between items-baseline">
-                                <h3 className="text-4xl font-bold text-primary">{completedCount}</h3>
-                                <p className="text-muted-foreground">/ {totalLectures} lectures completed</p>
-                            </div>
-                            <Progress value={progressPercentage} aria-label={`${progressPercentage.toFixed(0)}% complete`} />
-                        </>
-                    )}
+                    <div className="flex justify-between items-baseline">
+                        <h3 className="text-4xl font-bold text-primary">{completedCount}</h3>
+                        <p className="text-muted-foreground">/ {totalLectures} lectures completed</p>
+                    </div>
+                    <Progress value={progressPercentage} aria-label={`${progressPercentage.toFixed(0)}% complete`} />
                 </CardContent>
                 <CardFooter>
                     <Button asChild className="w-full">
                         <Link href="/">
                             <BookOpen className="mr-2"/>
-                            Continue Learning
+                            Explore Courses
                         </Link>
                     </Button>
                 </CardFooter>
             </Card>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ContinueLearningCard lastWatchedKey={lastWatchedKey} />
+            <QuickLinksCard />
+        </div>
         
-        {/* Study Tip Card */}
         <StudyTipCard />
         
-        {/* Actions section */}
         <div className="text-center">
              <Button onClick={handleSignOut} variant="destructive" className="w-full max-w-xs mx-auto">
                 <LogOut className="mr-2 h-4 w-4" />
                 Sign Out
             </Button>
         </div>
-
       </div>
     </div>
   );
 }
-
