@@ -3,10 +3,8 @@
 'use client';
 
 import { db, auth } from './firebase';
-import { doc, getDoc, setDoc, onSnapshot, serverTimestamp, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { doc, getDoc, setDoc, onSnapshot, serverTimestamp, updateDoc, arrayUnion, arrayRemove, Timestamp } from 'firebase/firestore';
 import type { User } from 'firebase/auth';
-import type { Timestamp } from 'firebase/firestore';
-
 
 const COMPLETED_LECTURES_KEY = 'eleakCompletedLectures_v2';
 
@@ -91,22 +89,56 @@ export const markLectureAsCompleted = async (courseId: string, subjectName: stri
   const key = generateLectureStorageKey(courseId, subjectName, topicName, lectureId);
   
   const localKeys = getLocalCompletedKeys();
-  localKeys.add(key);
-  setLocalCompletedKeys(localKeys);
+  if (!localKeys.has(key)) {
+      localKeys.add(key);
+      setLocalCompletedKeys(localKeys);
+  }
 
   const user = auth.currentUser;
   if (user) {
     const progressDocRef = doc(db, 'userProgress', user.uid);
-    const newHistoryEntry = { key, timestamp: serverTimestamp() };
-    
-    // Atomically update fields
-    await setDoc(progressDocRef, {
-        completedLectures: arrayUnion(key),
-        lastWatchedLectureKey: key,
-        recentlyViewed: arrayUnion(newHistoryEntry)
-    }, { merge: true });
+    try {
+        const docSnap = await getDoc(progressDocRef);
+        let currentProgress: UserProgress = {
+            completedLectures: [],
+            lastWatchedLectureKey: null,
+            enrolledCourseIds: [],
+            recentlyViewed: [],
+        };
+
+        if (docSnap.exists()) {
+            currentProgress = docSnap.data() as UserProgress;
+        }
+
+        // Update recently viewed list
+        const newRecentlyViewed = (currentProgress.recentlyViewed || [])
+            .filter(item => item.key !== key); // Remove old entry for this lecture
+        
+        newRecentlyViewed.unshift({ key, timestamp: Timestamp.now() }); // Add new entry to the front
+
+        // Trim the list to the last 15 items
+        const trimmedRecentlyViewed = newRecentlyViewed.slice(0, 15);
+        
+        // Prepare data for saving
+        const updatedProgressData: Partial<UserProgress> = {
+            lastWatchedLectureKey: key,
+            recentlyViewed: trimmedRecentlyViewed,
+        };
+        
+        const updatedCompletedLectures = new Set(currentProgress.completedLectures);
+        updatedCompletedLectures.add(key);
+
+        await setDoc(progressDocRef, {
+            ...updatedProgressData,
+            completedLectures: Array.from(updatedCompletedLectures),
+        }, { merge: true });
+
+    } catch (error) {
+        console.error("Error updating user progress:", error);
+    }
   }
 };
+
 
 export const markCourseAsEnrolled = async (courseId: string): Promise<void> => {
     const user = auth.currentUser;

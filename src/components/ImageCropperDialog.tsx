@@ -74,7 +74,7 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
     const scaleY = imgRef.current.naturalHeight / imgRef.current.height;
     
     // For better quality on high-res devices, let's limit the canvas size
-    const targetWidth = 256;
+    const targetWidth = 128; // Reduced from 256 to 128 to fix "URL too long" error
     canvas.width = targetWidth;
     canvas.height = targetWidth;
     

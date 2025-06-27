@@ -43,9 +43,8 @@ interface UserData {
 // --- Dashboard Cards ---
 
 const RecentlyViewedCard = ({ recentlyViewed }: { recentlyViewed: RecentlyViewedEntry[] }) => {
-  const oneHourAgo = Date.now() - 60 * 60 * 1000;
-  
   const recentLectures = useMemo(() => {
+    const oneHourAgo = Date.now() - 60 * 60 * 1000;
     return recentlyViewed
       .filter(item => item.timestamp && item.timestamp.toMillis() > oneHourAgo)
       .sort((a, b) => b.timestamp.toMillis() - a.timestamp.toMillis())
@@ -56,7 +55,7 @@ const RecentlyViewedCard = ({ recentlyViewed }: { recentlyViewed: RecentlyViewed
          self.findIndex(v => v?.lecture.id === value?.lecture.id) === index
       )
       .slice(0, 5); // show max 5
-  }, [recentlyViewed, oneHourAgo]);
+  }, [recentlyViewed]);
 
   if (recentLectures.length === 0) {
     return null;
