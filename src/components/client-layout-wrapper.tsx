@@ -15,7 +15,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut } from 'lucide-react';
+import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send } from 'lucide-react';
 import { db, logout } from '@/lib/firebase';
 import { collection, query, orderBy, limit, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
 import {
@@ -85,7 +85,7 @@ function AppContent({ children }: { children: ReactNode }) {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     setCurrentTheme(newTheme);
     document.documentElement.className = newTheme;
-    localStorage.setItem('theme', newTheme);
+    localStorage.setItem('theme', 'dark');
   };
   
   const getInitials = (name: string | null | undefined) => {
@@ -381,7 +381,7 @@ function AppContent({ children }: { children: ReactNode }) {
               ) : user ? (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="flex items-center gap-2 h-10 px-3 rounded-full border border-border hover:bg-muted">
+                    <Button variant="outline" className="flex items-center gap-2 h-10 px-3 rounded-full border border-border hover:bg-muted p-2">
                         <span className="text-sm font-medium text-foreground">Hi, {user.displayName?.split(' ')[0]}</span>
                         <Avatar className="h-8 w-8">
                             <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
@@ -482,6 +482,19 @@ function AppContent({ children }: { children: ReactNode }) {
       <main className={showHeader ? 'pt-20' : ''}>
         {children}
       </main>
+
+      {showAppFeatures && (
+        <a
+          href="https://t.me/eleakcoursehub"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="telegram-float"
+          aria-label="Join our Telegram channel"
+          title="Join our Telegram channel"
+        >
+          <Send className="h-7 w-7 text-white" />
+        </a>
+      )}
 
       {showAppFeatures && <Footer />}
 

@@ -145,7 +145,7 @@ html { /* Apply to html for global effect, respects body background */
 .telegram-float {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  left: 20px;
   width: 60px;
   height: 60px;
   z-index: 999;
@@ -162,42 +162,6 @@ html { /* Apply to html for global effect, respects body background */
 .telegram-float:hover {
   transform: scale(1.1);
 }
-
-.telegram-float img {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-}
-
-/* E-Leak 24/7 Support Floating Button Styles */
-.support-float {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 60px;
-  height: 60px;
-  z-index: 998;
-  border-radius: 50%;
-  background-color: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px hsla(var(--primary) / 0.4);
-  animation: floatUpDown 2.5s ease-in-out infinite;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.support-float:hover {
-  transform: scale(1.1);
-  background-color: hsl(var(--primary) / 0.9);
-}
-
-.support-float svg {
-  width: 32px;
-  height: 32px;
-}
-
 
 @keyframes floatUpDown {
   0%, 100% {
