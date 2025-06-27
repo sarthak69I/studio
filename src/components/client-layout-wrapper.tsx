@@ -12,8 +12,9 @@ import LoginDialog from '@/components/LoginDialog';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut } from 'lucide-react';
 import { db, logout } from '@/lib/firebase';
 import { collection, query, orderBy, limit, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
@@ -25,7 +26,6 @@ import {
   SheetClose,
   SheetDescription,
   SheetTrigger,
-  SheetFooter,
 } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import NotificationItem from '@/components/NotificationItem';
@@ -64,6 +64,7 @@ function AppContent({ children }: { children: ReactNode }) {
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
   const [isMenuSheetOpen, setIsMenuSheetOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
+  const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = React.useState(false);
 
   // Theme effect from page.tsx
   useEffect(() => {
@@ -91,6 +92,7 @@ function AppContent({ children }: { children: ReactNode }) {
   }
 
   const handleLogout = async () => {
+    setIsLogoutConfirmOpen(false);
     await logout();
     toast({
         title: "Signed Out",
@@ -355,11 +357,11 @@ function AppContent({ children }: { children: ReactNode }) {
                     }
                 </div>
               </ScrollArea>
-               <SheetFooter className="p-4 border-t border-border">
+              <div className="p-4 border-t border-border">
                 <SheetClose asChild>
                   <Button variant="outline" className="w-full">Close Menu</Button>
                 </SheetClose>
-              </SheetFooter>
+              </div>
             </SheetContent>
           </Sheet>
 
@@ -370,8 +372,8 @@ function AppContent({ children }: { children: ReactNode }) {
               ) : user ? (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="flex items-center gap-2 h-10 px-3 rounded-full">
-                        <span className="text-sm font-medium text-foreground hidden sm:inline">Hi, {user.displayName?.split(' ')[0]}</span>
+                    <Button variant="ghost" className="flex items-center gap-2 h-10 pl-2 pr-3 rounded-full">
+                        <span className="text-sm font-medium text-foreground">Hi, {user.displayName?.split(' ')[0]}</span>
                         <Avatar className="h-8 w-8">
                             <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
                             <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
@@ -396,7 +398,7 @@ function AppContent({ children }: { children: ReactNode }) {
                             </Link>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={handleLogout}>
+                        <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setIsLogoutConfirmOpen(true); }}>
                             <LogOut className="mr-2 h-4 w-4" />
                             <span>Log out</span>
                         </DropdownMenuItem>
@@ -460,11 +462,11 @@ function AppContent({ children }: { children: ReactNode }) {
                     </Link>
                   </Button>
                 </div>
-                 <SheetFooter className="p-4 border-t border-border">
+                 <div className="p-4 border-t border-border">
                   <SheetClose asChild>
                     <Button variant="outline" className="w-full">Close Menu</Button>
                   </SheetClose>
-                </SheetFooter>
+                </div>
               </SheetContent>
             </Sheet>
           </div>
@@ -515,11 +517,26 @@ function AppContent({ children }: { children: ReactNode }) {
             if (!isOpen) handleLoginPromptDismiss();
           }}
       />
+
+      <AlertDialog open={isLogoutConfirmOpen} onOpenChange={setIsLogoutConfirmOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure you want to log out?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Your progress is saved, and you can sign back in anytime.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleLogout} className={buttonVariants({ variant: "destructive" })}>Log Out</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 }
 
-export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
+export default function ClientLayoutWrapper({ children }: { children: React.Node }) {
   return (
     <AuthProvider>
       <AppContent>{children}</AppContent>
