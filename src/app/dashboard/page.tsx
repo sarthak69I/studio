@@ -352,9 +352,9 @@ export default function DashboardPage() {
             </Card>
         </div>
         
-        <ContinueLearningCard lastWatchedKey={lastWatchedKey} />
         <RecentlyViewedCard recentlyViewed={recentlyViewed} />
         <EnrolledCoursesCard enrolledCourseIds={enrolledCourseIds} />
+        <ContinueLearningCard lastWatchedKey={lastWatchedKey} />
         
         <div className="text-center mt-4">
              <Button onClick={handleSignOut} variant="destructive" className="w-full max-w-xs mx-auto">
