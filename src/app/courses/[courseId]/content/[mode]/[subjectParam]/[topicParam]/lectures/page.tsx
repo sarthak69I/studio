@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -203,6 +202,9 @@ export default function TopicLecturesPage() {
         let externalPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl)}`;
         if (lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') {
           externalPlayerUrl += `&notesUrl=${encodeURIComponent(lecture.notesLink)}`;
+          if (lecture.notesTitle && lecture.notesTitle.trim() !== '') {
+            externalPlayerUrl += `&notesTitle=${encodeURIComponent(lecture.notesTitle)}`;
+          }
         }
         return (
           <a

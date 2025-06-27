@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -153,7 +152,13 @@ export default function LecturePlayerClient() {
     const playerContainerClasses = "aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-black border border-border";
 
     if (lecture.videoEmbedType === 'hls') {
-      const newPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl)}`;
+      let newPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl)}`;
+      if (lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') {
+        newPlayerUrl += `&notesUrl=${encodeURIComponent(lecture.notesLink)}`;
+        if (lecture.notesTitle && lecture.notesTitle.trim() !== '') {
+          newPlayerUrl += `&notesTitle=${encodeURIComponent(lecture.notesTitle)}`;
+        }
+      }
       return (
         <div className={playerContainerClasses}>
           <iframe
