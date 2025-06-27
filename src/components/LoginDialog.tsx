@@ -11,17 +11,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogFooter,
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { signInWithGoogle, signUpWithEmail, signInWithEmail, saveUserToFirestore } from '@/lib/firebase';
+import { signInWithGoogle, signUpWithEmail, signInWithEmail } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2 } from 'lucide-react';
+import { Loader2, AlertTriangle } from 'lucide-react';
+import { Alert, AlertDescription } from "@/components/ui/alert";
+
 
 interface LoginDialogProps {
   open: boolean;
@@ -126,6 +125,13 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
             Sign in or create an account to get started.
           </DialogDescription>
         </DialogHeader>
+
+        <Alert variant="destructive" className="my-4">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertDescription className="text-xs sm:text-sm">
+                If you are a new user, please use the 'Sign Up' tab. If you have an existing account, use the 'Sign In' tab.
+            </AlertDescription>
+        </Alert>
 
         <Tabs defaultValue="signin" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
