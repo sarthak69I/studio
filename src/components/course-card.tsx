@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, Users, MessageSquare, Tag } from 'lucide-react';
+import { Calendar, MessageSquare } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -50,7 +50,6 @@ export function CourseCard({
   imageUrl,
   imageAlt,
   imageAiHint,
-  highlightText,
   startDate,
   enrollLink,
   youtubeLink,
@@ -60,16 +59,7 @@ export function CourseCard({
 
   return (
     <div className="relative font-sans">
-      {/* ONLINE Ribbon */}
-      <div className="absolute top-0 left-4 z-10 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-b-md shadow-md">
-        <div
-          className="absolute -left-2 top-0 h-0 w-0 border-t-[8px] border-t-transparent border-b-[0px] border-b-transparent border-r-[8px] border-r-blue-800"
-          style={{ transform: 'rotate(180deg)' }}
-        ></div>
-        ONLINE
-      </div>
-
-      <Card className="w-full max-w-sm overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-border/50 bg-card mt-5">
+      <Card className="w-full max-w-sm overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-border/50 bg-card">
         <CardHeader className="p-0">
           <div className="relative aspect-[16/9] w-full">
             <Image
@@ -80,6 +70,12 @@ export function CourseCard({
               className="object-cover rounded-t-2xl"
               data-ai-hint={imageAiHint}
             />
+            {/* ONLINE Badge on the image */}
+            <div className="absolute top-3 left-3 z-10">
+              <Badge className="bg-blue-600 text-white border-blue-700 shadow-lg">
+                ONLINE
+              </Badge>
+            </div>
           </div>
         </CardHeader>
         
@@ -99,32 +95,18 @@ export function CourseCard({
             </div>
           </div>
           
-          {/* Highlight and Date */}
+          {/* Date info */}
           <div className="text-sm text-muted-foreground space-y-2 border-t border-border pt-3">
-            <div className="flex items-center gap-2">
-              <Users className="h-4 w-4" />
-              <span>{highlightText}</span>
-            </div>
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               <span>{startDate}. Ends on 31 Mar, 2026</span>
             </div>
           </div>
 
-          {/* More plans bar */}
-          <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800/30 rounded-lg p-2 flex items-center justify-between text-sm">
-            <span className="font-medium text-yellow-800 dark:text-yellow-300">More plans inside</span>
-          </div>
-
-          {/* Price and Discount */}
+          {/* Price changed to Free */}
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-2xl font-bold text-foreground">₹3,300 <span className="text-lg font-normal text-muted-foreground line-through">₹4,400</span></p>
-              <p className="text-xs text-muted-foreground">(FOR FULL BATCH)</p>
-            </div>
-            <div className="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 border border-green-200 dark:border-green-700/50">
-               <Tag className="h-3 w-3" />
-               Discount of 25% applied
+              <p className="text-2xl font-bold text-green-500">Free</p>
             </div>
           </div>
         </CardContent>
