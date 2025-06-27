@@ -7,6 +7,8 @@ import { auth, saveUserToFirestore } from '@/lib/firebase';
 import { getRedirectResult } from "firebase/auth";
 import type { User } from 'firebase/auth';
 import { useToast } from '@/hooks/use-toast';
+import { syncProgressOnLogin } from '@/lib/progress-manager';
+
 
 interface AuthContextType {
   user: User | null | undefined;
@@ -20,6 +22,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { toast } = useToast();
   const [user, loading, error] = useAuthState(auth);
   const welcomeToastShownRef = useRef(false);
+  const progressSyncedRef = useRef(false);
 
   useEffect(() => {
     const processRedirectResult = async () => {
@@ -29,7 +32,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const result = await getRedirectResult(auth);
         if (result && result.user) {
           welcomeToastShownRef.current = true;
-          // The saveUserToFirestore function now handles both new and existing users.
           await saveUserToFirestore(result.user);
           toast({
             title: 'Sign In Successful!',
@@ -50,6 +52,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       processRedirectResult();
     }
   }, [loading, toast]);
+
+  useEffect(() => {
+    // When user logs in, sync their local progress with Firestore
+    if (user && !loading && !progressSyncedRef.current) {
+      syncProgressOnLogin(user);
+      progressSyncedRef.current = true;
+    }
+    // Reset sync flag on logout
+    if (!user && !loading) {
+      progressSyncedRef.current = false;
+    }
+  }, [user, loading]);
 
   const value = {
     user,
