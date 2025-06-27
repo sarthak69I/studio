@@ -1,33 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
 import { CourseCard } from '@/components/course-card';
-import { Menu, HelpCircle, Sun, Moon, Bot, Download, LogIn, LayoutDashboard } from 'lucide-react';
-import Image from 'next/image';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-  SheetFooter,
-  SheetClose,
-} from "@/components/ui/sheet";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog";
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { FaqDialogContent } from '@/components/faq-dialog-content';
-import { useAuth } from '@/context/AuthContext';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import LoginDialog from '@/components/LoginDialog'; // Import the new LoginDialog
 
 interface Course {
   id: string;
@@ -127,184 +101,10 @@ const coursesData: Course[] = [
 ];
 
 export default function HomePage() {
-  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
-  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState<string>('dark');
-  const { user, loading: authLoading } = useAuth();
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme) {
-      setCurrentTheme(storedTheme);
-      document.documentElement.className = storedTheme;
-    } else {
-      setCurrentTheme('dark');
-      localStorage.setItem('theme', 'dark');
-      document.documentElement.className = 'dark';
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    setCurrentTheme(newTheme);
-    document.documentElement.className = newTheme;
-    localStorage.setItem('theme', newTheme);
-  };
-  
-  const getInitials = (name: string | null | undefined) => {
-    if (!name) return 'U';
-    return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-  }
-  
-  const handleDashboardClick = () => {
-    if (!user) {
-      setIsLoginDialogOpen(true);
-    }
-    // If user is logged in, the <Link> component will handle navigation.
-  };
-
   return (
-    <>
-    <div className="flex min-h-screen flex-col items-center p-5 pt-10 md:pt-16 sm:p-8 md:p-10 animate-fadeIn-custom">
+    <div className="flex min-h-screen flex-col items-center p-5 pt-24 sm:p-8 md:p-10 md:pt-28 animate-fadeIn-custom">
 
-      <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
-        <DialogContent className="sm:max-w-lg rounded-xl">
-          <DialogHeader>
-            <DialogTitle className="text-xl">Frequently Asked Questions</DialogTitle>
-          </DialogHeader>
-          <FaqDialogContent />
-          <DialogFooter className="sm:justify-start">
-            <DialogClose asChild>
-              <Button type="button" variant="outline">
-                Close
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-      
-      <LoginDialog open={isLoginDialogOpen} onOpenChange={setIsLoginDialogOpen} />
-
-      <div className="fixed top-6 right-6 z-50">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              variant="outline"
-              size="icon"
-              aria-label="Open menu"
-              className="p-2 rounded-full text-foreground bg-background/80 backdrop-blur-sm hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5 xl:w-1/3 p-0 flex flex-col">
-            <SheetHeader className="p-6 pb-2">
-              <SheetTitle className="text-2xl font-semibold">Menu</SheetTitle>
-            </SheetHeader>
-            <div className="space-y-1 p-4 flex-grow">
-              
-              {user ? (
-                 <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2" asChild>
-                  <Link href="/dashboard" className="flex items-center">
-                    <Avatar className="mr-3 h-7 w-7">
-                      <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
-                      <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
-                    </Avatar>
-                    {user.displayName || 'Dashboard'}
-                  </Link>
-                </Button>
-              ) : (
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                  aria-label="Sign In"
-                  onClick={() => setIsLoginDialogOpen(true)}
-                  disabled={authLoading}
-                >
-                  <LogIn className="mr-3 h-5 w-5 text-primary" />
-                  {authLoading ? 'Loading...' : 'Sign In / Register'}
-                </Button>
-              )}
-
-              <Button
-                variant="ghost"
-                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                onClick={handleDashboardClick}
-                asChild={!!user} // Use asChild only if user is logged in
-              >
-                {user ? (
-                  <Link href="/dashboard" className="flex items-center">
-                     <LayoutDashboard className="mr-3 h-5 w-5 text-primary" />
-                     My Dashboard
-                  </Link>
-                ) : (
-                  // When not logged in, it's a regular button
-                  <div className="flex items-center w-full">
-                     <LayoutDashboard className="mr-3 h-5 w-5 text-primary" />
-                     My Dashboard
-                  </div>
-                )}
-              </Button>
-
-              <Button
-                variant="ghost"
-                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                onClick={toggleTheme}
-                aria-label={currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
-              >
-                {currentTheme === 'light' ? (
-                  <Moon className="mr-3 h-5 w-5 text-primary" />
-                ) : (
-                  <Sun className="mr-3 h-5 w-5 text-primary" />
-                )}
-                {currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
-              </Button>
-
-              <Button
-                variant="ghost"
-                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                aria-label="View FAQs"
-                onClick={() => setIsFaqsDialogOpen(true)}
-              >
-                <HelpCircle className="mr-3 h-5 w-5 text-primary" />
-                FAQs
-              </Button>
-
-              <Button
-                variant="ghost"
-                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                aria-label="Download App"
-                asChild
-              >
-                <a href="https://e-leak-in.vercel.app/">
-                  <Download className="mr-3 h-5 w-5 text-primary" />
-                  Download App
-                </a>
-              </Button>
-
-              <Button
-                variant="ghost"
-                className="w-full justify-start p-3 text-base font-normal rounded-md hover:bg-muted/50 focus:ring-ring focus:ring-2"
-                aria-label="Open E-Leak 24/7 Support"
-                asChild
-              >
-                <Link href="/help-center">
-                   <Bot className="mr-3 h-5 w-5 text-primary" />
-                  E-Leak 24/7 Support
-                </Link>
-              </Button>
-
-            </div>
-            <SheetFooter className="p-4 border-t border-border">
-              <SheetClose asChild>
-                <Button variant="outline" className="w-full">Close Menu</Button>
-              </SheetClose>
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
-      </div>
-
-      <header className="text-center my-8 md:my-12">
+      <header className="text-center mb-8 md:mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wider logo-gradient-text animate-gradient">
           E-Leak
         </h1>
@@ -322,7 +122,5 @@ export default function HomePage() {
       </main>
 
     </div>
-    </>
   );
 }
-

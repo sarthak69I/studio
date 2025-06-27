@@ -570,3 +570,8 @@ html { /* Apply to html for global effect, respects body background */
   text-align: center;
   font-size: 15px;
 }
+
+/* Custom Login Button Style */
+.btn-login {
+  @apply bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:ring-indigo-500;
+}
