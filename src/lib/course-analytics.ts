@@ -9,6 +9,14 @@ import {
   type Lecture,
 } from '@/lib/course-data';
 
+const courseDisplayNames: Record<string, string> = {
+  '1': "Science Batch (Class 11)",
+  '2': "Commerce Batch (Class 11)",
+  '3': "Aarambh Batch (Class 10)",
+  '4': "Aarambh Batch (Class 9)",
+};
+
+
 // A single function to calculate the total number of lectures.
 export function getTotalLectureCount(): number {
   let total = 0;
@@ -63,4 +71,9 @@ export function getLectureDetailsFromKey(key: string): { lecture: Lecture, topic
   if (!lecture) return null;
 
   return { lecture, topic, subjectName: decodeURIComponent(subjectName), courseId };
+}
+
+
+export function getCourseNameById(courseId: string): string {
+    return courseDisplayNames[courseId] || `Course ${courseId}`;
 }

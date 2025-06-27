@@ -1,7 +1,7 @@
 
 // src/lib/firebase.ts
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
-import { getFirestore, setDoc, doc, serverTimestamp, getDoc, type Firestore } from "firebase/firestore";
+import { getFirestore, setDoc, doc, serverTimestamp, getDoc, updateDoc, type Firestore } from "firebase/firestore";
 import { 
   getAuth, 
   GoogleAuthProvider, 
@@ -54,9 +54,7 @@ export const saveUserToFirestore = async (user: User): Promise<void> => {
   try {
     const docSnap = await getDoc(userRef);
     
-    // Prepare the data to be written.
-    // We always update these fields on login/signup.
-    const userData = {
+    const userData: any = {
       uid: user.uid,
       displayName: user.displayName,
       email: user.email,
@@ -64,20 +62,14 @@ export const saveUserToFirestore = async (user: User): Promise<void> => {
       lastLogin: serverTimestamp(),
     };
 
-    // If the user document does not exist, it's a new user.
-    // Add the `createdAt` field only in this case.
     if (!docSnap.exists()) {
-      (userData as any).createdAt = serverTimestamp();
+      userData.createdAt = serverTimestamp();
     }
     
-    // Use setDoc with merge:true. This will create the document if it doesn't exist,
-    // or update the fields if it does. This single 'upsert' operation is more
-    // robust for security rules than a separate read then write.
     await setDoc(userRef, userData, { merge: true });
 
   } catch (error) {
     console.error("Error saving user to Firestore:", error);
-    // Re-throwing the error to be caught by the calling function.
     throw new Error("Could not save user data. Please check Firestore permissions and configuration.");
   }
 };
@@ -103,7 +95,6 @@ export const signUpWithEmail = async (email: string, password: string, displayNa
 export const signInWithEmail = async (email: string, password: string) => {
   const userCredential = await signInWithEmailAndPassword(auth, email, password);
   if (userCredential.user) {
-    // The useAuthState hook will handle the UI update, but we can still update lastLogin
      await saveUserToFirestore(userCredential.user);
   }
   return userCredential;
@@ -116,5 +107,25 @@ export const logout = async () => {
     console.error("Error signing out:", error);
   }
 };
+
+export const updateUserProfile = async (user: User, newName: string, newPhotoURL: string) => {
+  if (!user) throw new Error("User not authenticated");
+  
+  // 1. Update Firebase Auth profile
+  await updateProfile(user, {
+    displayName: newName,
+    photoURL: newPhotoURL,
+  });
+
+  // 2. Update Firestore user document
+  const userRef = doc(db, 'users', user.uid);
+  await updateDoc(userRef, {
+    displayName: newName,
+    photoURL: newPhotoURL
+  });
+  
+  // The local auth state will update automatically via onAuthStateChanged
+};
+
 
 export { app, db, auth };
