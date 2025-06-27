@@ -53,7 +53,7 @@ function AppContent({ children }: { children: ReactNode }) {
   const [showMaintenance, setShowMaintenance] = useState(false);
   const [maintenanceEndTime, setMaintenanceEndTime] = useState<Date | null>(null);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
-  const { user, loading: authLoading } = useAuth();
+  const { user, userData, loading: authLoading } = useAuth();
 
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const [isNotificationsSheetOpen, setIsNotificationsSheetOpen] = useState(false);
@@ -379,19 +379,19 @@ function AppContent({ children }: { children: ReactNode }) {
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                     <Button variant="outline" className="flex items-center gap-2 h-10 px-3 rounded-full border border-border hover:bg-muted p-2">
-                        <span className="text-sm font-medium text-foreground">Hi, {user.displayName?.split(' ')[0]}</span>
+                        <span className="text-sm font-medium text-foreground">Hi, {userData?.displayName?.split(' ')[0] || user.displayName?.split(' ')[0]}</span>
                         <Avatar className="h-8 w-8">
-                            <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
-                            <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
+                            <AvatarImage src={userData?.photoURL || user.photoURL || ''} alt={userData?.displayName || user.displayName || 'User'} />
+                            <AvatarFallback>{getInitials(userData?.displayName || user.displayName)}</AvatarFallback>
                         </Avatar>
                     </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-56">
                         <DropdownMenuLabel className="font-normal">
                             <div className="flex flex-col space-y-1">
-                            <p className="text-sm font-medium leading-none">{user.displayName}</p>
+                            <p className="text-sm font-medium leading-none">{userData?.displayName || user.displayName}</p>
                             <p className="text-xs leading-none text-muted-foreground">
-                                {user.email}
+                                {userData?.email || user.email}
                             </p>
                             </div>
                         </DropdownMenuLabel>
@@ -435,8 +435,8 @@ function AppContent({ children }: { children: ReactNode }) {
                     <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
                       <Link href="/dashboard" onClick={() => setIsMenuSheetOpen(false)} className="flex items-center">
                         <Avatar className="mr-3 h-7 w-7">
-                          <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
-                          <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
+                          <AvatarImage src={userData?.photoURL || user.photoURL || ''} alt={userData?.displayName || user.displayName || 'User'} />
+                          <AvatarFallback>{getInitials(userData?.displayName || user.displayName)}</AvatarFallback>
                         </Avatar>
                         My Dashboard
                       </Link>

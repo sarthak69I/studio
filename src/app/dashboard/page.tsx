@@ -12,7 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, Trophy, User as UserIcon } from 'lucide-react';
-import { logout, updateUserProfile, db } from '@/lib/firebase';
+import { logout } from '@/lib/firebase';
 import Link from 'next/link';
 import { listenToProgress, RecentlyViewedEntry } from '@/lib/progress-manager';
 import { getTotalLectureCount, getCourseNameById } from '@/lib/course-analytics';
@@ -21,26 +21,16 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
-import { doc, getDoc, Timestamp } from 'firebase/firestore';
 import { format } from 'date-fns';
 import ImageCropperDialog from '@/components/ImageCropperDialog';
 import RecentlyViewedCard from '@/components/RecentlyViewedCard';
+import type { UserData } from '@/context/AuthContext';
 
 
 // --- Edit Profile Dialog Schema ---
 const profileSchema = z.object({
   displayName: z.string().min(2, { message: "Name must be at least 2 characters." }).max(50, { message: "Name cannot exceed 50 characters." }),
 });
-
-// --- User Data type from Firestore ---
-interface UserData {
-    uid: string;
-    displayName: string;
-    email: string;
-    photoURL: string;
-    lastLogin: Timestamp;
-    createdAt: Timestamp;
-}
 
 // --- Dashboard Cards ---
 
@@ -136,33 +126,38 @@ const EnrolledCoursesCard = ({ enrolledCourseIds }: { enrolledCourseIds: string[
     )
 }
 
-const EditProfileDialog = ({ open, onOpenChange, user, onProfileUpdate }: { open: boolean, onOpenChange: (open: boolean) => void, user: User, onProfileUpdate: () => void }) => {
+const EditProfileDialog = ({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) => {
     const { toast } = useToast();
+    const { user, userData } = useAuth();
     const [isLoading, setIsLoading] = React.useState(false);
     const [isCropperOpen, setIsCropperOpen] = React.useState(false);
 
     const form = useForm<z.infer<typeof profileSchema>>({
         resolver: zodResolver(profileSchema),
         defaultValues: {
-            displayName: user.displayName || "",
+            displayName: userData?.displayName || user?.displayName || "",
         },
     });
     
     // Reset form when user data changes
     useEffect(() => {
-        form.reset({ displayName: user.displayName || "" });
-    }, [user, form]);
-
+        form.reset({ displayName: userData?.displayName || user?.displayName || "" });
+    }, [userData, user, form]);
 
     const onSubmit = async (values: z.infer<typeof profileSchema>) => {
+        if (!user) {
+            toast({ variant: "destructive", title: "Not Authenticated", description: "You must be signed in to update your profile." });
+            return;
+        }
         setIsLoading(true);
         try {
-            await updateUserProfile(user, values.displayName, user.photoURL || "");
+            // The photoURL is updated via the ImageCropperDialog, so here we only update the name.
+            // We pass the existing photoURL from our userData context to avoid overwriting it.
+            await updateUserProfile(user, values.displayName, userData?.photoURL || user.photoURL || "");
             toast({
                 title: "Profile Updated!",
                 description: "Your display name has been saved.",
             });
-            onProfileUpdate(); // Callback to refresh dashboard data
             onOpenChange(false);
         } catch (error: any) {
             toast({
@@ -187,8 +182,8 @@ const EditProfileDialog = ({ open, onOpenChange, user, onProfileUpdate }: { open
                     </DialogHeader>
                     <div className="flex items-center gap-4 py-4">
                         <Avatar className="h-20 w-20">
-                           <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
-                           <AvatarFallback className="text-2xl bg-muted">{user.displayName?.charAt(0).toUpperCase()}</AvatarFallback>
+                           <AvatarImage src={userData?.photoURL || user?.photoURL || ''} alt={userData?.displayName || 'User'} />
+                           <AvatarFallback className="text-2xl bg-muted">{userData?.displayName?.charAt(0).toUpperCase()}</AvatarFallback>
                         </Avatar>
                         <Button variant="outline" onClick={() => setIsCropperOpen(true)}>Change Photo</Button>
                     </div>
@@ -220,10 +215,9 @@ const EditProfileDialog = ({ open, onOpenChange, user, onProfileUpdate }: { open
             <ImageCropperDialog
                 open={isCropperOpen}
                 onOpenChange={setIsCropperOpen}
-                user={user}
                 onUploadComplete={() => {
                     setIsCropperOpen(false);
-                    onProfileUpdate();
+                    // No need to manually trigger refresh, AuthContext handles it.
                 }}
             />
         </>
@@ -233,7 +227,7 @@ const EditProfileDialog = ({ open, onOpenChange, user, onProfileUpdate }: { open
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, userData, loading: authLoading } = useAuth();
   const [completedCount, setCompletedCount] = useState(0);
   const [lastWatchedKey, setLastWatchedKey] = useState<string | null>(null);
   const [enrolledCourseIds, setEnrolledCourseIds] = useState<string[]>([]);
@@ -241,30 +235,20 @@ export default function DashboardPage() {
 
   const [isProgressLoading, setIsProgressLoading] = useState(true);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [userData, setUserData] = useState<UserData | null>(null);
 
   const totalLectures = useMemo(() => getTotalLectureCount(), []);
 
-  const fetchUserData = async (userId: string) => {
-    const userDocRef = doc(db, 'users', userId);
-    const docSnap = await getDoc(userDocRef);
-    if (docSnap.exists()) {
-        setUserData(docSnap.data() as UserData);
-    }
-  };
-
   useEffect(() => {
-    if (!loading && !user) {
+    if (!authLoading && !user) {
       router.replace('/');
     }
-  }, [user, loading, router]);
+  }, [user, authLoading, router]);
   
   useEffect(() => {
     if (user) {
-      document.title = `${user.displayName}'s Dashboard | E-Leak`;
+      document.title = `${userData?.displayName || user.displayName}'s Dashboard | E-Leak`;
       
       setIsProgressLoading(true);
-      fetchUserData(user.uid);
       const unsubscribe = listenToProgress(user.uid, (progress) => {
         setCompletedCount(progress.completedLectures.length);
         setLastWatchedKey(progress.lastWatchedLectureKey);
@@ -275,14 +259,16 @@ export default function DashboardPage() {
       
       return () => unsubscribe();
     }
-  }, [user]);
+  }, [user, userData]);
 
   const getInitials = (name: string | null | undefined) => {
     if (!name) return <UserIcon />;
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   }
 
-  if (loading || isProgressLoading || !userData) {
+  const isLoading = authLoading || isProgressLoading || !userData;
+
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-background">
         <Loader2 className="h-12 w-12 animate-spin text-primary" />
@@ -290,7 +276,7 @@ export default function DashboardPage() {
     );
   }
 
-  if (!user) {
+  if (!user || !userData) {
     return (
         <div className="flex items-center justify-center min-h-screen bg-background">
             <p>Redirecting...</p>
@@ -305,6 +291,8 @@ export default function DashboardPage() {
 
   const progressPercentage = totalLectures > 0 ? (completedCount / totalLectures) * 100 : 0;
   const joinedDate = userData.createdAt ? format(userData.createdAt.toDate(), 'MMMM d, yyyy') : 'N/A';
+  const displayName = userData.displayName || user.displayName;
+  const photoURL = userData.photoURL || user.photoURL;
 
   return (
     <>
@@ -312,7 +300,7 @@ export default function DashboardPage() {
       <div className="w-full max-w-5xl mx-auto space-y-8 animate-fadeIn-custom">
         <header>
           <h1 className="text-4xl md:text-5xl font-bold logo-gradient-text animate-gradient">
-            Welcome back, {user.displayName?.split(' ')[0] || 'Student'}!
+            Welcome back, {displayName?.split(' ')[0] || 'Student'}!
           </h1>
           <p className="text-muted-foreground mt-2">Here's your learning snapshot. Keep up the great work!</p>
         </header>
@@ -322,11 +310,11 @@ export default function DashboardPage() {
             <Card className="md:col-span-1">
                 <CardHeader className="text-center items-center">
                     <Avatar className="h-24 w-24 mb-3 border-4 border-primary">
-                        <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
-                        <AvatarFallback className="text-3xl bg-muted">{getInitials(user.displayName)}</AvatarFallback>
+                        <AvatarImage src={photoURL || ''} alt={displayName || 'User'} />
+                        <AvatarFallback className="text-3xl bg-muted">{getInitials(displayName)}</AvatarFallback>
                     </Avatar>
-                    <CardTitle className="text-xl">{user.displayName}</CardTitle>
-                    <CardDescription className="flex items-center gap-2"><Mail className="h-4 w-4"/>{user.email}</CardDescription>
+                    <CardTitle className="text-xl">{displayName}</CardTitle>
+                    <CardDescription className="flex items-center gap-2"><Mail className="h-4 w-4"/>{userData.email}</CardDescription>
                 </CardHeader>
                 <CardContent className="text-sm text-muted-foreground space-y-2">
                      <div className="flex items-center justify-center">
@@ -379,10 +367,7 @@ export default function DashboardPage() {
     <EditProfileDialog
         open={isEditDialogOpen}
         onOpenChange={setIsEditDialogOpen}
-        user={user}
-        onProfileUpdate={() => fetchUserData(user.uid)}
      />
     </>
   );
 }
-

@@ -18,12 +18,12 @@ import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import ReactCrop, { centerCrop, makeAspectCrop, type Crop as CropType } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { updateUserProfile } from '@/lib/firebase';
-import type { User } from 'firebase/auth';
+import { useAuth } from '@/context/AuthContext';
+
 
 interface ImageCropperDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  user: User;
   onUploadComplete: () => void;
 }
 
@@ -35,8 +35,10 @@ function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: numbe
   );
 }
 
-export default function ImageCropperDialog({ open, onOpenChange, user, onUploadComplete }: ImageCropperDialogProps) {
+export default function ImageCropperDialog({ open, onOpenChange, onUploadComplete }: ImageCropperDialogProps) {
   const { toast } = useToast();
+  const { user } = useAuth();
+
   // Cropper state
   const [imgSrc, setImgSrc] = useState('');
   const [crop, setCrop] = useState<CropType>();
@@ -89,8 +91,8 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
   const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      if (file.size > 4 * 1024 * 1024) { // 4MB size limit
-        toast({ variant: "destructive", title: "Image Too Large", description: "Please select an image smaller than 4MB." });
+      if (file.size > 10 * 1024 * 1024) { // 10MB size limit
+        toast({ variant: "destructive", title: "Image Too Large", description: "Please select an image smaller than 10MB." });
         return;
       }
       setCrop(undefined);
@@ -123,6 +125,10 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
   };
 
   const handleSaveCrop = async () => {
+    if (!user) {
+        toast({ variant: "destructive", title: "Not Authenticated", description: "You must be logged in to save." });
+        return;
+    }
     if (!completedCrop || !imgRef.current) {
         toast({ variant: "destructive", title: "Crop Error", description: "Could not process the crop. Please try again." });
         return;
@@ -170,11 +176,7 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
         handleClose();
     } catch (error: any) {
         console.error("Update profile failed:", error);
-        if (error.code === 'auth/invalid-profile-attribute') {
-             toast({ variant: "destructive", title: "Upload Failed", description: "The cropped image is still too large. Please try a smaller or simpler image." });
-        } else {
-             toast({ variant: "destructive", title: "Update Failed", description: error.message || "Could not update your avatar." });
-        }
+        toast({ variant: "destructive", title: "Update Failed", description: error.message || "Could not update your avatar." });
     } finally {
         setIsLoading(false);
     }
@@ -196,7 +198,7 @@ export default function ImageCropperDialog({ open, onOpenChange, user, onUploadC
         <DialogHeader>
           <DialogTitle>Update Profile Picture</DialogTitle>
           <DialogDescription>
-            {showCamera ? 'Position yourself and capture your selfie.' : 'Choose a file or take a selfie to use as your new avatar. (Max 4MB)'}
+            {showCamera ? 'Position yourself and capture your selfie.' : 'Choose a file or take a selfie to use as your new avatar. (Max 10MB)'}
           </DialogDescription>
         </DialogHeader>
         <div className="py-4 space-y-4">

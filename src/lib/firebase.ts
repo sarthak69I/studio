@@ -1,3 +1,4 @@
+
 // src/lib/firebase.ts
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import { getFirestore, setDoc, doc, serverTimestamp, getDoc, updateDoc, type Firestore, Timestamp } from "firebase/firestore";
@@ -116,21 +117,23 @@ export const logout = async () => {
 
 export const updateUserProfile = async (user: User, newName: string, newPhotoURL: string) => {
   if (!user) throw new Error("User not authenticated");
-  
-  // 1. Update Firebase Auth profile
-  await updateProfile(user, {
-    displayName: newName,
-    photoURL: newPhotoURL,
-  });
 
-  // 2. Update Firestore user document
+  // 1. Update Firebase Auth display name only.
+  // The photoURL will be stored in Firestore to avoid size limits.
+  // We only update if the name has actually changed.
+  if (user.displayName !== newName) {
+    await updateProfile(user, { displayName: newName });
+  }
+
+  // 2. Update Firestore user document with new name and photo
   const userRef = doc(db, 'users', user.uid);
   await updateDoc(userRef, {
     displayName: newName,
-    photoURL: newPhotoURL
+    photoURL: newPhotoURL // This can be a long Base64 string
   });
   
-  // The local auth state will update automatically via onAuthStateChanged
+  // The local auth state for displayName will update automatically.
+  // The photo will be re-read from Firestore where it is displayed.
 };
 
 
