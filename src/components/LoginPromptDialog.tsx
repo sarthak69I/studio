@@ -20,10 +20,38 @@ interface LoginPromptDialogProps {
 }
 
 export default function LoginPromptDialog({ open, onOpenChange, onOpenLoginDialog }: LoginPromptDialogProps) {
+  const [canClose, setCanClose] = React.useState(false);
+
+  React.useEffect(() => {
+    if (open) {
+      setCanClose(false); // Reset on open
+      const timer = setTimeout(() => {
+        setCanClose(true);
+      }, 4000); // 4 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
+
+  const handleOpenChange = (isOpen: boolean) => {
+    if (canClose && !isOpen) {
+      onOpenChange(false);
+    }
+  };
+
+  const handleInteractOutside = (event: Event) => {
+    if (!canClose) {
+      event.preventDefault();
+    }
+  };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md rounded-xl">
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogContent
+        className="sm:max-w-md rounded-xl"
+        onEscapeKeyDown={handleInteractOutside}
+        onInteractOutside={handleInteractOutside}
+      >
         <DialogHeader className="text-center sm:text-left">
           <DialogTitle className="text-xl flex items-center justify-center sm:justify-start">
             Sign In to Unlock All Features
@@ -48,11 +76,16 @@ export default function LoginPromptDialog({ open, onOpenChange, onOpenLoginDialo
           </li>
         </ul>
         
-        <DialogFooter className="mt-4">
-          <Button type="button" onClick={onOpenLoginDialog} className="w-full group">
-            <LogIn className="mr-2 h-4 w-4" />
-            Sign In / Register
-          </Button>
+        <DialogFooter className="mt-4 flex-col sm:flex-row-reverse gap-2">
+            <Button type="button" onClick={onOpenLoginDialog} className="w-full group">
+                <LogIn className="mr-2 h-4 w-4" />
+                Sign In / Register
+            </Button>
+            {canClose && (
+                <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="w-full">
+                    Close
+                </Button>
+            )}
         </DialogFooter>
       </DialogContent>
     </Dialog>
