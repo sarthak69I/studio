@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useState, useMemo } from 'react';
@@ -33,50 +32,6 @@ const profileSchema = z.object({
 });
 
 // --- Dashboard Cards ---
-
-const ContinueLearningCard = ({ lastWatchedKey }: { lastWatchedKey: string | null }) => {
-  const [details, setDetails] = useState<{ lecture: Lecture, topic: Topic, subjectName: string, courseId: string } | null>(null);
-
-  useEffect(() => {
-    if (lastWatchedKey) {
-      const { getLectureDetailsFromKey } = require('@/lib/course-analytics');
-      setDetails(getLectureDetailsFromKey(lastWatchedKey));
-    } else {
-      setDetails(null);
-    }
-  }, [lastWatchedKey]);
-
-  if (!details) {
-    return null; // Don't render if no last watched lecture or details not found
-  }
-
-  const { lecture, topic, subjectName, courseId } = details;
-  const lectureUrl = `/courses/${courseId}/content/video/${encodeURIComponent(subjectName)}/${encodeURIComponent(topic.name)}/lectures/${encodeURIComponent(lecture.id)}/play`;
-
-  return (
-    <Card className="bg-primary/10 border-primary/20">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-3 text-xl">
-          <Play className="text-primary"/>
-          Continue Learning
-        </CardTitle>
-        <CardDescription>Pick up right where you left off.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p className="font-semibold text-lg">{lecture.title}</p>
-        <p className="text-sm text-muted-foreground">{subjectName} - {topic.name}</p>
-      </CardContent>
-      <CardFooter>
-        <Button asChild className="w-full">
-          <Link href={lectureUrl}>
-            <Play className="mr-2"/>
-            Watch Now
-          </Link>
-        </Button>
-      </CardFooter>
-    </Card>
-  );
-};
 
 const EnrolledCoursesCard = ({ enrolledCourseIds }: { enrolledCourseIds: string[] }) => {
     if (enrolledCourseIds.length === 0) {
@@ -229,7 +184,6 @@ export default function DashboardPage() {
   const router = useRouter();
   const { user, userData, loading: authLoading } = useAuth();
   const [completedCount, setCompletedCount] = useState(0);
-  const [lastWatchedKey, setLastWatchedKey] = useState<string | null>(null);
   const [enrolledCourseIds, setEnrolledCourseIds] = useState<string[]>([]);
   const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedEntry[]>([]);
 
@@ -251,7 +205,6 @@ export default function DashboardPage() {
       setIsProgressLoading(true);
       const unsubscribe = listenToProgress(user.uid, (progress) => {
         setCompletedCount(progress.completedLectures.length);
-        setLastWatchedKey(progress.lastWatchedLectureKey);
         setEnrolledCourseIds(progress.enrolledCourseIds);
         setRecentlyViewed(progress.recentlyViewed);
         setIsProgressLoading(false);
@@ -354,7 +307,6 @@ export default function DashboardPage() {
         
         <RecentlyViewedCard recentlyViewed={recentlyViewed} />
         <EnrolledCoursesCard enrolledCourseIds={enrolledCourseIds} />
-        <ContinueLearningCard lastWatchedKey={lastWatchedKey} />
         
         <div className="text-center mt-4">
              <Button onClick={handleSignOut} variant="destructive" className="w-full max-w-xs mx-auto">

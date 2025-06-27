@@ -7,7 +7,7 @@ import { Bot } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-card text-card-foreground py-10 border-t border-border mt-16">
+    <footer className="w-full bg-card text-card-foreground py-10 border-t border-border">
       <div className="container mx-auto text-center flex flex-col items-center space-y-4 px-4">
         <h3 className="text-xl text-muted-foreground">Need Support?</h3>
         <Button asChild variant="outline" className="max-w-xs w-full py-6 text-base rounded-lg shadow-sm hover:bg-muted">

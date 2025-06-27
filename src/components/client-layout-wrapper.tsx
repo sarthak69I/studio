@@ -35,6 +35,7 @@ import { AuthProvider, useAuth } from '@/context/AuthContext';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel } from '@/components/ui/dropdown-menu';
 import SubscriptionPrompt from './SubscriptionPrompt';
 import Footer from './Footer';
+import ContinueWatchingCard from './ContinueWatchingCard';
 
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
@@ -298,7 +299,7 @@ function AppContent({ children }: { children: ReactNode }) {
   const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center'];
   const showHeader = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
   
-  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/dashboard'];
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
 
 
@@ -492,10 +493,10 @@ function AppContent({ children }: { children: ReactNode }) {
           >
             <Send className="h-7 w-7 text-white" />
           </a>
+          <ContinueWatchingCard />
+          <Footer />
         </>
       )}
-
-      {showAppFeatures && <Footer />}
 
       <Toaster />
       
