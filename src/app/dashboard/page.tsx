@@ -201,7 +201,15 @@ const EditProfileDialog = ({ open, onOpenChange }: { open: boolean, onOpenChange
 export default function DashboardPage() {
   const router = useRouter();
   const { user, userData, loading: authLoading } = useAuth();
-  const [progress, setProgress] = useState<UserProgress>({ completedLectures: [], enrolledCourseIds: [], recentlyViewed: [], lastWatchedLectureKey: null });
+  const [progress, setProgress] = useState<UserProgress>({
+    enrolledCourseIds: [],
+    recentlyViewed: [],
+    score: {
+      points: 0,
+      epoch: 0,
+      pointsPerLecture: {},
+    },
+  });
   const [isProgressLoading, setIsProgressLoading] = useState(true);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
@@ -255,7 +263,8 @@ export default function DashboardPage() {
     router.push('/');
   };
 
-  const progressPercentage = totalLectures > 0 ? (progress.completedLectures.length / totalLectures) * 100 : 0;
+  const completedLecturesCount = progress.score?.pointsPerLecture ? Object.keys(progress.score.pointsPerLecture).length : 0;
+  const progressPercentage = totalLectures > 0 ? (completedLecturesCount / totalLectures) * 100 : 0;
   const joinedDate = userData.createdAt ? format(userData.createdAt.toDate(), 'MMMM d, yyyy') : 'N/A';
   const displayName = userData.displayName || user.displayName;
   const photoURL = userData.photoURL || user.photoURL;
@@ -312,7 +321,7 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-baseline gap-2">
-                        <h3 className="text-4xl font-bold text-primary">{progress.completedLectures.length}</h3>
+                        <h3 className="text-4xl font-bold text-primary">{completedLecturesCount}</h3>
                         <p className="text-muted-foreground">lectures completed in total</p>
                     </div>
                     <Progress value={progressPercentage} aria-label={`${progressPercentage.toFixed(0)}% complete`} />
