@@ -20,7 +20,8 @@ export default function ContinueWatchingCard() {
     if (user) {
       setIsLoading(true);
       const unsubscribe = listenToProgress(user.uid, (progress) => {
-        setLastWatchedKey(progress.lastWatchedLectureKey);
+        const latestKey = progress.recentlyViewed?.[0]?.key || null;
+        setLastWatchedKey(latestKey);
         setIsLoading(false);
       });
       return () => unsubscribe();

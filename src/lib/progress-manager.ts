@@ -1,5 +1,4 @@
 // src/lib/progress-manager.ts
-'use server';
 
 import { db, auth } from './firebase';
 import { doc, getDoc, setDoc, onSnapshot, serverTimestamp, Timestamp } from 'firebase/firestore';
@@ -103,8 +102,7 @@ export const addLectureToRecentlyViewed = async (lectureKey: string): Promise<vo
         const trimmedRecentlyViewed = recentlyViewed.slice(0, 15);
 
         await setDoc(progressDocRef, {
-            recentlyViewed: trimmedRecentlyViewed,
-            lastUpdated: serverTimestamp()
+            recentlyViewed: trimmedRecentlyViewed
         }, { merge: true });
     } catch (error) {
         console.error("Error updating recently viewed:", error);
