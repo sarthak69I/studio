@@ -15,7 +15,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send } from 'lucide-react';
+import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send, Trophy } from 'lucide-react';
 import { db, logout } from '@/lib/firebase';
 import { collection, query, orderBy, limit, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
 import {
@@ -214,7 +214,7 @@ function AppContent({ children }: { children: ReactNode }) {
       checkNewAnnouncements();
       initialLoadDone.current = true;
     }
-    const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback', '/dashboard'];
+    const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback', '/dashboard', '/leaderboard'];
     const shouldPoll = !excludedPathsForPolling.includes(pathname) && !showMaintenance;
     let pollInterval: NodeJS.Timeout | undefined;
     if (shouldPoll) {
@@ -400,6 +400,12 @@ function AppContent({ children }: { children: ReactNode }) {
                             <Link href="/dashboard">
                                 <LayoutDashboard className="mr-2 h-4 w-4" />
                                 <span>Dashboard</span>
+                            </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                           <Link href="/leaderboard">
+                                <Trophy className="mr-2 h-4 w-4" />
+                                <span>Leaderboard</span>
                             </Link>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />

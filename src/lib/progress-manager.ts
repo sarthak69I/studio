@@ -18,6 +18,10 @@ export interface UserProgress {
     lastWatchedLectureKey: string | null;
     enrolledCourseIds: string[];
     recentlyViewed: RecentlyViewedEntry[];
+    score?: {
+        points: number;
+        epoch: number;
+    };
 }
 
 
@@ -59,12 +63,13 @@ const getFirestoreProgress = async (userId: string): Promise<UserProgress> => {
         lastWatchedLectureKey: data.lastWatchedLectureKey || null,
         enrolledCourseIds: data.enrolledCourseIds || [],
         recentlyViewed: data.recentlyViewed || [],
+        score: data.score || { points: 0, epoch: 0 },
       };
     }
-    return { completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [] };
+    return { completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0 } };
   } catch (error) {
     console.error("Error fetching progress from Firestore:", error);
-    return { completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [] };
+    return { completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0 } };
   }
 };
 
@@ -80,6 +85,18 @@ const saveProgressToFirestore = async (userId: string, data: Partial<UserProgres
         await setDoc(userProgressRef, dataToSave, { merge: true });
     } catch (error) {
         console.error("Error saving progress to Firestore:", error);
+    }
+};
+
+export const updateUserScore = async (userId: string, points: number, epoch: number) => {
+    if (!userId) return;
+    try {
+        const progressDocRef = doc(db, 'userProgress', userId);
+        await setDoc(progressDocRef, { 
+            score: { points, epoch } 
+        }, { merge: true });
+    } catch(error) {
+        console.error("Error updating user score:", error);
     }
 };
 
@@ -185,6 +202,7 @@ export const listenToProgress = (userId: string, callback: (progress: UserProgre
                  lastWatchedLectureKey: data.lastWatchedLectureKey || null,
                  enrolledCourseIds: data.enrolledCourseIds || [],
                  recentlyViewed: data.recentlyViewed || [],
+                 score: data.score || { points: 0, epoch: 0 },
             };
             // Ensure local storage is always in sync with Firestore for a logged-in user.
             setLocalCompletedKeys(new Set(progressData.completedLectures));
@@ -195,11 +213,11 @@ export const listenToProgress = (userId: string, callback: (progress: UserProgre
             if (localKeys.size > 0) {
               saveProgressToFirestore(userId, { completedLectures: Array.from(localKeys) });
             }
-            callback({ completedLectures: Array.from(localKeys), lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [] });
+            callback({ completedLectures: Array.from(localKeys), lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0 } });
         }
     }, (error) => {
         console.error("Error listening to progress updates:", error);
-        callback({ completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [] });
+        callback({ completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0 } });
     });
 
     return unsubscribe;

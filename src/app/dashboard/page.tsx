@@ -11,10 +11,10 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, Trophy, User as UserIcon, PartyPopper } from 'lucide-react';
+import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, Trophy, User as UserIcon, PartyPopper, Home } from 'lucide-react';
 import { logout, updateUserProfile } from '@/lib/firebase';
 import Link from 'next/link';
-import { listenToProgress, RecentlyViewedEntry, type UserProgress } from '@/lib/progress-manager';
+import { listenToProgress, RecentlyViewedEntry, type UserProgress, updateUserScore } from '@/lib/progress-manager';
 import { getTotalLectureCount, getCourseNameById } from '@/lib/course-analytics';
 import type { Lecture, Topic } from '@/lib/course-data';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
@@ -26,9 +26,10 @@ import ImageCropperDialog from '@/components/ImageCropperDialog';
 import RecentlyViewedCard from '@/components/RecentlyViewedCard';
 import type { UserData } from '@/context/AuthContext';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { ALL_ACHIEVEMENTS, getUnlockedAchievements, type Achievement } from '@/lib/achievements';
+import { ALL_ACHIEVEMENTS, getUnlockedAchievements, calculateScore, type Achievement } from '@/lib/achievements';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
+import LeaderboardCard from '@/components/LeaderboardCard';
 
 
 // --- Edit Profile Dialog Schema ---
@@ -224,7 +225,7 @@ const AchievementsCard = ({ unlockedAchievements }: { unlockedAchievements: Achi
                                         </div>
                                     </TooltipTrigger>
                                     <TooltipContent>
-                                        <p className="font-semibold">{ach.name}</p>
+                                        <p className="font-semibold">{ach.name} ({ach.points} pts)</p>
                                         <p className="text-sm text-muted-foreground">{ach.description}</p>
                                         {!isUnlocked && <p className="text-xs text-destructive font-bold mt-1">LOCKED</p>}
                                     </TooltipContent>
@@ -267,11 +268,6 @@ export default function DashboardPage() {
       return () => unsubscribe();
     }
   }, [user, userData]);
-
-  const getInitials = (name: string | null | undefined) => {
-    if (!name) return <UserIcon />;
-    return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-  }
   
   const unlockedAchievements = useMemo(() => {
     if (userData && progress) {
@@ -279,6 +275,36 @@ export default function DashboardPage() {
     }
     return [];
   }, [userData, progress]);
+
+  const score = useMemo(() => {
+    return calculateScore(unlockedAchievements);
+  }, [unlockedAchievements]);
+
+  useEffect(() => {
+    const syncScore = async () => {
+        if (user && progress) {
+            const currentEpoch = Math.floor(Date.now() / (4 * 24 * 60 * 60 * 1000));
+            const userEpoch = progress.score?.epoch ?? 0;
+            const userPoints = progress.score?.points ?? 0;
+
+            // If it's a new epoch, reset score. Otherwise, if score has changed, update it.
+            if (currentEpoch > userEpoch) {
+                await updateUserScore(user.uid, score, currentEpoch);
+            } else if (score !== userPoints) {
+                await updateUserScore(user.uid, score, currentEpoch);
+            }
+        }
+    };
+    if (!isProgressLoading) {
+      syncScore();
+    }
+  }, [score, user, progress, isProgressLoading]);
+
+
+  const getInitials = (name: string | null | undefined) => {
+    if (!name) return <UserIcon />;
+    return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+  }
 
   const isLoading = authLoading || isProgressLoading || !userData;
 
@@ -312,11 +338,18 @@ export default function DashboardPage() {
     <>
     <div className="flex flex-col items-center min-h-screen bg-background p-4 sm:p-6 md:p-8">
       <div className="w-full max-w-5xl mx-auto space-y-8 animate-fadeIn-custom">
-        <header>
-          <h1 className="text-4xl md:text-5xl font-bold logo-gradient-text animate-gradient">
-            Welcome back, {displayName?.split(' ')[0] || 'Student'}!
-          </h1>
-          <p className="text-muted-foreground mt-2">Here's your learning snapshot. Keep up the great work!</p>
+        <header className="flex justify-between items-center">
+            <div>
+                <h1 className="text-4xl md:text-5xl font-bold logo-gradient-text animate-gradient">
+                    Welcome back, {displayName?.split(' ')[0] || 'Student'}!
+                </h1>
+                <p className="text-muted-foreground mt-2">Here's your learning snapshot. Keep up the great work!</p>
+            </div>
+            <Link href="/" passHref>
+                <Button variant="outline">
+                    <Home className="mr-2 h-4 w-4" /> Home
+                </Button>
+            </Link>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -365,6 +398,7 @@ export default function DashboardPage() {
             </Card>
         </div>
         
+        <LeaderboardCard />
         <AchievementsCard unlockedAchievements={unlockedAchievements} />
         <RecentlyViewedCard recentlyViewed={progress.recentlyViewed} />
         <EnrolledCoursesCard enrolledCourseIds={progress.enrolledCourseIds} />
