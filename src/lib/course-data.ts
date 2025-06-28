@@ -15,10 +15,5 @@ export { sharedClass11SubjectsContent } from './shared-class11-subjects-data'; /
  * Helper function to log available content for debugging or verification.
  */
 export function logCourseContent() {
-  // console.log("Science Course Content:", scienceCourseContent);
-  // console.log("Commerce Course Content:", commerceCourseContent);
-  // console.log("Aarambh (Class 10) Course Content:", aarambhCourseContent);
-  // console.log("Aarambh (Class 9) Course Content:", aarambh9CourseContent);
-  // console.log("Shared Class 11 Subjects Content:", sharedClass11SubjectsContent);
   console.log("Course data structure uses shared utilities and types from course-utils.ts.");
 }

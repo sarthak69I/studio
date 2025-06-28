@@ -1,7 +1,6 @@
 
 // src/lib/aarambh9-data.ts
 import type { CourseContentMap, Lecture } from './course-utils';
-import { slugify } from './course-utils';
 
 const aarambh9BasePath = '/assets/courses/aarambh9'; // This path isn't used if notes/videos are #
 
@@ -550,4 +549,3 @@ export const aarambh9CourseContent: CourseContentMap = {
     }
   ]
 }
-
