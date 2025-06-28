@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, Maximize, Bot, Loader2, Timer, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ExternalLink, Timer, AlertCircle, Info, Loader2 } from 'lucide-react';
 import {
   scienceCourseContent,
   commerceCourseContent,
@@ -15,15 +15,6 @@ import {
   type Topic,
 } from '@/lib/course-data';
 import { getParamAsString } from '@/lib/utils';
-import { FaqDialogContent } from '@/components/faq-dialog-content';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog";
 import { useAuth } from '@/context/AuthContext';
 import { generateLectureStorageKey, awardPointForWatchTime, listenToProgress, UserProgress } from '@/lib/progress-manager';
 
@@ -43,35 +34,32 @@ export default function LecturePlayerClient() {
   const params = useParams();
   const { user, loading: authLoading } = useAuth();
 
-  // Route params
   const courseId = getParamAsString(params.courseId);
-  const mode = getParamAsString(params.mode);
   const subjectParam = getParamAsString(params.subjectParam);
   const topicParam = getParamAsString(params.topicParam);
   const lectureId = getParamAsString(params.lectureId);
 
-  // Component State
   const [lecture, setLecture] = React.useState<Lecture | null>(null);
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
-  const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
-
-  // Timer & Progress State
-  const [progress, setProgress] = React.useState<UserProgress | null>(null);
+  
   const [remainingTime, setRemainingTime] = React.useState<number>(LECTURE_DURATION_SECONDS);
   const [isTabActive, setIsTabActive] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState(true);
-  
+  const [timerHasStarted, setTimerHasStarted] = React.useState(false);
+
   const lectureKey = React.useMemo(() => {
     if (courseId && subjectParam && topicParam && lectureId) {
       return generateLectureStorageKey(courseId, subjectParam, topicParam, lectureId);
     }
     return '';
   }, [courseId, subjectParam, topicParam, lectureId]);
+  
+  const openExternalPlayer = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
-
-  // Effect for fetching lecture data (non-user-specific)
   React.useEffect(() => {
-    if (courseId && subjectParam && topicParam && lectureId && mode === 'video') {
+    if (courseId && subjectParam && topicParam && lectureId) {
       try {
         const decodedSubjectName = decodeURIComponent(subjectParam);
         const decodedTopicName = decodeURIComponent(topicParam);
@@ -91,7 +79,9 @@ export default function LecturePlayerClient() {
               const currentLecture = currentTopic.lectures.find(l => l.id === decodedLectureId);
               if (currentLecture?.videoEmbedUrl) {
                 setLecture(currentLecture);
-                document.title = `Playing: ${currentLecture.title} | E-Leak`;
+                document.title = `Timer: ${currentLecture.title} | E-Leak`;
+                // Open the external player automatically
+                openExternalPlayer(currentLecture.videoEmbedUrl);
               } else {
                 setStatusMessage(`Video for this lecture is not available.`);
               }
@@ -103,21 +93,19 @@ export default function LecturePlayerClient() {
           setStatusMessage(`Course data not found for course ID: ${courseId}.`);
         }
       } catch (e) {
-        setStatusMessage("Could not load video due to an error.");
+        setStatusMessage("Could not load lecture data due to an error.");
       }
     } else {
-      setStatusMessage('Required information to load video is missing from URL.');
+      setStatusMessage('Required information is missing from URL.');
     }
-  }, [courseId, subjectParam, topicParam, lectureId, mode]);
+  }, [courseId, subjectParam, topicParam, lectureId]);
   
-  // Effect for fetching user progress
   React.useEffect(() => {
     if (authLoading || !lectureKey) return;
 
     if (user) {
       setIsLoading(true);
       const unsubscribe = listenToProgress(user.uid, (progressData) => {
-        setProgress(progressData);
         const pointsEarned = progressData.score.pointsPerLecture[lectureKey] || 0;
         const timeWatchedSeconds = pointsEarned * POINT_INTERVAL_SECONDS;
         setRemainingTime(Math.max(0, LECTURE_DURATION_SECONDS - timeWatchedSeconds));
@@ -130,7 +118,6 @@ export default function LecturePlayerClient() {
     }
   }, [user, authLoading, lectureKey]);
 
-  // Effect for handling tab visibility to pause/resume timer
   React.useEffect(() => {
     const handleVisibilityChange = () => {
       setIsTabActive(!document.hidden);
@@ -141,11 +128,14 @@ export default function LecturePlayerClient() {
     };
   }, []);
 
-  // The main timer and point-awarding effect
+  // Main timer logic based on user's request
   React.useEffect(() => {
-    if (!user || !isTabActive || isLoading || remainingTime <= 0) {
-      return; // Do nothing if not logged in, tab is inactive, still loading, or time is up
+    // Start timer when tab is INACTIVE
+    if (!user || isTabActive || isLoading || remainingTime <= 0) {
+      return; 
     }
+    
+    if(!timerHasStarted) setTimerHasStarted(true);
 
     let totalElapsedSecondsThisSession = 0;
     const interval = setInterval(() => {
@@ -159,101 +149,73 @@ export default function LecturePlayerClient() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [user, isTabActive, isLoading, lectureKey, remainingTime]);
+  }, [user, isTabActive, isLoading, lectureKey, remainingTime, timerHasStarted]);
 
-  const renderPlayer = () => {
-    if (!lecture || !lecture.videoEmbedUrl) {
-      return null;
-    }
-    const playerContainerClasses = "aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-black border border-border";
-    return (
-      <div className={playerContainerClasses}>
-        <iframe
-          src={lecture.videoEmbedUrl}
-          title={lecture.title}
-          width="100%"
-          height="100%"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="border-0"
-        ></iframe>
-      </div>
-    );
-  };
-  
-  const pointsEarned = progress?.score.pointsPerLecture[lectureKey] || 0;
+  const getTimerStatusMessage = () => {
+      if(isLoading) return "Loading your progress...";
+      if (!user) return "Sign in to earn points for watching lectures.";
+      if (remainingTime <= 0) return "Points for this lecture are maxed out.";
+      if (isTabActive) {
+          if(!timerHasStarted) return "Timer will start when you go to the video tab.";
+          return "Timer paused. Go to the video tab to continue earning points.";
+      }
+      return "Timer is running. You are earning points!";
+  }
 
   return (
-    <>
-      <div className="flex flex-col min-h-screen bg-background text-foreground px-2 py-4 sm:px-4 md:p-6">
-        <header className="flex items-center justify-between mb-8 w-full max-w-5xl mx-auto">
-          <Button variant="outline" size="lg" onClick={() => router.back()} className="rounded-lg">
-            <ArrowLeft className="mr-2 h-5 w-5" /> Back
+    <div className="flex flex-col min-h-screen bg-background text-foreground px-2 py-4 sm:px-4 md:p-6">
+      <header className="flex items-center justify-between mb-8 w-full max-w-5xl mx-auto">
+        <Button variant="outline" size="lg" onClick={() => router.back()} className="rounded-lg">
+          <ArrowLeft className="mr-2 h-5 w-5" /> Back to Lectures
+        </Button>
+        <Link href="/" passHref>
+          <Button variant="outline" size="lg" className="rounded-lg">
+            <HomeIcon className="mr-2 h-5 w-5" /> Home
           </Button>
-          <Link href="/" passHref>
-            <Button variant="outline" size="lg" className="rounded-lg">
-              <HomeIcon className="mr-2 h-5 w-5" /> Home
-            </Button>
-          </Link>
-        </header>
-
-        <main className="flex-grow flex flex-col justify-start items-center pt-10 md:pt-12 w-full">
-          {lecture ? (
-            <div className="w-full max-w-2xl">
-              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4 text-center">
-                {lecture.title}
-              </h1>
-
-              <div className="mb-4 text-center">
-                {isLoading ? (
-                  <div className="flex justify-center items-center gap-2 text-sm text-muted-foreground">
-                    <Loader2 className="h-4 w-4 animate-spin"/> Loading progress...
-                  </div>
-                ) : user ? (
-                  <div className="flex justify-center items-center gap-2 text-sm font-mono p-2 bg-muted rounded-md max-w-xs mx-auto">
-                    <Timer className={`h-4 w-4 ${isTabActive && remainingTime > 0 ? 'text-green-500' : 'text-muted-foreground'}`}/>
-                    <span>Time Remaining:</span>
-                    <span className="font-semibold">{formatTime(remainingTime)}</span>
-                  </div>
-                ) : (
-                  <div className="flex justify-center items-center gap-2 text-sm p-2 bg-amber-500/10 text-amber-600 rounded-md max-w-sm mx-auto">
-                    <AlertCircle className="h-4 w-4"/>
-                    Sign in to earn points and track progress.
-                  </div>
-                )}
-              </div>
-
-              {renderPlayer()}
-              
-              <div className="mt-3 text-center text-sm text-muted-foreground p-2 bg-card/50 rounded-md max-w-md mx-auto">
-                <Maximize className="inline h-4 w-4 mr-1" />
-                For the best viewing experience, use the player's full-screen button.
-              </div>
-
-              <p className="text-muted-foreground text-center mt-4 text-sm px-2">
-                Playing: {lecture.title} from {decodeURIComponent(topicParam || '')} - {decodeURIComponent(subjectParam || '')}
-              </p>
+        </Link>
+      </header>
+      <main className="flex-grow flex flex-col justify-center items-center w-full">
+        {lecture ? (
+          <div className="w-full max-w-md text-center bg-card p-8 rounded-2xl shadow-2xl border">
+            <h1 className="text-2xl font-bold text-foreground mb-4">
+              {lecture.title}
+            </h1>
+            <p className="text-muted-foreground mb-6">
+              Your video has opened in a new tab. Keep this page open in the background to earn points while you watch.
+            </p>
+            <div className="font-mono p-4 bg-muted rounded-lg mb-6">
+                <div className="flex justify-center items-center gap-2 text-sm text-muted-foreground mb-2">
+                    <Timer className="h-4 w-4"/>
+                    <span>Time Remaining for Points</span>
+                </div>
+                <div className="text-4xl font-bold text-primary tracking-wider">
+                    {formatTime(remainingTime)}
+                </div>
             </div>
-          ) : statusMessage ? (
-            <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md text-center">{statusMessage}</p>
-          ) : (
-            <Loader2 className="h-10 w-10 animate-spin text-primary" />
-          )}
-        </main>
-      </div>
-      <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
-        <DialogContent className="sm:max-w-lg rounded-xl">
-          <DialogHeader>
-            <DialogTitle className="text-xl">Frequently Asked Questions</DialogTitle>
-          </DialogHeader>
-          <FaqDialogContent />
-          <DialogFooter className="sm:justify-start">
-            <DialogClose asChild>
-              <Button type="button" variant="outline">Close</Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </>
+            
+            <div className="text-sm p-3 bg-primary/10 text-primary-foreground/80 rounded-md">
+                <Info className="inline h-4 w-4 mr-2" />
+                {getTimerStatusMessage()}
+            </div>
+
+            <Button variant="outline" className="w-full mt-6" onClick={() => lecture && openExternalPlayer(lecture.videoEmbedUrl!)}>
+                <ExternalLink className="mr-2 h-4 w-4"/>
+                Re-open Video Tab
+            </Button>
+          </div>
+        ) : statusMessage ? (
+          <div className="text-center bg-destructive text-destructive-foreground p-6 rounded-lg max-w-md">
+            <AlertCircle className="mx-auto h-12 w-12 mb-4" />
+            <h2 className="text-xl font-bold">Could not start session</h2>
+            <p>{statusMessage}</p>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center gap-4">
+            <Loader2 className="h-12 w-12 animate-spin text-primary" />
+            <p className="text-muted-foreground">Preparing your session...</p>
+          </div>
+        )}
+      </main>
+    </div>
   );
 }
