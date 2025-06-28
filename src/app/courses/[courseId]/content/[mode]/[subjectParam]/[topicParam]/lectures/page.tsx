@@ -244,14 +244,12 @@ export default function TopicLecturesPage() {
   const renderLectureCard = (lecture: Lecture, index: number) => {
     const lectureKey = generateLectureStorageKey(courseId, subjectNameState, topicName, lecture.id);
     const hasStarted = user ? isLectureStarted(progress, lectureKey) : false;
-    const isTimerActiveForThisCard = activeTimerKey === lectureKey;
     
     const cardClasses = `bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md
                        transform opacity-0 animate-fadeInUp-custom
                        transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90
                        relative overflow-hidden
-                       ${hasStarted ? 'border-l-4 border-green-500' : ''}
-                       ${isTimerActiveForThisCard ? 'ring-2 ring-primary' : ''}`;
+                       ${hasStarted ? 'border-l-4 border-green-500' : ''}`;
 
     let displayTitle = lecture.title;
     if (mode === 'notes' && lecture.notesTitle && lecture.notesTitle.trim() !== '') {
@@ -277,13 +275,6 @@ export default function TopicLecturesPage() {
           {mode === 'notes' ? <FileText className="inline h-4 w-4 mr-1" /> : <Video className="inline h-4 w-4 mr-1" />}
           {displayTitle} - {mode}
         </p>
-
-        {isTimerActiveForThisCard && timerRemainingSeconds !== null && (
-            <div className="absolute bottom-2 right-3 flex items-center gap-1.5 bg-background/80 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-mono">
-                <Timer className="h-3 w-3 text-primary" />
-                <span>{formatTime(timerRemainingSeconds)}</span>
-            </div>
-        )}
       </div>
     );
 
