@@ -2,7 +2,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { listenToProgress } from '@/lib/progress-manager';
 import { getLectureDetailsFromKey } from '@/lib/course-analytics';
@@ -43,8 +42,18 @@ export default function ContinueWatchingCard() {
     return null; // Don't render if not logged in, loading, or no history
   }
 
-  const { lecture, topic, subjectName, courseId } = details;
-  const lectureUrl = `/courses/${courseId}/content/video/${encodeURIComponent(subjectName)}/${encodeURIComponent(topic.name)}/lectures/${encodeURIComponent(lecture.id)}/play`;
+  const { lecture } = details;
+  
+  // Construct the external player URL
+  let externalPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl || '')}`;
+  externalPlayerUrl += `&videoTitle=${encodeURIComponent(lecture.title)}`;
+
+  if (lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') {
+    externalPlayerUrl += `&notesUrl=${encodeURIComponent(lecture.notesLink)}`;
+    const baseNotesTitle = (lecture.notesTitle && lecture.notesTitle.trim()) ? lecture.notesTitle : lecture.title;
+    const finalNotesTitle = `${baseNotesTitle} - Notes`;
+    externalPlayerUrl += `&notesTitle=${encodeURIComponent(finalNotesTitle)}`;
+  }
 
   return (
     <section className="w-full bg-card text-card-foreground py-10 border-t border-border mt-16">
@@ -59,14 +68,14 @@ export default function ContinueWatchingCard() {
                 </CardHeader>
                 <CardContent>
                     <p className="font-semibold text-lg">{lecture.title}</p>
-                    <p className="text-sm text-muted-foreground">{subjectName} - {topic.name}</p>
+                    <p className="text-sm text-muted-foreground">{details.subjectName} - {details.topic.name}</p>
                 </CardContent>
                 <CardFooter>
                     <Button asChild className="w-full">
-                        <Link href={lectureUrl}>
+                        <a href={externalPlayerUrl} target="_blank" rel="noopener noreferrer">
                             <Play className="mr-2"/>
                             Watch Now
-                        </Link>
+                        </a>
                     </Button>
                 </CardFooter>
             </Card>
