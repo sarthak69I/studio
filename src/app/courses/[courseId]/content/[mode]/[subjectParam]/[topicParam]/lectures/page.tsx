@@ -213,22 +213,21 @@ export default function TopicLecturesPage() {
 
 
   const handleLectureVideoClick = (lecture: Lecture) => {
-    if (!user) {
-      // TODO: Maybe show a login prompt here
-      return;
-    }
-    const lectureKey = generateLectureStorageKey(courseId, subjectNameState, topicName, lecture.id);
-    addLectureToRecentlyViewed(lectureKey);
-    
-    // Set this lecture as the active one for the timer
-    setActiveTimerKey(lectureKey);
+    // User-specific actions for progress tracking and timers
+    if (user) {
+      const lectureKey = generateLectureStorageKey(courseId, subjectNameState, topicName, lecture.id);
+      addLectureToRecentlyViewed(lectureKey);
+      
+      // Set this lecture as the active one for the timer
+      setActiveTimerKey(lectureKey);
 
-    // Initialize the timer's remaining time based on current progress
-    const pointsEarned = progress?.score?.pointsPerLecture?.[lectureKey] || 0;
-    const timeWatchedSeconds = pointsEarned * POINT_INTERVAL_SECONDS;
-    setTimerRemainingSeconds(Math.max(0, LECTURE_DURATION_SECONDS - timeWatchedSeconds));
+      // Initialize the timer's remaining time based on current progress
+      const pointsEarned = progress?.score?.pointsPerLecture?.[lectureKey] || 0;
+      const timeWatchedSeconds = pointsEarned * POINT_INTERVAL_SECONDS;
+      setTimerRemainingSeconds(Math.max(0, LECTURE_DURATION_SECONDS - timeWatchedSeconds));
+    }
     
-    // Open the external player for recorded videos
+    // Open the external player for all users
     if (lecture.videoEmbedUrl) {
       let externalPlayerUrl = '';
       
