@@ -263,8 +263,10 @@ export default function DashboardPage() {
     router.push('/');
   };
 
-  const completedLecturesCount = progress.score?.pointsPerLecture ? Object.keys(progress.score.pointsPerLecture).length : 0;
-  const progressPercentage = totalLectures > 0 ? (completedLecturesCount / totalLectures) * 100 : 0;
+  const earnedPoints = progress.score?.points || 0;
+  const totalPossiblePoints = totalLectures > 0 ? totalLectures * 45 : 1; // 45 points per lecture (90 mins / 2 mins)
+  const progressPercentage = Math.min((earnedPoints / totalPossiblePoints) * 100, 100);
+
   const joinedDate = userData.createdAt ? format(userData.createdAt.toDate(), 'MMMM d, yyyy') : 'N/A';
   const displayName = userData.displayName || user.displayName;
   const photoURL = userData.photoURL || user.photoURL;
@@ -317,18 +319,21 @@ export default function DashboardPage() {
                         <TrendingUp className="text-primary"/>
                         Your Learning Progress
                     </CardTitle>
-                    <CardDescription>Track your overall course completion.</CardDescription>
+                    <CardDescription>Track your points for the current leaderboard period.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-baseline gap-2">
-                        <h3 className="text-4xl font-bold text-primary">{completedLecturesCount}</h3>
-                        <p className="text-muted-foreground">lectures completed in total</p>
+                        <h3 className="text-4xl font-bold text-primary">{earnedPoints.toLocaleString()}</h3>
+                        <p className="text-muted-foreground">points earned this period</p>
                     </div>
                     <Progress value={progressPercentage} aria-label={`${progressPercentage.toFixed(0)}% complete`} />
+                     <p className="text-sm text-muted-foreground text-center">
+                        Total possible points for this period: {totalPossiblePoints.toLocaleString()}
+                    </p>
                 </CardContent>
                  <CardFooter className="text-xs text-muted-foreground">
                     <Play className="mr-2 h-4 w-4 text-primary" />
-                    Every lecture you watch moves you one step closer to your goal.
+                    You get 1 point for every 2 minutes of lecture watch time. Keep going!
                 </CardFooter>
             </Card>
         </div>

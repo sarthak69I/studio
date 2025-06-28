@@ -183,24 +183,33 @@ export default function TopicLecturesPage() {
 
   // Main timer logic effect
   React.useEffect(() => {
-    if (!user || isTabActive || timerRemainingSeconds === null || timerRemainingSeconds <= 0) {
-      return; // Stop timer if not logged in, tab is active, or time is up
+    if (!user || isTabActive || !activeTimerKey) {
+      return; // Conditions to NOT run the timer
     }
 
-    const interval = setInterval(() => {
-      setTimerRemainingSeconds(prev => (prev !== null ? Math.max(0, prev - 1) : null));
-      pointAwardCounterRef.current += 1;
-      
-      if (pointAwardCounterRef.current >= POINT_INTERVAL_SECONDS) {
-        if (activeTimerKey) {
-          awardPointForWatchTime(activeTimerKey);
+    const intervalId = setInterval(() => {
+      // We use the functional form of setState to avoid needing timerRemainingSeconds in the dependency array
+      setTimerRemainingSeconds(prevSeconds => {
+        if (prevSeconds === null || prevSeconds <= 1) {
+          clearInterval(intervalId);
+          return 0;
         }
-        pointAwardCounterRef.current = 0; // Reset counter
-      }
+        
+        pointAwardCounterRef.current += 1;
+        
+        if (pointAwardCounterRef.current >= POINT_INTERVAL_SECONDS) {
+          if (activeTimerKey) {
+            awardPointForWatchTime(activeTimerKey);
+          }
+          pointAwardCounterRef.current = 0; // Reset counter
+        }
+        
+        return prevSeconds - 1;
+      });
     }, 1000);
 
-    return () => clearInterval(interval);
-  }, [user, isTabActive, timerRemainingSeconds, activeTimerKey]);
+    return () => clearInterval(intervalId); // Cleanup on effect re-run or unmount
+  }, [user, isTabActive, activeTimerKey]); // Correct dependency array
 
 
   const handleLectureVideoClick = (lecture: Lecture) => {
