@@ -37,14 +37,15 @@ export default function LeaderboardPage() {
       try {
         const currentEpoch = Math.floor(Date.now() / LEADERBOARD_EPOCH_DURATION_MS);
         
+        // Fetch all documents for the current epoch without ordering
         const q = query(
-          collection(db, 'userProgress'), 
-          where('score.epoch', '==', currentEpoch), 
-          orderBy('score.points', 'desc'), 
-          limit(50)
+          collection(db, 'userProgress'),
+          where('score.epoch', '==', currentEpoch)
         );
         
         const progressSnapshot = await getDocs(q);
+
+        // Fetch user data for each progress entry
         const userPromises = progressSnapshot.docs.map(progressDoc => {
             const userDocRef = doc(db, 'users', progressDoc.id);
             return getDoc(userDocRef).then(userDoc => ({
@@ -55,15 +56,23 @@ export default function LeaderboardPage() {
         
         const results = await Promise.all(userPromises);
 
-        const data: LeaderboardUser[] = results
-          .filter(r => r.userDoc.exists())
-          .map((r, index) => ({
-            rank: index + 1,
-            user: r.userDoc.data() as UserData,
-            score: r.progressData.score?.points || 0
+        // Filter, map, sort, and then limit the data on the client side
+        const unsortedData: Omit<LeaderboardUser, 'rank'>[] = results
+          .filter(r => r.userDoc.exists() && r.progressData.score?.points > 0)
+          .map(r => ({
+              user: r.userDoc.data() as UserData,
+              score: r.progressData.score?.points || 0
           }));
         
-        setLeaderboardData(data);
+        const sortedData: LeaderboardUser[] = unsortedData
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 50) // Limit to top 50
+            .map((item, index) => ({
+                ...item,
+                rank: index + 1
+            }));
+        
+        setLeaderboardData(sortedData);
       } catch (error) {
         console.error("Error fetching leaderboard:", error);
       } finally {
