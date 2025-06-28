@@ -19,6 +19,10 @@ export interface UserProgress {
         epoch: number; // The current leaderboard epoch identifier
         pointsPerLecture: { [lectureKey: string]: number }; // Points earned for each lecture in this epoch
     };
+    dailyPoints?: { // Optional for backward compatibility
+        date: string; // "YYYY-MM-DD" in UTC
+        count: number;
+    };
 }
 
 export const generateLectureStorageKey = (courseId: string, subjectName: string, topicName: string, lectureId: string): string => {
@@ -34,6 +38,10 @@ const getInitialProgress = (): UserProgress => ({
         epoch: 0,
         pointsPerLecture: {},
     },
+    dailyPoints: {
+        date: new Date().toISOString().split('T')[0],
+        count: 0,
+    }
 });
 
 export const awardPointForWatchTime = async (lectureKey: string): Promise<{ success: boolean; message: string; }> => {
@@ -50,7 +58,20 @@ export const awardPointForWatchTime = async (lectureKey: string): Promise<{ succ
         const docSnap = await getDoc(progressDocRef);
         let currentProgress = docSnap.exists() ? (docSnap.data() as UserProgress) : getInitialProgress();
 
-        // Ensure score object and its properties exist
+        // --- Daily point cap logic ---
+        const todayStr = new Date().toISOString().split('T')[0];
+        if (!currentProgress.dailyPoints || currentProgress.dailyPoints.date !== todayStr) {
+            // It's a new day or the field is missing, reset the daily counter.
+            currentProgress.dailyPoints = { date: todayStr, count: 0 };
+        }
+
+        if (currentProgress.dailyPoints.count >= 80) {
+            return { success: false, message: "Daily point limit of 80 has been reached. Please try again tomorrow." };
+        }
+        // --- End of daily point cap logic ---
+
+
+        // Ensure score object and its properties exist for epoch logic
         if (!currentProgress.score) {
             currentProgress.score = { points: 0, epoch: 0, pointsPerLecture: {} };
         }
@@ -61,7 +82,7 @@ export const awardPointForWatchTime = async (lectureKey: string): Promise<{ succ
         const currentEpoch = Math.floor(Date.now() / LEADERBOARD_EPOCH_DURATION_MS);
 
         // Reset score if epoch has changed
-        if (currentProgress.score.epoch < currentEpoch) {
+        if (currentProgress.score.epoch !== currentEpoch) {
             currentProgress.score.epoch = currentEpoch;
             currentProgress.score.points = 0;
             currentProgress.score.pointsPerLecture = {};
@@ -76,10 +97,14 @@ export const awardPointForWatchTime = async (lectureKey: string): Promise<{ succ
         // Award point
         currentProgress.score.points = (currentProgress.score.points || 0) + 1;
         currentProgress.score.pointsPerLecture[lectureKey] = pointsForThisLecture + 1;
+        currentProgress.dailyPoints.count += 1; // Increment daily count
 
-        await setDoc(progressDocRef, { score: currentProgress.score }, { merge: true });
+        await setDoc(progressDocRef, { 
+            score: currentProgress.score,
+            dailyPoints: currentProgress.dailyPoints
+        }, { merge: true });
 
-        return { success: true, message: "Point awarded." };
+        return { success: true, message: `Point awarded. Today's points: ${currentProgress.dailyPoints.count}/80.` };
 
     } catch (error) {
         console.error("Error awarding point:", error);
@@ -138,6 +163,7 @@ export const listenToProgress = (userId: string, callback: (progress: UserProgre
                      epoch: data.score?.epoch || 0,
                      pointsPerLecture: data.score?.pointsPerLecture || {},
                  },
+                 dailyPoints: data.dailyPoints || { date: new Date().toISOString().split('T')[0], count: 0 }
             };
             callback(progressData);
         } else {
