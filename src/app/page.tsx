@@ -2,10 +2,12 @@
 "use client";
 
 import * as React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { CourseCard } from '@/components/course-card';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Trophy } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface Course {
   id: string;
@@ -105,19 +107,9 @@ const coursesData: Course[] = [
 ];
 
 export default function HomePage() {
-  const { user, loading } = useAuth();
-  const router = useRouter();
-
-  React.useEffect(() => {
-    // If auth state is done loading and the user is logged in, redirect them.
-    if (!loading && user) {
-      router.replace('/dashboard');
-    }
-  }, [user, loading, router]);
+  const { loading } = useAuth();
   
-  // While we're checking for the user's auth state, or if they are logged in and we're about to redirect,
-  // show a loading screen. This prevents the homepage content from flashing briefly for a logged-in user.
-  if (loading || user) {
+  if (loading) {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-background">
         <Loader2 className="h-12 w-12 animate-spin text-primary" />
@@ -125,11 +117,16 @@ export default function HomePage() {
     );
   }
 
-  // If we're not loading and the user is null, show the homepage.
   return (
     <div className="flex min-h-screen flex-col items-center p-5 pt-8 sm:p-8 md:p-10 md:pt-12 animate-fadeIn-custom">
 
       <header className="text-center mb-8 md:mb-12">
+        <Button asChild variant="outline" className="mb-4 rounded-full border-amber-500/50 text-amber-500 hover:bg-amber-500/10 hover:text-amber-600">
+            <Link href="/leaderboard">
+                <Trophy className="mr-2" />
+                Leaderboard
+            </Link>
+        </Button>
         <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wider logo-gradient-text animate-gradient">
           E-Leak
         </h1>

@@ -11,12 +11,11 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, Trophy, User as UserIcon, PartyPopper, Home } from 'lucide-react';
+import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, User as UserIcon, Home } from 'lucide-react';
 import { logout, updateUserProfile } from '@/lib/firebase';
 import Link from 'next/link';
-import { listenToProgress, RecentlyViewedEntry, type UserProgress, updateUserScore } from '@/lib/progress-manager';
+import { listenToProgress, RecentlyViewedEntry, type UserProgress } from '@/lib/progress-manager';
 import { getTotalLectureCount, getCourseNameById } from '@/lib/course-analytics';
-import type { Lecture, Topic } from '@/lib/course-data';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -25,10 +24,7 @@ import { format } from 'date-fns';
 import ImageCropperDialog from '@/components/ImageCropperDialog';
 import RecentlyViewedCard from '@/components/RecentlyViewedCard';
 import type { UserData } from '@/context/AuthContext';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { ALL_ACHIEVEMENTS, getUnlockedAchievements, calculateScore, type Achievement } from '@/lib/achievements';
 import { Textarea } from '@/components/ui/textarea';
-import { cn } from '@/lib/utils';
 import LeaderboardCard from '@/components/LeaderboardCard';
 
 
@@ -201,44 +197,6 @@ const EditProfileDialog = ({ open, onOpenChange }: { open: boolean, onOpenChange
     );
 };
 
-const AchievementsCard = ({ unlockedAchievements }: { unlockedAchievements: Achievement[] }) => {
-    return (
-        <Card>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-xl"><Trophy className="text-amber-500" />Your Achievements</CardTitle>
-                <CardDescription>Milestones you've reached on your learning journey.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <TooltipProvider>
-                    <div className="flex flex-wrap gap-4">
-                        {ALL_ACHIEVEMENTS.map(ach => {
-                            const isUnlocked = unlockedAchievements.some(unlocked => unlocked.id === ach.id);
-                            const Icon = ach.icon;
-                            return (
-                                <Tooltip key={ach.id}>
-                                    <TooltipTrigger>
-                                        <div className={cn(
-                                            "h-16 w-16 rounded-full flex items-center justify-center border-4 transition-all duration-300",
-                                            isUnlocked ? "bg-amber-100 border-amber-400" : "bg-muted border-border"
-                                        )}>
-                                            <Icon className={cn("h-8 w-8", isUnlocked ? "text-amber-500" : "text-muted-foreground")} />
-                                        </div>
-                                    </TooltipTrigger>
-                                    <TooltipContent>
-                                        <p className="font-semibold">{ach.name} ({ach.points} pts)</p>
-                                        <p className="text-sm text-muted-foreground">{ach.description}</p>
-                                        {!isUnlocked && <p className="text-xs text-destructive font-bold mt-1">LOCKED</p>}
-                                    </TooltipContent>
-                                </Tooltip>
-                            );
-                        })}
-                    </div>
-                </TooltipProvider>
-            </CardContent>
-        </Card>
-    );
-};
-
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -269,38 +227,6 @@ export default function DashboardPage() {
     }
   }, [user, userData]);
   
-  const unlockedAchievements = useMemo(() => {
-    if (userData && progress) {
-        return getUnlockedAchievements(userData, progress);
-    }
-    return [];
-  }, [userData, progress]);
-
-  const score = useMemo(() => {
-    return calculateScore(unlockedAchievements);
-  }, [unlockedAchievements]);
-
-  useEffect(() => {
-    const syncScore = async () => {
-        if (user && progress) {
-            const currentEpoch = Math.floor(Date.now() / (4 * 24 * 60 * 60 * 1000));
-            const userEpoch = progress.score?.epoch ?? 0;
-            const userPoints = progress.score?.points ?? 0;
-
-            // If it's a new epoch, reset score. Otherwise, if score has changed, update it.
-            if (currentEpoch > userEpoch) {
-                await updateUserScore(user.uid, score, currentEpoch);
-            } else if (score !== userPoints) {
-                await updateUserScore(user.uid, score, currentEpoch);
-            }
-        }
-    };
-    if (!isProgressLoading) {
-      syncScore();
-    }
-  }, [score, user, progress, isProgressLoading]);
-
-
   const getInitials = (name: string | null | undefined) => {
     if (!name) return <UserIcon />;
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
@@ -382,24 +308,23 @@ export default function DashboardPage() {
                         <TrendingUp className="text-primary"/>
                         Your Learning Progress
                     </CardTitle>
-                    <CardDescription>You're on the right track! Unlock new achievements as you learn!</CardDescription>
+                    <CardDescription>Track your overall course completion.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-baseline gap-2">
                         <h3 className="text-4xl font-bold text-primary">{progress.completedLectures.length}</h3>
-                        <p className="text-muted-foreground">lectures completed</p>
+                        <p className="text-muted-foreground">lectures completed in total</p>
                     </div>
                     <Progress value={progressPercentage} aria-label={`${progressPercentage.toFixed(0)}% complete`} />
                 </CardContent>
                  <CardFooter className="text-xs text-muted-foreground">
-                    <Trophy className="mr-2 h-4 w-4 text-amber-500" />
+                    <Play className="mr-2 h-4 w-4 text-primary" />
                     Every lecture you watch moves you one step closer to your goal.
                 </CardFooter>
             </Card>
         </div>
         
         <LeaderboardCard />
-        <AchievementsCard unlockedAchievements={unlockedAchievements} />
         <RecentlyViewedCard recentlyViewed={progress.recentlyViewed} />
         <EnrolledCoursesCard enrolledCourseIds={progress.enrolledCourseIds} />
         

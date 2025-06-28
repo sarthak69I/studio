@@ -81,35 +81,19 @@ const saveProgressToFirestore = async (userId: string, data: Partial<UserProgres
             ...data,
             lastUpdated: serverTimestamp()
         };
-        // Use merge:true to create or update the document
         await setDoc(userProgressRef, dataToSave, { merge: true });
     } catch (error) {
         console.error("Error saving progress to Firestore:", error);
     }
 };
 
-export const updateUserScore = async (userId: string, points: number, epoch: number) => {
-    if (!userId) return;
-    try {
-        const progressDocRef = doc(db, 'userProgress', userId);
-        await setDoc(progressDocRef, { 
-            score: { points, epoch } 
-        }, { merge: true });
-    } catch(error) {
-        console.error("Error updating user score:", error);
-    }
-};
-
-
 // --- Combined Public Functions ---
 export const markLectureAsCompleted = async (courseId: string, subjectName: string, topicName: string, lectureId: string): Promise<void> => {
   const key = generateLectureStorageKey(courseId, subjectName, topicName, lectureId);
   
   const localKeys = getLocalCompletedKeys();
-  if (!localKeys.has(key)) {
-      localKeys.add(key);
-      setLocalCompletedKeys(localKeys);
-  }
+  localKeys.add(key);
+  setLocalCompletedKeys(localKeys);
 
   const user = auth.currentUser;
   if (user) {
@@ -121,33 +105,40 @@ export const markLectureAsCompleted = async (courseId: string, subjectName: stri
             lastWatchedLectureKey: null,
             enrolledCourseIds: [],
             recentlyViewed: [],
+            score: { points: 0, epoch: 0 },
         };
 
         if (docSnap.exists()) {
             currentProgress = docSnap.data() as UserProgress;
         }
 
-        // Update recently viewed list
-        const newRecentlyViewed = (currentProgress.recentlyViewed || [])
-            .filter(item => item.key !== key); // Remove old entry for this lecture
-        
-        newRecentlyViewed.unshift({ key, timestamp: Timestamp.now() }); // Add new entry to the front
-
-        // Trim the list to the last 15 items
+        // --- Recently Viewed Logic ---
+        const newRecentlyViewed = (currentProgress.recentlyViewed || []).filter(item => item.key !== key);
+        newRecentlyViewed.unshift({ key, timestamp: Timestamp.now() });
         const trimmedRecentlyViewed = newRecentlyViewed.slice(0, 15);
-        
-        // Prepare data for saving
-        const updatedProgressData: Partial<UserProgress> = {
-            lastWatchedLectureKey: key,
-            recentlyViewed: trimmedRecentlyViewed,
-        };
-        
+
+        // --- Completed Lectures Logic ---
         const updatedCompletedLectures = new Set(currentProgress.completedLectures);
         updatedCompletedLectures.add(key);
 
+        // --- Leaderboard Scoring Logic ---
+        const FOUR_DAYS_IN_MS = 4 * 24 * 60 * 60 * 1000;
+        const currentEpoch = Math.floor(Date.now() / FOUR_DAYS_IN_MS);
+        const userEpoch = currentProgress.score?.epoch ?? 0;
+        let newScorePoints = currentProgress.score?.points ?? 0;
+
+        if (currentEpoch > userEpoch) {
+            newScorePoints = 1; // First lecture of a new epoch
+        } else {
+            newScorePoints += 1; // Increment score for this epoch
+        }
+        
+        // --- Save to Firestore ---
         await setDoc(progressDocRef, {
-            ...updatedProgressData,
+            lastWatchedLectureKey: key,
+            recentlyViewed: trimmedRecentlyViewed,
             completedLectures: Array.from(updatedCompletedLectures),
+            score: { points: newScorePoints, epoch: currentEpoch },
         }, { merge: true });
 
     } catch (error) {
@@ -204,11 +195,9 @@ export const listenToProgress = (userId: string, callback: (progress: UserProgre
                  recentlyViewed: data.recentlyViewed || [],
                  score: data.score || { points: 0, epoch: 0 },
             };
-            // Ensure local storage is always in sync with Firestore for a logged-in user.
             setLocalCompletedKeys(new Set(progressData.completedLectures));
             callback(progressData);
         } else {
-            // If no remote progress, sync local progress up to Firestore.
             const localKeys = getLocalCompletedKeys();
             if (localKeys.size > 0) {
               saveProgressToFirestore(userId, { completedLectures: Array.from(localKeys) });
