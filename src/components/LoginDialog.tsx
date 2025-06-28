@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -16,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { signInWithGoogle, signUpWithEmail, signInWithEmail } from '@/lib/firebase';
+import { signUpWithEmail, signInWithEmail } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, AlertTriangle } from 'lucide-react';
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -52,28 +51,6 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
     resolver: zodResolver(signInSchema),
     defaultValues: { email: "", password: "" },
   });
-
-  const handleGoogleSignIn = async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const result = await signInWithGoogle();
-      toast({
-        title: "Sign In Successful!",
-        description: `Welcome, ${result.user.displayName || 'User'}!`,
-      });
-      onOpenChange(false); // Close dialog on success
-    } catch (err: any) {
-      // Firebase errors have a 'code' property we can check
-      if (err.code === 'auth/popup-closed-by-user') {
-        setError("Sign-in cancelled. The pop-up was closed before completion.");
-      } else {
-        setError(err.message || "Failed to sign in with Google. Please try again.");
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const onSignUpSubmit = async (values: z.infer<typeof signUpSchema>) => {
     setIsLoading(true);
@@ -118,13 +95,6 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
       setIsLoading(false);
     }
   }, [open, signUpForm, signInForm]);
-
-  const GoogleSignInButton = () => (
-     <Button variant="outline" className="w-full" onClick={handleGoogleSignIn} disabled={isLoading}>
-        {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 126 21.2 172.4 60.2l-66.8 66.8c-21.2-20.2-49.8-32.4-80.2-32.4-62.8 0-113.4 50.4-113.4 113.2s50.6 113.2 113.4 113.2c66.2 0 105.2-44.2 109.8-66.2H248v-85.4h236.2c2.4 12.8 4.4 26.6 4.4 41z"></path></svg>}
-        Sign in with Google
-      </Button>
-  );
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -184,15 +154,6 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
                     </Button>
                 </form>
              </Form>
-             <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
-                </div>
-            </div>
-            <GoogleSignInButton />
           </TabsContent>
 
           <TabsContent value="signup" className="space-y-4 pt-4">

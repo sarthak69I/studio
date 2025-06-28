@@ -4,8 +4,6 @@ import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import { getFirestore, setDoc, doc, serverTimestamp, getDoc, updateDoc, type Firestore, Timestamp } from "firebase/firestore";
 import { 
   getAuth, 
-  GoogleAuthProvider, 
-  signInWithPopup, 
   signOut, 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -50,8 +48,6 @@ db = getFirestore(app);
 auth = getAuth(app);
 // storage = getStorage(app); // storage is no longer needed
 
-const googleProvider = new GoogleAuthProvider();
-
 export const saveUserToFirestore = async (user: User): Promise<void> => {
   const userRef = doc(db, 'users', user.uid);
   try {
@@ -76,21 +72,6 @@ export const saveUserToFirestore = async (user: User): Promise<void> => {
   } catch (error) {
     console.error("Error saving user to Firestore:", error);
     throw new Error("Could not save user data. Please check Firestore permissions and configuration.");
-  }
-};
-
-
-export const signInWithGoogle = async () => {
-  try {
-    const result = await signInWithPopup(auth, googleProvider);
-    if (result.user) {
-      await saveUserToFirestore(result.user);
-    }
-    return result; // return the result to the caller
-  } catch (error) {
-    console.error("Error during Google sign-in with popup:", error);
-    // Re-throw the error so the calling component can handle it
-    throw error;
   }
 };
 
