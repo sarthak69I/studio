@@ -35,7 +35,6 @@ export default function LeaderboardListItem({ rank, user, score }: LeaderboardLi
       </Avatar>
       <div className="flex-grow">
         <p className="font-semibold text-sm truncate">{user.displayName}</p>
-        <p className="text-xs text-muted-foreground">{user.email}</p>
       </div>
       <div className="flex-none flex items-center gap-1.5 font-bold text-sm text-primary">
         <Gem className="h-3.5 w-3.5" />

@@ -15,7 +15,7 @@ import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, Calen
 import { logout, updateUserProfile } from '@/lib/firebase';
 import Link from 'next/link';
 import { listenToProgress, RecentlyViewedEntry, type UserProgress } from '@/lib/progress-manager';
-import { getTotalLectureCount, getCourseNameById } from '@/lib/course-analytics';
+import { getCourseNameById } from '@/lib/course-analytics';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -213,8 +213,6 @@ export default function DashboardPage() {
   const [isProgressLoading, setIsProgressLoading] = useState(true);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
-  const totalLectures = useMemo(() => getTotalLectureCount(), []);
-
   useEffect(() => {
     if (!authLoading && !user) {
       router.replace('/');
@@ -264,7 +262,7 @@ export default function DashboardPage() {
   };
 
   const earnedPoints = progress.score?.points || 0;
-  const totalPossiblePoints = totalLectures > 0 ? totalLectures * 45 : 1; // 45 points per lecture (90 mins / 2 mins)
+  const totalPossiblePoints = 320; // 80 points/day * 4 days
   const progressPercentage = Math.min((earnedPoints / totalPossiblePoints) * 100, 100);
 
   const joinedDate = userData.createdAt ? format(userData.createdAt.toDate(), 'MMMM d, yyyy') : 'N/A';
@@ -327,9 +325,6 @@ export default function DashboardPage() {
                         <p className="text-muted-foreground">points earned this period</p>
                     </div>
                     <Progress value={progressPercentage} aria-label={`${progressPercentage.toFixed(0)}% complete`} />
-                     <p className="text-sm text-muted-foreground text-center">
-                        Total possible points for this period: {totalPossiblePoints.toLocaleString()}
-                    </p>
                 </CardContent>
                  <CardFooter className="text-xs text-muted-foreground">
                     <Play className="mr-2 h-4 w-4 text-primary" />
