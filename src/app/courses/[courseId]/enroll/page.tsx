@@ -1,8 +1,7 @@
-
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, Unlock, History } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Unlock, History, Trophy } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import * as React from 'react';
@@ -20,7 +19,6 @@ import { useAuth } from '@/context/AuthContext';
 import { markCourseAsEnrolled, listenToProgress, type RecentlyViewedEntry } from '@/lib/progress-manager';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import RecentlyViewedCard from '@/components/RecentlyViewedCard';
-import LeaderboardCard from '@/components/LeaderboardCard';
 
 
 interface SubjectItemProps {
@@ -283,7 +281,12 @@ export default function EnrollPage() {
               </div>
             </div>
           )}
-          <LeaderboardCard />
+          <Button asChild variant="outline" className="w-full max-w-sm mx-auto rounded-full border-amber-500/50 text-amber-500 hover:bg-amber-500/10 hover:text-amber-600">
+              <Link href="/leaderboard">
+                  <Trophy className="mr-2 h-4 w-4" />
+                  View Leaderboard
+              </Link>
+          </Button>
           <button
             className="join-button w-full"
             onClick={handleJoinLiveClassClick}
