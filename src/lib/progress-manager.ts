@@ -1,4 +1,3 @@
-
 // src/lib/progress-manager.ts
 'use client';
 
@@ -21,6 +20,7 @@ export interface UserProgress {
     score?: {
         points: number;
         epoch: number;
+        completedInEpoch: string[];
     };
 }
 
@@ -58,18 +58,23 @@ const getFirestoreProgress = async (userId: string): Promise<UserProgress> => {
     const docSnap = await getDoc(userProgressRef);
     if (docSnap.exists()) {
       const data = docSnap.data();
+      const score = data.score || { points: 0, epoch: 0, completedInEpoch: [] };
       return {
         completedLectures: data.completedLectures || [],
         lastWatchedLectureKey: data.lastWatchedLectureKey || null,
         enrolledCourseIds: data.enrolledCourseIds || [],
         recentlyViewed: data.recentlyViewed || [],
-        score: data.score || { points: 0, epoch: 0 },
+        score: {
+            points: score.points || 0,
+            epoch: score.epoch || 0,
+            completedInEpoch: score.completedInEpoch || [],
+        },
       };
     }
-    return { completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0 } };
+    return { completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0, completedInEpoch: [] } };
   } catch (error) {
     console.error("Error fetching progress from Firestore:", error);
-    return { completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0 } };
+    return { completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0, completedInEpoch: [] } };
   }
 };
 
@@ -105,11 +110,20 @@ export const markLectureAsCompleted = async (courseId: string, subjectName: stri
             lastWatchedLectureKey: null,
             enrolledCourseIds: [],
             recentlyViewed: [],
-            score: { points: 0, epoch: 0 },
+            score: { points: 0, epoch: 0, completedInEpoch: [] },
         };
 
         if (docSnap.exists()) {
-            currentProgress = docSnap.data() as UserProgress;
+            const data = docSnap.data();
+            const score = data.score || { points: 0, epoch: 0, completedInEpoch: [] };
+            currentProgress = {
+                ...data,
+                score: {
+                    points: score.points || 0,
+                    epoch: score.epoch || 0,
+                    completedInEpoch: score.completedInEpoch || [],
+                }
+            } as UserProgress;
         }
 
         // --- Recently Viewed Logic ---
@@ -117,20 +131,29 @@ export const markLectureAsCompleted = async (courseId: string, subjectName: stri
         newRecentlyViewed.unshift({ key, timestamp: Timestamp.now() });
         const trimmedRecentlyViewed = newRecentlyViewed.slice(0, 15);
 
-        // --- Completed Lectures Logic ---
+        // --- All-time Completed Lectures Logic ---
         const updatedCompletedLectures = new Set(currentProgress.completedLectures);
         updatedCompletedLectures.add(key);
 
-        // --- Leaderboard Scoring Logic ---
+        // --- NEW Leaderboard Scoring Logic ---
         const FOUR_DAYS_IN_MS = 4 * 24 * 60 * 60 * 1000;
         const currentEpoch = Math.floor(Date.now() / FOUR_DAYS_IN_MS);
-        const userEpoch = currentProgress.score?.epoch ?? 0;
-        let newScorePoints = currentProgress.score?.points ?? 0;
+        
+        let userEpoch = currentProgress.score?.epoch ?? 0;
+        let scorePoints = currentProgress.score?.points ?? 0;
+        let completedInEpoch = currentProgress.score?.completedInEpoch ?? [];
 
         if (currentEpoch > userEpoch) {
-            newScorePoints = 1; // First lecture of a new epoch
-        } else {
-            newScorePoints += 1; // Increment score for this epoch
+            scorePoints = 0;
+            completedInEpoch = [];
+            userEpoch = currentEpoch;
+        }
+
+        let pointsAwarded = 0;
+        if (!completedInEpoch.includes(key)) {
+            scorePoints += 1;
+            pointsAwarded = 1;
+            completedInEpoch.push(key);
         }
         
         // --- Save to Firestore ---
@@ -138,8 +161,14 @@ export const markLectureAsCompleted = async (courseId: string, subjectName: stri
             lastWatchedLectureKey: key,
             recentlyViewed: trimmedRecentlyViewed,
             completedLectures: Array.from(updatedCompletedLectures),
-            score: { points: newScorePoints, epoch: currentEpoch },
+            score: {
+                points: scorePoints,
+                epoch: userEpoch,
+                completedInEpoch: completedInEpoch,
+            },
         }, { merge: true });
+
+        console.log(`Lecture completed. Key: ${key}. Points awarded: ${pointsAwarded}. Total points for epoch ${userEpoch}: ${scorePoints}`);
 
     } catch (error) {
         console.error("Error updating user progress:", error);
@@ -188,25 +217,31 @@ export const listenToProgress = (userId: string, callback: (progress: UserProgre
     const unsubscribe = onSnapshot(userProgressRef, (docSnap) => {
         if (docSnap.exists()) {
             const data = docSnap.data();
+            const score = data.score || { points: 0, epoch: 0, completedInEpoch: [] };
             const progressData: UserProgress = {
                  completedLectures: data.completedLectures || [],
                  lastWatchedLectureKey: data.lastWatchedLectureKey || null,
                  enrolledCourseIds: data.enrolledCourseIds || [],
                  recentlyViewed: data.recentlyViewed || [],
-                 score: data.score || { points: 0, epoch: 0 },
+                 score: {
+                     points: score.points || 0,
+                     epoch: score.epoch || 0,
+                     completedInEpoch: score.completedInEpoch || [],
+                 },
             };
             setLocalCompletedKeys(new Set(progressData.completedLectures));
             callback(progressData);
         } else {
             const localKeys = getLocalCompletedKeys();
+            const initialProgress: UserProgress = { completedLectures: Array.from(localKeys), lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0, completedInEpoch: [] } };
             if (localKeys.size > 0) {
               saveProgressToFirestore(userId, { completedLectures: Array.from(localKeys) });
             }
-            callback({ completedLectures: Array.from(localKeys), lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0 } });
+            callback(initialProgress);
         }
     }, (error) => {
         console.error("Error listening to progress updates:", error);
-        callback({ completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0 } });
+        callback({ completedLectures: [], lastWatchedLectureKey: null, enrolledCourseIds: [], recentlyViewed: [], score: { points: 0, epoch: 0, completedInEpoch: [] } });
     });
 
     return unsubscribe;
