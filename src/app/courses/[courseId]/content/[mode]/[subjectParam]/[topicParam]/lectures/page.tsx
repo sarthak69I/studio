@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, Video, FileText, Bot, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Video, FileText, Bot, CheckCircle2, Loader2 } from 'lucide-react';
 import {
   scienceCourseContent,
   commerceCourseContent,
@@ -24,12 +24,14 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-import { markLectureAsCompleted, isLectureCompleted, getCompletedLectureKeys } from '@/lib/progress-manager';
+import { generateLectureStorageKey, addLectureToRecentlyViewed, listenToProgress, type UserProgress, isLectureStarted } from '@/lib/progress-manager';
+import { useAuth } from '@/context/AuthContext';
 
 
 export default function TopicLecturesPage() {
   const router = useRouter();
   const params = useParams();
+  const { user, loading: authLoading } = useAuth();
 
   const courseId = getParamAsString(params.courseId);
   const mode = getParamAsString(params.mode);
@@ -37,32 +39,39 @@ export default function TopicLecturesPage() {
   const topicParam = getParamAsString(params.topicParam);
 
   const [topicName, setTopicName] = React.useState('');
-  const [subjectNameState, setSubjectNameState] = React.useState(''); // Renamed to avoid conflict
+  const [subjectNameState, setSubjectNameState] = React.useState('');
   const [displayedLectures, setDisplayedLectures] = React.useState<Lecture[]>([]);
   const [statusMessage, setStatusMessage] = React.useState<string | null>(null);
-  const [isMounted, setIsMounted] = React.useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = React.useState(false);
-  const [completedLectureKeys, setCompletedLectureKeys] = React.useState<Set<string>>(new Set());
-
-  const generateLectureStorageKey = (cId: string, sName: string, tName: string, lId: string): string => {
-    return `${cId}::${sName}::${tName}::${lId}`;
-  };
+  const [progress, setProgress] = React.useState<UserProgress | null>(null);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    setIsMounted(true);
-    if (typeof window !== 'undefined') {
-      setCompletedLectureKeys(getCompletedLectureKeys());
+    if (authLoading) return;
+    setIsLoading(true);
+
+    let unsubscribe: (() => void) | null = null;
+    if (user) {
+      unsubscribe = listenToProgress(user.uid, (progressData) => {
+        setProgress(progressData);
+        setIsLoading(false);
+      });
+    } else {
+      setIsLoading(false);
     }
-  }, []);
+    
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
+  }, [user, authLoading]);
 
   React.useEffect(() => {
-    if (isMounted && topicParam && subjectParam && courseId) {
+    if (topicParam && subjectParam && courseId) {
       try {
         const decodedTopicName = decodeURIComponent(topicParam);
         const decodedSubjectName = decodeURIComponent(subjectParam);
         setTopicName(decodedTopicName);
-        setSubjectNameState(decodedSubjectName); // Use renamed state setter
-        setCompletedLectureKeys(getCompletedLectureKeys()); 
+        setSubjectNameState(decodedSubjectName);
 
         let currentCourseMap: CourseContentMap | undefined;
         if (courseId === '1') currentCourseMap = scienceCourseContent;
@@ -89,7 +98,6 @@ export default function TopicLecturesPage() {
                   lec => lec.videoEmbedUrl && lec.videoEmbedUrl.trim() !== ''
                 );
               } else {
-                // Fallback or default behavior if mode is neither 'notes' nor 'video'
                 filteredLectures = currentTopic.lectures;
               }
               
@@ -121,38 +129,40 @@ export default function TopicLecturesPage() {
         setStatusMessage("Could not load lectures due to a decoding error.");
         setDisplayedLectures([]);
       }
-    } else if (isMounted) {
+    } else {
       setTopicName('Unknown Topic');
       setStatusMessage('No topic or subject specified in URL.');
       setDisplayedLectures([]);
     }
-  }, [isMounted, topicParam, subjectParam, courseId, mode]);
+  }, [topicParam, subjectParam, courseId, mode]);
 
 
   React.useEffect(() => {
-    if (isMounted && topicName && topicName !== 'Unknown Topic' && topicName !== 'Invalid Topic') {
+    if (topicName && topicName !== 'Unknown Topic' && topicName !== 'Invalid Topic') {
       const modeText = mode === 'notes' ? 'Notes' : 'Videos';
       document.title = `${topicName} - ${modeText} | E-Leak`;
-    } else if (isMounted && topicName) {
+    } else if (topicName) {
       document.title = `${topicName} | E-Leak`;
-    } else if (isMounted) {
+    } else {
       document.title = 'Lectures | E-Leak';
     }
-  }, [isMounted, topicName, mode]);
+  }, [topicName, mode]);
 
   const handleLectureClick = (lecture: Lecture) => {
-    if (isMounted && courseId && subjectNameState && topicName) {
-      markLectureAsCompleted(courseId, subjectNameState, topicName, lecture.id);
-      setCompletedLectureKeys(prev => new Set(prev).add(generateLectureStorageKey(courseId, subjectNameState, topicName, lecture.id)));
+    if (user && courseId && subjectNameState && topicName) {
+      const lectureKey = generateLectureStorageKey(courseId, subjectNameState, topicName, lecture.id);
+      addLectureToRecentlyViewed(lectureKey);
     }
   };
 
   const renderLectureCard = (lecture: Lecture, index: number) => {
-    const isCompleted = completedLectureKeys.has(generateLectureStorageKey(courseId, subjectNameState, topicName, lecture.id));
+    const lectureKey = generateLectureStorageKey(courseId, subjectNameState, topicName, lecture.id);
+    const hasStarted = user ? isLectureStarted(progress, lectureKey) : false;
+    
     const cardClasses = `bg-card text-card-foreground p-6 sm:px-8 sm:py-6 rounded-xl shadow-xl w-full max-w-md
                        transform opacity-0 animate-fadeInUp-custom
                        transition-all duration-200 ease-in-out hover:scale-105 hover:bg-card/90
-                       ${isCompleted ? 'opacity-60 border-l-4 border-green-500' : ''}`;
+                       ${hasStarted ? 'opacity-70 border-l-4 border-green-500' : ''}`;
 
     let displayTitle = lecture.title;
     if (mode === 'notes' && lecture.notesTitle && lecture.notesTitle.trim() !== '') {
@@ -166,7 +176,7 @@ export default function TopicLecturesPage() {
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            {isCompleted && <CheckCircle2 className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />}
+            {hasStarted && <CheckCircle2 className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />}
             <span className="text-xl sm:text-2xl font-semibold">{displayTitle}</span>
           </div>
            {(mode === 'notes' && lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') || 
@@ -198,59 +208,33 @@ export default function TopicLecturesPage() {
     }
 
     if (mode === 'video' && lecture.videoEmbedUrl && lecture.videoEmbedUrl.trim() !== '') {
-      if (lecture.videoEmbedType === 'hls') {
-        let externalPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl)}`;
-        
-        // Pass the video title to the player
-        externalPlayerUrl += `&videoTitle=${encodeURIComponent(lecture.title)}`;
-
-        if (lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') {
-          externalPlayerUrl += `&notesUrl=${encodeURIComponent(lecture.notesLink)}`;
-          // Use lecture.notesTitle if available, otherwise fallback to lecture.title, then append " - Notes"
-          const baseNotesTitle = (lecture.notesTitle && lecture.notesTitle.trim()) ? lecture.notesTitle : lecture.title;
-          const finalNotesTitle = `${baseNotesTitle} - Notes`;
-          externalPlayerUrl += `&notesTitle=${encodeURIComponent(finalNotesTitle)}`;
-        }
-        return (
-          <a
-            key={lecture.id + '-video-hls'}
-            href={externalPlayerUrl}
-            className="w-full max-w-md block mb-6 cursor-pointer"
-            rel="noopener noreferrer"
-            onClick={commonClickHandler}
-          >
-            {cardContent}
-          </a>
-        );
-      } else { // YouTube or generic iframe, navigate internally
-        return (
-          <Link
-            key={lecture.id + '-video-iframe'}
-            href={`/courses/${courseId}/content/${mode}/${subjectParam}/${topicParam}/lectures/${encodeURIComponent(lecture.id)}/play`}
-            className="w-full max-w-md block mb-6 cursor-pointer"
-            onClick={commonClickHandler}
-          >
-            {cardContent}
-          </Link>
-        );
-      }
+      return (
+        <Link
+          key={lecture.id + '-video'}
+          href={`/courses/${courseId}/content/${mode}/${subjectParam}/${topicParam}/lectures/${encodeURIComponent(lecture.id)}/play`}
+          className="w-full max-w-md block mb-6 cursor-pointer"
+          onClick={commonClickHandler}
+        >
+          {cardContent}
+        </Link>
+      );
     }
-    // If lecture is filtered out by the logic in useEffect, it shouldn't reach here often.
-    // This acts as a fallback if a lecture somehow passes filtering but isn't displayable.
+    
     return (
        <div
         key={lecture.id + '-nodisplay'}
         className="w-full max-w-md block mb-6 cursor-default"
       >
-        {cardContent} {/* Show the card, but it won't be interactive */}
+        {cardContent}
       </div>
     );
   };
 
-  if (!isMounted) {
+  if (isLoading) {
     return (
       <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
-        <p>Loading...</p>
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <p className="mt-4">Loading Lectures...</p>
       </div>
     );
   }
