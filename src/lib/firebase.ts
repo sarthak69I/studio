@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 // Removed Firebase Storage imports as they are no longer needed
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
+import type { UserData } from "@/context/AuthContext";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -62,6 +63,7 @@ export const saveUserToFirestore = async (user: User): Promise<void> => {
         photoURL: user.photoURL,
         createdAt: serverTimestamp(),
         lastLogin: serverTimestamp(),
+        bio: "",
       });
     } else {
       // Document exists, update only the lastLogin field
@@ -100,27 +102,24 @@ export const logout = async () => {
   }
 };
 
-// uploadAvatar function is now removed as it's no longer needed.
-
-export const updateUserProfile = async (user: User, newName: string, newPhotoURL: string) => {
+export const updateUserProfile = async (user: User, updates: Partial<UserData>) => {
   if (!user) throw new Error("User not authenticated");
 
-  // 1. Update Firebase Auth display name only.
-  // The photoURL will be stored in Firestore to avoid size limits.
-  // We only update if the name has actually changed.
-  if (user.displayName !== newName) {
-    await updateProfile(user, { displayName: newName });
+  // 1. Update Firebase Auth profile if displayName is being changed
+  if (updates.displayName && updates.displayName !== user.displayName) {
+    await updateProfile(user, { displayName: updates.displayName });
   }
 
-  // 2. Update Firestore user document with new name and photo
+  // 2. Update Firestore user document with all provided updates
   const userRef = doc(db, 'users', user.uid);
-  await updateDoc(userRef, {
-    displayName: newName,
-    photoURL: newPhotoURL // This can be a long Base64 string
-  });
-  
-  // The local auth state for displayName will update automatically.
-  // The photo will be re-read from Firestore where it is displayed.
+  const firestoreUpdates: { [key: string]: any } = {};
+  if (updates.displayName !== undefined) firestoreUpdates.displayName = updates.displayName;
+  if (updates.photoURL !== undefined) firestoreUpdates.photoURL = updates.photoURL;
+  if (updates.bio !== undefined) firestoreUpdates.bio = updates.bio;
+
+  if (Object.keys(firestoreUpdates).length > 0) {
+    await updateDoc(userRef, firestoreUpdates);
+  }
 };
 
 

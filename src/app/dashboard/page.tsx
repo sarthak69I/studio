@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useState, useMemo } from 'react';
@@ -10,10 +11,10 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, Trophy, User as UserIcon } from 'lucide-react';
-import { logout } from '@/lib/firebase';
+import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, Trophy, User as UserIcon, PartyPopper } from 'lucide-react';
+import { logout, updateUserProfile } from '@/lib/firebase';
 import Link from 'next/link';
-import { listenToProgress, RecentlyViewedEntry } from '@/lib/progress-manager';
+import { listenToProgress, RecentlyViewedEntry, type UserProgress } from '@/lib/progress-manager';
 import { getTotalLectureCount, getCourseNameById } from '@/lib/course-analytics';
 import type { Lecture, Topic } from '@/lib/course-data';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
@@ -24,15 +25,19 @@ import { format } from 'date-fns';
 import ImageCropperDialog from '@/components/ImageCropperDialog';
 import RecentlyViewedCard from '@/components/RecentlyViewedCard';
 import type { UserData } from '@/context/AuthContext';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { ALL_ACHIEVEMENTS, getUnlockedAchievements, type Achievement } from '@/lib/achievements';
+import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
 
 
 // --- Edit Profile Dialog Schema ---
 const profileSchema = z.object({
   displayName: z.string().min(2, { message: "Name must be at least 2 characters." }).max(50, { message: "Name cannot exceed 50 characters." }),
+  bio: z.string().max(160, { message: "Bio cannot exceed 160 characters." }).optional(),
 });
 
 // --- Dashboard Cards ---
-
 const EnrolledCoursesCard = ({ enrolledCourseIds }: { enrolledCourseIds: string[] }) => {
     if (enrolledCourseIds.length === 0) {
         return (
@@ -91,13 +96,16 @@ const EditProfileDialog = ({ open, onOpenChange }: { open: boolean, onOpenChange
         resolver: zodResolver(profileSchema),
         defaultValues: {
             displayName: userData?.displayName || user?.displayName || "",
+            bio: userData?.bio || "",
         },
     });
     
-    // Reset form when user data changes
     useEffect(() => {
-        form.reset({ displayName: userData?.displayName || user?.displayName || "" });
-    }, [userData, user, form]);
+        form.reset({
+            displayName: userData?.displayName || user?.displayName || "",
+            bio: userData?.bio || "",
+        });
+    }, [userData, user, form, open]);
 
     const onSubmit = async (values: z.infer<typeof profileSchema>) => {
         if (!user) {
@@ -106,12 +114,13 @@ const EditProfileDialog = ({ open, onOpenChange }: { open: boolean, onOpenChange
         }
         setIsLoading(true);
         try {
-            // The photoURL is updated via the ImageCropperDialog, so here we only update the name.
-            // We pass the existing photoURL from our userData context to avoid overwriting it.
-            await updateUserProfile(user, values.displayName, userData?.photoURL || user.photoURL || "");
+            await updateUserProfile(user, {
+                displayName: values.displayName,
+                bio: values.bio,
+            });
             toast({
                 title: "Profile Updated!",
-                description: "Your display name has been saved.",
+                description: "Your changes have been saved.",
             });
             onOpenChange(false);
         } catch (error: any) {
@@ -132,7 +141,7 @@ const EditProfileDialog = ({ open, onOpenChange }: { open: boolean, onOpenChange
                     <DialogHeader>
                         <DialogTitle className="text-xl">Edit Your Profile</DialogTitle>
                         <DialogDescription>
-                            Update your display name and profile picture.
+                            Update your display name, bio, and profile picture.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="flex items-center gap-4 py-4">
@@ -157,10 +166,23 @@ const EditProfileDialog = ({ open, onOpenChange }: { open: boolean, onOpenChange
                                     </FormItem>
                                 )}
                             />
+                             <FormField
+                                control={form.control}
+                                name="bio"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Bio</FormLabel>
+                                        <FormControl>
+                                            <Textarea placeholder="Tell us a little about yourself" className="resize-none" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
                             <DialogFooter>
                                 <Button type="submit" disabled={isLoading} className="w-full">
                                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                    Save Name Changes
+                                    Save Changes
                                 </Button>
                             </DialogFooter>
                         </form>
@@ -172,10 +194,47 @@ const EditProfileDialog = ({ open, onOpenChange }: { open: boolean, onOpenChange
                 onOpenChange={setIsCropperOpen}
                 onUploadComplete={() => {
                     setIsCropperOpen(false);
-                    // No need to manually trigger refresh, AuthContext handles it.
                 }}
             />
         </>
+    );
+};
+
+const AchievementsCard = ({ unlockedAchievements }: { unlockedAchievements: Achievement[] }) => {
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3 text-xl"><Trophy className="text-amber-500" />Your Achievements</CardTitle>
+                <CardDescription>Milestones you've reached on your learning journey.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <TooltipProvider>
+                    <div className="flex flex-wrap gap-4">
+                        {ALL_ACHIEVEMENTS.map(ach => {
+                            const isUnlocked = unlockedAchievements.some(unlocked => unlocked.id === ach.id);
+                            const Icon = ach.icon;
+                            return (
+                                <Tooltip key={ach.id}>
+                                    <TooltipTrigger>
+                                        <div className={cn(
+                                            "h-16 w-16 rounded-full flex items-center justify-center border-4 transition-all duration-300",
+                                            isUnlocked ? "bg-amber-100 border-amber-400" : "bg-muted border-border"
+                                        )}>
+                                            <Icon className={cn("h-8 w-8", isUnlocked ? "text-amber-500" : "text-muted-foreground")} />
+                                        </div>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p className="font-semibold">{ach.name}</p>
+                                        <p className="text-sm text-muted-foreground">{ach.description}</p>
+                                        {!isUnlocked && <p className="text-xs text-destructive font-bold mt-1">LOCKED</p>}
+                                    </TooltipContent>
+                                </Tooltip>
+                            );
+                        })}
+                    </div>
+                </TooltipProvider>
+            </CardContent>
+        </Card>
     );
 };
 
@@ -183,10 +242,7 @@ const EditProfileDialog = ({ open, onOpenChange }: { open: boolean, onOpenChange
 export default function DashboardPage() {
   const router = useRouter();
   const { user, userData, loading: authLoading } = useAuth();
-  const [completedCount, setCompletedCount] = useState(0);
-  const [enrolledCourseIds, setEnrolledCourseIds] = useState<string[]>([]);
-  const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedEntry[]>([]);
-
+  const [progress, setProgress] = useState<UserProgress>({ completedLectures: [], enrolledCourseIds: [], recentlyViewed: [], lastWatchedLectureKey: null });
   const [isProgressLoading, setIsProgressLoading] = useState(true);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
@@ -199,14 +255,12 @@ export default function DashboardPage() {
   }, [user, authLoading, router]);
   
   useEffect(() => {
-    if (user) {
-      document.title = `${userData?.displayName || user.displayName}'s Dashboard | E-Leak`;
+    if (user && userData) {
+      document.title = `${userData.displayName || user.displayName}'s Dashboard | E-Leak`;
       
       setIsProgressLoading(true);
-      const unsubscribe = listenToProgress(user.uid, (progress) => {
-        setCompletedCount(progress.completedLectures.length);
-        setEnrolledCourseIds(progress.enrolledCourseIds);
-        setRecentlyViewed(progress.recentlyViewed);
+      const unsubscribe = listenToProgress(user.uid, (progressData) => {
+        setProgress(progressData);
         setIsProgressLoading(false);
       });
       
@@ -218,6 +272,13 @@ export default function DashboardPage() {
     if (!name) return <UserIcon />;
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   }
+  
+  const unlockedAchievements = useMemo(() => {
+    if (userData && progress) {
+        return getUnlockedAchievements(userData, progress);
+    }
+    return [];
+  }, [userData, progress]);
 
   const isLoading = authLoading || isProgressLoading || !userData;
 
@@ -242,7 +303,7 @@ export default function DashboardPage() {
     router.push('/');
   };
 
-  const progressPercentage = totalLectures > 0 ? (completedCount / totalLectures) * 100 : 0;
+  const progressPercentage = totalLectures > 0 ? (progress.completedLectures.length / totalLectures) * 100 : 0;
   const joinedDate = userData.createdAt ? format(userData.createdAt.toDate(), 'MMMM d, yyyy') : 'N/A';
   const displayName = userData.displayName || user.displayName;
   const photoURL = userData.photoURL || user.photoURL;
@@ -259,7 +320,6 @@ export default function DashboardPage() {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Profile Card */}
             <Card className="md:col-span-1">
                 <CardHeader className="text-center items-center">
                     <Avatar className="h-24 w-24 mb-3 border-4 border-primary">
@@ -269,8 +329,9 @@ export default function DashboardPage() {
                     <CardTitle className="text-xl">{displayName}</CardTitle>
                     <CardDescription className="flex items-center gap-2"><Mail className="h-4 w-4"/>{userData.email}</CardDescription>
                 </CardHeader>
-                <CardContent className="text-sm text-muted-foreground space-y-2">
-                     <div className="flex items-center justify-center">
+                <CardContent className="text-sm text-muted-foreground space-y-2 text-center">
+                    {userData.bio && <p className="text-center italic text-foreground/80">"{userData.bio}"</p>}
+                    <div className="flex items-center justify-center pt-2">
                         <CalendarPlus className="h-4 w-4 mr-2"/>
                         <span>Joined on {joinedDate}</span>
                     </div>
@@ -282,18 +343,17 @@ export default function DashboardPage() {
                 </CardFooter>
             </Card>
 
-            {/* Progress Card */}
             <Card className="md:col-span-2">
                 <CardHeader>
                     <CardTitle className="text-xl flex items-center gap-3">
                         <TrendingUp className="text-primary"/>
                         Your Learning Progress
                     </CardTitle>
-                    <CardDescription>You're on the right track! Keep learning to unlock achievements!</CardDescription>
+                    <CardDescription>You're on the right track! Unlock new achievements as you learn!</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-baseline gap-2">
-                        <h3 className="text-4xl font-bold text-primary">{completedCount}</h3>
+                        <h3 className="text-4xl font-bold text-primary">{progress.completedLectures.length}</h3>
                         <p className="text-muted-foreground">lectures completed</p>
                     </div>
                     <Progress value={progressPercentage} aria-label={`${progressPercentage.toFixed(0)}% complete`} />
@@ -305,8 +365,9 @@ export default function DashboardPage() {
             </Card>
         </div>
         
-        <RecentlyViewedCard recentlyViewed={recentlyViewed} />
-        <EnrolledCoursesCard enrolledCourseIds={enrolledCourseIds} />
+        <AchievementsCard unlockedAchievements={unlockedAchievements} />
+        <RecentlyViewedCard recentlyViewed={progress.recentlyViewed} />
+        <EnrolledCoursesCard enrolledCourseIds={progress.enrolledCourseIds} />
         
         <div className="text-center mt-4">
              <Button onClick={handleSignOut} variant="destructive" className="w-full max-w-xs mx-auto">

@@ -170,7 +170,7 @@ export default function ImageCropperDialog({ open, onOpenChange, onUploadComplet
     const base64Image = canvas.toDataURL('image/jpeg', 0.85);
 
     try {
-        await updateUserProfile(user, user.displayName || '', base64Image);
+        await updateUserProfile(user, { photoURL: base64Image });
         toast({ title: "Avatar Updated!", description: "Your new profile picture has been saved." });
         onUploadComplete();
         handleClose();

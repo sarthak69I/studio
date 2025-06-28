@@ -16,6 +16,7 @@ export interface UserData {
     photoURL: string;
     lastLogin: Timestamp;
     createdAt: Timestamp;
+    bio?: string;
 }
 
 interface AuthContextType {

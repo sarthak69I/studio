@@ -13,7 +13,7 @@ export interface RecentlyViewedEntry {
     timestamp: Timestamp;
 }
 
-interface UserProgress {
+export interface UserProgress {
     completedLectures: string[];
     lastWatchedLectureKey: string | null;
     enrolledCourseIds: string[];
