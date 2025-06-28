@@ -196,7 +196,8 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Human eye',
       lectures: [
-        { id: 'Human eye L1', title: 'Human eye L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420694/175094118357238929414/index_4.m3u8' },
+        { id: 'Human eye L1', title: 'Human eye L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/217279667485356350.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420694/175094118357238929414/index_4.m3u8' },
+        { id: 'Human eye L2', title: 'Human eye L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4426247/175102765297458929414/index_4.m3u8' },
         
       ]       
     }
