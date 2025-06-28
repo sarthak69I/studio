@@ -175,38 +175,30 @@ export default function SubjectContentClient() {
             </h1>
           )}
 
-          {(() => {
-            if (!displayedTopics) {
-                 return (subjectName === 'Unknown Subject' || (typeof displayedTopics === 'string' && displayedTopics && (displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified')))) ? (
-                  <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">
-                    {typeof displayedTopics === 'string' ? displayedTopics : 'Loading content or content not found.'}
-                  </p>
+          {isMounted ? (
+            <>
+              {typeof displayedTopics === 'string' && (
+                <p
+                  className={`text-xl p-4 rounded-md ${
+                    displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified') || displayedTopics.includes('unrecognized format')
+                      ? 'text-destructive-foreground bg-destructive'
+                      : 'text-muted-foreground'
+                  }`}
+                >
+                  {displayedTopics}
+                </p>
+              )}
+
+              {Array.isArray(displayedTopics) &&
+                (displayedTopics.length > 0 ? (
+                  displayedTopics.map((topic, index) => renderTopicCard(topic, index))
                 ) : (
-                  <p className="text-xl text-muted-foreground">Loading content...</p>
-                );
-            }
-
-            if (typeof displayedTopics === 'string') {
-                 return (displayedTopics.includes('Coming Soon') || displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified') || displayedTopics.includes('unrecognized format')) ? (
-                    (subjectName === 'Unknown Subject' || displayedTopics.includes('could not be loaded') || displayedTopics.includes('No subject specified') || displayedTopics.includes('unrecognized format')) ? (
-                        <p className="text-xl text-destructive-foreground bg-destructive p-4 rounded-md">{displayedTopics}</p>
-                    ) : (
-                        <p className="text-xl text-muted-foreground">{displayedTopics}</p>
-                    )
-                  ) : (
-                    renderTopicCard({ name: displayedTopics, lectures: [] } as Topic, 0)
-                  );
-            }
-
-            if (Array.isArray(displayedTopics)) {
-               if (displayedTopics.length === 0) {
-                return <p className="text-xl text-muted-foreground">No topics available for {subjectName} yet. Content coming soon!</p>;
-              }
-              return displayedTopics.map((topic, index) => renderTopicCard(topic, index));
-            }
-
-            return <p className="text-xl text-muted-foreground">Content format not recognized or still loading.</p>;
-          })()}
+                  <p className="text-xl text-muted-foreground">No topics available for {subjectName} yet. Content coming soon!</p>
+                ))}
+            </>
+          ) : (
+            <p className="text-xl text-muted-foreground">Loading content...</p>
+          )}
         </main>
       </div>
       <Dialog open={isFaqsDialogOpen} onOpenChange={setIsFaqsDialogOpen}>
