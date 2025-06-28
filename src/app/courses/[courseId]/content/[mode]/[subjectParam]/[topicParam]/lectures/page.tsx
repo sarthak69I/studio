@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -218,9 +219,25 @@ export default function TopicLecturesPage() {
     const timeWatchedSeconds = pointsEarned * POINT_INTERVAL_SECONDS;
     setTimerRemainingSeconds(Math.max(0, LECTURE_DURATION_SECONDS - timeWatchedSeconds));
     
-    // Open the external player
+    // Open the external player for recorded videos
     if (lecture.videoEmbedUrl) {
-      window.open(lecture.videoEmbedUrl, '_blank', 'noopener,noreferrer');
+      let externalPlayerUrl = '';
+      
+      // For YouTube, open directly. For HLS, use the custom player.
+      if (lecture.videoEmbedType === 'youtube' || lecture.videoEmbedUrl.includes('youtube.com') || lecture.videoEmbedUrl.includes('youtu.be')) {
+        externalPlayerUrl = lecture.videoEmbedUrl;
+      } else {
+        externalPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl || '')}`;
+        externalPlayerUrl += `&videoTitle=${encodeURIComponent(lecture.title)}`;
+
+        if (lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') {
+          externalPlayerUrl += `&notesUrl=${encodeURIComponent(lecture.notesLink)}`;
+          const baseNotesTitle = (lecture.notesTitle && lecture.notesTitle.trim()) ? lecture.notesTitle : lecture.title;
+          const finalNotesTitle = `${baseNotesTitle} - Notes`;
+          externalPlayerUrl += `&notesTitle=${encodeURIComponent(finalNotesTitle)}`;
+        }
+      }
+      window.open(externalPlayerUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
