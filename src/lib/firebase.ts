@@ -5,7 +5,7 @@ import { getFirestore, setDoc, doc, serverTimestamp, getDoc, updateDoc, type Fir
 import { 
   getAuth, 
   GoogleAuthProvider, 
-  signInWithRedirect, 
+  signInWithPopup, 
   signOut, 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -82,9 +82,15 @@ export const saveUserToFirestore = async (user: User): Promise<void> => {
 
 export const signInWithGoogle = async () => {
   try {
-    await signInWithRedirect(auth, googleProvider);
+    const result = await signInWithPopup(auth, googleProvider);
+    if (result.user) {
+      await saveUserToFirestore(result.user);
+    }
+    return result; // return the result to the caller
   } catch (error) {
-    console.error("Error initiating Google sign-in redirect:", error);
+    console.error("Error during Google sign-in with popup:", error);
+    // Re-throw the error so the calling component can handle it
+    throw error;
   }
 };
 

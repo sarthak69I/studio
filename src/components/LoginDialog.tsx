@@ -57,10 +57,20 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
     setIsLoading(true);
     setError(null);
     try {
-      await signInWithGoogle();
-      // The redirect will handle closing the dialog
-    } catch (err) {
-      setError("Failed to start Google sign-in. Please try again.");
+      const result = await signInWithGoogle();
+      toast({
+        title: "Sign In Successful!",
+        description: `Welcome, ${result.user.displayName || 'User'}!`,
+      });
+      onOpenChange(false); // Close dialog on success
+    } catch (err: any) {
+      // Firebase errors have a 'code' property we can check
+      if (err.code === 'auth/popup-closed-by-user') {
+        setError("Sign-in cancelled. The pop-up was closed before completion.");
+      } else {
+        setError(err.message || "Failed to sign in with Google. Please try again.");
+      }
+    } finally {
       setIsLoading(false);
     }
   };
