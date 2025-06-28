@@ -20,6 +20,7 @@ import { useAuth } from '@/context/AuthContext';
 import { markCourseAsEnrolled, listenToProgress, type RecentlyViewedEntry } from '@/lib/progress-manager';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import RecentlyViewedCard from '@/components/RecentlyViewedCard';
+import LeaderboardCard from '@/components/LeaderboardCard';
 
 
 interface SubjectItemProps {
@@ -282,6 +283,7 @@ export default function EnrollPage() {
               </div>
             </div>
           )}
+          <LeaderboardCard />
           <button
             className="join-button w-full"
             onClick={handleJoinLiveClassClick}
@@ -364,3 +366,4 @@ export default function EnrollPage() {
     
     
 
+    
