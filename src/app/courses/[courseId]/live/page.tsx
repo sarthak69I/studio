@@ -25,7 +25,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "11th Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "MATHEMATICS ",
+    class1Subject: "MATHEMATICS",
     class2Subject: "CHEMISTRY",
     class1LiveStreamUrl: `y`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_1.m3u8')}`,
