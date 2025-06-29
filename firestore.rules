@@ -4,31 +4,30 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Rules for user profile data
+    // User profiles are public for display on leaderboards, etc.,
+    // but only the owner can create or update their own profile.
     match /users/{userId} {
-      // Anyone can read user profiles (for leaderboards, etc.)
       allow read: if true;
-
-      // Only the authenticated user can create or update their own profile
-      allow create, update: if request.auth.uid == userId;
-
-      // Nobody can delete user profiles from the client
-      allow delete: if false;
+      allow create, update: if request.auth != null && request.auth.uid == userId;
     }
 
-    // Rules for user progress and leaderboard data
+    // User progress is public for the leaderboard, but only the owner can write their own progress.
     match /userProgress/{userId} {
-      // Anyone can read progress data for the public leaderboard
       allow read: if true;
-
-      // An authenticated user can only write to their own progress document
-      allow write: if request.auth.uid == userId;
+      allow write: if request.auth != null && request.auth.uid == userId;
     }
-    
-    // Default deny access to any other collections
-    // You will need to add rules for any new collections you create
-    match /{document=**} {
-      allow read, write: if false;
+
+    // Shortened URLs can be read by anyone for redirection,
+    // but only authenticated users can create new ones.
+    match /shortenedUrls/{alias} {
+      allow read: if true;
+      allow create: if request.auth != null;
+    }
+
+    // Announcements are public, but can only be written from a trusted server environment (not the client).
+    match /global_announcements/{announcementId} {
+      allow read: if true;
+      allow write: if false;
     }
   }
 }
