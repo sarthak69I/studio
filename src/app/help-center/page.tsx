@@ -91,6 +91,11 @@ const predefinedQAs: QnA[] = [
     answer: "Once you are logged in, click your profile icon in the top-right corner and select 'Dashboard' from the dropdown menu. On your dashboard, you'll find an 'Edit Profile' button to update your details.",
   },
   {
+    id: 'change-password',
+    question: "How can I change my password?",
+    answer: "You can change your password from your Dashboard. Click on your profile icon in the top right, select 'Dashboard', and you will find a 'Change Password' button in your profile card.",
+  },
+  {
     id: 'account-needed',
     question: "Do I need an account to watch videos or read notes?",
     answer: "No, you do not need an account to access the core content like videos and notes. However, creating a free account is required to track your progress, earn points, and use other personalized features.",

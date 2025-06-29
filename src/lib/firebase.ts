@@ -9,7 +9,10 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
   type Auth, 
-  type User 
+  type User,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updatePassword
 } from "firebase/auth";
 // Removed Firebase Storage imports as they are no longer needed
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
@@ -120,6 +123,22 @@ export const updateUserProfile = async (user: User, updates: Partial<UserData>) 
   if (Object.keys(firestoreUpdates).length > 0) {
     await updateDoc(userRef, firestoreUpdates);
   }
+};
+
+export const reauthenticateAndChangePassword = async (currentPassword: string, newPassword: string): Promise<void> => {
+  const user = auth.currentUser;
+  if (!user || !user.email) {
+    throw new Error("User not found or email is missing.");
+  }
+
+  // Get credential from the user's current password.
+  const credential = EmailAuthProvider.credential(user.email, currentPassword);
+
+  // Re-authenticate the user with the credential
+  await reauthenticateWithCredential(user, credential);
+
+  // If re-authentication is successful, update the password
+  await updatePassword(user, newPassword);
 };
 
 

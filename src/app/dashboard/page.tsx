@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, User as UserIcon, Home } from 'lucide-react';
+import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, User as UserIcon, Home, KeyRound } from 'lucide-react';
 import { logout, updateUserProfile } from '@/lib/firebase';
 import Link from 'next/link';
 import { listenToProgress, RecentlyViewedEntry, type UserProgress } from '@/lib/progress-manager';
@@ -26,6 +26,7 @@ import RecentlyViewedCard from '@/components/RecentlyViewedCard';
 import type { UserData } from '@/context/AuthContext';
 import { Textarea } from '@/components/ui/textarea';
 import LeaderboardCard from '@/components/LeaderboardCard';
+import ChangePasswordDialog from '@/components/ChangePasswordDialog';
 
 
 // --- Edit Profile Dialog Schema ---
@@ -212,6 +213,7 @@ export default function DashboardPage() {
   });
   const [isProgressLoading, setIsProgressLoading] = useState(true);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [isPasswordDialogOpen, setIsPasswordDialogOpen] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -308,6 +310,9 @@ export default function DashboardPage() {
                      <Button variant="outline" className="w-full" onClick={() => setIsEditDialogOpen(true)}>
                         <Edit className="mr-2 h-4 w-4" /> Edit Profile
                      </Button>
+                     <Button variant="outline" className="w-full" onClick={() => setIsPasswordDialogOpen(true)}>
+                        <KeyRound className="mr-2 h-4 w-4" /> Change Password
+                     </Button>
                 </CardFooter>
             </Card>
 
@@ -348,6 +353,10 @@ export default function DashboardPage() {
     <EditProfileDialog
         open={isEditDialogOpen}
         onOpenChange={setIsEditDialogOpen}
+     />
+     <ChangePasswordDialog
+        open={isPasswordDialogOpen}
+        onOpenChange={setIsPasswordDialogOpen}
      />
     </>
   );
