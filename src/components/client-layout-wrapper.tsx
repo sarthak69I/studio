@@ -15,7 +15,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send, Trophy } from 'lucide-react';
+import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send, Trophy, Link2 } from 'lucide-react';
 import { db, logout } from '@/lib/firebase';
 import { collection, query, orderBy, limit, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
 import {
@@ -296,10 +296,10 @@ function AppContent({ children }: { children: ReactNode }) {
   }
 
   const NotificationBellIconToUse = unreadNotificationCount > 0 ? BellRing : Bell;
-  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center'];
+  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener'];
   const showHeader = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
   
-  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center'];
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
 
   return (
@@ -452,6 +452,13 @@ function AppContent({ children }: { children: ReactNode }) {
                   <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" onClick={toggleTheme}>
                     {currentTheme === 'light' ? <Moon className="mr-3 h-5 w-5 text-primary" /> : <Sun className="mr-3 h-5 w-5 text-primary" />}
                     {currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
+                  </Button>
+
+                  <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
+                    <Link href="/shortener" onClick={() => setIsMenuSheetOpen(false)}>
+                      <Link2 className="mr-3 h-5 w-5 text-primary" />
+                      URL Shortener
+                    </Link>
                   </Button>
 
                   <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" onClick={() => { setIsFaqsDialogOpen(true); setIsMenuSheetOpen(false); }}>
