@@ -12,7 +12,7 @@ import {
 
 export const dynamic = 'force-dynamic'; // Ensures the sitemap is generated on each request
 
-const BASE_URL = "https://e-leak.vercel.app"; // Your production domain
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app"; // Your production domain
 
 interface SitemapUrl {
   loc: string;

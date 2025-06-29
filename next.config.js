@@ -10,7 +10,9 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig = {
-  /* config options here */
+  env: {
+    NEXT_PUBLIC_BASE_URL: 'https://e-leak.vercel.app',
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

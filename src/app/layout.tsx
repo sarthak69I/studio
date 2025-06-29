@@ -8,7 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import './globals.css';
 import ClientLayoutWrapper from '@/components/client-layout-wrapper';
 
-const BASE_URL = "https://e-leak.vercel.app/";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
