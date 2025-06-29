@@ -329,7 +329,7 @@ export const aarambhCourseContent: CourseContentMap = {
       "name": "पाठ 1 सूरदास पद",
       "lectures": [
         { "id": "L1", "title": "पाठ 1 सूरदास पद Part 1", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186201/1729265541_2410105506345580/1T-z7_tVWEOoVElSMKj6nYFwnPxaf5e1h720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L2", "title": "पाठ 1 सूरदास पद Part 2 MCQ", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186200/1729265538_7083754923792877/1zNCdHHMwJyWePiOVJe4J8BmsbVUmTAZ7_video720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L2", "title": "पाठ 1 सूरदास पद Part 2 MCQ", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186200/1729265538_7083754923792877/1zNCdHHMwJyWePiOVJe4J8BmsbVUmTAZ7720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
         { "id": "L3", "title": "पाठ 1 सूरदास पद NCERT solution", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4024977/1729246983_4599555018953880/1rg3wohpXBFYB05RJpzt6KKEMJlgNs4L7720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
         { "id": "L4", "title": "पाठ 1 सूरदास पद Part 4", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186199/1729265536_7680652203501416/1JK6BORv2rwZp2Uxm77iFjYbG2q36Drn_720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
       ]
