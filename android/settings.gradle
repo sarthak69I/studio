@@ -13,5 +13,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "MonstorCourseHub"
+rootProject.name = "ELeakApp"
 include ':app'
