@@ -103,7 +103,12 @@ const predefinedQAs: QnA[] = [
   {
     id: 'forgot-password',
     question: "I forgot my password. What should I do?",
-    answer: "Currently, our website does not have an automated password reset feature. Please be careful with your password. If you have lost access to your account, please contact us on our Telegram channel for assistance.",
+    answer: (
+      <>
+        <p className="mb-2">You can change your password from the Dashboard, but you must be logged in to do so. If you have forgotten your password and cannot log in, we do not have an automated reset feature at this time.</p>
+        <p>For assistance with account recovery, please contact support on our Telegram channel: <a href="https://t.me/eleakcoursehub" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">E-Leak Support Hub</a>.</p>
+      </>
+    ),
   },
   {
     id: 'contact-support',
@@ -111,8 +116,8 @@ const predefinedQAs: QnA[] = [
     answer: (
       <>
         For further assistance or issues not covered, please join our Telegram channel:
-        <a href="https://t.me/DatabaseCourseNT" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
-          Telegram Support
+        <a href="https://t.me/eleakcoursehub" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+          E-Leak Support Hub
         </a>.
       </>
     ),
