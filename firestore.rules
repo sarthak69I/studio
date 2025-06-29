@@ -4,30 +4,42 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // User profiles are public for display on leaderboards, etc.,
-    // but only the owner can create or update their own profile.
+    // Users Collection:
+    // - Anyone can read public user data for profiles and leaderboards.
+    // - A user can only create their own document upon signup.
+    // - A user can only update their own document (e.g., their bio or photoURL).
     match /users/{userId} {
       allow read: if true;
-      allow create, update: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && request.auth.uid == userId;
+      allow update: if request.auth != null && request.auth.uid == userId;
+      allow delete: if false;
     }
 
-    // User progress is public for the leaderboard, but only the owner can write their own progress.
+    // User Progress Collection:
+    // - Anyone can read progress data for the leaderboard.
+    // - A user can only write to their own progress document.
     match /userProgress/{userId} {
       allow read: if true;
       allow write: if request.auth != null && request.auth.uid == userId;
     }
 
-    // Shortened URLs can be read by anyone for redirection,
-    // but only authenticated users can create new ones.
-    match /shortenedUrls/{alias} {
-      allow read: if true;
-      allow create: if request.auth != null;
-    }
-
-    // Announcements are public, but can only be written from a trusted server environment (not the client).
+    // Global Announcements Collection:
+    // - Everyone can read announcements for the notifications panel.
+    // - No one can write from the app (must be done from the Firebase Console).
     match /global_announcements/{announcementId} {
       allow read: if true;
       allow write: if false;
+    }
+
+    // Shortened URLs Collection:
+    // - Anyone can read a URL document for redirection.
+    // - Any authenticated user can create a new short URL.
+    // - No one can update or delete existing short URLs from the app.
+    match /shortenedUrls/{alias} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if false;
+      allow delete: if false;
     }
   }
 }
