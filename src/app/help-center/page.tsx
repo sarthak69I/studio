@@ -66,6 +66,41 @@ const predefinedQAs: QnA[] = [
     answer: "Yes, all lectures, notes, and live classes currently available on E-Leak are provided free of charge. Our goal is to make quality education accessible.",
   },
   {
+    id: 'how-to-signup',
+    question: "How do I create an account or sign up?",
+    answer: "You can sign up by clicking the 'Login/Register' button on the homepage. A dialog will appear with a 'Sign Up' tab. Fill in your name, email, and password to create your free account. This will unlock features like progress tracking and the leaderboard.",
+  },
+  {
+    id: 'account-benefits',
+    question: "What are the benefits of creating an account?",
+    answer: (
+      <>
+        <p className="mb-2">Creating a free account unlocks several key features to enhance your learning:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li><strong>Track Progress:</strong> See which lectures you've started or completed.</li>
+          <li><strong>Earn Points:</strong> Get points for watching lectures and compete on the leaderboard.</li>
+          <li><strong>Personalized Dashboard:</strong> Access your recently viewed content and enrolled courses in one place.</li>
+          <li><strong>Customize Profile:</strong> Set your own display name and profile picture.</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    id: 'edit-profile',
+    question: "How can I change my display name or profile picture?",
+    answer: "Once you are logged in, click your profile icon in the top-right corner and select 'Dashboard' from the dropdown menu. On your dashboard, you'll find an 'Edit Profile' button to update your details.",
+  },
+  {
+    id: 'account-needed',
+    question: "Do I need an account to watch videos or read notes?",
+    answer: "No, you do not need an account to access the core content like videos and notes. However, creating a free account is required to track your progress, earn points, and use other personalized features.",
+  },
+  {
+    id: 'forgot-password',
+    question: "I forgot my password. What should I do?",
+    answer: "Currently, our website does not have an automated password reset feature. Please be careful with your password. If you have lost access to your account, please contact us on our Telegram channel for assistance.",
+  },
+  {
     id: 'contact-support',
     question: "How can I contact support if my issue isn't listed here?",
     answer: (
