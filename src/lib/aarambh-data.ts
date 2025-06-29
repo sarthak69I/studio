@@ -347,9 +347,9 @@ export const aarambhCourseContent: CourseContentMap = {
       "name": "आत्मकथ्य",
       "lectures": [
         { "id": "L1", "title": "आत्मकथ्य व्याख्या", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4385768/1747663749_2705447000621275/1747663347090_298315341830591400_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/690521834032034400.pdf", "videoEmbedType": "hls" },
-        { "id": "L2", "title": "आत्मकथ्य NCERT Solutions", "notesTitle": "", "videoEmbedUrl": "https%3A%2F%2Fd3cx6qbbd4cbso.cloudfront.net%2Ffile_library%2Fvideos%2Fvod_non_drm_ios%2F4385785%2F1747665069_5871654612294206%2F1747663672831_250637210850573980_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L2", "title": "आत्मकथ्य NCERT Solutions", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4385785/1747665069_5871654612294206/1747663672831_250637210850573980_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
         { "id": "L3", "title": "आत्मकथ्य Complete Chapter Revision", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4047704/1729246994_6221740304385315/1ckkgP-tEUaM84SKTngCLf9soPW1lZl-3720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L4", "title": "आत्मकथ्य Mcqs", "notesTitle": "", "videoEmbedUrl": "https%3A%2F%2Fd3cx6qbbd4cbso.cloudfront.net%2Ffile_library%2Fvideos%2Fvod_non_drm_ios%2F4385786%2F1747665130_7974256570522104%2F1747664586187_863180552173840600_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
+        { "id": "L4", "title": "आत्मकथ्य Mcqs", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4385786/1747665130_7974256570522104/1747664586187_863180552173840600_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
       ]
     },
     {
