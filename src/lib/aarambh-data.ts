@@ -355,10 +355,10 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       "name": "स्वयं प्रकाश नेताजी का चश्मा",
       "lectures": [
-        { "id": "L1", "title": "स्वयं प्रकाश नेताजी का चश्मा व्याख्या", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386615/1747739344_5895889211490543/sunny/1747733769932_786195607074400600_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/554889646678124500.pdf", "videoEmbedType": "hls" },
-        { "id": "L2", "title": "स्वयं प्रकाश नेताजी का चश्मा NCERT Solutions", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386617/1747740064_6945065777663847/sunny/1747733825545_143661140781959490_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L3", "title": "स्वयं प्रकाश नेताजी का चश्मा Complete Chapter Revision", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386614/1747739104_5562195517508276/sunny/1747733758660_373061725447395700_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L4", "title": "स्वयं प्रकाश नेताजी का चश्मा Mcqs", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386616/1747739586_2981294043039759/sunny/1747733816098_75298579390464800_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
+        { "id": "L1", "title": "स्वयं प्रकाश नेताजी का चश्मा व्याख्या", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386615/1747739344_5895889211490543/1747733769932_786195607074400600_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/554889646678124500.pdf", "videoEmbedType": "hls" },
+        { "id": "L2", "title": "स्वयं प्रकाश नेताजी का चश्मा NCERT Solutions", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386617/1747740064_6945065777663847/1747733825545_143661140781959490_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L3", "title": "स्वयं प्रकाश नेताजी का चश्मा Complete Chapter Revision", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386614/1747739104_5562195517508276/1747733758660_373061725447395700_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+        { "id": "L4", "title": "स्वयं प्रकाश नेताजी का चश्मा Mcqs", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4386616/1747739586_2981294043039759/1747733816098_75298579390464800_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
       ]
     },
     {
