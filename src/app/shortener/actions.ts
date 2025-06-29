@@ -7,6 +7,8 @@ import { nanoid } from 'nanoid';
 export interface ShortenUrlResult {
   success: boolean;
   shortUrl?: string;
+  alias?: string;
+  clickCount?: number;
   error?: string;
 }
 
@@ -38,10 +40,11 @@ export async function createShortUrl(
   await setDoc(docRef, {
     longUrl: longUrl,
     createdAt: serverTimestamp(),
+    clickCount: 0, // Initialize click count
   });
   
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://e-leak.vercel.app';
   const shortUrl = `${baseUrl}/${slug}`;
 
-  return { success: true, shortUrl };
+  return { success: true, shortUrl, alias: slug, clickCount: 0 };
 }

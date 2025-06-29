@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { createShortUrl } from './actions';
+import { createShortUrl, type ShortenUrlResult } from './actions';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Link as LinkIcon, Copy, Check, Home } from 'lucide-react';
+import { Loader2, Link as LinkIcon, Copy, Check, Home, BarChart2 } from 'lucide-react';
 import Link from 'next/link';
 
 const shortenerSchema = z.object({
@@ -21,7 +21,7 @@ const shortenerSchema = z.object({
 export default function ShortenerPage() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [shortUrl, setShortUrl] = useState<string | null>(null);
+  const [resultData, setResultData] = useState<ShortenUrlResult | null>(null);
   const [copied, setCopied] = useState(false);
   
   const form = useForm<z.infer<typeof shortenerSchema>>({
@@ -34,12 +34,12 @@ export default function ShortenerPage() {
 
   const onSubmit = async (values: z.infer<typeof shortenerSchema>) => {
     setIsLoading(true);
-    setShortUrl(null);
+    setResultData(null);
     const result = await createShortUrl(values.longUrl, values.alias);
     setIsLoading(false);
 
-    if (result.success && result.shortUrl) {
-      setShortUrl(result.shortUrl);
+    if (result.success) {
+      setResultData(result);
       toast({
         title: "Success!",
         description: "Your shortened URL has been created.",
@@ -54,8 +54,8 @@ export default function ShortenerPage() {
   };
 
   const handleCopy = () => {
-    if (shortUrl) {
-      navigator.clipboard.writeText(shortUrl);
+    if (resultData?.shortUrl) {
+      navigator.clipboard.writeText(resultData.shortUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
@@ -73,7 +73,7 @@ export default function ShortenerPage() {
       <Card className="w-full max-w-lg">
         <CardHeader>
           <CardTitle className="text-2xl">URL Shortener</CardTitle>
-          <CardDescription>Create a short, shareable link from a long URL.</CardDescription>
+          <CardDescription>Create a short, shareable link with click tracking.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -120,18 +120,27 @@ export default function ShortenerPage() {
             </form>
           </Form>
         </CardContent>
-        {shortUrl && (
-          <CardFooter className="flex-col items-start space-y-2 pt-4">
-            <h3 className="font-semibold">Your Short URL:</h3>
-            <div className="flex w-full items-center space-x-2">
-              <Input value={shortUrl} readOnly className="flex-grow" />
-              <Button variant="outline" size="icon" onClick={handleCopy}>
-                {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
-              </Button>
+        {resultData && resultData.shortUrl && (
+          <CardFooter className="flex-col items-start space-y-4 pt-4 border-t">
+            <div>
+                <h3 className="font-semibold">Your Short URL:</h3>
+                <div className="flex w-full items-center space-x-2 mt-1">
+                <Input value={resultData.shortUrl} readOnly className="flex-grow" />
+                <Button variant="outline" size="icon" onClick={handleCopy}>
+                    {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+                </Button>
+                </div>
+                <a href={resultData.shortUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline mt-1 inline-block">
+                Test your link
+                </a>
             </div>
-            <a href={shortUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
-              Test your link
-            </a>
+            <div className="bg-muted p-3 rounded-md w-full">
+                <h3 className="font-semibold text-sm flex items-center"><BarChart2 className="mr-2 h-4 w-4 text-primary" />Click Stats</h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                    Initial Clicks: <span className="font-bold text-foreground">{resultData.clickCount ?? 0}</span>
+                </p>
+                <p className="text-xs text-muted-foreground mt-2">The click count will update each time the short link is visited.</p>
+            </div>
           </CardFooter>
         )}
       </Card>

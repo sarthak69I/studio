@@ -1,9 +1,8 @@
-
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    
+
     // Users:
     // - Anyone can create their own user document (on signup).
     // - Users can only read their own document.
@@ -22,7 +21,7 @@ service cloud.firestore {
       allow read: if true; // Allow public read for leaderboard
       allow create, update: if request.auth != null && request.auth.uid == userId;
     }
-    
+
     // Global Announcements:
     // - Publicly readable by anyone.
     // - Should only be writable by an admin through the Firebase Console.
@@ -32,14 +31,16 @@ service cloud.firestore {
     }
 
     // Shortened URLs:
-    // - Anyone can create a new shortened URL.
-    // - The alias must not already exist.
+    // - Anyone can create a new shortened URL if it doesn't exist.
     // - Publicly readable for redirection.
-    // - Updates and Deletes are disallowed from the client.
+    // - Anyone can update the clickCount by incrementing it by 1.
+    // - Deletes are disallowed from the client.
     match /shortenedUrls/{alias} {
        allow read: if true;
        allow create: if !exists(/databases/$(database)/documents/shortenedUrls/$(alias));
-       allow update, delete: if false;
+       allow update: if request.resource.data.clickCount == resource.data.clickCount + 1
+                   && request.resource.data.keys().hasOnly(['longUrl', 'createdAt', 'clickCount']);
+       allow delete: if false;
     }
   }
 }

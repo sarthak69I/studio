@@ -1,4 +1,4 @@
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { redirect, notFound } from 'next/navigation';
 import { type Metadata } from 'next';
@@ -34,6 +34,15 @@ export default async function AliasPage({ params }: AliasPageProps) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
+    try {
+        // Increment the click count atomically.
+        // We do this without waiting for it to complete to speed up redirection.
+        updateDoc(docRef, { clickCount: increment(1) });
+    } catch (error) {
+        console.error("Failed to update click count:", error);
+        // We still redirect even if the count update fails.
+    }
+      
     const data = docSnap.data();
     const longUrl = data.longUrl;
     if (longUrl) {
