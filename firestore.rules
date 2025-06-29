@@ -1,3 +1,4 @@
+
 rules_version = '2';
 
 service cloud.firestore {
@@ -31,13 +32,13 @@ service cloud.firestore {
     }
 
     // Shortened URLs:
-    // - Anyone can create a new shortened URL.
-    // - The alias must not already exist.
+    // - Anyone can create a new shortened URL if the alias doesn't exist.
     // - Publicly readable for redirection.
+    // - Client-side updates and deletes are disallowed.
     match /shortenedUrls/{alias} {
        allow read: if true;
-       allow create: if request.auth != null && !exists(/databases/$(database)/documents/shortenedUrls/$(alias));
-       allow write: if false; // Disallow update/delete from client
+       allow create: if !exists(/databases/$(database)/documents/shortenedUrls/$(alias));
+       allow update, delete: if false; 
     }
   }
 }
