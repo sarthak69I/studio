@@ -30,17 +30,17 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/61EwLVK3r6Q?si=PkuMmx6BdthY_yhN')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/61EwLVK3r6Q?si=PkuMmx6BdthY_yhN')}`,
     class1Visible: true,
-    class2Visible: true,
+    class2Visible: false,
   },
     '2': { // Commece
       pageTitle: "11th Commerce Live Classes",
       subtitle: "Interactive learning sessions for Commerce students",
-      class1Subject: "MATHEMATICS",
+      class1Subject: "ACCOUNTANCY",
       class2Subject: "BUSINESS STUDIES",
-      class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8')}`,
+      class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/axQiOwwxu_E?si=1DjKIH5HE4nnWfFM')}`,
       class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/4882f3a454494165b396de72e412d7aa/index_4.m3u8')}`,
       class1Visible: true,
-      class2Visible: true,
+      class2Visible: false,
   },
   '3': { // Aarambh (Foundation Class 10)
     pageTitle: "10th Aarambh Live Classes",
@@ -316,8 +316,8 @@ export default function LiveClassesPage() {
     const calculateFirstClassOriginalTimingStatus = () => {
         const now = new Date();
         const targetHour1 = 17;
-        const targetMinute1 = 10;
-        const durationMinutes1 = 90;
+        const targetMinute1 = 00;
+        const durationMinutes1 = 240;
 
         let classStartTime1 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour1, targetMinute1, 0);
 
@@ -357,11 +357,11 @@ export default function LiveClassesPage() {
 
   const class1Props = {
     cardId: "class1",
-    classTimeLabel: "5:10 PM - 6:40 PM",
+    classTimeLabel: "5:00 PM - 9:00 PM",
     subject: courseDetails.class1Subject,
     targetHour: 17,
-    targetMinute: 10,
-    durationMinutes: 90,
+    targetMinute: 00,
+    durationMinutes: 240,
     liveStreamUrl: courseDetails.class1LiveStreamUrl,
   };
 
