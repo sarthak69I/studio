@@ -19,7 +19,7 @@ interface LiveClassData {
   class2Visible?: boolean;
 }
 
-const newStreamPlayerBaseUrl = 'https://eleaklive.vercel.app/?liveurl=';
+const newStreamPlayerBaseUrl = 'https://e-leak-strm.web.app/?url=';
 
 const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
