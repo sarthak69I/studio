@@ -94,7 +94,7 @@ const AppDownloadSection = () => {
         </p>
         
         {/* Feature cards with enhanced animations */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '3rem' }}>
             <div className="feature-card" style={{ '--hue': 260, '--border-color': '#6e45e2' } as React.CSSProperties}>
                 <div className="card-content" style={{ transform: 'translateY(0) rotateY(0)' }}>
                     <Image src="https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2Fbdd92c93-3aba-44c9-916f-456cca1700b1/watermark:F/width:160?csig=AAAAAAAAAAAAAAAAAAAAACMnCg9pBSluIOmWtTVEjaNUh1t1fgYigYjNoRG47qht&exp=1751324412&osig=AAAAAAAAAAAAAAAAAAAAADlecxvzUc0YqTywsNAPxuUy1KWpkAccHoTdk_b9IsBb&signer=media-rpc&x-canva-quality=thumbnail" alt="App UI" width={160} height={180} style={{ borderRadius: '0.5rem', border: '1px solid #333', filter: 'drop-shadow(0 5px 15px rgba(110, 69, 226, 0.3))' }}/>
