@@ -404,10 +404,6 @@ function AppContent({ children }: { children: ReactNode }) {
                             <LayoutDashboard className="mr-2 h-4 w-4" />
                             <span>Dashboard</span>
                         </DropdownMenuItem>
-                        <DropdownMenuItem onSelect={() => router.push('/leaderboard')}>
-                            <Trophy className="mr-2 h-4 w-4" />
-                            <span>Leaderboard</span>
-                        </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setIsLogoutConfirmOpen(true); }}>
                             <LogOut className="mr-2 h-4 w-4" />

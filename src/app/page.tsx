@@ -121,12 +121,6 @@ export default function HomePage() {
     <div className="flex min-h-screen flex-col items-center p-5 pt-8 sm:p-8 md:p-10 md:pt-12 animate-fadeIn-custom">
 
       <header className="text-center mb-8 md:mb-12">
-        <Button asChild variant="outline" className="mb-4 rounded-full border-amber-500/50 text-amber-500 hover:bg-amber-500/10 hover:text-amber-600">
-            <Link href="/leaderboard">
-                <Trophy className="mr-2" />
-                Leaderboard
-            </Link>
-        </Button>
         <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wider logo-gradient-text animate-gradient">
           E-Leak
         </h1>

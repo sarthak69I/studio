@@ -25,7 +25,6 @@ import ImageCropperDialog from '@/components/ImageCropperDialog';
 import RecentlyViewedCard from '@/components/RecentlyViewedCard';
 import type { UserData } from '@/context/AuthContext';
 import { Textarea } from '@/components/ui/textarea';
-import LeaderboardCard from '@/components/LeaderboardCard';
 import ChangePasswordDialog from '@/components/ChangePasswordDialog';
 
 
@@ -338,7 +337,6 @@ export default function DashboardPage() {
             </Card>
         </div>
         
-        <LeaderboardCard />
         <RecentlyViewedCard recentlyViewed={progress.recentlyViewed} />
         <EnrolledCoursesCard enrolledCourseIds={progress.enrolledCourseIds} />
         

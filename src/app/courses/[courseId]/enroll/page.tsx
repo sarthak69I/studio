@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -281,12 +282,6 @@ export default function EnrollPage() {
               </div>
             </div>
           )}
-          <Button asChild variant="outline" className="w-full max-w-sm mx-auto rounded-full border-amber-500/50 text-amber-500 hover:bg-amber-500/10 hover:text-amber-600">
-              <Link href="/leaderboard">
-                  <Trophy className="mr-2 h-4 w-4" />
-                  View Leaderboard
-              </Link>
-          </Button>
           <button
             className="join-button w-full"
             onClick={handleJoinLiveClassClick}
