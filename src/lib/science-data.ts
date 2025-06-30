@@ -56,6 +56,7 @@ const scienceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: ' L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/607200555313601900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420958/175095472124975910848/index_4.m3u8' },
         { id: 'L2', title: ' L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/558495580581557950.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4426823/175104067670165910848/index_4.m3u8' },
+        { id: 'L3', title: ' L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/509369039736402940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427460/175112744711955910848/index_4.m3u8' },
         
       ]
     },

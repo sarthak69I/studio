@@ -105,6 +105,20 @@ const commerceOnlySubjects: CourseContentMap = {
         { id: 'L4', title: 'Accounting Equations L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/502302909891879900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4382851/174731428796208037481/index_4.m3u8' },
         { id: 'L5', title: 'Accounting Equations L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/383055783158645440.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4384003/174739986338128037481/index_4.m3u8' },
       ]
+    },
+    {
+      name: 'LEDGER',
+      lectures: [
+        { id: 'L1', title: 'LEDGER L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/25397102396807348.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420834/175094406195528680586/index_4.m3u8' },
+        { id: 'L2', title: 'LEDGER L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/613307521520477800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4426717/175102941969468680586/index_4.m3u8' },
+      ]
+    },
+    {
+      name: 'TRIAL BALANCE',
+      lectures: [
+        { id: 'L1', title: 'TRIAL BALANCE L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/366514576958099650.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427365/175111488763818680586/index_4.m3u8' },
+         
+      ]
     }
   ],
   'Economics': [

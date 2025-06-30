@@ -19,46 +19,46 @@ interface LiveClassData {
   class2Visible?: boolean;
 }
 
-const newStreamPlayerBaseUrl = 'https://eleaklive.vercel.app/?liveurl=';
+const newStreamPlayerBaseUrl = 'https://e-leak-strm.web.app/?url=';
 
 const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "11th Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "NO CLASS _ PHYSICS 8:10",
+    class1Subject: "MATHEMATICS",
     class2Subject: "PHYSICS",
-    class1LiveStreamUrl: `y`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_1.m3u8')}`,
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/Z4skt0HhfKE?si=PPf2cRBzo8z6mSSC')}`,
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/61EwLVK3r6Q?si=PkuMmx6BdthY_yhN')}`,
     class1Visible: true,
-    class2Visible: true,
+    class2Visible: false,
   },
     '2': { // Commece
       pageTitle: "11th Commerce Live Classes",
       subtitle: "Interactive learning sessions for Commerce students",
-      class1Subject: "ACCOUNTANCY",
-      class2Subject: "ECONOMICS",
-      class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/ca26d3ff165b4e07a358b55f5455cd98/index_4.m3u8')}`,
-      class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/c923787f6b3b40cbbfbdc51d2d76e51e/index_4.m3u8')}`,
+      class1Subject: "MATHEMATICS",
+      class2Subject: "BUSINESS STUDIES",
+      class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/Z4skt0HhfKE?si=PPf2cRBzo8z6mSSC')}`,
+      class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/4882f3a454494165b396de72e412d7aa/index_4.m3u8')}`,
       class1Visible: true,
-      class2Visible: true,
+      class2Visible: false,
   },
   '3': { // Aarambh (Foundation Class 10)
     pageTitle: "10th Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Aarambh batch",
-    class1Subject: "SCIENCE",
-    class2Subject: "MATHS",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_4.m3u8')}`,
+    class1Subject: "SOCIAL SCIENCE",
+    class2Subject: "MATHEMATICS",
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/aRVZEq4KuxQ?si=LzIjENjEAr9Nrl_Q')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8')}`,
     class1Visible: true,
-    class2Visible: true,
+    class2Visible: false,
   },
   '4': { // Aarambh (Foundation Class 9)
     pageTitle: "9th Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Class 9 Aarambh batch",
-    class1Subject: "MATHS",
-    class2Subject: "NO CLASS",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8')}`, 
-    class2LiveStreamUrl: ` t`, 
+    class1Subject: "SCIENCE till 6:40",
+    class2Subject: "SST",
+    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_4.m3u8')}`, 
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index_4.m3u8')}`, 
     class1Visible: true,
     class2Visible: true,
   }
@@ -306,7 +306,7 @@ export default function LiveClassesPage() {
 
   React.useEffect(() => {
     if(isMounted) {
-      document.title = `${courseDetails.pageTitle} | E-Leak`;
+      document.title = `${courseDetails.pageTitle} | E Leak Course Hub`;
     }
   }, [isMounted, courseDetails.pageTitle]);
 
@@ -316,8 +316,8 @@ export default function LiveClassesPage() {
     const calculateFirstClassOriginalTimingStatus = () => {
         const now = new Date();
         const targetHour1 = 17;
-        const targetMinute1 = 10;
-        const durationMinutes1 = 90;
+        const targetMinute1 = 1;
+        const durationMinutes1 = 300;
 
         let classStartTime1 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour1, targetMinute1, 0);
 
@@ -357,11 +357,11 @@ export default function LiveClassesPage() {
 
   const class1Props = {
     cardId: "class1",
-    classTimeLabel: "5:10 PM - 6:40 PM",
+    classTimeLabel: "5:00 PM - 10:00 PM",
     subject: courseDetails.class1Subject,
     targetHour: 17,
-    targetMinute: 10,
-    durationMinutes: 90,
+    targetMinute: 1,
+    durationMinutes: 300,
     liveStreamUrl: courseDetails.class1LiveStreamUrl,
   };
 

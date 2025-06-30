@@ -1,20 +1,16 @@
 
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-}
+apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.monstorcoursehub.app' // Ensure this matches your package name
-    compileSdk 34 // Target latest stable SDK
+    namespace "com.monstorcoursehub.app"
+    compileSdkVersion 34
 
     defaultConfig {
         applicationId "com.monstorcoursehub.app"
-        minSdk 21 // Minimum SDK version
-        targetSdk 34 // Target SDK version (should usually match compileSdk)
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -28,21 +24,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-    buildFeatures {
-        viewBinding true // If you plan to use view binding
-    }
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.webkit:webkit:1.10.0' // For WebView
-
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
