@@ -316,7 +316,7 @@ export default function LiveClassesPage() {
     const calculateFirstClassOriginalTimingStatus = () => {
         const now = new Date();
         const targetHour1 = 17;
-        const targetMinute1 = 00;
+        const targetMinute1 = 01;
         const durationMinutes1 = 240;
 
         let classStartTime1 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour1, targetMinute1, 0);
@@ -360,7 +360,7 @@ export default function LiveClassesPage() {
     classTimeLabel: "5:00 PM - 9:00 PM",
     subject: courseDetails.class1Subject,
     targetHour: 17,
-    targetMinute: 00,
+    targetMinute: 01,
     durationMinutes: 240,
     liveStreamUrl: courseDetails.class1LiveStreamUrl,
   };
