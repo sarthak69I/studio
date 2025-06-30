@@ -45,7 +45,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '3': { // Aarambh (Foundation Class 10)
     pageTitle: "10th Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Aarambh batch",
-    class1Subject: "SOCIAL SCIENCE",
+    class1Subject: "SOCIAL SCIENCE - CLASS ENDED",
     class2Subject: "MATHEMATICS",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index_4.m3u8')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8')}`,
@@ -55,7 +55,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '4': { // Aarambh (Foundation Class 9)
     pageTitle: "9th Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Class 9 Aarambh batch",
-    class1Subject: "SCIENCE",
+    class1Subject: "SCIENCE  - CLASS ENDED",
     class2Subject: "SST",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_4.m3u8')}`, 
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index_4.m3u8')}`, 
