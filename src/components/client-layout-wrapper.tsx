@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState, useRef, type ReactNode, useCallback } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Toaster } from "@/components/ui/toaster";
 import CookieConsentBanner from './cookie-consent-banner';
 import MaintenancePage from './maintenance-page';
@@ -36,6 +36,7 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 import SubscriptionPrompt from './SubscriptionPrompt';
 import Footer from './Footer';
 import ContinueWatchingCard from './ContinueWatchingCard';
+import AppDownloadSection from './AppDownloadSection';
 
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
@@ -50,6 +51,7 @@ const LOGIN_PROMPT_DELAY_DAYS = 2;
 
 function AppContent({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
   const { toast } = useToast();
   const [showMaintenance, setShowMaintenance] = useState(false);
   const [maintenanceEndTime, setMaintenanceEndTime] = useState<Date | null>(null);
@@ -378,12 +380,14 @@ function AppContent({ children }: { children: ReactNode }) {
               ) : user ? (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="flex items-center gap-2 h-10 px-3 rounded-full border border-border hover:bg-muted p-2">
-                        <span className="text-sm font-medium text-foreground">Hi, {userData?.displayName?.split(' ')[0] || user.displayName?.split(' ')[0]}</span>
-                        <Avatar className="h-8 w-8">
-                            <AvatarImage src={userData?.photoURL || user.photoURL || ''} alt={userData?.displayName || user.displayName || 'User'} />
-                            <AvatarFallback>{getInitials(userData?.displayName || user.displayName)}</AvatarFallback>
-                        </Avatar>
+                    <Button variant="outline" className="h-10 px-2 rounded-full border border-border hover:bg-muted p-2">
+                        <span className="flex items-center gap-2">
+                            <span className="text-sm font-medium text-foreground">Hi, {userData?.displayName?.split(' ')[0] || user.displayName?.split(' ')[0]}</span>
+                            <Avatar className="h-8 w-8">
+                                <AvatarImage src={userData?.photoURL || user.photoURL || ''} alt={userData?.displayName || user.displayName || 'User'} />
+                                <AvatarFallback>{getInitials(userData?.displayName || user.displayName)}</AvatarFallback>
+                            </Avatar>
+                        </span>
                     </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-56">
@@ -396,17 +400,13 @@ function AppContent({ children }: { children: ReactNode }) {
                             </div>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem asChild>
-                            <Link href="/dashboard">
-                                <LayoutDashboard className="mr-2 h-4 w-4" />
-                                <span>Dashboard</span>
-                            </Link>
+                        <DropdownMenuItem onSelect={() => router.push('/dashboard')}>
+                            <LayoutDashboard className="mr-2 h-4 w-4" />
+                            <span>Dashboard</span>
                         </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                           <Link href="/leaderboard">
-                                <Trophy className="mr-2 h-4 w-4" />
-                                <span>Leaderboard</span>
-                            </Link>
+                        <DropdownMenuItem onSelect={() => router.push('/leaderboard')}>
+                            <Trophy className="mr-2 h-4 w-4" />
+                            <span>Leaderboard</span>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setIsLogoutConfirmOpen(true); }}>
@@ -507,6 +507,7 @@ function AppContent({ children }: { children: ReactNode }) {
           </a>
           <ContinueWatchingCard />
           <Footer />
+          <AppDownloadSection />
         </>
       )}
 

@@ -44,6 +44,12 @@ const nextConfig = {
         hostname: 'i.postimg.cc',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.canva.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
