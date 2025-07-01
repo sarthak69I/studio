@@ -1,4 +1,3 @@
-
 // src/lib/course-utils.ts
 
 // Shared type definitions
@@ -27,6 +26,16 @@ export type SubjectContent = Topic[];
 export interface CourseContentMap {
   [subjectName: string]: SubjectContent | string;
 }
+
+export interface DppItem {
+  title: string;
+  download_url: string;
+  subject: string;
+  view_online_url?: string;
+}
+
+export type DppContent = DppItem[];
+
 
 // Shared helper functions
 export const slugify = (text: string | undefined | null): string => {
