@@ -30,6 +30,11 @@ interface SubjectItemProps {
 
 // --- Configuration Start ---
 const REQUIRE_KEY_GENERATION = true;
+const dppEnabledSubjects = [
+  'Physics', 'Chemistry', 'Mathematics', 'Biology', 
+  'Science', 'Social Science', 
+  'Accountancy', 'Business Studies', 'Economics'
+];
 // --- Configuration End ---
 
 
@@ -106,13 +111,16 @@ interface ImageOnlySubjectCardProps {
   imageUrl: string;
   onClick?: () => void;
   topicCount: number;
+  disabled?: boolean;
 }
 
-const ImageOnlySubjectCard: React.FC<ImageOnlySubjectCardProps> = ({ subjectName, imageUrl, onClick, topicCount }) => (
+const ImageOnlySubjectCard: React.FC<ImageOnlySubjectCardProps> = ({ subjectName, imageUrl, onClick, topicCount, disabled }) => (
   <button
     onClick={onClick}
-    className="bg-slate-800 rounded-xl shadow-xl hover:scale-102 hover:shadow-2xl transition-transform duration-300 ease-in-out w-full h-[120px] overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background relative"
+    disabled={disabled}
+    className="bg-slate-800 rounded-xl shadow-xl hover:scale-102 hover:shadow-2xl transition-transform duration-300 ease-in-out w-full h-[120px] overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background relative disabled:opacity-60 disabled:cursor-not-allowed disabled:grayscale"
     aria-label={`Select ${subjectName}`}
+    aria-disabled={disabled}
   >
     <div className="relative w-full h-full">
       <Image
@@ -123,6 +131,11 @@ const ImageOnlySubjectCard: React.FC<ImageOnlySubjectCardProps> = ({ subjectName
         className="object-cover rounded-xl"
         data-ai-hint={`${subjectName.toLowerCase()} education`}
       />
+      {disabled && (
+        <div className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl">
+          <p className="text-white text-xs font-bold uppercase">DPP N/A</p>
+        </div>
+      )}
       <div className="absolute bottom-0 left-0 right-0 p-2 bg-black/50 backdrop-blur-sm rounded-b-xl">
         <p className="text-white text-xs font-semibold text-center truncate">
           {topicCount} {topicCount === 1 ? 'Topic' : 'Topics'}
@@ -324,6 +337,9 @@ export default function EnrollPage() {
             {subjects.length > 0 ? (
               <div className={`grid grid-cols-1 sm:grid-cols-1 gap-4`}> {/* Simplified grid for vertical stacking */}
                 {subjects.map((subject, index) => {
+                  const hasDpp = dppEnabledSubjects.includes(subject);
+                  const isDisabled = activeContentMode === 'dpp' && !hasDpp;
+
                   if (useImageOnlyCard && currentImageMap) {
                     const topicCount = getTopicCount(subject);
                     return (
@@ -337,6 +353,7 @@ export default function EnrollPage() {
                           imageUrl={currentImageMap[subject] || 'https://placehold.co/400x120.png'}
                           onClick={() => handleSubjectClick(subject)}
                           topicCount={topicCount}
+                          disabled={isDisabled}
                         />
                       </div>
                     );
@@ -350,6 +367,7 @@ export default function EnrollPage() {
                         <SubjectItem
                           name={subject}
                           onClick={() => handleSubjectClick(subject)}
+                          disabled={isDisabled}
                         />
                       </div>
                     );
@@ -376,3 +394,4 @@ export default function EnrollPage() {
     
 
     
+
