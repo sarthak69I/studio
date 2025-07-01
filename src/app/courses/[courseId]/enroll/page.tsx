@@ -36,7 +36,7 @@ const REQUIRE_KEY_GENERATION = true;
 const courseSpecificSubjects: Record<string, string[]> = {
   '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'English', 'Hindi'], // Science Batch
   '2': ['Accountancy', 'Mathematics', 'Economics', 'Business Studies', 'English', 'Hindi'], // Commerce Batch
-  '3': ['Science', 'Mathematics', 'Social Science', 'English', 'IT', 'Hindi'], // Aarambh Batch (Class 10)
+  '3': ['Science', 'Mathematics', 'Social Science', 'English', 'IT', 'Sanskrit', 'Hindi'], // Aarambh Batch (Class 10)
   '4': ['Science', 'Mathematics', 'Social Science', 'English', 'IT', 'Hindi'], // Aarambh Batch (Class 9)
 };
 
@@ -71,6 +71,7 @@ const aarambhSubjectImageMap: Record<string, string> = { // For Class 10 (course
   'Social Science': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/60137688614_Social%20Science.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
   'IT': 'https://i.ibb.co/XrmBRvj5/image.png',
+  'Sanskrit': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/371831425330_Sanskrit.jpeg',
   'Hindi': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/447837223848_Hindi.jpeg',
 };
 

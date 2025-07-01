@@ -325,6 +325,7 @@ export const aarambhCourseContent: CourseContentMap = {
     }
   ],
   'IT': itTopicsForClass9and10,
+  'Sanskrit': "Coming Soon",
   'Hindi': [
     {
       "name": "पाठ 1 सूरदास पद",
