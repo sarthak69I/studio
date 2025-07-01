@@ -31,7 +31,6 @@ export interface DppItem {
   title: string;
   download_url: string;
   subject: string;
-  view_online_url?: string;
 }
 
 export type DppContent = DppItem[];
