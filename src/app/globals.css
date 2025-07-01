@@ -804,6 +804,6 @@ html { /* Apply to html for global effect, respects body background */
 }
 
 .trending-card {
-  width: 300px;
+  width: 280px;
   flex-shrink: 0;
 }

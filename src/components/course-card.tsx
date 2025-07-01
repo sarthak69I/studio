@@ -112,7 +112,7 @@ export function CourseCard({
                 <Dialog open={isTimeTableDialogOpen} onOpenChange={setIsTimeTableDialogOpen}>
                     <DialogTrigger asChild>
                         <Button variant="outline" className="w-full font-bold">
-                            Explore
+                            Time Table
                         </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-md md:max-w-lg lg:max-w-3xl xl:max-w-4xl p-0 rounded-xl">
@@ -150,7 +150,7 @@ export function CourseCard({
                     </DialogContent>
                 </Dialog>
             ) : (
-              <Button variant="outline" className="w-full font-bold" disabled>Explore</Button>
+              <Button variant="outline" className="w-full font-bold" disabled>Time Table</Button>
             )}
 
             <Button asChild className="w-full font-bold bg-indigo-600 hover:bg-indigo-700 text-white">

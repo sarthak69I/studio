@@ -6,9 +6,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { CourseCard } from '@/components/course-card';
-import { Loader2, Flame } from 'lucide-react';
+import { Loader2, Flame, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 interface Course {
   id: string;
@@ -24,6 +34,11 @@ interface Course {
   youtubeLink: string;
   timeTableImageUrl?: string;
   liveSlots?: LiveSlot[];
+  overviewDetails?: {
+    title: string;
+    description: string;
+    points: string[];
+  };
 }
 
 interface LiveSlot {
@@ -50,6 +65,21 @@ const coursesData: Course[] = [
       { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
     ],
+    overviewDetails: {
+      title: 'Course Overview: PRARAMBH 2.O Class 11th - Science',
+      description: 'A yearlong live interactive course designed to help you excel in the 2026 11th class exams.',
+      points: [
+        "We'll cover Physics, Maths, Chemistry, Biology, Hindi and English for class 11th students.",
+        "Live lectures will be conducted, and in case you miss a session, recordings will be available to students in the Next Toppers app.",
+        "Classes will be scheduled to align with your school timings.",
+        "There will be two classes per day, each lasting 1 to 1.5 hours.",
+        "A weekly schedule will be provided for your convenience.",
+        "Class notes will be provided in PDF format after each class on the Next Toppers App.",
+        "Regular tests will be conducted to assess your progress.",
+        "The entire course will remain accessible to you until your final exams in 2026.",
+        "English will be covered in recorded format, so that you can cover it as per your convenience."
+      ]
+    }
   },
   {
     id: '4', // New Class 9 Aarambh Batch
@@ -68,6 +98,19 @@ const coursesData: Course[] = [
       { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
     ],
+     overviewDetails: {
+      title: 'Course Overview: CLASS 9th Aarambh',
+      description: 'A complete course to build a strong foundation for future academic success.',
+      points: [
+        "We'll cover Science, Maths, Social Science, English (Both), Hindi (Both), Information Technology(IT), Artificial Intelligence (AI), and Sanskrit.",
+        "It is a Live Interaction Course.",
+        "NOTE: English, Hindi, IT, AI and Sanskrit will be in a Recorded Mode.",
+        "Backlog Chapter’s recorded lectures will be available + We’ll cover those chapters in a live marathon on Youtube.",
+        "Class notes will be provided in PDF format for each class on the Next Toppers App.",
+        "Frequent Tests will be conducted to assess your progress on completion of a certain amount of syllabus.",
+        "Syllabus will be completed by October End. However, the entire course will remain accessible to you until your final exams in 2026."
+      ]
+    }
   },
   {
     id: '2',
@@ -86,6 +129,21 @@ const coursesData: Course[] = [
       { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
     ],
+    overviewDetails: {
+      title: 'Course Overview: PRARAMBH 2.0 Class 11th - Commerce',
+      description: 'A yearlong live interactive course designed to help you excel in the 2026 11th class exams.',
+      points: [
+        "We'll cover Accounts, Economics, Business Studies, Maths, Hindi & English for class 11th students.",
+        "Live lectures will be conducted, and in case you miss a session, recordings will be available to students in the Next Toppers app.",
+        "Classes will be scheduled to align with your school timings.",
+        "There will be two classes per day, each lasting 1 to 1.5 hours.",
+        "A weekly schedule will be provided for your convenience.",
+        "Class notes will be provided in PDF format after each class on the Next Toppers App.",
+        "Regular tests will be conducted to assess your progress.",
+        "The entire course will remain accessible to you until your final exams in 2026.",
+        "English will be covered in recorded format, so that you can cover it as per your convenience."
+      ]
+    }
   },
   {
     id: '3',
@@ -104,6 +162,19 @@ const coursesData: Course[] = [
       { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
     ],
+    overviewDetails: {
+      title: 'Course Overview: Class 10th Aarambh',
+      description: 'A complete course designed for success in your board exams.',
+      points: [
+        "We'll cover Science, Maths, Social Science, English (Both), Hindi (Both), Information Technology(IT), Artificial Intelligence (AI), and Sanskrit.",
+        "It is a Live Interaction Course.",
+        "NOTE: English, Hindi, IT, AI and Sanskrit will be in a Recorded Mode.",
+        "Backlog Chapter’s recorded lectures will be available + We’ll cover those chapters in a live marathon on Youtube.",
+        "Class notes will be provided in PDF format for each class on the Next Toppers App.",
+        "Frequent Tests will be conducted to assess your progress on completion of a certain amount of syllabus.",
+        "Syllabus will be completed by October End. However, the entire course will remain accessible to you until your final exams in 2026."
+      ]
+    }
   },
 ];
 
@@ -140,14 +211,41 @@ const TrendingCoursesScroller: React.FC<{courses: Course[]}> = ({ courses }) => 
                   src={course.imageUrl}
                   alt={course.imageAlt}
                   fill
-                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 300px"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 280px"
                   className="object-cover"
                   data-ai-hint={course.imageAiHint}
                 />
               </div>
             </CardContent>
             <CardFooter className="p-3 grid grid-cols-2 gap-2 bg-slate-50 dark:bg-card/50 border-t">
-              <Button variant="outline" className="w-full font-semibold" disabled>Explore</Button>
+               {course.overviewDetails ? (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" className="w-full font-semibold">Explore</Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-2xl max-h-[90vh] flex flex-col">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl font-bold text-primary">{course.overviewDetails.title}</DialogTitle>
+                      <DialogDescription className="pt-2">{course.overviewDetails.description}</DialogDescription>
+                    </DialogHeader>
+                    <div className="flex-grow overflow-y-auto pr-4 -mr-4 space-y-3 py-4">
+                      {course.overviewDetails.points.map((point, i) => (
+                        <div key={i} className="flex items-start gap-3 text-sm animate-fadeInUp-custom" style={{ animationDelay: `${i * 100}ms`}}>
+                          <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                          <p className="text-foreground/90">{point}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button type="button" variant="secondary">Close</Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              ) : (
+                <Button variant="outline" className="w-full font-semibold" disabled>Explore</Button>
+              )}
               <Button asChild className="w-full font-semibold bg-indigo-600 hover:bg-indigo-700 text-white">
                 <Link href={course.enrollLink}>Enroll Now</Link>
               </Button>
