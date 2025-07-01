@@ -3,11 +3,12 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { CourseCard } from '@/components/course-card';
-import { Loader2, Trophy } from 'lucide-react';
+import { Loader2, Flame } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 
 interface Course {
   id: string;
@@ -106,6 +107,59 @@ const coursesData: Course[] = [
   },
 ];
 
+const TrendingCoursesScroller: React.FC<{courses: Course[]}> = ({ courses }) => {
+  const scrollerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      scroller.setAttribute("data-animated", "true");
+
+      const scrollerInner = scroller.querySelector('.scroller__inner');
+      if (scrollerInner) {
+        const scrollerContent = Array.from(scrollerInner.children);
+        scrollerContent.forEach(item => {
+          const duplicatedItem = item.cloneNode(true) as HTMLElement;
+          duplicatedItem.setAttribute("aria-hidden", "true");
+          scrollerInner.appendChild(duplicatedItem);
+        });
+      }
+    }
+  }, []);
+
+  return (
+    <div ref={scrollerRef} className="scroller">
+      <div className="scroller__inner">
+        {courses.map((course, index) => (
+          <Card key={`${course.id}-${index}`} className="trending-card overflow-hidden rounded-2xl shadow-lg border border-border/50 bg-card">
+            <CardContent className="p-0">
+              <div className="relative aspect-[16/9] w-full">
+                <Image
+                  src={course.imageUrl}
+                  alt={course.imageAlt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 300px"
+                  className="object-cover"
+                  data-ai-hint={course.imageAiHint}
+                />
+              </div>
+            </CardContent>
+            <CardFooter className="p-3 grid grid-cols-2 gap-2 bg-slate-50 dark:bg-card/50 border-t">
+              <Button variant="outline" className="w-full font-semibold" disabled>Explore</Button>
+              <Button asChild className="w-full font-semibold bg-indigo-600 hover:bg-indigo-700 text-white">
+                <Link href={course.enrollLink}>Enroll Now</Link>
+              </Button>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
 export default function HomePage() {
   const { loading } = useAuth();
   
@@ -125,6 +179,15 @@ export default function HomePage() {
           E-Leak
         </h1>
       </header>
+      
+      <section className="w-full max-w-7xl mb-12">
+        <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 flex items-center gap-2 px-2">
+          <Flame className="text-amber-500" />
+          Trending Courses
+        </h2>
+        <TrendingCoursesScroller courses={coursesData} />
+      </section>
+
 
       <main className="w-full max-w-6xl flex-grow flex flex-col items-center">
         <div className="flex items-center justify-between mb-6 w-full">
