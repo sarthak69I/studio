@@ -172,6 +172,7 @@ const scienceOnlySubjects: CourseContentMap = {
       ]
     },
   ],
+  'Chapter Module': 'Coming Soon',
 };
 
 // Combine science-only subjects with shared subjects

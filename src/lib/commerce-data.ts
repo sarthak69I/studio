@@ -174,6 +174,7 @@ const commerceOnlySubjects: CourseContentMap = {
       ]
     }
   ],
+  'Chapter Module': 'Coming Soon',
 };
 
 // Combine commerce-only subjects with shared subjects
@@ -181,4 +182,3 @@ export const commerceCourseContent: CourseContentMap = {
   ...commerceOnlySubjects,
   ...sharedClass11SubjectsContent,
 };
-

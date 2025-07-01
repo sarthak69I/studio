@@ -12,6 +12,15 @@ const courseDisplayNamesForMetadata: Record<string, string> = {
   '4': "Aarambh Batch (Class 9)",
 };
 
+const getModeText = (mode: string) => {
+    switch (mode) {
+        case 'notes': return 'Notes';
+        case 'video': return 'Video Lectures';
+        case 'dpp': return 'DPPs';
+        default: return 'Content';
+    }
+};
+
 export async function generateMetadata(
   { params }: { params: { courseId: string; mode: string; subjectParam: string } },
   parent: ResolvingMetadata
@@ -26,7 +35,7 @@ export async function generateMetadata(
   }
 
   const courseName = courseDisplayNamesForMetadata[courseId] || `Course ${courseId}`;
-  const modeText = mode === 'notes' ? 'Notes' : 'Video Lectures';
+  const modeText = getModeText(mode);
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app";
 
   const pageTitle = `${subjectName} ${modeText} | ${courseName} | E-Leak`;

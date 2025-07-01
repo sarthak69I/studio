@@ -34,8 +34,8 @@ const REQUIRE_KEY_GENERATION = true;
 
 
 const courseSpecificSubjects: Record<string, string[]> = {
-  '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'English', 'Hindi'], // Science Batch
-  '2': ['Accountancy', 'Mathematics', 'Economics', 'Business Studies', 'English', 'Hindi'], // Commerce Batch
+  '1': ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'English', 'Hindi', 'Chapter Module'], // Science Batch
+  '2': ['Accountancy', 'Mathematics', 'Economics', 'Business Studies', 'English', 'Hindi', 'Chapter Module'], // Commerce Batch
   '3': ['Science', 'Mathematics', 'Social Science', 'English', 'IT', 'Sanskrit', 'Hindi'], // Aarambh Batch (Class 10)
   '4': ['Science', 'Mathematics', 'Social Science', 'English', 'IT', 'Hindi'], // Aarambh Batch (Class 9)
 };
@@ -54,6 +54,7 @@ const scienceSubjectImageMap: Record<string, string> = {
   'Biology': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/22273823798_Biology.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
   'Hindi': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/447837223848_Hindi.jpeg',
+  'Chapter Module': 'https://i.ibb.co/Z6rFQP08/image.png',
 };
 
 const commerceSubjectImageMap: Record<string, string> = {
@@ -63,6 +64,7 @@ const commerceSubjectImageMap: Record<string, string> = {
   'Business Studies': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/627728423781_BST.jpeg',
   'English': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/724718721778_English.jpeg',
   'Hindi': 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/category_management/subject/447837223848_Hindi.jpeg',
+  'Chapter Module': 'https://i.ibb.co/Z6rFQP08/image.png',
 };
 
 const aarambhSubjectImageMap: Record<string, string> = { // For Class 10 (courseId '3')
@@ -136,7 +138,7 @@ export default function EnrollPage() {
   const params = useParams();
   const { user } = useAuth();
   const courseId = getParamAsString(params.courseId);
-  const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video'>('video');
+  const [activeContentMode, setActiveContentMode] = React.useState<'notes' | 'video' | 'dpp'>('video');
   const [isLoading, setIsLoading] = React.useState(true);
   const [isAccessGranted, setIsAccessGranted] = React.useState(!REQUIRE_KEY_GENERATION);
   const [recentlyViewed, setRecentlyViewed] = React.useState<RecentlyViewedEntry[]>([]);
@@ -196,7 +198,7 @@ export default function EnrollPage() {
     router.push(`/courses/${courseId}/content/${activeContentMode}/${encodeURIComponent(subjectName)}`);
   };
 
-  const handleModeChange = (mode: 'notes' | 'video') => {
+  const handleModeChange = (mode: 'notes' | 'video' | 'dpp') => {
     setActiveContentMode(mode);
   };
 
@@ -304,6 +306,13 @@ export default function EnrollPage() {
               onClick={() => handleModeChange('video')}
             >
               Video
+            </Button>
+            <Button
+              variant={activeContentMode === 'dpp' ? 'default' : 'outline'}
+              className="flex-1 py-4 text-md rounded-xl"
+              onClick={() => handleModeChange('dpp')}
+            >
+              DPP
             </Button>
           </div>
 

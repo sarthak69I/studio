@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, ChevronRight, Video, FileText, Bot, CheckCircle2, Loader2, Timer } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon, ChevronRight, Video, FileText, Bot, CheckCircle2, Loader2, Timer, ClipboardList } from 'lucide-react';
 import {
   scienceCourseContent,
   commerceCourseContent,
@@ -123,6 +123,11 @@ export default function TopicLecturesPage() {
                 filteredLectures = currentTopic.lectures.filter(
                   lec => lec.videoEmbedUrl && lec.videoEmbedUrl.trim() !== ''
                 );
+              } else if (mode === 'dpp') {
+                filteredLectures = currentTopic.lectures.filter(
+                  lec => lec.dppLink && lec.dppLink.trim() !== '' && lec.dppLink.trim() !== '#' &&
+                         (lec.dppTitle?.trim() || lec.title?.trim())
+                );
               } else {
                 filteredLectures = currentTopic.lectures;
               }
@@ -165,7 +170,7 @@ export default function TopicLecturesPage() {
   // Effect for updating document title
   React.useEffect(() => {
     if (topicName && topicName !== 'Unknown Topic' && topicName !== 'Invalid Topic') {
-      const modeText = mode === 'notes' ? 'Notes' : 'Videos';
+      const modeText = mode === 'notes' ? 'Notes' : mode === 'video' ? 'Videos' : 'DPPs';
       document.title = `${topicName} - ${modeText} | E-Leak`;
     } else if (topicName) {
       document.title = `${topicName} | E-Leak`;
@@ -262,6 +267,8 @@ export default function TopicLecturesPage() {
     let displayTitle = lecture.title;
     if (mode === 'notes' && lecture.notesTitle && lecture.notesTitle.trim() !== '') {
       displayTitle = lecture.notesTitle;
+    } else if (mode === 'dpp' && lecture.dppTitle && lecture.dppTitle.trim() !== '') {
+      displayTitle = lecture.dppTitle;
     }
 
     const cardContent = (
@@ -274,13 +281,16 @@ export default function TopicLecturesPage() {
             {hasStarted && <CheckCircle2 className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />}
             <span className="text-xl sm:text-2xl font-semibold">{displayTitle}</span>
           </div>
-           {(mode === 'notes' && lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') || 
-            (mode === 'video' && lecture.videoEmbedUrl && lecture.videoEmbedUrl.trim() !== '') ? (
+           { (mode === 'notes' && lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') || 
+             (mode === 'video' && lecture.videoEmbedUrl && lecture.videoEmbedUrl.trim() !== '') ||
+             (mode === 'dpp' && lecture.dppLink && lecture.dppLink.trim() !== '' && lecture.dppLink.trim() !== '#') ? (
             <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
           ) : null}
         </div>
         <p className="text-sm text-muted-foreground mt-2 capitalize">
-          {mode === 'notes' ? <FileText className="inline h-4 w-4 mr-1" /> : <Video className="inline h-4 w-4 mr-1" />}
+          {mode === 'notes' ? <FileText className="inline h-4 w-4 mr-1" /> : 
+           mode === 'video' ? <Video className="inline h-4 w-4 mr-1" /> :
+           <ClipboardList className="inline h-4 w-4 mr-1" />}
           {displayTitle} - {mode}
         </p>
       </div>
@@ -291,6 +301,20 @@ export default function TopicLecturesPage() {
         <a
           key={lecture.id + '-notes'}
           href={lecture.notesLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full max-w-md block mb-6 cursor-pointer"
+        >
+          {cardContent}
+        </a>
+      );
+    }
+    
+    if (mode === 'dpp' && lecture.dppLink && lecture.dppLink.trim() !== '' && lecture.dppLink.trim() !== '#') {
+      return (
+        <a
+          key={lecture.id + '-dpp'}
+          href={lecture.dppLink}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full max-w-md block mb-6 cursor-pointer"
