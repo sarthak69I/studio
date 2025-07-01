@@ -43,7 +43,7 @@ export const aarambh9DppContent: DppContent = [
     "subject": "Science"
   },
   {
-    "title": "PK Spacial",
+    "title": "PK",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/433232579355191700.pdf",
     "subject": "Science"
   },
