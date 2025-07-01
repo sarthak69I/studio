@@ -88,7 +88,6 @@ export function CourseCard({
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">
               {badgeText && <Badge variant="secondary" className="bg-yellow-400/20 text-yellow-600 border-yellow-400/30">{badgeText}</Badge>}
-              <Badge variant="outline">Hinglish</Badge>
             </div>
           </div>
           
