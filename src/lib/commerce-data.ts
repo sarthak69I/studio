@@ -174,7 +174,16 @@ const commerceOnlySubjects: CourseContentMap = {
       ]
     }
   ],
-  'Chapter Module': 'Coming Soon',
+  'Chapter Module': [
+    {
+      name: "Chapter Module Example 1",
+      topicVideoLink: "#",
+    },
+    {
+      name: "Chapter Module Example 2",
+      topicVideoLink: "#",
+    }
+  ],
 };
 
 // Combine commerce-only subjects with shared subjects

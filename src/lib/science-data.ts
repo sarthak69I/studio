@@ -172,7 +172,16 @@ const scienceOnlySubjects: CourseContentMap = {
       ]
     },
   ],
-  'Chapter Module': 'Coming Soon',
+  'Chapter Module': [
+    {
+      name: "Chapter Module Example 1",
+      topicVideoLink: "#",
+    },
+    {
+      name: "Chapter Module Example 2",
+      topicVideoLink: "#",
+    }
+  ],
 };
 
 // Combine science-only subjects with shared subjects

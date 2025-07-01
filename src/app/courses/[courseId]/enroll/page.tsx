@@ -195,7 +195,8 @@ export default function EnrollPage() {
   const subjects = courseSpecificSubjects[courseId] || [];
 
   const handleSubjectClick = (subjectName: string) => {
-    router.push(`/courses/${courseId}/content/${activeContentMode}/${encodeURIComponent(subjectName)}`);
+    const modeForNav = subjectName === 'Chapter Module' ? 'video' : activeContentMode;
+    router.push(`/courses/${courseId}/content/${modeForNav}/${encodeURIComponent(subjectName)}`);
   };
 
   const handleModeChange = (mode: 'notes' | 'video' | 'dpp') => {

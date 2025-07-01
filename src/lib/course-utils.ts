@@ -19,6 +19,7 @@ export interface Topic {
   lectures?: Lecture[];
   topicNotesLink?: string;
   topicVideoLink?: string;
+  topicDppLink?: string;
 }
 
 export type SubjectContent = Topic[];

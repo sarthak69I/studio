@@ -95,7 +95,7 @@ export default function SubjectContentClient() {
       >
         <div className="flex items-center justify-between">
           <span className="text-xl sm:text-2xl font-semibold">{topic.name}</span>
-          {(topic.lectures && topic.lectures.length > 0) || (mode === 'notes' && topic.topicNotesLink && topic.topicNotesLink !== '#') || (mode === 'video' && topic.topicVideoLink && topic.topicVideoLink !== '#') ? (
+          {(topic.lectures && topic.lectures.length > 0) || (mode === 'notes' && topic.topicNotesLink && topic.topicNotesLink !== '#') || (mode === 'video' && topic.topicVideoLink && topic.topicVideoLink !== '#') || (mode === 'dpp' && topic.topicDppLink && topic.topicDppLink !== '#') ? (
             <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7 text-muted-foreground" />
           ) : null}
         </div>
@@ -107,6 +107,29 @@ export default function SubjectContentClient() {
 
     const hasLectures = topic.lectures && topic.lectures.length > 0;
 
+    let directLink: string | undefined;
+    if (mode === 'notes') {
+      directLink = topic.topicNotesLink;
+    } else if (mode === 'video') {
+      directLink = topic.topicVideoLink;
+    } else if (mode === 'dpp') {
+      directLink = topic.topicDppLink;
+    }
+
+    if (directLink && directLink.trim() !== '' && directLink.trim() !== '#') {
+      return (
+        <a
+          key={topic.name + index}
+          href={directLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full max-w-md block mb-6 cursor-pointer"
+        >
+          {cardContent}
+        </a>
+      );
+    }
+    
     if (hasLectures) {
       return (
         <Link
@@ -117,21 +140,6 @@ export default function SubjectContentClient() {
           {cardContent}
         </Link>
       );
-    }
-
-    const directLink = mode === 'notes' ? topic.topicNotesLink : topic.topicVideoLink;
-    if (directLink && directLink !== '#') {
-        return (
-            <a
-              key={topic.name + index}
-              href={directLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full max-w-md block mb-6 cursor-pointer"
-            >
-              {cardContent}
-            </a>
-        );
     }
 
     return (
