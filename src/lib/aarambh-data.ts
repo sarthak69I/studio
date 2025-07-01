@@ -346,7 +346,7 @@ export const aarambhCourseContent: CourseContentMap = {
           id: "ch1-explanation",
           title: "CH -01 - शुचिपर्यावरणम् Explanation",
           notesTitle: "CH -01 - शुचिपर्यावरणम् Explanation",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392867/1748270525_4262533898579492/sunny/1748270459435_806367464182505500_video_VOD240p30.m3u8",
+          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393578/1748359683_8609289660244522/sunny/1748340021121_496240411986023000_video_VOD240p30.m3u8",
           notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5209302CH%20-01%20-%20शुचिपर्यावरणम्%20Explanation.pdf_CH%20-01%20-%20शुचिपर्यावरणम्%20Explanation.pdf",
           videoEmbedType: 'hls'
         },
