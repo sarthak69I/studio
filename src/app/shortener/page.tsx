@@ -137,7 +137,7 @@ export default function ShortenerPage() {
                   <FormItem>
                     <FormLabel>Long URL</FormLabel>
                     <FormControl>
-                      <Input placeholder="https://example.com/very/long/url/to/shorten" {...field} />
+                      <Input placeholder="https://example.com/very/long/url" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -200,7 +200,7 @@ export default function ShortenerPage() {
       <Card className="w-full max-w-lg">
         <CardHeader>
           <CardTitle className="text-xl flex items-center gap-2"><History /> Your Links</CardTitle>
-          <CardDescription>Links you've created are saved in your browser.</CardDescription>
+          <CardDescription>Links you've created are saved.</CardDescription>
         </CardHeader>
         <CardContent>
           {isLoadingHistory ? (

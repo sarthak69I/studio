@@ -104,8 +104,8 @@ const AppDownloadSection = () => {
             
             <div className="feature-card" style={{ '--hue': 260, '--border-color': '#6e45e2' } as React.CSSProperties}>
                 <div className="card-content" style={{ transform: 'translateY(0) rotateY(0)' }}>
-                    <Image src="https://i.ibb.co/mV11YZdd/image.png" alt="App UI" width={160} height={180} style={{ borderRadius: '0.5rem', border: '1px solid #333', filter: 'drop-shadow(0 5px 15px rgba(110, 69, 226, 0.3))' }}/>
-                    <div className="card-label" style={{ marginTop: '1rem', fontWeight: 600, color: '#88d3ce' }}>Progress Tracking</div>
+                    <Image src="https://i.ibb.co/mV11YZdd/image.png" alt="App UI" width={160} height={180} style={{ borderRadius: '0.5rem', border: '1px solid #333', filter: 'drop-shadow(0 5px 15px rgba(136, 211, 206, 0.3))' }}/>
+                    <div className="card-label" style={{ marginTop: '1rem', fontWeight: 600, color: '#6e45e2' }}>Progress Tracking</div>
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@ const AppDownloadSection = () => {
         {/* Animated download button */}
         <div style={{ position: 'relative', display: 'inline-block', perspective: '1000px' }}>
             <a href="https://github.com/sarthak69I/apk/releases/download/v19.2/app-release.apk" className="download-btn" style={{ '--btn-color-1': '#6e45e2', '--btn-color-2': '#88d3ce' } as React.CSSProperties}>
-                <span>INSTALL NOW</span>
+                <span>INSTALL</span>
                 <div className="btn-border"></div>
                 <div className="btn-border"></div>
                 <div className="btn-border"></div>
