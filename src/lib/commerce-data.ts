@@ -176,12 +176,12 @@ const commerceOnlySubjects: CourseContentMap = {
   ],
   'Chapter Module': [
     {
-      name: "Chapter Module Example 1",
-      topicVideoLink: "#",
+      name: "Complex Numbers + Linear Inequalities",
+      topicVideoLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/884067904271646700.pdf",
     },
     {
-      name: "Chapter Module Example 2",
-      topicVideoLink: "#",
+      name: "Trigonometric Functions | Chapter Module",
+      topicVideoLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/44381406893742080.pdf",
     }
   ],
 };

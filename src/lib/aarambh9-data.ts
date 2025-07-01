@@ -188,6 +188,13 @@ export const aarambh9CourseContent: CourseContentMap = {
        { id: 'L6', title: 'DOUBT SOLVING CLASS', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420692/175094110369597125088/index_3.m3u8' },
       ]
     },
+    {
+      name: 'Drainage',
+      lectures: [
+        { id: 'L1', title: '1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460160/175129794037967125088/index_3.m3u8' },
+    
+      ]
+    },
   ],
   'Mathematics': [
     {
