@@ -103,7 +103,7 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
   }, [open, signUpForm, signInForm]);
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={onOpenChange} modal={false}>
       <DialogContent 
         className="sm:max-w-md rounded-xl"
         onInteractOutside={(e) => e.preventDefault()}

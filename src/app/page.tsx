@@ -297,7 +297,7 @@ export default function HomePage() {
 
   return (
     <>
-       <Dialog open={isCaptchaModalOpen} onOpenChange={() => {}}>
+       <Dialog open={isCaptchaModalOpen} onOpenChange={() => {}} modal={false}>
         <DialogContent 
           className="sm:max-w-md"
           onInteractOutside={(e) => e.preventDefault()}
