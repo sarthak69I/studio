@@ -14,10 +14,6 @@ export default function BooksPage() {
   const [filteredBooks, setFilteredBooks] = React.useState(booksData);
 
   React.useEffect(() => {
-    document.title = 'E-Leak Books | Find & Download Study Material';
-  }, []);
-
-  React.useEffect(() => {
     const lowercasedFilter = searchTerm.toLowerCase();
     const newFilteredBooks = booksData.map(category => {
       const filtered = category.books.filter(book =>
