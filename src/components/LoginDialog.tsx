@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -103,7 +104,10 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md rounded-xl">
+      <DialogContent 
+        className="sm:max-w-md rounded-xl"
+        onInteractOutside={(e) => e.preventDefault()}
+      >
         <DialogHeader className="text-center">
           <DialogTitle className="text-2xl font-bold">Welcome to E-Leak</DialogTitle>
           <DialogDescription>
