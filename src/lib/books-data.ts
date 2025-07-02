@@ -24,6 +24,11 @@ export const booksData: BookCategory[] = [
         author: 'NCERT',
         download: 'https://drive.google.com/file/d/16HSR0JnfQUb685YwMqH73m5RfRTH6uW2/view',
       },
+      {
+        title: 'Class 9 Social Science Most Expected Question by Digraj Sir',
+        author: 'Digraj Sir',
+        download: 'https://drive.google.com/file/d/17nfkYj1mwxQRRvNtCtX0sTyNliXMhGrB/view',
+      },
     ],
   },
   {
@@ -83,6 +88,31 @@ export const booksData: BookCategory[] = [
         author: 'PW',
         download: 'https://drive.google.com/file/d/1jeGUfK0YPpmHxWGuAKjS-oOB_bAga5ju/view',
       },
+      {
+        title: '1 O\'clock Revision By Kriti Shama Social',
+        author: 'Kriti Sharma',
+        download: 'https://drive.google.com/file/d/1GtaIT5NCNvnGNgorexsR9FvVImjgjbQH/view',
+      },
+      {
+        title: '33 Days Challenge CBSE Class 10 Mathematics Standard',
+        author: 'Padhle Akshay',
+        download: 'https://drive.google.com/file/d/1XFOWzcUDjNFgQlwszuF1BMkWnmVa5xqV/view',
+      },
+      {
+        title: 'Arihant All in One Science Class 10',
+        author: 'Arihant',
+        download: 'https://drive.google.com/file/d/1GGQ4npxny5MljsZns3MeMtViV2G29BTW/view',
+      },
+      {
+        title: 'Educart CBSE Question Bank Class 10 Social Science',
+        author: 'Digraj Singh Rajput',
+        download: 'https://drive.google.com/file/d/1XuSNC5QGwTL-o5z1aY_zlbScZSQwkTUP/view',
+      },
+      {
+        title: 'Educart One-shot Science CBSE Class 10',
+        author: 'Educart',
+        download: 'https://drive.google.com/file/d/12ydACSjwg1zS3Ign12OSp8j_sKqzHe3t/view',
+      },
     ],
   },
   {
@@ -107,6 +137,21 @@ export const booksData: BookCategory[] = [
         title: 'R.S. Aggarwal Class 11',
         author: 'R.S. Aggarwal',
         download: 'https://drive.google.com/file/d/1ju7JapjdwbgsArHWIcyydFdZ4Yqa6eKc/view',
+      },
+      {
+        title: 'Class 11 Biology NCERT',
+        author: 'NCERT',
+        download: 'https://drive.google.com/file/d/1VfDDXYTeYzGT-19JJk-2SfvkhK_2hIgs/view',
+      },
+      {
+        title: 'Concept of Physics (Vol. 1)',
+        author: 'H.C. Verma',
+        download: 'https://drive.google.com/file/d/1UhklXKi-I-6KBpx3SlNmxpYxKTCFTaVQ/view',
+      },
+      {
+        title: 'ALLEN JEE Chemistry Module (11&12)',
+        author: 'ALLEN',
+        download: 'https://drive.google.com/file/d/1cyjuX92lm6q8L3Ceks8Air9Ho8LJq0sg/view',
       },
     ],
   },
