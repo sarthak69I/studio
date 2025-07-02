@@ -93,6 +93,21 @@ export const booksData: BookCategory[] = [
         author: 'Educart',
         download: 'https://drive.google.com/file/d/12ydACSjwg1zS3Ign12OSp8j_sKqzHe3t/view',
       },
+      {
+        title: 'Padhle akshay 99 pages E-Book Mathematics',
+        author: 'Padhle Akshay',
+        download: 'https://drive.google.com/file/d/1PnXaboiutM_wUjZhQfppjgkeldO34GCG/view',
+      },
+      {
+        title: 'Padhle akshay 99 pages E-Book Science',
+        author: 'Padhle Akshay',
+        download: 'https://drive.google.com/file/d/1g7Nx1GPx60HwybOMLMPkbz401yBkqklV/view',
+      },
+      {
+        title: 'Padhle akshay 99 pages E-Book Social Science',
+        author: 'Padhle Akshay',
+        download: 'https://drive.google.com/file/d/1jL1AqRigTwb2kBP3v6q4t7Grmd1-IgJJ/view',
+      },
     ],
   },
   {
