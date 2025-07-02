@@ -307,7 +307,7 @@ function AppContent({ children }: { children: ReactNode }) {
   return (
     <>
       {showHeader && (
-        <header className="fixed top-0 left-0 right-0 z-50 p-2 sm:p-4 flex items-center justify-between bg-background/80 backdrop-blur-sm border-b border-border/80">
+        <header className="fixed top-0 left-0 right-0 z-50 p-2 sm:p-4 flex items-center justify-between bg-background/90 border-b border-border/80">
           <Sheet open={isNotificationsSheetOpen} onOpenChange={setIsNotificationsSheetOpen}>
             <SheetTrigger asChild>
               <Button
