@@ -12,26 +12,6 @@ interface BookCategory {
 
 export const booksData: BookCategory[] = [
   {
-    categoryName: 'Class 9 Books',
-    books: [
-      {
-        title: 'MATHEMATICS',
-        author: 'RD SHARMA',
-        download: 'https://drive.google.com/file/d/16XQ-BWVeDMy2ddosjk129yWH5jy8gVtT/view',
-      },
-      {
-        title: 'Maths Class 9TH',
-        author: 'NCERT',
-        download: 'https://drive.google.com/file/d/16HSR0JnfQUb685YwMqH73m5RfRTH6uW2/view',
-      },
-      {
-        title: 'Class 9 Social Science Most Expected Question by Digraj Sir',
-        author: 'Digraj Sir',
-        download: 'https://drive.google.com/file/d/17nfkYj1mwxQRRvNtCtX0sTyNliXMhGrB/view',
-      },
-    ],
-  },
-  {
     categoryName: 'Class 10 Books',
     books: [
       {
@@ -152,6 +132,26 @@ export const booksData: BookCategory[] = [
         title: 'ALLEN JEE Chemistry Module (11&12)',
         author: 'ALLEN',
         download: 'https://drive.google.com/file/d/1cyjuX92lm6q8L3Ceks8Air9Ho8LJq0sg/view',
+      },
+    ],
+  },
+  {
+    categoryName: 'Class 9 Books',
+    books: [
+      {
+        title: 'MATHEMATICS',
+        author: 'RD SHARMA',
+        download: 'https://drive.google.com/file/d/16XQ-BWVeDMy2ddosjk129yWH5jy8gVtT/view',
+      },
+      {
+        title: 'Maths Class 9TH',
+        author: 'NCERT',
+        download: 'https://drive.google.com/file/d/16HSR0JnfQUb685YwMqH73m5RfRTH6uW2/view',
+      },
+      {
+        title: 'Class 9 Social Science Most Expected Question by Digraj Sir',
+        author: 'Digraj Sir',
+        download: 'https://drive.google.com/file/d/17nfkYj1mwxQRRvNtCtX0sTyNliXMhGrB/view',
       },
     ],
   },
