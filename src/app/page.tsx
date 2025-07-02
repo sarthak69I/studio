@@ -260,17 +260,18 @@ const TrendingCoursesScroller: React.FC<{courses: Course[]}> = ({ courses }) => 
 
 
 export default function HomePage() {
-  const { loading } = useAuth();
+  const { loading: authLoading } = useAuth();
+  const [isVerifiedInSession, setIsVerifiedInSession] = React.useState(false);
+  const [isCheckingSession, setIsCheckingSession] = React.useState(true);
   const [isCaptchaVerified, setIsCaptchaVerified] = React.useState(false);
-  const [isCaptchaModalOpen, setIsCaptchaModalOpen] = React.useState(false);
-  
+
   React.useEffect(() => {
-    // Check if captcha has been verified in this session
     if (typeof window !== 'undefined') {
-      const isVerifiedInSession = sessionStorage.getItem('isHumanVerified');
-      if (!isVerifiedInSession) {
-        setIsCaptchaModalOpen(true);
+      const verified = sessionStorage.getItem('isHumanVerified');
+      if (verified === 'true') {
+        setIsVerifiedInSession(true);
       }
+      setIsCheckingSession(false);
     }
   }, []);
 
@@ -284,10 +285,12 @@ export default function HomePage() {
     if (typeof window !== 'undefined') {
       sessionStorage.setItem('isHumanVerified', 'true');
     }
-    setIsCaptchaModalOpen(false);
+    setIsVerifiedInSession(true);
   };
   
-  if (loading) {
+  const isLoading = authLoading || isCheckingSession;
+
+  if (isLoading) {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-background">
         <Loader2 className="h-12 w-12 animate-spin text-primary" />
@@ -295,72 +298,61 @@ export default function HomePage() {
     );
   }
 
-  return (
-    <>
-       <Dialog open={isCaptchaModalOpen} onOpenChange={() => {}} modal={false}>
-        <DialogContent 
-          className="sm:max-w-md"
-          onInteractOutside={(e) => e.preventDefault()}
-          onEscapeKeyDown={(e) => e.preventDefault()}
-          showCloseButton={false}
-        >
-          <DialogHeader>
-            <DialogTitle className="text-center text-xl flex items-center justify-center gap-2">
-              <ShieldCheck className="h-6 w-6 text-primary" />
-              Please Verify You Are Human
-            </DialogTitle>
-            <DialogDescription className="text-center pt-2">
-              This helps us protect our community from spam and bots.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex justify-center py-4">
+  if (!isVerifiedInSession) {
+    return (
+      <div className="flex h-screen w-full items-center justify-center bg-background p-4">
+        <div className="w-full max-w-md rounded-lg border bg-card p-6 shadow-lg text-center animate-fadeIn-custom">
+          <div className="flex justify-center mb-4">
+            <ShieldCheck className="h-12 w-12 text-primary" />
+          </div>
+          <h1 className="text-xl font-bold text-foreground">Please Verify You Are Human</h1>
+          <p className="text-muted-foreground mt-2 mb-6">
+            This quick check helps us protect our community from automated bots.
+          </p>
+          <div className="flex justify-center py-4 scale-90 sm:scale-100">
             <ReCAPTCHA
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
               onChange={handleCaptchaVerify}
             />
           </div>
-          <DialogFooter>
-            <Button
-              className="w-full"
-              onClick={handleContinue}
-              disabled={!isCaptchaVerified}
-            >
-              Continue to Site
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
-      <div className="flex min-h-screen flex-col items-center p-5 pt-8 sm:p-8 md:p-10 md:pt-12 animate-fadeIn-custom">
-
-        <header className="text-center mb-8 md:mb-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wider logo-gradient-text animate-gradient">
-            E-Leak
-          </h1>
-        </header>
-        
-        <section className="w-full max-w-7xl mb-12">
-          <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 flex items-center gap-2 px-2">
-            <Flame className="text-amber-500" />
-            Trending Courses
-          </h2>
-          <TrendingCoursesScroller courses={coursesData} />
-        </section>
-
-
-        <main className="w-full max-w-6xl flex-grow flex flex-col items-center">
-          <div className="flex items-center justify-between mb-6 w-full">
-            <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Our Courses</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center w-full">
-            {coursesData.map((course) => (
-              <CourseCard key={course.id} {...course} />
-            ))}
-          </div>
-        </main>
-
+          <Button
+            className="w-full mt-4"
+            onClick={handleContinue}
+            disabled={!isCaptchaVerified}
+          >
+            Continue to Site
+          </Button>
+        </div>
       </div>
-    </>
+    );
+  }
+
+  return (
+    <div className="flex min-h-screen flex-col items-center p-5 pt-8 sm:p-8 md:p-10 md:pt-12 animate-fadeIn-custom">
+      <header className="text-center mb-8 md:mb-12">
+        <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wider logo-gradient-text animate-gradient">
+          E-Leak
+        </h1>
+      </header>
+      
+      <section className="w-full max-w-7xl mb-12">
+        <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 flex items-center gap-2 px-2">
+          <Flame className="text-amber-500" />
+          Trending Courses
+        </h2>
+        <TrendingCoursesScroller courses={coursesData} />
+      </section>
+
+      <main className="w-full max-w-6xl flex-grow flex flex-col items-center">
+        <div className="flex items-center justify-between mb-6 w-full">
+          <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Our Courses</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center w-full">
+          {coursesData.map((course) => (
+            <CourseCard key={course.id} {...course} />
+          ))}
+        </div>
+      </main>
+    </div>
   );
 }
-
