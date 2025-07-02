@@ -19,6 +19,7 @@ import { signUpWithEmail, signInWithEmail } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, AlertTriangle } from 'lucide-react';
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 interface LoginDialogProps {
@@ -41,6 +42,8 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [isRecaptchaVerified, setIsRecaptchaVerified] = React.useState(false);
+  const recaptchaRef = React.useRef<ReCAPTCHA>(null);
 
   const signUpForm = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -93,6 +96,8 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
       signInForm.reset();
       setError(null);
       setIsLoading(false);
+      setIsRecaptchaVerified(false);
+      recaptchaRef.current?.reset();
     }
   }, [open, signUpForm, signInForm]);
 
@@ -148,7 +153,15 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
                         </FormItem>
                       )}
                     />
-                    <Button type="submit" className="w-full" disabled={isLoading}>
+                    <div className="flex justify-center py-2">
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                        onChange={() => setIsRecaptchaVerified(true)}
+                        onExpired={() => setIsRecaptchaVerified(false)}
+                      />
+                    </div>
+                    <Button type="submit" className="w-full" disabled={isLoading || !isRecaptchaVerified}>
                         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                         Sign In
                     </Button>
@@ -198,7 +211,15 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
                         </FormItem>
                       )}
                     />
-                    <Button type="submit" className="w-full" disabled={isLoading}>
+                    <div className="flex justify-center py-2">
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                        onChange={() => setIsRecaptchaVerified(true)}
+                        onExpired={() => setIsRecaptchaVerified(false)}
+                      />
+                    </div>
+                    <Button type="submit" className="w-full" disabled={isLoading || !isRecaptchaVerified}>
                          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                         Create Account
                     </Button>

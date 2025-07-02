@@ -12,6 +12,7 @@ const withPWA = withPWAInit({
 const nextConfig = {
   env: {
     NEXT_PUBLIC_BASE_URL: 'https://e-leak.vercel.app',
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY: '6Ld032grAAAAAOFNIarNoLD1WEHMLPremOGjz10s',
   },
   typescript: {
     ignoreBuildErrors: true,
