@@ -15,7 +15,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send, Trophy, Link2 } from 'lucide-react';
+import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send, Trophy, Link2, Book } from 'lucide-react';
 import { db, logout } from '@/lib/firebase';
 import { collection, query, orderBy, limit, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
 import {
@@ -216,7 +216,7 @@ function AppContent({ children }: { children: ReactNode }) {
       checkNewAnnouncements();
       initialLoadDone.current = true;
     }
-    const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback', '/dashboard', '/leaderboard'];
+    const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback', '/dashboard', '/leaderboard', '/books'];
     const shouldPoll = !excludedPathsForPolling.includes(pathname) && !showMaintenance;
     let pollInterval: NodeJS.Timeout | undefined;
     if (shouldPoll) {
@@ -257,7 +257,7 @@ function AppContent({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (typeof window === 'undefined' || authLoading) return;
   
-    const excludedPathsForPrompts = ['/help-center', '/generate-access', '/auth/callback'];
+    const excludedPathsForPrompts = ['/help-center', '/generate-access', '/auth/callback', '/books'];
     const shouldShowPrompts = !excludedPathsForPrompts.includes(pathname) && !showMaintenance;
   
     if (shouldShowPrompts) {
@@ -298,10 +298,10 @@ function AppContent({ children }: { children: ReactNode }) {
   }
 
   const NotificationBellIconToUse = unreadNotificationCount > 0 ? BellRing : Bell;
-  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener'];
+  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener', '/books'];
   const showHeader = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
   
-  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener'];
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener', '/books'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
 
   return (
@@ -460,6 +460,13 @@ function AppContent({ children }: { children: ReactNode }) {
                       <Download className="mr-3 h-5 w-5 text-primary" />
                       Download App
                     </a>
+                  </Button>
+
+                   <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
+                    <Link href="/books" onClick={() => setIsMenuSheetOpen(false)}>
+                      <Book className="mr-3 h-5 w-5 text-primary" />
+                      E-Leak Books
+                    </Link>
                   </Button>
 
                   <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
