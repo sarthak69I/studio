@@ -119,11 +119,6 @@ export const booksData: BookCategory[] = [
         download: 'https://drive.google.com/file/d/15I0JvuLkBBev2hJl_qf3BTx4bnkYJq58/view',
       },
       {
-        title: 'NCERT Class 11 Computer Science',
-        author: 'NCERT',
-        download: 'https://drive.google.com/file/d/1KlGKVuR2R7IOdVsuZYAymq3Ivn1p-QOj/view',
-      },
-      {
         title: 'Sumita Arora Class 11 Computer Science',
         author: 'Sumita Arora',
         download: 'https://drive.google.com/file/d/1f2TR6yHX7H4Ka0nhFQ2Wb81uDsylu_z_/view',
@@ -132,11 +127,6 @@ export const booksData: BookCategory[] = [
         title: 'R.S. Aggarwal Class 11',
         author: 'R.S. Aggarwal',
         download: 'https://drive.google.com/file/d/1ju7JapjdwbgsArHWIcyydFdZ4Yqa6eKc/view',
-      },
-      {
-        title: 'Class 11 Biology NCERT',
-        author: 'NCERT',
-        download: 'https://drive.google.com/file/d/1VfDDXYTeYzGT-19JJk-2SfvkhK_2hIgs/view',
       },
       {
         title: 'Concept of Physics (Vol. 1)',
@@ -157,16 +147,6 @@ export const booksData: BookCategory[] = [
         title: 'MATHEMATICS',
         author: 'RD SHARMA',
         download: 'https://drive.google.com/file/d/16XQ-BWVeDMy2ddosjk129yWH5jy8gVtT/view',
-      },
-      {
-        title: 'Maths Class 9TH',
-        author: 'NCERT',
-        download: 'https://drive.google.com/file/d/16HSR0JnfQUb685YwMqH73m5RfRTH6uW2/view',
-      },
-      {
-        title: 'Class 9 Social Science Most Expected Question by Digraj Sir',
-        author: 'Digraj Sir',
-        download: 'https://drive.google.com/file/d/17nfkYj1mwxQRRvNtCtX0sTyNliXMhGrB/view',
       },
     ],
   },
