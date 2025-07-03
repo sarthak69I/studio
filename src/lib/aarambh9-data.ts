@@ -126,7 +126,8 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L3', title: 'Force And Laws of Motion L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/92791553841016830.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419830/175086642753098929414/index_4.m3u8' },
          { id: 'L9', title: 'ACP #5', notesTitle: "", notesLink: ``},
         { id: 'L4', title: 'Force And Laws of Motion L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/31986175671682916.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460002/175128814941128929414/index_4.m3u8' },
-     
+      { id: 'L5', title: 'Force And Laws of Motion L5 Doubt Solving Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4461910/175146019587088929414/index_4.m3u8' },
+
       ]
     },
   ],
@@ -190,9 +191,11 @@ export const aarambh9CourseContent: CourseContentMap = {
       ]
     },
     {
-      name: 'Drainage',
+      name: 'Drainage',    
       lectures: [
-        { id: 'L1', title: '1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460160/175129794037967125088/index_3.m3u8' },
+        { id: 'L1', title: '1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/394072420676638200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460160/175129794037967125088/index_3.m3u8' },
+    { id: 'L2', title: '2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/576581663884886100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4462028/175147111069297125088/index_3.m3u8' },
+   { id: 'L3', title: '3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4464391/175154621428207125088/index_3.m3u8' },
     
       ]
     },
@@ -256,7 +259,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L3', title: 'Lines and Angles L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/588945404340775200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416586/175051018944158752407/index_4.m3u8' },  
           { id: 'L4', title: 'Lines and Angles L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/768594604116359600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4426270/175102838146088752407/index_4.m3u8' },  
            { id: 'L5', title: 'Lines and Angles L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/892325459170753300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427364/175111482017818752407/index_4.m3u8' },  
-  
+            { id: 'L6', title: 'Lines and Angles L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4461096/175138425048988752407/index_4.m3u8' },  
       ]
     },
   ],
