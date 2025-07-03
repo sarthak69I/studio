@@ -2,6 +2,7 @@
 import type {Metadata} from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
+import Script from 'next/script';
 // Script import for Adsense is removed
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -105,6 +106,7 @@ export default function RootLayout({
         {/* Adsense script removed */}
         <Analytics />
         <SpeedInsights />
+        <Script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "719c19b121624e7991b50df8910e3342"}'></Script>
       </body>
     </html>
   );
