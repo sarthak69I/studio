@@ -15,11 +15,6 @@ export const booksData: BookCategory[] = [
     categoryName: 'Class 10 Books',
     books: [
       {
-        title: 'English Language & Literature Class 10',
-        author: 'Nandni Sharma',
-        download: 'https://drive.google.com/file/d/1N5tQVDsyavh58yYFcylCb2Uk8FlgiDcz/view',
-      },
-      {
         title: 'Hindi Course A Class 10',
         author: 'Oswal',
         download: 'https://drive.google.com/file/d/1jrf91KwBJ2W57s7puI33A_mJb09GqDv8/view',
@@ -42,11 +37,7 @@ export const booksData: BookCategory[] = [
         title: 'RD Sharma Mathematics Class 10 (2025-26 Edition)',
         author: 'RD Sharma',
         download: 'https://drive.google.com/file/d/1sKoawaJf2PUk8dWSFvrcoGjC_0V0k8GS/view',
-      },
-      {
-        title: 'Oswaal One for All Class 10 Mathematics Standard (2026 Exam)',
-        author: 'Oswaal Editorial Board',
-        download: 'https://drive.google.com/file/d/1F3BDefPa0BxjLo4cC6ecNVq9r7ZfbEaN/view',
+     
       },
       {
         title: 'Owsaal English Literature Question Bank 10',
@@ -64,11 +55,6 @@ export const booksData: BookCategory[] = [
         download: 'https://drive.google.com/file/d/1oNzE11QkxJKIX_7lcvi1IrFDyL_rtxAu/view',
       },
       {
-        title: 'PW CBSE Question and Concept Bank (QCB) Class 10 Science (2025)',
-        author: 'PW',
-        download: 'https://drive.google.com/file/d/1jeGUfK0YPpmHxWGuAKjS-oOB_bAga5ju/view',
-      },
-      {
         title: '1 O\'clock Revision By Kriti Shama Social',
         author: 'Kriti Sharma',
         download: 'https://drive.google.com/file/d/1GtaIT5NCNvnGNgorexsR9FvVImjgjbQH/view',
@@ -77,11 +63,6 @@ export const booksData: BookCategory[] = [
         title: '33 Days Challenge CBSE Class 10 Mathematics Standard',
         author: 'Padhle Akshay',
         download: 'https://drive.google.com/file/d/1XFOWzcUDjNFgQlwszuF1BMkWnmVa5xqV/view',
-      },
-      {
-        title: 'Arihant All in One Science Class 10',
-        author: 'Arihant',
-        download: 'https://drive.google.com/file/d/1GGQ4npxny5MljsZns3MeMtViV2G29BTW/view',
       },
       {
         title: 'Educart CBSE Question Bank Class 10 Social Science',
@@ -119,12 +100,12 @@ export const booksData: BookCategory[] = [
         download: 'https://drive.google.com/file/d/1ju7JapjdwbgsArHWIcyydFdZ4Yqa6eKc/view',
       },
       {
-        title: 'Concept of Physics (Vol. 1)',
+        title: 'Concept of Physics (Volume 1)',
         author: 'H.C. Verma',
         download: 'https://drive.google.com/file/d/1UhklXKi-I-6KBpx3SlNmxpYxKTCFTaVQ/view',
       },
       {
-        title: 'ALLEN JEE Chemistry Module (11&12)',
+        title: 'ALLEN JEE Chemistry',
         author: 'ALLEN',
         download: 'https://drive.google.com/file/d/1cyjuX92lm6q8L3Ceks8Air9Ho8LJq0sg/view',
       },
