@@ -1,7 +1,18 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const AppDownloadSection = () => {
+  const [isVerified, setIsVerified] = React.useState(false);
+
+  const handleCaptchaVerify = (token: string | null) => {
+    if (token) {
+      setIsVerified(true);
+    }
+  };
+
   return (
     <div style={{
       background: 'linear-gradient(135deg, #0a0a14 0%, #14142a 100%)',
@@ -112,13 +123,24 @@ const AppDownloadSection = () => {
         
         {/* Animated download button */}
         <div style={{ position: 'relative', display: 'inline-block', perspective: '1000px' }}>
-            <a href="https://github.com/sarthak69I/apk/releases/download/v19.2/app-release.apk" className="download-btn" style={{ '--btn-color-1': '#6e45e2', '--btn-color-2': '#88d3ce' } as React.CSSProperties}>
-                <span>INSTALL</span>
-                <div className="btn-border"></div>
-                <div className="btn-border"></div>
-                <div className="btn-border"></div>
-                <div className="btn-border"></div>
-            </a>
+          {!isVerified ? (
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+                <p style={{ color: '#a0a0ff', marginBottom: '1rem' }}>Please verify you are human to see the download link.</p>
+                <ReCAPTCHA
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                  onChange={handleCaptchaVerify}
+                  theme="dark"
+                />
+              </div>
+            ) : (
+              <a href="https://github.com/sarthak69I/apk/releases/download/v19.2/app-release.apk" className="download-btn" style={{ '--btn-color-1': '#6e45e2', '--btn-color-2': '#88d3ce' } as React.CSSProperties}>
+                  <span>INSTALL</span>
+                  <div className="btn-border"></div>
+                  <div className="btn-border"></div>
+                  <div className="btn-border"></div>
+                  <div className="btn-border"></div>
+              </a>
+            )}
         </div>
       </div>
     </div>
