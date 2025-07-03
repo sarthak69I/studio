@@ -114,16 +114,6 @@ export const booksData: BookCategory[] = [
     categoryName: 'Class 11 Books',
     books: [
       {
-        title: 'Jawahar Navodaya Class 11 Previous Year Paper',
-        author: 'Unknown',
-        download: 'https://drive.google.com/file/d/15I0JvuLkBBev2hJl_qf3BTx4bnkYJq58/view',
-      },
-      {
-        title: 'Sumita Arora Class 11 Computer Science',
-        author: 'Sumita Arora',
-        download: 'https://drive.google.com/file/d/1f2TR6yHX7H4Ka0nhFQ2Wb81uDsylu_z_/view',
-      },
-      {
         title: 'R.S. Aggarwal Class 11',
         author: 'R.S. Aggarwal',
         download: 'https://drive.google.com/file/d/1ju7JapjdwbgsArHWIcyydFdZ4Yqa6eKc/view',
