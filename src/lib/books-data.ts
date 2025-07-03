@@ -15,22 +15,22 @@ export const booksData: BookCategory[] = [
     categoryName: 'Class 10 Books',
     books: [
       {
-        title: 'English Language & Literature CBSE Class 10 (2022-2023)',
+        title: 'English Language & Literature Class 10',
         author: 'Nandni Sharma',
         download: 'https://drive.google.com/file/d/1N5tQVDsyavh58yYFcylCb2Uk8FlgiDcz/view',
       },
       {
-        title: 'Hindi Course A Class 10 QB',
+        title: 'Hindi Course A Class 10',
         author: 'Oswal',
         download: 'https://drive.google.com/file/d/1jrf91KwBJ2W57s7puI33A_mJb09GqDv8/view',
       },
       {
-        title: 'IT Arihant All In One Class 10 (2020-21)',
+        title: 'IT Arihant All In One Class 10',
         author: 'Neetu Gaikwad, Shweta Agarwal',
         download: 'https://drive.google.com/file/d/1b0vr0mqbkS92oiX_lyw5x3CnwaQ3568h/view',
       },
       {
-        title: 'Lakhmir Singh Science Class 10',
+        title: 'Lakhmir Science Class 10',
         author: 'S Chand',
         download: {
           Physics: 'https://drive.google.com/file/d/1sMr25JQg8jwhiJXHnS5lBULAifZQ6re5/view',
@@ -44,17 +44,17 @@ export const booksData: BookCategory[] = [
         download: 'https://drive.google.com/file/d/1sKoawaJf2PUk8dWSFvrcoGjC_0V0k8GS/view',
       },
       {
-        title: 'Oswaal CBSE & NCERT One for All Class 10 Mathematics Standard (2026 Exam)',
+        title: 'Oswaal One for All Class 10 Mathematics Standard (2026 Exam)',
         author: 'Oswaal Editorial Board',
         download: 'https://drive.google.com/file/d/1F3BDefPa0BxjLo4cC6ecNVq9r7ZfbEaN/view',
       },
       {
-        title: 'Owsaal English Literature Question Bank 10 (2025)',
+        title: 'Owsaal English Literature Question Bank 10',
         author: 'Oswaal',
         download: 'https://drive.google.com/file/d/1OuHBY3d_bHSa_V4XZNABvHzSLHTxC0N5/view',
       },
       {
-        title: 'Owsaal Science Question Bank Class 10 CBSE (2025)',
+        title: 'Owsaal Science Question Bank Class 10 CBSE',
         author: 'Oswaal',
         download: 'https://drive.google.com/file/d/1GPV2pSd3FC0K0-Kef_srwy7ejF52vnhT/view',
       },
