@@ -4,14 +4,15 @@
 import React from 'react';
 import Image from 'next/image';
 import ReCAPTCHA from "react-google-recaptcha";
+import { Turnstile } from '@marsidev/react-turnstile';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const AppDownloadSection = () => {
   const [isVerified, setIsVerified] = React.useState(false);
+  const isMobile = useIsMobile();
 
-  const handleCaptchaVerify = (token: string | null) => {
-    if (token) {
-      setIsVerified(true);
-    }
+  const handleVerificationSuccess = () => {
+    setIsVerified(true);
   };
 
   return (
@@ -127,11 +128,18 @@ const AppDownloadSection = () => {
           {!isVerified ? (
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
                 <p style={{ color: '#a0a0ff', marginBottom: '1rem' }}>Please verify you are human to see the download link.</p>
-                <ReCAPTCHA
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                  onChange={handleCaptchaVerify}
-                  theme="dark"
-                />
+                {isMobile ? (
+                  <ReCAPTCHA
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                    onChange={handleVerificationSuccess}
+                    theme="dark"
+                  />
+                ) : (
+                  <Turnstile
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                    onSuccess={handleVerificationSuccess}
+                  />
+                )}
               </div>
             ) : (
               <a href="https://github.com/sarthak69I/apk/releases/download/v19.2/app-release.apk" className="download-btn" style={{ '--btn-color-1': '#6e45e2', '--btn-color-2': '#88d3ce' } as React.CSSProperties}>
@@ -149,5 +157,3 @@ const AppDownloadSection = () => {
 };
 
 export default AppDownloadSection;
-
-    

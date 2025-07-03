@@ -13,6 +13,7 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_BASE_URL: 'https://e-leak.vercel.app',
     NEXT_PUBLIC_RECAPTCHA_SITE_KEY: '6Ld032grAAAAAOFNIarNoLD1WEHMLPremOGjz10s',
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY: '0x4AAAAAABjZTiJMp4s53ry2',
   },
   typescript: {
     ignoreBuildErrors: true,

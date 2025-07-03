@@ -10,6 +10,8 @@ import { Loader2, Flame, CheckCircle, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import ReCAPTCHA from "react-google-recaptcha";
+import { Turnstile } from '@marsidev/react-turnstile';
+import { useIsMobile } from '@/hooks/use-mobile';
 import {
   Dialog,
   DialogContent,
@@ -264,6 +266,7 @@ export default function HomePage() {
   const [isVerifiedInSession, setIsVerifiedInSession] = React.useState(false);
   const [isCheckingSession, setIsCheckingSession] = React.useState(true);
   const [isCaptchaVerified, setIsCaptchaVerified] = React.useState(false);
+  const isMobile = useIsMobile();
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -275,10 +278,8 @@ export default function HomePage() {
     }
   }, []);
 
-  const handleCaptchaVerify = (token: string | null) => {
-    if (token) {
-      setIsCaptchaVerified(true);
-    }
+  const handleVerificationSuccess = () => {
+    setIsCaptchaVerified(true);
   };
 
   const handleContinue = () => {
@@ -310,10 +311,17 @@ export default function HomePage() {
             This quick check helps us protect our community from automated bots.
           </p>
           <div className="flex justify-center py-4 scale-90 sm:scale-100">
-            <ReCAPTCHA
-              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-              onChange={handleCaptchaVerify}
-            />
+            {isMobile ? (
+              <ReCAPTCHA
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                onChange={handleVerificationSuccess}
+              />
+            ) : (
+              <Turnstile
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                onSuccess={handleVerificationSuccess}
+              />
+            )}
           </div>
           <Button
             className="w-full mt-4"
@@ -356,5 +364,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-    
