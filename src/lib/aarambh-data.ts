@@ -321,7 +321,16 @@ export const aarambhCourseContent: CourseContentMap = {
       lectures: [
         { id: 'l1', title: 'A Triumph of Surgery 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2402030A%20Triumph%20of%20Surgery%20L1.pdf_A%20Triumph%20of%20Surgery%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378115/1747004104_5093798446180655/sunny/1746963761393_790760791059125000_video_VOD720p30.m3u8' },
         { id: 'l2', title: 'A Triumph of Surgery 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5913930A%20Triumph%20of%20Surgery%20L2.pdf_A%20Triumph%20of%20Surgery%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378116/1747003684_6295147578406091/sunny/1746963929440_149734756542958400_video_VOD720p30.m3u8' },
-       ]
+        ]
+    },
+    {
+      name: 'Nelson Mandela',
+      lectures: [
+        { id: 'l1', title: 'Nelson Mandela 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7496747Nelson%20Mandela%20L1.pdf_Nelson%20Mandela%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415979/1750450625_4554154089099621/sunny/1750425076738_818411970592036400_video_VOD720p30.m3u8' },
+      { id: 'l2', title: 'Nelson Mandela 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7653135Nelson%20Mandela%20L2.pdf_Nelson%20Mandela%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415980/1750450685_7908273695213537/sunny/1750425643848_294345221400152260_video_VOD720p30.m3u8' },
+    
+      
+      ]
     }
   ],
   'IT': itTopicsForClass9and10,
