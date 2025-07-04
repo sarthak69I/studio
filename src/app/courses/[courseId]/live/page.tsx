@@ -28,7 +28,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class1Subject: "No Class Physics at 8pm",
     class2Subject: "PHYSICS",
     class1LiveStreamUrl: ``,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_4.m3u8')}`,
+    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_1.m3u8')}`,
     class1Visible: true,
     class2Visible: true,
   },
