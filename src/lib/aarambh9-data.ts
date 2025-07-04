@@ -266,14 +266,6 @@ export const aarambh9CourseContent: CourseContentMap = {
   ],
   'English': [
     {
-      name: 'Tenses',
-      lectures: [
-        { id: 'c9-eng-grm-l1', title: 'Tenses 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/498967843075806340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376992/1746790926_2620131171601548/sunny/1746785842321_68968204127858800_video_VOD720p30.m3u8' },
-        { id: 'c9-eng-grm-l2', title: 'Tenses 2', notesTitle: "", notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376993/1746791165_4683530659641818/sunny/1746786281807_635426128592612900_video_VOD720p30.m3u8' },
-        { id: 'c9-eng-grm-l3', title: 'Tenses 3', notesTitle: "", notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376994/1746791225_3697514107018118/sunny/1746786504709_85453328252238460_video_VOD720p30.m3u8' },
-      ]
-    },
-    {
       name: 'The Fun They Had',
       lectures: [
         { id: 'c9-eng-lit-l1', title: 'The Fun They Had 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5115291fun%20they%20had%20L1.pdf_fun%20they%20had%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362885/1745829485_2048536674804334/sunny/1745824193994_820484776522091000_video_VOD720p30.m3u8' },
@@ -295,18 +287,40 @@ export const aarambh9CourseContent: CourseContentMap = {
    ]
   },
     {
-      name: 'The Sound Of Music',
-      lectures: [
-        { id: 'c9-enl1', title: 'The Sound Of Music 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7497880sound%20of%20music%20part%201%20L1.pdf_sound%20of%20music%20part%201%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409060/1749824044_3361889869046858/sunny/1749811523668_756560226864072100_video_VOD720p30.m3u8' },
-        { id: 'c9-enl2', title: 'The Sound Of Music 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6803599sound%20of%20music%20part%201%20L2.pdf_sound%20of%20music%20part%201%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409061/1749824105_2359363804227323/sunny/1749812109420_686057178732817300_video_VOD720p30.m3u8' },
-   ]
+    name: 'The Sound Of Music Part 1',
+    lectures: [
+      { id: 'L1', title: 'Sound of Music P1 L1', notesTitle: "Sound of Music 1 Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7497880sound%20of%20music%20part%201%20L1.pdf_sound%20of%20music%20part%201%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409060/1749824044_3361889869046858/sunny/1749811523668_756560226864072100_video_VOD720p30.m3u8' },
+      { id: 'L2', title: 'Sound of Music P1 L2', notesTitle: "Sound of Music 2 Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6803599sound%20of%20music%20part%201%20L2.pdf_sound%20of%20music%20part%201%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409061/1749824105_2359363804227323/sunny/1749812109420_686057178732817300_video_VOD720p30.m3u8' }
+    ]
+  },
+  {
+    name: 'The Sound Of Music Part 2',
+    lectures: [
+      { id: 'L1', title: 'Sound of Music P2 L1', notesTitle: "Sound of Music Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1936922Sound%20of%20Music%20Part%202%20L1.pdf_Sound%20of%20Music%20Part%202%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415974/1750449905_7686784792214587/sunny/1750424933955_84986932078565730_video_VOD720p30.m3u8' },
+      { id: 'L2', title: 'Sound of Music P2 L2', notesTitle: "Sound of Music Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1830672Sound%20of%20Music%20Part%202%20L2.pdf_Sound%20of%20Music%20Part%202%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415975/1750450385_4811330079792111/sunny/1750425472276_868704596787497100_video_VOD720p30.m3u8' }
+     ]
   },
     {
       name: 'Poetic Devices',
-      lectures: [
-        { id: 'c9l1', title: 'Poetic Devices 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/276001057449717760.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355434/1745094064_6558196120167470/sunny/1745074746600_243414202639413570_video_VOD720p30.m3u8' },
-        { id: 'c9l2', title: 'Poetic Devices 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/498967843075806340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' },
-      ]
+  lectures: [
+    { id: 'L1', title: 'Poetic Devices (Part 1)', notesTitle: "Poetic Devices Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/874065629511007100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355434/1745094064_6558196120167470/sunny/1745074746600_243414202639413570_video_VOD720p30.m3u8' },
+    { id: 'L2', title: 'Poetic Devices (Part 2)', notesTitle: "Poetic Devices Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/794426136343342800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' }
+  ]
+},
+{
+  name: 'Tenses',
+  lectures: [
+    { id: 'L1', title: 'Tenses L1', notesTitle: "Tenses Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/727562919101567200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376992/1746790926_2620131171601548/sunny/1746785842321_68968204127858800_video_VOD720p30.m3u8' },
+    { id: 'L2', title: 'Tenses L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376993/1746791165_4683530659641818/sunny/1746786281807_635426128592612900_video_VOD720p30.m3u8' },
+    { id: 'L3', title: 'Tenses L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376994/1746791225_3697514107018118/sunny/1746786504709_85453328252238460_video_VOD720p30.m3u8' }
+  ]
+},
+{
+  name: 'Determiners',
+  lectures: [
+    { id: 'L1', title: 'Determiners L1', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2793710Determiners%20L1.pdf_Determiners%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396723/1748599866_2612688982288432/sunny/1748596322264_841185111044298900_video_VOD720p30.m3u8' },
+    { id: 'L2', title: 'Determiners L2', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6468807Determiners%20L2.pdf_Determiners%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396724/1748599983_8916038134337860/sunny/1748596644025_182722180318143000_video_VOD720p30.m3u8' }
+   ]
     }
   ],
   'IT': itTopicsForClass9and10,
