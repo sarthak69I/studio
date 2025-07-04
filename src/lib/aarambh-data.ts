@@ -454,7 +454,9 @@ export const aarambhCourseContent: CourseContentMap = {
       "lectures": [
         { "id": "L1", "title": "पाठ 4 उत्साह, अट नहीं रही है व्याख्या Lecture 1", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410183/1749914586_4086706439974252/sunny/1749912022852_338311045046101570_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/847032884771309300.pdf", "videoEmbedType": "hls" },
         { "id": "L2", "title": "पाठ 4 उत्साह, अट नहीं रही है NCERT solutions Lecture 2", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410186/1749915308_3840734996272597/sunny/1749912196262_461166863025187500_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L3", "title": "पाठ 4 उत्साह, अट नहीं रही है Complete Chapter Revision Lecture 3", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410184/1749914765_5495751221321111/sunny/1749912092768_233487924942992640_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
+        { "id": "L3", "title": "पाठ 4 उत्साह, अट नहीं रही है Complete Chapter Revision Lecture 3", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410184/1749914765_5495751221321111/sunny/1749912092768_233487924942992640_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+         { "id": "L4", "title": "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय Complete Chapter Revision Lecture 4", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186197/1729265530_8082650506315087/1cQy6uA6zxO3Q-fzKguG-cc6iZ1Vgj-Oa720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+    
       ]
     },
     {
@@ -482,7 +484,7 @@ export const aarambhCourseContent: CourseContentMap = {
           "notesTitle": "",
           "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057680/1729247001_7590193763429474/1Z6ELWKQm8CjGONfvOaH1lv--rvWc6nEq720p30.m3u8",
           "notesLink": "",
-          "videoEmbedType": "hls"
+          "videoEmbedType": "hls",
         },
         {
           "id": "L4",
@@ -490,7 +492,7 @@ export const aarambhCourseContent: CourseContentMap = {
           "notesTitle": "",
           "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186197/1729265530_8082650506315087/1cQy6uA6zxO3Q-fzKguG-cc6iZ1Vgj-Oa720p30.m3u8",
           "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/827292862967255600.pdf",
-          "videoEmbedType": "hls"
+          "videoEmbedType": "hls",
         }
       ]
     }
