@@ -610,8 +610,98 @@ export const aarambh9CourseContent: CourseContentMap = {
     notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3447951%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf',
     videoEmbedType: 'hls',
     videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425428/1751033465_5858389494462766/sunny/1751019566861_303626022391680830_video_VOD720p30.m3u8', 
-        }
+          }
       ]
     }
+  ],
+  'Sanskrit': [
+      {
+        name: "Overview",
+        lectures: [
+          {
+            id: "sanskrit-overview",
+            title: "Overview",
+            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392872/1748271368_9740389774405919/sunny/1748265761999_582795700698031100_video_VOD.m3u8",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/25606539th%20Sanskrit%20Overview.pdf_9th%20Sanskrit%20Overview.pdf",
+            videoEmbedType: 'hls'
+          }
+        ]
+      },
+      {
+        name: "भारतीयवसंतगीत:",
+        lectures: [
+          {
+            id: "ch1-l1",
+            title: "Lecture 1",
+            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392868/1748270527_4609550263536304/sunny/1748265146882_510695044544125060_video_VOD.m3u8",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6303001CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20Explanation.pdf",
+            videoEmbedType: 'hls'
+          },
+          {
+            id: "ch1-l2",
+            title: "Lecture 2",
+            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392869/1748270646_5088353861174354/sunny/1748265312219_828479133307742100_video_VOD.m3u8",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5530169CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20NCERT.pdf",
+            videoEmbedType: 'hls'
+          }
+        ]
+      },
+      {
+        name: "स्वर्णकाकः",
+        lectures: [
+          {
+            id: "ch2-l1",
+            title: "Lecture 1",
+            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392870/1748270705_8950762022038790/sunny/1748265442814_317656173101077060_video_VOD480p30.m3u8",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5092125CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20Explanation.pdf",
+            videoEmbedType: 'hls'
+          },
+          {
+            id: "ch2-l2",
+            title: "Lecture 2",
+            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392871/1748271185_1836230378802404/sunny/1748265603321_322332742682814600_video_VOD360p30.m3u8",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3396941CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20NCERT.pdf",
+            videoEmbedType: 'hls'
+          }
+        ]
+      },
+      {
+        name: "गोदोहनम्",
+        lectures: [
+          {
+            id: "ch3-l1",
+            title: "Lecture 1",
+            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409087/1749828127_6997760553008653/sunny/1749809491176_234362182317603900_video_VOD720p30.m3u8",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5779980CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20Explanation.pdf",
+            videoEmbedType: 'hls'
+          },
+          {
+            id: "ch3-l2",
+            title: "Lecture 2",
+            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409088/1749829268_4900035308227741/sunny/1749810507115_361302695792077100_video_VOD720p30.m3u8",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6528958CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20NCERT.pdf",
+            videoEmbedType: 'hls'
+          }
+        ]
+      },
+      {
+        name: "सूक्तिमौक्तिकम्",
+        lectures: [
+          {
+            id: "ch4-l1",
+            title: "Lecture 1",
+            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409089/1749829325_9144056009665889/sunny/1749810866747_332716238922341760_video_VOD720p30.m3u8",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2956430CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20Explanation.pdf",
+            videoEmbedType: 'hls'
+          },
+          {
+            id: "ch4-l2",
+            title: "Lecture 2",
+            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409090/1749829625_8692173308206863/sunny/1749811763102_517085010537473700_video_VOD720p30.m3u8",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/636024CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20NCERT.pdf",
+            videoEmbedType: 'hls'
+          }
+        ]
+      }
   ]
 }
