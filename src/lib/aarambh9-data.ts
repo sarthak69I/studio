@@ -609,9 +609,7 @@ export const aarambh9CourseContent: CourseContentMap = {
     notesTitle: 'गिल्लू CCR',
     notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3447951%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf',
     videoEmbedType: 'hls',
-    videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425428/1751033465_5858389494462766/sunny/1751019566861_303626022391680830_video_VOD720p30.m3u8',
- 
-        { 
+    videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425428/1751033465_5858389494462766/sunny/1751019566861_303626022391680830_video_VOD720p30.m3u8', 
         }
       ]
     }
