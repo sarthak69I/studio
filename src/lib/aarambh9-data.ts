@@ -557,6 +557,15 @@ export const aarambh9CourseContent: CourseContentMap = {
           videoEmbedType: 'hls'
         }
       ]
+    },
+    {
+      "name": "गिल्लू",
+      "lectures": [
+        { "id": "gillo-vyakhya", "title": "व्याख्या", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425429/1751033525_4470078330612893/sunny/1751019596807_108319882873038860_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6927770%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf", "videoEmbedType": "hls" },
+        { "id": "gillo-ncert", "title": "NCERT Solution", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425430/1751033886_7367977643649442/sunny/1751019621372_756706376241641600_video_VOD240p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2072197%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20Ncert%20solutions.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20Ncert%20solutions.pdf", "videoEmbedType": "hls" },
+        { "id": "gillo-mcq", "title": "MCQs", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425427/1751033286_6179233091600334/sunny/1751019549183_184850483201025760_video_VOD480p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/421425%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20MCQs.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20MCQs.pdf", "videoEmbedType": "hls" },
+        { "id": "gillo-revision", "title": "Revision", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425428/1751033465_5858389494462766/sunny/1751019566861_303626022391680830_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3447951%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf", "videoEmbedType": "hls" }
+      ]
     }
   ],
   'Sanskrit': [
