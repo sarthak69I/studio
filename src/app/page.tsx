@@ -9,7 +9,6 @@ import { CourseCard } from '@/components/course-card';
 import { Loader2, Flame, CheckCircle, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import ReCAPTCHA from "react-google-recaptcha";
 import { Turnstile } from '@marsidev/react-turnstile';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
@@ -289,7 +288,7 @@ export default function HomePage() {
     setIsVerifiedInSession(true);
   };
   
-  const isLoading = authLoading || isCheckingSession;
+  const isLoading = authLoading || isCheckingSession || isMobile === undefined;
 
   if (isLoading) {
     return (
@@ -299,7 +298,7 @@ export default function HomePage() {
     );
   }
 
-  if (!isVerifiedInSession) {
+  if (!isVerifiedInSession && !isMobile) {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-background p-4">
         <div className="w-full max-w-md rounded-lg border bg-card p-6 shadow-lg text-center animate-fadeIn-custom">
@@ -311,17 +310,10 @@ export default function HomePage() {
             This quick check helps us protect our community from automated bots.
           </p>
           <div className="flex justify-center py-4 scale-90 sm:scale-100">
-            {isMobile ? (
-              <ReCAPTCHA
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                onChange={handleVerificationSuccess}
-              />
-            ) : (
-              <Turnstile
-                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                onSuccess={handleVerificationSuccess}
-              />
-            )}
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+              onSuccess={handleVerificationSuccess}
+            />
           </div>
           <Button
             className="w-full mt-4"

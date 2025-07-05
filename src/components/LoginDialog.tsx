@@ -20,9 +20,7 @@ import { signUpWithEmail, signInWithEmail } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, AlertTriangle } from 'lucide-react';
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import ReCAPTCHA from "react-google-recaptcha";
 import { Turnstile } from '@marsidev/react-turnstile';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 
 interface LoginDialogProps {
@@ -46,8 +44,6 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [isVerified, setIsVerified] = React.useState(false);
-  const recaptchaRef = React.useRef<ReCAPTCHA>(null);
-  const isMobile = useIsMobile();
 
   const signUpForm = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -101,7 +97,6 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
       setError(null);
       setIsLoading(false);
       setIsVerified(false);
-      recaptchaRef.current?.reset();
     }
   }, [open, signUpForm, signInForm]);
 
@@ -109,26 +104,17 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
     setIsVerified(true);
   };
 
-  const handleRecaptchaExpired = () => {
+  const handleVerificationExpired = () => {
     setIsVerified(false);
   };
 
   const VerificationWidget = () => (
     <div className="flex justify-center py-2">
-      {isMobile ? (
-        <ReCAPTCHA
-          ref={recaptchaRef}
-          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-          onChange={handleVerificationSuccess}
-          onExpired={handleRecaptchaExpired}
-        />
-      ) : (
-        <Turnstile
-          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-          onSuccess={handleVerificationSuccess}
-          onExpire={handleRecaptchaExpired}
-        />
-      )}
+      <Turnstile
+        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+        onSuccess={handleVerificationSuccess}
+        onExpire={handleVerificationExpired}
+      />
     </div>
   );
 
