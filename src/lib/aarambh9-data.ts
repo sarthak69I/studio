@@ -126,7 +126,8 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L3', title: 'Force And Laws of Motion L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/92791553841016830.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419830/175086642753098929414/index_4.m3u8' },
          { id: 'L9', title: 'ACP #5', notesTitle: "", notesLink: ``},
         { id: 'L4', title: 'Force And Laws of Motion L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/31986175671682916.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460002/175128814941128929414/index_4.m3u8' },
-     
+      { id: 'L5', title: 'Force And Laws of Motion L5 Doubt Solving Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4461910/175146019587088929414/index_4.m3u8' },
+
       ]
     },
   ],
@@ -190,10 +191,13 @@ export const aarambh9CourseContent: CourseContentMap = {
       ]
     },
     {
-      name: 'Drainage',
+      name: 'Drainage',    
       lectures: [
-        { id: 'L1', title: '1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460160/175129794037967125088/index_3.m3u8' },
-    
+        { id: 'L1', title: '1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/394072420676638200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460160/175129794037967125088/index_3.m3u8' },
+    { id: 'L2', title: '2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/576581663884886100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4462028/175147111069297125088/index_3.m3u8' },
+   { id: 'L3', title: '3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4464391/175154621428207125088/index_3.m3u8' },
+      { id: 'L4', title: '4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4464578/175155712912737125088/index_3.m3u8' },
+ 
       ]
     },
   ],
@@ -256,19 +260,11 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L3', title: 'Lines and Angles L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/588945404340775200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416586/175051018944158752407/index_4.m3u8' },  
           { id: 'L4', title: 'Lines and Angles L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/768594604116359600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4426270/175102838146088752407/index_4.m3u8' },  
            { id: 'L5', title: 'Lines and Angles L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/892325459170753300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427364/175111482017818752407/index_4.m3u8' },  
-  
+            { id: 'L6', title: 'Lines and Angles L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4461096/175138425048988752407/index_4.m3u8' },  
       ]
     },
   ],
   'English': [
-    {
-      name: 'Tenses',
-      lectures: [
-        { id: 'c9-eng-grm-l1', title: 'Tenses 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/498967843075806340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376992/1746790926_2620131171601548/sunny/1746785842321_68968204127858800_video_VOD720p30.m3u8' },
-        { id: 'c9-eng-grm-l2', title: 'Tenses 2', notesTitle: "", notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376993/1746791165_4683530659641818/sunny/1746786281807_635426128592612900_video_VOD720p30.m3u8' },
-        { id: 'c9-eng-grm-l3', title: 'Tenses 3', notesTitle: "", notesLink: '#', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376994/1746791225_3697514107018118/sunny/1746786504709_85453328252238460_video_VOD720p30.m3u8' },
-      ]
-    },
     {
       name: 'The Fun They Had',
       lectures: [
@@ -291,18 +287,40 @@ export const aarambh9CourseContent: CourseContentMap = {
    ]
   },
     {
-      name: 'The Sound Of Music',
-      lectures: [
-        { id: 'c9-enl1', title: 'The Sound Of Music 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7497880sound%20of%20music%20part%201%20L1.pdf_sound%20of%20music%20part%201%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409060/1749824044_3361889869046858/sunny/1749811523668_756560226864072100_video_VOD720p30.m3u8' },
-        { id: 'c9-enl2', title: 'The Sound Of Music 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6803599sound%20of%20music%20part%201%20L2.pdf_sound%20of%20music%20part%201%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409061/1749824105_2359363804227323/sunny/1749812109420_686057178732817300_video_VOD720p30.m3u8' },
-   ]
+    name: 'The Sound Of Music Part 1',
+    lectures: [
+      { id: 'L1', title: 'Sound of Music P1 L1', notesTitle: "Sound of Music 1 Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7497880sound%20of%20music%20part%201%20L1.pdf_sound%20of%20music%20part%201%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409060/1749824044_3361889869046858/sunny/1749811523668_756560226864072100_video_VOD720p30.m3u8' },
+      { id: 'L2', title: 'Sound of Music P1 L2', notesTitle: "Sound of Music 2 Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6803599sound%20of%20music%20part%201%20L2.pdf_sound%20of%20music%20part%201%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409061/1749824105_2359363804227323/sunny/1749812109420_686057178732817300_video_VOD720p30.m3u8' }
+    ]
+  },
+  {
+    name: 'The Sound Of Music Part 2',
+    lectures: [
+      { id: 'L1', title: 'Sound of Music P2 L1', notesTitle: "Sound of Music Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1936922Sound%20of%20Music%20Part%202%20L1.pdf_Sound%20of%20Music%20Part%202%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415974/1750449905_7686784792214587/sunny/1750424933955_84986932078565730_video_VOD720p30.m3u8' },
+      { id: 'L2', title: 'Sound of Music P2 L2', notesTitle: "Sound of Music Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1830672Sound%20of%20Music%20Part%202%20L2.pdf_Sound%20of%20Music%20Part%202%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415975/1750450385_4811330079792111/sunny/1750425472276_868704596787497100_video_VOD720p30.m3u8' }
+     ]
   },
     {
       name: 'Poetic Devices',
-      lectures: [
-        { id: 'c9l1', title: 'Poetic Devices 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/276001057449717760.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355434/1745094064_6558196120167470/sunny/1745074746600_243414202639413570_video_VOD720p30.m3u8' },
-        { id: 'c9l2', title: 'Poetic Devices 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/498967843075806340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' },
-      ]
+  lectures: [
+    { id: 'L1', title: 'Poetic Devices (Part 1)', notesTitle: "Poetic Devices Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/874065629511007100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355434/1745094064_6558196120167470/sunny/1745074746600_243414202639413570_video_VOD720p30.m3u8' },
+    { id: 'L2', title: 'Poetic Devices (Part 2)', notesTitle: "Poetic Devices Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/794426136343342800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' }
+  ]
+},
+{
+  name: 'Tenses',
+  lectures: [
+    { id: 'L1', title: 'Tenses L1', notesTitle: "Tenses Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/727562919101567200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376992/1746790926_2620131171601548/sunny/1746785842321_68968204127858800_video_VOD720p30.m3u8' },
+    { id: 'L2', title: 'Tenses L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376993/1746791165_4683530659641818/sunny/1746786281807_635426128592612900_video_VOD720p30.m3u8' },
+    { id: 'L3', title: 'Tenses L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376994/1746791225_3697514107018118/sunny/1746786504709_85453328252238460_video_VOD720p30.m3u8' }
+  ]
+},
+{
+  name: 'Determiners',
+  lectures: [
+    { id: 'L1', title: 'Determiners L1', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2793710Determiners%20L1.pdf_Determiners%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396723/1748599866_2612688982288432/sunny/1748596322264_841185111044298900_video_VOD720p30.m3u8' },
+    { id: 'L2', title: 'Determiners L2', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6468807Determiners%20L2.pdf_Determiners%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396724/1748599983_8916038134337860/sunny/1748596644025_182722180318143000_video_VOD720p30.m3u8' }
+   ]
     }
   ],
   'IT': itTopicsForClass9and10,
@@ -529,7 +547,7 @@ export const aarambh9CourseContent: CourseContentMap = {
           title: "व्याख्या",
           notesTitle: "",
           videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410207/1749916446_6473700151096159/sunny/1749914254995_525048537454429000_video_VOD720p30.m3u8",
-          notesLink: ``,
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6291233_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf`,
           videoEmbedType: 'hls'
         },
         {
@@ -537,7 +555,7 @@ export const aarambh9CourseContent: CourseContentMap = {
           title: "NCERT Solution",
           notesTitle: "",
           videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410210/1749917044_8399600522927768/sunny/1749914529743_742052701283870300_video_VOD720p30.m3u8",
-          notesLink:  ``,
+          notesLink:  `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1841557%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20NCERT%20Solutions%20.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20NCERT%20Solutions%20.pdf`,
           videoEmbedType: 'hls'
         },
         {
@@ -545,7 +563,7 @@ export const aarambh9CourseContent: CourseContentMap = {
           title: "MCQs",
           notesTitle: "",
           videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410209/1749916807_3654632768008049/sunny/1749914455005_175749411760681820_video_VOD720p30.m3u8",
-          notesLink:  ``,
+          notesLink:  `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7168573_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Multiple%20Choice%20questions.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Multiple%20Choice%20questions.pdf`,
           videoEmbedType: 'hls'
         },
         {
@@ -553,7 +571,7 @@ export const aarambh9CourseContent: CourseContentMap = {
           title: "Revision",
           notesTitle: "",
           videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410208/1749916624_4139724354398230/sunny/1749914374150_547188533863034100_video_VOD720p30.m3u8",
-          notesLink:  ``,
+          notesLink:  `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5462062_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Complete%20chapter%20revision.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Complete%20chapter%20revision.pdf`,
           videoEmbedType: 'hls'
         }
       ]
@@ -561,10 +579,38 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       "name": "गिल्लू",
       "lectures": [
-        { "id": "gillo-vyakhya", "title": "व्याख्या", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425429/1751033525_4470078330612893/sunny/1751019596807_108319882873038860_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6927770%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf", "videoEmbedType": "hls" },
-        { "id": "gillo-ncert", "title": "NCERT Solution", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425430/1751033886_7367977643649442/sunny/1751019621372_756706376241641600_video_VOD240p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2072197%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20Ncert%20solutions.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20Ncert%20solutions.pdf", "videoEmbedType": "hls" },
-        { "id": "gillo-mcq", "title": "MCQs", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425427/1751033286_6179233091600334/sunny/1751019549183_184850483201025760_video_VOD480p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/421425%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20MCQs.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20MCQs.pdf", "videoEmbedType": "hls" },
-        { "id": "gillo-revision", "title": "Revision", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425428/1751033465_5858389494462766/sunny/1751019566861_303626022391680830_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3447951%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf", "videoEmbedType": "hls" }
+        {
+        id: 'L1',
+    title: 'गिल्लू व्याख्या',
+    notesTitle: 'गिल्लू व्याख्या',
+    notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6927770%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf',
+    videoEmbedType: 'hls',
+    videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425429/1751033525_4470078330612893/sunny/1751019596807_108319882873038860_video_VOD720p30.m3u8',
+  },
+  {
+    id: 'L2',
+    title: 'गिल्लू NCERT Solution',
+    notesTitle: 'गिल्लू Ncert solutions',
+    notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2072197%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20Ncert%20solutions.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20Ncert%20solutions.pdf',
+    videoEmbedType: 'hls',
+    videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425430/1751033886_7367977643649442/sunny/1751019621372_756706376241641600_video_VOD720p30.m3u8',
+  },
+  {
+    id: 'L3',
+    title: 'गिल्लू MCQs',
+    notesTitle: 'गिल्लू MCQs',
+    notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/421425%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20MCQs.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20MCQs.pdf',
+    videoEmbedType: 'hls',
+    videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425427/1751033286_6179233091600334/sunny/1751019549183_184850483201025760_video_VOD720p30.m3u8',
+  },
+  {
+    id: 'L4',
+    title: 'गिल्लू Revision',
+    notesTitle: 'गिल्लू CCR',
+    notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3447951%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf',
+    videoEmbedType: 'hls',
+    videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425428/1751033465_5858389494462766/sunny/1751019566861_303626022391680830_video_VOD720p30.m3u8', 
+          }
       ]
     }
   ],
@@ -588,14 +634,14 @@ export const aarambh9CourseContent: CourseContentMap = {
             id: "ch1-l1",
             title: "Lecture 1",
             videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392868/1748270527_4609550263536304/sunny/1748265146882_510695044544125060_video_VOD.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6303001CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20Explanation.pdf",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6303001CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20Explanation.pdf_CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20Explanation.pdf",
             videoEmbedType: 'hls'
           },
           {
             id: "ch1-l2",
             title: "Lecture 2",
             videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392869/1748270646_5088353861174354/sunny/1748265312219_828479133307742100_video_VOD.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5530169CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20NCERT.pdf",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5530169CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20NCERT.pdf_CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20NCERT.pdf",
             videoEmbedType: 'hls'
           }
         ]
@@ -607,14 +653,14 @@ export const aarambh9CourseContent: CourseContentMap = {
             id: "ch2-l1",
             title: "Lecture 1",
             videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392870/1748270705_8950762022038790/sunny/1748265442814_317656173101077060_video_VOD480p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5092125CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20Explanation.pdf",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5092125CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20Explanation.pdf_CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20Explanation.pdf",
             videoEmbedType: 'hls'
           },
           {
             id: "ch2-l2",
             title: "Lecture 2",
             videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392871/1748271185_1836230378802404/sunny/1748265603321_322332742682814600_video_VOD360p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3396941CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20NCERT.pdf",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3396941CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20NCERT.pdf_CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20NCERT.pdf",
             videoEmbedType: 'hls'
           }
         ]
@@ -626,14 +672,14 @@ export const aarambh9CourseContent: CourseContentMap = {
             id: "ch3-l1",
             title: "Lecture 1",
             videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409087/1749828127_6997760553008653/sunny/1749809491176_234362182317603900_video_VOD720p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5779980CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20Explanation.pdf",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5779980CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20Explanation.pdf_CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20Explanation.pdf",
             videoEmbedType: 'hls'
           },
           {
             id: "ch3-l2",
             title: "Lecture 2",
             videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409088/1749829268_4900035308227741/sunny/1749810507115_361302695792077100_video_VOD720p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6528958CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20NCERT.pdf",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6528958CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20NCERT.pdf_CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20NCERT.pdf",
             videoEmbedType: 'hls'
           }
         ]
@@ -645,14 +691,14 @@ export const aarambh9CourseContent: CourseContentMap = {
             id: "ch4-l1",
             title: "Lecture 1",
             videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409089/1749829325_9144056009665889/sunny/1749810866747_332716238922341760_video_VOD720p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2956430CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20Explanation.pdf",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2956430CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20Explanation.pdf_CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20Explanation.pdf",
             videoEmbedType: 'hls'
           },
           {
             id: "ch4-l2",
             title: "Lecture 2",
             videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409090/1749829625_8692173308206863/sunny/1749811763102_517085010537473700_video_VOD720p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/636024CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20NCERT.pdf",
+            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/636024CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20NCERT.pdf_CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20NCERT.pdf",
             videoEmbedType: 'hls'
           }
         ]
