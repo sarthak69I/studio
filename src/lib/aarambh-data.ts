@@ -287,8 +287,8 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L1', title: 'Quadratic Equations L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/215880257111139400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417726/175069337476008752407/index_4.m3u8' },
         { id: 'L2', title: 'Quadratic Equations L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/682683263559778800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427456/175112650121268752407/index_4.m3u8' },
         { id: 'L3', title: 'Quadratic Equations L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/615163654802694500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460159/175129788526988752407/index_4.m3u8' },
-      { id: 'L4', title: 'Quadratic Equations L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4465547/175164427990748752407/index_4.m3u8' },
-      { id: 'L5', title: 'Quadratic Equations L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+      { id: 'L4', title: 'Quadratic Equations L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/48313422477312990.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4465547/175164427990748752407/index_4.m3u8' },
+      { id: 'L5', title: 'Quadratic Equations L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/818675100049377900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474940/175173015921868752407/index_4.m3u8' },
       
       ]
     }
