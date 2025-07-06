@@ -167,7 +167,7 @@ export default function ELeakSupportPage() {
 
   React.useEffect(() => {
     setIsMounted(true);
-    document.title = 'E-Leak 24/7 Support | E-Leak';
+    document.title = 'E-Leak 24/7 Support | E-Leak Course Hub;
   }, []);
 
   React.useEffect(() => {
