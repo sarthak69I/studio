@@ -226,7 +226,7 @@ export default function ELeakSupportPage() {
         return (
           <div className="flex flex-col items-center justify-center p-8 min-h-[300px]">
              <Image
-              src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
+              src="https://i.postimg.cc/BnrFG2wy/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
               alt="E-Leak Bot"
               width={64} 
               height={64}
