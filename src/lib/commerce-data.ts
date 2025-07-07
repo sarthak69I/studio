@@ -48,7 +48,7 @@ const commerceOnlySubjects: CourseContentMap = {
     },
     { name: 'Business Services',
       lectures: [
-        { id: 'L1', title: 'Business Services L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L1', title: 'Business Services L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476031/175190305641542266688/index_4.m3u8' },
         
       ]
     },
