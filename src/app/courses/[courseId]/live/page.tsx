@@ -19,7 +19,7 @@ interface LiveClassData {
   class2Visible?: boolean;
 }
 
-const newStreamPlayerBaseUrl = 'https://e-leak-strm.web.app/?url=';
+const newStreamPlayerBaseUrl = 'https://eleaklive.vercel.app/?liveurl=';
 
 const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
@@ -370,7 +370,7 @@ export default function LiveClassesPage() {
     classTimeLabel: "8:00 PM - 9:30 PM",
     subject: courseDetails.class2Subject,
     targetHour: 20,
-    targetMinute: 10,
+    targetMinute: 1,
     durationMinutes: 90,
     liveStreamUrl: courseDetails.class2LiveStreamUrl,
   };
