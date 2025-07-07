@@ -132,7 +132,7 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'Tissue',
       lectures: [
-        { id: 'L1', title: 'Tissue L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L1', title: 'Tissue L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475881/175189250719138929414/index_4.m3u8' },
         
       ]
     },
