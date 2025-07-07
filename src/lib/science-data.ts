@@ -115,7 +115,13 @@ const scienceOnlySubjects: CourseContentMap = {
     {
       name: 'SURPRISE TEST',
       lectures: [
-        { id: 'L1', title: 'SURPRISE TEST', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419713/175085599785582764802/index_5.m3u8' },
+        { id: 'L1', title: 'SURPRISE TEST', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/885994330879346600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419713/175085599785582764802/index_5.m3u8' },
+     ]
+    },
+    {
+      name: 'Chemical Bonding & Molecular Structure',
+      lectures: [
+        { id: 'L1', title: 'Chemical Bonding & Molecular Structure | L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476039/175190453887232764802/index_5.m3u8' },
     
         
       ]
