@@ -49,7 +49,13 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
        { id: 'L7', title: 'Trigonometry Function L7', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/262448245520235170.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417628/175068321220555373082/index_4.m3u8' },
         { id: 'L8', title: 'Trigonometry Function L8', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/302991296981443100.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4418593/175076984929965373082/index_4.m3u8' },
         { id: 'L9', title: 'Trigonometry Function L9', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419835/175086677844425373082/index_4.m3u8' },
-   
+      ]
+    },
+    {
+      name: 'Linear Inequalities',
+      lectures: [
+        { id: 'L1', title: 'Linear Inequalities L1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: '' },
+       
       ]
     },
   ],
