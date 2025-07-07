@@ -126,7 +126,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L3', title: 'Force And Laws of Motion L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/92791553841016830.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419830/175086642753098929414/index_4.m3u8' },
          { id: 'L9', title: 'ACP #5', notesTitle: "", notesLink: ``},
         { id: 'L4', title: 'Force And Laws of Motion L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/31986175671682916.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460002/175128814941128929414/index_4.m3u8' },
-      { id: 'L5', title: 'Force And Laws of Motion L5 Doubt Solving Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4461910/175146019587088929414/index_4.m3u8' },
+      { id: 'L5', title: 'Force And Laws of Motion L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/568072667748074750.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4461910/175146019587088929414/index_4.m3u8' },
    ]
     },
     {
