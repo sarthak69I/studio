@@ -25,8 +25,8 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '1': { // Science
     pageTitle: "11th Science Live Classes",
     subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "No Class Physics at 8pm",
-    class2Subject: "PHYSICS",
+    class1Subject: "Chemistry",
+    class2Subject: "MATHS",
     class1LiveStreamUrl: `D`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_4.m3u8')}`,
     class1Visible: true,
@@ -35,8 +35,8 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     '2': { // Commece
       pageTitle: "11th Commerce Live Classes",
       subtitle: "Interactive learning sessions for Commerce students",
-      class1Subject: "ACCOUNTS",
-      class2Subject: "ECONOMICS",
+      class1Subject: "BUSINESS",
+      class2Subject: "MATH",
       class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/ca26d3ff165b4e07a358b55f5455cd98/index_1.m3u8')}`,
       class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/c923787f6b3b40cbbfbdc51d2d76e51e/index_1.m3u8')}`,
       class1Visible: true,
@@ -45,7 +45,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
   '3': { // Aarambh (Foundation Class 10)
     pageTitle: "10th Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Aarambh batch",
-    class1Subject: "SST till 6:40",
+    class1Subject: "SST",
     class2Subject: "Maths",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index_4.m3u8')}`,
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_1.m3u8')}`,
@@ -56,11 +56,11 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     pageTitle: "9th Aarambh Live Classes",
     subtitle: "Interactive learning sessions for Class 9 Aarambh batch",
     class1Subject: "SCIENCE",
-    class2Subject: "MATHS",
+    class2Subject: "SST",
     class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/HrIGjIVBUN8?si=kscQoIRdWBEcwRHP')}`, 
     class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index.m3u8')}`, 
     class1Visible: true, 
-    class2Visible: false,
+    class2Visible: true,
   }
 };
 
@@ -317,12 +317,12 @@ export default function LiveClassesPage() {
         const now = new Date();
         const targetHour1 = 17;
         const targetMinute1 = 1;
-        const durationMinutes1 = 300;
+        const durationMinutes1 = 90;
 
         let classStartTime1 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour1, targetMinute1, 0);
 
         const endOfDayReferenceHour = 20;
-        const endOfDayReferenceMinute = 10;
+        const endOfDayReferenceMinute = 1;
         const endOfDayReferenceDuration = 90;
         let lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), endOfDayReferenceHour, endOfDayReferenceMinute, 0);
         lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + endOfDayReferenceDuration);
@@ -357,17 +357,17 @@ export default function LiveClassesPage() {
 
   const class1Props = {
     cardId: "class1",
-    classTimeLabel: "5:00 PM - 10:00 PM",
+    classTimeLabel: "5:00 PM - 6:30 PM",
     subject: courseDetails.class1Subject,
     targetHour: 17,
     targetMinute: 1,
-    durationMinutes: 300,
+    durationMinutes: 90,
     liveStreamUrl: courseDetails.class1LiveStreamUrl,
   };
 
   const class2Props = {
     cardId: "class2",
-    classTimeLabel: "8:10 PM - 9:40 PM",
+    classTimeLabel: "8:00 PM - 9:30 PM",
     subject: courseDetails.class2Subject,
     targetHour: 20,
     targetMinute: 10,
