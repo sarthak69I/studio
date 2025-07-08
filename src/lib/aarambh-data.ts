@@ -297,6 +297,7 @@ export const aarambhCourseContent: CourseContentMap = {
       { id: 'L4', title: 'Quadratic Equations L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/48313422477312990.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4465547/175164427990748752407/index_4.m3u8' },
       { id: 'L5', title: 'Quadratic Equations L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/818675100049377900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474940/175173015921868752407/index_4.m3u8' },
       { id: 'L6', title: 'Quadratic Equations L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/328695692149355500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476029/175190275984418752407/index_4.m3u8' },
+       { id: 'L7', title: 'Quadratic Equations L7', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476964/175198952916258752407/index_4.m3u8' },
       
       ]
     }
