@@ -125,6 +125,12 @@ const commerceOnlySubjects: CourseContentMap = {
         { id: 'L1', title: 'TRIAL BALANCE L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/366514576958099650.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427365/175111488763818680586/index_4.m3u8' },
         { id: 'L5', title: 'LEDGER & TRIAL BALANCE L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/175670171355325800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4465431/175163418687358680586/index_4.m3u8' },
         { id: 'L2', title: 'LEDGER & TRIAL BALANCE L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/407908909749858500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4469469/175171857732758680586/index_4.m3u8' },
+        ]
+    },
+    {
+      name: ' SOURCE OF DOCUMENTS',
+      lectures: [
+        { id: 'L1', title: ' SOURCE OF DOCUMENTS L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
          
       ]
     }
