@@ -55,6 +55,7 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
       name: 'Linear Inequalities',
       lectures: [
         { id: 'L1', title: 'Linear Inequalities L1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475888/175189284948978752407/index_4.m3u8' },
+       { id: 'L2', title: 'Linear Inequalities L2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476784/175197866196018752407/index_4.m3u8' },
        
       ]
     },
