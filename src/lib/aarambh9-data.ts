@@ -202,14 +202,15 @@ export const aarambh9CourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: ' Drainage 1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/394072420676638200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460160/175129794037967125088/index_3.m3u8' },
     { id: 'L2', title: 'Drainage 2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/576581663884886100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4462028/175147111069297125088/index_3.m3u8' },
-   { id: 'L3', title: 'Drainage 3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4464391/175154621428207125088/index_3.m3u8' },
-      { id: 'L4', title: 'Drainage 4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4464578/175155712912737125088/index_3.m3u8' },
+   { id: 'L3', title: 'Drainage 3', notesTitle: "L3 & 4 Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/814461679296035300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4464391/175154621428207125088/index_3.m3u8' },
+      { id: 'L4', title: 'Drainage 4', notesTitle: "3 & 4 ", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/814461679296035300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4464578/175155712912737125088/index_3.m3u8' },
  ]
     },
     {
       name: 'Socialism in Europe and the Russian Revolution',    
       lectures: [
         { id: 'L1', title: ' Socialism in Europe and the Russian Revolution 1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476028/175190236171387125088/index_4.m3u8' },
+        { id: 'L2', title: ' Socialism in Europe and the Russian Revolution 2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476962/175198896239247125088/175198896239247125088_7125088.m3u8' },
         
       ]
     },
