@@ -143,9 +143,9 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Federalism',
       lectures: [
-        { id: 'L1', title: 'Federalism L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475867/175189222398137125088/index_4.m3u8' },
-         { id: 'L2', title: 'Federalism L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476771/175197811164887125088/index_4.m3u8' },
-         { id: 'L3', title: 'Federalism L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L1', title: 'Federalism L1', notesTitle: "L1 & 2", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/325013306654332300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475867/175189222398137125088/index_4.m3u8' },
+         { id: 'L2', title: 'Federalism L2', notesTitle: "L1 & 2", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/325013306654332300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476771/175197811164887125088/index_4.m3u8' },
+         { id: 'L3', title: 'Federalism L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/836602028786916700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4478170/175207529421867125088/index_4.m3u8' },
          
       ]
     }
