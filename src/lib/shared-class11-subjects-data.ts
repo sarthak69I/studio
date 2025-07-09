@@ -54,8 +54,9 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
     {
       name: 'Linear Inequalities',
       lectures: [
-        { id: 'L1', title: 'Linear Inequalities L1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475888/175189284948978752407/index_4.m3u8' },
-       { id: 'L2', title: 'Linear Inequalities L2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476784/175197866196018752407/index_4.m3u8' },
+        { id: 'L1', title: 'Linear Inequalities L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/609708988304403200.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475888/175189284948978752407/index_4.m3u8' },
+       { id: 'L2', title: 'Linear Inequalities L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/756843877355801600.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476784/175197866196018752407/index_4.m3u8' },
+      { id: 'L3', title: 'Linear Inequalities L3', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: '' },
        
       ]
     },
