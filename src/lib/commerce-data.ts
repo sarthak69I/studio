@@ -188,50 +188,17 @@ const commerceOnlySubjects: CourseContentMap = {
      ],
      },
      {
-  name: 'Elasticity of Demand',
-  lectures: [
-    { 
-      id: 'L1',
-      title: 'Elasticity of demand L1',
-      notesTitle: 'L1 Notes',
-      notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/211318312304937120.pdf',
-      videoEmbedType: 'hls',
-      videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416686/175052006853032809295/index_4.m3u8'
-    },
-    {
-      id: 'L2',
-      title: 'Elasticity of demand L2',
-      notesTitle: 'L2 Notes',
-      notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/224822580363501700.pdf',
-      videoEmbedType: 'hls',
-      videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420954/175095378852852809295/index_4.m3u8'
-    },
-    {
-      id: 'L3',
-      title: 'Elasticity of demand L3',
-      notesTitle: 'L3 Notes',
-      notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/830688010197697800.pdf',
-      videoEmbedType: 'hls',
-      videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4426820/175104030891962809295/index_4.m3u8'
-    },
-    {
-      id: 'L4',
-      title: 'Elasticity of demand L4',
-      notesTitle: 'L4 Notes',
-      notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/212447852305448420.pdf',
-      videoEmbedType: 'hls',
-      videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427459/175112726511642809295/index_4.m3u8'
-    },
-    {
-      id: 'L5',
-      title: 'Elasticity of demand L5',
-      notesTitle: 'L5 Notes',
-      notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/158841009403238200.pdf',
-      videoEmbedType: 'hls',
-      videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474947/175173189733942809295/index_4.m3u8'
+      name: 'Elasticity of Demand ',
+      lectures: [
+        { id: 'L1', title: 'Elasticity of demand L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/211318312304937120.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416686/175052006853032809295/index_4.m3u8' },
+       { id: 'L2', title: 'Elasticity of demand L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/224822580363501700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420954/175095378852852809295/index_4.m3u8' },
+       { id: 'L3', title: 'Elasticity of demand L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/830688010197697800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4426820/175104030891962809295/index_4.m3u8' },
+       { id: 'L4', title: 'Elasticity of demand L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/212447852305448420.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427459/175112726511642809295/index_4.m3u8' },
+       { id: 'L5', title: 'Elasticity of demand L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/158841009403238200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474947/175173189733942809295/index_4.m3u8' },
+       
+      ]
     }
-  ]
-          }
+  ],
   'Chapter Module': [
     {
       name: "Complex Numbers + Linear Inequalities",
@@ -243,7 +210,6 @@ const commerceOnlySubjects: CourseContentMap = {
     }
   ],
 };
-
 // Combine commerce-only subjects with shared subjects
 export const commerceCourseContent: CourseContentMap = {
   ...commerceOnlySubjects,
