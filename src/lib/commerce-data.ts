@@ -131,6 +131,7 @@ const commerceOnlySubjects: CourseContentMap = {
       name: ' SOURCE OF DOCUMENTS',
       lectures: [
         { id: 'L1', title: ' SOURCE OF DOCUMENTS L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476978/175199074949518680586/index_4.m3u8' },
+         { id: 'L2', title: ' SOURCE OF DOCUMENTS L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
          
       ]
     }
