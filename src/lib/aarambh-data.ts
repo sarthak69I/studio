@@ -145,6 +145,7 @@ export const aarambhCourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Federalism L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475867/175189222398137125088/index_4.m3u8' },
          { id: 'L2', title: 'Federalism L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476771/175197811164887125088/index_4.m3u8' },
+         { id: 'L3', title: 'Federalism L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
          
       ]
     }
