@@ -185,6 +185,17 @@ const commerceOnlySubjects: CourseContentMap = {
         { id: 'L5', title: 'Demand L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/724228039895826600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4410220/174991724197498165220/index_4.m3u8' },
         { id: 'L6', title: 'Demand L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/158506565745206430.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414999/175035000858392809295/index_4.m3u8' },
         { id: 'L7', title: 'Demand L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/530180446166742000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4416066/175043661096642809295/index_4.m3u8' },
+     ],
+     },
+     {
+      name: 'Elasticity of Demand ',
+      lectures: [
+        { id: 'L1', title: 'Elasticity of demand L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+       { id: 'L2', title: 'Elasticity of demand L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+       { id: 'L3', title: 'Elasticity of demand L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+       { id: 'L4', title: 'Elasticity of demand L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+       { id: 'L5', title: 'Elasticity of demand L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+       
       ]
     }
   ],
