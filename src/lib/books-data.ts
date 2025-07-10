@@ -102,7 +102,7 @@ export const booksData: BookCategory[] = [
       {
         title: 'Accountancy E-Book Volume 1',
         author: 'PW',
-        download: '',
+        download: 'https://drive.google.com/file/d/1UbOecJsxB9-QZYG-oWmNAucOXSaO7GJR/view?usp=drivesdk',
       },
       {
         title: 'Concept of Physics (Volume 1)',
@@ -112,7 +112,7 @@ export const booksData: BookCategory[] = [
       {
         title: 'Accountancy E-Book Volume 2',
         author: 'PW',
-        download: '',
+        download: 'https://drive.google.com/file/d/1UeKPrPV5NRSJWfuhkomxwFoqZ5sOMrwN/view?usp=drivesdk',
       },
       {
         title: 'ALLEN JEE Chemistry',
@@ -122,12 +122,12 @@ export const booksData: BookCategory[] = [
       {
         title: 'Micro Economics E-Book',
         author: 'PW',
-        download: '',
+        download: 'https://drive.google.com/file/d/1UgVf21-o5OIMApCeLOmGl9NMtRyRDZcw/view?usp=drivesdk',
         },
       {
         title: 'Statitics E-Book',
         author: 'PW',
-        download: '',
+        download: 'https://drive.google.com/file/d/1UgxhjIJP8kprREDMX2W3Z9KXaF78v9SR/view?usp=drivesdk',
         },
       {
         title: 'Business Studies E-Book',
