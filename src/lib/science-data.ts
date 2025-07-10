@@ -59,7 +59,7 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L3', title: 'Laws of Motion L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/509369039736402940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427460/175112744711955910848/index_4.m3u8' },
          { id: 'L4', title: 'Laws of Motion L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/331079158133924700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4465552/175164514724655910848/index_4.m3u8' },
         { id: 'L5', title: 'Laws of Motion L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/620542194193586600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474944/175173108288215910848/index_4.m3u8' },
-        { id: 'L6', title: 'Laws of Motion L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L6', title: 'Laws of Motion L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479252/175216435268385910848/index_4.m3u8' },
         
       ]
     },
@@ -186,7 +186,7 @@ const scienceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: ' Morphology of Flowering Plants L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/181106667230925920.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475983/175189854812043740487/index_4.m3u8' },
         { id: 'L2', title: ' Morphology of Flowering Plants L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/893525211553664400.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476910/175198510422723740487/index_4.m3u8' },
-        { id: 'L3', title: ' Morphology of Flowering Plants L3', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479080/175215203063243740487/index_4.m3u8' },
+        { id: 'L3', title: ' Morphology of Flowering Plants L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/550057955753048450.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479080/175215203063243740487/index_4.m3u8' },
         
       ]
     },
