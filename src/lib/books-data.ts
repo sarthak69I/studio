@@ -132,7 +132,7 @@ export const booksData: BookCategory[] = [
       {
         title: 'Business Studies E-Book',
         author: 'PW',
-        download: '',
+        download: 'https://drive.google.com/file/d/1UwiPFXS85kGRoLuB788v7oYKU2NlrDgz/view?usp=drivesdk',
       },
     ],
   },
