@@ -146,6 +146,7 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L1', title: 'Federalism L1', notesTitle: "L1 & 2", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/325013306654332300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475867/175189222398137125088/index_4.m3u8' },
          { id: 'L2', title: 'Federalism L2', notesTitle: "L1 & 2", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/325013306654332300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476771/175197811164887125088/index_4.m3u8' },
          { id: 'L3', title: 'Federalism L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/836602028786916700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4478170/175207529421867125088/index_4.m3u8' },
+         { id: 'L4', title: 'Federalism L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
          
       ]
     }
@@ -211,7 +212,13 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'Human eye L3', title: 'Human eye L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/589130738857175200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427347/175111381865158929414/index_4.m3u8' },
       { id: 'Human eye L4', title: 'Human eye L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/390163569437422900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4465407/175163267359088929414/index_4.m3u8' },
            { id: 'Human eye L5', title: 'Human eye L5 Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477928/175206364875938929414/index_4.m3u8' },
-     
+     ]
+    },
+    {
+      name: 'Control & Coordination',
+      lectures: [
+        { id: 'Control & Coordination L1', title: 'Control & Coordination L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479051/175215139612528929414/index_4.m3u8' },
+        
      ]       
     }
   ],
