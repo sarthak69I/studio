@@ -122,8 +122,8 @@ const scienceOnlySubjects: CourseContentMap = {
       name: 'Chemical Bonding & Molecular Structure',
       lectures: [
         { id: 'L1', title: 'Chemical Bonding & Molecular Structure | L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/361721728525622140.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476039/175190453887232764802/index_5.m3u8' },
-         { id: 'L2', title: 'Chemical Bonding & Molecular Structure | L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476975/175199057911342764802/index_5.m3u8' },
-        { id: 'L3', title: 'Chemical Bonding & Molecular Structure | L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477962/175206504379362764802/index_5.m3u8' },
+         { id: 'L2', title: 'Chemical Bonding & Molecular Structure | L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/699955326632952400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476975/175199057911342764802/index_5.m3u8' },
+        { id: 'L3', title: 'Chemical Bonding & Molecular Structure | L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/513579986917203500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477962/175206504379362764802/index_5.m3u8' },
     
         
       ]
@@ -185,6 +185,7 @@ const scienceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: ' Morphology of Flowering Plants L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/181106667230925920.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475983/175189854812043740487/index_4.m3u8' },
         { id: 'L2', title: ' Morphology of Flowering Plants L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/893525211553664400.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476910/175198510422723740487/index_4.m3u8' },
+        { id: 'L3', title: ' Morphology of Flowering Plants L3', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479080/175215203063243740487/index_4.m3u8' },
         
       ]
     },
