@@ -98,16 +98,41 @@ export const booksData: BookCategory[] = [
         title: 'R.S. Aggarwal Class 11',
         author: 'R.S. Aggarwal',
         download: 'https://drive.google.com/file/d/1ju7JapjdwbgsArHWIcyydFdZ4Yqa6eKc/view',
+     },
+      {
+        title: 'Accountancy E-Book Volume 1',
+        author: 'PW',
+        download: '',
       },
       {
         title: 'Concept of Physics (Volume 1)',
         author: 'H.C. Verma',
         download: 'https://drive.google.com/file/d/1UhklXKi-I-6KBpx3SlNmxpYxKTCFTaVQ/view',
+     },
+      {
+        title: 'Accountancy E-Book Volume 2',
+        author: 'PW',
+        download: '',
       },
       {
         title: 'ALLEN JEE Chemistry',
         author: 'ALLEN',
         download: 'https://drive.google.com/file/d/1cyjuX92lm6q8L3Ceks8Air9Ho8LJq0sg/view',
+      },
+      {
+        title: 'Micro Economics E-Book',
+        author: 'PW',
+        download: '',
+        },
+      {
+        title: 'Statitics E-Book',
+        author: 'PW',
+        download: '',
+        },
+      {
+        title: 'Business Studies E-Book',
+        author: 'PW',
+        download: '',
       },
     ],
   },
