@@ -37,6 +37,7 @@ import SubscriptionPrompt from './SubscriptionPrompt';
 import Footer from './Footer';
 import ContinueWatchingCard from './ContinueWatchingCard';
 import AppDownloadSection from './AppDownloadSection';
+import FloatingNav from './FloatingNav';
 
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
@@ -298,11 +299,13 @@ function AppContent({ children }: { children: ReactNode }) {
   }
 
   const NotificationBellIconToUse = unreadNotificationCount > 0 ? BellRing : Bell;
-  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener', '/books'];
+  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer'];
   const showHeader = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
   
-  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener', '/books'];
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
+
+  const showFloatingNav = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
 
   return (
     <>
@@ -482,6 +485,12 @@ function AppContent({ children }: { children: ReactNode }) {
                       URL Shortener
                     </Link>
                   </Button>
+                  <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
+                    <Link href="/my-downloads" onClick={() => setIsMenuSheetOpen(false)}>
+                      <Download className="mr-3 h-5 w-5 text-primary" />
+                      My Downloads
+                    </Link>
+                  </Button>
                 </div>
                  <SheetClose asChild>
                     <Button variant="outline" className="w-full m-4 mt-0">Close Menu</Button>
@@ -492,7 +501,7 @@ function AppContent({ children }: { children: ReactNode }) {
         </header>
       )}
 
-      <main className={showHeader ? 'pt-20' : ''}>
+      <main className={showHeader ? 'pt-20 pb-20' : 'pb-20'}>
         {children}
       </main>
 
@@ -513,6 +522,8 @@ function AppContent({ children }: { children: ReactNode }) {
           <AppDownloadSection />
         </>
       )}
+      
+      {showFloatingNav && <FloatingNav />}
 
       <Toaster />
       
@@ -524,9 +535,7 @@ function AppContent({ children }: { children: ReactNode }) {
           <FaqDialogContent />
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>
-              <Button type="button" variant="outline">
-                Close
-              </Button>
+              <Button type="button" variant="outline">Close</Button>
             </DialogClose>
           </DialogFooter>
         </DialogContent>

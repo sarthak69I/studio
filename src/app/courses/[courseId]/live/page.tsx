@@ -7,62 +7,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, Bot, PlayCircle } from 'lucide-react';
 import { getParamAsString } from '@/lib/utils';
-
-interface LiveClassData {
-  pageTitle: string;
-  subtitle: string;
-  class1Subject: string;
-  class2Subject: string;
-  class1LiveStreamUrl?: string;
-  class2LiveStreamUrl?: string;
-  class1Visible?: boolean;
-  class2Visible?: boolean;
-}
-
-const newStreamPlayerBaseUrl = 'https://e-leak-strm.web.app/?url=';
-
-const courseLiveDetails: Record<string, LiveClassData> = {
-  '1': { // Science
-    pageTitle: "11th Science Live Classes",
-    subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "MATHEMATICS",
-    class2Subject: "PHYSICS",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/Z4skt0HhfKE?si=PPf2cRBzo8z6mSSC')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/61EwLVK3r6Q?si=PkuMmx6BdthY_yhN')}`,
-    class1Visible: true,
-    class2Visible: false,
-  },
-    '2': { // Commece
-      pageTitle: "11th Commerce Live Classes",
-      subtitle: "Interactive learning sessions for Commerce students",
-      class1Subject: "MATHEMATICS",
-      class2Subject: "BUSINESS STUDIES",
-      class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/Z4skt0HhfKE?si=PPf2cRBzo8z6mSSC')}`,
-      class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/4882f3a454494165b396de72e412d7aa/index_4.m3u8')}`,
-      class1Visible: true,
-      class2Visible: false,
-  },
-  '3': { // Aarambh (Foundation Class 10)
-    pageTitle: "10th Aarambh Live Classes",
-    subtitle: "Interactive learning sessions for Aarambh batch",
-    class1Subject: "SOCIAL SCIENCE",
-    class2Subject: "MATHEMATICS",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://www.youtube.com/live/aRVZEq4KuxQ?si=LzIjENjEAr9Nrl_Q')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8')}`,
-    class1Visible: true,
-    class2Visible: false,
-  },
-  '4': { // Aarambh (Foundation Class 9)
-    pageTitle: "9th Aarambh Live Classes",
-    subtitle: "Interactive learning sessions for Class 9 Aarambh batch",
-    class1Subject: "SCIENCE till 6:40",
-    class2Subject: "SST",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_4.m3u8')}`, 
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index_4.m3u8')}`, 
-    class1Visible: true,
-    class2Visible: true,
-  }
-};
+import { courseLiveDetails } from '@/lib/live-class-data';
 
 interface CountdownState {
   hours: string;
@@ -83,25 +28,16 @@ interface LiveClassCardProps {
   cardId: string;
   classTimeLabel: string;
   subject: string;
-  targetHour: number;
-  targetMinute: number;
-  durationMinutes: number;
   liveStreamUrl?: string;
+  getTimeframes: (now: Date) => { start: Date, end: Date };
 }
-
-const VACATION_START_MONTH = 5; // June (0-indexed for Date constructor)
-const VACATION_START_DAY = 1;
-const VACATION_DURATION_HOURS = 168;
-
 
 const LiveClassCard: React.FC<LiveClassCardProps> = ({
   cardId,
   classTimeLabel,
   subject,
-  targetHour,
-  targetMinute,
-  durationMinutes,
   liveStreamUrl,
+  getTimeframes
 }) => {
   const [countdown, setCountdown] = React.useState<CountdownState>({ hours: '00', minutes: '00', seconds: '00' });
   const [classStatus, setClassStatus] = React.useState<ClassStatusState>({
@@ -120,41 +56,19 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
 
   const handleJoinClick = React.useCallback(() => {
     if ((classStatus.status === 'live' || classStatus.status === 'recording_available') && liveStreamUrl) {
-        window.location.href = liveStreamUrl;
+        window.open(liveStreamUrl, '_blank', 'noopener,noreferrer');
     }
   }, [classStatus.status, liveStreamUrl]);
 
   React.useEffect(() => {
     if (!isMounted) return;
-
-    const calculateTimesAndVacation = () => {
-      const now = new Date();
-      const currentYear = now.getFullYear();
-      const vacationStartDate = new Date(currentYear, VACATION_START_MONTH, VACATION_START_DAY, 0, 0, 0);
-      const vacationEndDate = new Date(vacationStartDate.getTime() + VACATION_DURATION_HOURS * 60 * 60 * 1000);
-      const isVacationPeriod = now >= vacationStartDate && now < vacationEndDate;
-
-      let classStartTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour, targetMinute, 0);
-
-      const endOfDayReferenceHour = 20;
-      const endOfDayReferenceMinute = 10;
-      const endOfDayReferenceDuration = 90;
-      let lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), endOfDayReferenceHour, endOfDayReferenceMinute, 0);
-      lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + endOfDayReferenceDuration);
-
-      if (now > lastClassEndTimeToday && targetHour < now.getHours()) {
-         classStartTime.setDate(classStartTime.getDate() + 1);
-      }
-
-      const classEndTime = new Date(classStartTime.getTime() + durationMinutes * 60000);
-      return { now, classStartTime, classEndTime, isVacationPeriod };
-    };
-
+    
     const updateClassState = () => {
-      const { now, classStartTime, classEndTime, isVacationPeriod } = calculateTimesAndVacation();
-      const diff = classStartTime.getTime() - now.getTime();
+      const now = new Date();
+      const { start, end } = getTimeframes(now);
+      const diff = start.getTime() - now.getTime();
 
-      if (now < classStartTime) {
+      if (now < start) {
         const h = Math.floor(diff / (1000 * 60 * 60));
         const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((diff % (1000 * 60)) / 1000);
@@ -171,41 +85,21 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           cardBorderClass: 'border-accent',
           badgeClass: 'bg-accent/20 text-accent',
         });
-      } else if (now >= classStartTime && now < classEndTime) {
+      } else if (now >= start && now < end) {
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
-        if (isVacationPeriod && liveStreamUrl) {
-            setClassStatus({
-                status: 'recording_available',
-                badgeText: 'Recording Available',
-                buttonText: 'Watch Recording',
-                buttonDisabled: false,
-                cardBorderClass: 'border-primary',
-                badgeClass: 'bg-primary/20 text-primary',
-            });
-        } else if (!isVacationPeriod && liveStreamUrl) {
-            setClassStatus({
-                status: 'live',
-                badgeText: 'Live Now',
-                buttonText: 'JOIN LIVE NOW',
-                buttonDisabled: false,
-                cardBorderClass: 'border-destructive animate-live-pulse',
-                badgeClass: 'bg-destructive/20 text-destructive',
-            });
-        } else { 
-            setClassStatus({
-                status: 'completed',
-                badgeText: 'No Session Scheduled',
-                buttonText: 'Unavailable',
-                buttonDisabled: true,
-                cardBorderClass: 'border-muted-foreground/50',
-                badgeClass: 'bg-muted/30 text-muted-foreground',
-            });
-        }
+        setClassStatus({
+            status: 'live',
+            badgeText: 'Live Now',
+            buttonText: 'JOIN LIVE NOW',
+            buttonDisabled: !liveStreamUrl,
+            cardBorderClass: 'border-destructive animate-live-pulse',
+            badgeClass: 'bg-destructive/20 text-destructive',
+        });
       } else { // Class time has passed
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
         setClassStatus({
           status: 'completed',
-          badgeText: isVacationPeriod && liveStreamUrl ? 'Recording Ended' : 'Completed',
+          badgeText: 'Completed',
           buttonText: 'Class Ended',
           buttonDisabled: true,
           cardBorderClass: 'border-green-500',
@@ -218,8 +112,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
     const intervalId = setInterval(updateClassState, 1000);
 
     return () => clearInterval(intervalId);
-  }, [isMounted, targetHour, targetMinute, durationMinutes, liveStreamUrl]);
-
+  }, [isMounted, getTimeframes, liveStreamUrl]);
 
   if (!isMounted) {
     return <div className="bg-card rounded-2xl p-6 shadow-lg relative overflow-hidden min-h-[200px] flex items-center justify-center"><p>Loading class info...</p></div>;
@@ -281,72 +174,24 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
   );
 };
 
-export default function LiveClassesPage() {
+export default function CourseLivePage() {
   const router = useRouter();
   const params = useParams();
   const courseId = getParamAsString(params.courseId);
   const [isMounted, setIsMounted] = React.useState(false);
-  const [firstClassStatus, setFirstClassStatus] = React.useState<'upcoming' | 'live' | 'completed' | 'recording_available'>('upcoming');
-
-
+  
   React.useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  const courseDetails = courseLiveDetails[courseId] || {
-    pageTitle: "Live Classes",
-    subtitle: "Interactive learning sessions",
-    class1Subject: "Subject 1",
-    class2Subject: "Subject 2",
-    class1LiveStreamUrl: undefined,
-    class2LiveStreamUrl: undefined,
-    class1Visible: true,
-    class2Visible: true,
-  };
+  
+  const courseDetails = courseLiveDetails[courseId] || null;
 
   React.useEffect(() => {
-    if(isMounted) {
-      document.title = `${courseDetails.pageTitle} | E Leak Course Hub`;
+    if(isMounted && courseDetails) {
+      document.title = `${courseDetails.pageTitle} Live | E Leak Course Hub`;
     }
-  }, [isMounted, courseDetails.pageTitle]);
-
-  React.useEffect(() => {
-    if (!isMounted) return;
-
-    const calculateFirstClassOriginalTimingStatus = () => {
-        const now = new Date();
-        const targetHour1 = 17;
-        const targetMinute1 = 1;
-        const durationMinutes1 = 300;
-
-        let classStartTime1 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour1, targetMinute1, 0);
-
-        const endOfDayReferenceHour = 20;
-        const endOfDayReferenceMinute = 10;
-        const endOfDayReferenceDuration = 90;
-        let lastClassEndTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), endOfDayReferenceHour, endOfDayReferenceMinute, 0);
-        lastClassEndTimeToday.setMinutes(lastClassEndTimeToday.getMinutes() + endOfDayReferenceDuration);
-
-        if (now > lastClassEndTimeToday && targetHour1 < now.getHours()) {
-            classStartTime1.setDate(classStartTime1.getDate() + 1);
-        }
-        const classEndTime1 = new Date(classStartTime1.getTime() + durationMinutes1 * 60000);
-
-        if (now < classStartTime1) {
-            setFirstClassStatus('upcoming');
-        } else if (now >= classStartTime1 && now < classEndTime1) {
-            setFirstClassStatus('live');
-        } else {
-            setFirstClassStatus('completed');
-        }
-    };
-
-    calculateFirstClassOriginalTimingStatus();
-    const intervalId = setInterval(calculateFirstClassOriginalTimingStatus, 60000);
-    return () => clearInterval(intervalId);
-  }, [isMounted]);
-
-
+  }, [isMounted, courseDetails]);
+  
   if (!isMounted) {
     return (
       <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
@@ -355,24 +200,30 @@ export default function LiveClassesPage() {
     );
   }
 
+  if (!courseDetails) {
+    return (
+        <div className="flex flex-col min-h-screen bg-background text-foreground justify-center items-center p-4 md:p-6">
+            <h1 className="text-2xl font-bold text-destructive">Course Not Found</h1>
+            <p className="text-muted-foreground mt-2">Live class details for this course could not be found.</p>
+            <Button onClick={() => router.back()} className="mt-6">Go Back</Button>
+        </div>
+    );
+  }
+  
   const class1Props = {
     cardId: "class1",
     classTimeLabel: "5:00 PM - 10:00 PM",
     subject: courseDetails.class1Subject,
-    targetHour: 17,
-    targetMinute: 1,
-    durationMinutes: 300,
     liveStreamUrl: courseDetails.class1LiveStreamUrl,
+    getTimeframes: courseDetails.class1Times,
   };
 
   const class2Props = {
     cardId: "class2",
     classTimeLabel: "8:10 PM - 9:40 PM",
     subject: courseDetails.class2Subject,
-    targetHour: 20,
-    targetMinute: 10,
-    durationMinutes: 90,
     liveStreamUrl: courseDetails.class2LiveStreamUrl,
+    getTimeframes: courseDetails.class2Times,
   };
   
   const showClass1 = courseDetails.class1Visible !== false && !!courseDetails.class1LiveStreamUrl;
@@ -398,22 +249,13 @@ export default function LiveClassesPage() {
           <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wider logo-gradient-text animate-gradient mb-2">
             {courseDetails.pageTitle}
           </h1>
-          <p className="text-muted-foreground opacity-80 text-lg">{courseDetails.subtitle}</p>
+          <p className="text-muted-foreground opacity-80 text-lg">Interactive learning sessions</p>
         </header>
 
         {showClass1 || showClass2 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {firstClassStatus === 'completed' ? (
-              <>
-                {showClass2 && <LiveClassCard {...class2Props} />}
-                {showClass1 && <LiveClassCard {...class1Props} />}
-              </>
-            ) : (
-              <>
-                {showClass1 && <LiveClassCard {...class1Props} />}
-                {showClass2 && <LiveClassCard {...class2Props} />}
-              </>
-            )}
+            {showClass1 && <LiveClassCard {...class1Props} />}
+            {showClass2 && <LiveClassCard {...class2Props} />}
           </div>
         ) : (
           <div className="text-center text-xl text-muted-foreground mt-10">
