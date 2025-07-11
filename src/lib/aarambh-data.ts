@@ -218,7 +218,7 @@ export const aarambhCourseContent: CourseContentMap = {
       name: 'Control & Coordination',
       lectures: [
         { id: 'Control & Coordination L1', title: 'Control & Coordination L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479051/175215139612528929414/index_4.m3u8' },
-        { id: 'Control & Coordination L2', title: 'Control & Coordination L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'Control & Coordination L2', title: 'Control & Coordination L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480085/175223815228888929414/index_4.m3u8' },
         
      ]       
     }
