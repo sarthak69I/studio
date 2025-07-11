@@ -9,13 +9,14 @@ import CookieConsentBanner from './cookie-consent-banner';
 import MaintenancePage from './maintenance-page';
 import LoginPromptDialog from './LoginPromptDialog';
 import LoginDialog from '@/components/LoginDialog';
+import ReportBugDialog from '@/components/ReportBugDialog';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send, Trophy, Link2, Book } from 'lucide-react';
+import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send, Trophy, Link2, Book, Ticket, Bug, UserCheck } from 'lucide-react';
 import { db, logout } from '@/lib/firebase';
 import { collection, query, orderBy, limit, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
 import {
@@ -49,6 +50,7 @@ const NOTIFICATIONS_POLL_INTERVAL_MS = 30000;
 const ANNOUNCEMENTS_FETCH_LIMIT = 20;
 const LOGIN_PROMPT_DELAY_DAYS = 2;
 const SUBSCRIPTION_PROMPT_DELAY_HOURS = 10;
+const ADMIN_UID = 'YOUR_FIREBASE_ADMIN_UID_HERE';
 
 
 function AppContent({ children }: { children: ReactNode }) {
@@ -71,6 +73,7 @@ function AppContent({ children }: { children: ReactNode }) {
 
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
+  const [isReportBugDialogOpen, setIsReportBugDialogOpen] = useState(false);
   const [isMenuSheetOpen, setIsMenuSheetOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
   const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = React.useState(false);
@@ -295,15 +298,29 @@ function AppContent({ children }: { children: ReactNode }) {
     localStorage.setItem(SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY, Date.now().toString());
   };
 
+  const handleReportBugClick = () => {
+    if (user) {
+        setIsReportBugDialogOpen(true);
+    } else {
+        setIsLoginDialogOpen(true);
+        toast({
+            title: "Login Required",
+            description: "Please log in to report a bug.",
+            variant: "destructive"
+        })
+    }
+    setIsMenuSheetOpen(false);
+  }
+
   if (showMaintenance && maintenanceEndTime) {
     return <MaintenancePage maintenanceEndTime={maintenanceEndTime} />;
   }
 
   const NotificationBellIconToUse = unreadNotificationCount > 0 ? BellRing : Bell;
-  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer'];
+  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports'];
   const showHeader = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
   
-  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer'];
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
 
   const showFloatingNav = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
@@ -408,7 +425,6 @@ function AppContent({ children }: { children: ReactNode }) {
                             <LayoutDashboard className="mr-2 h-4 w-4" />
                             <span>Dashboard</span>
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator />
                         <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setIsLogoutConfirmOpen(true); }}>
                             <LogOut className="mr-2 h-4 w-4" />
                             <span>Log out</span>
@@ -453,6 +469,27 @@ function AppContent({ children }: { children: ReactNode }) {
                     {currentTheme === 'light' ? <Moon className="mr-3 h-5 w-5 text-primary" /> : <Sun className="mr-3 h-5 w-5 text-primary" />}
                     {currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
                   </Button>
+                  
+                  <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" onClick={handleReportBugClick}>
+                    <Bug className="mr-3 h-5 w-5 text-primary" />
+                    Report a Bug
+                  </Button>
+                   {user && (
+                      <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
+                        <Link href="/reports" onClick={() => setIsMenuSheetOpen(false)}>
+                          <Ticket className="mr-3 h-5 w-5 text-primary" />
+                          My Reports
+                        </Link>
+                      </Button>
+                  )}
+                  {user?.uid === ADMIN_UID && (
+                      <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
+                          <Link href="/admin/reports" onClick={() => setIsMenuSheetOpen(false)}>
+                              <UserCheck className="mr-3 h-5 w-5 text-primary" />
+                              User Reports
+                          </Link>
+                      </Button>
+                  )}
 
                   <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" onClick={() => { setIsFaqsDialogOpen(true); setIsMenuSheetOpen(false); }}>
                     <HelpCircle className="mr-3 h-5 w-5 text-primary" />
@@ -533,6 +570,8 @@ function AppContent({ children }: { children: ReactNode }) {
       </Dialog>
       
       <LoginDialog open={isLoginDialogOpen} onOpenChange={setIsLoginDialogOpen} />
+      <ReportBugDialog open={isReportBugDialogOpen} onOpenChange={setIsReportBugDialogOpen} />
+
 
       <CookieConsentBanner />
 

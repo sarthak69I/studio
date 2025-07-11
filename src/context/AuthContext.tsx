@@ -1,4 +1,4 @@
-
+// src/context/AuthContext.tsx
 'use client';
 
 import React, { createContext, useContext, ReactNode, useEffect, useRef, useState } from 'react';
@@ -17,6 +17,7 @@ export interface UserData {
     lastLogin: Timestamp;
     createdAt: Timestamp;
     bio?: string;
+    stateCity?: string;
 }
 
 interface AuthContextType {
@@ -34,8 +35,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isUserDataLoading, setIsUserDataLoading] = useState(true);
   const progressSyncedRef = useRef(false);
 
-  // The logic for getRedirectResult has been removed as we are now using signInWithPopup.
-  
   useEffect(() => {
     if (user) {
       setIsUserDataLoading(true);
@@ -44,8 +43,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         if (docSnap.exists()) {
           setUserData(docSnap.data() as UserData);
         } else {
-          // This might happen if the user doc creation failed.
-          // We can try to create it again.
           saveUserToFirestore(user);
           setUserData(null);
         }
@@ -63,12 +60,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [user]);
 
   useEffect(() => {
-    // When user logs in, sync their local progress with Firestore
     if (user && !authLoading && !progressSyncedRef.current) {
       syncProgressOnLogin(user);
       progressSyncedRef.current = true;
     }
-    // Reset sync flag on logout
     if (!user && !authLoading) {
       progressSyncedRef.current = false;
     }

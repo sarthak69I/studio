@@ -1,4 +1,3 @@
-
 // src/lib/firebase.ts
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import { getFirestore, setDoc, doc, serverTimestamp, getDoc, updateDoc, type Firestore, Timestamp } from "firebase/firestore";
@@ -14,11 +13,9 @@ import {
   reauthenticateWithCredential,
   updatePassword
 } from "firebase/auth";
-// Removed Firebase Storage imports as they are no longer needed
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import type { UserData } from "@/context/AuthContext";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDHdIfzMXstsyv2OG9ewPLTxceFIW7-rjA",
   authDomain: "e-leak-3sed1.firebaseapp.com",
@@ -32,7 +29,6 @@ const firebaseConfig = {
 let app: FirebaseApp;
 let db: Firestore;
 let auth: Auth;
-// let storage: FirebaseStorage; // storage is no longer needed
 
 if (getApps().length === 0) {
   app = initializeApp(firebaseConfig);
@@ -40,7 +36,6 @@ if (getApps().length === 0) {
   app = getApps()[0];
 }
 
-// Initialize App Check
 if (typeof window !== 'undefined') {
   initializeAppCheck(app, {
     provider: new ReCaptchaV3Provider('6Lfg6WgrAAAAAPK83a_ApBr48YtFVVimC2CqvhCd'),
@@ -50,7 +45,6 @@ if (typeof window !== 'undefined') {
 
 db = getFirestore(app);
 auth = getAuth(app);
-// storage = getStorage(app); // storage is no longer needed
 
 export const saveUserToFirestore = async (user: User): Promise<void> => {
   const userRef = doc(db, 'users', user.uid);
@@ -58,7 +52,6 @@ export const saveUserToFirestore = async (user: User): Promise<void> => {
     const docSnap = await getDoc(userRef);
     
     if (!docSnap.exists()) {
-      // Document doesn't exist, create it with all fields
       await setDoc(userRef, {
         uid: user.uid,
         displayName: user.displayName,
@@ -67,16 +60,16 @@ export const saveUserToFirestore = async (user: User): Promise<void> => {
         createdAt: serverTimestamp(),
         lastLogin: serverTimestamp(),
         bio: "",
+        stateCity: "", // Added stateCity field
       });
     } else {
-      // Document exists, update only the lastLogin field
       await updateDoc(userRef, {
         lastLogin: serverTimestamp(),
       });
     }
   } catch (error) {
     console.error("Error saving user to Firestore:", error);
-    throw new Error("Could not save user data. Please check Firestore permissions and configuration.");
+    throw new Error("Could not save user data.");
   }
 };
 
@@ -113,12 +106,12 @@ export const updateUserProfile = async (user: User, updates: Partial<UserData>) 
     await updateProfile(user, { displayName: updates.displayName });
   }
 
-  // 2. Update Firestore user document with all provided updates
   const userRef = doc(db, 'users', user.uid);
   const firestoreUpdates: { [key: string]: any } = {};
   if (updates.displayName !== undefined) firestoreUpdates.displayName = updates.displayName;
   if (updates.photoURL !== undefined) firestoreUpdates.photoURL = updates.photoURL;
   if (updates.bio !== undefined) firestoreUpdates.bio = updates.bio;
+  if (updates.stateCity !== undefined) firestoreUpdates.stateCity = updates.stateCity;
 
   if (Object.keys(firestoreUpdates).length > 0) {
     await updateDoc(userRef, firestoreUpdates);
@@ -131,13 +124,8 @@ export const reauthenticateAndChangePassword = async (currentPassword: string, n
     throw new Error("User not found or email is missing.");
   }
 
-  // Get credential from the user's current password.
   const credential = EmailAuthProvider.credential(user.email, currentPassword);
-
-  // Re-authenticate the user with the credential
   await reauthenticateWithCredential(user, credential);
-
-  // If re-authentication is successful, update the password
   await updatePassword(user, newPassword);
 };
 

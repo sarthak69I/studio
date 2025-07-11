@@ -1,7 +1,7 @@
-
+// src/components/EditProfileDialog.tsx
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -23,9 +23,9 @@ import { useAuth } from '@/context/AuthContext';
 import { updateUserProfile } from '@/lib/firebase';
 import ImageCropperDialog from '@/components/ImageCropperDialog';
 
-// --- Edit Profile Dialog Schema ---
 const profileSchema = z.object({
-  displayName: z.string().min(2, { message: "Name must be at least 2 characters." }).max(50, { message: "Name cannot exceed 50 characters." }),
+  displayName: z.string().min(2, { message: "Name must be at least 2 characters." }).max(50),
+  stateCity: z.string().max(50).optional(),
 });
 
 export default function EditProfileDialog({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) {
@@ -38,36 +38,39 @@ export default function EditProfileDialog({ open, onOpenChange }: { open: boolea
         resolver: zodResolver(profileSchema),
         defaultValues: {
             displayName: userData?.displayName || user?.displayName || "",
+            stateCity: userData?.stateCity || "",
         },
     });
     
-    // Reset form when user data changes
     useEffect(() => {
-        form.reset({ displayName: userData?.displayName || user?.displayName || "" });
+        form.reset({
+            displayName: userData?.displayName || user?.displayName || "",
+            stateCity: userData?.stateCity || "",
+        });
     }, [userData, user, form, open]);
 
 
     const onSubmit = async (values: z.infer<typeof profileSchema>) => {
         if (!user) {
-            toast({ variant: "destructive", title: "Not Authenticated", description: "You must be signed in to update your profile." });
+            toast({ variant: "destructive", title: "Not Authenticated" });
             return;
         }
         setIsLoading(true);
         try {
-            // The photoURL is updated via the ImageCropperDialog.
-            // Pass the existing photoURL from our userData context to avoid overwriting it.
-            const currentPhotoURL = userData?.photoURL || user.photoURL || '';
-            await updateUserProfile(user, values.displayName, currentPhotoURL);
+            await updateUserProfile(user, {
+                displayName: values.displayName,
+                stateCity: values.stateCity,
+            });
             toast({
                 title: "Profile Updated!",
-                description: "Your display name has been saved.",
+                description: "Your changes have been saved.",
             });
             onOpenChange(false);
         } catch (error: any) {
             toast({
                 variant: "destructive",
                 title: "Update Failed",
-                description: error.message || "Could not update your profile. Please try again.",
+                description: error.message || "Could not update your profile.",
             });
         } finally {
             setIsLoading(false);
@@ -81,7 +84,7 @@ export default function EditProfileDialog({ open, onOpenChange }: { open: boolea
                     <DialogHeader>
                         <DialogTitle className="text-xl">Edit Your Profile</DialogTitle>
                         <DialogDescription>
-                            Update your display name and profile picture.
+                            Update your display name, location, and profile picture.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="flex items-center gap-4 py-4">
@@ -106,10 +109,23 @@ export default function EditProfileDialog({ open, onOpenChange }: { open: boolea
                                     </FormItem>
                                 )}
                             />
+                            <FormField
+                                control={form.control}
+                                name="stateCity"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>State/City</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="e.g., Haryana/Faridabad" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
                             <DialogFooter>
                                 <Button type="submit" disabled={isLoading} className="w-full">
                                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                    Save Name Changes
+                                    Save Changes
                                 </Button>
                             </DialogFooter>
                         </form>
