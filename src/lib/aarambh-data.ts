@@ -308,13 +308,7 @@ export const aarambhCourseContent: CourseContentMap = {
       { id: 'L5', title: 'Quadratic Equations L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/818675100049377900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474940/175173015921868752407/index_4.m3u8' },
       { id: 'L6', title: 'Quadratic Equations L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/328695692149355500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476029/175190275984418752407/index_4.m3u8' },
        { id: 'L7', title: 'Quadratic Equations L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/680791966318698100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476964/175198952916258752407/index_4.m3u8' },
-      ]
-    },
-    {
-      name: 'Arithmetic Progression',
-      lectures: [   
-        { id: 'L1', title: 'Arithmrtic Progression L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480242/175224987634108752407/index_4.m3u8' },
-        
+     { id: 'L8', title: 'Quadratic Equations L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480242/175224987634108752407/index_4.m3u8' },
       ]
     }
   ],
@@ -357,7 +351,8 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Nelson Mandela',
       lectures: [
-        { id: 'l1', title: 'Nelson Mandela 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7496747Nelson%20Mandela%20L1.pdf_Nelson%20Mandela%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415979/1750450625_4554154089099621/sunny/1750425076738_818411970592036400_video_VOD720p30.m3u8' },
+        { id: 'l1', title: 'Nelson Mandela 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7496747Nelson%20Mandela%20L1.pdf_Nelson%20Mandela%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_
+        ios/4415979/1750450625_4554154089099621/sunny/1750425076738_818411970592036400_video_VOD720p30.m3u8' },
       { id: 'l2', title: 'Nelson Mandela 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7653135Nelson%20Mandela%20L2.pdf_Nelson%20Mandela%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415980/1750450685_7908273695213537/sunny/1750425643848_294345221400152260_video_VOD720p30.m3u8' },
     ]
     },
