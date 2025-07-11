@@ -49,6 +49,7 @@ const commerceOnlySubjects: CourseContentMap = {
     { name: 'Business Services',
       lectures: [
         { id: 'L1', title: 'Business Services L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476031/175190305641542266688/index_4.m3u8' },
+        { id: 'L2', title: 'Business Services L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480084/175223811021262266688/index_4.m3u8' },
         
       ]
     },
@@ -130,9 +131,15 @@ const commerceOnlySubjects: CourseContentMap = {
     {
       name: ' SOURCE OF DOCUMENTS',
       lectures: [
-        { id: 'L1', title: ' SOURCE OF DOCUMENTS L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476978/175199074949518680586/index_4.m3u8' },
-         { id: 'L2', title: ' SOURCE OF DOCUMENTS L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477958/175206484979628680586/index_4.m3u8' },
-         
+        { id: 'L1', title: ' SOURCE OF DOCUMENTS L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/313609899235114560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476978/175199074949518680586/index_4.m3u8' },
+         { id: 'L2', title: ' SOURCE OF DOCUMENTS L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/720414651047449900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477958/175206484979628680586/index_4.m3u8' },
+        ]
+    },
+    {
+      name: ' Cash Book and Subsidiary Books',
+      lectures: [
+        { id: 'L1', title: 'Cash Book and Subsidiary Books L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/120727753406290000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479108/175215331573038680586/index_4.m3u8' },
+          
       ]
     }
   ],
@@ -196,6 +203,13 @@ const commerceOnlySubjects: CourseContentMap = {
        { id: 'L3', title: 'Elasticity of demand L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/830688010197697800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4426820/175104030891962809295/index_4.m3u8' },
        { id: 'L4', title: 'Elasticity of demand L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/212447852305448420.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427459/175112726511642809295/index_4.m3u8' },
        { id: 'L5', title: 'Elasticity of demand L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/158841009403238200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474947/175173189733942809295/index_4.m3u8' },
+       ],
+     },
+     {
+      name: 'Collection of Data ',
+      lectures: [
+        { id: 'L1', title: 'Collection of Data L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479248/175216350666192809295/index_4.m3u8' },
+       { id: 'L2', title: 'Collection of Data L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480238/175224932258072809295/index_4.m3u8' },
        
       ]
     }
