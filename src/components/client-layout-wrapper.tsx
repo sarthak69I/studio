@@ -50,7 +50,7 @@ const NOTIFICATIONS_POLL_INTERVAL_MS = 30000;
 const ANNOUNCEMENTS_FETCH_LIMIT = 20;
 const LOGIN_PROMPT_DELAY_DAYS = 2;
 const SUBSCRIPTION_PROMPT_DELAY_HOURS = 10;
-const ADMIN_UID = 'YOUR_FIREBASE_ADMIN_UID_HERE';
+const ADMIN_UID = 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
 
 
 function AppContent({ children }: { children: ReactNode }) {
@@ -300,12 +300,12 @@ function AppContent({ children }: { children: ReactNode }) {
 
   const handleReportBugClick = () => {
     if (user) {
-        setIsReportBugDialogOpen(true);
+        router.push('/reports'); // Navigate to the My Reports page
     } else {
         setIsLoginDialogOpen(true);
         toast({
             title: "Login Required",
-            description: "Please log in to report a bug.",
+            description: "Please log in to submit or view reports.",
             variant: "destructive"
         })
     }
@@ -472,16 +472,9 @@ function AppContent({ children }: { children: ReactNode }) {
                   
                   <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" onClick={handleReportBugClick}>
                     <Bug className="mr-3 h-5 w-5 text-primary" />
-                    Report a Bug
+                    My Reports
                   </Button>
-                   {user && (
-                      <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
-                        <Link href="/reports" onClick={() => setIsMenuSheetOpen(false)}>
-                          <Ticket className="mr-3 h-5 w-5 text-primary" />
-                          My Reports
-                        </Link>
-                      </Button>
-                  )}
+
                   {user?.uid === ADMIN_UID && (
                       <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
                           <Link href="/admin/reports" onClick={() => setIsMenuSheetOpen(false)}>
@@ -521,12 +514,6 @@ function AppContent({ children }: { children: ReactNode }) {
                     <Link href="/shortener" onClick={() => setIsMenuSheetOpen(false)}>
                       <Link2 className="mr-3 h-5 w-5 text-primary" />
                       URL Shortener
-                    </Link>
-                  </Button>
-                  <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
-                    <Link href="/my-downloads" onClick={() => setIsMenuSheetOpen(false)}>
-                      <Download className="mr-3 h-5 w-5 text-primary" />
-                      My Downloads
                     </Link>
                   </Button>
                 </div>

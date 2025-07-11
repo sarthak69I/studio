@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 // IMPORTANT: Replace this with your actual Firebase User ID (UID)
-const ADMIN_UID = 'YOUR_FIREBASE_ADMIN_UID_HERE';
+const ADMIN_UID = 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
 
 export default function AdminLayout({
   children,

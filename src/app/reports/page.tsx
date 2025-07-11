@@ -19,7 +19,6 @@ export default function MyReportsPage() {
   const { user, loading: authLoading } = useAuth();
   const [reports, setReports] = useState<BugReport[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedReport, setSelectedReport] = useState<BugReport | null>(null);
   const [isReportDialogOpen, setIsReportDialogOpen] = useState(false);
 
   useEffect(() => {
@@ -74,8 +73,8 @@ export default function MyReportsPage() {
       <div className="min-h-screen bg-background p-4 sm:p-6 md:p-8">
         <div className="max-w-4xl mx-auto">
           <header className="mb-8">
-            <h1 className="text-4xl font-bold logo-gradient-text animate-gradient">My Bug Reports</h1>
-            <p className="text-muted-foreground mt-2">Track the status of issues you've submitted.</p>
+            <h1 className="text-4xl font-bold logo-gradient-text animate-gradient">My Reports</h1>
+            <p className="text-muted-foreground mt-2">Track the status of issues you've submitted or create a new report.</p>
           </header>
           
           <div className="mb-6 text-right">
