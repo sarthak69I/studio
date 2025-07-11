@@ -277,12 +277,13 @@ function AppContent({ children }: { children: ReactNode }) {
       }
 
       // Subscription Prompt Logic
-      const lastSubPromptTime = localStorage.getItem(SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY);
-      const tenHours = SUBSCRIPTION_PROMPT_DELAY_HOURS * 60 * 60 * 1000;
-      if (!lastSubPromptTime || Date.now() - parseInt(lastSubPromptTime, 10) > tenHours) {
-        const timer = setTimeout(() => setShowSubscriptionPrompt(true), 15000); // Show after 15 seconds
+      // Temporarily remove the time check to force the popup on next load.
+      // const lastSubPromptTime = localStorage.getItem(SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY);
+      // const tenHours = SUBSCRIPTION_PROMPT_DELAY_HOURS * 60 * 60 * 1000;
+      // if (!lastSubPromptTime || Date.now() - parseInt(lastSubPromptTime, 10) > tenHours) {
+        const timer = setTimeout(() => setShowSubscriptionPrompt(true), 10000); // Show after 10 seconds
         return () => clearTimeout(timer);
-      }
+      // }
     }
   }, [pathname, showMaintenance, authLoading, user]);
 
@@ -470,9 +471,11 @@ function AppContent({ children }: { children: ReactNode }) {
                     {currentTheme === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
                   </Button>
                   
-                  <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" onClick={handleReportBugClick}>
-                    <Bug className="mr-3 h-5 w-5 text-primary" />
-                    Report a Bug
+                  <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
+                     <Link href="/reports" onClick={() => setIsMenuSheetOpen(false)}>
+                        <Bug className="mr-3 h-5 w-5 text-primary" />
+                        Report a Bug
+                     </Link>
                   </Button>
 
                   {user?.uid === ADMIN_UID && (

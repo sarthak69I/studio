@@ -4,62 +4,36 @@ import type { CourseContentMap, Lecture } from './course-utils';
 
 const itTopicsForClass10: CourseContentMap['IT'] = [
   {
-    name: "Overview",
+    name: "IT Overview (Class 10)",
     lectures: [
       {
-        id: "L1",
-        title: "Overview",
-        notesTitle: "",
+        id: "L1-10-overview",
+        title: "Class 10 IT Overview",
         videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391690/1748179084_2580180814420977/sunny/1748177591970_70156498151999930_video_VOD720p30.m3u8",
-        notesLink: "",
         videoEmbedType: 'hls'
       }
     ]
   },
   {
-    name: "Communication Skills",
+    name: "Self Management Skills (Class 10)",
     lectures: [
       {
-        id: "L2",
-        title: "Communication Skills - L1",
-        notesTitle: "",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391691/1748179089_8667406066067348/sunny/1748177660740_217256690396284670_video_VOD720p30.m3u8",
-        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/563827473449322750.pdf",
-        videoEmbedType: 'hls'
-      },
-      {
-        id: "L3",
-        title: "Communication Skills - L2",
-        notesTitle: "",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393991/1748364784_5017725046609362/sunny/1748356442252_86529907763754190_video_VOD720p30.m3u8",
-        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/37833447878276420.pdf",
-        videoEmbedType: 'hls'
-      }
-    ]
-  },
-  {
-    name: "Self Management Skills",
-    lectures: [
-      {
-        id: "L4",
+        id: "L4-10-self-manage-1",
         title: "Self Management - L1",
-        notesTitle: "",
         videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4398520/1748854269_7032334158082272/sunny/1748854130932_455431202240548030_video_VOD720p30.m3u8",
         notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/596857939255353100.pdf",
         videoEmbedType: 'hls'
       },
       {
-        id: "L5",
+        id: "L5-10-self-manage-2",
         title: "Self Management - L2",
-        notesTitle: "",
         videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4403235/1749235927_6400627130495496/sunny/1749222493198_533557279449811200_video_VOD720p30.m3u8",
         notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/898042366895235000.pdf",
         videoEmbedType: 'hls'
       },
       {
-        id: "L6",
+        id: "L6-10-self-manage-3",
         title: "Self Management - L3",
-        notesTitle: "",
         videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4411250/1750089971_2490412765566086/sunny/1750078811761_514574969298403000_video_VOD720p30.m3u8",
         notesLink: "https://drive.google.com/file/d/116WTsVxjbJVHG6YAvxDxpuRUGSheAUqC/view?usp=drivesdk",
         videoEmbedType: 'hls'
@@ -318,8 +292,8 @@ export const aarambhCourseContent: CourseContentMap = {
           id: "sanskrit-overview",
           title: "Class 10th Sanskrit overview",
           notesTitle: "10th Sanskrit Overview",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392867/1748270525_4262533898579492/sunny/1748270459435_806367464182505500_video_VOD240p30.m3u8",
-          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/745035810th%20Sanskrit%20Overview.pdf_10th%20Sanskrit%20Overview.pdf",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392867/1748270525_4262533898579492/sunny/1748270459435_806367464182505500_video_VOD240p30.m3u8",
+          notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/745035810th%20Sanskrit%20Overview.pdf_10th%20Sanskrit%20Overview.pdf",
           videoEmbedType: 'hls'
         }
       ]
@@ -331,16 +305,16 @@ export const aarambhCourseContent: CourseContentMap = {
           id: "ch1-explanation",
           title: "CH -01 - शुचिपर्यावरणम् Explanation",
           notesTitle: "CH -01 - शुचिपर्यावरणम् Explanation",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393578/1748359683_8609289660244522/sunny/1748340021121_496240411986023000_video_VOD240p30.m3u8",
-          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5209302CH%20-01%20-%20शुचिपर्यावरणम्%20Explanation.pdf_CH%20-01%20-%20शुचिपर्यावरणम्%20Explanation.pdf",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393578/1748359683_8609289660244522/sunny/1748340021121_496240411986023000_video_VOD240p30.m3u8",
+          notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5209302CH%20-01%20-%20शुचिपर्यावरणम्%20Explanation.pdf_CH%20-01%20-%20शुचिपर्यावरणम्%20Explanation.pdf",
           videoEmbedType: 'hls'
         },
         {
           id: "ch1-ncert",
           title: "CH -01 - शुचिपर्यावरणम् NCERT",
           notesTitle: "CH -01 - शुचिपर्यावरणम् NCERT",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393579/1748359864_9290021229425817/sunny/1748340242129_74623608989819540_video_VOD240p30.m3u8",
-          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5751480CH%20-01%20-%20शुचिपर्यावरणम्%20NCERT.pdf_CH%20-01%20-%20शुचिपर्यावरणम्%20NCERT.pdf",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393579/1748359864_9290021229425817/sunny/1748340242129_74623608989819540_video_VOD240p30.m3u8",
+          notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5751480CH%20-01%20-%20शुचिपर्यावरणम्%20NCERT.pdf_CH%20-01%20-%20शुचिपर्यावरणम्%20NCERT.pdf",
           videoEmbedType: 'hls'
         }
       ]
@@ -352,16 +326,16 @@ export const aarambhCourseContent: CourseContentMap = {
           id: "ch2-explanation",
           title: "बुद्धिर्बलवती सदा Explanation",
           notesTitle: "बुद्धिर्बलवती सदा Explanation",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409093/1749830285_1177145018233638/sunny/1749809451991_882636868663635600_video_VOD240p30.m3u8",
-          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2105200CH%20-02%20-%20बुद्धिर्बलवती%20सदा%20Explanation.pdf_CH%20-02%20-%20बुद्धिर्बलवती%20सदा%20Explanation.pdf",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409093/1749830285_1177145018233638/sunny/1749809451991_882636868663635600_video_VOD240p30.m3u8",
+          notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2105200CH%20-02%20-%20बुद्धिर्बलवती%20सदा%20Explanation.pdf_CH%20-02%20-%20बुद्धिर्बलवती%20सदा%20Explanation.pdf",
           videoEmbedType: 'hls'
         },
         {
           id: "ch2-ncert",
-          title: "बुद्धिर्बलवती सदा NCERT",
+          title": "बुद्धिर्बलवती सदा NCERT",
           notesTitle: "बुद्धिर्बलवती सदा NCERT",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409094/1749831064_7595852023201894/sunny/1749810180047_65766850598123820_video_VOD240p30.m3u8",
-          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1406424CH%20-02%20-%20बुद्धिर्बलवती%20सदा%20NCERT.pdf_CH%20-02%20-%20बुद्धिर्बलवती%20सदा%20NCERT.pdf",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409094/1749831064_7595852023201894/sunny/1749810180047_65766850598123820_video_VOD240p30.m3u8",
+          notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1406424CH%20-02%20-%20बुद्धिर्बलवती%20सदा%20NCERT.pdf_CH%20-02%20-%20बुद्धिर्बलवती%20सदा%20NCERT.pdf",
           videoEmbedType: 'hls'
         }
       ]
@@ -371,18 +345,18 @@ export const aarambhCourseContent: CourseContentMap = {
       lectures: [
         {
           id: "ch3-explanation",
-          title: "शिशुलालनम् Explanation",
+          title": "शिशुलालनम् Explanation",
           notesTitle: "शिशुलालनम् Explanation",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409095/1749830290_9697231653590136/sunny/1749810505854_30247714143718470_video_VOD240p30.m3u8",
-          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7475768CH%20-03%20-%20शिशुलालनम्%20Explanation.pdf_CH%20-03%20-%20शिशुलालनम्%20Explanation.pdf",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409095/1749830290_9697231653590136/sunny/1749810505854_30247714143718470_video_VOD240p30.m3u8",
+          notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7475768CH%20-03%20-%20शिशुलालनम्%20Explanation.pdf_CH%20-03%20-%20शिशुलालनम्%20Explanation.pdf",
           videoEmbedType: 'hls'
         },
         {
           id: "ch3-ncert",
-          title: "शिशुलालनम् NCERT",
+          title": "शिशुलालनम् NCERT",
           notesTitle: "शिशुलालनम् NCERT",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409096/1749831427_5468966413028682/sunny/1749811337013_801477767575749800_video_VOD240p30.m3u8",
-          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4179520CH%20-03%20-%20शिशुलालनम्%20NCERT.pdf_CH%20-03%20-%20शिशुलालनम्%20NCERT.pdf",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409096/1749831427_5468966413028682/sunny/1749811337013_801477767575749800_video_VOD240p30.m3u8",
+          notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4179520CH%20-03%20-%20शिशुलालनम्%20NCERT.pdf_CH%20-03%20-%20शिशुलालनम्%20NCERT.pdf",
           videoEmbedType: 'hls'
         }
       ]

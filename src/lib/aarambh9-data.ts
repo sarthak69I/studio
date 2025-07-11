@@ -7,11 +7,9 @@ const itTopicsForClass9: CourseContentMap['IT'] = [
     name: "IT Overview (Class 9)",
     lectures: [
       {
-        id: "L1-9",
+        id: "L1-9-overview",
         title: "Class 9 IT Overview",
-        notesTitle: "",
         videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391690/1748179084_2580180814420977/sunny/1748177591970_70156498151999930_video_VOD720p30.m3u8",
-        notesLink: "",
         videoEmbedType: 'hls'
       }
     ]
@@ -20,9 +18,8 @@ const itTopicsForClass9: CourseContentMap['IT'] = [
     name: "Communication Skills (Class 9)",
     lectures: [
       {
-        id: "L2-9",
+        id: "L2-9-comm",
         title: "Communication Skills - L1",
-        notesTitle: "",
         videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391691/1748179089_8667406066067348/sunny/1748177660740_217256690396284670_video_VOD720p30.m3u8",
         notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/563827473449322750.pdf",
         videoEmbedType: 'hls'
@@ -460,7 +457,7 @@ export const aarambh9CourseContent: CourseContentMap = {
           id: "L1",
           title: "व्याख्या",
           notesTitle: "",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362878/1745827504_8254022878891386/sunny/1745824657756_449406760596636800_video_VOD720p30.m3u8",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362878/1745827504_8254022878891386/sunny/1745824657756_449406760596636800_video_VOD720p30.m3u8",
           notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7297203%E0%A4%AA%E0%A4%BE%E0%A4%A0%201%20%E0%A4%A6%E0%A5%81%E0%A4%83%E0%A4%96%20%E0%A4%95%E0%A4%BE%20%E0%A4%85%E0%A4%A7%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B0%20%28%E0%A4%AF%E0%A4%B6%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%201%20%E0%A4%A6%E0%A5%81%E0%A4%83%E0%A4%96%20%E0%A4%95%E0%A4%BE%20%E0%A4%85%E0%A4%A7%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B0%20%28%E0%A4%AF%E0%A4%B6%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20.pdf",
           videoEmbedType: 'hls'
         },
@@ -468,15 +465,15 @@ export const aarambh9CourseContent: CourseContentMap = {
           id: "L2",
           title: "MCQs",
           notesTitle: "",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362881/1745828708_8027850534617536/sunny/1745825399600_638178197791770000_video_VOD720p30.m3u8",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362881/1745828708_8027850534617536/sunny/1745825399600_638178197791770000_video_VOD720p30.m3u8",
           notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5296424%E0%A4%AA%E0%A4%BE%E0%A4%A0%201%20%E0%A4%A6%E0%A5%81%E0%A4%83%E0%A4%96%20%E0%A4%95%E0%A4%BE%20%E0%A4%85%E0%A4%A7%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B0%20%28%E0%A4%AF%E0%A4%B6%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Multiple%20Choice%20questions.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%201%20%E0%A4%A6%E0%A5%81%E0%A4%83%E0%A4%96%20%E0%A4%95%E0%A4%BE%20%E0%A4%85%E0%A4%A7%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B0%20%28%E0%A4%AF%E0%A4%B6%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Multiple%20Choice%20questions.pdf",
           videoEmbedType: 'hls'
         },
         {
           id: "L3",
-          title: "Revision",
+          title": "Revision",
           notesTitle: "",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362877/1745828705_3761006170981689/sunny/1745824255110_166106644150187650_video_VOD720p30.m3u8",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362877/1745828705_3761006170981689/sunny/1745824255110_166106644150187650_video_VOD720p30.m3u8",
           notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3878617_%E0%A4%AA%E0%A4%BE%E0%A4%A0%201%20%E0%A4%A6%E0%A5%81%E0%A4%83%E0%A4%96%20%E0%A4%95%E0%A4%BE%20%E0%A4%85%E0%A4%A7%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B0%20%28%E0%A4%AF%E0%A4%B6%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision%20.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%201%20%E0%A4%A6%E0%A5%81%E0%A4%83%E0%A4%96%20%E0%A4%95%E0%A4%BE%20%E0%A4%85%E0%A4%A7%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B0%20%28%E0%A4%AF%E0%A4%B6%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision%20.pdf",
           videoEmbedType: 'hls'
         }
@@ -489,32 +486,32 @@ export const aarambh9CourseContent: CourseContentMap = {
           id: "L1",
           title: "व्याख्या",
           notesTitle: "",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376173/1746737224_8170206828923258/sunny/1746716296561_520832358582066600_video_VOD720p30.m3u8",
-          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4331394%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376173/1746737224_8170206828923258/sunny/1746716296561_520832358582066600_video_VOD720p30.m3u8",
+          notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4331394%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf",
           videoEmbedType: 'hls'
         },
         {
           id: "L2",
           title: "NCERT Solution",
           notesTitle: "",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376172/1746736928_7246616066092919/sunny/1746716190645_451467698255423900_video_VOD720p30.m3u8",
-          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5711449%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20NCERT%20Solutions.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20NCERT%20Solutions.pdf",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376172/1746736928_7246616066092919/sunny/1746716190645_451467698255423900_video_VOD720p30.m3u8",
+          notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5711449%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20NCERT%20Solutions.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20NCERT%20Solutions.pdf",
           videoEmbedType: 'hls'
         },
         {
           id: "L3",
           title: "MCQs",
           notesTitle: "",
-          "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376171/1746736865_9586660164585563/sunny/1746716102384_431264663935036200_video_VOD720p30.m3u8",
-          "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2317788%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Multiple%20Choice%20questions.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Multiple%20Choice%20questions.pdf",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376171/1746736865_9586660164585563/sunny/1746716102384_431264663935036200_video_VOD720p30.m3u8",
+          notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2317788%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Multiple%20Choice%20questions.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Multiple%20Choice%20questions.pdf",
           videoEmbedType: 'hls'
         },
         {
           id: "L4",
-          title: "Revision",
+          title": "Revision",
           notesTitle: "",
-          "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376170/1746731945_5192141045295381/sunny/1746715901439_37622052615082360_video_VOD720p30.m3u8",
-          "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6015848%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision.pdf",
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376170/1746731945_5192141045295381/sunny/1746715901439_37622052615082360_video_VOD720p30.m3u8",
+          notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6015848%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision.pdf",
           videoEmbedType: 'hls'
         }
       ]
@@ -524,34 +521,34 @@ export const aarambh9CourseContent: CourseContentMap = {
       "lectures": [
         {
           id: "L1",
-          title: "व्याख्या",
+          title": "व्याख्या",
           notesTitle: "",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410207/1749916446_6473700151096159/sunny/1749914254995_525048537454429000_video_VOD720p30.m3u8",
-          notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6291233_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf`,
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410207/1749916446_6473700151096159/sunny/1749914254995_525048537454429000_video_VOD720p30.m3u8",
+          notesLink": `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6291233_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf`,
           videoEmbedType: 'hls'
         },
         {
           id: "L2",
-          title: "NCERT Solution",
+          title": "NCERT Solution",
           notesTitle: "",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410210/1749917044_8399600522927768/sunny/1749914529743_742052701283870300_video_VOD720p30.m3u8",
-          notesLink:  `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1841557%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20NCERT%20Solutions%20.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20NCERT%20Solutions%20.pdf`,
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410210/1749917044_8399600522927768/sunny/1749914529743_742052701283870300_video_VOD720p30.m3u8",
+          notesLink":  `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1841557%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20NCERT%20Solutions%20.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20NCERT%20Solutions%20.pdf`,
           videoEmbedType: 'hls'
         },
         {
           id: "L3",
-          title: "MCQs",
+          title": "MCQs",
           notesTitle: "",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410209/1749916807_3654632768008049/sunny/1749914455005_175749411760681820_video_VOD720p30.m3u8",
-          notesLink:  `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7168573_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Multiple%20Choice%20questions.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Multiple%20Choice%20questions.pdf`,
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410209/1749916807_3654632768008049/sunny/1749914455005_175749411760681820_video_VOD720p30.m3u8",
+          notesLink":  `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7168573_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Multiple%20Choice%20questions.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Multiple%20Choice%20questions.pdf`,
           videoEmbedType: 'hls'
         },
         {
           id: "L4",
-          title: "Revision",
+          title": "Revision",
           notesTitle: "",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410208/1749916624_4139724354398230/sunny/1749914374150_547188533863034100_video_VOD720p30.m3u8",
-          notesLink:  `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5462062_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Complete%20chapter%20revision.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Complete%20chapter%20revision.pdf`,
+          videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410208/1749916624_4139724354398230/sunny/1749914374150_547188533863034100_video_VOD720p30.m3u8",
+          notesLink":  `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5462062_%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Complete%20chapter%20revision.pdf__%E0%A4%AA%E0%A4%BE%E0%A4%A0%203%20%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A4%AC%20%E0%A4%9C%E0%A4%BE%E0%A4%93%E0%A4%97%E0%A5%87%2C%20%E0%A4%85%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%28%E0%A4%B6%E0%A4%B0%E0%A4%A6%20%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%29%20Complete%20chapter%20revision.pdf`,
           videoEmbedType: 'hls'
         }
       ]
@@ -565,31 +562,31 @@ export const aarambh9CourseContent: CourseContentMap = {
     notesTitle: 'गिल्लू व्याख्या',
     notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6927770%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%BE.pdf',
     videoEmbedType: 'hls',
-    videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425429/1751033525_4470078330612893/sunny/1751019596807_108319882873038860_video_VOD720p30.m3u8',
+    videoEmbedUrl": 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425429/1751033525_4470078330612893/sunny/1751019596807_108319882873038860_video_VOD720p30.m3u8',
   },
   {
     id: 'L2',
-    title: 'गिल्लू NCERT Solution',
+    title": 'गिल्लू NCERT Solution',
     notesTitle: 'गिल्लू Ncert solutions',
     notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2072197%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20Ncert%20solutions.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20Ncert%20solutions.pdf',
     videoEmbedType: 'hls',
-    videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425430/1751033886_7367977643649442/sunny/1751019621372_756706376241641600_video_VOD720p30.m3u8',
+    videoEmbedUrl": 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425430/1751033886_7367977643649442/sunny/1751019621372_756706376241641600_video_VOD720p30.m3u8',
   },
   {
     id: 'L3',
-    title: 'गिल्लू MCQs',
+    title": 'गिल्लू MCQs',
     notesTitle: 'गिल्लू MCQs',
     notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/421425%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20MCQs.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20MCQs.pdf',
     videoEmbedType: 'hls',
-    videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425427/1751033286_6179233091600334/sunny/1751019549183_184850483201025760_video_VOD720p30.m3u8',
+    videoEmbedUrl": 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425427/1751033286_6179233091600334/sunny/1751019549183_184850483201025760_video_VOD720p30.m3u8',
   },
   {
     id: 'L4',
-    title: 'गिल्लू Revision',
+    title": 'गिल्लू Revision',
     notesTitle: 'गिल्लू CCR',
     notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3447951%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf_%E0%A4%97%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%82%20CCR.pdf',
     videoEmbedType: 'hls',
-    videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425428/1751033465_5858389494462766/sunny/1751019566861_303626022391680830_video_VOD720p30.m3u8', 
+    videoEmbedUrl": 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425428/1751033465_5858389494462766/sunny/1751019566861_303626022391680830_video_VOD720p30.m3u8', 
           }
       ]
     }
@@ -597,93 +594,91 @@ export const aarambh9CourseContent: CourseContentMap = {
   'Sanskrit': [
       {
         name: "Overview",
-        lectures: [
+        lectures": [
           {
             id: "sanskrit-overview",
-            title: "Overview",
-            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392872/1748271368_9740389774405919/sunny/1748265761999_582795700698031100_video_VOD.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/25606539th%20Sanskrit%20Overview.pdf_9th%20Sanskrit%20Overview.pdf",
+            title": "Overview",
+            videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392872/1748271368_9740389774405919/sunny/1748265761999_582795700698031100_video_VOD.m3u8",
+            notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/25606539th%20Sanskrit%20Overview.pdf_9th%20Sanskrit%20Overview.pdf",
             videoEmbedType: 'hls'
           }
         ]
       },
       {
         name: "भारतीयवसंतगीत:",
-        lectures: [
+        lectures": [
           {
             id: "ch1-l1",
-            title: "Lecture 1",
-            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392868/1748270527_4609550263536304/sunny/1748265146882_510695044544125060_video_VOD.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6303001CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20Explanation.pdf_CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20Explanation.pdf",
+            title": "Lecture 1",
+            videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392868/1748270527_4609550263536304/sunny/1748265146882_510695044544125060_video_VOD.m3u8",
+            notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6303001CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20Explanation.pdf_CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20Explanation.pdf",
             videoEmbedType: 'hls'
           },
           {
             id: "ch1-l2",
-            title: "Lecture 2",
-            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392869/1748270646_5088353861174354/sunny/1748265312219_828479133307742100_video_VOD.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5530169CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20NCERT.pdf_CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20NCERT.pdf",
+            title": "Lecture 2",
+            videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392869/1748270646_5088353861174354/sunny/1748265312219_828479133307742100_video_VOD.m3u8",
+            notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5530169CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20NCERT.pdf_CH%20-01%20-%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%E0%A5%80%E0%A4%B5%E0%A4%B8%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BF%E0%A4%83%20NCERT.pdf",
             videoEmbedType: 'hls'
           }
         ]
       },
       {
         name: "स्वर्णकाकः",
-        lectures: [
+        lectures": [
           {
             id: "ch2-l1",
-            title: "Lecture 1",
-            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392870/1748270705_8950762022038790/sunny/1748265442814_317656173101077060_video_VOD480p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5092125CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20Explanation.pdf_CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20Explanation.pdf",
+            title": "Lecture 1",
+            videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392870/1748270705_8950762022038790/sunny/1748265442814_317656173101077060_video_VOD480p30.m3u8",
+            notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5092125CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20Explanation.pdf_CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20Explanation.pdf",
             videoEmbedType: 'hls'
           },
           {
             id: "ch2-l2",
-            title: "Lecture 2",
-            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392871/1748271185_1836230378802404/sunny/1748265603321_322332742682814600_video_VOD360p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3396941CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20NCERT.pdf_CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20NCERT.pdf",
+            title": "Lecture 2",
+            videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4392871/1748271185_1836230378802404/sunny/1748265603321_322332742682814600_video_VOD360p30.m3u8",
+            notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3396941CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20NCERT.pdf_CH%20-02%20-%20%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A3%E0%A4%95%E0%A4%BE%E0%A4%95%E0%A4%83%20%20NCERT.pdf",
             videoEmbedType: 'hls'
           }
         ]
       },
       {
         name: "गोदोहनम्",
-        lectures: [
+        lectures": [
           {
             id: "ch3-l1",
-            title: "Lecture 1",
-            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409087/1749828127_6997760553008653/sunny/1749809491176_234362182317603900_video_VOD720p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5779980CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20Explanation.pdf_CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20Explanation.pdf",
+            title": "Lecture 1",
+            videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409087/1749828127_6997760553008653/sunny/1749809491176_234362182317603900_video_VOD720p30.m3u8",
+            notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5779980CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20Explanation.pdf_CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20Explanation.pdf",
             videoEmbedType: 'hls'
           },
           {
             id: "ch3-l2",
-            title: "Lecture 2",
-            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409088/1749829268_4900035308227741/sunny/1749810507115_361302695792077100_video_VOD720p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6528958CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20NCERT.pdf_CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20NCERT.pdf",
+            title": "Lecture 2",
+            videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409088/1749829268_4900035308227741/sunny/1749810507115_361302695792077100_video_VOD720p30.m3u8",
+            notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6528958CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20NCERT.pdf_CH%20-03%20-%20%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A5%8B%E0%A4%B9%E0%A4%A8%E0%A4%AE%E0%A5%8D%20NCERT.pdf",
             videoEmbedType: 'hls'
           }
         ]
       },
       {
         name: "सूक्तिमौक्तिकम्",
-        lectures: [
+        lectures": [
           {
             id: "ch4-l1",
-            title: "Lecture 1",
-            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409089/1749829325_9144056009665889/sunny/1749810866747_332716238922341760_video_VOD720p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2956430CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20Explanation.pdf_CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20Explanation.pdf",
+            title": "Lecture 1",
+            videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409089/1749829325_9144056009665889/sunny/1749810866747_332716238922341760_video_VOD720p30.m3u8",
+            notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2956430CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20Explanation.pdf_CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20Explanation.pdf",
             videoEmbedType: 'hls'
           },
           {
             id: "ch4-l2",
-            title: "Lecture 2",
-            videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409090/1749829625_8692173308206863/sunny/1749811763102_517085010537473700_video_VOD720p30.m3u8",
-            notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/636024CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20NCERT.pdf_CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20NCERT.pdf",
+            title": "Lecture 2",
+            videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409090/1749829625_8692173308206863/sunny/1749811763102_517085010537473700_video_VOD720p30.m3u8",
+            notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/636024CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20NCERT.pdf_CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20NCERT.pdf",
             videoEmbedType: 'hls'
           }
         ]
       }
   ]
 }
-
-    
