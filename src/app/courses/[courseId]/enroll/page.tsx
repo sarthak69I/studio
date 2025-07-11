@@ -391,9 +391,3 @@ export default function EnrollPage() {
     </>
   );
 }
-    
-    
-
-    
-
-

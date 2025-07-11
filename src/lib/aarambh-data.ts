@@ -137,7 +137,17 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L3', title: 'Sectors of Indian Economy 3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/129222850127324670.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4418570/175076895626987125088/index_4.m3u8' },
         { id: 'L4', title: 'Sectors of Indian Economy 4', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/876787599850698000.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419824/175086546631887125088/index_4.m3u8' },
         { id: 'L5', title: 'Sectors of Indian Economy 5', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/850236030502344400.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460006/175128817639377125088/index_4.m3u8' },
-
+       { id: 'L6', title: 'Sectors of Indian Economy 6', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/339205858445961900.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474850/175171924899657125088/index_4.m3u8' },
+      ]
+    },
+    {
+      name: 'Federalism',
+      lectures: [
+        { id: 'L1', title: 'Federalism L1', notesTitle: "L1 & 2", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/325013306654332300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475867/175189222398137125088/index_4.m3u8' },
+         { id: 'L2', title: 'Federalism L2', notesTitle: "L1 & 2", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/325013306654332300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476771/175197811164887125088/index_4.m3u8' },
+         { id: 'L3', title: 'Federalism L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/836602028786916700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4478170/175207529421867125088/index_4.m3u8' },
+         { id: 'L4', title: 'Federalism L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479240/175216182823787125088/index_4.m3u8' },
+         
       ]
     }
   ],
@@ -199,8 +209,17 @@ export const aarambhCourseContent: CourseContentMap = {
       lectures: [
         { id: 'Human eye L1', title: 'Human eye L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/217279667485356350.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420694/175094118357238929414/index_4.m3u8' },
         { id: 'Human eye L2', title: 'Human eye L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/71000202971201150.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4426247/175102765297458929414/index_4.m3u8' },
-        { id: 'Human eye L3', title: 'Human eye L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427347/175111381865158929414/index_4.m3u8' },
-      ]       
+        { id: 'Human eye L3', title: 'Human eye L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/589130738857175200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427347/175111381865158929414/index_4.m3u8' },
+      { id: 'Human eye L4', title: 'Human eye L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/390163569437422900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4465407/175163267359088929414/index_4.m3u8' },
+           { id: 'Human eye L5', title: 'Human eye L5 Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477928/175206364875938929414/index_4.m3u8' },
+     ]
+    },
+    {
+      name: 'Control & Coordination',
+      lectures: [
+        { id: 'Control & Coordination L1', title: 'Control & Coordination L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479051/175215139612528929414/index_4.m3u8' },
+        
+     ]       
     }
   ],
   'Mathematics': [
@@ -284,6 +303,11 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L1', title: 'Quadratic Equations L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/215880257111139400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417726/175069337476008752407/index_4.m3u8' },
         { id: 'L2', title: 'Quadratic Equations L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/682683263559778800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427456/175112650121268752407/index_4.m3u8' },
         { id: 'L3', title: 'Quadratic Equations L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/615163654802694500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4460159/175129788526988752407/index_4.m3u8' },
+      { id: 'L4', title: 'Quadratic Equations L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/48313422477312990.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4465547/175164427990748752407/index_4.m3u8' },
+      { id: 'L5', title: 'Quadratic Equations L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/818675100049377900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474940/175173015921868752407/index_4.m3u8' },
+      { id: 'L6', title: 'Quadratic Equations L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/328695692149355500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476029/175190275984418752407/index_4.m3u8' },
+       { id: 'L7', title: 'Quadratic Equations L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/680791966318698100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476964/175198952916258752407/index_4.m3u8' },
+      
       ]
     }
   ],
@@ -319,9 +343,38 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'A Triumph of Surgery',
       lectures: [
-        { id: 'l1', title: 'A Triumph of Surgery 1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378115/1747004104_5093798446180655/sunny/1746963761393_790760791059125000_video_VOD720p30.m3u8' },
-        { id: 'l2', title: 'A Triumph of Surgery 2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378116/1747003684_6295147578406091/sunny/1746963929440_149734756542958400_video_VOD720p30.m3u8' },
-       ]
+        { id: 'l1', title: 'A Triumph of Surgery 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2402030A%20Triumph%20of%20Surgery%20L1.pdf_A%20Triumph%20of%20Surgery%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378115/1747004104_5093798446180655/sunny/1746963761393_790760791059125000_video_VOD720p30.m3u8' },
+        { id: 'l2', title: 'A Triumph of Surgery 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5913930A%20Triumph%20of%20Surgery%20L2.pdf_A%20Triumph%20of%20Surgery%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378116/1747003684_6295147578406091/sunny/1746963929440_149734756542958400_video_VOD720p30.m3u8' },
+        ]
+    },
+    {
+      name: 'Nelson Mandela',
+      lectures: [
+        { id: 'l1', title: 'Nelson Mandela 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7496747Nelson%20Mandela%20L1.pdf_Nelson%20Mandela%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415979/1750450625_4554154089099621/sunny/1750425076738_818411970592036400_video_VOD720p30.m3u8' },
+      { id: 'l2', title: 'Nelson Mandela 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7653135Nelson%20Mandela%20L2.pdf_Nelson%20Mandela%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415980/1750450685_7908273695213537/sunny/1750425643848_294345221400152260_video_VOD720p30.m3u8' },
+    ]
+    },
+    {
+      name: 'Poetic Devices',
+  lectures: [
+    { id: 'L1', title: 'Poetic Devices (Part 1)', notesTitle: "Poetic Devices Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/874065629511007100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355434/1745094064_6558196120167470/sunny/1745074746600_243414202639413570_video_VOD720p30.m3u8' },
+    { id: 'L2', title: 'Poetic Devices (Part 2)', notesTitle: "Poetic Devices Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/794426136343342800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' }
+  ]
+},
+{
+  name: 'Tenses',
+  lectures: [
+    { id: 'L1', title: 'Tenses L1', notesTitle: "Tenses Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/727562919101567200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376992/1746790926_2620131171601548/sunny/1746785842321_68968204127858800_video_VOD720p30.m3u8' },
+    { id: 'L2', title: 'Tenses L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376993/1746791165_4683530659641818/sunny/1746786281807_635426128592612900_video_VOD720p30.m3u8' },
+    { id: 'L3', title: 'Tenses L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376994/1746791225_3697514107018118/sunny/1746786504709_85453328252238460_video_VOD720p30.m3u8' }
+  ]
+},
+{
+  name: 'Determiners',
+  lectures: [
+    { id: 'L1', title: 'Determiners L1', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2793710Determiners%20L1.pdf_Determiners%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396723/1748599866_2612688982288432/sunny/1748596322264_841185111044298900_video_VOD720p30.m3u8' },
+    { id: 'L2', title: 'Determiners L2', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6468807Determiners%20L2.pdf_Determiners%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396724/1748599983_8916038134337860/sunny/1748596644025_182722180318143000_video_VOD720p30.m3u8' }
+   ]
     }
   ],
   'IT': itTopicsForClass9and10,
@@ -445,7 +498,9 @@ export const aarambhCourseContent: CourseContentMap = {
       "lectures": [
         { "id": "L1", "title": "पाठ 4 उत्साह, अट नहीं रही है व्याख्या Lecture 1", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410183/1749914586_4086706439974252/sunny/1749912022852_338311045046101570_video_VOD720p30.m3u8", "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/847032884771309300.pdf", "videoEmbedType": "hls" },
         { "id": "L2", "title": "पाठ 4 उत्साह, अट नहीं रही है NCERT solutions Lecture 2", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410186/1749915308_3840734996272597/sunny/1749912196262_461166863025187500_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
-        { "id": "L3", "title": "पाठ 4 उत्साह, अट नहीं रही है Complete Chapter Revision Lecture 3", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410184/1749914765_5495751221321111/sunny/1749912092768_233487924942992640_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" }
+        { "id": "L3", "title": "पाठ 4 उत्साह, अट नहीं रही है Complete Chapter Revision Lecture 3", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4410184/1749914765_5495751221321111/sunny/1749912092768_233487924942992640_video_VOD720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+         { "id": "L4", "title": "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय Complete Chapter Revision Lecture 4", "notesTitle": "", "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186197/1729265530_8082650506315087/1cQy6uA6zxO3Q-fzKguG-cc6iZ1Vgj-Oa720p30.m3u8", "notesLink": "", "videoEmbedType": "hls" },
+    
       ]
     },
     {
@@ -473,7 +528,7 @@ export const aarambhCourseContent: CourseContentMap = {
           "notesTitle": "",
           "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057680/1729247001_7590193763429474/1Z6ELWKQm8CjGONfvOaH1lv--rvWc6nEq720p30.m3u8",
           "notesLink": "",
-          "videoEmbedType": "hls"
+          "videoEmbedType": "hls",
         },
         {
           "id": "L4",
@@ -481,7 +536,7 @@ export const aarambhCourseContent: CourseContentMap = {
           "notesTitle": "",
           "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186197/1729265530_8082650506315087/1cQy6uA6zxO3Q-fzKguG-cc6iZ1Vgj-Oa720p30.m3u8",
           "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/827292862967255600.pdf",
-          "videoEmbedType": "hls"
+          "videoEmbedType": "hls",
         }
       ]
     }

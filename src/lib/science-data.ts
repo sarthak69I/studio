@@ -54,9 +54,12 @@ const scienceOnlySubjects: CourseContentMap = {
     {
       name: 'Laws of Motion',
       lectures: [
-        { id: 'L1', title: ' L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/607200555313601900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420958/175095472124975910848/index_4.m3u8' },
-        { id: 'L2', title: ' L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/558495580581557950.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4426823/175104067670165910848/index_4.m3u8' },
-        { id: 'L3', title: ' L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/509369039736402940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427460/175112744711955910848/index_4.m3u8' },
+        { id: 'L1', title: 'Laws of Motion L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/607200555313601900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420958/175095472124975910848/index_4.m3u8' },
+        { id: 'L2', title: 'Laws of Motion L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/558495580581557950.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4426823/175104067670165910848/index_4.m3u8' },
+        { id: 'L3', title: 'Laws of Motion L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/509369039736402940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427460/175112744711955910848/index_4.m3u8' },
+         { id: 'L4', title: 'Laws of Motion L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/331079158133924700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4465552/175164514724655910848/index_4.m3u8' },
+        { id: 'L5', title: 'Laws of Motion L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/620542194193586600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474944/175173108288215910848/index_4.m3u8' },
+        { id: 'L6', title: 'Laws of Motion L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479252/175216435268385910848/index_4.m3u8' },
         
       ]
     },
@@ -113,7 +116,15 @@ const scienceOnlySubjects: CourseContentMap = {
     {
       name: 'SURPRISE TEST',
       lectures: [
-        { id: 'L1', title: 'SURPRISE TEST', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419713/175085599785582764802/index_5.m3u8' },
+        { id: 'L1', title: 'SURPRISE TEST', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/885994330879346600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419713/175085599785582764802/index_5.m3u8' },
+     ]
+    },
+    {
+      name: 'Chemical Bonding & Molecular Structure',
+      lectures: [
+        { id: 'L1', title: 'Chemical Bonding & Molecular Structure | L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/361721728525622140.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476039/175190453887232764802/index_5.m3u8' },
+         { id: 'L2', title: 'Chemical Bonding & Molecular Structure | L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/699955326632952400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476975/175199057911342764802/index_5.m3u8' },
+        { id: 'L3', title: 'Chemical Bonding & Molecular Structure | L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/513579986917203500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477962/175206504379362764802/index_5.m3u8' },
     
         
       ]
@@ -167,8 +178,16 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L6', title: 'Animal Kingdom L6', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/857175346896140000.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4414812/175033535661553740487/index_4.m3u8' },
         { id: 'L7', title: 'Animal Kingdom L7', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/302439581726665300.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417680/175068839657313740487/index_4.m3u8' },
         { id: 'L8', title: 'Animal Kingdom L8', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/682273925071040000.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4418662/175077474924783740487/index_4.m3u8' },
-        { id: 'L9', title: 'Animal Kingdom L9', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420719/175094220969903740487/index_4.m3u8' },
-      
+        { id: 'L9', title: 'Animal Kingdom L9', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/581865131070172000.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4420719/175094220969903740487/index_4.m3u8' },
+      ]
+    },
+    {
+      name: 'Morphology of Flowering Plants',
+      lectures: [
+        { id: 'L1', title: ' Morphology of Flowering Plants L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/181106667230925920.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475983/175189854812043740487/index_4.m3u8' },
+        { id: 'L2', title: ' Morphology of Flowering Plants L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/893525211553664400.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476910/175198510422723740487/index_4.m3u8' },
+        { id: 'L3', title: ' Morphology of Flowering Plants L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/550057955753048450.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479080/175215203063243740487/index_4.m3u8' },
+        
       ]
     },
   ],

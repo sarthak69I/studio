@@ -48,8 +48,16 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
         { id: 'L6', title: 'Trigonometry Function L6', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/524993648437217600.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4413863/175026237552875373082/index_4.m3u8' },
        { id: 'L7', title: 'Trigonometry Function L7', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/262448245520235170.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4417628/175068321220555373082/index_4.m3u8' },
         { id: 'L8', title: 'Trigonometry Function L8', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/302991296981443100.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4418593/175076984929965373082/index_4.m3u8' },
-        { id: 'L9', title: 'Trigonometry Function L9', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419835/175086677844425373082/index_4.m3u8' },
-   
+        { id: 'L9', title: 'Trigonometry Function L9', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/735519364985666200.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4419835/175086677844425373082/index_4.m3u8' },
+      ]
+    },
+    {
+      name: 'Linear Inequalities',
+      lectures: [
+        { id: 'L1', title: 'Linear Inequalities L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/609708988304403200.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475888/175189284948978752407/index_4.m3u8' },
+       { id: 'L2', title: 'Linear Inequalities L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/756843877355801600.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476784/175197866196018752407/index_4.m3u8' },
+      { id: 'L3', title: 'Linear Inequalities L3', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4478158/175207429532858752407/index_4.m3u8' },
+       
       ]
     },
   ],
@@ -74,6 +82,21 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
         { id: 'l1', title: 'We"re not afraid to die 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6959710We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L1.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376841/1746782584_5615518054046778/sunny/1746782168362_44751792912049930_video_VOD720p30.m3u8' },
         { id: 'l2', title: 'We"re not afraid to die 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1490688We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L2.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376842/1746782588_1716697312405945/sunny/1746782291885_47950164792380220_video_VOD720p30.m3u8' },
         { id: 'l3', title: 'We"re not afraid to die 3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6835826We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L3.pdf_We%E2%80%99re%20Not%20Afraid%20to%20Die%E2%80%A6%20if%20We%20Can%20Be%20Together%20L3.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376843/1746783246_9612936247338730/sunny/1746782427627_664906068054696800_video_VOD720p30.m3u8' },
+       ]
+    },
+    {
+      name: 'Discovering Tut The Saga Continues',
+      lectures: [
+        { id: 'l1', title: 'Discovering Tut The Saga Continues 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3327991Discovering%20Tut%20The%20Saga%20Continues%20L1.pdf_Discovering%20Tut%20The%20Saga%20Continues%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409058/1749823146_8870310623081078/sunny/1749810515806_464055832373707300_video_VOD720p30.m3u8' },
+       { id: 'l2', title: 'Discovering Tut The Saga Continues 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2918155Discovering%20Tut%20The%20Saga%20Continues%20L2.pdf_Discovering%20Tut%20The%20Saga%20Continues%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4417264/1750669089_7574182533651584/sunny/1750666534613_225704789904111520_video_VOD720p30.m3u8' },
+     ]
+    },
+    {
+      name: 'The Summer of the Beautiful White Horse ',
+      lectures: [
+        { id: 'l1', title: 'The Summer of the Beautiful White Horse  1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6744257The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L1.pdf_The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4417263/1750669085_2473354831799394/sunny/1750666496065_865337603299043700_video_VOD720p30.m3u8' },
+    { id: 'l2', title: 'The Summer of the Beautiful White Horse  2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4790009The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L2.pdf_The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4417264/1750669089_7574182533651584/sunny/1750666534613_225704789904111520_video_VOD720p30.m3u8' },
+    
       ]
     }
   ],

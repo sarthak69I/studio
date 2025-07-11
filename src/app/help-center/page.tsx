@@ -117,7 +117,7 @@ const predefinedQAs: QnA[] = [
       <>
         For further assistance or issues not covered, please join our Telegram channel:
         <a href="https://t.me/eleakcoursehub" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
-          E-Leak Support Hub
+          E-Leak 
         </a>.
       </>
     ),
@@ -167,7 +167,7 @@ export default function ELeakSupportPage() {
 
   React.useEffect(() => {
     setIsMounted(true);
-    document.title = 'E-Leak 24/7 Support | E-Leak';
+    document.title = 'E-Leak 24/7 Support | E-Leak Course Hub'
   }, []);
 
   React.useEffect(() => {
@@ -226,7 +226,7 @@ export default function ELeakSupportPage() {
         return (
           <div className="flex flex-col items-center justify-center p-8 min-h-[300px]">
              <Image
-              src="https://i.ibb.co/XZJkJ7xF/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
+              src="https://i.postimg.cc/BnrFG2wy/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1.png"
               alt="E-Leak Bot"
               width={64} 
               height={64}
