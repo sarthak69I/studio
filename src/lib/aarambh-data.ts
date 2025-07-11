@@ -310,7 +310,7 @@ export const aarambhCourseContent: CourseContentMap = {
        { id: 'L7', title: 'Quadratic Equations L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/680791966318698100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476964/175198952916258752407/index_4.m3u8' },
      { id: 'L8', title: 'Quadratic Equations L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480242/175224987634108752407/index_4.m3u8' },
       ]
-    }
+    },
   ],
   'English': [
     {
