@@ -13,7 +13,7 @@ const navItems = [
     { href: '/', label: 'Home', icon: Home },
     { href: '/my-courses', label: 'My Courses', icon: BookCopy },
     { href: '/live', label: 'Live Classes', icon: Radio },
-    { href: '/dashboard', label: 'Profile', icon: User },
+    { href: '/profile', label: 'Profile', icon: User },
 ];
 
 export default function FloatingNav() {
@@ -22,7 +22,7 @@ export default function FloatingNav() {
     const [isLoginDialogOpen, setIsLoginDialogOpen] = React.useState(false);
 
     const handleProtectedLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        if (!loading && !user && (href === '/my-courses' || href === '/dashboard')) {
+        if (!loading && !user && (href === '/my-courses' || href === '/profile')) {
             e.preventDefault();
             setIsLoginDialogOpen(true);
         }
@@ -59,4 +59,3 @@ export default function FloatingNav() {
         </>
     );
 }
-
