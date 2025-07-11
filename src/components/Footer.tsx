@@ -1,3 +1,4 @@
+
 // src/components/Footer.tsx
 'use client';
 
@@ -10,15 +11,14 @@ export default function Footer() {
     <footer className="w-full bg-card text-card-foreground py-10 border-t border-border">
       <div className="container mx-auto text-center flex flex-col items-center space-y-4 px-4">
         <h3 className="text-xl text-muted-foreground">Having Trouble?</h3>
-        <p className="text-sm text-muted-foreground -mt-2">E-Leak 24/7 Support or Report a bug</p>
         <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
-           <Button asChild variant="outline" className="flex-1 py-6 text-base rounded-lg shadow-sm hover:bg-muted">
+           <Button asChild variant="outline" className="flex-1 py-3 text-base rounded-lg shadow-sm hover:bg-muted">
               <Link href="/help-center">
                 <Bot className="mr-2 h-5 w-5" />
                 Get Help via Bot
               </Link>
            </Button>
-            <Button asChild variant="destructive" className="flex-1 py-6 text-base rounded-lg shadow-sm">
+            <Button asChild variant="destructive" className="flex-1 py-3 text-base rounded-lg shadow-sm">
                 <Link href="/reports">
                     <Bug className="mr-2 h-5 w-5" />
                     Report a Bug
