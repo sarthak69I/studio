@@ -315,7 +315,7 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Arithmetic Progression',
       lectures: [   
-        { id: 'L1', title: 'Arithmrtic Progression L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480242/175224987634108752407/index_4.m3u8' },
+        { id: 'L1', title: 'Arithmrtic Progression L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
         
       ]
     }
@@ -340,13 +340,6 @@ export const aarambhCourseContent: CourseContentMap = {
       lectures: [
         { id: 'l1', title: 'Fire & Ice 1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367124/1746114124_9255773397148498/sunny/1746110633800_95893697207908130_video_VOD720p30.m3u8' },
         { id: 'l2', title: 'Fire & Ice 2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367125/1746114604_3028472308291210/sunny/1746110727065_699236270267016600_video_VOD720p30.m3u8' },
-      ]
-    },
-    {
-      name: ' Poetic Devices',
-      lectures: [
-        { id: 'l1', title: ' Poetic Devices 1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355433/1745094005_5545466457120453/sunny/1745074688660_697469926988172200_video_VOD720p30.m3u8' },
-        { id: 'l2', title: ' Poetic Devices 2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' },
       ]
     },
     {
