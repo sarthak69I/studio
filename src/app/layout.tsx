@@ -84,9 +84,6 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
   },
-  // other: { // Removed google-adsense-account
-  //   'google-adsense-account': 'ca-pub-7372814899455347',
-  // },
   verification: {
     google: 'xVUZLpoXMp0utqG7cQh-faRAO-BIdkcADQ1TyQh2uCo',
   },
@@ -103,7 +100,6 @@ export default function RootLayout({
         <ClientLayoutWrapper>
           {children}
         </ClientLayoutWrapper>
-        {/* Adsense script removed */}
         <Analytics />
         <SpeedInsights />
         <Script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "719c19b121624e7991b50df8910e3342"}'></Script>

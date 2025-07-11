@@ -2,9 +2,7 @@
 // src/lib/aarambh-data.ts
 import type { CourseContentMap, Lecture } from './course-utils';
 
-const aarambhBasePath = '/assets/courses/aarambh'; // This path isn't used if notes/videos are #
-
-const itTopicsForClass9and10: CourseContentMap['IT'] = [
+const itTopicsForClass10: CourseContentMap['IT'] = [
   {
     name: "Overview",
     lectures: [
@@ -311,73 +309,7 @@ export const aarambhCourseContent: CourseContentMap = {
       ]
     }
   ],
-  'English': [
-    {
-      name: 'Letter To God ',
-      lectures: [
-        { id: 'l1', title: 'Letter To God 1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355437/1745094964_5789358984187695/sunny/1745075625242_69087200894049560_video_VOD720p30.m3u8' },
-        { id: 'l2', title: 'Letter To God 2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355438/1745092805_3842501733043505/sunny/1745075729856_273253030448162560_video_VOD720p30.m3u8' },
-      ]
-    },
-    {
-      name: 'Dust Of Snow',
-      lectures: [
-        { id: 'l1', title: 'Dust Of Snow 1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362883/1745829064_8896744564209427/sunny/1745823405144_213803673785664260_video_VOD720p30.m3u8' },
-        { id: 'l2', title: 'Dust Of Snow 2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362884/1745829304_9832761018325665/sunny/1745823991438_632000197320964000_video_VOD720p30.m3u8' },
-      ]
-    },
-    {
-      name: 'Fire & Ice',
-      lectures: [
-        { id: 'l1', title: 'Fire & Ice 1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367124/1746114124_9255773397148498/sunny/1746110633800_95893697207908130_video_VOD720p30.m3u8' },
-        { id: 'l2', title: 'Fire & Ice 2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367125/1746114604_3028472308291210/sunny/1746110727065_699236270267016600_video_VOD720p30.m3u8' },
-      ]
-    },
-    {
-      name: ' Poetic Devices',
-      lectures: [
-        { id: 'l1', title: ' Poetic Devices 1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355433/1745094005_5545466457120453/sunny/1745074688660_697469926988172200_video_VOD720p30.m3u8' },
-        { id: 'l2', title: ' Poetic Devices 2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' },
-      ]
-    },
-    {
-      name: 'A Triumph of Surgery',
-      lectures: [
-        { id: 'l1', title: 'A Triumph of Surgery 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2402030A%20Triumph%20of%20Surgery%20L1.pdf_A%20Triumph%20of%20Surgery%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378115/1747004104_5093798446180655/sunny/1746963761393_790760791059125000_video_VOD720p30.m3u8' },
-        { id: 'l2', title: 'A Triumph of Surgery 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5913930A%20Triumph%20of%20Surgery%20L2.pdf_A%20Triumph%20of%20Surgery%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378116/1747003684_6295147578406091/sunny/1746963929440_149734756542958400_video_VOD720p30.m3u8' },
-        ]
-    },
-    {
-      name: 'Nelson Mandela',
-      lectures: [
-        { id: 'l1', title: 'Nelson Mandela 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7496747Nelson%20Mandela%20L1.pdf_Nelson%20Mandela%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415979/1750450625_4554154089099621/sunny/1750425076738_818411970592036400_video_VOD720p30.m3u8' },
-      { id: 'l2', title: 'Nelson Mandela 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7653135Nelson%20Mandela%20L2.pdf_Nelson%20Mandela%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4415980/1750450685_7908273695213537/sunny/1750425643848_294345221400152260_video_VOD720p30.m3u8' },
-    ]
-    },
-    {
-      name: 'Poetic Devices',
-  lectures: [
-    { id: 'L1', title: 'Poetic Devices (Part 1)', notesTitle: "Poetic Devices Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/874065629511007100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355434/1745094064_6558196120167470/sunny/1745074746600_243414202639413570_video_VOD720p30.m3u8' },
-    { id: 'L2', title: 'Poetic Devices (Part 2)', notesTitle: "Poetic Devices Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/794426136343342800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355436/1745094844_9240190758365079/sunny/1745075412050_483337412598451650_video_VOD720p30.m3u8' }
-  ]
-},
-{
-  name: 'Tenses',
-  lectures: [
-    { id: 'L1', title: 'Tenses L1', notesTitle: "Tenses Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/727562919101567200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376992/1746790926_2620131171601548/sunny/1746785842321_68968204127858800_video_VOD720p30.m3u8' },
-    { id: 'L2', title: 'Tenses L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376993/1746791165_4683530659641818/sunny/1746786281807_635426128592612900_video_VOD720p30.m3u8' },
-    { id: 'L3', title: 'Tenses L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376994/1746791225_3697514107018118/sunny/1746786504709_85453328252238460_video_VOD720p30.m3u8' }
-  ]
-},
-{
-  name: 'Determiners',
-  lectures: [
-    { id: 'L1', title: 'Determiners L1', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2793710Determiners%20L1.pdf_Determiners%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396723/1748599866_2612688982288432/sunny/1748596322264_841185111044298900_video_VOD720p30.m3u8' },
-    { id: 'L2', title: 'Determiners L2', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6468807Determiners%20L2.pdf_Determiners%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396724/1748599983_8916038134337860/sunny/1748596644025_182722180318143000_video_VOD720p30.m3u8' }
-   ]
-    }
-  ],
-  'IT': itTopicsForClass9and10,
+  'IT': itTopicsForClass10,
   'Sanskrit': [
     {
       name: "Overview",

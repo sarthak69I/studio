@@ -66,6 +66,7 @@ export default function LiveClassesPage() {
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
+    document.title = "All Live Classes | E-Leak Courses Hub";
     setIsMounted(true);
     const updateClasses = () => {
         const now = new Date();
@@ -76,6 +77,7 @@ export default function LiveClassesPage() {
                 const { start, end } = course.class1Times(now);
                 let status: LiveClassInfo['status'] = 'completed';
                 if (now >= start && now < end) status = 'live';
+                else if (now < start && (start.getTime() - now.getTime()) <= 60 * 60 * 1000) status = 'live'; // Within 1 hour before start
                 else if (now < start) status = 'upcoming';
                 
                 combinedClasses.push({
@@ -93,6 +95,7 @@ export default function LiveClassesPage() {
                 const { start, end } = course.class2Times(now);
                 let status: LiveClassInfo['status'] = 'completed';
                 if (now >= start && now < end) status = 'live';
+                else if (now < start && (start.getTime() - now.getTime()) <= 60 * 60 * 1000) status = 'live'; // Within 1 hour before start
                 else if (now < start) status = 'upcoming';
 
                 combinedClasses.push({

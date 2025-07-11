@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app";
 
 export const metadata: Metadata = {
-  title: "E-Leak Course Hub - Books",
+  title: "Books | E-Leak Courses Hub",
   description: "Explore a comprehensive library of academic books for Class 9, 10, and 11 on E-Leak. Find and download essential study materials from authors like RD Sharma, S Chand, and NCERT to boost your learning.",
   keywords: [
     "E-Leak books",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/books`,
   },
   openGraph: {
-    title: "E-Leak Course Hub - Books",
+    title: "Books | E-Leak Courses Hub",
     description: "Your one-stop library for essential study materials for CBSE Class 9, 10, and 11. Download for free.",
     url: `${BASE_URL}/books`,
     siteName: 'E Leak Course Hub',

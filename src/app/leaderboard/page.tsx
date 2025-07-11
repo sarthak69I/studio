@@ -32,6 +32,10 @@ export default function LeaderboardPage() {
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
 
   useEffect(() => {
+    document.title = "Leaderboard | E-Leak Courses Hub";
+  }, []);
+
+  useEffect(() => {
     const fetchLeaderboard = async () => {
       setIsLoading(true);
       try {

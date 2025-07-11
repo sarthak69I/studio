@@ -11,7 +11,7 @@ interface AliasPageProps {
 
 export async function generateMetadata({ params }: AliasPageProps): Promise<Metadata> {
     return {
-        title: 'Redirecting...'
+        title: 'Redirecting... | E-Leak Courses Hub'
     };
 }
 

@@ -68,34 +68,45 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
     const updateClassState = () => {
       const now = new Date();
       const { start, end } = getTimeframes(now);
-      const diff = start.getTime() - now.getTime();
-
-      if (now < start) {
-        const h = Math.floor(diff / (1000 * 60 * 60));
-        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((diff % (1000 * 60)) / 1000);
-        setCountdown({
-          hours: String(h).padStart(2, '0'),
-          minutes: String(m).padStart(2, '0'),
-          seconds: String(s).padStart(2, '0'),
-        });
-        setClassStatus({
-          status: 'upcoming',
-          badgeText: 'Upcoming',
-          buttonText: 'Starts Soon',
-          buttonDisabled: true,
-          cardBorderClass: 'border-accent',
-        });
-      } else if (now >= start && now < end) {
-        setCountdown({ hours: '00', minutes: '00', seconds: '00' });
-        setClassStatus({
-            status: 'live',
-            badgeText: 'Live Now',
-            buttonText: 'JOIN LIVE NOW',
-            buttonDisabled: !liveStreamUrl,
-            cardBorderClass: 'border-destructive animate-pulse',
-        });
-      } else { // Class time has passed
+      
+      const timeUntilStart = start.getTime() - now.getTime();
+      
+      if (now < start && timeUntilStart > 60 * 60 * 1000) { // More than 1 hour away
+         const h = Math.floor(timeUntilStart / (1000 * 60 * 60));
+         const m = Math.floor((timeUntilStart % (1000 * 60 * 60)) / (1000 * 60));
+         const s = Math.floor((timeUntilStart % (1000 * 60)) / 1000);
+         setCountdown({
+           hours: String(h).padStart(2, '0'),
+           minutes: String(m).padStart(2, '0'),
+           seconds: String(s).padStart(2, '0'),
+         });
+         setClassStatus({
+           status: 'upcoming',
+           badgeText: 'Upcoming',
+           buttonText: 'Starts Soon',
+           buttonDisabled: true,
+           cardBorderClass: 'border-accent',
+         });
+      } else if (now >= start && now < end) { // Class is live
+         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
+         setClassStatus({
+             status: 'live',
+             badgeText: 'Live Now',
+             buttonText: 'JOIN LIVE NOW',
+             buttonDisabled: !liveStreamUrl,
+             cardBorderClass: 'border-destructive animate-pulse',
+         });
+      } else if (now >= start - (60 * 60 * 1000) && now < start) { // Within 1 hour before start
+         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
+          setClassStatus({
+             status: 'live', // Treat as 'live' for UI purposes
+             badgeText: 'Starting Soon',
+             buttonText: 'JOIN NOW',
+             buttonDisabled: !liveStreamUrl,
+             cardBorderClass: 'border-green-500 animate-pulse',
+         });
+      }
+      else { // Class time has passed
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
         setClassStatus({
           status: 'completed',
@@ -112,6 +123,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
 
     return () => clearInterval(intervalId);
   }, [isMounted, getTimeframes, liveStreamUrl]);
+
 
   if (!isMounted) {
     return <div className="bg-card rounded-2xl p-6 shadow-lg relative overflow-hidden min-h-[200px] flex items-center justify-center"><p>Loading class info...</p></div>;
@@ -190,7 +202,7 @@ export default function CourseLivePage() {
 
   React.useEffect(() => {
     if(isMounted && courseDetails) {
-      document.title = `${courseDetails.pageTitle} Live | E Leak Course Hub`;
+      document.title = `${courseDetails.pageTitle} Live | E-Leak Courses Hub`;
     }
   }, [isMounted, courseDetails]);
   

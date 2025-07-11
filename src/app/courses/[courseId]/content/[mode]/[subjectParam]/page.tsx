@@ -1,9 +1,6 @@
 
 import type { Metadata, ResolvingMetadata } from 'next';
 import SubjectContentClient from '@/components/subject-content-client';
-// Removed scienceCourseContent, etc. imports if not directly used by generateMetadata here,
-// but they might be needed if generateMetadata were to lookup subject names, etc.
-// For now, assuming metadata generation primarily relies on params.
 
 const courseDisplayNamesForMetadata: Record<string, string> = {
   '1': "Science Batch (Class 11)",
@@ -38,7 +35,7 @@ export async function generateMetadata(
   const modeText = getModeText(mode);
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app";
 
-  const pageTitle = `${subjectName} ${modeText} | ${courseName} | E-Leak`;
+  const pageTitle = `${subjectName} ${modeText} | ${courseName} | E-Leak Courses Hub`;
   const pageDescription = `Access ${modeText.toLowerCase()} for ${subjectName} in the ${courseName} on E-Leak. Enhance your learning with comprehensive study materials and lectures.`;
 
   const keywordsBase = [
@@ -72,19 +69,9 @@ export async function generateMetadata(
     alternates: {
       canonical: canonicalUrl,
     },
-    // Example of inheriting and adding Open Graph details
-    // openGraph: {
-    //   ...((await parent).openGraph || {}), // Inherit from parent
-    //   title: pageTitle,
-    //   description: pageDescription,
-    //   url: canonicalUrl,
-    //   // Consider adding specific images for subjects if available
-    // },
   };
 }
 
-// This is now a Server Component.
-// It renders the SubjectContentClient component which contains the client-side logic.
 export default function SubjectPage() {
   return <SubjectContentClient />;
 }

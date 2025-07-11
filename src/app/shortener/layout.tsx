@@ -1,9 +1,10 @@
+
 import type { Metadata } from 'next';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://e-leak.vercel.app";
 
 export const metadata: Metadata = {
-  title: "Free URL Shortener with Click Tracking | E-Leak",
+  title: "Free URL Shortener with Click Tracking | E-Leak Courses Hub",
   description: "Create short, custom, and trackable links for free with the E-Leak URL Shortener. Enjoy unlimited URL shortening with real-time click tracking at no cost.",
   keywords: [
     "URL shortener", 
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/shortener`,
   },
   openGraph: {
-    title: "Free URL Shortener with Click Tracking | E-Leak",
+    title: "Free URL Shortener with Click Tracking | E-Leak Courses Hub",
     description: "Create short, custom, and trackable links for free with the E-Leak URL Shortener. Unlimited URL shortening with real-time click tracking.",
     url: `${BASE_URL}/shortener`,
     siteName: 'E Leak Course Hub',

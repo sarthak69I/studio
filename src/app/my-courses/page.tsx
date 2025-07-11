@@ -20,6 +20,10 @@ export default function MyCoursesPage() {
     const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
 
     useEffect(() => {
+        document.title = "My Courses | E-Leak Courses Hub";
+    }, []);
+
+    useEffect(() => {
         if (!authLoading && !user) {
             setIsLoginDialogOpen(true);
             setIsProgressLoading(false);
@@ -111,4 +115,3 @@ export default function MyCoursesPage() {
         </>
     );
 }
-

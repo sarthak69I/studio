@@ -2,15 +2,13 @@
 // src/lib/aarambh9-data.ts
 import type { CourseContentMap, Lecture } from './course-utils';
 
-const aarambh9BasePath = '/assets/courses/aarambh9'; // This path isn't used if notes/videos are #
-
-const itTopicsForClass9and10: CourseContentMap['IT'] = [
+const itTopicsForClass9: CourseContentMap['IT'] = [
   {
-    name: "Overview",
+    name: "IT Overview (Class 9)",
     lectures: [
       {
-        id: "L1",
-        title: "Overview",
+        id: "L1-9",
+        title: "Class 9 IT Overview",
         notesTitle: "",
         videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391690/1748179084_2580180814420977/sunny/1748177591970_70156498151999930_video_VOD720p30.m3u8",
         notesLink: "",
@@ -19,51 +17,14 @@ const itTopicsForClass9and10: CourseContentMap['IT'] = [
     ]
   },
   {
-    name: "Communication Skills",
+    name: "Communication Skills (Class 9)",
     lectures: [
       {
-        id: "L2",
+        id: "L2-9",
         title: "Communication Skills - L1",
         notesTitle: "",
         videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391691/1748179089_8667406066067348/sunny/1748177660740_217256690396284670_video_VOD720p30.m3u8",
         notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/563827473449322750.pdf",
-        videoEmbedType: 'hls'
-      },
-      {
-        id: "L3",
-        title: "Communication Skills - L2",
-        notesTitle: "",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393991/1748364784_5017725046609362/sunny/1748356442252_86529907763754190_video_VOD720p30.m3u8",
-        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/37833447878276420.pdf",
-        videoEmbedType: 'hls'
-      }
-    ]
-  },
-  {
-    name: "Self Management Skills",
-    lectures: [
-      {
-        id: "L4",
-        title: "Self Management - L1",
-        notesTitle: "",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4398520/1748854269_7032334158082272/sunny/1748854130932_455431202240548030_video_VOD720p30.m3u8",
-        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/596857939255353100.pdf",
-        videoEmbedType: 'hls'
-      },
-      {
-        id: "L5",
-        title: "Self Management - L2",
-        notesTitle: "",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4403235/1749235927_6400627130495496/sunny/1749222493198_533557279449811200_video_VOD720p30.m3u8",
-        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/898042366895235000.pdf",
-        videoEmbedType: 'hls'
-      },
-      {
-        id: "L6",
-        title: "Self Management - L3",
-        notesTitle: "",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4411250/1750089971_2490412765566086/sunny/1750078811761_514574969298403000_video_VOD720p30.m3u8",
-        notesLink: "https://drive.google.com/file/d/116WTsVxjbJVHG6YAvxDxpuRUGSheAUqC/view?usp=drivesdk",
         videoEmbedType: 'hls'
       }
     ]
@@ -342,7 +303,7 @@ export const aarambh9CourseContent: CourseContentMap = {
    ]
     }
   ],
-  'IT': itTopicsForClass9and10,
+  'IT': itTopicsForClass9,
   'Hindi': [
     {
       "name": "दो बैलों की कथा",
@@ -413,7 +374,7 @@ export const aarambh9CourseContent: CourseContentMap = {
           "title": "Complete Chapter Revision",
           "notesTitle": "",
           "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376200/1746739504_4859201909211251/sunny/1746716721540_653688282678292200_video_VOD720p30.m3u8",
-          "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3916017%E0%A4%B2%E0%A5%8D%E0%A4%B9%E0%A4%BE%E0%A4%B8%E0%A4%BE%20%E0%A4%95%E0%A5%80%20%E0%A4%93%E0%A4%B0%20ccr.pdf_%E0%A4%B2%E0%A5%8D%E0%A4%B9%E0%A4%BE%E0%A4%B8%E0%A4%BE%20%E0%A4%95%E0%A5%80%20%E0%A4%93%E0%A4%B0%20ccr.pdf",
+          "notesLink" : "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3916017%E0%A4%B2%E0%A5%8D%E0%A4%B9%E0%A4%BE%E0%A4%B8%E0%A4%BE%20%E0%A4%95%E0%A5%80%20%E0%A4%93%E0%A4%B0%20ccr.pdf_%E0%A4%B2%E0%A5%8D%E0%A4%B9%E0%A4%BE%E0%A4%B8%E0%A4%BE%20%E0%A4%95%E0%A5%80%20%E0%A4%93%E0%A4%B0%20ccr.pdf",
           "videoEmbedType": "hls"
         }
       ]
@@ -544,16 +505,16 @@ export const aarambh9CourseContent: CourseContentMap = {
           id: "L3",
           title: "MCQs",
           notesTitle: "",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376171/1746736865_9586660164585563/sunny/1746716102384_431264663935036200_video_VOD720p30.m3u8",
-          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2317788%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Multiple%20Choice%20questions.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Multiple%20Choice%20questions.pdf",
+          "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376171/1746736865_9586660164585563/sunny/1746716102384_431264663935036200_video_VOD720p30.m3u8",
+          "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2317788%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Multiple%20Choice%20questions.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Multiple%20Choice%20questions.pdf",
           videoEmbedType: 'hls'
         },
         {
           id: "L4",
           title: "Revision",
           notesTitle: "",
-          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376170/1746731945_5192141045295381/sunny/1746715901439_37622052615082360_video_VOD720p30.m3u8",
-          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6015848%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision.pdf",
+          "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376170/1746731945_5192141045295381/sunny/1746715901439_37622052615082360_video_VOD720p30.m3u8",
+          "notesLink": "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6015848%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision.pdf_%E0%A4%AA%E0%A4%BE%E0%A4%A0%202%20%E0%A4%8F%E0%A4%B5%E0%A4%B0%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%20_%20%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A5%80%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%20%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%BE%20%28%E0%A4%AC%E0%A4%9A%E0%A5%87%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%B2%29%20Complete%20chapter%20revision.pdf",
           videoEmbedType: 'hls'
         }
       ]
@@ -724,3 +685,5 @@ export const aarambh9CourseContent: CourseContentMap = {
       }
   ]
 }
+
+    
