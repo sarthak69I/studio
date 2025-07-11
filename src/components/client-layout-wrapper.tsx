@@ -48,6 +48,7 @@ const SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY = 'subscriptionPromptLastShown_v1';
 const NOTIFICATIONS_POLL_INTERVAL_MS = 30000;
 const ANNOUNCEMENTS_FETCH_LIMIT = 20;
 const LOGIN_PROMPT_DELAY_DAYS = 2;
+const SUBSCRIPTION_PROMPT_DELAY_HOURS = 10;
 
 
 function AppContent({ children }: { children: ReactNode }) {
@@ -274,8 +275,8 @@ function AppContent({ children }: { children: ReactNode }) {
 
       // Subscription Prompt Logic
       const lastSubPromptTime = localStorage.getItem(SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY);
-      const threeDays = 3 * 24 * 60 * 60 * 1000;
-      if (!lastSubPromptTime || Date.now() - parseInt(lastSubPromptTime, 10) > threeDays) {
+      const tenHours = SUBSCRIPTION_PROMPT_DELAY_HOURS * 60 * 60 * 1000;
+      if (!lastSubPromptTime || Date.now() - parseInt(lastSubPromptTime, 10) > tenHours) {
         const timer = setTimeout(() => setShowSubscriptionPrompt(true), 15000); // Show after 15 seconds
         return () => clearTimeout(timer);
       }
@@ -507,16 +508,6 @@ function AppContent({ children }: { children: ReactNode }) {
 
       {showAppFeatures && (
         <>
-          <a
-            href="https://t.me/eleakcoursehub"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="telegram-float"
-            aria-label="Join our Telegram channel"
-            title="Join our Telegram channel"
-          >
-            <Send className="h-7 w-7 text-white" />
-          </a>
           <ContinueWatchingCard />
           <Footer />
           <AppDownloadSection />

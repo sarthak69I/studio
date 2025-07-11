@@ -12,16 +12,13 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { signUpWithEmail, signInWithEmail } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, AlertTriangle } from 'lucide-react';
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Loader2 } from 'lucide-react';
 import { Turnstile } from '@marsidev/react-turnstile';
-
 
 interface LoginDialogProps {
   open: boolean;
@@ -44,6 +41,7 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [isVerified, setIsVerified] = React.useState(false);
+  const [view, setView] = React.useState<'signIn' | 'signUp'>('signIn');
 
   const signUpForm = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -77,7 +75,7 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
     setError(null);
     try {
       await signInWithEmail(values.email, values.password);
-       toast({
+      toast({
         title: "Sign In Successful!",
         description: "Welcome back to E-Leak!",
       });
@@ -88,17 +86,19 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
       setIsLoading(false);
     }
   };
-  
-  // Reset forms and errors when dialog is closed
+
+  // Reset forms and errors when dialog is closed or view changes
   React.useEffect(() => {
     if (!open) {
-      signUpForm.reset();
-      signInForm.reset();
-      setError(null);
-      setIsLoading(false);
-      setIsVerified(false);
+      // Delay resetting the view to avoid flicker on close
+      setTimeout(() => setView('signIn'), 300);
     }
-  }, [open, signUpForm, signInForm]);
+    signUpForm.reset();
+    signInForm.reset();
+    setError(null);
+    setIsLoading(false);
+    setIsVerified(false);
+  }, [open, view, signUpForm, signInForm]);
 
   const handleVerificationSuccess = () => {
     setIsVerified(true);
@@ -119,123 +119,119 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
   );
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange} modal={false}>
+    <Dialog open={open} onOpenChange={onOpenChange} modal={true}>
       <DialogContent 
         className="sm:max-w-md rounded-xl"
-        onInteractOutside={(e) => e.preventDefault()}
+        onInteractOutside={(e) => {
+          if(isLoading) e.preventDefault();
+        }}
       >
-        <DialogHeader className="text-center">
-          <DialogTitle className="text-2xl font-bold">Welcome to E-Leak</DialogTitle>
-          <DialogDescription>
-            Sign in or create an account to get started.
-          </DialogDescription>
-        </DialogHeader>
-
-        <Alert variant="destructive" className="my-4">
-            <AlertTriangle className="h-4 w-4" />
-            <AlertDescription className="text-xs sm:text-sm">
-                If you are a new user, please use the 'Sign Up' tab. If you have an existing account, use the 'Sign In' tab.
-            </AlertDescription>
-        </Alert>
-
-        <Tabs defaultValue="signin" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="signin">Sign In</TabsTrigger>
-            <TabsTrigger value="signup">Sign Up</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="signin" className="space-y-4 pt-4">
-             <Form {...signInForm}>
-                <form onSubmit={signInForm.handleSubmit(onSignInSubmit)} className="space-y-4">
-                   <FormField
-                      control={signInForm.control}
-                      name="email"
-                      render={({ field }) => (
-                         <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input placeholder="name@example.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={signInForm.control}
-                      name="password"
-                      render={({ field }) => (
-                         <FormItem>
-                          <FormLabel>Password</FormLabel>
-                          <FormControl>
-                            <Input type="password" placeholder="••••••••" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <VerificationWidget />
-                    <Button type="submit" className="w-full" disabled={isLoading || !isVerified}>
-                        {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                        Sign In
-                    </Button>
-                </form>
-             </Form>
-          </TabsContent>
-
-          <TabsContent value="signup" className="space-y-4 pt-4">
-             <Form {...signUpForm}>
-                <form onSubmit={signUpForm.handleSubmit(onSignUpSubmit)} className="space-y-4">
-                   <FormField
-                      control={signUpForm.control}
-                      name="displayName"
-                      render={({ field }) => (
-                         <FormItem>
-                          <FormLabel>Full Name</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Your Name" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                   <FormField
-                      control={signUpForm.control}
-                      name="email"
-                      render={({ field }) => (
-                         <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input placeholder="name@example.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={signUpForm.control}
-                      name="password"
-                      render={({ field }) => (
-                         <FormItem>
-                          <FormLabel>Password</FormLabel>
-                          <FormControl>
-                            <Input type="password" placeholder="At least 6 characters" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <VerificationWidget />
-                    <Button type="submit" className="w-full" disabled={isLoading || !isVerified}>
-                         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                        Create Account
-                    </Button>
-                </form>
-             </Form>
-          </TabsContent>
-        </Tabs>
+        {view === 'signIn' ? (
+          <>
+            <DialogHeader className="text-center">
+              <DialogTitle className="text-2xl font-bold">Sign In</DialogTitle>
+              <DialogDescription>
+                Access your account to continue your learning journey.
+              </DialogDescription>
+            </DialogHeader>
+            <Form {...signInForm}>
+              <form onSubmit={signInForm.handleSubmit(onSignInSubmit)} className="space-y-4 pt-4">
+                <FormField
+                  control={signInForm.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl><Input placeholder="name@example.com" {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={signInForm.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl><Input type="password" placeholder="••••••••" {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <VerificationWidget />
+                <Button type="submit" className="w-full" disabled={isLoading || !isVerified}>
+                  {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  Sign In
+                </Button>
+              </form>
+            </Form>
+            <div className="text-center text-sm text-muted-foreground mt-4">
+              Don't have an account?{' '}
+              <Button variant="link" className="p-0 h-auto" onClick={() => setView('signUp')}>
+                Register
+              </Button>
+            </div>
+          </>
+        ) : (
+          <>
+            <DialogHeader className="text-center">
+              <DialogTitle className="text-2xl font-bold">Create an Account</DialogTitle>
+              <DialogDescription>
+                Join E-Leak for free to track your progress and more.
+              </DialogDescription>
+            </DialogHeader>
+            <Form {...signUpForm}>
+              <form onSubmit={signUpForm.handleSubmit(onSignUpSubmit)} className="space-y-4 pt-4">
+                <FormField
+                  control={signUpForm.control}
+                  name="displayName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Full Name</FormLabel>
+                      <FormControl><Input placeholder="Your Name" {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={signUpForm.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl><Input placeholder="name@example.com" {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={signUpForm.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl><Input type="password" placeholder="At least 6 characters" {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <VerificationWidget />
+                <Button type="submit" className="w-full" disabled={isLoading || !isVerified}>
+                  {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  Create Account
+                </Button>
+              </form>
+            </Form>
+            <div className="text-center text-sm text-muted-foreground mt-4">
+              Already have an account?{' '}
+              <Button variant="link" className="p-0 h-auto" onClick={() => setView('signIn')}>
+                Sign In
+              </Button>
+            </div>
+          </>
+        )}
         
         {error && <p className="text-sm text-destructive text-center pt-2">{error}</p>}
-
       </DialogContent>
     </Dialog>
   );

@@ -3,74 +3,111 @@
 
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
-import { Home as HomeIcon, Bot, PlayCircle, Clock } from 'lucide-react';
-import { getParamAsString } from '@/lib/utils';
+import { Home as HomeIcon, PlayCircle, Clock } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { courseLiveDetails } from '@/lib/live-class-data';
+import { Badge } from '@/components/ui/badge';
+import { useRouter } from 'next/navigation';
 
-interface LiveClassCardProps {
+interface LiveClassInfo {
+  courseId: string;
   courseName: string;
   subject: string;
   liveStreamUrl?: string;
+  classTimeLabel: string;
+  status: 'live' | 'upcoming' | 'completed';
+  startTime: Date;
+  endTime: Date;
 }
 
-const LiveClassCard: React.FC<LiveClassCardProps> = ({ courseName, subject, liveStreamUrl }) => {
+const LiveClassCard: React.FC<LiveClassInfo> = ({ courseName, subject, liveStreamUrl, status, classTimeLabel }) => {
+  const router = useRouter();
+
   const handleJoinClick = () => {
     if (liveStreamUrl) {
-      window.open(liveStreamUrl, '_blank', 'noopener,noreferrer');
+      // Use custom player for HLS streams, otherwise open directly
+      const urlToOpen = liveStreamUrl.includes('.m3u8')
+        ? `https://e-leak-strm.web.app/?url=${encodeURIComponent(liveStreamUrl)}`
+        : liveStreamUrl;
+      window.open(urlToOpen, '_blank', 'noopener,noreferrer');
     }
   };
 
   return (
-    <Card className="w-full max-w-md animate-fadeInUp-custom">
-      <CardHeader>
-        <CardTitle>{subject}</CardTitle>
-        <CardDescription>{courseName}</CardDescription>
+    <Card className="w-full max-w-md animate-fadeInUp-custom overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+      <CardHeader className="pb-3">
+          <div className="flex justify-between items-start">
+             <CardTitle className="text-xl font-bold">{subject}</CardTitle>
+             {status === 'live' && <Badge variant="destructive" className="animate-pulse">LIVE</Badge>}
+             {status === 'upcoming' && <Badge variant="secondary">Upcoming</Badge>}
+             {status === 'completed' && <Badge variant="outline">Completed</Badge>}
+          </div>
+          <CardDescription className="pt-1">{courseName}</CardDescription>
       </CardHeader>
-      <CardContent>
-        <Button onClick={handleJoinClick} disabled={!liveStreamUrl} className="w-full">
-          <PlayCircle className="mr-2 h-5 w-5" />
-          {liveStreamUrl ? "Join Live" : "Not Live"}
-        </Button>
+      <CardContent className="pb-4">
+        <div className="flex items-center text-sm text-muted-foreground">
+          <Clock className="mr-2 h-4 w-4" />
+          <span>{classTimeLabel}</span>
+        </div>
       </CardContent>
+      <CardFooter>
+        <Button onClick={handleJoinClick} disabled={status !== 'live'} className="w-full">
+          <PlayCircle className="mr-2 h-5 w-5" />
+          {status === 'live' ? "Join Live" : (status === 'upcoming' ? "Starts Soon" : "Class Ended")}
+        </Button>
+      </CardFooter>
     </Card>
   );
 };
 
 export default function LiveClassesPage() {
-  const [liveNow, setLiveNow] = React.useState<LiveClassCardProps[]>([]);
-  const [upcoming, setUpcoming] = React.useState<LiveClassCardProps[]>([]);
-  const [completed, setCompleted] = React.useState<LiveClassCardProps[]>([]);
+  const [allClasses, setAllClasses] = React.useState<LiveClassInfo[]>([]);
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
     setIsMounted(true);
     const updateClasses = () => {
         const now = new Date();
-        const live: LiveClassCardProps[] = [];
-        const future: LiveClassCardProps[] = [];
-        const past: LiveClassCardProps[] = [];
+        const combinedClasses: LiveClassInfo[] = [];
 
-        Object.values(courseLiveDetails).forEach(course => {
+        Object.entries(courseLiveDetails).forEach(([courseId, course]) => {
             if (course.class1Visible && course.class1Subject && course.class1Times) {
                 const { start, end } = course.class1Times(now);
-                const classInfo = { courseName: course.pageTitle, subject: course.class1Subject, liveStreamUrl: course.class1LiveStreamUrl };
-                if (now >= start && now < end) live.push(classInfo);
-                else if (now < start) future.push(classInfo);
-                else past.push(classInfo);
+                let status: LiveClassInfo['status'] = 'completed';
+                if (now >= start && now < end) status = 'live';
+                else if (now < start) status = 'upcoming';
+                
+                combinedClasses.push({
+                    courseId,
+                    courseName: course.pageTitle,
+                    subject: course.class1Subject,
+                    liveStreamUrl: course.class1LiveStreamUrl,
+                    status,
+                    startTime: start,
+                    endTime: end,
+                    classTimeLabel: course.classTimeLabel || "N/A"
+                });
             }
             if (course.class2Visible && course.class2Subject && course.class2Times) {
                 const { start, end } = course.class2Times(now);
-                const classInfo = { courseName: course.pageTitle, subject: course.class2Subject, liveStreamUrl: course.class2LiveStreamUrl };
-                if (now >= start && now < end) live.push(classInfo);
-                else if (now < start) future.push(classInfo);
-                else past.push(classInfo);
+                let status: LiveClassInfo['status'] = 'completed';
+                if (now >= start && now < end) status = 'live';
+                else if (now < start) status = 'upcoming';
+
+                combinedClasses.push({
+                    courseId,
+                    courseName: course.pageTitle,
+                    subject: course.class2Subject,
+                    liveStreamUrl: course.class2LiveStreamUrl,
+                    status,
+                    startTime: start,
+                    endTime: end,
+                    classTimeLabel: course.classTimeLabel2 || "N/A"
+                });
             }
         });
-        setLiveNow(live);
-        setUpcoming(future);
-        setCompleted(past);
+        setAllClasses(combinedClasses);
     }
     
     updateClasses();
@@ -82,13 +119,17 @@ export default function LiveClassesPage() {
       return <div className="flex justify-center items-center min-h-screen">Loading...</div>
   }
 
-  const renderClassList = (classes: LiveClassCardProps[]) => {
+  const liveNow = allClasses.filter(c => c.status === 'live').sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
+  const upcoming = allClasses.filter(c => c.status === 'upcoming').sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
+  const completed = allClasses.filter(c => c.status === 'completed').sort((a, b) => b.startTime.getTime() - a.startTime.getTime());
+
+  const renderClassList = (classes: LiveClassInfo[]) => {
     if (classes.length === 0) {
       return <p className="text-muted-foreground text-center py-8">No classes in this category right now.</p>;
     }
     return (
       <div className="space-y-4">
-        {classes.map((c, index) => <LiveClassCard key={index} {...c} />)}
+        {classes.map((c, index) => <LiveClassCard key={`${c.courseId}-${c.subject}-${index}`} {...c} />)}
       </div>
     );
   };
@@ -105,8 +146,8 @@ export default function LiveClassesPage() {
 
         <Tabs defaultValue="live" className="w-full max-w-2xl mx-auto">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="live">Live Now</TabsTrigger>
-            <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
+            <TabsTrigger value="live">Live Now ({liveNow.length})</TabsTrigger>
+            <TabsTrigger value="upcoming">Upcoming ({upcoming.length})</TabsTrigger>
             <TabsTrigger value="completed">Completed</TabsTrigger>
           </TabsList>
           <TabsContent value="live" className="mt-6">

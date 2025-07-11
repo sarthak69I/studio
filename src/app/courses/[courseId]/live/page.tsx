@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, Bot, PlayCircle } from 'lucide-react';
 import { getParamAsString } from '@/lib/utils';
 import { courseLiveDetails } from '@/lib/live-class-data';
+import { Badge } from '@/components/ui/badge';
 
 interface CountdownState {
   hours: string;
@@ -16,12 +17,11 @@ interface CountdownState {
 }
 
 interface ClassStatusState {
-  status: 'upcoming' | 'live' | 'completed' | 'recording_available';
+  status: 'upcoming' | 'live' | 'completed';
   badgeText: string;
   buttonText: string;
   buttonDisabled: boolean;
   cardBorderClass: string;
-  badgeClass: string;
 }
 
 interface LiveClassCardProps {
@@ -46,7 +46,6 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
     buttonText: 'JOIN NOW',
     buttonDisabled: true,
     cardBorderClass: 'border-accent',
-    badgeClass: 'bg-accent/20 text-accent',
   });
   const [isMounted, setIsMounted] = React.useState(false);
 
@@ -55,8 +54,11 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
   }, []);
 
   const handleJoinClick = React.useCallback(() => {
-    if ((classStatus.status === 'live' || classStatus.status === 'recording_available') && liveStreamUrl) {
-        window.open(liveStreamUrl, '_blank', 'noopener,noreferrer');
+    if (classStatus.status === 'live' && liveStreamUrl) {
+      const urlToOpen = liveStreamUrl.includes('.m3u8')
+        ? `https://e-leak-strm.web.app/?url=${encodeURIComponent(liveStreamUrl)}`
+        : liveStreamUrl;
+      window.open(urlToOpen, '_blank', 'noopener,noreferrer');
     }
   }, [classStatus.status, liveStreamUrl]);
 
@@ -80,10 +82,9 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
         setClassStatus({
           status: 'upcoming',
           badgeText: 'Upcoming',
-          buttonText: 'JOIN NOW',
+          buttonText: 'Starts Soon',
           buttonDisabled: true,
           cardBorderClass: 'border-accent',
-          badgeClass: 'bg-accent/20 text-accent',
         });
       } else if (now >= start && now < end) {
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
@@ -92,8 +93,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
             badgeText: 'Live Now',
             buttonText: 'JOIN LIVE NOW',
             buttonDisabled: !liveStreamUrl,
-            cardBorderClass: 'border-destructive animate-live-pulse',
-            badgeClass: 'bg-destructive/20 text-destructive',
+            cardBorderClass: 'border-destructive animate-pulse',
         });
       } else { // Class time has passed
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
@@ -103,7 +103,6 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           buttonText: 'Class Ended',
           buttonDisabled: true,
           cardBorderClass: 'border-green-500',
-          badgeClass: 'bg-green-500/20 text-green-500',
         });
       }
     };
@@ -136,9 +135,12 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       id={cardId}
       className={`bg-card text-card-foreground rounded-2xl p-6 shadow-xl relative overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 border-l-[5px] ${classStatus.cardBorderClass}`}
     >
-      <span className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold ${classStatus.badgeClass}`}>
-        {classStatus.badgeText}
-      </span>
+      <div className="absolute top-4 right-4">
+        {classStatus.status === 'live' && <Badge variant="destructive" className="animate-pulse">LIVE</Badge>}
+        {classStatus.status === 'upcoming' && <Badge variant="secondary">{classStatus.badgeText}</Badge>}
+        {classStatus.status === 'completed' && <Badge variant="outline">{classStatus.badgeText}</Badge>}
+      </div>
+
       <div className="text-lg font-semibold mb-2">{classTimeLabel}</div>
       <h2 className="text-2xl font-bold text-primary mb-4">{subject}</h2>
 
@@ -146,7 +148,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
         <div className="text-center text-muted-foreground py-8">
           <p className="text-lg">No live class or recording scheduled for this subject today.</p>
         </div>
-      ) : (classStatus.status === 'live' || classStatus.status === 'recording_available') ? (
+      ) : (classStatus.status === 'live') ? (
         <div className="flex flex-col items-center justify-center py-8 min-h-[150px]">
            {buttonContent}
            <p className="text-sm text-muted-foreground mt-3">Click to start viewing</p>
@@ -212,7 +214,7 @@ export default function CourseLivePage() {
   
   const class1Props = {
     cardId: "class1",
-    classTimeLabel: "5:00 PM - 10:00 PM",
+    classTimeLabel: courseDetails.classTimeLabel || "N/A",
     subject: courseDetails.class1Subject,
     liveStreamUrl: courseDetails.class1LiveStreamUrl,
     getTimeframes: courseDetails.class1Times,
@@ -220,7 +222,7 @@ export default function CourseLivePage() {
 
   const class2Props = {
     cardId: "class2",
-    classTimeLabel: "8:10 PM - 9:40 PM",
+    classTimeLabel: courseDetails.classTimeLabel2 || "N/A",
     subject: courseDetails.class2Subject,
     liveStreamUrl: courseDetails.class2LiveStreamUrl,
     getTimeframes: courseDetails.class2Times,
