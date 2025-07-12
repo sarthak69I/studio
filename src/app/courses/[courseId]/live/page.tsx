@@ -5,69 +5,10 @@ import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Home as HomeIcon, Bot, PlayCircle } from 'lucide-react';
+import { ArrowLeft, Home as HomeIcon } from 'lucide-react';
 import { getParamAsString } from '@/lib/utils';
-<<<<<<< HEAD
 import { courseLiveDetails } from '@/lib/live-class-data';
 import { Badge } from '@/components/ui/badge';
-=======
-
-interface LiveClassData {
-  pageTitle: string;
-  subtitle: string;
-  class1Subject: string;
-  class2Subject: string;
-  class1LiveStreamUrl?: string;
-  class2LiveStreamUrl?: string;
-  class1Visible?: boolean;
-  class2Visible?: boolean;
-}
-
-const newStreamPlayerBaseUrl = 'https://eleaklive.vercel.app/?liveurl=';
-
-const courseLiveDetails: Record<string, LiveClassData> = {
-  '1': { // Science
-    pageTitle: "11th Science Live Classes",
-    subtitle: "Interactive learning sessions for Science students",
-    class1Subject: "BIOLOGY",
-    class2Subject: "PHYSICS",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/e01baa20ccaf46c3b67bec6d03ff6138/index_4.m3u8')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_4.m3u8')}`,
-    class1Visible: false,
-    class2Visible: true,
-  },
-    '2': { // Commece
-      pageTitle: "CLASS 11th Commerce Live Classes",
-      subtitle: "Interactive learning sessions for Commerce students",
-      class1Subject: "BUSINESS STUDIES",
-      class2Subject: "ECONOMICS",
-      class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/4882f3a454494165b396de72e412d7aa/index_4.m3u8')}`,
-      class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/c923787f6b3b40cbbfbdc51d2d76e51e/index_4.m3u8')}`,
-      class1Visible: true,
-      class2Visible: true,
-  },
-  '3': { // Aarambh (Foundation Class 10)
-    pageTitle: " Class 10th Aarambh Live Classes",
-    subtitle: "Interactive learning sessions for Aarambh batch",
-    class1Subject: "SCIENCE",
-    class2Subject: "MATHS",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_4.m3u8')}`,
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_1.m3u8')}`,
-    class1Visible: true,
-    class2Visible: true,
-  },
-  '4': { // Aarambh (Foundation Class 9)
-    pageTitle: "9th Aarambh Live Classes",
-    subtitle: "Interactive learning sessions for Class 9 Aarambh batch",
-    class1Subject: "MATHS",
-    class2Subject: "MATHS",
-    class1LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8')}`, 
-    class2LiveStreamUrl: `${newStreamPlayerBaseUrl}${encodeURIComponent('https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8')}`, 
-    class1Visible: true, 
-    class2Visible: false,
-  }
-};
->>>>>>> aaf7034d59ced85d9fae3ba0f6c0310904a13fed
 
 interface CountdownState {
   hours: string;
