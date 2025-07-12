@@ -3,53 +3,29 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-  
-    // Rules for user documents
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
     match /users/{userId} {
-      // Any authenticated user can create their own user document
-      allow create: if request.auth != null && request.auth.uid == userId;
-      
-      // A user can read or update their own document
-      allow read, update: if request.auth != null && request.auth.uid == userId;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
     }
 
-    // Rules for global announcements
-    match /global_announcements/{announcementId} {
-        // Everyone can read announcements
-        allow read: if true;
-        
-        // Only admins can create/update/delete announcements
-        allow write: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
-    }
-    
-    // Rules for user-specific progress tracking
-    match /userProgress/{userId} {
-        // Users can read and write to their own progress document
-        allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-    
-    // Rules for URL shortener
-    match /shortenedUrls/{alias} {
-      // Anyone can read (for redirection)
-      allow read: if true;
-      // Anyone can create a new short URL
-      allow create: if true;
-      // Anyone can update the click count (for analytics)
-      allow update: if 'clickCount' in request.resource.data && request.resource.data.clickCount == resource.data.clickCount + 1;
-    }
-
-    // Rules for Bug Reports
     match /bugReports/{reportId} {
-      // A user can read a report if they are an admin OR they created it.
-      allow read: if request.auth != null && 
-                     (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true || request.auth.uid == resource.data.userId);
-      
-      // An admin can update any report. A user can only create a new one.
-      allow write: if request.auth != null;
-      
-      // A user can list reports only when querying by their own user ID.
-      // This is crucial for the "My Reports" page to work.
-      allow list: if request.auth != null && request.query.where[0][0] == 'userId' && request.query.where[0][2] == request.auth.uid;
+      // Allow create for any authenticated user
+      allow create: if request.auth != null;
+
+      // Allow admin to read/write any report
+      allow read, write: if request.auth != null && request.auth.uid == 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
+
+      // Allow users to read reports they submitted
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+    }
+
+    // This rule allows the query from the admin page to work
+    match /bugReports/{reportId} {
+        allow list: if request.auth != null && request.auth.uid == 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
     }
   }
 }
