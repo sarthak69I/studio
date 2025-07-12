@@ -13,6 +13,11 @@ import { Loader2, Ticket, MessageSquare, AlertTriangle, CheckCircle, Clock } fro
 import { Badge } from '@/components/ui/badge';
 import ReportBugDialog from '@/components/ReportBugDialog';
 import type { BugReport } from '../admin/reports/page';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "My Reports | E-Leak Courses Hub",
+};
 
 export default function MyReportsPage() {
   const router = useRouter();
@@ -20,6 +25,10 @@ export default function MyReportsPage() {
   const [reports, setReports] = useState<BugReport[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isReportDialogOpen, setIsReportDialogOpen] = useState(false);
+
+  useEffect(() => {
+    document.title = "My Reports | E-Leak Courses Hub";
+  }, []);
 
   useEffect(() => {
     if (authLoading) return;

@@ -171,11 +171,11 @@ export default function TopicLecturesPage() {
   React.useEffect(() => {
     if (topicName && topicName !== 'Unknown Topic' && topicName !== 'Invalid Topic') {
       const modeText = mode === 'notes' ? 'Notes' : mode === 'video' ? 'Videos' : 'DPPs';
-      document.title = `${topicName} - ${modeText} | E-Leak`;
+      document.title = `${topicName} - ${modeText} | E-Leak Courses Hub`;
     } else if (topicName) {
-      document.title = `${topicName} | E-Leak`;
+      document.title = `${topicName} | E-Leak Courses Hub`;
     } else {
-      document.title = 'Lectures | E-Leak';
+      document.title = 'Lectures | E-Leak Courses Hub';
     }
   }, [topicName, mode]);
 

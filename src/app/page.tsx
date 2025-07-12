@@ -21,6 +21,11 @@ import {
   DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "E-Leak Courses Hub",
+};
 
 interface Course {
   id: string;

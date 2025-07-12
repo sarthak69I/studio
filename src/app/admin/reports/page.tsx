@@ -37,6 +37,10 @@ export default function AdminReportsPage() {
   const { toast } = useToast();
 
   useEffect(() => {
+    document.title = "User Bug Reports | E-Leak Courses Hub";
+  }, []);
+
+  useEffect(() => {
     const q = query(collection(db, 'bugReports'), orderBy('createdAt', 'desc'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const reportsData: BugReport[] = [];

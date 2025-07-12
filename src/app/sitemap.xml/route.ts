@@ -9,6 +9,7 @@ import {
   type Topic, 
   type Lecture 
 } from '@/lib/course-data';
+import { booksData } from '@/lib/books-data';
 
 export const dynamic = 'force-dynamic'; // Ensures the sitemap is generated on each request
 
@@ -28,7 +29,17 @@ export function GET() {
   urls.push({ loc: `${BASE_URL}/`, lastmod, priority: 1.0 });
   urls.push({ loc: `${BASE_URL}/generate-access`, lastmod, priority: 0.8 });
   urls.push({ loc: `${BASE_URL}/help-center`, lastmod, priority: 0.5 });
-  // Removed /notifications as it's no longer a separate page
+  urls.push({ loc: `${BASE_URL}/shortener`, lastmod, priority: 0.7 });
+  urls.push({ loc: `${BASE_URL}/leaderboard`, lastmod, priority: 0.7 });
+  urls.push({ loc: `${BASE_URL}/books`, lastmod, priority: 0.9 });
+  urls.push({ loc: `${BASE_URL}/live`, lastmod, priority: 0.9 });
+
+  // Add book pages
+  booksData.forEach(category => {
+    category.books.forEach(book => {
+      // Assuming no specific page per book, just the main books page.
+    });
+  });
 
   const courses = [
     { id: '1', content: scienceCourseContent, name: 'science' },
@@ -37,7 +48,7 @@ export function GET() {
     { id: '4', content: aarambh9CourseContent, name: 'aarambh-class-9' },
   ];
 
-  const modes: ('video' | 'notes')[] = ['video', 'notes'];
+  const modes: ('video' | 'notes' | 'dpp')[] = ['video', 'notes', 'dpp'];
 
   courses.forEach(course => {
     // 2. Course Enrollment Page
@@ -63,16 +74,6 @@ export function GET() {
 
               // 5. Topic Lectures List Pages
               urls.push({ loc: `${BASE_URL}/courses/${course.id}/content/${mode}/${subjectParam}/${topicParam}/lectures`, lastmod, priority: 0.7 });
-
-              // 6. Lecture Play Pages (only for video mode and if video exists and lecture.id is defined)
-              if (mode === 'video' && topic.lectures) {
-                topic.lectures.forEach((lecture: Lecture) => {
-                  if (lecture.videoEmbedUrl && lecture.id) { 
-                    const lectureIdParam = encodeURIComponent(lecture.id);
-                    urls.push({ loc: `${BASE_URL}/courses/${course.id}/content/video/${subjectParam}/${topicParam}/lectures/${lectureIdParam}/play`, lastmod, priority: 0.6 });
-                  }
-                });
-              }
             }
           });
         }

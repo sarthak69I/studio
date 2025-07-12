@@ -27,7 +27,11 @@ import type { UserData } from '@/context/AuthContext';
 import { Textarea } from '@/components/ui/textarea';
 import ChangePasswordDialog from '@/components/ChangePasswordDialog';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import type { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: "Dashboard | E-Leak Courses Hub",
+};
 
 // --- Edit Profile Dialog Schema ---
 const profileSchema = z.object({
@@ -223,7 +227,7 @@ export default function DashboardPage() {
   
   useEffect(() => {
     if (user && userData) {
-      document.title = `${userData.displayName || user.displayName || 'User'}'s Dashboard | E-Leak`;
+      document.title = `${userData.displayName || user.displayName || 'User'}'s Dashboard | E-Leak Courses Hub`;
       
       setIsProgressLoading(true);
       const unsubscribe = listenToProgress(user.uid, (progressData) => {

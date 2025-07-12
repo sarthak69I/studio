@@ -51,10 +51,10 @@ export const metadata: Metadata = {
     apple: 'https://i.postimg.cc/ZKGmmSyr/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1-1.webp',
   },
   openGraph: {
-    title: 'E Leak Courses Hub',
+    title: 'E-Leak Courses Hub',
     description: 'Explore a range of Next Toppers courses on E-Leak. Join live classes, access notes, and watch video lectures for Science, Commerce, and Aarambh batches.',
     url: '/',
-    siteName: 'E Leak Course Hub',
+    siteName: 'E-Leak Courses Hub',
     images: [
       {
         url: 'https://i.postimg.cc/ZKGmmSyr/a5f7295b-f621-4163-b66d-8edadf7721d8-removebg-preview-1-1.webp', // E-Leak Logo

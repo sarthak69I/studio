@@ -9,6 +9,11 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { courseLiveDetails } from '@/lib/live-class-data';
 import { Badge } from '@/components/ui/badge';
 import { useRouter } from 'next/navigation';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "All Live Classes | E-Leak Courses Hub",
+};
 
 interface LiveClassInfo {
   courseId: string;

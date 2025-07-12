@@ -11,6 +11,11 @@ import Link from 'next/link';
 import { listenToProgress, UserProgress } from '@/lib/progress-manager';
 import { getCourseNameById } from '@/lib/course-analytics';
 import LoginDialog from '@/components/LoginDialog';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "My Courses | E-Leak Courses Hub",
+};
 
 export default function MyCoursesPage() {
     const { user, loading: authLoading } = useAuth();

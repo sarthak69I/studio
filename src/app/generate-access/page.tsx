@@ -14,6 +14,12 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { CheckCircle, Shield, Clock, KeyRound, AlertCircle, DoorOpen, ArrowRight } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Generate Course Access | E-Leak Courses Hub",
+};
+
 
 type PageState = 'initial' | 'awaitingRedirect' | 'accessGranted' | 'error' | 'accessOpen';
 
@@ -37,7 +43,7 @@ export default function GenerateAccessPage() {
   const [isButtonAnimating, setIsButtonAnimating] = React.useState(false);
 
   React.useEffect(() => {
-    document.title = REQUIRE_KEY_GENERATION ? "Generate Course Access | E-Leak" : "Course Access | E-Leak";
+    document.title = REQUIRE_KEY_GENERATION ? "Generate Course Access | E-Leak Courses Hub" : "Course Access | E-Leak Courses Hub";
 
     if (!REQUIRE_KEY_GENERATION) {
       setPageState('accessOpen');

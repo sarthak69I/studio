@@ -191,14 +191,14 @@ export default function EnrollPage() {
     if (!isLoading && isAccessGranted) {
         let courseName = courseDisplayNames[courseId] || "";
         if (courseName) {
-          document.title = `Enroll: ${courseName} | E-Leak`;
+          document.title = `Enroll: ${courseName} | E-Leak Courses Hub`;
         } else if (courseId) {
-          document.title = `Enroll Course ${courseId} | E-Leak`;
+          document.title = `Enroll Course ${courseId} | E-Leak Courses Hub`;
         } else {
-          document.title = 'Enroll | E-Leak';
+          document.title = 'Enroll | E-Leak Courses Hub';
         }
     } else if (!isLoading && !isAccessGranted) {
-        document.title = 'Access Required | E-Leak';
+        document.title = 'Access Required | E-Leak Courses Hub';
     }
   }, [courseId, isLoading, isAccessGranted]);
 
