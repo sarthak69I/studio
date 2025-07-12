@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, User as UserIcon, Home, KeyRound } from 'lucide-react';
+import { Loader2, LogOut, Mail, BookOpen, TrendingUp, Play, Compass, Edit, CalendarPlus, User as UserIcon, Home, KeyRound, AlertCircle } from 'lucide-react';
 import { logout, updateUserProfile } from '@/lib/firebase';
 import Link from 'next/link';
 import { listenToProgress, RecentlyViewedEntry, type UserProgress } from '@/lib/progress-manager';
@@ -26,6 +26,7 @@ import RecentlyViewedCard from '@/components/RecentlyViewedCard';
 import type { UserData } from '@/context/AuthContext';
 import { Textarea } from '@/components/ui/textarea';
 import ChangePasswordDialog from '@/components/ChangePasswordDialog';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 
 // --- Edit Profile Dialog Schema ---
@@ -222,7 +223,7 @@ export default function DashboardPage() {
   
   useEffect(() => {
     if (user && userData) {
-      document.title = `${userData.displayName || user.displayName}'s Dashboard | E-Leak`;
+      document.title = `${userData.displayName || user.displayName || 'User'}'s Dashboard | E-Leak`;
       
       setIsProgressLoading(true);
       const unsubscribe = listenToProgress(user.uid, (progressData) => {
@@ -269,6 +270,7 @@ export default function DashboardPage() {
   const joinedDate = userData.createdAt ? format(userData.createdAt.toDate(), 'MMMM d, yyyy') : 'N/A';
   const displayName = userData.displayName || user.displayName;
   const photoURL = userData.photoURL || user.photoURL;
+  const showNamePrompt = !displayName;
 
   return (
     <>
@@ -287,6 +289,16 @@ export default function DashboardPage() {
                 </Button>
             </Link>
         </header>
+        
+        {showNamePrompt && (
+          <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Set Your Display Name</AlertTitle>
+            <AlertDescription>
+              Your name isn't set yet. Click the 'Edit Profile' button to add your name and get recognized on the leaderboard!
+            </AlertDescription>
+          </Alert>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card className="md:col-span-1">
@@ -295,7 +307,7 @@ export default function DashboardPage() {
                         <AvatarImage src={photoURL || ''} alt={displayName || 'User'} />
                         <AvatarFallback className="text-3xl bg-muted">{getInitials(displayName)}</AvatarFallback>
                     </Avatar>
-                    <CardTitle className="text-xl">{displayName}</CardTitle>
+                    <CardTitle className="text-xl">{displayName || "Your Name"}</CardTitle>
                     <CardDescription className="flex items-center gap-2"><Mail className="h-4 w-4"/>{userData.email}</CardDescription>
                 </CardHeader>
                 <CardContent className="text-sm text-muted-foreground space-y-2 text-center">
