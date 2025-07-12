@@ -27,11 +27,6 @@ import type { UserData } from '@/context/AuthContext';
 import { Textarea } from '@/components/ui/textarea';
 import ChangePasswordDialog from '@/components/ChangePasswordDialog';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: "Dashboard | E-Leak Courses Hub",
-};
 
 // --- Edit Profile Dialog Schema ---
 const profileSchema = z.object({

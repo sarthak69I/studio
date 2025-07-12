@@ -14,12 +14,6 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { CheckCircle, Shield, Clock, KeyRound, AlertCircle, DoorOpen, ArrowRight } from 'lucide-react';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: "Generate Course Access | E-Leak Courses Hub",
-};
-
 
 type PageState = 'initial' | 'awaitingRedirect' | 'accessGranted' | 'error' | 'accessOpen';
 
