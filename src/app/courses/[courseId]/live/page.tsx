@@ -7,10 +7,10 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Home as HomeIcon, Bot, PlayCircle } from 'lucide-react';
 import { getParamAsString } from '@/lib/utils';
-<<<<<<< HEAD
+
 import { courseLiveDetails } from '@/lib/live-class-data';
 import { Badge } from '@/components/ui/badge';
-=======
+
 
 interface LiveClassData {
   pageTitle: string;
@@ -67,7 +67,7 @@ const courseLiveDetails: Record<string, LiveClassData> = {
     class2Visible: false,
   }
 };
->>>>>>> aaf7034d59ced85d9fae3ba0f6c0310904a13fed
+
 
 interface CountdownState {
   hours: string;
