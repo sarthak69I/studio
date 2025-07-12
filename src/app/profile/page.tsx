@@ -9,16 +9,19 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, User as UserIcon, Mail, MapPin, Edit } from 'lucide-react';
 import EditProfileDialog from '@/components/EditProfileDialog';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: "Profile | E-Leak Courses Hub",
-};
 
 export default function ProfilePage() {
   const router = useRouter();
   const { user, userData, loading: authLoading } = useAuth();
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+
+  useEffect(() => {
+    if (userData?.displayName) {
+        document.title = `${userData.displayName}'s Profile | E-Leak Courses Hub`;
+    } else {
+        document.title = "Profile | E-Leak Courses Hub";
+    }
+  }, [userData]);
 
   useEffect(() => {
     if (!authLoading && !user) {
