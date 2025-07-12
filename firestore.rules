@@ -3,56 +3,39 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    // Helper function to check for admin role
-    function isAdmin() {
-      return exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
-             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
-    }
-    
-    // Default deny all reads and writes
+  
+    // Default deny all
     match /{document=**} {
       allow read, write: if false;
     }
 
-    // Allow users to read and update their own user document
-    match /users/{userId} {
-      allow read: if true; // Allow anyone to read user profiles (for leaderboard, etc.)
-      allow create: if request.auth.uid == userId; // Allow user to create their own doc
-      allow update: if request.auth.uid == userId; // Allow user to update their own doc
-    }
-    
-    // Allow users to read and update their own progress document
+    // Allow logged-in users to read/write their own progress
     match /userProgress/{userId} {
-       allow read, write: if request.auth.uid == userId;
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Allow logged-in users to read their own user data
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Allow anyone to read global announcements
+    match /global_announcements/{announcementId} {
+      allow read: if true;
     }
     
     // Allow anyone to read shortened URLs
     match /shortenedUrls/{alias} {
       allow read: if true;
-      allow create, update, delete: if false; // Disallow client-side modification
-    }
-    
-    // Allow anyone to read global announcements
-    match /global_announcements/{docId} {
-      allow read: if true;
-      allow create, update, delete: if isAdmin(); // Only admins can manage announcements
+      // Allow create only for now, no updates/deletes from client
+      allow create: if true;
     }
 
-    // Rules for Bug Reports
+    // Allow authenticated users to create bug reports, and read them.
+    // This allows the admin to read them as well.
     match /bugReports/{reportId} {
-      // Allow any authenticated user to create a report
-      allow create: if request.auth != null;
-      
-      // Allow an authenticated user to read ONLY their own reports
-      // Allow an admin to read ALL reports
-      allow read: if (request.auth != null && request.auth.uid == resource.data.userId) || isAdmin();
-      
-      // Allow only admins to update reports (e.g., change status, add reply)
-      allow update: if isAdmin();
-      
-      // Disallow deleting reports for everyone to maintain history
-      allow delete: if false;
+       allow read, write: if request.auth != null;
     }
   }
 }
