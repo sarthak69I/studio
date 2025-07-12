@@ -3,39 +3,48 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-  
-    // Default deny all
+    
+    // Default deny all reads and writes
     match /{document=**} {
       allow read, write: if false;
     }
 
-    // Allow logged-in users to read/write their own progress
+    // Allow users to read/write their own data
+    match /users/{userId} {
+      allow read, update, delete: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null;
+    }
+    
     match /userProgress/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
 
-    // Allow logged-in users to read their own user data
-    match /users/{userId} {
-      allow read: if request.auth != null && request.auth.uid == userId;
-      allow write: if request.auth != null && request.auth.uid == userId;
-    }
-
-    // Allow anyone to read global announcements
-    match /global_announcements/{announcementId} {
-      allow read: if true;
+    // Rules for URL shortener
+    match /shortenedUrls/{alias} {
+      // Anyone can read the long URL for redirection
+      allow get; 
+      // Anyone can create a new short URL
+      allow create;
+      // Click count is updated via a server-side increment, which is allowed by default.
     }
     
-    // Allow anyone to read shortened URLs
-    match /shortenedUrls/{alias} {
-      allow read: if true;
-      // Allow create only for now, no updates/deletes from client
-      allow create: if true;
+    // Rules for Bug Reports
+    match /bugReports/{reportId} {
+        // Logged-in users can create reports
+        allow create: if request.auth != null;
+        
+        // Users can only read their own reports
+        allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+        
+        // Admin user can read/write any report
+        allow read, write: if request.auth != null && request.auth.uid == 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
     }
 
-    // Allow authenticated users to create bug reports, and read them.
-    // This allows the admin to read them as well.
-    match /bugReports/{reportId} {
-       allow read, write: if request.auth != null;
+    // Announcements can be read by anyone
+    match /global_announcements/{announcementId} {
+        allow read: if true;
+        // Write access should be restricted to admins via the Firebase console or a secure backend.
+        allow write: if false;
     }
   }
 }
