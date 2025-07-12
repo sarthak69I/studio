@@ -7,11 +7,6 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { MessageSquare, RefreshCw, AlertCircle, CheckCircle, X as CloseIcon } from 'lucide-react';
 import Image from 'next/image'; // Import next/image
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'E-Leak 24/7 Support | E-Leak Courses Hub',
-};
 
 interface QnA {
   id: string;
