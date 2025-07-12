@@ -86,6 +86,17 @@ export const aarambhDppContent: DppContent = [
   "title": "Mathematics DPP 17",
     "subject": "Mathematics",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/535549018865754750.pdf"
+    },
+  {
+  "title": "Mathematics DPP 18",
+    "subject": "Mathematics",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/182672672685553540.pdf"
+    },
+  {
+  "title": "Mathematics DPP 19",
+    "subject": "Mathematics",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/700805361553841800.pdf"
+  
   },
   { 
     "title": "ACP - 1 Chemical Reaction & Equations",
@@ -138,13 +149,19 @@ export const aarambhDppContent: DppContent = [
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/886218050969477900.pdf"
   },
   {
-    "title": "WPP #4 The Rise of Nationalism in Europe",
+    "title": "WPP 4 The Rise of Nationalism in Europe",
     "subject": "Social Science",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/191454238596169180.pdf"
   },
   {
-    "title": "WPP #5 Forest And Wildlife Resources",
+    "title": "WPP 5 Forest And Wildlife Resources",
     "subject": "Social Science",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/34822217549140612.pdf"
+  },
+  {
+    "title": "WPP 6 Sectors of Indian Economy",
+    "subject": "Social Science",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/665478458648430000.pdf"
+    
   }
 ];
