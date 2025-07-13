@@ -7,9 +7,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Toaster } from "@/components/ui/toaster";
 import CookieConsentBanner from './cookie-consent-banner';
 import MaintenancePage from './maintenance-page';
-import LoginPromptDialog from './LoginPromptDialog';
-import LoginDialog from '@/components/LoginDialog';
-import ReportBugDialog from '@/components/ReportBugDialog';
 import { FaqDialogContent } from '@/components/faq-dialog-content';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -44,11 +41,9 @@ const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
 const LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY = 'eleakLastNotificationsSheetOpenedAt_v3';
 const LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY = 'eleakLastToastedAnnouncementTimestamp_v3';
-const LOGIN_PROMPT_LAST_SHOWN_KEY = 'loginPromptLastShown_v2';
 const SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY = 'subscriptionPromptLastShown_v1';
 const NOTIFICATIONS_POLL_INTERVAL_MS = 30000;
 const ANNOUNCEMENTS_FETCH_LIMIT = 20;
-const LOGIN_PROMPT_DELAY_DAYS = 2;
 const SUBSCRIPTION_PROMPT_DELAY_HOURS = 10;
 const ADMIN_UID = 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
 
@@ -59,7 +54,6 @@ function AppContent({ children }: { children: ReactNode }) {
   const { toast } = useToast();
   const [showMaintenance, setShowMaintenance] = useState(false);
   const [maintenanceEndTime, setMaintenanceEndTime] = useState<Date | null>(null);
-  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const { user, userData, loading: authLoading } = useAuth();
 
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
@@ -71,9 +65,7 @@ function AppContent({ children }: { children: ReactNode }) {
   const [globallyLatestFetchedTimestamp, setGloballyLatestFetchedTimestamp] = useState<number>(0);
   const initialLoadDone = useRef(false);
 
-  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [isFaqsDialogOpen, setIsFaqsDialogOpen] = useState(false);
-  const [isReportBugDialogOpen, setIsReportBugDialogOpen] = useState(false);
   const [isMenuSheetOpen, setIsMenuSheetOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('dark');
   const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = React.useState(false);
@@ -221,7 +213,7 @@ function AppContent({ children }: { children: ReactNode }) {
       checkNewAnnouncements();
       initialLoadDone.current = true;
     }
-    const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback', '/dashboard', '/leaderboard', '/books'];
+    const excludedPathsForPolling = ['/help-center', '/generate-access', '/auth/callback', '/dashboard', '/leaderboard', '/books', '/signin', '/register'];
     const shouldPoll = !excludedPathsForPolling.includes(pathname) && !showMaintenance;
     let pollInterval: NodeJS.Timeout | undefined;
     if (shouldPoll) {
@@ -262,37 +254,19 @@ function AppContent({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (typeof window === 'undefined' || authLoading) return;
   
-    const excludedPathsForPrompts = ['/help-center', '/generate-access', '/auth/callback', '/books'];
+    const excludedPathsForPrompts = ['/help-center', '/generate-access', '/auth/callback', '/books', '/signin', '/register'];
     const shouldShowPrompts = !excludedPathsForPrompts.includes(pathname) && !showMaintenance;
   
     if (shouldShowPrompts) {
-      // Login Prompt Logic
-      if (!user) {
-        const lastLoginPromptTime = localStorage.getItem(LOGIN_PROMPT_LAST_SHOWN_KEY);
-        const twoDays = LOGIN_PROMPT_DELAY_DAYS * 24 * 60 * 60 * 1000;
-        if (!lastLoginPromptTime || Date.now() - parseInt(lastLoginPromptTime, 10) > twoDays) {
-          const timer = setTimeout(() => setShowLoginPrompt(true), 5000);
+        const lastSubPromptTime = localStorage.getItem(SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY);
+        const tenHours = SUBSCRIPTION_PROMPT_DELAY_HOURS * 60 * 60 * 1000;
+        if (!lastSubPromptTime || Date.now() - parseInt(lastSubPromptTime, 10) > tenHours) {
+          const timer = setTimeout(() => setShowSubscriptionPrompt(true), 10000); // Show after 10 seconds
           return () => clearTimeout(timer);
         }
-      }
-
-      // Subscription Prompt Logic
-      // Temporarily remove the time check to force the popup on next load.
-      // const lastSubPromptTime = localStorage.getItem(SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY);
-      // const tenHours = SUBSCRIPTION_PROMPT_DELAY_HOURS * 60 * 60 * 1000;
-      // if (!lastSubPromptTime || Date.now() - parseInt(lastSubPromptTime, 10) > tenHours) {
-        const timer = setTimeout(() => setShowSubscriptionPrompt(true), 10000); // Show after 10 seconds
-        return () => clearTimeout(timer);
-      // }
     }
   }, [pathname, showMaintenance, authLoading, user]);
 
-  const handleLoginPromptDismiss = () => {
-    setShowLoginPrompt(false);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(LOGIN_PROMPT_LAST_SHOWN_KEY, Date.now().toString());
-    }
-  };
 
   const handleSubscriptionPromptClose = () => {
     setShowSubscriptionPrompt(false);
@@ -301,14 +275,9 @@ function AppContent({ children }: { children: ReactNode }) {
 
   const handleReportBugClick = () => {
     if (user) {
-        router.push('/reports'); // Navigate to the My Reports page
+        router.push('/reports');
     } else {
-        setIsLoginDialogOpen(true);
-        toast({
-            title: "Login Required",
-            description: "Please log in to submit or view reports.",
-            variant: "destructive"
-        })
+        router.push('/signin');
     }
     setIsMenuSheetOpen(false);
   }
@@ -318,10 +287,10 @@ function AppContent({ children }: { children: ReactNode }) {
   }
 
   const NotificationBellIconToUse = unreadNotificationCount > 0 ? BellRing : Bell;
-  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports'];
+  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports', '/signin', '/register'];
   const showHeader = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
   
-  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports'];
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports', '/signin', '/register'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
 
   const showFloatingNav = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
@@ -433,8 +402,8 @@ function AppContent({ children }: { children: ReactNode }) {
                     </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <Button className="btn-login rounded-full" onClick={() => setIsLoginDialogOpen(true)}>
-                  Login/Register
+                <Button asChild className="btn-login rounded-full">
+                  <Link href="/signin">Login/Register</Link>
                 </Button>
               )}
 
@@ -559,22 +528,7 @@ function AppContent({ children }: { children: ReactNode }) {
         </DialogContent>
       </Dialog>
       
-      <LoginDialog open={isLoginDialogOpen} onOpenChange={setIsLoginDialogOpen} />
-      <ReportBugDialog open={isReportBugDialogOpen} onOpenChange={setIsReportBugDialogOpen} />
-
-
       <CookieConsentBanner />
-
-      <LoginPromptDialog
-          open={showLoginPrompt}
-          onOpenChange={(isOpen) => {
-            if (!isOpen) handleLoginPromptDismiss();
-          }}
-          onOpenLoginDialog={() => {
-            handleLoginPromptDismiss();
-            setIsLoginDialogOpen(true);
-          }}
-      />
       
       <SubscriptionPrompt 
         open={showSubscriptionPrompt}
