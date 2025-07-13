@@ -26,7 +26,10 @@ export default function MyReportsPage() {
   }, []);
 
   useEffect(() => {
-    if (authLoading) return;
+    if (authLoading) {
+      setIsLoading(true);
+      return;
+    };
     if (!user) {
       router.replace('/');
       return;
