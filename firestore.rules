@@ -1,31 +1,65 @@
-
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    
+    // Helper function to check for admin
+    function isAdmin(request) {
+      // IMPORTANT: Replace with your actual Admin UID
+      return request.auth.uid == 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
+    }
+
+    // Default deny all reads and writes
     match /{document=**} {
       allow read, write: if false;
     }
-
+    
+    // User profile rules
     match /users/{userId} {
-      allow read: if request.auth != null;
-      allow write: if request.auth != null && request.auth.uid == userId;
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if request.auth.uid == userId;
+    }
+    
+    // User progress rules
+    match /userProgress/{userId} {
+      allow read, write: if request.auth.uid == userId;
     }
 
+    // Announcements can be read by anyone, but only written by admin
+    match /global_announcements/{docId} {
+       allow read: if true;
+       allow write: if isAdmin(request);
+    }
+
+    // URL Shortener Rules
+    match /shortenedUrls/{alias} {
+      allow read: if true;
+      allow create: if true; // Open for anyone to create short links
+      allow update: if true; // Allow updating click counts
+    }
+    
+    // Bug report rules
     match /bugReports/{reportId} {
-      // Allow create for any authenticated user
+      // CREATE: Any authenticated user can create a report.
       allow create: if request.auth != null;
 
-      // Allow admin to read/write any report
-      allow read, write: if request.auth != null && request.auth.uid == 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
+      // READ: 
+      // Admin can read any individual report.
+      // A user can read their own report.
+      allow get: if isAdmin(request) || request.auth.uid == resource.data.userId;
 
-      // Allow users to read reports they submitted
-      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
-    }
+      // QUERY/LIST: This is the key rule that was incorrect before.
+      // An authenticated user can list reports ONLY if they are querying for their own userId.
+      // Admin can list all reports.
+      allow list: if (isAdmin(request)) || 
+                     (request.auth != null && request.query.where.get('userId') == request.auth.uid);
 
-    // This rule allows the query from the admin page to work
-    match /bugReports/{reportId} {
-        allow list: if request.auth != null && request.auth.uid == 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
+      // UPDATE: Only an admin can update reports (e.g., change status, add reply).
+      allow update: if isAdmin(request);
+      
+      // DELETE: Not allowed for now.
+      allow delete: if false;
     }
   }
 }
