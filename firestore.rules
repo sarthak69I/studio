@@ -2,48 +2,38 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    // Users collection:
-    // 1. Allow reading user data if logged in.
-    // 2. Allow a user to create their own user document upon signup.
-    // 3. Allow a user to update their own user document.
+  
     match /users/{userId} {
-      allow read: if request.auth != null;
-      allow create: if request.auth.uid == userId;
-      allow update: if request.auth.uid == userId;
-    }
-
-    // Shortened URLs collection:
-    // Allow anyone to create (shorten) and read (be redirected by) a URL.
-    match /shortenedUrls/{alias} {
-      allow read, create, update: if true;
+      allow read, update: if request.auth.uid == userId;
+      allow create: if request.auth.uid != null;
     }
     
-    // Global Announcements:
-    // Allow anyone to read the announcements.
-    match /global_announcements/{announcementId} {
-      allow get, list: if true;
-    }
-
-    // User Progress collection:
-    // Allow a user to read and write to their own progress document.
     match /userProgress/{userId} {
-      allow read, write: if request.auth.uid == userId;
+        allow read, write: if request.auth.uid == userId;
+    }
+    
+    match /global_announcements/{announcementId} {
+      allow read: if true;
+      allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+    
+    match /shortenedUrls/{alias} {
+      allow read, create: if true;
+      allow update: if true; // Allow anyone to increment the click count
     }
 
-    // Bug Reports collection:
     match /bugReports/{reportId} {
-      // Allow a user to create a bug report.
-      allow create: if request.auth != null;
+      // Allow users to create reports
+      allow create: if request.auth.uid != null;
       
-      // Allow an admin user to read/update any report.
-      // Admin UID: JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2
+      // Allow admin (specific UID) to read and update any report
       allow read, update: if request.auth.uid == 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
-
-      // **FIX**: Allow a user to query for THEIR OWN reports.
-      // The query from the 'My Reports' page filters by userId.
-      // This rule ensures that the query is only allowed if it's for the current user's ID.
-      allow list: if request.auth.uid != null && request.query.where.userId == request.auth.uid;
+      
+      // Allow a user to read their own reports (using a query)
+      allow list: if request.auth.uid != null && request.query.where.is_a(list) && request.query.where[0].field == 'userId' && request.query.where[0].op == '==' && request.query.where[0].value == request.auth.uid;
+      
+      // Allow a user to read a specific report if they are the owner
+      allow get: if request.auth.uid == resource.data.userId;
     }
   }
 }
