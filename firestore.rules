@@ -1,39 +1,38 @@
+
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-  
+    
+    // Open access for user data (for profile viewing on leaderboard)
     match /users/{userId} {
-      allow read, update: if request.auth.uid == userId;
-      allow create: if request.auth.uid != null;
-    }
-    
-    match /userProgress/{userId} {
-        allow read, write: if request.auth.uid == userId;
-    }
-    
-    match /global_announcements/{announcementId} {
       allow read: if true;
-      allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
-    }
-    
-    match /shortenedUrls/{alias} {
-      allow read, create: if true;
-      allow update: if true; // Allow anyone to increment the click count
+      allow write: if request.auth.uid == userId;
     }
 
+    // Progress data is private to the user
+    match /userProgress/{userId} {
+      allow read, write: if request.auth.uid == userId;
+    }
+
+    // Announcements are public
+    match /global_announcements/{announcementId} {
+      allow read: if true;
+      allow write: if request.auth.uid == 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2'; // Admin only
+    }
+
+    // URL Shortener is public
+    match /shortenedUrls/{alias} {
+        allow read, write: if true;
+    }
+
+    // Bug Reports
     match /bugReports/{reportId} {
-      // Allow users to create reports
-      allow create: if request.auth.uid != null;
+      // Anyone logged in can create a report.
+      allow create: if request.auth != null;
       
-      // Allow admin (specific UID) to read and update any report
-      allow read, update: if request.auth.uid == 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
-      
-      // Allow a user to read their own reports (using a query)
-      allow list: if request.auth.uid != null && request.query.where.is_a(list) && request.query.where[0].field == 'userId' && request.query.where[0].op == '==' && request.query.where[0].value == request.auth.uid;
-      
-      // Allow a user to read a specific report if they are the owner
-      allow get: if request.auth.uid == resource.data.userId;
+      // Admin can read/write any report. A user can read their own report.
+      allow read, write: if request.auth.uid == 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2' || request.auth.uid == resource.data.userId;
     }
   }
 }

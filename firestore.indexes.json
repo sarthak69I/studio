@@ -29,7 +29,7 @@
         }
       ]
     },
-     {
+    {
       "collectionGroup": "bugReports",
       "queryScope": "COLLECTION",
       "fields": [
