@@ -98,7 +98,7 @@ export default function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
     setError(null);
     setIsLoading(false);
     setIsVerified(false);
-  }, [open, view, signUpForm, signInForm]);
+  }, [open, view]);
 
   const handleVerificationSuccess = () => {
     setIsVerified(true);
