@@ -352,7 +352,15 @@ export const aarambhCourseContent: CourseContentMap = {
   lectures: [
     { id: 'L1', title: 'Determiners L1', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2793710Determiners%20L1.pdf_Determiners%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396723/1748599866_2612688982288432/sunny/1748596322264_841185111044298900_video_VOD720p30.m3u8' },
     { id: 'L2', title: 'Determiners L2', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6468807Determiners%20L2.pdf_Determiners%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396724/1748599983_8916038134337860/sunny/1748596644025_182722180318143000_video_VOD720p30.m3u8' }
-   ]
+  ]
+},
+{
+  name: 'A Tiger in the Zoo ',
+  lectures: [
+    { id: 'L1', title: 'A Tiger in the Zoo  L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2384508Tiger%20in%20the%20Zoo%20L1.pdf_Tiger%20in%20the%20Zoo%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465241/1751626506_3969741780228351/sunny/1751624330612_504314993319041150_video_VOD720p30.m3u8' },
+   { id: 'L2', title: 'A Tiger in the Zoo  L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3774889Tiger%20in%20the%20Zoo%20L2.pdf_Tiger%20in%20the%20Zoo%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465242/1751626565_5289125113500169/sunny/1751624468397_669646185529024300_video_VOD720p30.m3u8' }
+  
+  ]
     }
   ],
  
@@ -429,6 +437,48 @@ export const aarambhCourseContent: CourseContentMap = {
           notesTitle: "शिशुलालनम् NCERT",
           videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409096/1749831427_5468966413028682/sunny/1749811337013_801477767575749800_video_VOD240p30.m3u8",
           notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4179520CH%20-03%20-%20शिशुलालनम्%20NCERT.pdf_CH%20-03%20-%20शिशुलालनम्%20NCERT.pdf",
+          videoEmbedType: 'hls'
+        }
+      ]
+    },
+    {
+      name: " CH 4 - जननी तुल्यवत्सला ",
+      lectures: [
+        {
+          id: " CH 4 जननी तुल्यवत्सला Explanation",
+          title: " CH 4 जननी तुल्यवत्सला Explanation",
+          notesTitle: "",
+          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409097/1749831071_5659937093336673/sunny/1749811853500_469471517135113600_video_VOD720p30.m3u8",
+          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4952495CH%20-04%20-%20%E0%A4%9C%E0%A4%A8%E0%A4%A8%E0%A5%80%20%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B2%E0%A4%BE%20Explanation.pdf_CH%20-04%20-%20%E0%A4%9C%E0%A4%A8%E0%A4%A8%E0%A5%80%20%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B2%E0%A4%BE%20Explanation.pdf",
+          videoEmbedType: 'hls'
+        },
+        {
+          id: " CH 4 जननी तुल्यवत्सला NCERT",
+          title: " CH 4 जननी तुल्यवत्सला NCERT",
+          notesTitle: "",
+          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409098/1749831544_9736034345331873/sunny/1749812389598_632839732151456400_video_VOD720p30.m3u8",
+          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1787045CH%20-04%20-%20%E0%A4%9C%E0%A4%A8%E0%A4%A8%E0%A5%80%20%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B2%E0%A4%BE%20NCERT.pdf_CH%20-04%20-%20%E0%A4%9C%E0%A4%A8%E0%A4%A8%E0%A5%80%20%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B2%E0%A4%BE%20NCERT.pdf",
+          videoEmbedType: 'hls'
+      }
+      ]
+    },
+    {
+      name: " CH 5 सुभाषितानि ",
+      lectures: [
+        {
+          id: "CH 5 सुभाषितानि Explanation",
+          title: "CH 5 सुभाषितानि Explanation ",
+          notesTitle: "",
+          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409099/1749831785_3942555994243597/sunny/1749812705927_817091877426916000_video_VOD720p30.m3u8",
+          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7106381CH%20-05%20-%20%E0%A4%B8%E0%A5%81%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%A8%E0%A4%BF%20%20Explanation.pdf_CH%20-05%20-%20%E0%A4%B8%E0%A5%81%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%A8%E0%A4%BF%20%20Explanation.pdf",
+          videoEmbedType: 'hls'
+        },
+        {
+         id: "CH 5 सुभाषितानि NCERT",
+          title: "CH 5  सुभाषितानि NCERT ",
+          notesTitle: "",
+          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409100/1749830829_5264220587902074/sunny/1749813063201_298601538506093700_video_VOD720p30.m3u8",
+          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/853606CH%20-05%20-%20%E0%A4%B8%E0%A5%81%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%A8%E0%A4%BF%20%20NCERT.pdf_CH%20-05%20-%20%E0%A4%B8%E0%A5%81%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%A8%E0%A4%BF%20%20NCERT.pdf",
           videoEmbedType: 'hls'
         }
       ]
