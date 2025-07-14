@@ -610,7 +610,22 @@ export const aarambhCourseContent: CourseContentMap = {
       "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186197/1729265530_8082650506315087/1cQy6uA6zxO3Q-fzKguG-cc6iZ1Vgj-Oa720p30.m3u8",
       "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/827292862967255600.pdf",
       "videoEmbedType": "hls"
-   }
-    ]
   }
-]
+      ]
+    },
+    {
+      "name": "Course A Doubt Class",
+      "lectures": [
+          {
+              "id": "hindi-doubt-class-1",
+              "title": "Hindi Doubt Class",
+              "videoEmbedUrl": "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480925/175239456973866123022/index_4.m3u8",
+              "videoEmbedType": "hls"
+          }
+      ]
+    }
+  ]
+        }
+
+    
+    
