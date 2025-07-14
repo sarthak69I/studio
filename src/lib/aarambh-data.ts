@@ -516,6 +516,19 @@ export const aarambhCourseContent: CourseContentMap = {
           "videoEmbedType": "hls",
         }
       ]
+    },
+    {
+      "name": "Course A Doubt Class",
+      "lectures": [
+          {
+              "id": "hindi-doubt-class-1",
+              "title": "Hindi Doubt Class",
+              "videoEmbedUrl": "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480925/175239456973866123022/index_4.m3u8",
+              "videoEmbedType": "hls"
+          }
+      ]
     }
   ]
         }
+
+    
