@@ -4,38 +4,83 @@ import type { CourseContentMap, Lecture } from './course-utils';
 
 const itTopicsForClass10: CourseContentMap['IT'] = [
   {
-    name: "IT Overview (Class 10)",
+    name: "IT Introduction",
     lectures: [
       {
         id: "L1-10-overview",
-        title: "Class 10 IT Overview",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391690/1748179084_2580180814420977/sunny/1748177591970_70156498151999930_video_VOD720p30.m3u8",
+        title: " IT Introduction",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391689/1748179024_7031915392041686/sunny/1748178845599_206479182859561570_video_VOD720p30.m3u8",
         videoEmbedType: 'hls'
       }
     ]
   },
   {
-    name: "Self Management Skills (Class 10)",
+    name: "Self Management Skills ",
     lectures: [
       {
         id: "L4-10-self-manage-1",
         title: "Self Management - L1",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4398520/1748854269_7032334158082272/sunny/1748854130932_455431202240548030_video_VOD720p30.m3u8",
-        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/596857939255353100.pdf",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4398521/1748854506_5390971521172609/sunny/1748854163810_864208687017221800_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/457804754758249150.pdf",
         videoEmbedType: 'hls'
       },
       {
         id: "L5-10-self-manage-2",
         title: "Self Management - L2",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4403235/1749235927_6400627130495496/sunny/1749222493198_533557279449811200_video_VOD720p30.m3u8",
-        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/898042366895235000.pdf",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4403234/1749235686_9677591978611161/sunny/1749222454456_458018247581363900_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/213342896416311230.pdf",
         videoEmbedType: 'hls'
       },
       {
         id: "L6-10-self-manage-3",
         title: "Self Management - L3",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4411250/1750089971_2490412765566086/sunny/1750078811761_514574969298403000_video_VOD720p30.m3u8",
-        notesLink: "https://drive.google.com/file/d/116WTsVxjbJVHG6YAvxDxpuRUGSheAUqC/view?usp=drivesdk",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4407914/1749716886_4348816412982957/sunny/1749715114047_253963182532671500_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/281091779602602940.pdf",
+        videoEmbedType: 'hls'
+   }
+    ]
+  },
+  {
+    name: "ICT skills ",
+    lectures: [
+      {
+        id: "L4-10-ICT-1",
+        title: "ICT - L1",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4416821/1750610588_7356891290512226/sunny/1750609670522_238726866250974340_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/634952483282327800.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L5-10-ICT-2",
+        title: "ICT - L2",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4421355/1751013424_1006471762343893/sunny/1751004570210_532149819608480500_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/724594293884832500.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L6-10-ICT-3",
+        title: "ICT - L3",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4421357/1751014564_2813102081459638/sunny/1751005056360_575387360787722560_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/587109874911379500.pdf",
+        videoEmbedType: 'hls'
+      }
+    ]
+  },
+  {
+    name: "Communication Skills ",
+    lectures: [
+      {
+        id: "L4-Communication Skills-1",
+        title: "Communication Skills - L1",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391701/1748180044_3694449338382459/sunny/1748179295562_439147986971553900_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/107260455905104820.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L5-Communication Skills2",
+        title: "Communication Skills - L2",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393990/1748364545_5158785497797223/sunny/1748356148965_265442288714603600_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/744086606979890200.pdf",
         videoEmbedType: 'hls'
       }
     ]
