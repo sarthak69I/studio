@@ -126,19 +126,6 @@ export default function MyReportsPage() {
                            <h4 className="font-semibold text-sm mb-1">Your Description:</h4>
                            <p className="text-muted-foreground text-sm p-3 bg-background rounded-md border whitespace-pre-wrap">{report.description}</p>
                         </div>
-                        {report.adminReply && (
-                            <div>
-                               <h4 className="font-semibold text-sm mb-1">Admin Reply:</h4>
-                               <div className="p-3 bg-green-500/10 rounded-md border border-green-500/20 text-sm">
-                                  <p className="whitespace-pre-wrap">{report.adminReply}</p>
-                                  {report.updatedAt && (
-                                     <p className="text-xs text-muted-foreground mt-2 text-right">
-                                       Replied {formatDistanceToNow(report.updatedAt.toDate(), { addSuffix: true })}
-                                     </p>
-                                  )}
-                               </div>
-                            </div>
-                        )}
                      </CardContent>
                       <CardFooter className="bg-muted/30 px-4 py-2 text-xs text-muted-foreground">
                         Submitted {formatDistanceToNow(report.createdAt.toDate(), { addSuffix: true })}

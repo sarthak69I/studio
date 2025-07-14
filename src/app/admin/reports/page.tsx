@@ -7,10 +7,9 @@ import { db } from '@/lib/firebase';
 import { format } from 'date-fns';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Loader2, MessageSquare, ArrowLeft, Send } from 'lucide-react';
+import { Loader2, MessageSquare, ArrowLeft } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 
@@ -32,8 +31,6 @@ export default function AdminReportsPage() {
   const [reports, setReports] = useState<BugReport[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedReport, setSelectedReport] = useState<BugReport | null>(null);
-  const [replyText, setReplyText] = useState('');
-  const [isReplying, setIsReplying] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -74,27 +71,6 @@ export default function AdminReportsPage() {
       toast({ variant: 'destructive', title: 'Error', description: 'Failed to update status.' });
     }
   };
-
-  const handleReplySubmit = async () => {
-    if (!selectedReport || !replyText.trim()) return;
-    setIsReplying(true);
-    const reportRef = doc(db, 'bugReports', selectedReport.id);
-    try {
-      await updateDoc(reportRef, {
-        adminReply: replyText,
-        updatedAt: serverTimestamp(),
-        status: 'Resolved' // Automatically set to resolved on reply
-      });
-      toast({ title: 'Reply Sent', description: 'Your reply has been sent to the user.' });
-      setReplyText('');
-      setSelectedReport(prev => prev ? { ...prev, adminReply: replyText, status: 'Resolved' } : null);
-    } catch (error) {
-       console.error("Error sending reply: ", error);
-       toast({ variant: 'destructive', title: 'Error', description: 'Failed to send reply.' });
-    } finally {
-       setIsReplying(false);
-    }
-  };
   
   const getStatusColor = (status: BugReport['status']) => {
     switch (status) {
@@ -122,7 +98,7 @@ export default function AdminReportsPage() {
                 <Button variant="outline"><ArrowLeft className="mr-2 h-4 w-4" /> Back to Home</Button>
             </Link>
             <h1 className="text-4xl font-bold logo-gradient-text animate-gradient">User Bug Reports</h1>
-            <p className="text-muted-foreground mt-2">Review, manage, and respond to user-submitted issues.</p>
+            <p className="text-muted-foreground mt-2">Review and manage user-submitted issues.</p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -192,28 +168,7 @@ export default function AdminReportsPage() {
                     <h3 className="font-semibold mb-1">User's Description</h3>
                     <p className="text-muted-foreground whitespace-pre-wrap p-3 bg-muted rounded-md">{selectedReport.description}</p>
                   </div>
-                  {selectedReport.adminReply && (
-                     <div>
-                        <h3 className="font-semibold mb-1">Your Reply</h3>
-                        <p className="text-muted-foreground whitespace-pre-wrap p-3 bg-green-500/10 rounded-md border border-green-500/20">{selectedReport.adminReply}</p>
-                    </div>
-                  )}
-                  <div>
-                     <h3 className="font-semibold mb-1">Reply to User</h3>
-                     <Textarea
-                        value={replyText}
-                        onChange={(e) => setReplyText(e.target.value)}
-                        placeholder={`Replying to ${selectedReport.userDisplayName}...`}
-                        rows={4}
-                     />
-                  </div>
                 </CardContent>
-                <CardFooter>
-                    <Button onClick={handleReplySubmit} disabled={isReplying || !replyText.trim()}>
-                        {isReplying && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                        Send Reply & Resolve
-                    </Button>
-                </CardFooter>
               </Card>
             ) : (
               <div className="flex flex-col items-center justify-center h-full min-h-[400px] bg-card rounded-lg border-2 border-dashed">
