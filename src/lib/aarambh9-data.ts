@@ -299,6 +299,27 @@ export const aarambh9CourseContent: CourseContentMap = {
     { id: 'L1', title: 'Determiners L1', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2793710Determiners%20L1.pdf_Determiners%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396723/1748599866_2612688982288432/sunny/1748596322264_841185111044298900_video_VOD720p30.m3u8' },
     { id: 'L2', title: 'Determiners L2', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6468807Determiners%20L2.pdf_Determiners%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396724/1748599983_8916038134337860/sunny/1748596644025_182722180318143000_video_VOD720p30.m3u8' }
    ]
+    },
+    {
+      name: 'The Brook',
+      lectures: [
+        { id: 'brook-l1', title: 'The Brook L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1581492The%20Brook%20L1.pdf_The%20Brook%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376879/1746787444_6308807111409850/sunny/1746784412048_353490897491965700_video_VOD720p30.m3u8' },
+        { id: 'brook-l2', title: 'The Brook L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2483928The%20Brook%20L2.pdf_The%20Brook%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376880/1746787626_3472742865214199/sunny/1746784668809_97286300912956000_video_VOD720p30.m3u8' }
+      ]
+    },
+    {
+      name: 'Wind',
+      lectures: [
+        { id: 'wind-l1', title: 'Wind L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6982817Wind%20L1.pdf_Wind%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4479540/1752223565_5601503020926684/sunny/1752215205565_474713474318265500_video_VOD720p30.m3u8' },
+        { id: 'wind-l2', title: 'Wind L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1930706Wind%20L2.pdf_Wind%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4479541/1752223926_4820612734718728/sunny/1752215288107_288965548979669200_video_VOD720p30.m3u8' }
+      ]
+    },
+    {
+      name: 'The Adventure Of Toto',
+      lectures: [
+        { id: 'toto-l1', title: 'The Adventure Of Toto L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3826260The%20Adventures%20of%20Toto%20L1.pdf_The%20Adventures%20of%20Toto%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465234/1751625546_7220802615425796/sunn/1751624104066_871573264351351600_video_VOD480p30.m3u8' },
+        { id: 'toto-l2', title: 'The Adventure Of Toto L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2750854The%20Adventures%20of%20Toto%20L2.pdf_The%20Adventures%20of%20Toto%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465234/1751625546_7220802615425796/sunn/1751624104066_871573264351351600_video_VOD480p30.m3u8' }
+      ]
     }
   ],
   'IT': itTopicsForClass9,
@@ -529,6 +550,53 @@ export const aarambh9CourseContent: CourseContentMap = {
             title: "Lecture 2",
             videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409090/1749829625_8692173308206863/sunny/1749811763102_517085010537473700_video_VOD720p30.m3u8",
             notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/636024CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20NCERT.pdf_CH%20-04%20-%20%E0%A4%B8%E0%A5%82%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AE%E0%A5%8C%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%95%E0%A4%AE%E0%A5%8D%20NCERT.pdf",
+            videoEmbedType: 'hls'
+          }
+        ]
+      },
+      {
+        name: "भ्रांतो बालः",
+        lectures: [
+          {
+            id: 'ch5-l1',
+            title: 'Lecture 1',
+            videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409091/1749829507_8740325201399211/sunny/1749812227248_732509357829837400_video_VOD720p30.m3u8',
+            notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2041012CH%20-05%20-%20%E0%A4%AD%E0%A5%8D%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A5%8B%20%E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A4%83%20Explanation.pdf_CH%20-05%20-%20%E0%A4%AD%E0%A5%8D%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A5%8B%20%E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A4%83%20Explanation.pdf',
+            videoEmbedType: 'hls'
+          },
+          {
+            id: 'ch5-l2',
+            title: 'Lecture 2',
+            videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409092/1749830166_1527555170267367/sunny/1749812696243_858399658770064500_video_VOD240p30.m3u8',
+            notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2290956CH%20-05%20-%20%E0%A4%AD%E0%A5%8D%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A5%8B%20%E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A4%83%20NCERT.pdf_CH%20-05%20-%20%E0%A4%AD%E0%A5%8D%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%8D%E0%A4%A4%E0%A5%8B%20%E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A4%83%20NCERT.pdf',
+            videoEmbedType: 'hls'
+          }
+        ]
+      },
+      {
+        name: "लौहतुला",
+        lectures: [
+          {
+            id: 'ch6-l1',
+            title: 'Lecture 1',
+            videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4479720/1752231606_2574691960784936/sunny/1752223072130_185917871452662080_video_VOD720p30.m3u8',
+            notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5755169CH%20-06%20-%20%E0%A4%B2%E0%A5%8C%E0%A4%B9%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A4%BE%20%20Explanation.pdf_CH%20-06%20-%20%E0%A4%B2%E0%A5%8C%E0%A4%B9%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A4%BE%20%20Explanation.pdf',
+            videoEmbedType: 'hls'
+          },
+          {
+            id: 'ch6-notes-only',
+            title: 'लौहतुला Ncert',
+            notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1390368CH%20-06%20-%20%E0%A4%B2%E0%A5%8C%E0%A4%B9%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A4%BE%20%20NCERT.pdf_CH%20-06%20-%20%E0%A4%B2%E0%A5%8C%E0%A4%B9%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A4%BE%20%20NCERT.pdf'
+          }
+        ]
+      },
+      {
+        name: "सिकतासेतुः",
+        lectures: [
+          {
+            id: 'ch7-l1',
+            title: 'Lecture 1',
+            videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4479721/1752231666_2040612629205335/sunny/1752223404070_116203473861998910_video_VOD720p30.m3u8',
             videoEmbedType: 'hls'
           }
         ]
