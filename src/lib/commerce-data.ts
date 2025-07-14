@@ -50,6 +50,7 @@ const commerceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Business Services L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476031/175190305641542266688/index_4.m3u8' },
         { id: 'L2', title: 'Business Services L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480084/175223811021262266688/index_4.m3u8' },
+        { id: 'L3', title: 'Business Services L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480746/175232513579202266688/index_4.m3u8' },
         
       ]
     },
@@ -210,6 +211,7 @@ const commerceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Collection of Data L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479248/175216350666192809295/index_4.m3u8' },
        { id: 'L2', title: 'Collection of Data L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480238/175224932258072809295/index_4.m3u8' },
+       { id: 'L3', title: 'Collection of Data L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480838/175233541962642809295/index_4.m3u8' },
        
       ]
     }
