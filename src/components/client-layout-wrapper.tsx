@@ -13,7 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send, Trophy, Link2, Book, Ticket, Bug, UserCheck } from 'lucide-react';
+import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send, Trophy, Link2, Book, Ticket, Bug, UserCheck, Info as InfoIcon } from 'lucide-react';
 import { db, logout } from '@/lib/firebase';
 import { collection, query, orderBy, limit, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
 import {
@@ -36,6 +36,7 @@ import Footer from './Footer';
 import ContinueWatchingCard from './ContinueWatchingCard';
 import AppDownloadSection from './AppDownloadSection';
 import FloatingNav from './FloatingNav';
+import { Separator } from '@/components/ui/separator';
 
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
@@ -278,10 +279,10 @@ function AppContent({ children }: { children: ReactNode }) {
   }
 
   const NotificationBellIconToUse = unreadNotificationCount > 0 ? BellRing : Bell;
-  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports', '/signin', '/register'];
+  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports', '/signin', '/register', '/about'];
   const showHeader = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
   
-  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports', '/signin', '/register'];
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports', '/signin', '/register', '/about'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
 
   const showFloatingNav = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
@@ -461,6 +462,15 @@ function AppContent({ children }: { children: ReactNode }) {
                     <Link href="/shortener" onClick={() => setIsMenuSheetOpen(false)}>
                       <Link2 className="mr-3 h-5 w-5 text-primary" />
                       URL Shortener
+                    </Link>
+                  </Button>
+
+                  <Separator className="my-2" />
+
+                  <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
+                    <Link href="/about" onClick={() => setIsMenuSheetOpen(false)}>
+                      <InfoIcon className="mr-3 h-5 w-5 text-primary" />
+                      About Us
                     </Link>
                   </Button>
                 </div>
