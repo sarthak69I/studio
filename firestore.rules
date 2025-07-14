@@ -1,64 +1,49 @@
-
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+  
+    // Helper function to check for admin status
+    function isAdmin() {
+      // Check if the user is authenticated and if their document in the 'users' collection has isAdmin set to true.
+      // Replace 'YOUR_ADMIN_UID_HERE' with the actual UID of your admin user for a fallback check.
+      return request.auth != null && (
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true ||
+        request.auth.uid == 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2'
+      );
+    }
 
-    // Helper function to check if a user is authenticated
-    function isAuthenticated() {
-      return request.auth != null;
-    }
-    
-    // Helper function to check if the user is the owner of the document
-    function isOwner(userId) {
-      return request.auth.uid == userId;
-    }
-    
-    // Rules for the 'users' collection
     match /users/{userId} {
-      // Any authenticated user can create their own user document
-      allow create: if isAuthenticated() && isOwner(userId);
-      // Only the document owner can read or update their own data
-      allow read, update: if isAuthenticated() && isOwner(userId);
+      // A user can read and update their own data.
+      // A user can create their own document, but not overwrite someone else's.
+      allow read, update: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && request.auth.uid == userId;
     }
 
-    // Rules for 'userProgress' collection
-    match /userProgress/{userId} {
-        // A user can create their own progress document
-        allow create: if isAuthenticated() && isOwner(userId);
-        // A user can read and update their own progress
-        allow read, update: if isAuthenticated() && isOwner(userId);
-        // Allow anyone to read for the leaderboard (can be tightened later if needed)
-        allow list: if true;
-    }
-
-    // Rules for 'bugReports' collection
-    match /bugReports/{reportId} {
-      // Any authenticated user can create a bug report
-      allow create: if isAuthenticated();
-      // Users can only read their own bug reports
-      allow read: if isAuthenticated() && resource.data.userId == request.auth.uid;
-      // Admins can read, update, and delete any report
-      allow list, update, delete: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
-    }
-
-    // Rules for 'global_announcements' collection
     match /global_announcements/{announcementId} {
-      // Everyone can read announcements
+      // Everyone can read announcements.
       allow read: if true;
-      allow list: if true;
-      // Only admins can create, update, or delete them
-      allow create, update, delete: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      // Only admins can write announcements.
+      allow write: if isAdmin();
     }
 
-    // Rules for 'shortenedUrls' collection
     match /shortenedUrls/{alias} {
-      // Anyone can create a shortened URL
-      allow create: if true;
-      // Anyone can read a shortened URL to be redirected
-      allow read: if true;
-      // Allow atomic updates for clickCount by anyone
-      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['clickCount']);
+      // Anyone can read, create, and update shortened URLs.
+      allow read, create, update: if true;
+    }
+    
+    match /userProgress/{userId} {
+      // Users can only read and write their own progress document.
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /bugReports/{reportId} {
+      // Any authenticated user can create a bug report.
+      allow create: if request.auth != null;
+      
+      // Admins can read/write any report.
+      // Users can only read/update their own reports.
+      allow read, update, write: if isAdmin() || (request.auth != null && request.auth.uid == resource.data.userId);
     }
   }
 }
