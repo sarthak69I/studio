@@ -173,6 +173,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L2', title: ' Socialism in Europe and the Russian Revolution 2', notesTitle: "L2 & 3", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/706384299026803200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476962/175198896239247125088/175198896239247125088_7125088.m3u8' },
         { id: 'L3', title: ' Socialism in Europe and the Russian Revolution 3', notesTitle: "L2 & 3", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/706384299026803200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477955/175206460824077125088/index_4.m3u8' },
         { id: 'L4', title: ' Socialism in Europe and the Russian Revolution 4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479048/175215101442707125088/index_4.m3u8' },
+        { id: 'L5', title: ' Socialism in Europe and the Russian Revolution 5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482039/175250749992707125088/index_4.m3u8' },
         
       ]
     },
