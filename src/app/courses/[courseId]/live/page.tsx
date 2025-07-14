@@ -71,7 +71,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
       
       const timeUntilStart = start.getTime() - now.getTime();
       
-      if (now < start && timeUntilStart > 60 * 60 * 1000) { // More than 1 hour away
+      if (now < start) { // Upcoming class
          const h = Math.floor(timeUntilStart / (1000 * 60 * 60));
          const m = Math.floor((timeUntilStart % (1000 * 60 * 60)) / (1000 * 60));
          const s = Math.floor((timeUntilStart % (1000 * 60)) / 1000);
@@ -80,12 +80,14 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
            minutes: String(m).padStart(2, '0'),
            seconds: String(s).padStart(2, '0'),
          });
+
+         const isStartingSoon = timeUntilStart <= 60 * 60 * 1000;
          setClassStatus({
            status: 'upcoming',
-           badgeText: 'Upcoming',
-           buttonText: 'Starts Soon',
-           buttonDisabled: true,
-           cardBorderClass: 'border-accent',
+           badgeText: isStartingSoon ? 'Starting Soon' : 'Upcoming',
+           buttonText: isStartingSoon ? 'JOIN NOW' : 'Starts Soon',
+           buttonDisabled: !isStartingSoon || !liveStreamUrl,
+           cardBorderClass: isStartingSoon ? 'border-green-500 animate-pulse' : 'border-accent',
          });
       } else if (now >= start && now < end) { // Class is live
          setCountdown({ hours: '00', minutes: '00', seconds: '00' });
@@ -96,15 +98,6 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
              buttonDisabled: !liveStreamUrl,
              cardBorderClass: 'border-destructive animate-pulse',
          });
-      } else if (now >= start - (60 * 60 * 1000) && now < start) { // Within 1 hour before start
-         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
-          setClassStatus({
-             status: 'live', // Treat as 'live' for UI purposes
-             badgeText: 'Starting Soon',
-             buttonText: 'JOIN NOW',
-             buttonDisabled: !liveStreamUrl,
-             cardBorderClass: 'border-green-500 animate-pulse',
-         });
       }
       else { // Class time has passed
         setCountdown({ hours: '00', minutes: '00', seconds: '00' });
@@ -113,7 +106,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
           badgeText: 'Completed',
           buttonText: 'Class Ended',
           buttonDisabled: true,
-          cardBorderClass: 'border-green-500',
+          cardBorderClass: 'border-muted-foreground/50',
         });
       }
     };
@@ -149,7 +142,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
     >
       <div className="absolute top-4 right-4">
         {classStatus.status === 'live' && <Badge variant="destructive" className="animate-pulse">LIVE</Badge>}
-        {classStatus.status === 'upcoming' && <Badge variant="secondary">{classStatus.badgeText}</Badge>}
+        {classStatus.status === 'upcoming' && <Badge variant={classStatus.badgeText === 'Starting Soon' ? 'default': 'secondary'}>{classStatus.badgeText}</Badge>}
         {classStatus.status === 'completed' && <Badge variant="outline">{classStatus.badgeText}</Badge>}
       </div>
 
@@ -160,7 +153,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
         <div className="text-center text-muted-foreground py-8">
           <p className="text-lg">No live class or recording scheduled for this subject today.</p>
         </div>
-      ) : (classStatus.status === 'live') ? (
+      ) : (classStatus.status === 'live' || classStatus.badgeText === 'Starting Soon') ? (
         <div className="flex flex-col items-center justify-center py-8 min-h-[150px]">
            {buttonContent}
            <p className="text-sm text-muted-foreground mt-3">Click to start viewing</p>
