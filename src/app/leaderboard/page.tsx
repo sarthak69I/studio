@@ -12,11 +12,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import LeaderboardListItem from '@/components/LeaderboardListItem';
 import { ArrowLeft, Trophy, Clock, LogIn } from 'lucide-react';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: "Leaderboard | E-Leak Courses Hub",
-};
 
 interface LeaderboardUser {
   rank: number;
