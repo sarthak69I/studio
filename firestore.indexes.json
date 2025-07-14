@@ -28,6 +28,20 @@
           "order": "DESCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "userProgress",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "score.epoch",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "score.points",
+          "order": "DESCENDING"
+        }
+      ]
     }
   ],
   "fieldOverrides": []

@@ -4,35 +4,61 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Allow users to manage their own data
+    // Helper function to check if a user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if the user is the owner of the document
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    // Rules for the 'users' collection
     match /users/{userId} {
-      allow read, write: if request.auth.uid == userId;
+      // Any authenticated user can create their own user document
+      allow create: if isAuthenticated() && isOwner(userId);
+      // Only the document owner can read or update their own data
+      allow read, update: if isAuthenticated() && isOwner(userId);
     }
 
-    // Allow users to manage their own progress
+    // Rules for 'userProgress' collection
     match /userProgress/{userId} {
-      allow read, write: if request.auth.uid == userId;
+        // A user can create their own progress document
+        allow create: if isAuthenticated() && isOwner(userId);
+        // A user can read and update their own progress
+        allow read, update: if isAuthenticated() && isOwner(userId);
+        // Allow anyone to read for the leaderboard (can be tightened later if needed)
+        allow list: if true;
     }
 
-    // Allow authenticated users to create bug reports and read their own.
+    // Rules for 'bugReports' collection
     match /bugReports/{reportId} {
-      allow create: if request.auth.uid != null;
-      allow read: if request.auth.uid == resource.data.userId;
-      // Admin-only rules for update/delete
-      allow update, delete: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      // Any authenticated user can create a bug report
+      allow create: if isAuthenticated();
+      // Users can only read their own bug reports
+      allow read: if isAuthenticated() && resource.data.userId == request.auth.uid;
+      // Admins can read, update, and delete any report
+      allow list, update, delete: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
     }
 
-    // Announcements can be read by anyone
+    // Rules for 'global_announcements' collection
     match /global_announcements/{announcementId} {
+      // Everyone can read announcements
       allow read: if true;
-      // Only admins can write announcements
-      allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      allow list: if true;
+      // Only admins can create, update, or delete them
+      allow create, update, delete: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
     }
 
-    // Shortened URLs can be read by anyone, but only created server-side
+    // Rules for 'shortenedUrls' collection
     match /shortenedUrls/{alias} {
+      // Anyone can create a shortened URL
+      allow create: if true;
+      // Anyone can read a shortened URL to be redirected
       allow read: if true;
-      allow write: if false; // Protect client-side writes
+      // Allow atomic updates for clickCount by anyone
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['clickCount']);
     }
   }
 }
