@@ -17,6 +17,7 @@ import { db } from '@/lib/firebase';
 import { Loader2, Ticket, CheckCircle } from 'lucide-react';
 import { nanoid } from 'nanoid';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const reportSchema = z.object({
   issueType: z.string().min(1, { message: "Please select an issue type." }),
@@ -31,6 +32,7 @@ interface ReportBugDialogProps {
 export default function ReportBugDialog({ open, onOpenChange }: ReportBugDialogProps) {
   const { toast } = useToast();
   const { user, userData } = useAuth();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [submittedTicketId, setSubmittedTicketId] = useState<string | null>(null);
 
@@ -49,6 +51,13 @@ export default function ReportBugDialog({ open, onOpenChange }: ReportBugDialogP
         form.reset();
         setSubmittedTicketId(null);
     }, 300);
+  };
+  
+  const handleViewReportClick = () => {
+    // Set a flag in sessionStorage to trigger the timer on the reports page
+    sessionStorage.setItem('showReportsLoading', 'true');
+    handleDialogClose();
+    router.push('/reports');
   };
 
   const onSubmit = async (values: z.infer<typeof reportSchema>) => {
@@ -156,9 +165,9 @@ export default function ReportBugDialog({ open, onOpenChange }: ReportBugDialogP
                 </div>
                  <p className="text-sm text-muted-foreground mt-2">
                     See your report on{' '}
-                    <Link href="/reports" onClick={handleDialogClose} className="text-primary underline hover:text-primary/80">
+                    <button onClick={handleViewReportClick} className="text-primary underline hover:text-primary/80">
                          My Reports
-                    </Link>.
+                    </button>.
                  </p>
                  <Button onClick={handleDialogClose} className="mt-6 w-full">Close</Button>
             </div>

@@ -21,9 +21,21 @@ export default function MyReportsPage() {
   const [reports, setReports] = useState<BugReport[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isReportDialogOpen, setIsReportDialogOpen] = useState(false);
+  const [showLoadingReports, setShowLoadingReports] = useState(false);
 
   useEffect(() => {
     document.title = "My Reports | E-Leak Courses Hub";
+
+    // Check if we need to show the loading timer
+    const reportsTimer = sessionStorage.getItem('showReportsLoading');
+    if (reportsTimer) {
+      setShowLoadingReports(true);
+      sessionStorage.removeItem('showReportsLoading'); // Clean up the flag
+      const timer = setTimeout(() => {
+        setShowLoadingReports(false);
+      }, 5000); // 5-second timer
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   useEffect(() => {
@@ -68,10 +80,11 @@ export default function MyReportsPage() {
     }
   };
 
-  if (authLoading || isLoading) {
+  if (authLoading || isLoading || showLoadingReports) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-background">
         <Loader2 className="h-12 w-12 animate-spin text-primary" />
+        {showLoadingReports && <p className="ml-4 text-muted-foreground">Syncing your new report...</p>}
       </div>
     );
   }

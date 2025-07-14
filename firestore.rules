@@ -1,42 +1,38 @@
+
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-  
-    // Users can read/write their own data, but not other users' data.
+
+    // Allow users to manage their own data
     match /users/{userId} {
-      allow read, update, delete: if request.auth.uid == userId;
-      allow create: if request.auth.uid != null;
-    }
-    
-    // Admins can read all user progress, but users can only R/W their own.
-    match /userProgress/{userId} {
       allow read, write: if request.auth.uid == userId;
-      allow read: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
     }
 
-    // Admins can read all reports.
-    // Users can create reports and read their own reports.
-    match /bugReports/{reportId} {
-      // Create: Any authenticated user can create a report.
-      allow create: if request.auth != null;
-      
-      // Read: Users can read documents where their userId matches.
-      allow read: if request.auth.uid == resource.data.userId;
-      
-      // Admin Access: Admins can read and write all reports.
-      allow read, write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    // Allow users to manage their own progress
+    match /userProgress/{userId} {
+      allow read, write: if request.auth.uid == userId;
     }
-    
-    // Global announcements can be read by anyone, but only written by admins.
+
+    // Allow authenticated users to create bug reports and read their own.
+    match /bugReports/{reportId} {
+      allow create: if request.auth.uid != null;
+      allow read: if request.auth.uid == resource.data.userId;
+      // Admin-only rules for update/delete
+      allow update, delete: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    // Announcements can be read by anyone
     match /global_announcements/{announcementId} {
       allow read: if true;
+      // Only admins can write announcements
       allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
     }
 
-    // Shortened URLs can be read by anyone and created by anyone
+    // Shortened URLs can be read by anyone, but only created server-side
     match /shortenedUrls/{alias} {
-      allow read, create, update: if true;
+      allow read: if true;
+      allow write: if false; // Protect client-side writes
     }
   }
 }
