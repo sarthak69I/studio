@@ -7,10 +7,6 @@ import { Home, Lightbulb, BookHeart, Users, ArrowLeft } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
-const teamMembers = [
-  { name: 'Sarthak', role: 'Founder & Lead Developer', initials: 'S',  imageUrl: 'https://i.ibb.co/6y40gNB/image-1.png' },
-];
-
 export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
@@ -58,22 +54,6 @@ export default function AboutPage() {
               </CardContent>
             </Card>
           </div>
-
-          <section className="mt-16">
-            <h2 className="text-3xl font-bold text-center mb-8">Meet the Team</h2>
-            <div className="flex flex-wrap justify-center gap-8">
-              {teamMembers.map((member, index) => (
-                <div key={index} className="flex flex-col items-center text-center">
-                  <Avatar className="w-24 h-24 mb-4 border-4 border-primary">
-                    <AvatarImage src={member.imageUrl} alt={member.name} />
-                    <AvatarFallback className="text-3xl bg-muted">{member.initials}</AvatarFallback>
-                  </Avatar>
-                  <h3 className="text-lg font-semibold">{member.name}</h3>
-                  <p className="text-muted-foreground">{member.role}</p>
-                </div>
-              ))}
-            </div>
-          </section>
 
           <section className="mt-16 text-center bg-card border rounded-lg p-8">
             <h2 className="text-3xl font-bold mb-4">Ready to Start Learning?</h2>
