@@ -189,8 +189,8 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Control & Coordination',
       lectures: [
-        { id: 'Control & Coordination L1', title: 'Control & Coordination L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479051/175215139612528929414/index_4.m3u8' },
-        { id: 'Control & Coordination L2', title: 'Control & Coordination L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480085/175223815228888929414/index_4.m3u8' },
+        { id: 'Control & Coordination L1', title: 'Control & Coordination L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/351128143619938700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479051/175215139612528929414/index_4.m3u8' },
+        { id: 'Control & Coordination L2', title: 'Control & Coordination L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/235922233626467300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480085/175223815228888929414/index_4.m3u8' },
         
      ]       
     }
@@ -281,7 +281,8 @@ export const aarambhCourseContent: CourseContentMap = {
       { id: 'L6', title: 'Quadratic Equations L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/328695692149355500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476029/175190275984418752407/index_4.m3u8' },
        { id: 'L7', title: 'Quadratic Equations L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/680791966318698100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476964/175198952916258752407/index_4.m3u8' },
      { id: 'L8', title: 'Quadratic Equations L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480242/175224987634108752407/index_4.m3u8' },
-      
+      { id: 'L9', title: 'Quadratic Equations L9 Doubt Solving Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480818/175233308152508752407/index_4.m3u8' },
+    
         ]
     },
     {
