@@ -576,55 +576,53 @@ export const aarambhCourseContent: CourseContentMap = {
     
       ]
     },
-[
-  {
-    "name": "माता का अँचल",
-    "lectures": [
-      {
-        "id": "L1",
-        "title": "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय व्याख्या Lecture 1",
-        "notesTitle": "",
-        "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186198/1729265533_8059479010359567/1BtyJnTEnw7CtMzUeC6JzD04RcYxkLY_h720p30.m3u8",
-        "notesLink": "",
-        "videoEmbedType": "hls"
-      },
-      {
-        "id": "L2",
-        "title": "माता का अँचल शिवपूजन सहाय NCERT solutions Lecture 2",
-        "notesTitle": "",
-        "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057679/1729247001_2102951454222923/13er8e0QTz_ZEt29EvpIDlRkw1_N36SNb720p30.m3u8",
-        "notesLink": "",
-        "videoEmbedType": "hls"
-      },
-      {
-        "id": "L3",
-        "title": "माता का अँचल शिवपूजन सहाय Mcqs Lecture 3",
-        "notesTitle": "",
-        "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057680/1729247001_7590193763429474/1Z6ELWKQm8CjGONfvOaH1lv--rvWc6nEq720p30.m3u8",
-        "notesLink": "",
-        "videoEmbedType": "hls"
-      },
-      {
-        "id": "L4",
-        "title": "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय Complete Chapter Revision Lecture 4",
-        "notesTitle": "",
-        "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186197/1729265530_8082650506315087/1cQy6uA6zxO3Q-fzKguG-cc6iZ1Vgj-Oa720p30.m3u8",
-        "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/827292862967255600.pdf",
-        "videoEmbedType": "hls"
-      }
-    ]
-  },
-  {
-    "name": "Course A Doubt Class",
-    "lectures": [
-      {
-        "id": "L1",
-        "title": "Course A Doubt Class",
-        "notesTitle": "",
-        "videoEmbedUrl": "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480925/175239456973866123022/index_4.m3u8",
-        "notesLink": "",
-        "videoEmbedType": "hls"
-      }
-    ]
-  }
-]
+{
+  "name": "माता का अँचल",
+  "lectures": [
+    {
+      "id": "L1",
+      "title": "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय व्याख्या Lecture 1",
+      "notesTitle": "",
+      "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186198/1729265533_8059479010359567/1BtyJnTEnw7CtMzUeC6JzD04RcYxkLY_h720p30.m3u8",
+      "notesLink": "",
+      "videoEmbedType": "hls"
+    },
+    {
+      "id": "L2",
+      "title": "माता का अँचल शिवपूजन सहाय NCERT solutions Lecture 2",
+      "notesTitle": "",
+      "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057679/1729247001_2102951454222923/13er8e0QTz_ZEt29EvpIDlRkw1_N36SNb720p30.m3u8",
+      "notesLink": "",
+      "videoEmbedType": "hls"
+    },
+    {
+      "id": "L3",
+      "title": "माता का अँचल शिवपूजन सहाय Mcqs Lecture 3",
+      "notesTitle": "",
+      "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057680/1729247001_7590193763429474/1Z6ELWKQm8CjGONfvOaH1lv--rvWc6nEq720p30.m3u8",
+      "notesLink": "",
+      "videoEmbedType": "hls"
+    },
+    {
+      "id": "L4",
+      "title": "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय Complete Chapter Revision Lecture 4",
+      "notesTitle": "",
+      "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186197/1729265530_8082650506315087/1cQy6uA6zxO3Q-fzKguG-cc6iZ1Vgj-Oa720p30.m3u8",
+      "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/827292862967255600.pdf",
+      "videoEmbedType": "hls"
+    }
+  ]
+},
+{
+  "name": "Course A Doubt Class",
+  "lectures": [
+    {
+      "id": "L1",
+      "title": "Course A Doubt Class",
+      "notesTitle": "",
+      "videoEmbedUrl": "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480925/175239456973866123022/index_4.m3u8",
+      "notesLink": "",
+      "videoEmbedType": "hls"
+    }
+  ]
+}
