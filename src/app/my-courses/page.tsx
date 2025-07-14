@@ -10,11 +10,6 @@ import { Loader2, Compass, BookOpen, LogIn } from 'lucide-react';
 import Link from 'next/link';
 import { listenToProgress, UserProgress } from '@/lib/progress-manager';
 import { getCourseNameById } from '@/lib/course-analytics';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-    title: "My Courses | E-Leak Courses Hub",
-};
 
 export default function MyCoursesPage() {
     const { user, loading: authLoading } = useAuth();
