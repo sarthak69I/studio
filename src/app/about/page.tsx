@@ -1,11 +1,14 @@
+
 'use client';
 
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Home, Lightbulb, BookHeart, Users, ArrowLeft } from 'lucide-react';
+import { Home, Lightbulb, BookHeart, Users, ArrowLeft, Send } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+
+const TELEGRAM_URL = "https://t.me/eleakcoursehub";
 
 export default function AboutPage() {
   return (
@@ -62,6 +65,19 @@ export default function AboutPage() {
             </p>
             <Button asChild size="lg">
               <Link href="/">Explore Courses</Link>
+            </Button>
+          </section>
+
+          <section className="mt-16 text-center bg-card border rounded-lg p-8">
+            <h2 className="text-3xl font-bold mb-4">Join Our Community</h2>
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Become a part of the E-Leak family! Join our Telegram channel to get the latest updates, ask questions, and connect with fellow students and educators.
+            </p>
+            <Button asChild size="lg" className="bg-sky-600 hover:bg-sky-700">
+              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
+                <Send className="mr-2 h-5 w-5" />
+                Join on Telegram
+              </a>
             </Button>
           </section>
         </main>
