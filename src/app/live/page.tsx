@@ -76,9 +76,11 @@ export default function LiveClassesPage() {
             if (course.class1Visible && course.class1Subject && course.class1Times) {
                 const { start, end } = course.class1Times(now);
                 let status: LiveClassInfo['status'] = 'completed';
-                if (now >= start && now < end) status = 'live';
-                else if (now < start && (start.getTime() - now.getTime()) <= 60 * 60 * 1000) status = 'live'; // Within 1 hour before start
-                else if (now < start) status = 'upcoming';
+                if (now >= start && now < end) {
+                    status = 'live';
+                } else if (now < start) {
+                    status = 'upcoming';
+                }
                 
                 combinedClasses.push({
                     courseId,
@@ -94,9 +96,11 @@ export default function LiveClassesPage() {
             if (course.class2Visible && course.class2Subject && course.class2Times) {
                 const { start, end } = course.class2Times(now);
                 let status: LiveClassInfo['status'] = 'completed';
-                if (now >= start && now < end) status = 'live';
-                else if (now < start && (start.getTime() - now.getTime()) <= 60 * 60 * 1000) status = 'live'; // Within 1 hour before start
-                else if (now < start) status = 'upcoming';
+                if (now >= start && now < end) {
+                    status = 'live';
+                } else if (now < start) {
+                    status = 'upcoming';
+                }
 
                 combinedClasses.push({
                     courseId,
