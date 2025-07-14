@@ -92,7 +92,8 @@ export const aarambh9CourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Tissue L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/190106597863728130.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475881/175189250719138929414/index_4.m3u8' },
         { id: 'L2', title: 'Tissue L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/741669906953814700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476776/175197829846758929414/175197829846758929414_8929414.m3u8' },
-        { id: 'L3', title: 'Tissue L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4478171/175207564070148929414/index_4.m3u8' },
+        { id: 'L3', title: 'Tissue L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/551846601926949800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4478171/175207564070148929414/index_4.m3u8' },
+        { id: 'L4', title: 'Tissue L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4481913/175249800035998929414/index_4.m3u8' },
         
       ]
     },
@@ -169,8 +170,8 @@ export const aarambh9CourseContent: CourseContentMap = {
       name: 'Socialism in Europe and the Russian Revolution',    
       lectures: [
         { id: 'L1', title: ' Socialism in Europe and the Russian Revolution 1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/851550215430970800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476028/175190236171387125088/index_4.m3u8' },
-        { id: 'L2', title: ' Socialism in Europe and the Russian Revolution 2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476962/175198896239247125088/175198896239247125088_7125088.m3u8' },
-        { id: 'L3', title: ' Socialism in Europe and the Russian Revolution 3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477955/175206460824077125088/index_4.m3u8' },
+        { id: 'L2', title: ' Socialism in Europe and the Russian Revolution 2', notesTitle: "L2 & 3", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/706384299026803200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476962/175198896239247125088/175198896239247125088_7125088.m3u8' },
+        { id: 'L3', title: ' Socialism in Europe and the Russian Revolution 3', notesTitle: "L2 & 3", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/706384299026803200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477955/175206460824077125088/index_4.m3u8' },
         { id: 'L4', title: ' Socialism in Europe and the Russian Revolution 4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479048/175215101442707125088/index_4.m3u8' },
         
       ]
@@ -237,8 +238,14 @@ export const aarambh9CourseContent: CourseContentMap = {
            { id: 'L5', title: 'Lines and Angles L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/892325459170753300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427364/175111482017818752407/index_4.m3u8' },  
             { id: 'L6', title: 'Lines and Angles L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/310836165950808000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4461096/175138425048988752407/index_4.m3u8' },  
     { id: 'L7', title: 'Lines and Angles L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/648745054789896700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479244/175216303598138752407/index_4.m3u8' },  
-    { id: 'L8', title: 'Lines and Angles L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480065/175223691334828752407/index_4.m3u8' },  
-    
+    { id: 'L8', title: 'Lines and Angles L8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/375537386908395840.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480065/175223691334828752407/index_4.m3u8' },  
+     ]
+    },
+    {
+      name: 'Triangles',
+      lectures: [   
+        { id: 'L1', title: 'Triangles L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/165917613057313250.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480736/175232416413558752407/index_4.m3u8' },
+      
       ]
     },
   ],
