@@ -4,7 +4,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Bot, Bug } from 'lucide-react'; // Added Bug icon
+import { Bot } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -18,12 +18,6 @@ export default function Footer() {
                 Get Help via Bot
               </Link>
            </Button>
-            <Button asChild variant="destructive" className="flex-1 py-3 text-base rounded-lg shadow-sm">
-                <Link href="/reports">
-                    <Bug className="mr-2 h-5 w-5" />
-                    Report a Bug
-                </Link>
-            </Button>
         </div>
         <p className="text-sm text-muted-foreground pt-4">
           © E-Leak All rights reserved.
