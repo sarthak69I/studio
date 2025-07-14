@@ -334,7 +334,7 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Arithmetic Progression',
       lectures: [   
-        { id: 'L1', title: 'Arithmrtic Progression L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L1', title: 'Arithmrtic Progression L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482041/175250774553288752407/index_4.m3u8' },
         
       ]
     }
