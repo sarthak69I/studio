@@ -7,12 +7,13 @@ import { useAuth } from '@/context/AuthContext';
 import { collection, query, where, onSnapshot, orderBy } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { formatDistanceToNow } from 'date-fns';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Loader2, Ticket, MessageSquare, AlertTriangle, CheckCircle, Clock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import ReportBugDialog from '@/components/ReportBugDialog';
 import type { BugReport } from '../admin/reports/page';
+import Link from 'next/link';
 
 export default function MyReportsPage() {
   const router = useRouter();
@@ -31,7 +32,7 @@ export default function MyReportsPage() {
       return;
     };
     if (!user) {
-      router.replace('/');
+      router.replace('/signin');
       return;
     }
 
@@ -59,11 +60,11 @@ export default function MyReportsPage() {
 
   const getStatusInfo = (status: BugReport['status']) => {
     switch (status) {
-      case 'Pending': return { color: 'bg-yellow-500', icon: <Clock className="h-4 w-4" /> };
-      case 'In Progress': return { color: 'bg-blue-500', icon: <Loader2 className="h-4 w-4 animate-spin" /> };
-      case 'Resolved': return { color: 'bg-green-500', icon: <CheckCircle className="h-4 w-4" /> };
-      case 'Delayed': return { color: 'bg-orange-500', icon: <AlertTriangle className="h-4 w-4" /> };
-      default: return { color: 'bg-gray-500', icon: <Ticket className="h-4 w-4" /> };
+      case 'Pending': return { color: 'bg-yellow-500 hover:bg-yellow-600', icon: <Clock className="h-4 w-4" /> };
+      case 'In Progress': return { color: 'bg-blue-500 hover:bg-blue-600', icon: <Loader2 className="h-4 w-4 animate-spin" /> };
+      case 'Resolved': return { color: 'bg-green-500 hover:bg-green-600', icon: <CheckCircle className="h-4 w-4" /> };
+      case 'Delayed': return { color: 'bg-orange-500 hover:bg-orange-600', icon: <AlertTriangle className="h-4 w-4" /> };
+      default: return { color: 'bg-gray-500 hover:bg-gray-600', icon: <Ticket className="h-4 w-4" /> };
     }
   };
 
@@ -96,7 +97,7 @@ export default function MyReportsPage() {
               reports.map(report => {
                 const statusInfo = getStatusInfo(report.status);
                 return (
-                  <Card key={report.id} className="overflow-hidden">
+                  <Card key={report.id} className="overflow-hidden transition-all duration-200 hover:shadow-lg">
                      <CardHeader className="flex flex-row items-center justify-between bg-muted/50 p-4">
                         <div>
                            <CardTitle className="text-lg">#{report.ticketId}</CardTitle>
@@ -126,6 +127,9 @@ export default function MyReportsPage() {
                             </div>
                         )}
                      </CardContent>
+                      <CardFooter className="bg-muted/30 px-4 py-2 text-xs text-muted-foreground">
+                        Submitted {formatDistanceToNow(report.createdAt.toDate(), { addSuffix: true })}
+                      </CardFooter>
                   </Card>
                 )
               })

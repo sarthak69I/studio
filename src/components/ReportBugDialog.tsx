@@ -16,6 +16,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { Loader2, Ticket, CheckCircle } from 'lucide-react';
 import { nanoid } from 'nanoid';
+import Link from 'next/link';
 
 const reportSchema = z.object({
   issueType: z.string().min(1, { message: "Please select an issue type." }),
@@ -153,7 +154,12 @@ export default function ReportBugDialog({ open, onOpenChange }: ReportBugDialogP
                         {submittedTicketId}
                     </p>
                 </div>
-                <p className="text-xs text-muted-foreground mt-2">You can track the status on the "My Reports" page.</p>
+                 <p className="text-sm text-muted-foreground mt-2">
+                    See your report on{' '}
+                    <Link href="/reports" onClick={handleDialogClose} className="text-primary underline hover:text-primary/80">
+                         My Reports
+                    </Link>.
+                 </p>
                  <Button onClick={handleDialogClose} className="mt-6 w-full">Close</Button>
             </div>
         )}
