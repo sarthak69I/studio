@@ -85,8 +85,8 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
          setClassStatus({
            status: 'upcoming',
            badgeText: isStartingSoon ? 'Starting Soon' : 'Upcoming',
-           buttonText: isStartingSoon ? 'JOIN NOW' : 'Starts Soon',
-           buttonDisabled: !isStartingSoon || !liveStreamUrl,
+           buttonText: 'Starts Soon',
+           buttonDisabled: true, // Always disabled until class is live
            cardBorderClass: isStartingSoon ? 'border-green-500 animate-pulse' : 'border-accent',
          });
       } else if (now >= start && now < end) { // Class is live
@@ -153,7 +153,7 @@ const LiveClassCard: React.FC<LiveClassCardProps> = ({
         <div className="text-center text-muted-foreground py-8">
           <p className="text-lg">No live class or recording scheduled for this subject today.</p>
         </div>
-      ) : (classStatus.status === 'live' || classStatus.badgeText === 'Starting Soon') ? (
+      ) : (classStatus.status === 'live') ? (
         <div className="flex flex-col items-center justify-center py-8 min-h-[150px]">
            {buttonContent}
            <p className="text-sm text-muted-foreground mt-3">Click to start viewing</p>
