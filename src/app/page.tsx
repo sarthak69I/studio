@@ -95,7 +95,7 @@ const coursesData: Course[] = [
     startDate: 'Started from Apr 2025',
     enrollLink: '/courses/4/enroll',
     youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
-    timeTableImageUrl: 'https://i.ibb.co/WNf8vK29/IMG-20250612-220549.jpg',
+    timeTableImageUrl: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/sample/75066420_35.png',
     liveSlots: [
       { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
