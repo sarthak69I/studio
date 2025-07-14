@@ -613,16 +613,18 @@ export const aarambhCourseContent: CourseContentMap = {
     }
   ]
 },
-{
-  "name": "Course A Doubt Class",
-  "lectures": [
-    {
-      "id": "L1",
-      "title": "Course A Doubt Class",
-      "notesTitle": "",
-      "videoEmbedUrl": "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480925/175239456973866123022/index_4.m3u8",
-      "notesLink": "",
-      "videoEmbedType": "hls"
-    }
-  ]
-}
+[
+  {
+    "name": "Course A Doubt Class",
+    "lectures": [
+      {
+        "id": "L1",
+        "title": "Course A Doubt Class",
+        "notesTitle": "",
+        "videoEmbedUrl": "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480925/175239456973866123022/index_4.m3u8",
+        "notesLink": "",
+        "videoEmbedType": "hls"
+      }
+    ]
+  }
+]
