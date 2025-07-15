@@ -63,6 +63,7 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
       name: ' Permutaions And Combinations',
       lectures: [
         { id: 'L1', title: ' Permutaions And Combinations L1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4481919/175249837260905373082/index_4.m3u8' },
+      { id: 'L2', title: ' Permutaions And Combinations L2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482896/175258488728635373082/index_4.m3u8' },
       
       ]
     },
