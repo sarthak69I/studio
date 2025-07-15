@@ -165,6 +165,7 @@ export const aarambhCourseContent: CourseContentMap = {
          { id: 'L3', title: 'Federalism L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/836602028786916700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4478170/175207529421867125088/index_4.m3u8' },
          { id: 'L4', title: 'Federalism L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479240/175216182823787125088/index_4.m3u8' },
          { id: 'L5', title: 'Federalism L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4481883/175249719015327125088/index_4.m3u8' },
+        { id: 'L6', title: 'Federalism L6 Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482846/175258266614757125088/index_4.m3u8' },
         
       ]
     }
