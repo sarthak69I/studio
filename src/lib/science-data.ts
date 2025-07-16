@@ -128,6 +128,7 @@ const scienceOnlySubjects: CourseContentMap = {
          { id: 'L2', title: 'Chemical Bonding & Molecular Structure L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/699955326632952400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476975/175199057911342764802/index_5.m3u8' },
         { id: 'L3', title: 'Chemical Bonding & Molecular Structure L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/513579986917203500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477962/175206504379362764802/index_5.m3u8' },
     { id: 'L4', title: 'Chemical Bonding & Molecular Structure L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482047/175250917864212764802/index_5.m3u8' },
+       { id: 'L5', title: 'Chemical Bonding & Molecular Structure L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483100/175259600815942764802/index_5.m3u8' },
     
         
       ]
