@@ -20,12 +20,12 @@ const getDailyClassTimes = (now: Date, hour: number, minute: number, duration: n
 export const courseLiveDetails: Record<string, any> = {
   '1': { // Science
     pageTitle: "11th Science",
-    class1Subject: "MATHEMATICS",
-    class2Subject: "CHEMISTRY",
+    class1Subject: "CHEMISTRY",
+    class2Subject: "MATHEMATICS",
     classTimeLabel: "5:00 PM - 6:30 PM",
-    classTimeLabel2: "8:00 PM - 9:30 PM",
-    class1LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/49856fa811d3403facbfba24d0db04ab/index_4.m3u8',
-    class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/ac361b0bc5c84abba22ce98a674f14a3/index_5.m3u8',
+    classTimeLabel2: "8:00 PM - 9:30 PM", 
+    class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/ac361b0bc5c84abba22ce98a674f14a3/index_5.m3u8',
+    class2LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/49856fa811d3403facbfba24d0db04ab/index_4.m3u8',
     class1Visible: true,
     class2Visible: true,
     class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90), // 5:00 PM for 1.5h
