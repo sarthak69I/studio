@@ -172,7 +172,8 @@ export const aarambhCourseContent: CourseContentMap = {
       name: 'Nationalism In India',
       lectures: [
         { id: 'L1', title: 'Nationalism In India L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484117/175267984098967125088/index_4.m3u8' },
-         
+         { id: 'L2', title: 'Nationalism In India L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485142/175276595260217125088/index_4.m3u8' },
+        
       ]
     }
   ],
