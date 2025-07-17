@@ -52,6 +52,8 @@ const commerceOnlySubjects: CourseContentMap = {
         { id: 'L2', title: 'Business Services L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480084/175223811021262266688/index_4.m3u8' },
         { id: 'L3', title: 'Business Services L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480746/175232513579202266688/index_4.m3u8' },
         { id: 'L4', title: 'Business Services L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482045/175250851969992266688/index_4.m3u8' },
+       { id: 'L5', title: 'Business Services L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483091/175259396431322266688/index_4.m3u8' },
+       { id: 'L6', title: 'Business Services L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483929/175267069179222266688/index_4.m3u8' },
         
       ]
     },
@@ -141,6 +143,7 @@ const commerceOnlySubjects: CourseContentMap = {
       name: ' Cash Book and Subsidiary Books',
       lectures: [
         { id: 'L1', title: 'Cash Book and Subsidiary Books L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/120727753406290000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479108/175215331573038680586/index_4.m3u8' },
+         { id: 'L2', title: 'Cash Book and Subsidiary Books L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485000/175275835960778680586/index_4.m3u8' },
           
       ]
     }
