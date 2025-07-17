@@ -65,6 +65,13 @@ const scienceOnlySubjects: CourseContentMap = {
        { id: 'L9', title: 'Laws of Motion L9 Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480935/175239737298605910848/index_4.m3u8' },
       ]
     },
+    {
+      name: 'Work, Energy & Power',
+      lectures: [
+        { id: 'L1', title: 'Work, Energy & Power L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484986/175275770518315910848/index_4.m3u8' },
+             { id: 'L2', title: 'Work, Energy & Power L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485153/175276842825365910848/index_4.m3u8' },
+      ]
+    },
   ],
   'Chemistry': [
     {
