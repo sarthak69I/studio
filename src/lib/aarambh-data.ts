@@ -245,7 +245,8 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'Control & Coordination L1', title: 'Control & Coordination L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/351128143619938700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479051/175215139612528929414/index_4.m3u8' },
         { id: 'Control & Coordination L2', title: 'Control & Coordination L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/235922233626467300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480085/175223815228888929414/index_4.m3u8' },
          { id: 'Control & Coordination L3', title: 'Control & Coordination L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483912/175266967722138929414/index_4.m3u8' },
-        
+           { id: 'Control & Coordination L4', title: 'Control & Coordination L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484951/175275594414878929414/index_4.m3u8' },
+       
      ]       
     }
   ],
