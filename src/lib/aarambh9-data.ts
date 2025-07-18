@@ -4,25 +4,112 @@ import type { CourseContentMap, Lecture } from './course-utils';
 
 const itTopicsForClass9: CourseContentMap['IT'] = [
   {
-    name: "IT Overview (Class 9)",
-    lectures: [
-      {
-        id: "L1-9-overview",
-        title: "Class 9 IT Overview",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391690/1748179084_2580180814420977/sunny/1748177591970_70156498151999930_video_VOD720p30.m3u8",
-        videoEmbedType: 'hls'
-      }
-    ]
-  },
-  {
-    name: "Communication Skills (Class 9)",
-    lectures: [
-      {
-        id: "L2-9-comm",
-        title: "Communication Skills - L1",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391691/1748179089_8667406066067348/sunny/1748177660740_217256690396284670_video_VOD720p30.m3u8",
-        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/563827473449322750.pdf",
-        videoEmbedType: 'hls'
+   name: 'Overview',
+      lectures: [
+        { 
+          id: 'OV-1', 
+          title: 'Introduction to IT Skills', 
+          notesTitle: "", 
+          notesLink: ``, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://studyverse-network.netlify.app/next-toppers?url=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391690/1748179084_2580180814420977/sunny/1748177591970_70156498151999930_video_VOD.m3u8' 
+        }
+      ]
+    },
+    {
+      name: 'Communication Skills',
+      lectures: [
+        { 
+          id: 'CS-1', 
+          title: 'Communication Skills - L1', 
+          notesTitle: "Communication Skills Notes - L1", 
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/563827473449322750.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://studyverse-network.netlify.app/next-toppers?url=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391691/1748179089_8667406066067348/sunny/1748177660740_217256690396284670_video_VOD.m3u8' 
+        },
+        { 
+          id: 'CS-2', 
+          title: 'Communication Skills - L2', 
+          notesTitle: "Communication Skills Notes - L2", 
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/37833447878276420.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://studyverse-network.netlify.app/next-toppers?url=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393991/1748364784_5017725046609362/sunny/1748356442252_86529907763754190_video_VOD.m3u8' 
+        }
+      ]
+    },
+    {
+      name: 'Self Management Skills',
+      lectures: [
+        { 
+          id: 'SM-1', 
+          title: 'Self Management - L1', 
+          notesTitle: "Self Management Notes - L1", 
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/596857939255353100.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://studyverse-network.netlify.app/next-toppers?url=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4398520/1748854269_7032334158082272/sunny/1748854130932_455431202240548030_video_VOD.m3u8' 
+        },
+        { 
+          id: 'SM-2', 
+          title: 'Self Management - L2', 
+          notesTitle: "Self Management Notes - L2", 
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/898042366895235000.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://studyverse-network.netlify.app/next-toppers?url=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4403235/1749235927_6400627130495496/sunny/1749222493198_533557279449811200_video_VOD.m3u8' 
+        },
+        { 
+          id: 'SM-3', 
+          title: 'Self Management - L3', 
+          notesTitle: "Self Management Notes - L3", 
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/219780845299114880.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://studyverse-network.netlify.app/next-toppers?url=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4411250/1750089971_2490412765566086/sunny/1750078811761_514574969298403000_video_VOD720p30.m3u8' 
+        }
+      ]
+    },
+    {
+      name: 'Basic ICT Skills',
+      lectures: [
+        { 
+          id: 'ICT-1', 
+          title: 'Basic ICT Skills - L1', 
+          notesTitle: "Basic ICT Skills Notes - L1", 
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/448746919876538100.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://studyverse-network.netlify.app/next-toppers?url=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4416820/1750610584_2716178119466760/sunny/1750609811703_157927853510808480_video_VOD720p30.m3u8' 
+        },
+        { 
+          id: 'ICT-2', 
+          title: 'Basic ICT Skills - L2', 
+          notesTitle: "Basic ICT Skills Notes - L2", 
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/589139442350807400.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://studyverse-network.netlify.app/next-toppers?url=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465384/1751634725_5989778778604837/sunny/1751631372198_574689857024534500_video_VOD720p30.m3u8?start=0' 
+        },
+        { 
+          id: 'ICT-3', 
+          title: 'Basic ICT Skills - L3', 
+          notesTitle: "Basic ICT Skills Notes - L3", 
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/548943282058875100.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://studyverse-network.netlify.app/next-toppers?url=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4475051/1751818684_5691209020391568/sunny/1751818579042_873222122603986000_video_VOD480p30.m3u8' 
+        },
+        // New Lecture 4 added here
+        { 
+          id: 'ICT-4', 
+          title: 'Basic ICT Skills - L4', 
+          notesTitle: "Basic ICT Skills Notes - L4", 
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/669483347006187000.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4481051/1752433625_8836002997712453/sunny/1752423878276_177519759630143780_video_VOD720p30.m3u8' 
+        },
+        // New Lecture 5 added here
+        { 
+          id: 'ICT-5', 
+          title: 'Basic ICT Skills - L5', 
+          notesTitle: "Basic ICT Skills Notes - L5", 
+          notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/162918841046735230.pdf`, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483037/1752590384_2271269675608739/sunny/1752588868063_665657704437878300_video_VOD480p30.m3u8' 
       }
     ]
   }
