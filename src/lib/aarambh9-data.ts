@@ -426,7 +426,7 @@ export const aarambh9CourseContent: CourseContentMap = {
       name: 'Doubt Class',
       lectures: [
         { id: 'dc-l1', title: 'Doubt Class Course A', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486047/175284892170058496551/175284892170058496551_8496551.m3u8' },
-        { id: 'dc-l2', title: 'Doubt Class Course B', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: '' }
+        { id: 'dc-l2', title: 'Doubt Class Course B', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486089/175285280641378496551/index_4.m3u8' }
      
       ]
     }
