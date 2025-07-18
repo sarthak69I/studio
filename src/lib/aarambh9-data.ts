@@ -709,7 +709,7 @@ export const aarambh9CourseContent: CourseContentMap = {
       ]
     }
   ],
-  'Sanskrit', [
+  'Sanskrit': [
       {
         name: "Overview",
         lectures: [
