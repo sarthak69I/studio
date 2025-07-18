@@ -420,6 +420,14 @@ export const aarambh9CourseContent: CourseContentMap = {
       lectures: [
         { id: 'toto-l1', title: 'The Adventure Of Toto L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3826260The%20Adventures%20of%20Toto%20L1.pdf_The%20Adventures%20of%20Toto%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465234/1751625546_7220802615425796/sunn/1751624104066_871573264351351600_video_VOD480p30.m3u8' },
         { id: 'toto-l2', title: 'The Adventure Of Toto L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2750854The%20Adventures%20of%20Toto%20L2.pdf_The%20Adventures%20of%20Toto%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465234/1751625546_7220802615425796/sunn/1751624104066_871573264351351600_video_VOD480p30.m3u8' }
+       ]
+    },
+    {
+      name: 'Doubt Class',
+      lectures: [
+        { id: 'dc-l1', title: 'Doubt Class Course A', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486047/175284892170058496551/175284892170058496551_8496551.m3u8' },
+        { id: 'dc-l2', title: 'Doubt Class Course B', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: '' }
+     
       ]
     }
   ],
