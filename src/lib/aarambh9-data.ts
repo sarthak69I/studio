@@ -672,7 +672,7 @@ export const aarambh9CourseContent: CourseContentMap = {
       ]
     },
     {
-      name: 'प्रेमचंद के फटे जूते',
+     name: 'प्रेमचंद के फटे जूते',
       lectures: [
         { 
           id: 'L1', 
@@ -706,6 +706,32 @@ export const aarambh9CourseContent: CourseContentMap = {
           videoEmbedType: 'hls', 
           videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4475602/1751882045_5797818455917674/sunny/1751881090431_764885094765959200_video_VOD720p30.m3u8' 
         }
+      ]
+    },
+    {
+      name: 'शुक्रतारे के समान',
+      lectures: [
+        { id: 'L1', title: 'शुक्रतारे के समान 1', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483060/1752597905_3852082182304028/sunny/1752591603615_214089385433062430_video_VOD720p30.m3u8' },
+        { id: 'L2', title: 'शुक्रतारे के समान 2', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483059/1752597846_8132733717328630/sunny/1752591560616_83591436448876800_video_VOD720p30.m3u8' },
+        { id: 'L3', title: 'शुक्रतारे के समान 3', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483057/1752597006_6346764770550734/sunny/1752591428632_140539731125972000_video_VOD720p30.m3u8' },
+        { id: 'L4', title: 'शुक्रतारे के समान 4', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483058/1752597486_9387708529551132/sunny/1752591520534_536861725686827140_video_VOD720p30.m3u8' },
+      ]
+    },
+    {
+      name: 'इस जल प्रलय में',
+      lectures: [
+        { id: 'L1', title: 'इस जल प्रलय में 1', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483875/1752672846_4552028801680913/sunny/1752668025641_702995260423636400_video_VOD720p30.m3u8' },
+        { id: 'L2', title: 'इस जल प्रलय में 2', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4482636/1752575826_1220129822502829/sunny/1752573259028_714090343353667500_video_VOD720p30.m3u8' },
+        { id: 'L3', title: 'इस जल प्रलय में 3', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4482637/1752576066_4895973779404768/sunny/1752573316829_245310935686288000_video_VOD720p30.m3u8' },
+        { id: 'L4', title: 'इस जल प्रलय में 4', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4482635/1752575765_9564347718739844/sunny/1752573238537_149668693899733150_video_VOD720p30.m3u8' },
+      ]
+    },
+    {
+      name: 'रैदास के पद',
+      lectures: [
+        { id: 'L1', title: 'रैदास के पद 1', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483056/1752596826_5283559306155690/sunny/1752591327162_259505734469819800_video_VOD720p30.m3u8' },
+        { id: 'L2', title: 'रैदास के पद 2', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483055/1752596586_2076988591833941/sunny/1752591296491_290533096009535100_video_VOD720p30.m3u8' },
+        { id: 'L3', title: 'रैदास के पद 3', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483053/1752595746_2336621769657682/sunny/1752591163052_173835360387712500_video_VOD720p30.m3u8' },
       ]
     }
   ],
