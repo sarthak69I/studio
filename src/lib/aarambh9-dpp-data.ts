@@ -23,18 +23,23 @@ export const aarambh9DppContent: DppContent = [
     "subject": "Mathematics"
   },
   {
-    "title": "DPP #4",
+    "title": "DPP #5",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/451472104665231800.pdf",
     "subject": "Mathematics"
   },
   {
-    "title": "DPP #5",
+    "title": "DPP #6",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/312776641777327170.pdf",
     "subject": "Mathematics"
   },
   {
-    "title": "DPP #6",
+    "title": "DPP #7",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/94783851385362450.pdf",
+    "subject": "Mathematics"
+    },
+  {
+    "title": "DPP #8",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/689210064073585700.pdf",
     "subject": "Mathematics"
   },
   {
@@ -65,6 +70,11 @@ export const aarambh9DppContent: DppContent = [
   {
     "title": "ACP with solutions - Force and law of motion",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/269711461467700380.pdf",
+    "subject": "Science"
+  },
+  {
+    "title": "ACP Tissue",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/891316557988151900.pdf",
     "subject": "Science"
   },
   {
