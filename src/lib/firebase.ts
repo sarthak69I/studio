@@ -71,7 +71,8 @@ export const saveUserToFirestore = async (user: User): Promise<void> => {
         lastLogin: serverTimestamp(),
         // Update name and photo in case they changed it in their Google/other account
         displayName: user.displayName, 
-        photoURL: user.photoURL
+        photoURL: user.photoURL,
+        email: user.email
       });
     }
   } catch (error) {
