@@ -4,38 +4,83 @@ import type { CourseContentMap, Lecture } from './course-utils';
 
 const itTopicsForClass10: CourseContentMap['IT'] = [
   {
-    name: "IT Overview (Class 10)",
+    name: "IT Introduction",
     lectures: [
       {
         id: "L1-10-overview",
-        title: "Class 10 IT Overview",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391690/1748179084_2580180814420977/sunny/1748177591970_70156498151999930_video_VOD720p30.m3u8",
+        title: " IT Introduction",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391689/1748179024_7031915392041686/sunny/1748178845599_206479182859561570_video_VOD720p30.m3u8",
         videoEmbedType: 'hls'
       }
     ]
   },
   {
-    name: "Self Management Skills (Class 10)",
+    name: "Self Management Skills ",
     lectures: [
       {
         id: "L4-10-self-manage-1",
         title: "Self Management - L1",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4398520/1748854269_7032334158082272/sunny/1748854130932_455431202240548030_video_VOD720p30.m3u8",
-        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/596857939255353100.pdf",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4398521/1748854506_5390971521172609/sunny/1748854163810_864208687017221800_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/457804754758249150.pdf",
         videoEmbedType: 'hls'
       },
       {
         id: "L5-10-self-manage-2",
         title: "Self Management - L2",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4403235/1749235927_6400627130495496/sunny/1749222493198_533557279449811200_video_VOD720p30.m3u8",
-        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/898042366895235000.pdf",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4403234/1749235686_9677591978611161/sunny/1749222454456_458018247581363900_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/213342896416311230.pdf",
         videoEmbedType: 'hls'
       },
       {
         id: "L6-10-self-manage-3",
         title: "Self Management - L3",
-        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4411250/1750089971_2490412765566086/sunny/1750078811761_514574969298403000_video_VOD720p30.m3u8",
-        notesLink: "https://drive.google.com/file/d/116WTsVxjbJVHG6YAvxDxpuRUGSheAUqC/view?usp=drivesdk",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4407914/1749716886_4348816412982957/sunny/1749715114047_253963182532671500_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/281091779602602940.pdf",
+        videoEmbedType: 'hls'
+   }
+    ]
+  },
+  {
+    name: "ICT skills ",
+    lectures: [
+      {
+        id: "L4-10-ICT-1",
+        title: "ICT - L1",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4416821/1750610588_7356891290512226/sunny/1750609670522_238726866250974340_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/634952483282327800.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L5-10-ICT-2",
+        title: "ICT - L2",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4421355/1751013424_1006471762343893/sunny/1751004570210_532149819608480500_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/724594293884832500.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L6-10-ICT-3",
+        title: "ICT - L3",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4421357/1751014564_2813102081459638/sunny/1751005056360_575387360787722560_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/587109874911379500.pdf",
+        videoEmbedType: 'hls'
+      }
+    ]
+  },
+  {
+    name: "Communication Skills ",
+    lectures: [
+      {
+        id: "L4-Communication Skills-1",
+        title: "Communication Skills - L1",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4391701/1748180044_3694449338382459/sunny/1748179295562_439147986971553900_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/107260455905104820.pdf",
+        videoEmbedType: 'hls'
+      },
+      {
+        id: "L5-Communication Skills2",
+        title: "Communication Skills - L2",
+        videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393990/1748364545_5158785497797223/sunny/1748356148965_265442288714603600_video_VOD240p30.m3u8",
+        notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/744086606979890200.pdf",
         videoEmbedType: 'hls'
       }
     ]
@@ -118,8 +163,17 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L1', title: 'Federalism L1', notesTitle: "L1 & 2", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/325013306654332300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475867/175189222398137125088/index_4.m3u8' },
          { id: 'L2', title: 'Federalism L2', notesTitle: "L1 & 2", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/325013306654332300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476771/175197811164887125088/index_4.m3u8' },
          { id: 'L3', title: 'Federalism L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/836602028786916700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4478170/175207529421867125088/index_4.m3u8' },
-         { id: 'L4', title: 'Federalism L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479240/175216182823787125088/index_4.m3u8' },
-         
+         { id: 'L4', title: 'Federalism L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/663985857014802000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479240/175216182823787125088/index_4.m3u8' },
+         { id: 'L5', title: 'Federalism L5', notesTitle: "Federalism Complete", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/660853637137748900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4481883/175249719015327125088/index_4.m3u8' },
+        { id: 'L6', title: 'Federalism L6 Doubt Class', notesTitle: "Federalism Complete", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/660853637137748900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482846/175258266614757125088/index_4.m3u8' },
+              ]
+    },
+    {
+      name: 'Nationalism In India',
+      lectures: [
+        { id: 'L1', title: 'Nationalism In India L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484117/175267984098967125088/index_4.m3u8' },
+         { id: 'L2', title: 'Nationalism In India L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485142/175276595260217125088/index_4.m3u8' },
+        
       ]
     }
   ],
@@ -189,9 +243,12 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Control & Coordination',
       lectures: [
-        { id: 'Control & Coordination L1', title: 'Control & Coordination L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479051/175215139612528929414/index_4.m3u8' },
-        { id: 'Control & Coordination L2', title: 'Control & Coordination L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480085/175223815228888929414/index_4.m3u8' },
-        
+        { id: 'Control & Coordination L1', title: 'Control & Coordination L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/351128143619938700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479051/175215139612528929414/index_4.m3u8' },
+        { id: 'Control & Coordination L2', title: 'Control & Coordination L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/235922233626467300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480085/175223815228888929414/index_4.m3u8' },
+         { id: 'Control & Coordination L3', title: 'Control & Coordination L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483912/175266967722138929414/index_4.m3u8' },
+           { id: 'Control & Coordination L4', title: 'Control & Coordination L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484951/175275594414878929414/index_4.m3u8' },
+       { id: 'Control & Coordination L5', title: 'Control & Coordination L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485899/175284240937348929414/index_4.m3u8' },
+       
      ]       
     }
   ],
@@ -280,14 +337,17 @@ export const aarambhCourseContent: CourseContentMap = {
       { id: 'L5', title: 'Quadratic Equations L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/818675100049377900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474940/175173015921868752407/index_4.m3u8' },
       { id: 'L6', title: 'Quadratic Equations L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/328695692149355500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476029/175190275984418752407/index_4.m3u8' },
        { id: 'L7', title: 'Quadratic Equations L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/680791966318698100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476964/175198952916258752407/index_4.m3u8' },
-     { id: 'L8', title: 'Quadratic Equations L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480242/175224987634108752407/index_4.m3u8' },
-      
+     { id: 'L8', title: 'Quadratic Equations L8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/256105875515184800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480242/175224987634108752407/index_4.m3u8' },
+      { id: 'L9', title: 'Quadratic Equations L9 Doubt Solving Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480818/175233308152508752407/index_4.m3u8' },
+    
         ]
     },
     {
       name: 'Arithmetic Progression',
       lectures: [   
-        { id: 'L1', title: 'Arithmrtic Progression L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L1', title: 'Arithmrtic Progression L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/698504574372137100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482041/175250774553288752407/index_4.m3u8' },
+        { id: 'L2', title: 'Arithmrtic Progression L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483093/175259418898458752407/index_4.m3u8' },
+         { id: 'L3', title: 'Arithmrtic Progression L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486090/175285302757228752407/index_4.m3u8' },
         
       ]
     }
@@ -351,7 +411,15 @@ export const aarambhCourseContent: CourseContentMap = {
   lectures: [
     { id: 'L1', title: 'Determiners L1', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2793710Determiners%20L1.pdf_Determiners%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396723/1748599866_2612688982288432/sunny/1748596322264_841185111044298900_video_VOD720p30.m3u8' },
     { id: 'L2', title: 'Determiners L2', notesTitle: "Determiners Notes", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6468807Determiners%20L2.pdf_Determiners%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396724/1748599983_8916038134337860/sunny/1748596644025_182722180318143000_video_VOD720p30.m3u8' }
-   ]
+  ]
+},
+{
+  name: 'A Tiger in the Zoo ',
+  lectures: [
+    { id: 'L1', title: 'A Tiger in the Zoo  L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2384508Tiger%20in%20the%20Zoo%20L1.pdf_Tiger%20in%20the%20Zoo%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465241/1751626506_3969741780228351/sunny/1751624330612_504314993319041150_video_VOD720p30.m3u8' },
+   { id: 'L2', title: 'A Tiger in the Zoo  L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3774889Tiger%20in%20the%20Zoo%20L2.pdf_Tiger%20in%20the%20Zoo%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465242/1751626565_5289125113500169/sunny/1751624468397_669646185529024300_video_VOD720p30.m3u8' }
+  
+  ]
     }
   ],
  
@@ -431,6 +499,48 @@ export const aarambhCourseContent: CourseContentMap = {
           videoEmbedType: 'hls'
         }
       ]
+    },
+    {
+      name: " CH 4 - जननी तुल्यवत्सला ",
+      lectures: [
+        {
+          id: " CH 4 जननी तुल्यवत्सला Explanation",
+          title: " CH 4 जननी तुल्यवत्सला Explanation",
+          notesTitle: "",
+          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409097/1749831071_5659937093336673/sunny/1749811853500_469471517135113600_video_VOD720p30.m3u8",
+          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4952495CH%20-04%20-%20%E0%A4%9C%E0%A4%A8%E0%A4%A8%E0%A5%80%20%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B2%E0%A4%BE%20Explanation.pdf_CH%20-04%20-%20%E0%A4%9C%E0%A4%A8%E0%A4%A8%E0%A5%80%20%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B2%E0%A4%BE%20Explanation.pdf",
+          videoEmbedType: 'hls'
+        },
+        {
+          id: " CH 4 जननी तुल्यवत्सला NCERT",
+          title: " CH 4 जननी तुल्यवत्सला NCERT",
+          notesTitle: "",
+          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409098/1749831544_9736034345331873/sunny/1749812389598_632839732151456400_video_VOD720p30.m3u8",
+          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1787045CH%20-04%20-%20%E0%A4%9C%E0%A4%A8%E0%A4%A8%E0%A5%80%20%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B2%E0%A4%BE%20NCERT.pdf_CH%20-04%20-%20%E0%A4%9C%E0%A4%A8%E0%A4%A8%E0%A5%80%20%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B2%E0%A4%BE%20NCERT.pdf",
+          videoEmbedType: 'hls'
+      }
+      ]
+    },
+    {
+      name: " CH 5 सुभाषितानि ",
+      lectures: [
+        {
+          id: "CH 5 सुभाषितानि Explanation",
+          title: "CH 5 सुभाषितानि Explanation ",
+          notesTitle: "",
+          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409099/1749831785_3942555994243597/sunny/1749812705927_817091877426916000_video_VOD720p30.m3u8",
+          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7106381CH%20-05%20-%20%E0%A4%B8%E0%A5%81%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%A8%E0%A4%BF%20%20Explanation.pdf_CH%20-05%20-%20%E0%A4%B8%E0%A5%81%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%A8%E0%A4%BF%20%20Explanation.pdf",
+          videoEmbedType: 'hls'
+        },
+        {
+         id: "CH 5 सुभाषितानि NCERT",
+          title: "CH 5  सुभाषितानि NCERT ",
+          notesTitle: "",
+          videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409100/1749830829_5264220587902074/sunny/1749813063201_298601538506093700_video_VOD720p30.m3u8",
+          notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/853606CH%20-05%20-%20%E0%A4%B8%E0%A5%81%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%A8%E0%A4%BF%20%20NCERT.pdf_CH%20-05%20-%20%E0%A4%B8%E0%A5%81%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%A8%E0%A4%BF%20%20NCERT.pdf",
+          videoEmbedType: 'hls'
+        }
+      ]
     }
   ],
   'Hindi': [
@@ -480,41 +590,52 @@ export const aarambhCourseContent: CourseContentMap = {
     
       ]
     },
+{
+  "name": "माता का अँचल",
+  "lectures": [
     {
-      "name": "माता का अँचल",
+      "id": "L1",
+      "title": "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय व्याख्या Lecture 1",
+      "notesTitle": "",
+      "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186198/1729265533_8059479010359567/1BtyJnTEnw7CtMzUeC6JzD04RcYxkLY_h720p30.m3u8",
+      "notesLink": "",
+      "videoEmbedType": "hls"
+    },
+    {
+      "id": "L2",
+      "title": "माता का अँचल शिवपूजन सहाय NCERT solutions Lecture 2",
+      "notesTitle": "",
+      "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057679/1729247001_2102951454222923/13er8e0QTz_ZEt29EvpIDlRkw1_N36SNb720p30.m3u8",
+      "notesLink": "",
+      "videoEmbedType": "hls"
+    },
+    {
+      "id": "L3",
+      "title": "माता का अँचल शिवपूजन सहाय Mcqs Lecture 3",
+      "notesTitle": "",
+      "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057680/1729247001_7590193763429474/1Z6ELWKQm8CjGONfvOaH1lv--rvWc6nEq720p30.m3u8",
+      "notesLink": "",
+      "videoEmbedType": "hls"
+    },
+    {
+      "id": "L4",
+      "title": "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय Complete Chapter Revision Lecture 4",
+      "notesTitle": "",
+      "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186197/1729265530_8082650506315087/1cQy6uA6zxO3Q-fzKguG-cc6iZ1Vgj-Oa720p30.m3u8",
+      "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/827292862967255600.pdf",
+      "videoEmbedType": "hls"
+  }
+      ]
+    },
+    {
+      "name": "Course A Doubt Class",
       "lectures": [
-        {
-          "id": "L1",
-          "title": "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय व्याख्या Lecture 1",
-          "notesTitle": "",
-          "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186198/1729265533_8059479010359567/1BtyJnTEnw7CtMzUeC6JzD04RcYxkLY_h720p30.m3u8",
-          "notesLink": ``,
-          "videoEmbedType": 'hls',
-        },
-        {
-          "id": "L2",
-          "title": "माता का अँचल शिवपूजन सहाय NCERT solutions Lecture 2",
-          "notesTitle": "",
-          "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057679/1729247001_2102951454222923/13er8e0QTz_ZEt29EvpIDlRkw1_N36SNb720p30.m3u8",
-          "notesLink": ``,
-          "videoEmbedType": 'hls',
-        },
-        {
-          "id": "L3",
-          "title": "माता का अँचल शिवपूजन सहाय Mcqs Lecture 3",
-          "notesTitle": "",
-          "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4057680/1729247001_7590193763429474/1Z6ELWKQm8CjGONfvOaH1lv--rvWc6nEq720p30.m3u8",
-          "notesLink": "",
-          "videoEmbedType": "hls",
-        },
-        {
-          "id": "L4",
-          "title": "कृतिका भाग 2 पाठ 1 माता का अँचल शिवपूजन सहाय Complete Chapter Revision Lecture 4",
-          "notesTitle": "",
-          "videoEmbedUrl": "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4186197/1729265530_8082650506315087/1cQy6uA6zxO3Q-fzKguG-cc6iZ1Vgj-Oa720p30.m3u8",
-          "notesLink": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/827292862967255600.pdf",
-          "videoEmbedType": "hls",
-        }
+          {
+              "id": "hindi-doubt-class-1",
+              "title": "Hindi Doubt Class",
+              "videoEmbedUrl": "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480925/175239456973866123022/index_4.m3u8",
+              "videoEmbedType": "hls"
+          }
       ]
     },
     {
@@ -531,4 +652,5 @@ export const aarambhCourseContent: CourseContentMap = {
   ]
         }
 
+    
     

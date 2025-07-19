@@ -61,7 +61,19 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L5', title: 'Laws of Motion L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/620542194193586600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474944/175173108288215910848/index_4.m3u8' },
         { id: 'L6', title: 'Laws of Motion L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479252/175216435268385910848/index_4.m3u8' },
         { id: 'L7', title: 'Laws of Motion L7', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480256/175225140735005910848/index_4.m3u8' },
-        
+        { id: 'L8', title: 'Laws of Motion L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480844/175233673865165910848/index_4.m3u8' },
+       { id: 'L9', title: 'Laws of Motion L9 Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480935/175239737298605910848/index_4.m3u8' },
+      ]
+    },
+    {
+      name: 'Work, Energy & Power',
+      lectures: [
+        { id: 'L1', title: 'Work, Energy & Power L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484986/175275770518315910848/index_4.m3u8' },
+        { id: 'L2', title: 'Work, Energy & Power L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485153/175276842825365910848/index_4.m3u8' },
+        { id: 'L3', title: 'Work, Energy & Power L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485969/175284428082135910848/index_4.m3u8' },
+        { id: 'L4', title: 'Work, Energy & Power L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486096/175285450832415910848/index_4.m3u8' },
+  
+      
       ]
     },
   ],
@@ -123,9 +135,11 @@ const scienceOnlySubjects: CourseContentMap = {
     {
       name: 'Chemical Bonding & Molecular Structure',
       lectures: [
-        { id: 'L1', title: 'Chemical Bonding & Molecular Structure | L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/361721728525622140.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476039/175190453887232764802/index_5.m3u8' },
-         { id: 'L2', title: 'Chemical Bonding & Molecular Structure | L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/699955326632952400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476975/175199057911342764802/index_5.m3u8' },
-        { id: 'L3', title: 'Chemical Bonding & Molecular Structure | L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/513579986917203500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477962/175206504379362764802/index_5.m3u8' },
+        { id: 'L1', title: 'Chemical Bonding & Molecular Structure L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/361721728525622140.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476039/175190453887232764802/index_5.m3u8' },
+         { id: 'L2', title: 'Chemical Bonding & Molecular Structure L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/699955326632952400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476975/175199057911342764802/index_5.m3u8' },
+        { id: 'L3', title: 'Chemical Bonding & Molecular Structure L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/513579986917203500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477962/175206504379362764802/index_5.m3u8' },
+    { id: 'L4', title: 'Chemical Bonding & Molecular Structure L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482047/175250917864212764802/index_5.m3u8' },
+       { id: 'L5', title: 'Chemical Bonding & Molecular Structure L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483100/175259600815942764802/index_5.m3u8' },
     
         
       ]
@@ -188,7 +202,8 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L1', title: ' Morphology of Flowering Plants L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/181106667230925920.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475983/175189854812043740487/index_4.m3u8' },
         { id: 'L2', title: ' Morphology of Flowering Plants L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/893525211553664400.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476910/175198510422723740487/index_4.m3u8' },
         { id: 'L3', title: ' Morphology of Flowering Plants L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/550057955753048450.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479080/175215203063243740487/index_4.m3u8' },
-        
+        { id: 'L4', title: ' Morphology of Flowering Plants L4', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480732/175232360116233740487/index_4.m3u8' },
+       
       ]
     },
   ],

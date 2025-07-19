@@ -57,7 +57,14 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
         { id: 'L1', title: 'Linear Inequalities L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/609708988304403200.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475888/175189284948978752407/index_4.m3u8' },
        { id: 'L2', title: 'Linear Inequalities L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/756843877355801600.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476784/175197866196018752407/index_4.m3u8' },
       { id: 'L3', title: 'Linear Inequalities L3', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4478158/175207429532858752407/index_4.m3u8' },
-       
+        ]
+    },
+    {
+      name: ' Permutaions And Combinations',
+      lectures: [
+        { id: 'L1', title: ' Permutaions And Combinations L1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4481919/175249837260905373082/index_4.m3u8' },
+      { id: 'L2', title: ' Permutaions And Combinations L2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482896/175258488728635373082/index_4.m3u8' },
+      
       ]
     },
   ],
@@ -96,6 +103,13 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
       lectures: [
         { id: 'l1', title: 'The Summer of the Beautiful White Horse  1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6744257The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L1.pdf_The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4417263/1750669085_2473354831799394/sunny/1750666496065_865337603299043700_video_VOD720p30.m3u8' },
     { id: 'l2', title: 'The Summer of the Beautiful White Horse  2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4790009The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L2.pdf_The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4417264/1750669089_7574182533651584/sunny/1750666534613_225704789904111520_video_VOD720p30.m3u8' },
+    ]
+    },
+    {
+      name: 'The Laburnum Top',
+      lectures: [
+        { id: 'l1', title: 'The Laburnum Top  1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6106051The%20Laburnum%20Top%20%28Poem%29%20L1.pdf_The%20Laburnum%20Top%20%28Poem%29%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465888/1751722266_8881303096177569/sunny/1751711161321_109031725697528430_video_VOD720p30.m3u8' },
+    { id: 'l2', title: 'The Laburnum Top 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7266758The%20Laburnum%20Top%20%28Poem%29%20L2.pdf_The%20Laburnum%20Top%20%28Poem%29%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465889/1751722326_5074515748575618/sunny/1751711310919_2773886955363536_video_VOD720p30.m3u8' },
     
       ]
     }
