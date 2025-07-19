@@ -145,6 +145,7 @@ const commerceOnlySubjects: CourseContentMap = {
         { id: 'L1', title: 'Cash Book and Subsidiary Books L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/120727753406290000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479108/175215331573038680586/index_4.m3u8' },
          { id: 'L2', title: 'Cash Book and Subsidiary Books L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485000/175275835960778680586/index_4.m3u8' },
          { id: 'L3', title: 'Cash Book and Subsidiary Books L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485941/175284345083208680586/index_4.m3u8' },
+          { id: 'L4', title: 'Cash Book and Subsidiary Books L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486804/175292911681638680586/index_4.m3u8' },
           
       ]
     }
@@ -219,6 +220,12 @@ const commerceOnlySubjects: CourseContentMap = {
        { id: 'L3', title: 'Collection of Data L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480838/175233541962642809295/index_4.m3u8' },
         { id: 'L4', title: 'Collection of Data L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485154/175276874625172809295/index_4.m3u8' },
        { id: 'L5', title: 'Collection of Data L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486102/175285490396222809295/index_4.m3u8' },
+         ],
+     },
+     {
+      name: 'Organisation of Data',
+      lectures: [
+        { id: 'L1', title: 'Organisation of Data L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486905/175293943795912809295/index_4.m3u8' },
        
       ]
     }
