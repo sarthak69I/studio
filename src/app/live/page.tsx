@@ -22,7 +22,7 @@ interface LiveClassInfo {
 }
 
 interface ApiLecture {
-  Title: string;
+  title: string;
   file_url: string;
 }
 
@@ -139,10 +139,19 @@ export default function LiveClassesPage() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const data = await response.json();
-        if (Array.isArray(data)) {
-          const filteredData = data.filter(item => item.Title && item.file_url);
-          setApiCompletedLectures(filteredData);
+        const responseData = await response.json();
+        // Correctly access the 'data' property from the API response
+        const lectures = responseData.data;
+
+        if (Array.isArray(lectures)) {
+          // Map the API data to the ApiLecture interface
+          const formattedLectures = lectures
+            .map(item => ({ title: item.title, file_url: item.file_url }))
+            .filter(item => item.title && item.file_url);
+          setApiCompletedLectures(formattedLectures);
+        } else {
+          console.error("API response's 'data' property is not an array:", lectures);
+          setApiCompletedLectures([]);
         }
       } catch (error) {
         console.error("Failed to fetch completed lectures:", error);
@@ -189,7 +198,7 @@ export default function LiveClassesPage() {
             key={`api-${index}`} 
             courseId="3" // Class 10
             courseName="Aarambh Batch (Class 10)"
-            subject={c.Title}
+            subject={c.title}
             liveStreamUrl={c.file_url}
             classTimeLabel="Recorded"
             status="completed"
