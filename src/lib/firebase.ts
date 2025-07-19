@@ -11,7 +11,9 @@ import {
   type User,
   EmailAuthProvider,
   reauthenticateWithCredential,
-  updatePassword
+  updatePassword,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "firebase/auth";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import type { UserData } from "@/context/AuthContext";
@@ -89,6 +91,16 @@ export const signInWithEmail = async (email: string, password: string) => {
   }
   return userCredential;
 };
+
+export const signInWithGoogle = async () => {
+  const provider = new GoogleAuthProvider();
+  const userCredential = await signInWithPopup(auth, provider);
+  if (userCredential.user) {
+    await saveUserToFirestore(userCredential.user);
+  }
+  return userCredential;
+};
+
 
 export const logout = async () => {
   try {
