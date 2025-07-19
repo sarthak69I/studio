@@ -37,6 +37,8 @@ import ContinueWatchingCard from './ContinueWatchingCard';
 import AppDownloadSection from './AppDownloadSection';
 import FloatingNav from './FloatingNav';
 import { Separator } from '@/components/ui/separator';
+import CustomInAppBanner from './CustomInAppBanner';
+
 
 const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
@@ -509,6 +511,7 @@ function AppContent({ children }: { children: ReactNode }) {
       )}
 
       <main className={showHeader ? 'pt-20 pb-20' : 'pb-20'}>
+        <CustomInAppBanner />
         {children}
       </main>
 
