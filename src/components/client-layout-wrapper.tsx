@@ -84,6 +84,34 @@ function AppContent({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  // Effect for custom console message
+  useEffect(() => {
+    const message = "Hold Up! 🛑";
+    const style1 = "color: #FF6B6B; font-size: 24px; font-weight: bold; text-shadow: 1px 1px 2px #000;";
+    const style2 = "color: #4ECDC4; font-size: 16px; font-family: 'monospace';";
+    const fullMessage = "This area is for developers. If someone told you to copy-paste something here, it's likely a scam to compromise your account.";
+
+    for (let i = 0; i < 4; i++) {
+        console.log(`%c${message}`, style1);
+        console.log(`%c${fullMessage}`, style2);
+    }
+  }, []);
+
+  // Effect for reload shortcut
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.ctrlKey && event.shiftKey && (event.key === 'C' || event.key === 'c')) {
+            event.preventDefault();
+            window.location.reload();
+        }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+
   const toggleTheme = () => {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     setCurrentTheme(newTheme);
@@ -259,12 +287,9 @@ function AppContent({ children }: { children: ReactNode }) {
     const shouldShowPrompts = !excludedPathsForPrompts.includes(pathname) && !showMaintenance;
   
     if (shouldShowPrompts) {
-        const lastSubPromptTime = localStorage.getItem(SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY);
-        const tenHours = SUBSCRIPTION_PROMPT_DELAY_HOURS * 60 * 60 * 1000;
-        if (!lastSubPromptTime || Date.now() - parseInt(lastSubPromptTime, 10) > tenHours) {
-          const timer = setTimeout(() => setShowSubscriptionPrompt(true), 10000); // Show after 10 seconds
-          return () => clearTimeout(timer);
-        }
+      // Remove the check for last prompt time to show it on every load
+      const timer = setTimeout(() => setShowSubscriptionPrompt(true), 5000); // Show after 5 seconds
+      return () => clearTimeout(timer);
     }
   }, [pathname, showMaintenance, authLoading, user]);
 
