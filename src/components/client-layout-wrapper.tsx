@@ -314,73 +314,73 @@ function AppContent({ children }: { children: ReactNode }) {
     <>
       {showHeader && (
         <header className="fixed top-0 left-0 right-0 z-50 p-2 sm:p-4 flex items-center justify-between bg-background/90 border-b border-border/80">
-          <Sheet open={isNotificationsSheetOpen} onOpenChange={setIsNotificationsSheetOpen}>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full h-10 w-10 flex-shrink-0"
-                aria-label="View Notifications"
-              >
-                <NotificationBellIconToUse className="h-5 w-5 text-foreground" />
-                {unreadNotificationCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold ring-2 ring-background">
-                    {unreadNotificationCount > 9 ? '9+' : unreadNotificationCount}
-                  </span>
-                )}
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-[380px] sm:w-[480px] p-0 flex flex-col bg-card shadow-xl border-r border-border">
-              <SheetHeader className="p-6 pb-4 border-b border-border">
-                <div className="flex justify-between items-center">
-                  <SheetTitle className="text-xl font-semibold text-foreground flex items-center">
-                    <Bell className="mr-2 h-5 w-5 text-primary"/>
-                    Updates & Announcements
-                  </SheetTitle>
-                </div>
-                <SheetDescription className="text-sm text-muted-foreground pt-1">
-                  Stay informed with the latest news and updates from E-Leak.
-                </SheetDescription>
-              </SheetHeader>
-              <ScrollArea className="flex-grow">
-                <div className="p-4 space-y-3">
-                    {isLoadingAnnouncements && (
-                      <div className="flex flex-col items-center justify-center h-64 text-muted-foreground">
-                        <Loader2 className="h-10 w-10 animate-spin text-primary mb-4" />
-                        <p>Loading announcements...</p>
-                      </div>
-                    )}
-                    {!isLoadingAnnouncements && announcementsError && (
-                      <div className="p-4 bg-destructive/10 border border-destructive/30 text-destructive rounded-lg flex flex-col items-center text-center text-sm">
-                        <AlertCircle className="h-10 w-10 mb-3" />
-                        <p className="font-medium">Oops! Something went wrong.</p>
-                        <p>{announcementsError}</p>
-                      </div>
-                    )}
-                    {!isLoadingAnnouncements && !announcementsError && announcements.length === 0 && (
-                      <div className="flex flex-col items-center justify-center h-64 text-center text-muted-foreground">
-                        <MailOpen className="h-16 w-16 mb-4 text-primary/40" />
-                        <p className="text-lg font-medium">All caught up!</p>
-                        <p className="text-sm">There are no new announcements right now.</p>
-                      </div>
-                    )}
-                    {!isLoadingAnnouncements && !announcementsError && announcements.length > 0 &&
-                      announcements.map((announcement, index) => (
-                        <div
-                          key={announcement.id}
-                          className="animate-in fade-in-0 slide-in-from-top-3 duration-300 ease-out"
-                          style={{ animationDelay: `${index * 80}ms` }}
-                        >
-                          <NotificationItem announcement={announcement} />
+          <div className="flex items-center gap-2">
+            <Sheet open={isNotificationsSheetOpen} onOpenChange={setIsNotificationsSheetOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full h-10 w-10 flex-shrink-0"
+                  aria-label="View Notifications"
+                >
+                  <NotificationBellIconToUse className="h-5 w-5 text-foreground" />
+                  {unreadNotificationCount > 0 && (
+                    <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold ring-2 ring-background">
+                      {unreadNotificationCount > 9 ? '9+' : unreadNotificationCount}
+                    </span>
+                  )}
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[380px] sm:w-[480px] p-0 flex flex-col bg-card shadow-xl border-r border-border">
+                <SheetHeader className="p-6 pb-4 border-b border-border">
+                  <div className="flex justify-between items-center">
+                    <SheetTitle className="text-xl font-semibold text-foreground flex items-center">
+                      <Bell className="mr-2 h-5 w-5 text-primary"/>
+                      Updates & Announcements
+                    </SheetTitle>
+                  </div>
+                  <SheetDescription className="text-sm text-muted-foreground pt-1">
+                    Stay informed with the latest news and updates from E-Leak.
+                  </SheetDescription>
+                </SheetHeader>
+                <ScrollArea className="flex-grow">
+                  <div className="p-4 space-y-3">
+                      {isLoadingAnnouncements && (
+                        <div className="flex flex-col items-center justify-center h-64 text-muted-foreground">
+                          <Loader2 className="h-10 w-10 animate-spin text-primary mb-4" />
+                          <p>Loading announcements...</p>
                         </div>
-                      ))
-                    }
-                </div>
-              </ScrollArea>
-            </SheetContent>
-          </Sheet>
-
-          <div className="flex-grow min-w-0"></div>
+                      )}
+                      {!isLoadingAnnouncements && announcementsError && (
+                        <div className="p-4 bg-destructive/10 border border-destructive/30 text-destructive rounded-lg flex flex-col items-center text-center text-sm">
+                          <AlertCircle className="h-10 w-10 mb-3" />
+                          <p className="font-medium">Oops! Something went wrong.</p>
+                          <p>{announcementsError}</p>
+                        </div>
+                      )}
+                      {!isLoadingAnnouncements && !announcementsError && announcements.length === 0 && (
+                        <div className="flex flex-col items-center justify-center h-64 text-center text-muted-foreground">
+                          <MailOpen className="h-16 w-16 mb-4 text-primary/40" />
+                          <p className="text-lg font-medium">All caught up!</p>
+                          <p className="text-sm">There are no new announcements right now.</p>
+                        </div>
+                      )}
+                      {!isLoadingAnnouncements && !announcementsError && announcements.length > 0 &&
+                        announcements.map((announcement, index) => (
+                          <div
+                            key={announcement.id}
+                            className="animate-in fade-in-0 slide-in-from-top-3 duration-300 ease-out"
+                            style={{ animationDelay: `${index * 80}ms` }}
+                          >
+                            <NotificationItem announcement={announcement} />
+                          </div>
+                        ))
+                      }
+                  </div>
+                </ScrollArea>
+              </SheetContent>
+            </Sheet>
+          </div>
 
           <div className="flex items-center gap-2 flex-shrink-0">
              {authLoading ? (

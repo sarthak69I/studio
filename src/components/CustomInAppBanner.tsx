@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -6,28 +7,11 @@ import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-// To show a new banner to all users, simply change this ID (e.g., 'custom-banner-v2')
-const BANNER_ID = 'custom-banner-v1';
-
 export default function CustomInAppBanner() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    // This effect runs only in the browser
-    // Check if the banner has been dismissed before
-    if (localStorage.getItem(BANNER_ID) !== 'dismissed') {
-      // Use a timeout to make the banner slide in after the page loads
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, []);
+  const [isVisible, setIsVisible] = useState(true); // Default to visible on load
 
   const handleDismiss = () => {
-    setIsVisible(false);
-    // Remember that the user has dismissed this specific banner
-    localStorage.setItem(BANNER_ID, 'dismissed');
+    setIsVisible(false); // Hide the banner for the current session
   };
 
   if (!isVisible) {
