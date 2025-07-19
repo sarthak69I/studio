@@ -131,11 +131,11 @@ export default function LiveClassesPage() {
         setAllClasses(combinedClasses);
     }
     
-    // Fetch from API
+    // Fetch from our own API proxy
     const fetchApiLectures = async () => {
       setIsLoadingApi(true);
       try {
-        const response = await fetch('https://php-pearl.vercel.app/api/api?token=my_secret_key_123&view=completed');
+        const response = await fetch('/api/completed-lectures');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
