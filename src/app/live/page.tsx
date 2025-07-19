@@ -73,7 +73,8 @@ const LiveClassCard: React.FC<LiveClassInfo & { isApiLecture?: boolean }> = ({ c
 
 export default function LiveClassesPage() {
   const [allClasses, setAllClasses] = React.useState<LiveClassInfo[]>([]);
-  const [apiCompletedLectures, setApiCompletedLectures] = React.useState<ApiLecture[]>([]);
+  const [apiCompletedLectures10th, setApiCompletedLectures10th] = React.useState<ApiLecture[]>([]);
+  const [apiCompletedLectures9th, setApiCompletedLectures9th] = React.useState<ApiLecture[]>([]);
   const [isLoadingApi, setIsLoadingApi] = React.useState(true);
   const [isMounted, setIsMounted] = React.useState(false);
 
@@ -131,38 +132,60 @@ export default function LiveClassesPage() {
         setAllClasses(combinedClasses);
     }
     
-    // Fetch from our own API proxy
-    const fetchApiLectures = async () => {
-      setIsLoadingApi(true);
+    // Fetch from our own API proxy for Class 10
+    const fetchApiLectures10th = async () => {
       try {
         const response = await fetch('/api/completed-lectures');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        if (!response.ok) throw new Error('Network response was not ok for 10th grade lectures');
         const responseData = await response.json();
-        // Correctly access the 'data' property from the API response
         const lectures = responseData.data;
 
         if (Array.isArray(lectures)) {
-          // Map the API data to the ApiLecture interface and get the latest 2
           const formattedLectures = lectures
             .map(item => ({ title: item.title, file_url: item.file_url }))
             .filter(item => item.title && item.file_url)
-            .slice(0, 2);
-          setApiCompletedLectures(formattedLectures);
+            .slice(0, 2); // Get latest 2
+          setApiCompletedLectures10th(formattedLectures);
         } else {
-          console.error("API response's 'data' property is not an array:", lectures);
-          setApiCompletedLectures([]);
+          console.error("API response's 'data' property is not an array for 10th:", lectures);
+          setApiCompletedLectures10th([]);
         }
       } catch (error) {
-        console.error("Failed to fetch completed lectures:", error);
-      } finally {
-        setIsLoadingApi(false);
+        console.error("Failed to fetch completed 10th grade lectures:", error);
+      }
+    };
+    
+    // Fetch from our own API proxy for Class 9
+    const fetchApiLectures9th = async () => {
+      try {
+        const response = await fetch('/api/completed-lectures-9th');
+        if (!response.ok) throw new Error('Network response was not ok for 9th grade lectures');
+        const responseData = await response.json();
+        const lectures = responseData.data;
+
+        if (Array.isArray(lectures)) {
+          const formattedLectures = lectures
+            .map(item => ({ title: item.title, file_url: item.file_url }))
+            .filter(item => item.title && item.file_url)
+            .slice(0, 2); // Get latest 2
+          setApiCompletedLectures9th(formattedLectures);
+        } else {
+          console.error("API response's 'data' property is not an array for 9th:", lectures);
+          setApiCompletedLectures9th([]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch completed 9th grade lectures:", error);
       }
     };
 
+    const fetchAllApiData = async () => {
+        setIsLoadingApi(true);
+        await Promise.all([fetchApiLectures10th(), fetchApiLectures9th()]);
+        setIsLoadingApi(false);
+    };
+
     updateClasses();
-    fetchApiLectures();
+    fetchAllApiData();
     const interval = setInterval(updateClasses, 60000); // Update every minute
     return () => clearInterval(interval);
   }, []);
@@ -175,9 +198,10 @@ export default function LiveClassesPage() {
   const upcoming = allClasses.filter(c => c.status === 'upcoming').sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
   const completedFromStatic = allClasses.filter(c => c.status === 'completed').sort((a, b) => b.startTime.getTime() - a.startTime.getTime());
 
-  const renderClassList = (classes: LiveClassInfo[], fromApi: ApiLecture[] = [], isLoading: boolean = false) => {
-    const noApiData = fromApi.length === 0;
-    const noStaticData = classes.length === 0;
+  const renderClassList = (staticClasses: LiveClassInfo[], api10th: ApiLecture[], api9th: ApiLecture[], isLoading: boolean) => {
+    const noApi10thData = api10th.length === 0;
+    const noApi9thData = api9th.length === 0;
+    const noStaticData = staticClasses.length === 0;
 
     if (isLoading) {
       return (
@@ -188,16 +212,16 @@ export default function LiveClassesPage() {
       )
     }
 
-    if (noApiData && noStaticData) {
+    if (noApi10thData && noApi9thData && noStaticData) {
       return <p className="text-muted-foreground text-center py-8">No classes in this category right now.</p>;
     }
     
     return (
       <div className="space-y-4">
-        {fromApi.map((c, index) => (
+        {api10th.map((c, index) => (
           <LiveClassCard 
-            key={`api-${index}`} 
-            courseId="3" // Class 10
+            key={`api-10th-${index}`} 
+            courseId="3"
             courseName="Aarambh Batch (Class 10)"
             subject={c.title}
             liveStreamUrl={c.file_url}
@@ -208,7 +232,21 @@ export default function LiveClassesPage() {
             isApiLecture={true}
           />
         ))}
-        {classes.map((c, index) => <LiveClassCard key={`${c.courseId}-${c.subject}-${index}`} {...c} />)}
+        {api9th.map((c, index) => (
+          <LiveClassCard 
+            key={`api-9th-${index}`} 
+            courseId="4"
+            courseName="Aarambh Batch (Class 9)"
+            subject={c.title}
+            liveStreamUrl={c.file_url}
+            classTimeLabel="Recorded"
+            status="completed"
+            startTime={new Date()}
+            endTime={new Date()}
+            isApiLecture={true}
+          />
+        ))}
+        {staticClasses.map((c, index) => <LiveClassCard key={`${c.courseId}-${c.subject}-${index}`} {...c} />)}
       </div>
     );
   };
@@ -230,13 +268,13 @@ export default function LiveClassesPage() {
             <TabsTrigger value="completed">Completed</TabsTrigger>
           </TabsList>
           <TabsContent value="live" className="mt-6">
-            {renderClassList(liveNow)}
+            {renderClassList(liveNow, [], [], isLoadingApi)}
           </TabsContent>
           <TabsContent value="upcoming" className="mt-6">
-            {renderClassList(upcoming)}
+            {renderClassList(upcoming, [], [], isLoadingApi)}
           </TabsContent>
           <TabsContent value="completed" className="mt-6">
-            {renderClassList(completedFromStatic, apiCompletedLectures, isLoadingApi)}
+            {renderClassList(completedFromStatic, apiCompletedLectures10th, apiCompletedLectures9th, isLoadingApi)}
           </TabsContent>
         </Tabs>
       </main>
