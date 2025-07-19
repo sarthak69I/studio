@@ -1,17 +1,17 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export default function CustomInAppBanner() {
-  const [isVisible, setIsVisible] = useState(true); // Default to visible on load
+  const [isVisible, setIsVisible] = useState(true);
 
   const handleDismiss = () => {
-    setIsVisible(false); // Hide the banner for the current session
+    setIsVisible(false);
   };
 
   if (!isVisible) {
@@ -32,9 +32,9 @@ export default function CustomInAppBanner() {
         className="hidden sm:block flex-shrink-0"
       />
       <div className="flex-grow">
-        <h4 className="font-bold text-md sm:text-lg">New Feature Coming Soon!</h4>
+        <h4 className="font-bold text-md sm:text-lg text-primary">Live Class Update!</h4>
         <p className="text-sm text-muted-foreground mt-1">
-          We're working on something exciting. Stay tuned for updates!
+          Class 9 Extra Class (Triangle L4) at 10 AM. Class 10 English Course A at 12 PM & Course B at 1 PM.
         </p>
       </div>
       <Button 
