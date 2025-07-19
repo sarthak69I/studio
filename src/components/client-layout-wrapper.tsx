@@ -42,10 +42,8 @@ const MAINTENANCE_MODE_ENABLED = false;
 const MAINTENANCE_END_TIME_HHMM: string | null = "12:00";
 const LOCAL_STORAGE_LAST_SHEET_OPEN_TIMESTAMP_KEY = 'eleakLastNotificationsSheetOpenedAt_v3';
 const LOCAL_STORAGE_LAST_TOASTED_ANNOUNCEMENT_TIMESTAMP_KEY = 'eleakLastToastedAnnouncementTimestamp_v3';
-const SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY = 'subscriptionPromptLastShown_v1';
 const NOTIFICATIONS_POLL_INTERVAL_MS = 30000;
 const ANNOUNCEMENTS_FETCH_LIMIT = 20;
-const SUBSCRIPTION_PROMPT_DELAY_HOURS = 10;
 const ADMIN_UID = 'JT6PeEV2i2VOd4jTqXM1x1ZzXFZ2';
 
 
@@ -97,12 +95,14 @@ function AppContent({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // Effect for reload shortcut
+  // Effect for reload shortcut with confirmation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
         if (event.ctrlKey && event.shiftKey && (event.key === 'C' || event.key === 'c')) {
             event.preventDefault();
-            window.location.reload();
+            if (window.confirm("Are you sure you want to reload the page?")) {
+              window.location.reload();
+            }
         }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -287,7 +287,7 @@ function AppContent({ children }: { children: ReactNode }) {
     const shouldShowPrompts = !excludedPathsForPrompts.includes(pathname) && !showMaintenance;
   
     if (shouldShowPrompts) {
-      // Remove the check for last prompt time to show it on every load
+      // Show prompt on every load by removing the time check
       const timer = setTimeout(() => setShowSubscriptionPrompt(true), 5000); // Show after 5 seconds
       return () => clearTimeout(timer);
     }
@@ -296,7 +296,7 @@ function AppContent({ children }: { children: ReactNode }) {
 
   const handleSubscriptionPromptClose = () => {
     setShowSubscriptionPrompt(false);
-    localStorage.setItem(SUBSCRIPTION_PROMPT_LAST_SHOWN_KEY, Date.now().toString());
+    // No longer setting localStorage time, so it shows on next load
   };
 
   if (showMaintenance && maintenanceEndTime) {
