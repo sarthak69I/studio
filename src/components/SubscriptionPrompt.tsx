@@ -13,7 +13,7 @@ interface SubscriptionPromptProps {
 
 const TELEGRAM_URL = "https://t.me/eleakcoursehub";
 const YOUTUBE_URL = "https://youtube.com/@nexttopper-freebatch?si=SgEYNb-mxjw3AFpP";
-const CLOSE_DELAY_MS = 2500; // 2.5 seconds
+const CLOSE_DELAY_MS = 3500; // 3.5 seconds
 
 export default function SubscriptionPrompt({ open, onClose }: SubscriptionPromptProps) {
   const [isClosable, setIsClosable] = useState(false);

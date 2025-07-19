@@ -285,20 +285,16 @@ function AppContent({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (typeof window === 'undefined' || authLoading) return;
   
-    const excludedPathsForPrompts = ['/help-center', '/generate-access', '/auth/callback', '/books', '/signin', '/register'];
-    const shouldShowPrompts = !excludedPathsForPrompts.includes(pathname) && !showMaintenance;
-  
-    if (shouldShowPrompts) {
-      // Show prompt on every load by removing the time check
-      const timer = setTimeout(() => setShowSubscriptionPrompt(true), 5000); // Show after 5 seconds
+    // Only show the prompt on the homepage
+    if (pathname === '/') {
+      const timer = setTimeout(() => setShowSubscriptionPrompt(true), 3500); // Show after 3.5 seconds
       return () => clearTimeout(timer);
     }
-  }, [pathname, showMaintenance, authLoading, user]);
+  }, [pathname, authLoading, user]);
 
 
   const handleSubscriptionPromptClose = () => {
     setShowSubscriptionPrompt(false);
-    // No longer setting localStorage time, so it shows on next load
   };
 
   if (showMaintenance && maintenanceEndTime) {
@@ -323,7 +319,7 @@ function AppContent({ children }: { children: ReactNode }) {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full h-10 w-10"
+                className="rounded-full h-10 w-10 flex-shrink-0"
                 aria-label="View Notifications"
               >
                 <NotificationBellIconToUse className="h-5 w-5 text-foreground" />
@@ -384,7 +380,9 @@ function AppContent({ children }: { children: ReactNode }) {
             </SheetContent>
           </Sheet>
 
-          <div className="flex items-center gap-2">
+          <div className="flex-grow min-w-0"></div>
+
+          <div className="flex items-center gap-2 flex-shrink-0">
              {authLoading ? (
                 <Skeleton className="h-10 w-32 rounded-full" />
               ) : user ? (
@@ -392,7 +390,7 @@ function AppContent({ children }: { children: ReactNode }) {
                     <DropdownMenuTrigger asChild>
                     <Button variant="outline" className="h-10 px-2 rounded-full border border-border hover:bg-muted p-2">
                         <span className="flex items-center gap-2">
-                            <span className="text-sm font-medium text-foreground">Hi, {userData?.displayName?.split(' ')[0] || user.displayName?.split(' ')[0]}</span>
+                            <span className="text-sm font-medium text-foreground truncate max-w-[100px] sm:max-w-none">Hi, {userData?.displayName?.split(' ')[0] || user.displayName?.split(' ')[0]}</span>
                             <Avatar className="h-8 w-8">
                                 <AvatarImage src={userData?.photoURL || user.photoURL || ''} alt={userData?.displayName || user.displayName || 'User'} />
                                 <AvatarFallback>{getInitials(userData?.displayName || user.displayName)}</AvatarFallback>
