@@ -109,8 +109,17 @@ const itTopicsForClass9: CourseContentMap['IT'] = [
           notesTitle: "Basic ICT Skills Notes - L5", 
           notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/162918841046735230.pdf`, 
           videoEmbedType: 'hls', 
-          videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483037/1752590384_2271269675608739/sunny/1752588868063_665657704437878300_video_VOD480p30.m3u8' 
-      }
+          videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483037/1752590384_2271269675608739/sunny/1752588868063_665657704437878300_video_VOD720p30.m3u8' 
+        },
+        { 
+          id: 'ICT-6', 
+          title: 'Basic ICT Skills - L6', 
+          notesTitle: "Basic ICT Skills Notes - L6", 
+          notesLink: ``, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485135/1752765459_4500050589029465/sunny/1752765338495_349993033694643260_video_VOD720p30.m3u8' 
+  
+        }
     ]
   }
 ];
