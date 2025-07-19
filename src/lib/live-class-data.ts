@@ -26,18 +26,18 @@ export const courseLiveDetails: Record<string, any> = {
     classTimeLabel2: "8:00 PM - 9:30 PM", 
     class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/e01baa20ccaf46c3b67bec6d03ff6138/index_4.m3u8',
     class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_4.m3u8',
-    class1Visible: false,
+    class1Visible: true,
     class2Visible: true,
     class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90), // 5:00 PM for 1.5h
     class2Times: (now: Date) => getDailyClassTimes(now, 20, 0, 90),// 8:00 PM for 1.5h
   },
   '2': { // Commerce
     pageTitle: "11th Commerce",
-    class1Subject: "Business Studies",
+    class1Subject: "Accounts",
     class2Subject: "Economics",
     classTimeLabel: "5:00 PM - 6:30 PM",
     classTimeLabel2: "8:00 PM - 9:30 PM",
-    class1LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/4882f3a454494165b396de72e412d7aa/index_4.m3u8',
+    class1LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/ca26d3ff165b4e07a358b55f5455cd98/index_4.m3u8',
     class2LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/c923787f6b3b40cbbfbdc51d2d76e51e/index_4.m3u8',
     class1Visible: true,
     class2Visible: true,
@@ -60,14 +60,14 @@ export const courseLiveDetails: Record<string, any> = {
   '4': { // Aarambh (Class 9)
     pageTitle: "9th Aarambh",
     class1Subject: "Mathematics",
-    class2Subject: "English",
+    class2Subject: "Hindi",
     classTimeLabel: "5:00 PM - 6:30 PM",
     classTimeLabel2: "7:00 PM - 9:30 PM", 
-    class1LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_4.m3u8', 
-    class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/e7fdb12212354ce0bec4739012796602/index_4.m3u8', 
+    class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8', 
+    class2LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/2327ab1009274046b04f1dd9b867555a/index_4.m3u8', 
     class1Visible: true,
-    class2Visible: false,
+    class2Visible: true,
     class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90), // 5:00 PM for 1.5h
-    class2Times: (now: Date) => getDailyClassTimes(now, 19, 0, 90), // 8:00 PM for 1.5h
+    class2Times: (now: Date) => getDailyClassTimes(now, 19, 0, 180), // 8:00 PM for 1.5h
   }
 };

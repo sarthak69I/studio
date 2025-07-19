@@ -109,8 +109,17 @@ const itTopicsForClass9: CourseContentMap['IT'] = [
           notesTitle: "Basic ICT Skills Notes - L5", 
           notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/162918841046735230.pdf`, 
           videoEmbedType: 'hls', 
-          videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483037/1752590384_2271269675608739/sunny/1752588868063_665657704437878300_video_VOD480p30.m3u8' 
-      }
+          videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4483037/1752590384_2271269675608739/sunny/1752588868063_665657704437878300_video_VOD720p30.m3u8' 
+        },
+        { 
+          id: 'ICT-6', 
+          title: 'Basic ICT Skills - L6', 
+          notesTitle: "Basic ICT Skills Notes - L6", 
+          notesLink: ``, 
+          videoEmbedType: 'hls', 
+          videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485135/1752765459_4500050589029465/sunny/1752765338495_349993033694643260_video_VOD720p30.m3u8' 
+  
+        }
     ]
   }
 ];
@@ -182,7 +191,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L3', title: 'Tissue L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/551846601926949800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4478171/175207564070148929414/index_4.m3u8' },
         { id: 'L4', title: 'Tissue L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/807777532215662500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4481913/175249800035998929414/index_4.m3u8' },
          { id: 'L5', title: 'Tissue L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/199727414625477760.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482890/175258462787808929414/index_4.m3u8' },
-        { id: 'L6', title: 'Tissue L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484120/175268040413938929414/175268040413938929414_8929414.m3u8' },
+        { id: 'L6', title: 'Tissue L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/348401131086742140.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484120/175268040413938929414/175268040413938929414_8929414.m3u8' },
        
       ]
     },
@@ -338,7 +347,8 @@ export const aarambh9CourseContent: CourseContentMap = {
       name: 'Triangles',
       lectures: [   
         { id: 'L1', title: 'Triangles L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/165917613057313250.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480736/175232416413558752407/index_4.m3u8' },
-          { id: 'L2', title: 'Triangles L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485929/175284331075788752407/175284331075788752407_8752407.m3u8' },
+          { id: 'L2', title: 'Triangles L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/4478842027453222.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485929/175284331075788752407/index_4.m3u8' },
+                 { id: 'L3', title: 'Triangles L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486805/175292922251078752407/index_4.m3u8' },
       
       ]
     },
