@@ -54,6 +54,7 @@ export const saveUserToFirestore = async (user: User): Promise<void> => {
     const docSnap = await getDoc(userRef);
     
     if (!docSnap.exists()) {
+      // For new users, save all their profile info from any provider
       await setDoc(userRef, {
         uid: user.uid,
         displayName: user.displayName,
@@ -65,8 +66,12 @@ export const saveUserToFirestore = async (user: User): Promise<void> => {
         stateCity: "", // Added stateCity field
       });
     } else {
+      // For existing users, just update their last login time and potentially their photo/name if changed
       await updateDoc(userRef, {
         lastLogin: serverTimestamp(),
+        // Update name and photo in case they changed it in their Google/other account
+        displayName: user.displayName, 
+        photoURL: user.photoURL
       });
     }
   } catch (error) {
@@ -79,6 +84,7 @@ export const signUpWithEmail = async (email: string, password: string, displayNa
   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
   if (userCredential.user) {
     await updateProfile(userCredential.user, { displayName });
+    // This will now call the enhanced saveUserToFirestore function
     await saveUserToFirestore(userCredential.user);
   }
   return userCredential;
@@ -96,6 +102,7 @@ export const signInWithGoogle = async () => {
   const provider = new GoogleAuthProvider();
   const userCredential = await signInWithPopup(auth, provider);
   if (userCredential.user) {
+    // This will now call the enhanced saveUserToFirestore function
     await saveUserToFirestore(userCredential.user);
   }
   return userCredential;
