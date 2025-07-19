@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
-import { Home as HomeIcon, PlayCircle, Clock } from 'lucide-react';
+import { Home as HomeIcon, PlayCircle, Clock, Loader2 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { courseLiveDetails } from '@/lib/live-class-data';
@@ -21,7 +21,12 @@ interface LiveClassInfo {
   endTime: Date;
 }
 
-const LiveClassCard: React.FC<LiveClassInfo> = ({ courseName, subject, liveStreamUrl, status, classTimeLabel }) => {
+interface ApiLecture {
+  Title: string;
+  file_url: string;
+}
+
+const LiveClassCard: React.FC<LiveClassInfo & { isApiLecture?: boolean }> = ({ courseName, subject, liveStreamUrl, status, classTimeLabel, isApiLecture = false }) => {
   const router = useRouter();
 
   const handleJoinClick = () => {
@@ -33,6 +38,11 @@ const LiveClassCard: React.FC<LiveClassInfo> = ({ courseName, subject, liveStrea
       window.open(urlToOpen, '_blank', 'noopener,noreferrer');
     }
   };
+
+  const buttonDisabled = status !== 'live' && !isApiLecture;
+  const buttonText = isApiLecture ? "Watch Replay" : 
+                    (status === 'live' ? "Join Live" : 
+                    (status === 'upcoming' ? "Starts Soon" : "Class Ended"));
 
   return (
     <Card className="w-full max-w-md animate-fadeInUp-custom overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -52,9 +62,9 @@ const LiveClassCard: React.FC<LiveClassInfo> = ({ courseName, subject, liveStrea
         </div>
       </CardContent>
       <CardFooter>
-        <Button onClick={handleJoinClick} disabled={status !== 'live'} className="w-full">
+        <Button onClick={handleJoinClick} disabled={buttonDisabled} className="w-full">
           <PlayCircle className="mr-2 h-5 w-5" />
-          {status === 'live' ? "Join Live" : (status === 'upcoming' ? "Starts Soon" : "Class Ended")}
+          {buttonText}
         </Button>
       </CardFooter>
     </Card>
@@ -63,11 +73,15 @@ const LiveClassCard: React.FC<LiveClassInfo> = ({ courseName, subject, liveStrea
 
 export default function LiveClassesPage() {
   const [allClasses, setAllClasses] = React.useState<LiveClassInfo[]>([]);
+  const [apiCompletedLectures, setApiCompletedLectures] = React.useState<ApiLecture[]>([]);
+  const [isLoadingApi, setIsLoadingApi] = React.useState(true);
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
     document.title = "All Live Classes | E-Leak Courses Hub";
     setIsMounted(true);
+
+    // Fetch from static data
     const updateClasses = () => {
         const now = new Date();
         const combinedClasses: LiveClassInfo[] = [];
@@ -117,7 +131,28 @@ export default function LiveClassesPage() {
         setAllClasses(combinedClasses);
     }
     
+    // Fetch from API
+    const fetchApiLectures = async () => {
+      setIsLoadingApi(true);
+      try {
+        const response = await fetch('https://php-pearl.vercel.app/api/api?token=my_secret_key_123&view=completed');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          const filteredData = data.filter(item => item.Title && item.file_url);
+          setApiCompletedLectures(filteredData);
+        }
+      } catch (error) {
+        console.error("Failed to fetch completed lectures:", error);
+      } finally {
+        setIsLoadingApi(false);
+      }
+    };
+
     updateClasses();
+    fetchApiLectures();
     const interval = setInterval(updateClasses, 60000); // Update every minute
     return () => clearInterval(interval);
   }, []);
@@ -128,14 +163,41 @@ export default function LiveClassesPage() {
 
   const liveNow = allClasses.filter(c => c.status === 'live').sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
   const upcoming = allClasses.filter(c => c.status === 'upcoming').sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
-  const completed = allClasses.filter(c => c.status === 'completed').sort((a, b) => b.startTime.getTime() - a.startTime.getTime());
+  const completedFromStatic = allClasses.filter(c => c.status === 'completed').sort((a, b) => b.startTime.getTime() - a.startTime.getTime());
 
-  const renderClassList = (classes: LiveClassInfo[]) => {
-    if (classes.length === 0) {
+  const renderClassList = (classes: LiveClassInfo[], fromApi: ApiLecture[] = [], isLoading: boolean = false) => {
+    const noApiData = fromApi.length === 0;
+    const noStaticData = classes.length === 0;
+
+    if (isLoading) {
+      return (
+         <div className="flex flex-col items-center justify-center text-muted-foreground py-8">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <p className="mt-4">Loading Completed Lectures...</p>
+        </div>
+      )
+    }
+
+    if (noApiData && noStaticData) {
       return <p className="text-muted-foreground text-center py-8">No classes in this category right now.</p>;
     }
+    
     return (
       <div className="space-y-4">
+        {fromApi.map((c, index) => (
+          <LiveClassCard 
+            key={`api-${index}`} 
+            courseId="3" // Class 10
+            courseName="Aarambh Batch (Class 10)"
+            subject={c.Title}
+            liveStreamUrl={c.file_url}
+            classTimeLabel="Recorded"
+            status="completed"
+            startTime={new Date()}
+            endTime={new Date()}
+            isApiLecture={true}
+          />
+        ))}
         {classes.map((c, index) => <LiveClassCard key={`${c.courseId}-${c.subject}-${index}`} {...c} />)}
       </div>
     );
@@ -164,7 +226,7 @@ export default function LiveClassesPage() {
             {renderClassList(upcoming)}
           </TabsContent>
           <TabsContent value="completed" className="mt-6">
-            {renderClassList(completed)}
+            {renderClassList(completedFromStatic, apiCompletedLectures, isLoadingApi)}
           </TabsContent>
         </Tabs>
       </main>
