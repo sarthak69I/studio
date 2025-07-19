@@ -144,10 +144,11 @@ export default function LiveClassesPage() {
         const lectures = responseData.data;
 
         if (Array.isArray(lectures)) {
-          // Map the API data to the ApiLecture interface
+          // Map the API data to the ApiLecture interface and get the latest 3
           const formattedLectures = lectures
             .map(item => ({ title: item.title, file_url: item.file_url }))
-            .filter(item => item.title && item.file_url);
+            .filter(item => item.title && item.file_url)
+            .slice(0, 3);
           setApiCompletedLectures(formattedLectures);
         } else {
           console.error("API response's 'data' property is not an array:", lectures);
