@@ -103,7 +103,16 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
       lectures: [
         { id: 'l1', title: 'The Summer of the Beautiful White Horse  1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6744257The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L1.pdf_The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4417263/1750669085_2473354831799394/sunny/1750666496065_865337603299043700_video_VOD720p30.m3u8' },
     { id: 'l2', title: 'The Summer of the Beautiful White Horse  2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4790009The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L2.pdf_The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4417264/1750669089_7574182533651584/sunny/1750666534613_225704789904111520_video_VOD720p30.m3u8' },
-    ]
+ { id: 'l4', title: 'The Summer of the Beautiful White Horse  3', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: '' },
+ ]
+    },
+    {
+      name: 'The Address ',
+      lectures: [
+        { id: 'l1', title: 'The Address 1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: '' },
+    { id: 'l2', title: ' The Address  2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: '' },
+ 
+      ]
     },
     {
       name: 'The Laburnum Top',
