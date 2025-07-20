@@ -426,7 +426,7 @@ export const aarambhCourseContent: CourseContentMap = {
   name: 'Doubt Class ',
   lectures: [
     { id: 'L1', title: 'Doubt Class Communicative', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487010/175299852470588496551/index_4.m3u8' },
-   { id: 'L2', title: 'Doubt Class First Flight & Footprint', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' }
+   { id: 'L2', title: 'Doubt Class First Flight & Footprint', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487021/175300436123628496551/index_4.m3u8' }
   
   ]
     }
