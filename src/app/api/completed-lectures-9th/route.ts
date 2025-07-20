@@ -10,9 +10,7 @@ export async function GET() {
 
   try {
     const response = await fetch(externalApiUrl, {
-      // It's good practice to set a timeout for external API calls
-      // Note: This requires a more advanced setup like AbortController,
-      // but for simplicity, we'll rely on default fetch timeouts.
+      cache: 'no-store',
     });
 
     if (!response.ok) {
