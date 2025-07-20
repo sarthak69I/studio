@@ -215,17 +215,17 @@ const commerceOnlySubjects: CourseContentMap = {
      {
       name: 'Collection of Data ',
       lectures: [
-        { id: 'L1', title: 'Collection of Data L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479248/175216350666192809295/index_4.m3u8' },
-       { id: 'L2', title: 'Collection of Data L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480238/175224932258072809295/index_4.m3u8' },
-       { id: 'L3', title: 'Collection of Data L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480838/175233541962642809295/index_4.m3u8' },
-        { id: 'L4', title: 'Collection of Data L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485154/175276874625172809295/index_4.m3u8' },
-       { id: 'L5', title: 'Collection of Data L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486102/175285490396222809295/index_4.m3u8' },
+        { id: 'L1', title: 'Collection of Data L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/252204389302600600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479248/175216350666192809295/index_4.m3u8' },
+       { id: 'L2', title: 'Collection of Data L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/583479555263147000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480238/175224932258072809295/index_4.m3u8' },
+       { id: 'L3', title: 'Collection of Data L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/627687094134467100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480838/175233541962642809295/index_4.m3u8' },
+        { id: 'L4', title: 'Collection of Data L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/51354690854947450.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485154/175276874625172809295/index_4.m3u8' },
+       { id: 'L5', title: 'Collection of Data L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/429246326563625660.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486102/175285490396222809295/index_4.m3u8' },
          ],
      },
      {
       name: 'Organisation of Data',
       lectures: [
-        { id: 'L1', title: 'Organisation of Data L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486905/175293943795912809295/index_4.m3u8' },
+        { id: 'L1', title: 'Organisation of Data L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/535128212588522100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486905/175293943795912809295/index_4.m3u8' },
        
       ]
     }
