@@ -349,6 +349,7 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L1', title: 'Triangles L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/165917613057313250.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480736/175232416413558752407/index_4.m3u8' },
           { id: 'L2', title: 'Triangles L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/4478842027453222.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485929/175284331075788752407/index_4.m3u8' },
                  { id: 'L3', title: 'Triangles L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486805/175292922251078752407/index_4.m3u8' },
+        { id: 'L4', title: 'Triangles L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486980/175299159543288752407/index_4.m3u8' },
       
       ]
     },
