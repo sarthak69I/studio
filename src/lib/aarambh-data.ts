@@ -426,7 +426,14 @@ export const aarambhCourseContent: CourseContentMap = {
   name: 'Doubt Class ',
   lectures: [
     { id: 'L1', title: 'Doubt Class Communicative', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487010/175299852470588496551/index_4.m3u8' },
-   { id: 'L2', title: 'Doubt Class First Flight & Footprint', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487021/175300436123628496551/index_4.m3u8' }
+   { id: 'L2', title: 'Doubt Class First Flight & Footprint', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487021/175300436123628496551/index_4.m3u8' },
+  ]
+},
+{
+  name: 'The Thie Story ',
+  lectures: [
+    { id: 'L1', title: 'L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4480612/1752311886_6910684453501070/sunny/1752311664445_336102739306693400_video_VOD720p30.m3u8' },
+   { id: 'L2', title: 'L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4480613/1752311889_3966088634651640/sunny/1752311819933_687138967131549600_video_VOD720p30.m3u8' },
   
   ]
     }
