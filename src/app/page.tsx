@@ -62,7 +62,7 @@ const coursesData: Course[] = [
     startDate: 'Started from Apr 2025',
     enrollLink: '/courses/1/enroll',
     youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
-    timeTableImageUrl: 'https://drive.google.com/file/d/1NeenjN2AfvXmTB6_JKVps4_uVZ66jmaj/preview',
+    timeTableImageUrl: 'https://drive.google.com/file/d/1R73-gXh6zEplkouIphbWNtQwjgPTAPA_/preview',
     liveSlots: [
       { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },
@@ -126,7 +126,7 @@ const coursesData: Course[] = [
     startDate: 'Started from Apr 2025',
     enrollLink: '/courses/2/enroll',
     youtubeLink: 'https://youtube.com/@prarambh-free?si=jT5p0zC1qYfDd-pR',
-    timeTableImageUrl: 'https://drive.google.com/file/d/1HFt3JlBQQtSme-RKzmHWDrDaZiZfj2S3/preview',
+    timeTableImageUrl: 'https://drive.google.com/file/d/1w1rMfwnSbR8mLnAde85kdf9X5V174fV1/preview',
     liveSlots: [
       { targetHour: 17, targetMinute: 10, durationMinutes: 90 },
       { targetHour: 20, targetMinute: 10, durationMinutes: 90 },

@@ -50,8 +50,8 @@ export const courseLiveDetails: Record<string, any> = {
     class2Subject: "English Course B",
     classTimeLabel: "12:00 PM - 1:00 PM",
     classTimeLabel2: "1:00 PM - 2:00 PM",
-    class1LiveStreamUrl: 'https://e-leak-strm.web.app/?url=https://dga9kme080o0w.cloudfront.net/out/v1/e7fdb12212354ce0bec4739012796602/index_4.m3u8',
-    class2LiveStreamUrl: 'https://e-leak-strm.web.app/?url=https://dga9kme080o0w.cloudfront.net/out/v1/e7fdb12212354ce0bec4739012796602/index_4.m3u8',
+    class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/e7fdb12212354ce0bec4739012796602/index_4.m3u8',
+    class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/e7fdb12212354ce0bec4739012796602/index_4.m3u8',
     class1Visible: true,
     class2Visible: true,
     class1Times: (now: Date) => getDailyClassTimes(now, 12, 0, 60), // 12 PM for 1hr

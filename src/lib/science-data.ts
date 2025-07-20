@@ -72,6 +72,7 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L2', title: 'Work, Energy & Power L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485153/175276842825365910848/index_4.m3u8' },
         { id: 'L3', title: 'Work, Energy & Power L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485969/175284428082135910848/index_4.m3u8' },
         { id: 'L4', title: 'Work, Energy & Power L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486096/175285450832415910848/index_4.m3u8' },
+       { id: 'L5', title: 'Work, Energy & Power L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486927/175294224771305910848/index_4.m3u8' },
   
       
       ]
