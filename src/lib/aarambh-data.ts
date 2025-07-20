@@ -434,7 +434,14 @@ export const aarambhCourseContent: CourseContentMap = {
   lectures: [
     { id: 'L1', title: 'L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4480612/1752311886_6910684453501070/sunny/1752311664445_336102739306693400_video_VOD720p30.m3u8' },
    { id: 'L2', title: 'L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4480613/1752311889_3966088634651640/sunny/1752311819933_687138967131549600_video_VOD720p30.m3u8' },
-  
+  ]
+},
+{
+  name: 'Modals',
+  lectures: [
+    { id: 'L1', title: 'Modals L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/23326Modals%20%20L1.pdf_Modals%20%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485490/1752820994_1193104855872784/sunny/1752820284080_852239388616624500_video_VOD720p30.m3u8' },
+   { id: 'L2', title: 'Modals L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7536363Modals%20%20L2.pdf_Modals%20%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485491/1752821107_7918278051377036/sunny/1752820612528_195711855498055070_video_VOD720p30.m3u8' },
+   
   ]
     }
   ],
