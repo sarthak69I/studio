@@ -420,6 +420,13 @@ export const aarambhCourseContent: CourseContentMap = {
   lectures: [
     { id: 'L1', title: 'A Tiger in the Zoo  L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2384508Tiger%20in%20the%20Zoo%20L1.pdf_Tiger%20in%20the%20Zoo%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465241/1751626506_3969741780228351/sunny/1751624330612_504314993319041150_video_VOD720p30.m3u8' },
    { id: 'L2', title: 'A Tiger in the Zoo  L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3774889Tiger%20in%20the%20Zoo%20L2.pdf_Tiger%20in%20the%20Zoo%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465242/1751626565_5289125113500169/sunny/1751624468397_669646185529024300_video_VOD720p30.m3u8' }
+    ]
+},
+{
+  name: 'Doubt Class ',
+  lectures: [
+    { id: 'L1', title: 'Doubt Class Communicative', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487010/175299852470588496551/index_4.m3u8' },
+   { id: 'L2', title: 'Doubt Class First Flight & Footprint', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' }
   
   ]
     }
