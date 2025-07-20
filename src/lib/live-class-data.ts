@@ -20,54 +20,54 @@ const getDailyClassTimes = (now: Date, hour: number, minute: number, duration: n
 export const courseLiveDetails: Record<string, any> = {
   '1': { // Science
     pageTitle: "11th Science",
-    class1Subject: "Biology",
-    class2Subject: "Physics",
+    class1Subject: "Maths",
+    class2Subject: "Chemistry",
     classTimeLabel: "5:00 PM - 6:30 PM",
     classTimeLabel2: "8:00 PM - 9:30 PM", 
-    class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/e01baa20ccaf46c3b67bec6d03ff6138/index_4.m3u8',
-    class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_4.m3u8',
-    class1Visible: false, // Disabled
-    class2Visible: false, // Disabled
+    class1LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/49856fa811d3403facbfba24d0db04ab/index_4.m3u8',
+    class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/ac361b0bc5c84abba22ce98a674f14a3/index_5.m3u8',
+    class1Visible: true,
+    class2Visible: true,
     class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90), // 5:00 PM for 1.5h
     class2Times: (now: Date) => getDailyClassTimes(now, 20, 0, 90),// 8:00 PM for 1.5h
   },
   '2': { // Commerce
     pageTitle: "11th Commerce",
-    class1Subject: "Accounts",
-    class2Subject: "Economics",
+    class1Subject: "Maths",
+    class2Subject: "Business Studies",
     classTimeLabel: "5:00 PM - 6:30 PM",
     classTimeLabel2: "8:00 PM - 9:30 PM",
-    class1LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/ca26d3ff165b4e07a358b55f5455cd98/index_4.m3u8',
-    class2LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/c923787f6b3b40cbbfbdc51d2d76e51e/index_4.m3u8',
-    class1Visible: false, // Disabled
-    class2Visible: false, // Disabled
+    class1LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/49856fa811d3403facbfba24d0db04ab/index_4.m3u8',
+    class2LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/4882f3a454494165b396de72e412d7aa/index_4.m3u8',
+    class1Visible: true,
+    class2Visible: true,
     class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90),
     class2Times: (now: Date) => getDailyClassTimes(now, 20, 0, 90),
   },
   '3': { // Aarambh (Class 10)
     pageTitle: "10th Aarambh",
-    class1Subject: "English Course A",
-    class2Subject: "English Course B",
-    classTimeLabel: "12:00 PM - 1:00 PM",
-    classTimeLabel2: "1:00 PM - 2:00 PM",
-    class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/e7fdb12212354ce0bec4739012796602/index_4.m3u8',
-    class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/e7fdb12212354ce0bec4739012796602/index_4.m3u8',
+    class1Subject: "Social Science",
+    class2Subject: "Maths",
+    classTimeLabel: "5:00 PM - 6:30 PM",
+    classTimeLabel2: "8:00 PM - 9:30 PM",
+    class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/90ab1354cfcd4c5b83cf78a87d96041e/index_4.m3u8',
+    class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8',
     class1Visible: true,
     class2Visible: true,
-    class1Times: (now: Date) => getDailyClassTimes(now, 12, 0, 60), // 12 PM for 1hr
-    class2Times: (now: Date) => getDailyClassTimes(now, 13, 0, 60), // 1 PM for 1hr
+    class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90),
+    class2Times: (now: Date) => getDailyClassTimes(now, 20, 0, 90),
   },
   '4': { // Aarambh (Class 9)
     pageTitle: "9th Aarambh",
-    class1Subject: "Mathematics",
-    class2Subject: "Hindi",
-    classTimeLabel: "10:00 AM - 11:30 AM",
-    classTimeLabel2: "7:00 PM - 9:30 PM", 
-    class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8', 
-    class2LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/2327ab1009274046b04f1dd9b867555a/index_4.m3u8', 
+    class1Subject: "Science",
+    class2Subject: "Sst",
+    classTimeLabel: "5:00 PM - 6:30 PM",
+    classTimeLabel2: "8:00 PM - 9:30 PM", 
+    class1LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_4.m3u8', 
+    class2LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/c923787f6b3b40cbbfbdc51d2d76e51e/index_4.m3u8', 
     class1Visible: true,
-    class2Visible: false, // Disabling second class as per new schedule
-    class1Times: (now: Date) => getDailyClassTimes(now, 10, 0, 90), // 10:00 AM for 1.5h
-    class2Times: (now: Date) => getDailyClassTimes(now, 19, 0, 180), // Old time, now hidden
+    class2Visible: true,
+    class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90),
+    class2Times: (now: Date) => getDailyClassTimes(now, 20, 0, 90),
   }
 };

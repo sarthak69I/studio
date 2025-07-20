@@ -32,9 +32,9 @@ export default function CustomInAppBanner() {
         className="hidden sm:block flex-shrink-0"
       />
       <div className="flex-grow">
-        <h4 className="font-bold text-md sm:text-lg text-primary">Live Class Update!</h4>
+        <h4 className="font-bold text-md sm:text-lg text-primary">New Feature Coming Soon!</h4>
         <p className="text-sm text-muted-foreground mt-1">
-          Class 9 Extra Class (Triangle L4) at 10 AM. Class 10 English Course A at 12 PM & Course B at 1 PM.
+          We're working on something exciting. Stay tuned for updates!
         </p>
       </div>
       <Button 
