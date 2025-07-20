@@ -1,17 +1,16 @@
 
 import { NextResponse } from 'next/server';
 
-// This tells Next.js to not cache this route, ensuring fresh data.
+// This tells Next.js to not cache this route, ensuring fresh data on every request.
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const externalApiUrl = 'https://php-pearl.vercel.app/api/api?token=my_secret_key_123&view=completed';
 
   try {
+    // Add { cache: 'no-store' } to the fetch call to be absolutely sure we are not caching.
     const response = await fetch(externalApiUrl, {
-      // It's good practice to set a timeout for external API calls
-      // Note: This requires a more advanced setup like AbortController,
-      // but for simplicity, we'll rely on default fetch timeouts.
+      cache: 'no-store',
     });
 
     if (!response.ok) {
