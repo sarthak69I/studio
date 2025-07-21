@@ -276,7 +276,13 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L6', title: ' Socialism in Europe and the Russian Revolution 6', notesTitle: "L6 and 7", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/159134390619897800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483088/175259387081697125088/index_4.m3u8' },
         { id: 'L7', title: ' Socialism in Europe and the Russian Revolution 7', notesTitle: "L6 and 7", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/159134390619897800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483914/175266969453997125088/index_4.m3u8' },
       { id: 'L8', title: ' Socialism in Europe and the Russian Revolution 8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/645974973327650800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484954/175275601327827125088/175275601327827125088_7125088.m3u8' },
-      
+      ]
+    },
+    {
+      name: 'People as a Resource',    
+      lectures: [
+        { id: 'L1', title: ' People as a Resource 1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488129/175311348823522809295/index_4.m3u8' },
+        
       ]
     },
   ],
