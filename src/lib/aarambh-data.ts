@@ -351,6 +351,7 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L2', title: 'Arithmrtic Progression L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/737984829132763400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483093/175259418898458752407/index_4.m3u8' },
          { id: 'L3', title: 'Arithmrtic Progression L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/50299176419267280.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486090/175285302757228752407/index_4.m3u8' },
           { id: 'L4', title: 'Arithmrtic Progression L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/187283986685783680.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486907/175293982522938752407/index_4.m3u8' },
+          { id: 'L5', title: 'Arithmrtic Progression L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488121/175311207190968752407/index_4.m3u8' },
         
       ]
     }
