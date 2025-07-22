@@ -55,6 +55,7 @@ const commerceOnlySubjects: CourseContentMap = {
        { id: 'L5', title: 'Business Services L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/688157629473908900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483091/175259396431322266688/index_4.m3u8' },
        { id: 'L6', title: 'Business Services L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/662131402875297400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483929/175267069179222266688/index_4.m3u8' },
           { id: 'L7', title: 'Business Services L7', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488126/175311298687982266688/index_4.m3u8' },
+         { id: 'L8', title: 'Business Services L8 ', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489873/175319819016112266688/index_4.m3u8' },
         
       ]
     },
