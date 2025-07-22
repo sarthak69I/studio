@@ -54,6 +54,7 @@ const commerceOnlySubjects: CourseContentMap = {
         { id: 'L4', title: 'Business Services L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/410848168647632200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482045/175250851969992266688/index_4.m3u8' },
        { id: 'L5', title: 'Business Services L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/688157629473908900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483091/175259396431322266688/index_4.m3u8' },
        { id: 'L6', title: 'Business Services L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/662131402875297400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483929/175267069179222266688/index_4.m3u8' },
+          { id: 'L7', title: 'Business Services L7', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488126/175311298687982266688/index_4.m3u8' },
         
       ]
     },
@@ -146,7 +147,13 @@ const commerceOnlySubjects: CourseContentMap = {
          { id: 'L2', title: 'Cash Book and Subsidiary Books L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/196445883011009500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485000/175275835960778680586/index_4.m3u8' },
          { id: 'L3', title: 'Cash Book and Subsidiary Books L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/764182652451365500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485941/175284345083208680586/index_4.m3u8' },
           { id: 'L4', title: 'Cash Book and Subsidiary Books L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/657788235138930700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486804/175292911681638680586/index_4.m3u8' },
-          
+           ]
+    },
+    {
+      name: ' Goods & Service Tax',
+      lectures: [
+        { id: 'L1', title: 'Goods & Service Tax L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488069/175310812545708680586/index_4.m3u8' },
+         
       ]
     }
   ],
