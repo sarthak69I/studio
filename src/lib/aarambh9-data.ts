@@ -193,7 +193,13 @@ export const aarambh9CourseContent: CourseContentMap = {
          { id: 'L5', title: 'Tissue L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/199727414625477760.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482890/175258462787808929414/index_4.m3u8' },
         { id: 'L6', title: 'Tissue L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/348401131086742140.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484120/175268040413938929414/175268040413938929414_8929414.m3u8' },
         { id: 'L7', title: 'Tissue L7', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487924/175310142179638929414/index_4.m3u8' },
-       
+       ]
+    },
+    {
+      name: 'Gravitation',
+      lectures: [
+        { id: 'L1', title: 'Gravitation L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489680/175318788990548929414/index_4.m3u8' },
+        
       ]
     },
   ],
