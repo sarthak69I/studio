@@ -211,6 +211,7 @@ const scienceOnlySubjects: CourseContentMap = {
       name: 'Anatomy of Flowering Plants',
       lectures: [
         { id: 'L1', title: 'Anatomy of Flowering Plants L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/235326611903516260.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486801/175292888092693740487/index_4.m3u8' },
+      { id: 'L2', title: 'Anatomy of Flowering Plants L2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488053/175310751270453740487/index_4.m3u8' },
     
       ]
     },
