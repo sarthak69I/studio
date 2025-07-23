@@ -175,6 +175,7 @@ export const aarambhCourseContent: CourseContentMap = {
          { id: 'L2', title: 'Nationalism In India L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485142/175276595260217125088/index_4.m3u8' },
          { id: 'L3', title: 'Nationalism In India L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/101670157573045310.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487942/175310190839187125088/index_4.m3u8' },
          { id: 'L4', title: 'Nationalism In India L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489690/175318859641387125088/index_4.m3u8' },
+         { id: 'L5', title: 'Nationalism In India L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491671/175328504112427125088/index_4.m3u8' },
         
       ]
     }
