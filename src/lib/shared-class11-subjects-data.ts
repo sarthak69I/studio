@@ -67,7 +67,7 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
        { id: 'L3', title: ' Permutaions And Combinations L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/812964130933672100.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://youtu.be/eK7xrFgiWIQ' },
        { id: 'L4', title: ' Permutaions And Combinations L4', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487955/175310281166565373082/index_4.m3u8' },
        { id: 'L5', title: ' Permutaions And Combinations L5', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489705/175318913446045373082/index_4.m3u8' },
-       { id: 'L6', title: ' Permutaions And Combinations L6', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: '' },
+       { id: 'L6', title: ' Permutaions And Combinations L6', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491683/175328617044405373082/index_4.m3u8' },
       
       ]
     },
