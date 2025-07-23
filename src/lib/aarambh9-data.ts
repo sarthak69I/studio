@@ -289,6 +289,7 @@ export const aarambh9CourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: ' People as a Resource 1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488129/175311348823522809295/index_4.m3u8' },
          { id: 'L2', title: ' People as a Resource 2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489881/175319873399542809295/index_4.m3u8' },
+         { id: 'L3', title: ' People as a Resource 3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491437/175327451330052809295/index_4.m3u8' },
         
       ]
     },
