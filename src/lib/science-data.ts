@@ -144,6 +144,7 @@ const scienceOnlySubjects: CourseContentMap = {
     { id: 'L6', title: 'Chemical Bonding & Molecular Structure L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/875615000737873200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://youtu.be/0AJPKspgpeQ' },
      { id: 'L7', title: 'Chemical Bonding & Molecular Structure L7', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488132/175311417820352764802/index_5.m3u8' },
      { id: 'L8', title: 'Chemical Bonding & Molecular Structure L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489883/175319882424292764802/index_5.m3u8' },
+     { id: 'L9', title: 'Chemical Bonding & Molecular Structure L9 Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491460/175327503930232764802/index_5.m3u8' },
     
         
       ]
