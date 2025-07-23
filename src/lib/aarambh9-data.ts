@@ -199,6 +199,7 @@ export const aarambh9CourseContent: CourseContentMap = {
       name: 'Gravitation',
       lectures: [
         { id: 'L1', title: 'Gravitation L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/69232758500938070.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489680/175318788990548929414/index_4.m3u8' },
+         { id: 'L2', title: 'Gravitation L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
         
       ]
     },
