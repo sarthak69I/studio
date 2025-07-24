@@ -172,9 +172,9 @@ export const aarambhCourseContent: CourseContentMap = {
       name: 'Nationalism In India',
       lectures: [
         { id: 'L1', title: 'Nationalism In India L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/124266535503976300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484117/175267984098967125088/index_4.m3u8' },
-         { id: 'L2', title: 'Nationalism In India L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485142/175276595260217125088/index_4.m3u8' },
+         { id: 'L2', title: 'Nationalism In India L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/101670157573045310.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485142/175276595260217125088/index_4.m3u8' },
          { id: 'L3', title: 'Nationalism In India L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/101670157573045310.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487942/175310190839187125088/index_4.m3u8' },
-         { id: 'L4', title: 'Nationalism In India L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489690/175318859641387125088/index_4.m3u8' },
+         { id: 'L4', title: 'Nationalism In India L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/334701607243626430.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489690/175318859641387125088/index_4.m3u8' },
          { id: 'L5', title: 'Nationalism In India L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491671/175328504112427125088/index_4.m3u8' },
         
       ]
@@ -253,7 +253,13 @@ export const aarambhCourseContent: CourseContentMap = {
           { id: 'Control & Coordination L5', title: 'Control & Coordination L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/497490846218714560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485899/175284240937348929414/index_4.m3u8' },
         { id: 'Control & Coordination L6', title: 'Control & Coordination L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/645576865548381300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486798/175292872885448929414/index_4.m3u8' },
         { id: 'Control & Coordination L7 Doubt Class', title: 'Control & Coordination L7 Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491369/175327377318448929414/index_4.m3u8' },
-       
+       ]
+    },
+    {
+      name: 'Metals And Non Metals',
+      lectures: [
+        { id: ' L1', title: 'Metals and Non Metals L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492756/175336156347188929414/index_4.m3u8' },
+     
      ]       
     }
   ],
