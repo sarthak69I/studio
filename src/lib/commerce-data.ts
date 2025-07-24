@@ -159,6 +159,7 @@ const commerceOnlySubjects: CourseContentMap = {
       name: ' Goods & Service Tax',
       lectures: [
         { id: 'L1', title: 'Goods & Service Tax L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488069/175310812545708680586/index_4.m3u8' },
+          { id: 'L2', title: 'Goods & Service Tax L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492783/175336262883458680586/index_4.m3u8' },
          
       ]
     }
