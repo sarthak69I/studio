@@ -22,7 +22,7 @@ export const courseLiveDetails: Record<string, any> = {
     pageTitle: "11th Science",
     class1Subject: "Physics",
     class2Subject: "",
-    classTimeLabel: "5:00 PM - 6:OO PM",
+    classTimeLabel: "5:00 PM - 8:OO PM",
     classTimeLabel2: "8:00 PM - 9:30 PM", 
     class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_4.m3u8',
     class2LiveStreamUrl: '',
