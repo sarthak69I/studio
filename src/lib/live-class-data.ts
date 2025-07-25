@@ -60,13 +60,13 @@ export const courseLiveDetails: Record<string, any> = {
   '4': { // Aarambh (Class 9)
     pageTitle: "9th Aarambh",
     class1Subject: "Mathematics",
-    class2Subject: "",
+    class2Subject: "Sanskrit",
     classTimeLabel: "5:00 PM - 6:30 PM",
     classTimeLabel2: "8:00 PM - 9:30 PM", 
     class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8', 
-    class2LiveStreamUrl: '', 
+    class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/e7fdb12212354ce0bec4739012796602/index_4.m3u8', 
     class1Visible: true,
-    class2Visible: false,
+    class2Visible: true,
     class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90),
     class2Times: (now: Date) => getDailyClassTimes(now, 20, 0, 90),
   }
