@@ -96,6 +96,11 @@ export const aarambhDppContent: DppContent = [
   "title": "Mathematics DPP 19",
     "subject": "Mathematics",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/700805361553841800.pdf"
+   },
+  {
+  "title": "Mathematics DPP 20",
+    "subject": "Mathematics",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/94573548501260880.pdf"
   
   },
   { 
@@ -122,6 +127,12 @@ export const aarambhDppContent: DppContent = [
     "title": "ACP 4 Human Eye",
     "subject": "Science",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/117262274904132380.pdf"
+  },
+  {
+    "title": "ACP 5 Control and Coordination",
+    "subject": "Science",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/598474588693220500.pdf"
+ 
   },
   {
     "title": "WPP 1 - Development",
@@ -162,6 +173,11 @@ export const aarambhDppContent: DppContent = [
     "title": "WPP 6 Sectors of Indian Economy",
     "subject": "Social Science",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/665478458648430000.pdf"
+     },
+  {
+    "title": "WPP 7 Federalism",
+    "subject": "Social Science",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/346298437834485100.pdf"
     
   }
 ];
