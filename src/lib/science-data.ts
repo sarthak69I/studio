@@ -74,7 +74,7 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L4', title: 'Work, Energy & Power L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/874099288439931500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486096/175285450832415910848/index_4.m3u8' },
        { id: 'L5', title: 'Work, Energy & Power L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/248348015843563940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486927/175294224771305910848/index_4.m3u8' },
          { id: 'L6', title: 'Work, Energy & Power L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492907/175337334796535910848/index_4.m3u8' },
-        { id: 'L', title: 'Work, Energy & Power Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+        { id: 'L', title: 'Work, Energy & Power Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4494013/175345959049095910848/index_4.m3u8' },
   
       
       ]
