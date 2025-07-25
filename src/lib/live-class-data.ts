@@ -20,14 +20,14 @@ const getDailyClassTimes = (now: Date, hour: number, minute: number, duration: n
 export const courseLiveDetails: Record<string, any> = {
   '1': { // Science
     pageTitle: "11th Science",
-    class1Subject: "",
-    class2Subject: "Physics",
+    class1Subject: "Physics",
+    class2Subject: "",
     classTimeLabel: "5:00 PM - 6:30 PM",
     classTimeLabel2: "8:00 PM - 9:30 PM", 
-    class1LiveStreamUrl: '',
-    class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_4.m3u8',
-    class1Visible: false,
-    class2Visible: true,
+    class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_4.m3u8',
+    class2LiveStreamUrl: '',
+    class1Visible: true,
+    class2Visible: false,
     class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90), // 5:00 PM for 1.5h
     class2Times: (now: Date) => getDailyClassTimes(now, 20, 0, 90),// 8:00 PM for 1.5h
   },
@@ -60,13 +60,13 @@ export const courseLiveDetails: Record<string, any> = {
   '4': { // Aarambh (Class 9)
     pageTitle: "9th Aarambh",
     class1Subject: "Mathematics",
-    class2Subject: "Sanskrit",
+    class2Subject: "",
     classTimeLabel: "5:00 PM - 6:30 PM",
     classTimeLabel2: "8:00 PM - 9:30 PM", 
     class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8', 
-    class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/e7fdb12212354ce0bec4739012796602/index_4.m3u8', 
+    class2LiveStreamUrl: '', 
     class1Visible: true,
-    class2Visible: true,
+    class2Visible: false,
     class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90),
     class2Times: (now: Date) => getDailyClassTimes(now, 20, 0, 90),
   }
