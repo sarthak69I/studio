@@ -175,8 +175,8 @@ export const aarambhCourseContent: CourseContentMap = {
          { id: 'L2', title: 'Nationalism In India L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/101670157573045310.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485142/175276595260217125088/index_4.m3u8' },
          { id: 'L3', title: 'Nationalism In India L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/101670157573045310.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487942/175310190839187125088/index_4.m3u8' },
          { id: 'L4', title: 'Nationalism In India L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/334701607243626430.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489690/175318859641387125088/index_4.m3u8' },
-         { id: 'L5', title: 'Nationalism In India L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491671/175328504112427125088/index_4.m3u8' },
-         { id: 'L6', title: 'Nationalism In India L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492899/175337180752677125088/index_4.m3u8' },
+         { id: 'L5', title: 'Nationalism In India L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/437357295629305200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491671/175328504112427125088/index_4.m3u8' },
+         { id: 'L6', title: 'Nationalism In India L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/694597021621744100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492899/175337180752677125088/index_4.m3u8' },
         
       ]
     }
@@ -259,7 +259,8 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Metals And Non Metals',
       lectures: [
-        { id: ' L1', title: 'Metals and Non Metals L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492756/175336156347188929414/index_4.m3u8' },
+        { id: ' L1', title: 'Metals and Non Metals L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/594905633762520000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492756/175336156347188929414/index_4.m3u8' },
+         { id: ' L2', title: 'Metals and Non Metals L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
      
      ]       
     }
@@ -362,7 +363,7 @@ export const aarambhCourseContent: CourseContentMap = {
          { id: 'L3', title: 'Arithmrtic Progression L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/50299176419267280.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486090/175285302757228752407/index_4.m3u8' },
           { id: 'L4', title: 'Arithmrtic Progression L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/187283986685783680.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486907/175293982522938752407/index_4.m3u8' },
           { id: 'L5', title: 'Arithmrtic Progression L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/605471304651791900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488121/175311207190968752407/index_4.m3u8' },
-          { id: 'L6', title: 'Arithmrtic Progression L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489886/175319905836988752407/index_4.m3u8' },
+          { id: 'L6', title: 'Arithmrtic Progression L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/623807728911343900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489886/175319905836988752407/index_4.m3u8' },
         
       ]
     }
