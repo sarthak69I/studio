@@ -260,7 +260,7 @@ export const aarambhCourseContent: CourseContentMap = {
       name: 'Metals And Non Metals',
       lectures: [
         { id: ' L1', title: 'Metals and Non Metals L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/594905633762520000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492756/175336156347188929414/index_4.m3u8' },
-         { id: ' L2', title: 'Metals and Non Metals L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+         { id: ' L2', title: 'Metals and Non Metals L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493817/175344709329608929414/index_4.m3u8' },
      
      ]       
     }
