@@ -22,13 +22,13 @@ export const courseLiveDetails: Record<string, any> = {
     pageTitle: "11th Science",
     class1Subject: "Physics",
     class2Subject: "",
-    classTimeLabel: "5:00 PM - 6:30 PM",
+    classTimeLabel: "5:00 PM - 6:OO PM",
     classTimeLabel2: "8:00 PM - 9:30 PM", 
     class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/4c919c218c124ad1bc7ca946be5c1a53/index_4.m3u8',
     class2LiveStreamUrl: '',
     class1Visible: true,
     class2Visible: false,
-    class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90), // 5:00 PM for 1.5h
+    class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 180), // 5:00 PM for 1.5h
     class2Times: (now: Date) => getDailyClassTimes(now, 20, 0, 90),// 8:00 PM for 1.5h
   },
   '2': { // Commerce
