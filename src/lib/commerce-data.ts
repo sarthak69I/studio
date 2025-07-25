@@ -240,6 +240,7 @@ const commerceOnlySubjects: CourseContentMap = {
       name: 'Organisation of Data',
       lectures: [
         { id: 'L1', title: 'Organisation of Data L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/535128212588522100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486905/175293943795912809295/index_4.m3u8' },
+        { id: 'L2', title: 'Organisation of Data L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492906/175337331446982809295/index_4.m3u8' },
        
       ]
     }
