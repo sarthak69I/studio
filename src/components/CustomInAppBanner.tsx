@@ -34,7 +34,7 @@ export default function CustomInAppBanner() {
       <div className="flex-grow">
         <h4 className="font-bold text-md sm:text-lg text-primary">New Features Added!</h4>
         <p className="text-sm text-muted-foreground mt-1">
-          New features have been added to the video player for a better experience.
+          Class 9 No Class And 10th Metals & Non Metals on sunday.
         </p>
       </div>
       <Button 
