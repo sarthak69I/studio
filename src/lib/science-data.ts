@@ -150,9 +150,9 @@ const scienceOnlySubjects: CourseContentMap = {
     { id: 'L4', title: 'Chemical Bonding & Molecular Structure L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/688194836056052900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482047/175250917864212764802/index_5.m3u8' },
        { id: 'L5', title: 'Chemical Bonding & Molecular Structure L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/57815206689766560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483100/175259600815942764802/index_5.m3u8' },
     { id: 'L6', title: 'Chemical Bonding & Molecular Structure L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/875615000737873200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://youtu.be/0AJPKspgpeQ' },
-     { id: 'L7', title: 'Chemical Bonding & Molecular Structure L7', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488132/175311417820352764802/index_5.m3u8' },
-     { id: 'L8', title: 'Chemical Bonding & Molecular Structure L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489883/175319882424292764802/index_5.m3u8' },
-     { id: 'L9', title: 'Chemical Bonding & Molecular Structure L9 Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491460/175327503930232764802/index_5.m3u8' },
+     { id: 'L7', title: 'Chemical Bonding & Molecular Structure L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/505947132740186050.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488132/175311417820352764802/index_5.m3u8' },
+     { id: 'L8', title: 'Chemical Bonding & Molecular Structure L8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/321103323884252800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489883/175319882424292764802/index_5.m3u8' },
+     { id: 'L9', title: 'Chemical Bonding & Molecular Structure L9 Doubt Class', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/226129233654398620.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491460/175327503930232764802/index_5.m3u8' },
     
         
       ]
@@ -222,15 +222,15 @@ const scienceOnlySubjects: CourseContentMap = {
       name: 'Anatomy of Flowering Plants',
       lectures: [
         { id: 'L1', title: 'Anatomy of Flowering Plants L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/235326611903516260.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486801/175292888092693740487/index_4.m3u8' },
-      { id: 'L2', title: 'Anatomy of Flowering Plants L2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488053/175310751270453740487/index_4.m3u8' },
-     { id: 'L', title: 'Anatomy of Flowering Plants L3', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489792/175319392695283740487/index_4.m3u8' },
+      { id: 'L2', title: 'Anatomy of Flowering Plants L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/296529052957254660.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488053/175310751270453740487/index_4.m3u8' },
+     { id: 'L', title: 'Anatomy of Flowering Plants L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/533052200382131140.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489792/175319392695283740487/index_4.m3u8' },
     { id: 'L4', title: 'Anatomy of Flowering Plants L4', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491596/175328029673533740487/index_4.m3u8' },
     ]
     },
     {
       name: 'Structural Organisation in Animals',
       lectures: [
-        { id: 'L1', title: 'Structural Organisation in Animals L1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492748/175336084790563740487/index_4.m3u8' },
+        { id: 'L1', title: 'Structural Organisation in Animals L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/180465181792550340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492748/175336084790563740487/index_4.m3u8' },
       
       ]
     },
