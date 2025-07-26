@@ -1002,6 +1002,18 @@ export const aarambh9CourseContent: CourseContentMap = {
             videoEmbedType: 'hls'
           }
         ]
+      },
+      {
+        name: "Sanskrit Doubt Class",
+        lectures: [
+          {
+            id: 'chd7-l1',
+            title: 'Lecture',
+            videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493977/175345576579998496551/index_3.m3u8070_116203473861998910_video_VOD720p30.m3u8',
+            videoEmbedType: 'hls'
+          
+          }
+        ]
       }
   ]
 }
