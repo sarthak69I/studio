@@ -54,13 +54,13 @@ const commerceOnlySubjects: CourseContentMap = {
         { id: 'L4', title: 'Business Services L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/410848168647632200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482045/175250851969992266688/index_4.m3u8' },
        { id: 'L5', title: 'Business Services L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/688157629473908900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483091/175259396431322266688/index_4.m3u8' },
        { id: 'L6', title: 'Business Services L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/662131402875297400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483929/175267069179222266688/index_4.m3u8' },
-          { id: 'L7', title: 'Business Services L7', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488126/175311298687982266688/index_4.m3u8' },
+          { id: 'L7', title: 'Business Services L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/213543265410607170.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488126/175311298687982266688/index_4.m3u8' },
          { id: 'L8', title: 'Business Services L8 ', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489873/175319819016112266688/index_4.m3u8' },
         ]
     },
     { name: 'Emerging modes of Business',
       lectures: [
-        { id: 'L1', title: 'Emerging modes of Business L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491458/175327501467052266688/index_4.m3u8' },
+        { id: 'L1', title: 'Emerging modes of Business L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/238428975142678560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491458/175327501467052266688/index_4.m3u8' },
         
       ]
     },
@@ -158,9 +158,9 @@ const commerceOnlySubjects: CourseContentMap = {
     {
       name: ' Goods & Service Tax',
       lectures: [
-        { id: 'L1', title: 'Goods & Service Tax L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488069/175310812545708680586/index_4.m3u8' },
-          { id: 'L2', title: 'Goods & Service Tax L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492783/175336262883458680586/index_4.m3u8' },
-          { id: 'L', title: 'Goods & Service Tax L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493861/175344873298888680586/index_4.m3u8' },
+        { id: 'L1', title: 'Goods & Service Tax L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/723363716634091900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488069/175310812545708680586/index_4.m3u8' },
+          { id: 'L2', title: 'Goods & Service Tax L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/411702091073101000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492783/175336262883458680586/index_4.m3u8' },
+          { id: 'L', title: 'Goods & Service Tax L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/319216177114159900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493861/175344873298888680586/index_4.m3u8' },
           { id: 'L4', title: 'Goods & Service Tax L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495216/175353393917908680586/index_4.m3u8' },
          
       ]
@@ -242,7 +242,7 @@ const commerceOnlySubjects: CourseContentMap = {
       name: 'Organisation of Data',
       lectures: [
         { id: 'L1', title: 'Organisation of Data L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/535128212588522100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486905/175293943795912809295/index_4.m3u8' },
-        { id: 'L2', title: 'Organisation of Data L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492906/175337331446982809295/index_4.m3u8' },
+        { id: 'L2', title: 'Organisation of Data L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/836017613303610500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492906/175337331446982809295/index_4.m3u8' },
         { id: 'L3', title: 'Organisation of Data L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4494009/175345831779802809295/index_4.m3u8' },
        
       ]
