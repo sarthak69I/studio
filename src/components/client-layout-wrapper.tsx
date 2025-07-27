@@ -13,7 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send, Trophy, Link2, Book, Ticket, Bug, UserCheck, Info as InfoIcon } from 'lucide-react';
+import { Bot, Bell, BellRing, Loader2, AlertCircle, MailOpen, X, Menu, HelpCircle, Sun, Moon, Download, LayoutDashboard, LogIn, User, ChevronDown, LogOut, Send, Trophy, Link2, Book, Ticket, Bug, UserCheck, Info as InfoIcon, Users } from 'lucide-react';
 import { db, logout } from '@/lib/firebase';
 import { collection, query, orderBy, limit, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
 import {
@@ -302,10 +302,10 @@ function AppContent({ children }: { children: ReactNode }) {
   }
 
   const NotificationBellIconToUse = unreadNotificationCount > 0 ? BellRing : Bell;
-  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports', '/signin', '/register', '/about'];
+  const excludedPathsForHeader = ['/auth/callback', '/generate-access', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports', '/signin', '/register', '/about', '/socials'];
   const showHeader = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
   
-  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports', '/signin', '/register', '/about'];
+  const excludedPathsForFeatures = ['/generate-access', '/auth/callback', '/help-center', '/shortener', '/books', '/my-downloads', '/pdf-viewer', '/admin/reports', '/profile', '/reports', '/signin', '/register', '/about', '/socials'];
   const showAppFeatures = !excludedPathsForFeatures.includes(pathname) && !showMaintenance;
 
   const showFloatingNav = !excludedPathsForHeader.includes(pathname) && !showMaintenance;
@@ -491,6 +491,13 @@ function AppContent({ children }: { children: ReactNode }) {
                   </Button>
 
                   <Separator className="my-2" />
+
+                   <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
+                    <Link href="/socials" onClick={() => setIsMenuSheetOpen(false)}>
+                      <Users className="mr-3 h-5 w-5 text-primary" />
+                      Our Socials
+                    </Link>
+                  </Button>
 
                   <Button variant="ghost" className="w-full justify-start p-3 text-base font-normal rounded-md" asChild>
                     <Link href="/about" onClick={() => setIsMenuSheetOpen(false)}>

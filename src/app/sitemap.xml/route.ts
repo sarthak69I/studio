@@ -33,6 +33,7 @@ export function GET() {
   urls.push({ loc: `${BASE_URL}/leaderboard`, lastmod, priority: 0.7 });
   urls.push({ loc: `${BASE_URL}/books`, lastmod, priority: 0.9 });
   urls.push({ loc: `${BASE_URL}/live`, lastmod, priority: 0.9 });
+  urls.push({ loc: `${BASE_URL}/socials`, lastmod, priority: 0.6 });
 
   // Add book pages
   booksData.forEach(category => {
