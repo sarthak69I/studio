@@ -52,7 +52,7 @@ export const courseLiveDetails: Record<string, any> = {
     classTimeLabel2: "8:00 PM - 9:30 PM",
     class1LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_4.m3u8',
     class2LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8',
-    class1Visible: false,
+    class1Visible: true,
     class2Visible: false,
     class1Times: (now: Date) => getDailyClassTimes(now, 17, 0, 90),
     class2Times: (now: Date) => getDailyClassTimes(now, 20, 0, 90),
