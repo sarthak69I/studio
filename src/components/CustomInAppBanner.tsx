@@ -32,9 +32,9 @@ export default function CustomInAppBanner() {
         className="hidden sm:block flex-shrink-0"
       />
       <div className="flex-grow">
-        <h4 className="font-bold text-md sm:text-lg text-primary">New </h4>
+        <h4 className="font-bold text-md sm:text-lg text-primary">New update</h4>
         <p className="text-sm text-muted-foreground mt-1">
-          Class 9 No Class And 10th Metals & Non Metals on sunday.
+          10th Metals & Non Metals at 5 pm.
         </p>
       </div>
       <Button 
