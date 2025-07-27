@@ -76,6 +76,11 @@ export const aarambh9DppContent: DppContent = [
     "title": "ACP Tissue",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/891316557988151900.pdf",
     "subject": "Science"
+ },
+  {
+    "title": "ACP Gravitation",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/548677399735317250.pdf",
+    "subject": "Science"
   },
   {
     "title": "WPP #1",
@@ -95,6 +100,26 @@ export const aarambh9DppContent: DppContent = [
   {
     "title": "WPP Solution - French Revolution",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/366929396803575550.pdf",
+    "subject": "Social Science"
+   },
+  {
+    "title": "WPP Solution - The Village Of Palampur",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/30774060523153256.pdf",
+    "subject": "Social Science"
+    },
+  {
+    "title": "Wpp 4",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/646863224994390800.pdf",
+    "subject": "Social Science"
+    },
+  {
+    "title": "Wpp 5",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/675990108904463500.pdf",
+    "subject": "Social Science"
+    },
+  {
+    "title": "WPP Solution - French Revolution",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/591262881755284400.pdf",
     "subject": "Social Science"
   }
 ];

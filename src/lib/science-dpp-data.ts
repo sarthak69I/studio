@@ -28,14 +28,20 @@ export const scienceDppContent: DppContent = [
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/798807099203843300.pdf"
   },
   {
-    "title": "Motion In Straight Line | PCP - 2 With Solutions",
+    "title": "Motion In Straight Line | PCP - 2",
     "subject": "Physics",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/268558098280518300.pdf"
   },
   {
-    "title": "Motion In Plane | PCP - 3 With Solutions",
+    "title": "Motion In Plane | PCP - 3",
     "subject": "Physics",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/6266095371686031.pdf"
+   },
+  {
+    "title": "Laws of Motion| PCP - 4",
+    "subject": "Physics",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/345722360686006460.pdf"
+  
   },
   {
     "title": "The Living World | WPP - 1",
@@ -51,6 +57,16 @@ export const scienceDppContent: DppContent = [
     "title": "Plant Kingdom | WPP 3",
     "subject": "Biology",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/405233751605523000.pdf"
+  },
+  {
+    "title": "Animal Kingdom | WPP 4",
+    "subject": "Biology",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/445764209946857400.pdf"
+    },
+  {
+    "title": "Anatomy of Flowering Plants | WPP 5",
+    "subject": "Biology",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/717342646912826100.pdf"
   },
   {
     "title": "CPP | Some Basic Concepts Of Chemistry",
@@ -71,5 +87,10 @@ export const scienceDppContent: DppContent = [
     "title": "CPP | Redox Reactions",
     "subject": "Chemistry",
     "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/115252572763995780.pdf"
+ },
+  {
+    "title": "CPP | Chemical Bonding & Molecular",
+    "subject": "Chemistry",
+    "download_url": "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/289786546231143000.pdf"
   }
 ];

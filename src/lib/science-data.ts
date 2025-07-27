@@ -59,21 +59,29 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L3', title: 'Laws of Motion L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/509369039736402940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4427460/175112744711955910848/index_4.m3u8' },
          { id: 'L4', title: 'Laws of Motion L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/331079158133924700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4465552/175164514724655910848/index_4.m3u8' },
         { id: 'L5', title: 'Laws of Motion L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/620542194193586600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4474944/175173108288215910848/index_4.m3u8' },
-        { id: 'L6', title: 'Laws of Motion L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479252/175216435268385910848/index_4.m3u8' },
-        { id: 'L7', title: 'Laws of Motion L7', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480256/175225140735005910848/index_4.m3u8' },
-        { id: 'L8', title: 'Laws of Motion L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480844/175233673865165910848/index_4.m3u8' },
-       { id: 'L9', title: 'Laws of Motion L9 Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480935/175239737298605910848/index_4.m3u8' },
+        { id: 'L6', title: 'Laws of Motion L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/64732547887552740.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479252/175216435268385910848/index_4.m3u8' },
+        { id: 'L7', title: 'Laws of Motion L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/780812123968295300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480256/175225140735005910848/index_4.m3u8' },
+        { id: 'L8', title: 'Laws of Motion L8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/73892491732238500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480844/175233673865165910848/index_4.m3u8' },
+       { id: 'L9', title: 'Laws of Motion L9 Doubt Class', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/445019085317835970.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480935/175239737298605910848/index_4.m3u8' },
       ]
     },
     {
       name: 'Work, Energy & Power',
       lectures: [
-        { id: 'L1', title: 'Work, Energy & Power L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484986/175275770518315910848/index_4.m3u8' },
-        { id: 'L2', title: 'Work, Energy & Power L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485153/175276842825365910848/index_4.m3u8' },
-        { id: 'L3', title: 'Work, Energy & Power L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485969/175284428082135910848/index_4.m3u8' },
-        { id: 'L4', title: 'Work, Energy & Power L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486096/175285450832415910848/index_4.m3u8' },
-       { id: 'L5', title: 'Work, Energy & Power L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486927/175294224771305910848/index_4.m3u8' },
-  
+        { id: 'L1', title: 'Work, Energy & Power L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/492840410936544640.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484986/175275770518315910848/index_4.m3u8' },
+        { id: 'L2', title: 'Work, Energy & Power L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/418376247374744100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485153/175276842825365910848/index_4.m3u8' },
+        { id: 'L3', title: 'Work, Energy & Power L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/388253757834349060.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485969/175284428082135910848/index_4.m3u8' },
+        { id: 'L4', title: 'Work, Energy & Power L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/874099288439931500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486096/175285450832415910848/index_4.m3u8' },
+       { id: 'L5', title: 'Work, Energy & Power L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/248348015843563940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486927/175294224771305910848/index_4.m3u8' },
+         { id: 'L6', title: 'Work, Energy & Power L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/815468327976512100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492907/175337334796535910848/index_4.m3u8' },
+        { id: 'L', title: 'Work, Energy & Power Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4494013/175345959049095910848/index_4.m3u8' },
+     ]
+    },
+    {
+      name: 'Com & Collision',
+      lectures: [
+        { id: 'L1', title: 'Com & Collision L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495273/175353915047275910848/index_4.m3u8' },
+        
       
       ]
     },
@@ -139,8 +147,12 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L1', title: 'Chemical Bonding & Molecular Structure L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/361721728525622140.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476039/175190453887232764802/index_5.m3u8' },
          { id: 'L2', title: 'Chemical Bonding & Molecular Structure L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/699955326632952400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476975/175199057911342764802/index_5.m3u8' },
         { id: 'L3', title: 'Chemical Bonding & Molecular Structure L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/513579986917203500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4477962/175206504379362764802/index_5.m3u8' },
-    { id: 'L4', title: 'Chemical Bonding & Molecular Structure L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482047/175250917864212764802/index_5.m3u8' },
-       { id: 'L5', title: 'Chemical Bonding & Molecular Structure L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483100/175259600815942764802/index_5.m3u8' },
+    { id: 'L4', title: 'Chemical Bonding & Molecular Structure L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/688194836056052900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482047/175250917864212764802/index_5.m3u8' },
+       { id: 'L5', title: 'Chemical Bonding & Molecular Structure L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/57815206689766560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483100/175259600815942764802/index_5.m3u8' },
+    { id: 'L6', title: 'Chemical Bonding & Molecular Structure L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/875615000737873200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://youtu.be/0AJPKspgpeQ' },
+     { id: 'L7', title: 'Chemical Bonding & Molecular Structure L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/505947132740186050.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488132/175311417820352764802/index_5.m3u8' },
+     { id: 'L8', title: 'Chemical Bonding & Molecular Structure L8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/321103323884252800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489883/175319882424292764802/index_5.m3u8' },
+     { id: 'L9', title: 'Chemical Bonding & Molecular Structure L9 Doubt Class', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/226129233654398620.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491460/175327503930232764802/index_5.m3u8' },
     
         
       ]
@@ -203,14 +215,23 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L1', title: ' Morphology of Flowering Plants L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/181106667230925920.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475983/175189854812043740487/index_4.m3u8' },
         { id: 'L2', title: ' Morphology of Flowering Plants L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/893525211553664400.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476910/175198510422723740487/index_4.m3u8' },
         { id: 'L3', title: ' Morphology of Flowering Plants L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/550057955753048450.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479080/175215203063243740487/index_4.m3u8' },
-        { id: 'L4', title: ' Morphology of Flowering Plants L4', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480732/175232360116233740487/index_4.m3u8' },
+        { id: 'L4', title: ' Morphology of Flowering Plants L4', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/814385831111231400.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480732/175232360116233740487/index_4.m3u8' },
         ]
     },
     {
       name: 'Anatomy of Flowering Plants',
       lectures: [
-        { id: 'L1', title: 'Anatomy of Flowering Plants L1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486801/175292888092693740487/index_4.m3u8' },
-    
+        { id: 'L1', title: 'Anatomy of Flowering Plants L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/235326611903516260.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486801/175292888092693740487/index_4.m3u8' },
+      { id: 'L2', title: 'Anatomy of Flowering Plants L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/296529052957254660.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488053/175310751270453740487/index_4.m3u8' },
+     { id: 'L', title: 'Anatomy of Flowering Plants L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/533052200382131140.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489792/175319392695283740487/index_4.m3u8' },
+    { id: 'L4', title: 'Anatomy of Flowering Plants L4', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491596/175328029673533740487/index_4.m3u8' },
+    ]
+    },
+    {
+      name: 'Structural Organisation in Animals',
+      lectures: [
+        { id: 'L1', title: 'Structural Organisation in Animals L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/180465181792550340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492748/175336084790563740487/index_4.m3u8' },
+      
       ]
     },
   ],

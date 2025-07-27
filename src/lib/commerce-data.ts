@@ -48,12 +48,19 @@ const commerceOnlySubjects: CourseContentMap = {
     },
     { name: 'Business Services',
       lectures: [
-        { id: 'L1', title: 'Business Services L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476031/175190305641542266688/index_4.m3u8' },
-        { id: 'L2', title: 'Business Services L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480084/175223811021262266688/index_4.m3u8' },
-        { id: 'L3', title: 'Business Services L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480746/175232513579202266688/index_4.m3u8' },
-        { id: 'L4', title: 'Business Services L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482045/175250851969992266688/index_4.m3u8' },
-       { id: 'L5', title: 'Business Services L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483091/175259396431322266688/index_4.m3u8' },
-       { id: 'L6', title: 'Business Services L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483929/175267069179222266688/index_4.m3u8' },
+        { id: 'L1', title: 'Business Services L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/782062517551608800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476031/175190305641542266688/index_4.m3u8' },
+        { id: 'L2', title: 'Business Services L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/24231040812887740.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480084/175223811021262266688/index_4.m3u8' },
+        { id: 'L3', title: 'Business Services L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/437678016286035900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480746/175232513579202266688/index_4.m3u8' },
+        { id: 'L4', title: 'Business Services L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/410848168647632200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482045/175250851969992266688/index_4.m3u8' },
+       { id: 'L5', title: 'Business Services L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/688157629473908900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483091/175259396431322266688/index_4.m3u8' },
+       { id: 'L6', title: 'Business Services L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/662131402875297400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483929/175267069179222266688/index_4.m3u8' },
+          { id: 'L7', title: 'Business Services L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/213543265410607170.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488126/175311298687982266688/index_4.m3u8' },
+         { id: 'L8', title: 'Business Services L8 ', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489873/175319819016112266688/index_4.m3u8' },
+        ]
+    },
+    { name: 'Emerging modes of Business',
+      lectures: [
+        { id: 'L1', title: 'Emerging modes of Business L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/238428975142678560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491458/175327501467052266688/index_4.m3u8' },
         
       ]
     },
@@ -143,10 +150,19 @@ const commerceOnlySubjects: CourseContentMap = {
       name: ' Cash Book and Subsidiary Books',
       lectures: [
         { id: 'L1', title: 'Cash Book and Subsidiary Books L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/120727753406290000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479108/175215331573038680586/index_4.m3u8' },
-         { id: 'L2', title: 'Cash Book and Subsidiary Books L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485000/175275835960778680586/index_4.m3u8' },
-         { id: 'L3', title: 'Cash Book and Subsidiary Books L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485941/175284345083208680586/index_4.m3u8' },
-          { id: 'L4', title: 'Cash Book and Subsidiary Books L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486804/175292911681638680586/index_4.m3u8' },
-          
+         { id: 'L2', title: 'Cash Book and Subsidiary Books L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/196445883011009500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485000/175275835960778680586/index_4.m3u8' },
+         { id: 'L3', title: 'Cash Book and Subsidiary Books L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/764182652451365500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485941/175284345083208680586/index_4.m3u8' },
+          { id: 'L4', title: 'Cash Book and Subsidiary Books L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/657788235138930700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486804/175292911681638680586/index_4.m3u8' },
+           ]
+    },
+    {
+      name: ' Goods & Service Tax',
+      lectures: [
+        { id: 'L1', title: 'Goods & Service Tax L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/723363716634091900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488069/175310812545708680586/index_4.m3u8' },
+          { id: 'L2', title: 'Goods & Service Tax L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/411702091073101000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492783/175336262883458680586/index_4.m3u8' },
+          { id: 'L', title: 'Goods & Service Tax L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/319216177114159900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493861/175344873298888680586/index_4.m3u8' },
+          { id: 'L4', title: 'Goods & Service Tax L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495216/175353393917908680586/index_4.m3u8' },
+         
       ]
     }
   ],
@@ -215,17 +231,19 @@ const commerceOnlySubjects: CourseContentMap = {
      {
       name: 'Collection of Data ',
       lectures: [
-        { id: 'L1', title: 'Collection of Data L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479248/175216350666192809295/index_4.m3u8' },
-       { id: 'L2', title: 'Collection of Data L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480238/175224932258072809295/index_4.m3u8' },
-       { id: 'L3', title: 'Collection of Data L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480838/175233541962642809295/index_4.m3u8' },
-        { id: 'L4', title: 'Collection of Data L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485154/175276874625172809295/index_4.m3u8' },
-       { id: 'L5', title: 'Collection of Data L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486102/175285490396222809295/index_4.m3u8' },
+        { id: 'L1', title: 'Collection of Data L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/252204389302600600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4479248/175216350666192809295/index_4.m3u8' },
+       { id: 'L2', title: 'Collection of Data L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/583479555263147000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480238/175224932258072809295/index_4.m3u8' },
+       { id: 'L3', title: 'Collection of Data L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/627687094134467100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480838/175233541962642809295/index_4.m3u8' },
+        { id: 'L4', title: 'Collection of Data L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/51354690854947450.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485154/175276874625172809295/index_4.m3u8' },
+       { id: 'L5', title: 'Collection of Data L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/429246326563625660.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486102/175285490396222809295/index_4.m3u8' },
          ],
      },
      {
       name: 'Organisation of Data',
       lectures: [
-        { id: 'L1', title: 'Organisation of Data L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486905/175293943795912809295/index_4.m3u8' },
+        { id: 'L1', title: 'Organisation of Data L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/535128212588522100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486905/175293943795912809295/index_4.m3u8' },
+        { id: 'L2', title: 'Organisation of Data L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/836017613303610500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492906/175337331446982809295/index_4.m3u8' },
+        { id: 'L3', title: 'Organisation of Data L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4494009/175345831779802809295/index_4.m3u8' },
        
       ]
     }

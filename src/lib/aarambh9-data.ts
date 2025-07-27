@@ -192,7 +192,15 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L4', title: 'Tissue L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/807777532215662500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4481913/175249800035998929414/index_4.m3u8' },
          { id: 'L5', title: 'Tissue L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/199727414625477760.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482890/175258462787808929414/index_4.m3u8' },
         { id: 'L6', title: 'Tissue L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/348401131086742140.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484120/175268040413938929414/175268040413938929414_8929414.m3u8' },
-       
+        { id: 'L7', title: 'Tissue L7', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487924/175310142179638929414/index_4.m3u8' },
+       ]
+    },
+    {
+      name: 'Gravitation',
+      lectures: [
+        { id: 'L1', title: 'Gravitation L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/69232758500938070.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489680/175318788990548929414/index_4.m3u8' },
+         { id: 'L2', title: 'Gravitation L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/699314408808670200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491676/175328518080878929414/index_4.m3u8' },
+        
       ]
     },
   ],
@@ -275,7 +283,16 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L6', title: ' Socialism in Europe and the Russian Revolution 6', notesTitle: "L6 and 7", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/159134390619897800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483088/175259387081697125088/index_4.m3u8' },
         { id: 'L7', title: ' Socialism in Europe and the Russian Revolution 7', notesTitle: "L6 and 7", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/159134390619897800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483914/175266969453997125088/index_4.m3u8' },
       { id: 'L8', title: ' Socialism in Europe and the Russian Revolution 8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/645974973327650800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484954/175275601327827125088/175275601327827125088_7125088.m3u8' },
-      
+      ]
+    },
+    {
+      name: 'People as a Resource',    
+      lectures: [
+        { id: 'L1', title: ' People as a Resource 1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/15513729296921164.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488129/175311348823522809295/index_4.m3u8' },
+         { id: 'L2', title: ' People as a Resource 2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/54819602372439250.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489881/175319873399542809295/index_4.m3u8' },
+         { id: 'L3', title: ' People as a Resource 3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/246924265137711520.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491437/175327451330052809295/index_4.m3u8' },
+         { id: 'L4', title: 'Socialism in Europe and the Russian Revolution Doubt Class', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/166210326033689800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492747/175336082171897125088/index_4.m3u8' },
+        
       ]
     },
   ],
@@ -348,7 +365,10 @@ export const aarambh9CourseContent: CourseContentMap = {
       lectures: [   
         { id: 'L1', title: 'Triangles L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/165917613057313250.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480736/175232416413558752407/index_4.m3u8' },
           { id: 'L2', title: 'Triangles L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/4478842027453222.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485929/175284331075788752407/index_4.m3u8' },
-                 { id: 'L3', title: 'Triangles L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486805/175292922251078752407/index_4.m3u8' },
+                 { id: 'L3', title: 'Triangles L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/888472145654663300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486805/175292922251078752407/index_4.m3u8' },
+        { id: 'L4', title: 'Triangles L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/253519447347299680.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486980/175299159543288752407/index_4.m3u8' },
+       { id: 'L5', title: 'Triangles L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/473942609408271040.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492909/175337362774398752407/index_4.m3u8' },
+       { id: 'L6', title: 'Triangles L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/404541126150355700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493830/175344775652878752407/index_4.m3u8' },
       
       ]
     },
@@ -437,7 +457,14 @@ export const aarambh9CourseContent: CourseContentMap = {
       lectures: [
         { id: 'dc-l1', title: 'Doubt Class Course A', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486047/175284892170058496551/175284892170058496551_8496551.m3u8' },
         { id: 'dc-l2', title: 'Doubt Class Course B', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486089/175285280641378496551/index_4.m3u8' }
-     
+     ]
+},
+{
+  name: 'Modals',
+  lectures: [
+    { id: 'L1', title: 'Modals L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/23326Modals%20%20L1.pdf_Modals%20%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485490/1752820994_1193104855872784/sunny/1752820284080_852239388616624500_video_VOD720p30.m3u8' },
+   { id: 'L2', title: 'Modals L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7536363Modals%20%20L2.pdf_Modals%20%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485491/1752821107_7918278051377036/sunny/1752820612528_195711855498055070_video_VOD720p30.m3u8' },
+   
       ]
     }
   ],
@@ -973,6 +1000,18 @@ export const aarambh9CourseContent: CourseContentMap = {
             title: 'Lecture 1',
             videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4479721/1752231666_2040612629205335/sunny/1752223404070_116203473861998910_video_VOD720p30.m3u8',
             videoEmbedType: 'hls'
+          }
+        ]
+      },
+      {
+        name: "Sanskrit Doubt Class",
+        lectures: [
+          {
+            id: 'chd7-l1',
+            title: 'Lecture',
+            videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493977/175345576579998496551/index_3.m3u8',
+            videoEmbedType: 'hls'
+          
           }
         ]
       }

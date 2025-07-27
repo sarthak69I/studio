@@ -171,8 +171,12 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Nationalism In India',
       lectures: [
-        { id: 'L1', title: 'Nationalism In India L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484117/175267984098967125088/index_4.m3u8' },
-         { id: 'L2', title: 'Nationalism In India L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485142/175276595260217125088/index_4.m3u8' },
+        { id: 'L1', title: 'Nationalism In India L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/124266535503976300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484117/175267984098967125088/index_4.m3u8' },
+         { id: 'L2', title: 'Nationalism In India L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/101670157573045310.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485142/175276595260217125088/index_4.m3u8' },
+         { id: 'L3', title: 'Nationalism In India L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/101670157573045310.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487942/175310190839187125088/index_4.m3u8' },
+         { id: 'L4', title: 'Nationalism In India L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/334701607243626430.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489690/175318859641387125088/index_4.m3u8' },
+         { id: 'L5', title: 'Nationalism In India L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/437357295629305200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491671/175328504112427125088/index_4.m3u8' },
+         { id: 'L6', title: 'Nationalism In India L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/694597021621744100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492899/175337180752677125088/index_4.m3u8' },
         
       ]
     }
@@ -247,9 +251,17 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'Control & Coordination L2', title: 'Control & Coordination L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/235922233626467300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480085/175223815228888929414/index_4.m3u8' },
          { id: 'Control & Coordination L3', title: 'Control & Coordination L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/692771755250383500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483912/175266967722138929414/index_4.m3u8' },
            { id: 'Control & Coordination L4', title: 'Control & Coordination L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/805916235184091000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484951/175275594414878929414/index_4.m3u8' },
-          { id: 'Control & Coordination L5', title: 'Control & Coordination L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485899/175284240937348929414/index_4.m3u8' },
-        { id: 'Control & Coordination L6 Doubt Class', title: 'Control & Coordination L6 Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486798/175292872885448929414/index_4.m3u8' },
-       
+          { id: 'Control & Coordination L5', title: 'Control & Coordination L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/497490846218714560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4485899/175284240937348929414/index_4.m3u8' },
+        { id: 'Control & Coordination L6', title: 'Control & Coordination L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/645576865548381300.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486798/175292872885448929414/index_4.m3u8' },
+        { id: 'Control & Coordination L7 Doubt Class', title: 'Control & Coordination L7 Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491369/175327377318448929414/index_4.m3u8' },
+       ]
+    },
+    {
+      name: 'Metals And Non Metals',
+      lectures: [
+        { id: ' L1', title: 'Metals and Non Metals L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/594905633762520000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492756/175336156347188929414/index_4.m3u8' },
+         { id: ' L2', title: 'Metals and Non Metals L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/248733455727473060.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493817/175344709329608929414/index_4.m3u8' },
+     
      ]       
     }
   ],
@@ -346,10 +358,13 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Arithmetic Progression',
       lectures: [   
-        { id: 'L1', title: 'Arithmrtic Progression L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/698504574372137100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482041/175250774553288752407/index_4.m3u8' },
-        { id: 'L2', title: 'Arithmrtic Progression L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/737984829132763400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483093/175259418898458752407/index_4.m3u8' },
-         { id: 'L3', title: 'Arithmrtic Progression L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486090/175285302757228752407/index_4.m3u8' },
-          { id: 'L4', title: 'Arithmrtic Progression L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486907/175293982522938752407/index_4.m3u8' },
+        { id: 'L1', title: 'Arithmetic Progression L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/698504574372137100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482041/175250774553288752407/index_4.m3u8' },
+        { id: 'L2', title: 'Arithmetic Progression L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/737984829132763400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4483093/175259418898458752407/index_4.m3u8' },
+         { id: 'L3', title: 'Arithmetic Progression L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/50299176419267280.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486090/175285302757228752407/index_4.m3u8' },
+          { id: 'L4', title: 'Arithmetic Progression L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/187283986685783680.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486907/175293982522938752407/index_4.m3u8' },
+          { id: 'L5', title: 'Arithmetic Progression L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/605471304651791900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488121/175311207190968752407/index_4.m3u8' },
+          { id: 'L6', title: 'Arithmrtic Progression L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/623807728911343900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489886/175319905836988752407/index_4.m3u8' },
+          { id: 'L7', title: 'Arithmrtic Progression L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/625222176940659200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4494008/175345805892108752407/index_4.m3u8' },
         
       ]
     }
@@ -420,7 +435,28 @@ export const aarambhCourseContent: CourseContentMap = {
   lectures: [
     { id: 'L1', title: 'A Tiger in the Zoo  L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2384508Tiger%20in%20the%20Zoo%20L1.pdf_Tiger%20in%20the%20Zoo%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465241/1751626506_3969741780228351/sunny/1751624330612_504314993319041150_video_VOD720p30.m3u8' },
    { id: 'L2', title: 'A Tiger in the Zoo  L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3774889Tiger%20in%20the%20Zoo%20L2.pdf_Tiger%20in%20the%20Zoo%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465242/1751626565_5289125113500169/sunny/1751624468397_669646185529024300_video_VOD720p30.m3u8' }
-  
+    ]
+},
+{
+  name: 'Doubt Class ',
+  lectures: [
+    { id: 'L1', title: 'Doubt Class Communicative', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487010/175299852470588496551/index_4.m3u8' },
+   { id: 'L2', title: 'Doubt Class First Flight & Footprint', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487021/175300436123628496551/index_4.m3u8' },
+  ]
+},
+{
+  name: 'The Thie Story ',
+  lectures: [
+    { id: 'L1', title: 'L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4480612/1752311886_6910684453501070/sunny/1752311664445_336102739306693400_video_VOD720p30.m3u8' },
+   { id: 'L2', title: 'L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4480613/1752311889_3966088634651640/sunny/1752311819933_687138967131549600_video_VOD720p30.m3u8' },
+  ]
+},
+{
+  name: 'Modals',
+  lectures: [
+    { id: 'L1', title: 'Modals L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/23326Modals%20%20L1.pdf_Modals%20%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485490/1752820994_1193104855872784/sunny/1752820284080_852239388616624500_video_VOD720p30.m3u8' },
+   { id: 'L2', title: 'Modals L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7536363Modals%20%20L2.pdf_Modals%20%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485491/1752821107_7918278051377036/sunny/1752820612528_195711855498055070_video_VOD720p30.m3u8' },
+   
   ]
     }
   ],

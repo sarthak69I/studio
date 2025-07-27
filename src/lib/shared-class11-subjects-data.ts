@@ -62,8 +62,12 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
     {
       name: ' Permutaions And Combinations',
       lectures: [
-        { id: 'L1', title: ' Permutaions And Combinations L1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4481919/175249837260905373082/index_4.m3u8' },
-      { id: 'L2', title: ' Permutaions And Combinations L2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482896/175258488728635373082/index_4.m3u8' },
+        { id: 'L1', title: ' Permutaions And Combinations L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/254227225319388770.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4481919/175249837260905373082/index_4.m3u8' },
+      { id: 'L2', title: ' Permutaions And Combinations L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/121761542034205140.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482896/175258488728635373082/index_4.m3u8' },
+       { id: 'L3', title: ' Permutaions And Combinations L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/812964130933672100.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://youtu.be/eK7xrFgiWIQ' },
+       { id: 'L4', title: ' Permutaions And Combinations L4', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/91227321535682700.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487955/175310281166565373082/index_4.m3u8' },
+       { id: 'L5', title: ' Permutaions And Combinations L5', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/858199651274318200.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489705/175318913446045373082/index_4.m3u8' },
+       { id: 'L6', title: ' Permutaions And Combinations L6', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/648214178546508300.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491683/175328617044405373082/index_4.m3u8' },
       
       ]
     },
@@ -103,7 +107,16 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
       lectures: [
         { id: 'l1', title: 'The Summer of the Beautiful White Horse  1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6744257The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L1.pdf_The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4417263/1750669085_2473354831799394/sunny/1750666496065_865337603299043700_video_VOD720p30.m3u8' },
     { id: 'l2', title: 'The Summer of the Beautiful White Horse  2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4790009The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L2.pdf_The%20Summer%20of%20the%20Beautiful%20White%20Horse%20%28Prose%29%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4417264/1750669089_7574182533651584/sunny/1750666534613_225704789904111520_video_VOD720p30.m3u8' },
-    ]
+ { id: 'l4', title: 'The Summer of the Beautiful White Horse  3', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425412/1751032807_6329908760715225/sunny/1751018025893_723349959503462100_video_VOD720p30.m3u8' },
+ ]
+    },
+    {
+      name: 'The Address ',
+      lectures: [
+        { id: 'l1', title: 'The Address 1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485503/1752823749_8537113537068174/sunny/1752821126063_868216299878450800_video_VOD720p30.m3u8' },
+    { id: 'l2', title: ' The Address  2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485504/1752824767_6274426812889976/sunny/1752821279178_511115920057823940_video_VOD720p30.m3u8' },
+ 
+      ]
     },
     {
       name: 'The Laburnum Top',
