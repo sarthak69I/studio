@@ -82,6 +82,18 @@ const itTopicsForClass10: CourseContentMap['IT'] = [
         videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4393990/1748364545_5158785497797223/sunny/1748356148965_265442288714603600_video_VOD240p30.m3u8",
         notesLink: "https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/744086606979890200.pdf",
         videoEmbedType: 'hls'
+       }
+    ]
+  },
+  {
+    name: "IT & AI Doubt Class ",
+    lectures: [
+      {
+        id: "dc",
+        title: "IT & AI Doubt Class",
+        videoEmbedUrl: "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495369/175360576265175373082/175360576265175373082_5373082.m3u8",
+        notesLink: "",
+        videoEmbedType: 'hls'
       }
     ]
   }
@@ -576,6 +588,19 @@ export const aarambhCourseContent: CourseContentMap = {
           notesTitle: "",
           videoEmbedUrl: "https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4409100/1749830829_5264220587902074/sunny/1749813063201_298601538506093700_video_VOD720p30.m3u8",
           notesLink: "https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/853606CH%20-05%20-%20%E0%A4%B8%E0%A5%81%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%A8%E0%A4%BF%20%20NCERT.pdf_CH%20-05%20-%20%E0%A4%B8%E0%A5%81%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%A8%E0%A4%BF%20%20NCERT.pdf",
+          videoEmbedType: 'hls'
+        }
+      ]
+    },
+    {
+      name: "Sanskrit Doubt Class",
+      lectures: [
+        {
+          id: "sdc",
+          title: "Doubt Class",
+          notesTitle: "",
+          videoEmbedUrl: "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495360/175360269915708496551/175360269915708496551_8496551.m3u8",
+          notesLink: "",
           videoEmbedType: 'hls'
         }
       ]
