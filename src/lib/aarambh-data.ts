@@ -91,7 +91,7 @@ const itTopicsForClass10: CourseContentMap['IT'] = [
       {
         id: "dc",
         title: "IT & AI Doubt Class",
-        videoEmbedUrl: "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495369/175360576265175373082/175360576265175373082_5373082.m3u8",
+        videoEmbedUrl: "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495369/175360576265175373082/index_4.m3u8",
         notesLink: "",
         videoEmbedType: 'hls'
       }
@@ -600,7 +600,7 @@ export const aarambhCourseContent: CourseContentMap = {
           id: "sdc",
           title: "Doubt Class",
           notesTitle: "",
-          videoEmbedUrl: "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495360/175360269915708496551/175360269915708496551_8496551.m3u8",
+          videoEmbedUrl: "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495360/175360269915708496551/index_4.m3u8",
           notesLink: "",
           videoEmbedType: 'hls'
         }
