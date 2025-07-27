@@ -97,7 +97,7 @@ function AppContent({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // Effect for reload shortcut with confirmation
+  // Effect for keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
         if (event.ctrlKey && event.shiftKey && (event.key === 'C' || event.key === 'c')) {
@@ -106,12 +106,16 @@ function AppContent({ children }: { children: ReactNode }) {
               window.location.reload();
             }
         }
+        if (event.ctrlKey && (event.key === 'u' || event.key === 'U')) {
+            event.preventDefault();
+            router.push('/shortener');
+        }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => {
         window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [router]);
 
 
   const toggleTheme = () => {
