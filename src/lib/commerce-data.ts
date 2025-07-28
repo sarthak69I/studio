@@ -61,6 +61,7 @@ const commerceOnlySubjects: CourseContentMap = {
     { name: 'Emerging modes of Business',
       lectures: [
         { id: 'L1', title: 'Emerging modes of Business L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/238428975142678560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491458/175327501467052266688/index_4.m3u8' },
+          { id: 'L2', title: 'Emerging modes of Business L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501798/175371804387502266688/index_4.m3u8' },
         
       ]
     },
