@@ -295,6 +295,12 @@ export const aarambh9CourseContent: CourseContentMap = {
          { id: 'L2', title: ' People as a Resource 2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/54819602372439250.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489881/175319873399542809295/index_4.m3u8' },
          { id: 'L3', title: ' People as a Resource 3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/246924265137711520.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491437/175327451330052809295/index_4.m3u8' },
          { id: 'L4', title: ' People as a Resource 4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/562469487705152640.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495380/175361680479922809295/index_4.m3u8' },
+        ]
+    },
+    {
+      name: 'The Constitutional Design',    
+      lectures: [
+        { id: 'L1', title: 'The Constitutional Design 1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501800/175371807213212809295/index_4.m3u8' },
         
       ]
     },
