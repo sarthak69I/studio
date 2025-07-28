@@ -187,11 +187,11 @@ export const aarambh9CourseContent: CourseContentMap = {
       name: 'Tissue',
       lectures: [
         { id: 'L1', title: 'Tissue L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/190106597863728130.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4475881/175189250719138929414/index_4.m3u8' },
-        { id: 'L2', title: 'Tissue L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/741669906953814700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476776/175197829846758929414/175197829846758929414_8929414.m3u8' },
+        { id: 'L2', title: 'Tissue L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/741669906953814700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4476776/175197829846758929414/index_4.m3u8' },
         { id: 'L3', title: 'Tissue L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/551846601926949800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4478171/175207564070148929414/index_4.m3u8' },
         { id: 'L4', title: 'Tissue L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/807777532215662500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4481913/175249800035998929414/index_4.m3u8' },
          { id: 'L5', title: 'Tissue L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/199727414625477760.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4482890/175258462787808929414/index_4.m3u8' },
-        { id: 'L6', title: 'Tissue L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/348401131086742140.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484120/175268040413938929414/175268040413938929414_8929414.m3u8' },
+        { id: 'L6', title: 'Tissue L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/348401131086742140.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4484120/175268040413938929414/index_4.m3u8' },
         { id: 'L7', title: 'Tissue L7', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487924/175310142179638929414/index_4.m3u8' },
        ]
     },
@@ -200,6 +200,7 @@ export const aarambh9CourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Gravitation L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/69232758500938070.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489680/175318788990548929414/index_4.m3u8' },
          { id: 'L2', title: 'Gravitation L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/699314408808670200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491676/175328518080878929414/index_4.m3u8' },
+         { id: 'L3', title: 'Gravitation L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501574/175370742466788929414/index_4.m3u8' },
         
       ]
     },
