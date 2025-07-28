@@ -68,7 +68,13 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
        { id: 'L4', title: ' Permutaions And Combinations L4', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/91227321535682700.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4487955/175310281166565373082/index_4.m3u8' },
        { id: 'L5', title: ' Permutaions And Combinations L5', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/858199651274318200.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489705/175318913446045373082/index_4.m3u8' },
        { id: 'L6', title: ' Permutaions And Combinations L6', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/648214178546508300.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491683/175328617044405373082/index_4.m3u8' },
-      
+       ]
+    },
+    {
+      name: ' Binomial Theorem',
+      lectures: [
+        { id: 'L1', title: '  Binomial Theorem L1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501590/175370778785695373082/index_4.m3u8' },
+     
       ]
     },
   ],
