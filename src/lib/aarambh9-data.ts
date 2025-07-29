@@ -200,7 +200,7 @@ export const aarambh9CourseContent: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Gravitation L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/69232758500938070.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489680/175318788990548929414/index_4.m3u8' },
          { id: 'L2', title: 'Gravitation L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/699314408808670200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491676/175328518080878929414/index_4.m3u8' },
-         { id: 'L3', title: 'Gravitation L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501574/175370742466788929414/index_4.m3u8' },
+         { id: 'L3', title: 'Gravitation L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/736722340412661100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501574/175370742466788929414/index_4.m3u8' },
          { id: 'L4', title: 'Gravitation L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503185/175379363929828929414/index_4.m3u8' },
         
       ]
@@ -301,7 +301,8 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'The Constitutional Design',    
       lectures: [
-        { id: 'L1', title: 'The Constitutional Design 1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501800/175371807213212809295/index_4.m3u8' },
+        { id: 'L1', title: 'The Constitutional Design 1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/530353297969204160.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501800/175371807213212809295/index_4.m3u8' },
+         { id: 'L2', title: 'The Constitutional Design 2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/788966954480250600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503356/175380373418502809295/index_4.m3u8' },
         
       ]
     },
