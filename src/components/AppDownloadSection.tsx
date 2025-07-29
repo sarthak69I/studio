@@ -125,7 +125,7 @@ const AppDownloadSection = () => {
           <div className="download-content">
             <h1 className="download-title">Download App</h1>
             <p className="description">
-              Get the NextToppers app to access Downloaded lectures anytime, anywhere and learn at your convenience.
+              Get the E-Leak app to access Downloaded lectures anytime, anywhere and learn at your convenience.
             </p>
             
             <div className="download-buttons">
