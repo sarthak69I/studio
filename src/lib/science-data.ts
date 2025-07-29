@@ -237,6 +237,7 @@ const scienceOnlySubjects: CourseContentMap = {
       name: 'Structural Organisation in Animals',
       lectures: [
         { id: 'L1', title: 'Structural Organisation in Animals L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/180465181792550340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492748/175336084790563740487/index_4.m3u8' },
+         { id: 'L2', title: 'Structural Organisation in Animals L2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501745/175371299141033740487/index_4.m3u8' },
       
       ]
     },
