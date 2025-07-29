@@ -74,6 +74,7 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
       name: ' Binomial Theorem',
       lectures: [
         { id: 'L1', title: '  Binomial Theorem L1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501590/175370778785695373082/index_4.m3u8' },
+        { id: 'L2', title: '  Binomial Theorem L2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503190/175379397294935373082/index_4.m3u8' },
      
       ]
     },
