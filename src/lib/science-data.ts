@@ -74,13 +74,13 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L4', title: 'Work, Energy & Power L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/874099288439931500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486096/175285450832415910848/index_4.m3u8' },
        { id: 'L5', title: 'Work, Energy & Power L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/248348015843563940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486927/175294224771305910848/index_4.m3u8' },
          { id: 'L6', title: 'Work, Energy & Power L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/815468327976512100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492907/175337334796535910848/index_4.m3u8' },
-        { id: 'L', title: 'Work, Energy & Power Doubt Class', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4494013/175345959049095910848/index_4.m3u8' },
+        { id: 'L', title: 'Work, Energy & Power Doubt Class', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/199511756309180860.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4494013/175345959049095910848/index_4.m3u8' },
      ]
     },
     {
       name: 'Com & Collision',
       lectures: [
-        { id: 'L1', title: 'Com & Collision L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495273/175353915047275910848/index_4.m3u8' },
+        { id: 'L1', title: 'Com & Collision L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/95864446315923040.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495273/175353915047275910848/index_4.m3u8' },
         
       
       ]
@@ -158,7 +158,8 @@ const scienceOnlySubjects: CourseContentMap = {
     {
       name: 'Thermodynamics',
       lectures: [
-        { id: 'L1', title: 'Thermodynamics L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501805/175371849259392764802/index_5.m3u8' },
+        { id: 'L1', title: 'Thermodynamics L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/595795556087413800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501805/175371849259392764802/index_5.m3u8' },
+        { id: 'L2', title: 'Thermodynamics L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503368/175380505852252764802/index_5.m3u8' },
        
         
       ]
@@ -230,14 +231,15 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L1', title: 'Anatomy of Flowering Plants L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/235326611903516260.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486801/175292888092693740487/index_4.m3u8' },
       { id: 'L2', title: 'Anatomy of Flowering Plants L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/296529052957254660.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488053/175310751270453740487/index_4.m3u8' },
      { id: 'L', title: 'Anatomy of Flowering Plants L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/533052200382131140.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4489792/175319392695283740487/index_4.m3u8' },
-    { id: 'L4', title: 'Anatomy of Flowering Plants L4', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491596/175328029673533740487/index_4.m3u8' },
+    { id: 'L4', title: 'Anatomy of Flowering Plants L4', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/594414801196671500.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491596/175328029673533740487/index_4.m3u8' },
     ]
     },
     {
       name: 'Structural Organisation in Animals',
       lectures: [
         { id: 'L1', title: 'Structural Organisation in Animals L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/180465181792550340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492748/175336084790563740487/index_4.m3u8' },
-         { id: 'L2', title: 'Structural Organisation in Animals L2', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501745/175371299141033740487/index_4.m3u8' },
+         { id: 'L2', title: 'Structural Organisation in Animals L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/172241178162762430.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501745/175371299141033740487/index_4.m3u8' },
+        { id: 'L3', title: 'Structural Organisation in Animals L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/54564399377404590.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503260/175379726789653740487/index_4.m3u8' },
       
       ]
     },
