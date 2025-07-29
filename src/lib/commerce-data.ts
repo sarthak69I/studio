@@ -163,7 +163,13 @@ const commerceOnlySubjects: CourseContentMap = {
           { id: 'L2', title: 'Goods & Service Tax L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/411702091073101000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492783/175336262883458680586/index_4.m3u8' },
           { id: 'L', title: 'Goods & Service Tax L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/319216177114159900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493861/175344873298888680586/index_4.m3u8' },
           { id: 'L4', title: 'Goods & Service Tax L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495216/175353393917908680586/index_4.m3u8' },
-         
+           ]
+    },
+    {
+      name: 'Depriciation',
+      lectures: [
+        { id: 'L1', title: 'Depriciation L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501759/175371379654578680586/index_4.m3u8' },
+        
       ]
     }
   ],
