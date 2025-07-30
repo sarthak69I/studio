@@ -160,6 +160,7 @@ const scienceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Thermodynamics L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/595795556087413800.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501805/175371849259392764802/index_5.m3u8' },
         { id: 'L2', title: 'Thermodynamics L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503368/175380505852252764802/index_5.m3u8' },
+         { id: 'L3', title: 'Thermodynamics L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4504262/175388019269872764802/index_5.m3u8' },
        
         
       ]
