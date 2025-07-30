@@ -62,7 +62,14 @@ const commerceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Emerging modes of Business L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/238428975142678560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491458/175327501467052266688/index_4.m3u8' },
           { id: 'L2', title: 'Emerging modes of Business L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501798/175371804387502266688/index_4.m3u8' },
-        
+       { id: 'L3', title: 'Emerging modes of Business L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503349/175380327645912266688/index_4.m3u8' },
+          
+      ]
+    },
+    { name: 'Social responsibilities of Business & Business Ethics',
+      lectures: [
+        { id: 'L1', title: 'Social responsibilities of Business & Business Ethics L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4504270/175388052281942266688/index_4.m3u8' },
+       
       ]
     },
   ],
