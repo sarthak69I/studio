@@ -202,6 +202,7 @@ export const aarambh9CourseContent: CourseContentMap = {
          { id: 'L2', title: 'Gravitation L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/699314408808670200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491676/175328518080878929414/index_4.m3u8' },
          { id: 'L3', title: 'Gravitation L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/736722340412661100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501574/175370742466788929414/index_4.m3u8' },
          { id: 'L4', title: 'Gravitation L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503185/175379363929828929414/index_4.m3u8' },
+         { id: 'L5', title: 'Gravitation L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4504553/175388934732708929414/index_4.m3u8' },
         
       ]
     },
