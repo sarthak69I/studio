@@ -34,7 +34,7 @@ export default function CustomInAppBanner() {
       <div className="flex-grow">
         <h4 className="font-bold text-md sm:text-lg text-primary">New update</h4>
         <p className="text-sm text-muted-foreground mt-1">
-          All Lectures updated. Please Subscribe our Telegram & Youtube Channel Links Are in the menu Our Socials Page.
+         We have launched Our Windows App 
         </p>
       </div>
       <Button 
