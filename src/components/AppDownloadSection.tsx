@@ -129,14 +129,14 @@ const AppDownloadSection = () => {
             </p>
             
             <div className="download-buttons">
-              <a href="https://github.com/sarthak69I/apk/releases/download/v19.2/app-release.apk" className="download-btn" download>
+              <a href="https://e-leak.vercel.app/androidapk" className="download-btn" download>
                 <svg viewBox="0 0 24 24">
                   <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.7043 13.8723 8.2414 12.0003 8.2414s-3.5899.4629-5.1327 1.2318L4.845 6.4702a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.61 12.2344.8027 15.0313.8027 18.2707c0 .0024.0005.0047.0005.007h22.3936c.0005-.0023.0005-.0046.0005-.007 0-3.2394-1.8073-6.0363-5.3216-7.9493zM12.0003 3.4746C9.6152 3.4746 7.1776 4.9346 8.2014 7.2705c0 0 2.4038-2.7705 3.7989-2.7705s3.7989 2.7705 3.7989 2.7705c1.0238-2.3359-1.4138-3.7959-3.7989-3.7959z"/>
                 </svg>
-                    Get it From Android
+                    Get it For Android
               </a>
               
-              <a href="https://github.com/sarthak69I/apk/releases/download/exe2/E-Leak.exe" className="download-btn windows-btn" download>
+              <a href="https://e-leak.vercel.app/windows" className="download-btn windows-btn" download>
                 <svg viewBox="0 0 24 24">
                   <path d="M3 12V6.75l6-1.32v6.48L3 12zm6 .25v6.48l-6-1.32V12.25h6zM10 5.25L21 3v8.75H10V5.25zm0 13.5V12.25H21V21l-11-2.25z"/>
                 </svg>
