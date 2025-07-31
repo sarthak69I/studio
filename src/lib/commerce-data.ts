@@ -61,7 +61,7 @@ const commerceOnlySubjects: CourseContentMap = {
     { name: 'Emerging modes of Business',
       lectures: [
         { id: 'L1', title: 'Emerging modes of Business L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/238428975142678560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4491458/175327501467052266688/index_4.m3u8' },
-          { id: 'L2', title: 'Emerging modes of Business L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501798/175371804387502266688/index_4.m3u8' },
+          { id: 'L2', title: 'Emerging modes of Business L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/153321291316372670.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501798/175371804387502266688/index_4.m3u8' },
        { id: 'L3', title: 'Emerging modes of Business L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503349/175380327645912266688/index_4.m3u8' },
           
       ]
@@ -169,13 +169,14 @@ const commerceOnlySubjects: CourseContentMap = {
         { id: 'L1', title: 'Goods & Service Tax L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/723363716634091900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4488069/175310812545708680586/index_4.m3u8' },
           { id: 'L2', title: 'Goods & Service Tax L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/411702091073101000.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492783/175336262883458680586/index_4.m3u8' },
           { id: 'L', title: 'Goods & Service Tax L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/319216177114159900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493861/175344873298888680586/index_4.m3u8' },
-          { id: 'L4', title: 'Goods & Service Tax L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495216/175353393917908680586/index_4.m3u8' },
+          { id: 'L4', title: 'Goods & Service Tax L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/670323577986321500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495216/175353393917908680586/index_4.m3u8' },
            ]
     },
     {
       name: 'Depriciation',
       lectures: [
-        { id: 'L1', title: 'Depriciation L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501759/175371379654578680586/index_4.m3u8' },
+        { id: 'L1', title: 'Depriciation L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/620641060211652200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501759/175371379654578680586/index_4.m3u8' },
+          { id: 'L2', title: 'Depriciation L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505599/175396757793918680586/index_4.m3u8' },
         
       ]
     }
@@ -257,7 +258,14 @@ const commerceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Organisation of Data L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/535128212588522100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486905/175293943795912809295/index_4.m3u8' },
         { id: 'L2', title: 'Organisation of Data L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/836017613303610500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492906/175337331446982809295/index_4.m3u8' },
-        { id: 'L3', title: 'Organisation of Data L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4494009/175345831779802809295/index_4.m3u8' },
+        { id: 'L3', title: 'Organisation of Data L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/147675403326842940.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4494009/175345831779802809295/index_4.m3u8' },
+       { id: 'L4', title: 'Organisation of Data L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/274300786818257900.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495317/175354675648442809295/index_4.m3u8' },
+          ],
+     },
+     {
+      name: 'Tabular Representation',
+      lectures: [
+        { id: 'L1', title: 'Tabular Representation L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505746/175397855049832809295/index_4.m3u8' },
        
       ]
     }
