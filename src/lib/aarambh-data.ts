@@ -192,7 +192,7 @@ export const aarambhCourseContent: CourseContentMap = {
         { id: 'L7', title: 'Nationalism In India L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/552636280469199700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501558/175370673319757125088/index_4.m3u8' },
          { id: 'L8', title: 'Nationalism In India L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503179/175379293685847125088/index_4.m3u8' },
           { id: 'L9', title: 'Nationalism In India L9', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4504558/175388963241567125088/index_4.m3u8' },
-          { id: 'L10', title: 'Nationalism In India L10', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
+          { id: 'L10', title: 'Nationalism In India L10', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505744/175397751675797125088/index_4.m3u8' },
         
       ]
     }
