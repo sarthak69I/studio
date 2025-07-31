@@ -191,7 +191,8 @@ export const aarambhCourseContent: CourseContentMap = {
          { id: 'L6', title: 'Nationalism In India L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/694597021621744100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492899/175337180752677125088/index_4.m3u8' },
         { id: 'L7', title: 'Nationalism In India L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/552636280469199700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501558/175370673319757125088/index_4.m3u8' },
          { id: 'L8', title: 'Nationalism In India L8', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503179/175379293685847125088/index_4.m3u8' },
-          { id: 'L9', title: 'Nationalism In India L9', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4504558/175388963241567125088/index_3.m3u8' },
+          { id: 'L9', title: 'Nationalism In India L9', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4504558/175388963241567125088/index_4.m3u8' },
+          { id: 'L10', title: 'Nationalism In India L10', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: '' },
         
       ]
     }
@@ -278,6 +279,7 @@ export const aarambhCourseContent: CourseContentMap = {
          { id: ' L2', title: 'Metals and Non Metals L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/248733455727473060.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493817/175344709329608929414/index_4.m3u8' },
          { id: ' L3', title: 'Metals and Non Metals L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/24311521873899890.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495387/175362102827098929414/index_4.m3u8' },
          { id: ' L4', title: 'Metals and Non Metals L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4504251/175387971750558929414/index_4.m3u8' },
+          { id: ' L5', title: 'Metals and Non Metals L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505544/175396595790708929414/index_4.m3u8' },
      
      ]       
     }
