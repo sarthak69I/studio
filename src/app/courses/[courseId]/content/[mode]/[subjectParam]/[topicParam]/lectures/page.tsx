@@ -234,22 +234,17 @@ export default function TopicLecturesPage() {
     
     // Open the external player for all users
     if (lecture.videoEmbedUrl) {
-      let externalPlayerUrl = '';
-      
-      // For YouTube, open directly. For HLS, use the custom player.
-      if (lecture.videoEmbedType === 'youtube' || lecture.videoEmbedUrl.includes('youtube.com') || lecture.videoEmbedUrl.includes('youtu.be')) {
-        externalPlayerUrl = lecture.videoEmbedUrl;
-      } else {
-        externalPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl || '')}`;
-        externalPlayerUrl += `&videoTitle=${encodeURIComponent(lecture.title)}`;
+      // ALWAYS use the custom player now
+      let externalPlayerUrl = `https://e-leak-strm.web.app/?url=${encodeURIComponent(lecture.videoEmbedUrl || '')}`;
+      externalPlayerUrl += `&videoTitle=${encodeURIComponent(lecture.title)}`;
 
-        if (lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') {
-          externalPlayerUrl += `&notesUrl=${encodeURIComponent(lecture.notesLink)}`;
-          const baseNotesTitle = (lecture.notesTitle && lecture.notesTitle.trim()) ? lecture.notesTitle : lecture.title;
-          const finalNotesTitle = `${baseNotesTitle} - Notes`;
-          externalPlayerUrl += `&notesTitle=${encodeURIComponent(finalNotesTitle)}`;
-        }
+      if (lecture.notesLink && lecture.notesLink.trim() !== '' && lecture.notesLink.trim() !== '#') {
+        externalPlayerUrl += `&notesUrl=${encodeURIComponent(lecture.notesLink)}`;
+        const baseNotesTitle = (lecture.notesTitle && lecture.notesTitle.trim()) ? lecture.notesTitle : lecture.title;
+        const finalNotesTitle = `${baseNotesTitle} - Notes`;
+        externalPlayerUrl += `&notesTitle=${encodeURIComponent(finalNotesTitle)}`;
       }
+      
       window.open(externalPlayerUrl, '_blank', 'noopener,noreferrer');
     }
   };
