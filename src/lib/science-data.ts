@@ -81,6 +81,7 @@ const scienceOnlySubjects: CourseContentMap = {
       name: 'Com & Collision',
       lectures: [
         { id: 'L1', title: 'Com & Collision L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/95864446315923040.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495273/175353915047275910848/index_4.m3u8' },
+         { id: 'L2', title: 'Com & Collision L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505753/175397925432755910848/index_4.m3u8' },
         
       
       ]
@@ -241,7 +242,13 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L1', title: 'Structural Organisation in Animals L1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/180465181792550340.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492748/175336084790563740487/index_4.m3u8' },
          { id: 'L2', title: 'Structural Organisation in Animals L2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/172241178162762430.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501745/175371299141033740487/index_4.m3u8' },
         { id: 'L3', title: 'Structural Organisation in Animals L3', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/54564399377404590.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503260/175379726789653740487/index_4.m3u8' },
-      
+       ]
+    },
+    {
+      name: ' Cell : The Unit of Life ',
+      lectures: [
+        { id: 'L1', title: ' Cell : The Unit of Life  L1', notesTitle: "", notesLink: '', videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505550/175396634766803740487/index_4.m3u8' },
+        
       ]
     },
   ],
