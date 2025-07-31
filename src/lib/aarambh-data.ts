@@ -104,7 +104,7 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Development',
       lectures: [
-        { id: 'L1', title: 'Development L1', notesTitle: "WPP #1 Devlopment", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/346089666981640100.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/P3K2mVqgR7Y' },
+        { id: 'L1', title: 'Development L1', notesTitle: "WPP #1 Devlopment", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/346089666981640100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/embed/P3K2mVqgR7Y' },
         { id: 'L2', title: 'Development L2', notesTitle: "WPP #1 Devlopment Solutions", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/761630106449919600.pdf`,videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4352990/174481810831487880624/index_4.m3u8' },
         { id: 'L3', title: 'Development L3', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354004/174490425923587880624/index_4.m3u8' },
         { id: 'L4', title: 'Development L4', videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4355307/174506622189247880624/index_4.m3u8' },
@@ -201,7 +201,7 @@ export const aarambhCourseContent: CourseContentMap = {
     {
       name: 'Chemical Equations & Reaction',
       lectures: [
-        { id: 'L1', title: 'Chemical Equations & Reaction L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/545509967460020400.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/embed/TRS7cu_n108' },
+        { id: 'L1', title: 'Chemical Equations & Reaction L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/545509967460020400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/embed/TRS7cu_n108' },
         { id: 'L2', title: 'Chemical Equations & Reaction L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/92623582258554050.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4352723/174480784354101097666/index_5.m3u8' },
         { id: 'L3', title: 'Chemical Equations & Reaction L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/467570420184705540.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4353809/174489432994287880624/index_4.m3u8' },
         { id: 'L4', title: 'Chemical Equations & Reaction L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/508994911186986560.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4354717/174498038229378296383/index_4.m3u8' },
