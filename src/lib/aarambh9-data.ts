@@ -211,7 +211,7 @@ export const aarambh9CourseContent: CourseContentMap = {
     {
       name: 'The French Revolution',
       lectures: [
-        { id: 'L1', title: 'The French Revolution L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/868853396854137200.pdf`, videoEmbedType: 'youtube', videoEmbedUrl: 'https://www.youtube.com/live/EDMXz3jVgZA?si=BvCXav6zfaUMg1UT' },
+        { id: 'L1', title: 'The French Revolution L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/868853396854137200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/live/EDMXz3jVgZA?si=BvCXav6zfaUMg1UT' },
         { id: 'L2', title: 'The French Revolution L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/519698322921122600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4359911/174549813759727880624/index_4.m3u8' },
         { id: 'L3', title: 'The French Revolution L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/200066952319148770.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4364774/174594113722007880624/index_4.m3u8' },
         { id: 'L4', title: 'The French Revolution L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/114083209194861400.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4365809/174601655378227880624/index_4.m3u8' },
