@@ -381,7 +381,14 @@ export const aarambh9CourseContent: CourseContentMap = {
         { id: 'L4', title: 'Triangles L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/253519447347299680.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4486980/175299159543288752407/index_4.m3u8' },
        { id: 'L5', title: 'Triangles L5', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/473942609408271040.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4492909/175337362774398752407/index_4.m3u8' },
        { id: 'L6', title: 'Triangles L6', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/404541126150355700.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4493830/175344775652878752407/index_4.m3u8' },
-      
+        ]
+    },
+    {
+      name: 'Euclids Geometry',
+      lectures: [   
+        { id: 'L1', title: 'Euclids Geometry', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/173056721813881500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505666/175396960567188752407/index_4.m3u8' },
+         { id: 'L2', title: 'Introduction to Euclids Geometry Class 9 in One Shot Class 9 Maths Chapter 5 Complete Lecture', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/173056721813881500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/embed/mxeXcTjQiuM' },
+       
       ]
     },
   ],
