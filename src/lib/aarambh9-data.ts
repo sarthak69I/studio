@@ -388,7 +388,13 @@ export const aarambh9CourseContent: CourseContentMap = {
       lectures: [   
         { id: 'L1', title: 'Euclids Geometry', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/173056721813881500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505666/175396960567188752407/index_4.m3u8' },
          { id: 'L2', title: 'Introduction to Euclids Geometry Class 9 in One Shot Class 9 Maths Chapter 5 Complete Lecture', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/173056721813881500.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://www.youtube.com/embed/mxeXcTjQiuM' },
-       
+               ]
+    },
+    {
+      name: 'Herons Formula',
+      lectures: [   
+        { id: 'L1', title: 'Herons Formula 1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/377277291001497600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4510437/175405219348975373082/index_4.m3u8' },
+         
       ]
     },
   ],
