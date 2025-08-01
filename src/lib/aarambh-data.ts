@@ -280,6 +280,7 @@ export const aarambhCourseContent: CourseContentMap = {
          { id: ' L3', title: 'Metals and Non Metals L3', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/24311521873899890.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495387/175362102827098929414/index_4.m3u8' },
          { id: ' L4', title: 'Metals and Non Metals L4', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/109675619087779020.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4504251/175387971750558929414/index_4.m3u8' },
           { id: ' L5', title: 'Metals and Non Metals L5', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505544/175396595790708929414/index_4.m3u8' },
+           { id: ' L6', title: 'Metals and Non Metals L6', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4510475/175405347924588929414/index_4.m3u8' },
      
      ]       
     }
