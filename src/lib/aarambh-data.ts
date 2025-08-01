@@ -387,7 +387,12 @@ export const aarambhCourseContent: CourseContentMap = {
           { id: 'L7', title: 'Arithmrtic Progression L7', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/625222176940659200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4494008/175345805892108752407/index_4.m3u8' },
          { id: 'L8', title: 'Arithmrtic Progression L8', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/752568183314202100.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501795/175371721680228752407/index_4.m3u8' },
            { id: 'L9', title: 'Arithmrtic Progression L9', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4503329/175380191837008752407/index_4.m3u8' },
-        
+         ]
+    },
+    {
+      name: 'Coordinate Geometry',
+      lectures: [   
+        { id: 'L1', title: 'Coordinate Geometry L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4510600/175406306314138752407/index_4.m3u8' },
       ]
     }
   ],
