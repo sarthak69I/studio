@@ -63,7 +63,7 @@ export const courseLiveDetails: Record<string, any> = {
     class2Subject: "",
     classTimeLabel: "5:00 PM - 6:30 PM",
     classTimeLabel2: "8:00 PM - 9:30 PM", 
-    class1LiveStreamUrl: 'https://dga9kme080o0w.cloudfront.net/out/v1/5c7cfedca3df4fc99ea383b5f2e6a7a8/index_4.m3u8', 
+    class1LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/49856fa811d3403facbfba24d0db04ab/index_4.m3u8', 
     class2LiveStreamUrl: '',
     class1Visible: true,
     class2Visible: false,
