@@ -483,6 +483,20 @@ export const aarambhCourseContent: CourseContentMap = {
   lectures: [
     { id: 'L1', title: 'Modals L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/23326Modals%20%20L1.pdf_Modals%20%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485490/1752820994_1193104855872784/sunny/1752820284080_852239388616624500_video_VOD720p30.m3u8' },
    { id: 'L2', title: 'Modals L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7536363Modals%20%20L2.pdf_Modals%20%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4485491/1752821107_7918278051377036/sunny/1752820612528_195711855498055070_video_VOD720p30.m3u8' },
+   ]
+},
+{
+  name: 'Formal letter',
+  lectures: [
+    { id: 'L1', title: 'Formal letter L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/3537928Formal%20letter%20L1.pdf_Formal%20letter%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396735/1748601184_2134014876471033/sunny/1748596821626_797322818999235200_video_VOD720p30.m3u8' },
+      { id: 'L2', title: 'Formal letter L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6958330Formal%20letter%20L2.pdf_Formal%20letter%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4396736/1748601244_4762999743388125/sunny/1748597136498_124561704044607980_video_VOD720p30.m3u8' },
+   ]
+},
+{
+  name: 'Reading comprehension',
+  lectures: [
+    { id: 'L1', title: 'Reading comprehension L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6199952Reading%20comprehension%20L1.pdf_Reading%20comprehension%20L1.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4422907/1751031847_9718006174861120/sunny/1751017110688_370163907888425400_video_VOD720p30.m3u8' },
+      { id: 'L2', title: 'Reading comprehension L2', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/2766254Reading%20comprehension%20L2.pdf_Reading%20comprehension%20L2.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4422908/1751031966_8562824892906617/sunny/1751017183012_356612725453667260_video_VOD720p30.m3u8' },
    
   ]
     }
@@ -713,17 +727,7 @@ export const aarambhCourseContent: CourseContentMap = {
               "title": "Hindi Doubt Class",
               "videoEmbedUrl": "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480925/175239456973866123022/index_4.m3u8",
               "videoEmbedType": "hls"
-          }
-      ]
-    },
-    {
-      "name": "Course A Doubt Class",
-      "lectures": [
-          {
-              "id": "hindi-doubt-class-1",
-              "title": "Hindi Doubt Class",
-              "videoEmbedUrl": "https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4480925/175239456973866123022/index_4.m3u8",
-              "videoEmbedType": "hls"
+         
           }
       ]
     }
