@@ -83,6 +83,7 @@ const scienceOnlySubjects: CourseContentMap = {
         { id: 'L1', title: 'Com & Collision L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/95864446315923040.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4495273/175353915047275910848/index_4.m3u8' },
          { id: 'L2', title: 'Com & Collision L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505753/175397925432755910848/index_4.m3u8' },
          { id: 'L3', title: 'Com & Collision L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4510516/175405511061355910848/index_4.m3u8' },
+         { id: 'L4', title: 'Com & Collision L4', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4511308/175414155522095910848/index_4.m3u8' },
         
       
       ]
