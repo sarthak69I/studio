@@ -269,7 +269,13 @@ const commerceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Tabular Representation L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505746/175397855049832809295/index_4.m3u8' },
         { id: 'L2', title: 'Tabular Representation L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4510602/175406314241382809295/index_4.m3u8' },
-       
+        ],
+     },
+     {
+      name: ' Diagrammatic Presentation',
+      lectures: [
+        { id: 'L1', title: ' Diagrammatic Presentation L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4511384/175415073614282809295/index_4.m3u8' },
+     
       ]
     }
   ],
