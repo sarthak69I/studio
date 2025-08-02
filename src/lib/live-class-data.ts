@@ -47,7 +47,7 @@ export const courseLiveDetails: Record<string, any> = {
   '3': { // Aarambh (Class 10)
     pageTitle: "10th Aarambh",
     class1Subject: " Science -  Class Cancelled",
-    class2Subject: "Mathematics",
+    class2Subject: "Mathematics- Class cancel",
     classTimeLabel: "5:00 PM - 6:30 PM",
     classTimeLabel2: "8:00 PM - 9:30 PM",
     class1LiveStreamUrl: 'https://d133w6ldrek1er.cloudfront.net/out/v1/f15d86916b1f404baeb09967b920d86a/index_4.m3u8',
