@@ -394,6 +394,7 @@ export const aarambh9CourseContent: CourseContentMap = {
       name: 'Herons Formula',
       lectures: [   
         { id: 'L1', title: 'Herons Formula 1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/377277291001497600.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4510437/175405219348975373082/index_4.m3u8' },
+         { id: 'L2', title: 'Herons Formula 2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4511223/175413794628705373082/index_4.m3u8' },
          
       ]
     },
