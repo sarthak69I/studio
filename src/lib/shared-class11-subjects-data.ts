@@ -131,6 +131,20 @@ export const sharedClass11SubjectsContent: CourseContentMap = {
       lectures: [
         { id: 'l1', title: 'The Laburnum Top  1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6106051The%20Laburnum%20Top%20%28Poem%29%20L1.pdf_The%20Laburnum%20Top%20%28Poem%29%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465888/1751722266_8881303096177569/sunny/1751711161321_109031725697528430_video_VOD720p30.m3u8' },
     { id: 'l2', title: 'The Laburnum Top 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/7266758The%20Laburnum%20Top%20%28Poem%29%20L2.pdf_The%20Laburnum%20Top%20%28Poem%29%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4465889/1751722326_5074515748575618/sunny/1751711310919_2773886955363536_video_VOD720p30.m3u8' },
+    ]
+    },
+    {
+      name: 'Reading comprehension',
+      lectures: [
+        { id: 'l1', title: 'Reading comprehension 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/5045561Reading%20comprehension%20L1.pdf_Reading%20comprehension%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425410/1751032389_4631329532086284/sunny/1751017825527_411302627984606800_video_VOD720p30.m3u8' },
+         { id: 'l2', title: 'Reading comprehension 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/1168252Reading%20comprehension%20L2.pdf_Reading%20comprehension%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4425411/1751032686_8381907369097488/sunny/1751017910839_41483110382354936_video_VOD720p30.m3u8' },
+     ]
+    },
+    {
+      name: 'Notes Making and Summarization',
+      lectures: [
+        { id: 'l1', title: 'Notes Making and Summarization 1', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/6591488Note%20Making%20and%20Summarization%20%20%20L1.pdf_Note%20Making%20and%20Summarization%20%20%20L1.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367089/1746108064_2650168983412203/sunny/1746107920901_725495251626872200_video_VOD720p30.m3u8' },
+         { id: 'l2', title: 'Notes Making and Summarization 2', notesTitle: "", notesLink: 'https://dxixtlyravvxx.cloudfront.net/540/admin_v1/file_manager/pdf/4837896Note%20Making%20and%20Summarization%20%20%20L2.pdf_Note%20Making%20and%20Summarization%20%20%20L2.pdf', videoEmbedType: 'hls', videoEmbedUrl: 'https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367090/1746108067_9747002579340311/sunny/1746107996057_215816486613238800_video_VOD720p30.m3u8' },
     
       ]
     }
