@@ -59,7 +59,7 @@ export const courseLiveDetails: Record<string, any> = {
   },
   '4': { // Aarambh (Class 9)
     pageTitle: "9th Aarambh",
-    class1Subject: "Mathematics - Herons Formula 1",
+    class1Subject: "Mathematics - Herons Formula 2",
     class2Subject: "",
     classTimeLabel: "5:00 PM - 6:30 PM",
     classTimeLabel2: "8:00 PM - 9:30 PM", 
