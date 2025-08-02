@@ -177,6 +177,7 @@ const commerceOnlySubjects: CourseContentMap = {
       lectures: [
         { id: 'L1', title: 'Depriciation L1', notesTitle: "", notesLink: `https://dxixtlyravvxx.cloudfront.net/540admin_v1/file_manager/pdf/620641060211652200.pdf`, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4501759/175371379654578680586/index_4.m3u8' },
           { id: 'L2', title: 'Depriciation L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505599/175396757793918680586/index_4.m3u8' },
+        { id: 'L3', title: 'Depriciation L3', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4510476/175405348824228680586/index_4.m3u8' },
         
       ]
     }
@@ -266,6 +267,7 @@ const commerceOnlySubjects: CourseContentMap = {
       name: 'Tabular Representation',
       lectures: [
         { id: 'L1', title: 'Tabular Representation L1', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4505746/175397855049832809295/index_4.m3u8' },
+        { id: 'L2', title: 'Tabular Representation L2', notesTitle: "", notesLink: ``, videoEmbedType: 'hls', videoEmbedUrl: 'https://d274dp7v20n4nf.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/4510602/175406314241382809295/index_4.m3u8' },
        
       ]
     }
