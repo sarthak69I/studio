@@ -46,7 +46,7 @@ export const courseLiveDetails: Record<string, any> = {
   },
   '3': { // Aarambh (Class 10)
     pageTitle: "10th Aarambh",
-    class1Subject: " Science",
+    class1Subject: " Science -  Class Cancelled",
     class2Subject: "Mathematics",
     classTimeLabel: "5:00 PM - 6:30 PM",
     classTimeLabel2: "8:00 PM - 9:30 PM",
